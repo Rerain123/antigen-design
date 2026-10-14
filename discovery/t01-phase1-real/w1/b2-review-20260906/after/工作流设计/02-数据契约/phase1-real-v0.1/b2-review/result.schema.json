@@ -1,0 +1,389 @@
+{
+  "type": "object",
+  "properties": {
+    "contract_version": {
+      "const": "0.1.0"
+    },
+    "contract_status": {
+      "const": "DRAFT_REVIEW_ONLY"
+    },
+    "tool_id": {
+      "const": "t01.real.deeptmhmm"
+    },
+    "identity_scope": {
+      "const": "LOCAL_REVIEW_NOT_RUNTIME_ISSUED"
+    },
+    "evidence_kind": {
+      "enum": [
+        "ENGINEERING_FIXTURE",
+        "G0_RAW_REPLAY"
+      ]
+    },
+    "binding": {
+      "type": "object",
+      "properties": {
+        "run_id": {
+          "type": "string",
+          "pattern": "^t01p1r-run-[A-Za-z0-9._-]+$"
+        },
+        "request_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+        },
+        "job_id": {
+          "type": "string",
+          "pattern": "^t01p1r-job-[A-Za-z0-9._-]+$"
+        },
+        "attempt_id": {
+          "type": "string",
+          "pattern": "^t01p1r-attempt-[A-Za-z0-9._-]+$"
+        },
+        "request_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "sequence_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "profile_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "run_id",
+        "request_id",
+        "job_id",
+        "attempt_id",
+        "request_sha256",
+        "sequence_sha256",
+        "profile_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "execution_observation": {
+      "enum": [
+        "completed",
+        "not_started",
+        "failed",
+        "timed_out",
+        "cancelled"
+      ]
+    },
+    "failure_reason": {
+      "enum": [
+        null,
+        "TOOL_UNAVAILABLE",
+        "INVALID_OUTPUT",
+        "TOOL_FAILED",
+        "TIMED_OUT",
+        "CANCELLED"
+      ]
+    },
+    "raw_record": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "record_id": {
+              "type": "string"
+            },
+            "sequence": {
+              "type": "string"
+            },
+            "labels": {
+              "type": "string",
+              "pattern": "^[IOMSPB]+$"
+            },
+            "type": {
+              "enum": [
+                "TM",
+                "SP+TM",
+                "SP",
+                "GLOB",
+                "BETA"
+              ]
+            },
+            "segments": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "inside",
+                      "outside",
+                      "TMhelix",
+                      "signal",
+                      "periplasm",
+                      "Beta sheet"
+                    ]
+                  },
+                  "start": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "end": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "label": {
+                    "enum": [
+                      "I",
+                      "O",
+                      "M",
+                      "S",
+                      "P",
+                      "B"
+                    ]
+                  }
+                },
+                "required": [
+                  "type",
+                  "start",
+                  "end",
+                  "label"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "raw_tmr_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "coordinate_base": {
+              "const": 1
+            }
+          },
+          "required": [
+            "record_id",
+            "sequence",
+            "labels",
+            "type",
+            "segments",
+            "raw_tmr_count",
+            "coordinate_base"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "raw_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "enum": [
+              "input_fasta",
+              "prediction",
+              "regions",
+              "execution",
+              "method_summary"
+            ]
+          },
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "role",
+          "path",
+          "sha256",
+          "size_bytes"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "id_pairing": {
+      "enum": [
+        "SAFE_INTERNAL_ID",
+        "HISTORICAL_ORIGINAL_ID"
+      ]
+    },
+    "scientific_signoff": {
+      "type": "null"
+    },
+    "production_status": {
+      "const": "NOT_DEPLOYED"
+    },
+    "topology": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "labels": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "inside",
+                  "outside",
+                  "TMhelix",
+                  "signal"
+                ]
+              }
+            },
+            "segments": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "inside",
+                      "outside",
+                      "TMhelix",
+                      "signal"
+                    ]
+                  },
+                  "start": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "end": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "type",
+                  "start",
+                  "end"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "has_signal": {
+              "type": "boolean"
+            },
+            "tm_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "outside_length": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "labels",
+            "segments",
+            "has_signal",
+            "tm_count",
+            "outside_length"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "null_reason": {
+      "enum": [
+        null,
+        "INVALID_INPUT",
+        "INPUT_REVIEW_REQUIRED",
+        "PB_OUT_OF_DOMAIN",
+        "TOOL_UNAVAILABLE",
+        "INVALID_OUTPUT",
+        "TOOL_FAILED",
+        "TIMED_OUT",
+        "CANCELLED"
+      ]
+    },
+    "input_findings": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "EMPTY_SEQUENCE",
+          "SEQUENCE_NOT_NORMALIZED",
+          "INVALID_SEQUENCE_SYMBOL",
+          "UPSTREAM_DEFAULT_LENGTH_GUARD",
+          "NON_AA20_REQUIRES_REVIEW",
+          "LENGTH_BEYOND_RECORDED_SAMPLES"
+        ]
+      }
+    },
+    "interpretation_status": {
+      "enum": [
+        "parsed_unverified",
+        "unreliable"
+      ]
+    },
+    "requires_review": {
+      "const": true
+    },
+    "automatic_handoff": {
+      "const": false
+    },
+    "usable_for_pipeline": {
+      "const": false
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "const": "failure"
+          },
+          "severity": {
+            "const": "WARNING"
+          },
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "level",
+          "severity",
+          "code",
+          "message"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "contract_version",
+    "contract_status",
+    "tool_id",
+    "identity_scope",
+    "evidence_kind",
+    "binding",
+    "execution_observation",
+    "failure_reason",
+    "raw_record",
+    "raw_artifacts",
+    "id_pairing",
+    "scientific_signoff",
+    "production_status",
+    "topology",
+    "null_reason",
+    "input_findings",
+    "interpretation_status",
+    "requires_review",
+    "automatic_handoff",
+    "usable_for_pipeline",
+    "warnings"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

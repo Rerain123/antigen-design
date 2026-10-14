@@ -1,0 +1,1107 @@
+app:
+  description: T-01 v10 阶段5独立一键调试流程。自动使用Dify workflow_run_id初始化所选Mock场景；无需手工添加初始化节点或粘贴T-01 JSON。仅用于调试，不作为Master阶段工具。
+  icon: 🧪
+  icon_background: '#E8F5E9'
+  mode: workflow
+  name: T01_P5_VariantEvaluation_Debug
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types: []
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: start
+        targetType: tool
+      id: edge_P5_START_source_P5D_CONFIGURE_RUN
+      source: P5_START
+      sourceHandle: source
+      target: P5D_CONFIGURE_RUN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P5D_CONFIGURE_RUN_source_P5_VARIANT_REASSESS
+      source: P5D_CONFIGURE_RUN
+      sourceHandle: source
+      target: P5_VARIANT_REASSESS
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P5_VARIANT_REASSESS_source_P5_S23_SAFETY
+      source: P5_VARIANT_REASSESS
+      sourceHandle: source
+      target: P5_S23_SAFETY
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P5_S23_SAFETY_source_P5_S12_GLYCO
+      source: P5_S23_SAFETY
+      sourceHandle: source
+      target: P5_S12_GLYCO
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P5_S12_GLYCO_source_P5_EPITOPE_L1_L4
+      source: P5_S12_GLYCO
+      sourceHandle: source
+      target: P5_EPITOPE_L1_L4
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P5_EPITOPE_L1_L4_source_P5_S40_COARSE
+      source: P5_EPITOPE_L1_L4
+      sourceHandle: source
+      target: P5_S40_COARSE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P5_S40_COARSE_source_P5_SCORE_POOL
+      source: P5_S40_COARSE
+      sourceHandle: source
+      target: P5_SCORE_POOL
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_P5_SCORE_POOL_source_P5_IF_SCORE
+      source: P5_SCORE_POOL
+      sourceHandle: source
+      target: P5_IF_SCORE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_P5_IF_SCORE_true_P5_S31_VARIANT_DDG
+      source: P5_IF_SCORE
+      sourceHandle: 'true'
+      target: P5_S31_VARIANT_DDG
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P5_S31_VARIANT_DDG_source_P5_S40_FINAL_DDG
+      source: P5_S31_VARIANT_DDG
+      sourceHandle: source
+      target: P5_S40_FINAL_DDG
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P5_S40_FINAL_DDG_source_P5_STEP20_RANK_DDG
+      source: P5_S40_FINAL_DDG
+      sourceHandle: source
+      target: P5_STEP20_RANK_DDG
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_P5_IF_SCORE_false_P5_S40_FINAL_NO_DDG
+      source: P5_IF_SCORE
+      sourceHandle: 'false'
+      target: P5_S40_FINAL_NO_DDG
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P5_S40_FINAL_NO_DDG_source_P5_STEP20_RANK_NO_DDG
+      source: P5_S40_FINAL_NO_DDG
+      sourceHandle: source
+      target: P5_STEP20_RANK_NO_DDG
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: variable-aggregator
+      id: edge_P5_STEP20_RANK_DDG_source_P5_RESULT_JOIN
+      source: P5_STEP20_RANK_DDG
+      sourceHandle: source
+      target: P5_RESULT_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: variable-aggregator
+      id: edge_P5_STEP20_RANK_NO_DDG_source_P5_RESULT_JOIN
+      source: P5_STEP20_RANK_NO_DDG
+      sourceHandle: source
+      target: P5_RESULT_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: variable-aggregator
+        targetType: end
+      id: edge_P5_RESULT_JOIN_source_P5_END
+      source: P5_RESULT_JOIN
+      sourceHandle: source
+      target: P5_END
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始（选择Mock场景）
+        type: start
+        variables:
+        - variable: scenario_id
+          label: Mock 场景
+          type: select
+          required: true
+          max_length: 128
+          options:
+          - MOCK-HAPPY-PATH
+          - MOCK-SHORT-MHC-HALT
+          - MOCK-SHORT-WARNING
+          - MOCK-CONTEXT-HIGH
+          - MOCK-CONTEXT-NONHIGH
+          - MOCK-NO-STRUCTURE
+          - MOCK-LOW-STRUCTURE
+          - MOCK-BACTERIA
+          - MOCK-MEMBRANE-SKIP
+          - MOCK-MEMBRANE-CONFIRMED
+          - MOCK-POOR-RESCUE-SUCCESS
+          - MOCK-POOR-RESCUE-FAIL
+          - MOCK-DESIGN-RETRY-48
+          - MOCK-DESIGN-RETRY-64
+          - MOCK-DESIGN-ALL-REJECTED
+          - MOCK-EPITOPE-STRUCTURAL-FAIL
+          - MOCK-EPITOPE-PREDICTION-FAIL
+          - MOCK-VARIANT-SAFETY-FAIL
+          - MOCK-19B-SKIPPED
+          - MOCK-SC10-WARNING
+          - MOCK-MD-RUN
+          - MOCK-MD-SKIP
+          - MOCK-TOOL-TIMEOUT
+          - MOCK-OUTPUT-MISSING
+          - MOCK-OUTPUT-INVALID
+      height: 120
+      id: P5_START
+      position:
+        x: 0
+        y: 220
+      positionAbsolute:
+        x: 0
+        y: 220
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: mock.configure_run · Dify orchestration boundary tool.
+        selected: false
+        title: 自动初始化Mock运行
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 自动初始化Mock运行
+        tool_name: mock.configure_run
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            type: variable
+            value:
+            - sys
+            - workflow_run_id
+          scenario_id:
+            type: variable
+            value:
+            - P5_START
+            - scenario_id
+      height: 98
+      id: P5D_CONFIGURE_RUN
+      position:
+        x: 320
+        y: 220
+      positionAbsolute:
+        x: 320
+        y: 220
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: variant.reassess_developability · Batch-reassess variants (mock only).
+        selected: false
+        title: step19 变体批量重评
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: step19 变体批量重评
+        tool_name: variant.reassess_developability
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - sys
+            - workflow_run_id
+          step_id:
+            type: constant
+            value: step19
+          node_id:
+            type: constant
+            value: P5_VARIANT_REASSESS
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: variant
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#sys.workflow_run_id#}}:P5_VARIANT_REASSESS:attempt-1'
+      height: 98
+      id: P5_VARIANT_REASSESS
+      position:
+        x: 640
+        y: 300
+      positionAbsolute:
+        x: 640
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: safety.assess_triple · Assess allergenicity, toxicity, and host similarity (mock only).
+        selected: false
+        title: S-23 变体安全复评
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-23 变体安全复评
+        tool_name: safety.assess_triple
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - sys
+            - workflow_run_id
+          step_id:
+            type: constant
+            value: S-23
+          node_id:
+            type: constant
+            value: P5_S23_SAFETY
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: variant
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#sys.workflow_run_id#}}:P5_S23_SAFETY:attempt-1'
+      height: 98
+      id: P5_S23_SAFETY
+      position:
+        x: 960
+        y: 300
+      positionAbsolute:
+        x: 960
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: glyco.scan · Scan glycosylation context (mock only).
+        selected: false
+        title: S-12 变体glyco复扫
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-12 变体glyco复扫
+        tool_name: glyco.scan
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - sys
+            - workflow_run_id
+          step_id:
+            type: constant
+            value: S-12
+          node_id:
+            type: constant
+            value: P5_S12_GLYCO
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: variant
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#sys.workflow_run_id#}}:P5_S12_GLYCO:attempt-1'
+      height: 98
+      id: P5_S12_GLYCO
+      position:
+        x: 1280
+        y: 300
+      positionAbsolute:
+        x: 1280
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: epitope.validate_presentation · Apply four-layer epitope preservation validation.
+        selected: false
+        title: step19 四层表位验证
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: step19 四层表位验证
+        tool_name: epitope.validate_presentation
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - sys
+            - workflow_run_id
+          step_id:
+            type: constant
+            value: step19-L1-L4
+          node_id:
+            type: constant
+            value: P5_EPITOPE_L1_L4
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: variant
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#sys.workflow_run_id#}}:P5_EPITOPE_L1_L4:attempt-1'
+      height: 98
+      id: P5_EPITOPE_L1_L4
+      position:
+        x: 1600
+        y: 300
+      positionAbsolute:
+        x: 1600
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: developability.assess · Assemble baseline/coarse/final developability assessment.
+        selected: false
+        title: S-40 五维粗评
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-40 五维粗评
+        tool_name: developability.assess
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - sys
+            - workflow_run_id
+          step_id:
+            type: constant
+            value: S-40
+          node_id:
+            type: constant
+            value: P5_S40_COARSE
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: variant_coarse
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#sys.workflow_run_id#}}:P5_S40_COARSE:attempt-1'
+      height: 98
+      id: P5_S40_COARSE
+      position:
+        x: 1920
+        y: 300
+      positionAbsolute:
+        x: 1920
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01.select_stability_score_pool · Select stability score pool under cost gates.
+        selected: false
+        title: step19b score_pool
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: step19b score_pool
+        tool_name: t01.select_stability_score_pool
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - sys
+            - workflow_run_id
+          step_id:
+            type: constant
+            value: step19b
+          node_id:
+            type: constant
+            value: P5_SCORE_POOL
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: variant
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#sys.workflow_run_id#}}:P5_SCORE_POOL:attempt-1'
+      height: 98
+      id: P5_SCORE_POOL
+      position:
+        x: 2240
+        y: 300
+      positionAbsolute:
+        x: 2240
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 执行变体FoldX?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: P5_IF_SCORE_condition
+            variable_selector:
+            - P5_SCORE_POOL
+            - data
+            - route
+            comparison_operator: is
+            value: RUN_S31_VARIANT
+            varType: string
+      height: 150
+      id: P5_IF_SCORE
+      position:
+        x: 2560
+        y: 300
+      positionAbsolute:
+        x: 2560
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: stability.score_variants · Score variant stability (mock only).
+        selected: false
+        title: S-31 变体ddG
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-31 变体ddG
+        tool_name: stability.score_variants
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - sys
+            - workflow_run_id
+          step_id:
+            type: constant
+            value: S-31-variant
+          node_id:
+            type: constant
+            value: P5_S31_VARIANT_DDG
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: variant
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P5_SCORE_POOL
+            - data
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#sys.workflow_run_id#}}:P5_S31_VARIANT_DDG:attempt-1'
+      height: 98
+      id: P5_S31_VARIANT_DDG
+      position:
+        x: 2880
+        y: 80
+      positionAbsolute:
+        x: 2880
+        y: 80
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: developability.assess · Assemble baseline/coarse/final developability assessment.
+        selected: false
+        title: S-40 六维终评
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-40 六维终评
+        tool_name: developability.assess
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - sys
+            - workflow_run_id
+          step_id:
+            type: constant
+            value: S-40
+          node_id:
+            type: constant
+            value: P5_S40_FINAL_DDG
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: variant_final
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P5_S31_VARIANT_DDG
+            - data
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#sys.workflow_run_id#}}:P5_S40_FINAL_DDG:attempt-1'
+      height: 98
+      id: P5_S40_FINAL_DDG
+      position:
+        x: 3200
+        y: 80
+      positionAbsolute:
+        x: 3200
+        y: 80
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ranking.rank_variants · Apply hard filters, Pareto ranking, diversity, and SC-10.
+        selected: false
+        title: step20 排序链
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: step20 排序链
+        tool_name: ranking.rank_variants
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - sys
+            - workflow_run_id
+          step_id:
+            type: constant
+            value: step20
+          node_id:
+            type: constant
+            value: P5_STEP20_RANK_DDG
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: variant
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P5_S40_FINAL_DDG
+            - data
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#sys.workflow_run_id#}}:P5_STEP20_RANK_DDG:attempt-1'
+      height: 98
+      id: P5_STEP20_RANK_DDG
+      position:
+        x: 3520
+        y: 80
+      positionAbsolute:
+        x: 3520
+        y: 80
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: developability.assess · Assemble baseline/coarse/final developability assessment.
+        selected: false
+        title: S-40 无ddG终评
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-40 无ddG终评
+        tool_name: developability.assess
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - sys
+            - workflow_run_id
+          step_id:
+            type: constant
+            value: S-40
+          node_id:
+            type: constant
+            value: P5_S40_FINAL_NO_DDG
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: variant_final
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P5_S40_COARSE
+            - data
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#sys.workflow_run_id#}}:P5_S40_FINAL_NO_DDG:attempt-1'
+      height: 98
+      id: P5_S40_FINAL_NO_DDG
+      position:
+        x: 2880
+        y: 520
+      positionAbsolute:
+        x: 2880
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ranking.rank_variants · Apply hard filters, Pareto ranking, diversity, and SC-10.
+        selected: false
+        title: step20 降级排序链
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: step20 降级排序链
+        tool_name: ranking.rank_variants
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - sys
+            - workflow_run_id
+          step_id:
+            type: constant
+            value: step20
+          node_id:
+            type: constant
+            value: P5_STEP20_RANK_NO_DDG
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: variant
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P5_S40_FINAL_NO_DDG
+            - data
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#sys.workflow_run_id#}}:P5_STEP20_RANK_NO_DDG:attempt-1'
+      height: 98
+      id: P5_STEP20_RANK_NO_DDG
+      position:
+        x: 3200
+        y: 520
+      positionAbsolute:
+        x: 3200
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 排序结果汇合
+        type: variable-aggregator
+        advanced_settings:
+          group_enabled: false
+          groups: []
+        output_type: object
+        variables:
+        - - P5_STEP20_RANK_DDG
+          - json
+        - - P5_STEP20_RANK_NO_DDG
+          - json
+      height: 108
+      id: P5_RESULT_JOIN
+      position:
+        x: 3840
+        y: 300
+      positionAbsolute:
+        x: 3840
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 结束
+        type: end
+        outputs:
+        - variable: run_id
+          value_selector:
+          - sys
+          - workflow_run_id
+        - variable: stage_result
+          value_selector:
+          - P5_RESULT_JOIN
+          - output
+      height: 142
+      id: P5_END
+      position:
+        x: 4160
+        y: 300
+      positionAbsolute:
+        x: 4160
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    viewport:
+      x: 0
+      y: 0
+      zoom: 0.55
+  rag_pipeline_variables: []

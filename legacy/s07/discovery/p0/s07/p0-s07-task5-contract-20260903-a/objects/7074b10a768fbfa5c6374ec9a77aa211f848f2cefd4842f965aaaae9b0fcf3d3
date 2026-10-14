@@ -1,0 +1,183 @@
+[
+  {
+    "artifact_ids": [
+      "sha256-c04a46e5b7861916f422551b451fe7e804cc66d3ef164c91db454741a8eda569"
+    ],
+    "bound_sequence_sha256": "6e5a64a8db281d81dec0785dd0e179ea549855e6f10dbdb924db26eba47f4a51",
+    "capped": false,
+    "complete": true,
+    "data_version": null,
+    "endpoint_or_release": null,
+    "evaluated_at": "2026-09-03T01:43:38.495309Z",
+    "evidence_kind": "CONTROLLED",
+    "failures": [],
+    "operation": "PDB_SEARCH",
+    "original_access_mode": "OFFLINE",
+    "original_time": {},
+    "parameters": {},
+    "reason_code": "CONTROLLED_NO_STRICT_PDB_CANDIDATES",
+    "returned_count": 0,
+    "status": "SUCCEEDED_EMPTY",
+    "tool_name": null,
+    "tool_version": null,
+    "version_note": "Offline controlled state; no remote invocation."
+  },
+  {
+    "artifact_ids": [],
+    "bound_sequence_sha256": "6e5a64a8db281d81dec0785dd0e179ea549855e6f10dbdb924db26eba47f4a51",
+    "capped": false,
+    "complete": false,
+    "data_version": null,
+    "endpoint_or_release": null,
+    "evaluated_at": "2026-09-03T01:43:38.496307Z",
+    "evidence_kind": "NOT_RUN",
+    "failures": [],
+    "operation": "PDB_METADATA",
+    "original_access_mode": null,
+    "original_time": {},
+    "parameters": {},
+    "reason_code": "NO_PDB_CANDIDATES",
+    "returned_count": 0,
+    "status": "NOT_RUN",
+    "tool_name": null,
+    "tool_version": null,
+    "version_note": "Not executed."
+  },
+  {
+    "artifact_ids": [],
+    "bound_sequence_sha256": "6e5a64a8db281d81dec0785dd0e179ea549855e6f10dbdb924db26eba47f4a51",
+    "capped": false,
+    "complete": false,
+    "data_version": null,
+    "endpoint_or_release": null,
+    "evaluated_at": "2026-09-03T01:43:38.496307Z",
+    "evidence_kind": "NOT_RUN",
+    "failures": [],
+    "operation": "PDB_STRUCTURE",
+    "original_access_mode": null,
+    "original_time": {},
+    "parameters": {},
+    "reason_code": "NO_PDB_CANDIDATES",
+    "returned_count": 0,
+    "status": "NOT_RUN",
+    "tool_name": null,
+    "tool_version": null,
+    "version_note": "Not executed."
+  },
+  {
+    "artifact_ids": [],
+    "bound_sequence_sha256": "6e5a64a8db281d81dec0785dd0e179ea549855e6f10dbdb924db26eba47f4a51",
+    "capped": false,
+    "complete": false,
+    "data_version": null,
+    "endpoint_or_release": null,
+    "evaluated_at": "2026-09-03T01:43:38.496307Z",
+    "evidence_kind": "NOT_RUN",
+    "failures": [],
+    "operation": "BLAST_UNIPROT",
+    "original_access_mode": null,
+    "original_time": {},
+    "parameters": {},
+    "reason_code": "ACCESSION_HINT",
+    "returned_count": 0,
+    "status": "NOT_RUN",
+    "tool_name": null,
+    "tool_version": null,
+    "version_note": "Not executed."
+  },
+  {
+    "artifact_ids": [
+      "sha256-0806edd39140ab14591619121eff9a096ee28c3cf0a0243feda04bbb0b08065b",
+      "sha256-878637930baf89eb3716a0085d9b4b8a84b0705ee50a865fab6cd9133bb9e8e8",
+      "sha256-b920517f5dcff27b01ac26bd8831df507011412789a82a7c656e89f4d7a0a97c",
+      "sha256-b965bc92c973a04ab1b9281f9819c723e09e0d7c93d924b045ea8208cb2e7383"
+    ],
+    "bound_sequence_sha256": "6e5a64a8db281d81dec0785dd0e179ea549855e6f10dbdb924db26eba47f4a51",
+    "capped": false,
+    "complete": true,
+    "data_version": "2026_03",
+    "endpoint_or_release": "https://rest.uniprot.org/uniprotkb/O15116.json",
+    "evaluated_at": "2026-09-03T01:43:38.497623Z",
+    "evidence_kind": "FROZEN_REPLAY",
+    "failures": [],
+    "operation": "UNIPROT_RECORD",
+    "original_access_mode": "API",
+    "original_time": {
+      "response_date": "Thu, 03 Sep 2026 00:30:17 GMT"
+    },
+    "parameters": {
+      "accession": "O15116",
+      "sequence_exact": true
+    },
+    "reason_code": "RECORD_RECHECKED",
+    "returned_count": 1,
+    "status": "SUCCEEDED_WITH_RESULTS",
+    "tool_name": "UniProt REST",
+    "tool_version": null,
+    "version_note": "Only versions recorded in the frozen output/headers are reported; null means unreported."
+  },
+  {
+    "artifact_ids": [
+      "sha256-4106b00fa105ad20d8e4532c4f79c892837fed09fd30e6f3eda9b75279940341",
+      "sha256-118400a69b80d55cba2dbf6ff3fd9ea05d28e1e1b4a48c156bb81396c2bf9279"
+    ],
+    "bound_sequence_sha256": "6e5a64a8db281d81dec0785dd0e179ea549855e6f10dbdb924db26eba47f4a51",
+    "capped": false,
+    "complete": true,
+    "data_version": "6",
+    "endpoint_or_release": "https://alphafold.ebi.ac.uk/api/prediction/O15116",
+    "evaluated_at": "2026-09-03T01:43:38.498632Z",
+    "evidence_kind": "FROZEN_REPLAY",
+    "failures": [],
+    "operation": "AFDB_LOOKUP",
+    "original_access_mode": "API",
+    "original_time": {
+      "response_date": "Wed, 02 Sep 2026 13:22:20 GMT"
+    },
+    "parameters": {
+      "accession": "O15116",
+      "http_status": 200
+    },
+    "reason_code": "MODELS_RETURNED",
+    "returned_count": 1,
+    "status": "SUCCEEDED_WITH_RESULTS",
+    "tool_name": "AlphaFold DB API",
+    "tool_version": null,
+    "version_note": "Only versions recorded in the frozen output/headers are reported; null means unreported."
+  },
+  {
+    "artifact_ids": [
+      "sha256-97489a35ee0d982d94c4549ad8d9b63c869647b1eb8898a5a5c9b061373ce3d8"
+    ],
+    "bound_sequence_sha256": "6e5a64a8db281d81dec0785dd0e179ea549855e6f10dbdb924db26eba47f4a51",
+    "capped": false,
+    "complete": false,
+    "data_version": null,
+    "endpoint_or_release": null,
+    "evaluated_at": "2026-09-03T01:43:38.500631Z",
+    "evidence_kind": "CONTROLLED",
+    "failures": [
+      {
+        "category": "OUTPUT_INVALID",
+        "code": "STRUCTURE_PARSE_FAILED",
+        "details": {},
+        "message": "STRUCTURE_PARSE_FAILED",
+        "retryable": true,
+        "user_message": "保存的文件未通过完整性或格式检查。"
+      }
+    ],
+    "operation": "AFDB_STRUCTURE",
+    "original_access_mode": "OFFLINE",
+    "original_time": {},
+    "parameters": {
+      "corrupt_artifact_id": "sha256-b56e8494fed67f950bdab4120ba5ff1e84e039dfa25fd70b747618edacb9bfe5",
+      "expected_model": "AF-O15116-F1"
+    },
+    "reason_code": "CONTROLLED_CORRUPT_FILE",
+    "returned_count": 0,
+    "status": "FAILED",
+    "tool_name": null,
+    "tool_version": null,
+    "version_note": "Offline controlled state; no remote invocation."
+  }
+]

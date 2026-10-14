@@ -1,0 +1,533 @@
+{
+  "declared_before_execution": true,
+  "cases": [
+    {
+      "id": "B101-real-1ubq",
+      "source": {
+        "path": "tests/fixtures/structure_mapping/real/1UBQ.cif",
+        "sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+        "size_bytes": 103220
+      },
+      "transformed": false,
+      "structure": "inputs/B101-real-1ubq.cif",
+      "structure_sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+      "sequence": "MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG",
+      "sequence_file": "inputs/B101-real-1ubq.fasta",
+      "evidence_kind": "local_input",
+      "model_index": null,
+      "requested_chain": null,
+      "expected": {
+        "status": "unverified",
+        "target": "A",
+        "null_positions": [],
+        "atoms": 660
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B102-real-5xzc",
+      "source": {
+        "path": "tests/fixtures/structure_mapping/real/5XZC.cif",
+        "sha256": "744ea7b74175865b1c1c3538d714a75ac10ac5cbee166c0547aa2c2a29f74b9a",
+        "size_bytes": 268943
+      },
+      "transformed": false,
+      "structure": "inputs/B102-real-5xzc.cif",
+      "structure_sha256": "744ea7b74175865b1c1c3538d714a75ac10ac5cbee166c0547aa2c2a29f74b9a",
+      "sequence": "MEEPQSDPSVEPPLSQETFSDLWKLLPENNVLSPLPSQAMDDLMLSPDDIEQWFTEDPGPDEAPRMPEAAPPVAPAPAAPTPAAPAPAPSWPLSSSVPSQKTYQGSYGFRLGFLHSGTAKSVTCTYSPALNKMFCQLAKTCPVQLWVDSTPPPGTRVRAMAIYKQSQHMTEVVRRCPHHERCSDSDGLAPPQHLIRVEGNLRVEYLDDRNTFRHSVVVPYEPPEVGSDCTTIHYNYMCNSSCMGGMNRRPILTIITLEDSSGNLLGRNSFEVRVCACPGRDRRTEEENLRKKGEPHHELPPGSTKRALPNNTSSSPQPKKKPLDGEYFTLQIRGRERFEMFRELNEALELKDAQAGKEPGGSRAHSSHLKSKKGQSTSRHKKLMFKTEGPDSD",
+      "sequence_file": "inputs/B102-real-5xzc.fasta",
+      "evidence_kind": "local_input",
+      "model_index": null,
+      "requested_chain": null,
+      "expected": {
+        "status": "unreliable",
+        "target": null
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B103-pdb-icode",
+      "source": {
+        "path": "tests/fixtures/structure_mapping/synthetic/partial-icode.pdb",
+        "sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+        "size_bytes": 725
+      },
+      "transformed": false,
+      "structure": "inputs/B103-pdb-icode.pdb",
+      "structure_sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+      "sequence": "ARG",
+      "sequence_file": "inputs/B103-pdb-icode.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": null,
+      "requested_chain": null,
+      "expected": {
+        "status": "unverified",
+        "target": "A",
+        "null_positions": [
+          2
+        ],
+        "atoms": 8,
+        "addresses": [
+          [
+            1,
+            "A",
+            42,
+            ""
+          ],
+          [
+            3,
+            "A",
+            42,
+            "A"
+          ]
+        ]
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B104-cif-author-label",
+      "source": {
+        "path": "tests/fixtures/structure_mapping/synthetic/partial-icode.cif",
+        "sha256": "85e939fb6e98be14d104b072c5d624a3b8b7ebd2f091f905ca3e6ccf0da8bcaa",
+        "size_bytes": 994
+      },
+      "transformed": false,
+      "structure": "inputs/B104-cif-author-label.cif",
+      "structure_sha256": "85e939fb6e98be14d104b072c5d624a3b8b7ebd2f091f905ca3e6ccf0da8bcaa",
+      "sequence": "ARG",
+      "sequence_file": "inputs/B104-cif-author-label.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": null,
+      "requested_chain": null,
+      "expected": {
+        "status": "unverified",
+        "target": "AUTH",
+        "null_positions": [
+          2
+        ],
+        "atoms": 8
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B105-repeated-no-anchor",
+      "source": {
+        "path": "tests/fixtures/structure_mapping/synthetic/partial-icode.pdb",
+        "sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+        "size_bytes": 725
+      },
+      "transformed": false,
+      "structure": "inputs/B105-repeated-no-anchor.pdb",
+      "structure_sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+      "sequence": "AAG",
+      "sequence_file": "inputs/B105-repeated-no-anchor.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": null,
+      "requested_chain": null,
+      "expected": {
+        "status": "unreliable",
+        "target": null
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B106-substitution",
+      "source": {
+        "path": "tests/fixtures/structure_mapping/synthetic/partial-icode.pdb",
+        "sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+        "size_bytes": 725
+      },
+      "transformed": false,
+      "structure": "inputs/B106-substitution.pdb",
+      "structure_sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+      "sequence": "AC",
+      "sequence_file": "inputs/B106-substitution.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": null,
+      "requested_chain": null,
+      "expected": {
+        "status": "unreliable",
+        "target": null
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B107-observed-insertion",
+      "source": {
+        "path": "tests/fixtures/structure_mapping/synthetic/partial-icode.pdb",
+        "sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+        "size_bytes": 725
+      },
+      "transformed": true,
+      "structure": "inputs/B107-observed-insertion.pdb",
+      "structure_sha256": "8ecd829c354653c30c4a770f147d6b28325c5cf8225de00b83c5ba4f1ef42da7",
+      "sequence": "AG",
+      "sequence_file": "inputs/B107-observed-insertion.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": null,
+      "requested_chain": null,
+      "expected": {
+        "status": "unreliable",
+        "target": null
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B108-multimodel-unselected",
+      "source": {
+        "path": "tests/fixtures/structure_mapping/synthetic/partial-icode.pdb",
+        "sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+        "size_bytes": 725
+      },
+      "transformed": true,
+      "structure": "inputs/B108-multimodel-unselected.pdb",
+      "structure_sha256": "242109b419f748b06470f341e0cdde94fdb3c91c0f1e8aa0d04961cf25c1a054",
+      "sequence": "ARG",
+      "sequence_file": "inputs/B108-multimodel-unselected.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": null,
+      "requested_chain": null,
+      "expected": {
+        "status": "unreliable",
+        "target": null,
+        "issues": [
+          "MODEL_SELECTION_REQUIRED"
+        ],
+        "atoms": 16
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B109-multimodel-selected",
+      "source": {
+        "path": "tests/fixtures/structure_mapping/synthetic/partial-icode.pdb",
+        "sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+        "size_bytes": 725
+      },
+      "transformed": true,
+      "structure": "inputs/B109-multimodel-selected.pdb",
+      "structure_sha256": "242109b419f748b06470f341e0cdde94fdb3c91c0f1e8aa0d04961cf25c1a054",
+      "sequence": "ARG",
+      "sequence_file": "inputs/B109-multimodel-selected.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": 1,
+      "requested_chain": null,
+      "expected": {
+        "status": "unverified",
+        "target": "A",
+        "model_index": 1,
+        "atoms": 16
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B110-auto-not-design",
+      "source": {
+        "path": "tests/fixtures/structure_mapping/synthetic/partial-icode.pdb",
+        "sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+        "size_bytes": 725
+      },
+      "transformed": true,
+      "structure": "inputs/B110-auto-not-design.pdb",
+      "structure_sha256": "820f6adf1da6be1333c8f899d3ea9f749074b0646c3203968422148d7fcf1d92",
+      "sequence": "ARG",
+      "sequence_file": "inputs/B110-auto-not-design.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": null,
+      "requested_chain": null,
+      "expected": {
+        "status": "unverified",
+        "target": "A",
+        "ingestion": "Z",
+        "fixed": [
+          "Z"
+        ]
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B111-request-not-design",
+      "source": {
+        "path": "tests/fixtures/structure_mapping/synthetic/partial-icode.pdb",
+        "sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+        "size_bytes": 725
+      },
+      "transformed": true,
+      "structure": "inputs/B111-request-not-design.pdb",
+      "structure_sha256": "820f6adf1da6be1333c8f899d3ea9f749074b0646c3203968422148d7fcf1d92",
+      "sequence": "ARG",
+      "sequence_file": "inputs/B111-request-not-design.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": null,
+      "requested_chain": "Z",
+      "expected": {
+        "status": "unreliable",
+        "target": null,
+        "issues": [
+          "REQUESTED_CHAIN_MISMATCH"
+        ]
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B112-altloc-retained",
+      "source": {
+        "path": "tests/fixtures/structure_mapping/synthetic/partial-icode.pdb",
+        "sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+        "size_bytes": 725
+      },
+      "transformed": true,
+      "structure": "inputs/B112-altloc-retained.pdb",
+      "structure_sha256": "187afed97d42fdd3bf37e082b7df4f6de4dc20a2f715e6413f4753b1506e1fb9",
+      "sequence": "ARG",
+      "sequence_file": "inputs/B112-altloc-retained.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": null,
+      "requested_chain": null,
+      "expected": {
+        "status": "unverified",
+        "target": "A",
+        "atoms": 9,
+        "issues": [
+          "ALTLOC_REVIEW"
+        ]
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B113-nonstandard-mse",
+      "source": {
+        "path": "tests/fixtures/structure_mapping/synthetic/partial-icode.pdb",
+        "sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+        "size_bytes": 725
+      },
+      "transformed": true,
+      "structure": "inputs/B113-nonstandard-mse.pdb",
+      "structure_sha256": "f84c9fb0bb023fec583c7969a7c8b738a7d777ecf78612b89fed47519084e4c5",
+      "sequence": "ARG",
+      "sequence_file": "inputs/B113-nonstandard-mse.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": null,
+      "requested_chain": null,
+      "expected": {
+        "status": "unreliable",
+        "target": null,
+        "issues": [
+          "UNSUPPORTED_RESIDUE_OR_ADDRESS"
+        ]
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B114-noninteger-auth",
+      "source": {
+        "path": "tests/fixtures/structure_mapping/synthetic/partial-icode.cif",
+        "sha256": "85e939fb6e98be14d104b072c5d624a3b8b7ebd2f091f905ca3e6ccf0da8bcaa",
+        "size_bytes": 994
+      },
+      "transformed": true,
+      "structure": "inputs/B114-noninteger-auth.cif",
+      "structure_sha256": "13fac56970536578eb751257ecda8ea7729d78b7564264148da6d6657dcd20ac",
+      "sequence": "ARG",
+      "sequence_file": "inputs/B114-noninteger-auth.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": null,
+      "requested_chain": null,
+      "expected": {
+        "status": "PARSE_REJECTED",
+        "error_contains": "Noninteger author"
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B115-missing-auth",
+      "source": {
+        "path": "tests/fixtures/structure_mapping/synthetic/partial-icode.cif",
+        "sha256": "85e939fb6e98be14d104b072c5d624a3b8b7ebd2f091f905ca3e6ccf0da8bcaa",
+        "size_bytes": 994
+      },
+      "transformed": true,
+      "structure": "inputs/B115-missing-auth.cif",
+      "structure_sha256": "387dc44aee367a7cd93f0e2dcc2ed78f05f1fe5a4f8b86338c96dba3cfd40487",
+      "sequence": "ARG",
+      "sequence_file": "inputs/B115-missing-auth.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": null,
+      "requested_chain": null,
+      "expected": {
+        "status": "PARSE_REJECTED",
+        "error_contains": "author numbering"
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B116-corrupt-format",
+      "source": {
+        "path": "tests/fixtures/structure_mapping/synthetic/partial-icode.pdb",
+        "sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+        "size_bytes": 725
+      },
+      "transformed": true,
+      "structure": "inputs/B116-corrupt-format.pdb",
+      "structure_sha256": "89c4a51cf0f75a60a3169f37520701ab85cc3779ce96f6d53140cba963857ad9",
+      "sequence": "ARG",
+      "sequence_file": "inputs/B116-corrupt-format.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": null,
+      "requested_chain": null,
+      "expected": {
+        "status": "PARSE_REJECTED",
+        "error_contains": "No recognizable"
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B117-missing-chain",
+      "source": {
+        "path": "tests/fixtures/structure_mapping/synthetic/partial-icode.pdb",
+        "sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+        "size_bytes": 725
+      },
+      "transformed": false,
+      "structure": "inputs/B117-missing-chain.pdb",
+      "structure_sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+      "sequence": "ARG",
+      "sequence_file": "inputs/B117-missing-chain.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": null,
+      "requested_chain": "MISSING",
+      "expected": {
+        "status": "unreliable",
+        "target": null,
+        "issues": [
+          "REQUESTED_CHAIN_MISMATCH"
+        ]
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B118-missing-repeat-75",
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/r58-freesasa-boundaries-20260905/prepared/inputs/missing-repeat-75/input.cif",
+        "sha256": "e68b0558faa81a85f59b9557d77982e48d524ef922d35c1b16ff5444197c19bd",
+        "size_bytes": 104606
+      },
+      "transformed": false,
+      "structure": "inputs/B118-missing-repeat-75.cif",
+      "structure_sha256": "e68b0558faa81a85f59b9557d77982e48d524ef922d35c1b16ff5444197c19bd",
+      "sequence": "MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG",
+      "sequence_file": "inputs/B118-missing-repeat-75.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": 0,
+      "requested_chain": null,
+      "expected": {
+        "status": "unverified",
+        "null_positions": [
+          75
+        ]
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B119-replacement-conflict",
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/r58-freesasa-boundaries-20260905/prepared/inputs/replacement-conflict/input.cif",
+        "sha256": "0f0589d405a3dbc207400745f1749ed07653e7c0bbe4c8c012ee417ac77d9085",
+        "size_bytes": 104945
+      },
+      "transformed": false,
+      "structure": "inputs/B119-replacement-conflict.cif",
+      "structure_sha256": "0f0589d405a3dbc207400745f1749ed07653e7c0bbe4c8c012ee417ac77d9085",
+      "sequence": "MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG",
+      "sequence_file": "inputs/B119-replacement-conflict.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": 0,
+      "requested_chain": null,
+      "expected": {
+        "status": "unreliable"
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B120-inserted-label-77",
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/r58-freesasa-boundaries-20260905/prepared/inputs/inserted-label-77/input.cif",
+        "sha256": "131c6633f4e473546451e169b0fa5100ff7eb373e895f709a86e8cfec4c898e3",
+        "size_bytes": 104942
+      },
+      "transformed": false,
+      "structure": "inputs/B120-inserted-label-77.cif",
+      "structure_sha256": "131c6633f4e473546451e169b0fa5100ff7eb373e895f709a86e8cfec4c898e3",
+      "sequence": "MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG",
+      "sequence_file": "inputs/B120-inserted-label-77.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": 0,
+      "requested_chain": null,
+      "expected": {
+        "status": "unreliable"
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B121-multichain-ambiguous",
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/r58-freesasa-boundaries-20260905/prepared/inputs/multichain-ambiguous/input.cif",
+        "sha256": "ce2c1f640a63f6474523e645e6191c10891c8cd9cee2bfadacd6b63c0f7875e1",
+        "size_bytes": 171931
+      },
+      "transformed": false,
+      "structure": "inputs/B121-multichain-ambiguous.cif",
+      "structure_sha256": "ce2c1f640a63f6474523e645e6191c10891c8cd9cee2bfadacd6b63c0f7875e1",
+      "sequence": "MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG",
+      "sequence_file": "inputs/B121-multichain-ambiguous.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": 0,
+      "requested_chain": null,
+      "expected": {
+        "status": "unreliable"
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B122-multichain-unique",
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/r58-freesasa-boundaries-20260905/prepared/inputs/multichain-unique/input.cif",
+        "sha256": "99026c42255b625e62a39981600e06a6d55a012e10e2721286ddea0b568ccbf1",
+        "size_bytes": 172671
+      },
+      "transformed": false,
+      "structure": "inputs/B122-multichain-unique.cif",
+      "structure_sha256": "99026c42255b625e62a39981600e06a6d55a012e10e2721286ddea0b568ccbf1",
+      "sequence": "MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG",
+      "sequence_file": "inputs/B122-multichain-unique.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": 0,
+      "requested_chain": null,
+      "expected": {
+        "status": "unverified"
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    },
+    {
+      "id": "B123-long-author-chain",
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/r58-freesasa-boundaries-20260905/prepared/inputs/long-author-chain/input.cif",
+        "sha256": "bc45a18bc99107774480e814f634eef76f0f92f7835da711bc1cca9325f0e6e3",
+        "size_bytes": 106922
+      },
+      "transformed": false,
+      "structure": "inputs/B123-long-author-chain.cif",
+      "structure_sha256": "bc45a18bc99107774480e814f634eef76f0f92f7835da711bc1cca9325f0e6e3",
+      "sequence": "MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG",
+      "sequence_file": "inputs/B123-long-author-chain.fasta",
+      "evidence_kind": "synthetic_fixture",
+      "model_index": 0,
+      "requested_chain": null,
+      "expected": {
+        "status": "unverified"
+      },
+      "scope": "LOCAL_PARSER_AND_CANDIDATE_ONLY"
+    }
+  ],
+  "oracle": "Explicit fixture edits and prior independent sequence/numbering observations; not algorithm gold standards"
+}

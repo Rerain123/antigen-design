@@ -1,0 +1,49 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-nr-blastdb-info-r01
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 300
+  template:
+    spec:
+      nodeName: k8s-a100-01
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+        - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+      containers:
+        - name: info
+          image: harbor-core.base.svc.cluster.local/qcyz/antigen-design-resident-blast@sha256:47f7b258c072f1f931ca485e03e76f721dd4a621bf1bd24ece9c1c3d1107057a
+          command:
+            - /blast/bin/blastdbcmd
+            - -info
+            - -db
+            - /data/nr-20250624/raw/nr
+          resources:
+            requests:
+              cpu: 250m
+              memory: 256Mi
+            limits:
+              cpu: '2'
+              memory: 2Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: [ALL]
+          volumeMounts:
+            - name: database
+              mountPath: /data
+              readOnly: true
+      volumes:
+        - name: database
+          persistentVolumeClaim:
+            claimName: antigen-n03-nr
+            readOnly: true

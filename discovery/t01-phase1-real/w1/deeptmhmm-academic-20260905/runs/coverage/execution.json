@@ -1,0 +1,131 @@
+{
+  "case": "coverage",
+  "command": [
+    "docker",
+    "--host",
+    "npipe:////./pipe/dockerDesktopLinuxEngine",
+    "create",
+    "--pull",
+    "never",
+    "--name",
+    "t01-dtm-academic-20260905-coverage",
+    "--network",
+    "none",
+    "--read-only",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "--pids-limit",
+    "512",
+    "--memory",
+    "10g",
+    "--memory-swap",
+    "10g",
+    "--cpus",
+    "8",
+    "--cpuset-cpus",
+    "0-7",
+    "--tmpfs",
+    "/tmp:rw,noexec,nosuid,size=512m",
+    "--env",
+    "CUDA_VISIBLE_DEVICES=-1",
+    "--env",
+    "PYTHONUNBUFFERED=1",
+    "--mount",
+    "type=bind,source=D:\\work\\\u86cb\u767d\u667a\u80fd\u4f53\\var\\t01-phase1-real\\tool-assets\\deeptmhmm-academic-1.0-0a7a6c5d009e,target=/app,readonly",
+    "--mount",
+    "type=bind,source=D:\\work\\\u86cb\u767d\u667a\u80fd\u4f53\\discovery\\t01-phase1-real\\w1\\deeptmhmm-academic-20260905\\inputs\\coverage.fasta,target=/input.fasta,readonly",
+    "--mount",
+    "type=bind,source=D:\\work\\\u86cb\u767d\u667a\u80fd\u4f53\\discovery\\t01-phase1-real\\w1\\deeptmhmm-academic-20260905\\container_probe.py,target=/probe.py,readonly",
+    "--mount",
+    "type=bind,source=D:\\work\\\u86cb\u767d\u667a\u80fd\u4f53\\discovery\\t01-phase1-real\\w1\\deeptmhmm-academic-20260905\\runs\\coverage\\output,target=/out",
+    "--workdir",
+    "/app",
+    "--entrypoint",
+    "python",
+    "sha256:7f85781fadf8c89ddbafced691d05006caf6881b06aa5b9bae4bd531393bcd72",
+    "/probe.py"
+  ],
+  "assets_verified_before": 41,
+  "input_sha256": "892e3c24e9660f227ce670f352826379c3e3cbc8fff00810c513436116564394",
+  "production_status": "NOT_DEPLOYED",
+  "container_id": "90df591764776b391a0678a5aa21c686154d6732e8f8364e635f606ad3e5ec42",
+  "attach_exit_code": 0,
+  "container_exit_code": 0,
+  "oom_killed": false,
+  "elapsed_seconds": 177.40700000000288,
+  "assets_verified_after": 41,
+  "artifacts": [
+    {
+      "path": "result/deeptmhmm_results.md",
+      "bytes": 9102,
+      "sha256": "a70daa7971f321e21997dd378f50d8703463b963fab0b1dfba88fc88a170694b"
+    },
+    {
+      "path": "result/embeddings/05c4d7a5aed235e6232afeba9f4fc1b5",
+      "bytes": 1582430,
+      "sha256": "9544f24aaf6590283fd2e99a7efdb39bcc65428f22162affa544a63c61b4313d"
+    },
+    {
+      "path": "result/embeddings/493af5a9a733defef804ddba05a91153",
+      "bytes": 896349,
+      "sha256": "94b24bb15f1c3a9e4d78f75be5ab03a9fe795602554c6e8dd0e3c5c64a8503c0"
+    },
+    {
+      "path": "result/embeddings/540e78a823843e70b82efc3dd97de40a",
+      "bytes": 271709,
+      "sha256": "feb13bab7c1aa8f839350480defe227c1354927119fdcb27461fd0d8ae6a3ec2"
+    },
+    {
+      "path": "result/embeddings/5b8e8bec7540c3fe052e81c2f9a8eef9",
+      "bytes": 5084510,
+      "sha256": "c8bff77f5029bca122d0172d784dd063697ddd56c45e484891cbd86c3329e1e3"
+    },
+    {
+      "path": "result/embeddings/77635803a438fb31c12b53c6c264ccd0",
+      "bytes": 1930590,
+      "sha256": "d0fec2336ddf09ec85fa42e66b0432871ae078d3d00876c37ee5a6e89452ed01"
+    },
+    {
+      "path": "result/embeddings/9d93f0d9cc64b40828131b1def5cbbb7",
+      "bytes": 502109,
+      "sha256": "60e5ffb03a906a3ce8af38110cbd62bf4181c9a31c7f3740f7425c8e03732dfe"
+    },
+    {
+      "path": "result/embeddings/b845a7ad711f0e5b3217e83a61d15767",
+      "bytes": 266589,
+      "sha256": "cc25c719e1c20fc1e88c63f003b9b3407dab0cae2e0f92b8c615465746fd4e98"
+    },
+    {
+      "path": "result/embeddings/da18f920b08dca633b887e48359e170c",
+      "bytes": 2422110,
+      "sha256": "35a86474cd802f167c8a05070532f4bf75ef81a88142a5f42b165993b9a948da"
+    },
+    {
+      "path": "result/embeddings/f6d2f16e63a1c5c84efa102be1141ad6",
+      "bytes": 507229,
+      "sha256": "2cf618ccb1d5e0b8f4d5ec81f3ada5b406a87c56c622407292b783d25278e4ab"
+    },
+    {
+      "path": "result/predicted_topologies.3line",
+      "bytes": 5414,
+      "sha256": "a96dda54502ea19dba945e902f6c438505868d86b7de60c9147ece1787301108"
+    },
+    {
+      "path": "result/TMRs.gff3",
+      "bytes": 3367,
+      "sha256": "c70abe574c5734e603651c2220fec6d12b6c98cb94420af402eede199fa0d9e9"
+    },
+    {
+      "path": "runtime.json",
+      "bytes": 791,
+      "sha256": "501e59125f360a52d4112c82054c209a504ca954a57fca5b8e2eb91b6dcafd38"
+    },
+    {
+      "path": "runtime_started.json",
+      "bytes": 566,
+      "sha256": "53585794f6a60f5b2f0d456f43be2efa20f48685ba50205a1b977861244667d7"
+    }
+  ]
+}

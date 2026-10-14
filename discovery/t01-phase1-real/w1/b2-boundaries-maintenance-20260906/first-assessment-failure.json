@@ -1,0 +1,11 @@
+{
+  "date": "2026-09-06",
+  "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/check_b2_boundaries.py assess",
+  "exit_code": 1,
+  "error_type": "ValueError",
+  "error": "Expected original-package failure",
+  "failed_case": "invalid-symbol",
+  "initial_checker": "check_b2_boundaries.before_finding.py",
+  "actual_observation": "Original predict.py exited 0; tokenizer mapped '*' to token 3 (<unk>); assess_bundle already rejected TOKEN_RECONSTRUCTION_MISMATCH.",
+  "preservation": "Original plan, raw output, executed source files and run records retained. Record the unmet original-tool expectation separately; no input or consumption guard relaxed."
+}

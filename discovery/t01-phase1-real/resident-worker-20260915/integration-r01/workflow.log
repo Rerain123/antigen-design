@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/repo/scripts/run_resident_batch_probe.py", line 152, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/repo/scripts/run_resident_batch_probe.py", line 138, in main
+    j=mcp_workflow(rt,body,raw,args.output)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/repo/scripts/run_resident_batch_probe.py", line 53, in mcp_workflow
+    upload=tool('structure.upload',dict(name='1UBQ.cif',media_type='chemical/x-mmcif',content_base64=base64.b64encode(raw).decode()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/repo/scripts/run_resident_batch_probe.py", line 45, in tool
+    assert not value.get('isError'),value
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'content': [{'text': '{"error": {"code": "INVALID_REQUEST", "message": "Unsupported structure media type"}}', 'type': 'text'}], 'isError': True, 'structuredContent': {'error': {'code': 'INVALID_REQUEST', 'message': 'Unsupported structure media type'}}}

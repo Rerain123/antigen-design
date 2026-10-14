@@ -1,0 +1,67 @@
+{
+  "fixture_kind": "SYNTHETIC_RULE_REVIEW_ONLY",
+  "open_item": "OI-026",
+  "decision_owner": "主开发协调算法负责人",
+  "status": "PENDING_DECISION",
+  "cases": [
+    {
+      "id": "BP-Q01",
+      "scores": [
+        0.9,
+        0.9,
+        0.9,
+        0.0,
+        0.0,
+        0.9,
+        0.9,
+        0.9
+      ],
+      "question": "先过滤长度不足 6 的短段，还是先桥接再过滤；低分间隔是否计入有效长度？",
+      "expected": null
+    },
+    {
+      "id": "BP-Q02",
+      "scores": [
+        0.9,
+        0.9,
+        0.9,
+        0.9,
+        0.9,
+        0.9,
+        0.0,
+        0.0,
+        0.9,
+        0.9,
+        0.9,
+        0.9,
+        0.9,
+        0.9
+      ],
+      "question": "合并区间的 mean_score 是否包含间隔位置？",
+      "expected": null
+    },
+    {
+      "id": "BP-Q03",
+      "scores": [
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2
+      ],
+      "question": "Top20% 的并列/取整如何消费，是否只保留原工具独立候选输出供后续使用？",
+      "expected": null
+    },
+    {
+      "id": "BP-Q04",
+      "question": "同一真实样本的 raw probability 与 rolling mean 不同，哪一列作为 linear_scores 和峰判定输入？附实际 CSV 表头/行后裁决。",
+      "expected": null
+    }
+  ]
+}

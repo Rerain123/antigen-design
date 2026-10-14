@@ -1,0 +1,122 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-unified-gpu-inspect-r06
+  namespace: him-ws
+immutable: true
+data:
+  inspect.sh: "set -eu\ntest ! -e /dev/nvidia0\necho UNIFIED_ENV_IMPORT_START\nenv\
+    \ -i HOME=/tmp TMPDIR=/tmp PATH=/opt/t01/supervisor/bin:/usr/bin:/bin PYTHONHOME=/opt/t01/supervisor\
+    \ LD_LIBRARY_PATH=/opt/t01/supervisor/lib PYTHONPATH=/opt/t01/src \\\n  /opt/t01/supervisor/bin/python3.11\
+    \ -B -c 'import ssl,sqlite3,ctypes;import t01_phase1_real.resident_worker;print(\"\
+    supervisor\",t01_phase1_real.resident_worker.__file__)'\nenv -i HOME=/tmp TMPDIR=/tmp\
+    \ PATH=/opt/t01/env/proteinmpnn/bin:/usr/bin:/bin PYTHONHOME=/opt/t01/env/proteinmpnn\
+    \ LD_LIBRARY_PATH=/opt/t01/env/proteinmpnn/lib CUDA_VISIBLE_DEVICES= \\\n  /opt/t01/env/proteinmpnn/bin/python\
+    \ -B -c 'import numpy,torch;print(\"proteinmpnn\",torch.__version__,numpy.__version__,torch.cuda.is_available())'\n\
+    find /opt/t01/env/esm-if1 -maxdepth 10 -type d \\( -name site-packages -o -name\
+    \ 'esm*' \\) -print\nenv -i HOME=/tmp TMPDIR=/tmp PATH=/opt/t01/env/esm-if1/bin:/usr/bin:/bin\
+    \ PYTHONHOME=/opt/t01/env/esm-if1 LD_LIBRARY_PATH=/opt/t01/env/esm-if1/lib CUDA_VISIBLE_DEVICES=\
+    \ \\\n  /opt/t01/env/proteinmpnn/bin/python -B -c 'import sys,numpy,torch,biotite,scipy,torch_geometric;print(\"\
+    esm-if1-base\",sys.executable,torch.__version__,numpy.__version__,torch.cuda.is_available(),\"\
+    asset-package-deferred\")'\nenv -i HOME=/tmp TMPDIR=/tmp PATH=/opt/t01/env/thermompnn/bin:/usr/bin:/bin\
+    \ PYTHONHOME=/opt/t01/env/thermompnn LD_LIBRARY_PATH=/opt/t01/env/thermompnn/lib\
+    \ CUDA_VISIBLE_DEVICES= WANDB_MODE=disabled \\\n  /opt/t01/env/proteinmpnn/bin/python\
+    \ -B -c 'import Bio,numpy,omegaconf,pandas,pytorch_lightning,sklearn,scipy,torch,torchmetrics;print(\"\
+    thermompnn\",torch.__version__,numpy.__version__,torch.cuda.is_available())'\n\
+    env -i HOME=/tmp TMPDIR=/tmp PATH=/alphafold3_venv/bin:/usr/bin:/bin CUDA_VISIBLE_DEVICES=\
+    \ JAX_PLATFORMS=cpu \\\n  /alphafold3_venv/bin/python -B -c 'import jax;from alphafold3.common\
+    \ import folding_input;from alphafold3.model import model;print(\"af3\",jax.__version__,jax.devices())'\n\
+    echo UNIFIED_ENV_IMPORT_PASS\n"
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: antigen-unified-gpu-inspect-r06
+  namespace: him-ws
+spec:
+  podSelector:
+    matchLabels:
+      app: antigen-unified-gpu-inspect-r06
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress: []
+  egress: []
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-unified-gpu-inspect-r06
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 1800
+  template:
+    metadata:
+      labels:
+        app: antigen-unified-gpu-inspect-r06
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+      - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+      initContainers:
+      - name: slot-init
+        image: harbor-core.base.svc.cluster.local/qcyz/antigen-unified-gpu@sha256:ef4586e2849a54a82c97648691b248521b87042123ef624700dc4136d79898fe
+        command:
+        - /bin/sh
+        - -ec
+        - mkdir -p /run/t01-slot/tmp && ln -s /opt/t01/af3-app /run/t01-slot/package
+        resources:
+          requests:
+            cpu: 10m
+            memory: 32Mi
+          limits:
+            cpu: '1'
+            memory: 128Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: slot
+          mountPath: /run/t01-slot
+      containers:
+      - name: inspect
+        image: harbor-core.base.svc.cluster.local/qcyz/antigen-unified-gpu@sha256:ef4586e2849a54a82c97648691b248521b87042123ef624700dc4136d79898fe
+        command:
+        - /bin/sh
+        - /inspection/inspect.sh
+        resources:
+          requests:
+            cpu: '1'
+            memory: 4Gi
+          limits:
+            cpu: '4'
+            memory: 16Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: slot
+          mountPath: /run/t01-slot
+        - name: inspection
+          mountPath: /inspection
+          readOnly: true
+      volumes:
+      - name: slot
+        emptyDir:
+          sizeLimit: 2Gi
+      - name: inspection
+        configMap:
+          name: antigen-unified-gpu-inspect-r06
+          defaultMode: 365

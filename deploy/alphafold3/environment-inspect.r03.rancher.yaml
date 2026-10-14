@@ -1,0 +1,150 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-af3-environment-inspect-r03
+  namespace: him-ws
+immutable: true
+data:
+  inspect_af3_environment.py: "\"\"\"Inspect the pinned AF3 runtime without mounting\
+    \ models, databases, or GPUs.\"\"\"\nfrom __future__ import annotations\n\nimport\
+    \ hashlib\nfrom importlib import import_module, metadata\nimport json\nimport\
+    \ os\nfrom pathlib import Path\nimport subprocess\nimport sys\n\n\nEXPECTED_PACKAGES\
+    \ = {\n    \"alphafold3\": \"3.0.2\",\n    \"jax\": \"0.9.1\",\n    \"jaxlib\"\
+    : \"0.9.1\",\n    \"jax-cuda12-plugin\": \"0.9.1\",\n    \"numpy\": \"2.4.1\"\
+    ,\n    \"nvidia-cudnn-cu12\": \"9.17.1.4\",\n    \"rdkit\": \"2025.9.4\",\n}\n\
+    EXPECTED_MODULES = (\n    \"alphafold3.common.folding_input\",\n    \"alphafold3.data.pipeline\"\
+    ,\n    \"alphafold3.model.model\",\n)\nHMMER_BINARIES = (\"hmmalign\", \"hmmbuild\"\
+    , \"hmmsearch\", \"jackhmmer\", \"nhmmer\")\nEXPECTED_HELP_FLAGS = (\n    \"--model_dir\"\
+    ,\n    \"--db_dir\",\n    \"--[no]run_data_pipeline\",\n    \"--[no]run_inference\"\
+    ,\n)\nDATA_FILES = (\n    Path(\"/app/alphafold/src/alphafold3/constants/converters/ccd.pickle\"\
+    ),\n    Path(\"/app/alphafold/src/alphafold3/constants/converters/chemical_component_sets.pickle\"\
+    ),\n)\n\n\ndef file_identity(path: Path) -> dict[str, object]:\n    digest = hashlib.sha256()\n\
+    \    size = 0\n    with path.open(\"rb\") as stream:\n        while chunk := stream.read(1024\
+    \ * 1024):\n            digest.update(chunk)\n            size += len(chunk)\n\
+    \    return {\"path\": str(path), \"bytes\": size, \"sha256\": digest.hexdigest()}\n\
+    \n\ndef command_output(\n    command: list[str], timeout: int = 30, accepted_returncodes:\
+    \ tuple[int, ...] = (0,)\n) -> str:\n    result = subprocess.run(\n        command,\n\
+    \        check=False,\n        stdout=subprocess.PIPE,\n        stderr=subprocess.STDOUT,\n\
+    \        text=True,\n        timeout=timeout,\n        env={**os.environ, \"CUDA_VISIBLE_DEVICES\"\
+    : \"\", \"JAX_PLATFORMS\": \"cpu\"},\n    )\n    if result.returncode not in accepted_returncodes:\n\
+    \        raise RuntimeError(f\"Command failed ({result.returncode}): {command!r}\\\
+    n{result.stdout[-2000:]}\")\n    return result.stdout\n\n\ndef inspect() -> dict[str,\
+    \ object]:\n    if sys.version_info[:2] != (3, 12):\n        raise RuntimeError(f\"\
+    Expected Python 3.12, got {sys.version}\")\n\n    packages = {name: metadata.version(name)\
+    \ for name in EXPECTED_PACKAGES}\n    if packages != EXPECTED_PACKAGES:\n    \
+    \    raise RuntimeError(f\"Package identity mismatch: {packages!r}\")\n\n    for\
+    \ module_name in EXPECTED_MODULES:\n        import_module(module_name)\n\n   \
+    \ hmmer = {}\n    for name in HMMER_BINARIES:\n        path = Path(\"/hmmer/bin\"\
+    ) / name\n        if not path.is_file() or not os.access(path, os.X_OK):\n   \
+    \         raise RuntimeError(f\"Missing HMMER executable: {path}\")\n        hmmer[name]\
+    \ = str(path)\n    jackhmmer_help = command_output([hmmer[\"jackhmmer\"], \"-h\"\
+    ])\n    if \"HMMER 3.4\" not in jackhmmer_help:\n        raise RuntimeError(\"\
+    jackhmmer does not report HMMER 3.4\")\n\n    data_files = []\n    for path in\
+    \ DATA_FILES:\n        if not path.is_file() or path.stat().st_size == 0:\n  \
+    \          raise RuntimeError(f\"Missing build_data output: {path}\")\n      \
+    \  data_files.append(file_identity(path))\n\n    entrypoint = Path(\"/app/alphafold/run_alphafold.py\"\
+    )\n    if not entrypoint.is_file():\n        raise RuntimeError(f\"Missing AF3\
+    \ entry point: {entrypoint}\")\n    # Abseil help flags intentionally exit with\
+    \ status 1 after printing help.\n    help_text = command_output(\n        [sys.executable,\
+    \ str(entrypoint), \"--helpshort\"],\n        timeout=90,\n        accepted_returncodes=(0,\
+    \ 1),\n    )\n    for flag in EXPECTED_HELP_FLAGS:\n        if flag not in help_text:\n\
+    \            raise RuntimeError(f\"AF3 help is missing {flag}\")\n\n    return\
+    \ {\n        \"schema\": \"t01.af3-environment-inspection/1\",\n        \"status\"\
+    : \"AF3_ENVIRONMENT_VERIFIED_NOT_LOADED\",\n        \"image_loaded\": True,\n\
+    \        \"weights_loaded\": False,\n        \"databases_mounted\": False,\n \
+    \       \"gpu_requested\": False,\n        \"python\": sys.version.split()[0],\n\
+    \        \"packages\": packages,\n        \"modules\": list(EXPECTED_MODULES),\n\
+    \        \"hmmer\": hmmer,\n        \"build_data\": data_files,\n        \"entrypoint\"\
+    : str(entrypoint),\n        \"device_nodes\": sorted(str(path) for path in Path(\"\
+    /dev\").glob(\"nvidia*\")),\n        \"scientific_gate\": \"CLOSED\",\n      \
+    \  \"usable_for_pipeline\": False,\n        \"production_status\": \"NOT_DEPLOYED\"\
+    ,\n    }\n\n\ndef main() -> None:\n    result = inspect()\n    print(\"AF3_ENVIRONMENT_INSPECTION\
+    \ \" + json.dumps(result, sort_keys=True), flush=True)\n\n\nif __name__ == \"\
+    __main__\":\n    main()\n"
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: antigen-af3-environment-inspect-r03
+  namespace: him-ws
+spec:
+  podSelector:
+    matchLabels:
+      app: antigen-af3-environment-inspect-r03
+  policyTypes:
+  - Ingress
+  - Egress
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-af3-environment-inspect-r03
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 600
+  template:
+    metadata:
+      labels:
+        app: antigen-af3-environment-inspect-r03
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+      - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+      - name: inspect
+        image: harbor-core.base.svc.cluster.local/qcyz/antigen-af3@sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373
+        imagePullPolicy: IfNotPresent
+        command:
+        - /alphafold3_venv/bin/python
+        - -u
+        - -B
+        - /inspect/inspect_af3_environment.py
+        env:
+        - name: PYTHONDONTWRITEBYTECODE
+          value: '1'
+        - name: HOME
+          value: /tmp
+        - name: TMPDIR
+          value: /tmp
+        - name: CUDA_VISIBLE_DEVICES
+          value: ''
+        - name: JAX_PLATFORMS
+          value: cpu
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1Gi
+            ephemeral-storage: 256Mi
+          limits:
+            cpu: '2'
+            memory: 4Gi
+            ephemeral-storage: 2Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          seccompProfile:
+            type: RuntimeDefault
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: inspect
+          mountPath: /inspect
+          readOnly: true
+        - name: tmp
+          mountPath: /tmp
+      volumes:
+      - name: inspect
+        configMap:
+          name: antigen-af3-environment-inspect-r03
+      - name: tmp
+        emptyDir:
+          sizeLimit: 2Gi

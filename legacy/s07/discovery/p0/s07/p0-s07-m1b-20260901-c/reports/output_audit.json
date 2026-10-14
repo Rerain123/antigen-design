@@ -1,0 +1,1735 @@
+{
+  "campaign_id": "p0-s07-m1b-20260901-c",
+  "classification": "NON_PRODUCTION_OUTPUT_AUDIT",
+  "production_deployment_status": "NOT_DEPLOYED",
+  "generated_at": "2026-09-01T09:35:54.918182Z",
+  "decision_scope": "S07-D09 evidence only",
+  "boundary": {
+    "contains_scientific_decisions": false,
+    "contains_structure_selection": false,
+    "contains_workflow_route": false,
+    "connected_to_mcp_or_workflow": false,
+    "production_defaults_approved": false
+  },
+  "run": {
+    "execution_status": "COMPLETE",
+    "started_at": "2026-09-01T09:34:38.776124Z",
+    "finished_at": "2026-09-01T09:35:54.704564Z",
+    "capture_count": 57,
+    "capture_process_failure_count": 0
+  },
+  "inventory": {
+    "file_count": 285,
+    "total_size_bytes": 12033655,
+    "empty_file_count": 27,
+    "artifact_type_count": 23,
+    "artifact_types": [
+      {
+        "artifact_type": "afdb_confidence_json",
+        "file_count": 2,
+        "total_size_bytes": 7214,
+        "minimum_size_bytes": 1797,
+        "median_size_bytes": 3607,
+        "maximum_size_bytes": 5417
+      },
+      {
+        "artifact_type": "afdb_metadata_response",
+        "file_count": 3,
+        "total_size_bytes": 21002,
+        "minimum_size_bytes": 101,
+        "median_size_bytes": 1990,
+        "maximum_size_bytes": 18911
+      },
+      {
+        "artifact_type": "afdb_model_cif",
+        "file_count": 2,
+        "total_size_bytes": 499422,
+        "minimum_size_bytes": 135937,
+        "median_size_bytes": 249711,
+        "maximum_size_bytes": 363485
+      },
+      {
+        "artifact_type": "afdb_pae_json",
+        "file_count": 2,
+        "total_size_bytes": 462013,
+        "minimum_size_bytes": 39746,
+        "median_size_bytes": 231006,
+        "maximum_size_bytes": 422267
+      },
+      {
+        "artifact_type": "audit_plan",
+        "file_count": 1,
+        "total_size_bytes": 3836,
+        "minimum_size_bytes": 3836,
+        "median_size_bytes": 3836,
+        "maximum_size_bytes": 3836
+      },
+      {
+        "artifact_type": "blast_archive",
+        "file_count": 4,
+        "total_size_bytes": 497701,
+        "minimum_size_bytes": 66337,
+        "median_size_bytes": 133960,
+        "maximum_size_bytes": 163444
+      },
+      {
+        "artifact_type": "blast_json",
+        "file_count": 4,
+        "total_size_bytes": 452413,
+        "minimum_size_bytes": 46110,
+        "median_size_bytes": 116343,
+        "maximum_size_bytes": 173617
+      },
+      {
+        "artifact_type": "blast_tabular",
+        "file_count": 4,
+        "total_size_bytes": 145512,
+        "minimum_size_bytes": 11961,
+        "median_size_bytes": 31647,
+        "maximum_size_bytes": 70256
+      },
+      {
+        "artifact_type": "campaign_metadata",
+        "file_count": 3,
+        "total_size_bytes": 11412,
+        "minimum_size_bytes": 708,
+        "median_size_bytes": 3727,
+        "maximum_size_bytes": 6977
+      },
+      {
+        "artifact_type": "captured_http_request",
+        "file_count": 19,
+        "total_size_bytes": 13581,
+        "minimum_size_bytes": 653,
+        "median_size_bytes": 655,
+        "maximum_size_bytes": 972
+      },
+      {
+        "artifact_type": "cli_stream",
+        "file_count": 26,
+        "total_size_bytes": 259,
+        "minimum_size_bytes": 0,
+        "median_size_bytes": 0,
+        "maximum_size_bytes": 259
+      },
+      {
+        "artifact_type": "exchange_record",
+        "file_count": 57,
+        "total_size_bytes": 94014,
+        "minimum_size_bytes": 1252,
+        "median_size_bytes": 1670,
+        "maximum_size_bytes": 1746
+      },
+      {
+        "artifact_type": "http_response_headers",
+        "file_count": 44,
+        "total_size_bytes": 18654,
+        "minimum_size_bytes": 273,
+        "median_size_bytes": 340,
+        "maximum_size_bytes": 941
+      },
+      {
+        "artifact_type": "http_transport_stderr",
+        "file_count": 44,
+        "total_size_bytes": 2288,
+        "minimum_size_bytes": 52,
+        "median_size_bytes": 52,
+        "maximum_size_bytes": 52
+      },
+      {
+        "artifact_type": "other_json",
+        "file_count": 7,
+        "total_size_bytes": 9075,
+        "minimum_size_bytes": 627,
+        "median_size_bytes": 663,
+        "maximum_size_bytes": 4320
+      },
+      {
+        "artifact_type": "protein_fasta",
+        "file_count": 4,
+        "total_size_bytes": 957,
+        "minimum_size_bytes": 126,
+        "median_size_bytes": 185,
+        "maximum_size_bytes": 460
+      },
+      {
+        "artifact_type": "rcsb_entry_metadata",
+        "file_count": 4,
+        "total_size_bytes": 45240,
+        "minimum_size_bytes": 9935,
+        "median_size_bytes": 11298,
+        "maximum_size_bytes": 12708
+      },
+      {
+        "artifact_type": "rcsb_mmcif",
+        "file_count": 4,
+        "total_size_bytes": 7934148,
+        "minimum_size_bytes": 103220,
+        "median_size_bytes": 435941,
+        "maximum_size_bytes": 6959046
+      },
+      {
+        "artifact_type": "rcsb_page_request",
+        "file_count": 19,
+        "total_size_bytes": 13581,
+        "minimum_size_bytes": 653,
+        "median_size_bytes": 655,
+        "maximum_size_bytes": 972
+      },
+      {
+        "artifact_type": "rcsb_pagination_record",
+        "file_count": 5,
+        "total_size_bytes": 5196,
+        "minimum_size_bytes": 522,
+        "median_size_bytes": 714,
+        "maximum_size_bytes": 2543
+      },
+      {
+        "artifact_type": "rcsb_polymer_entity_metadata",
+        "file_count": 4,
+        "total_size_bytes": 367326,
+        "minimum_size_bytes": 22234,
+        "median_size_bytes": 92356,
+        "maximum_size_bytes": 160380
+      },
+      {
+        "artifact_type": "rcsb_polymer_instance_metadata",
+        "file_count": 4,
+        "total_size_bytes": 54565,
+        "minimum_size_bytes": 7136,
+        "median_size_bytes": 12650,
+        "maximum_size_bytes": 22129
+      },
+      {
+        "artifact_type": "rcsb_search_response",
+        "file_count": 19,
+        "total_size_bytes": 1374246,
+        "minimum_size_bytes": 0,
+        "median_size_bytes": 87378,
+        "maximum_size_bytes": 121326
+      }
+    ]
+  },
+  "content_duplicates": {
+    "scope": "byte-identical non-empty files",
+    "duplicate_group_count": 23,
+    "redundant_copy_count": 65,
+    "groups": [
+      {
+        "sha256": "034c238669df5ec121ae8a494c850a59d162975fe070872779576879f78c32bd",
+        "size_bytes": 970,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-002/page-0001/request.body.json",
+          "requests/rcsb/P0-DISC-002/page-0001.json"
+        ]
+      },
+      {
+        "sha256": "04147f2d1dd01ba8382086a4396be2c6e2567a59c04bf37508f25f369a320ce3",
+        "size_bytes": 655,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-001/page-0010/request.body.json",
+          "requests/rcsb/P0-DISC-001/page-0010.json"
+        ]
+      },
+      {
+        "sha256": "138e45e8d015600f3d185d2a2c587854753722c6d00cfb16e25496051016e94a",
+        "size_bytes": 656,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-001/page-0012/request.body.json",
+          "requests/rcsb/P0-DISC-001/page-0012.json"
+        ]
+      },
+      {
+        "sha256": "2f2ae6d015d2834d459a8389f7381a513849b93b341069910770e0252dac9636",
+        "size_bytes": 710,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-003/page-0001/request.body.json",
+          "requests/rcsb/P0-DISC-003/page-0001.json"
+        ]
+      },
+      {
+        "sha256": "38bdb370fca8b5430969e2d4e358fe3f8f57a03dd45b408597cee281b2124fa3",
+        "size_bytes": 655,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-001/page-0008/request.body.json",
+          "requests/rcsb/P0-DISC-001/page-0008.json"
+        ]
+      },
+      {
+        "sha256": "3adceccb29d72b15322b23b78d0c2c60b31cbfdd086ced1001d82a76d233f83c",
+        "size_bytes": 655,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-001/page-0004/request.body.json",
+          "requests/rcsb/P0-DISC-001/page-0004.json"
+        ]
+      },
+      {
+        "sha256": "3e6e3a41c6c8b370d15c0f56fb5db7d9d1b8f668d5388c5333ff798ca9efbb6d",
+        "size_bytes": 656,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-001/page-0011/request.body.json",
+          "requests/rcsb/P0-DISC-001/page-0011.json"
+        ]
+      },
+      {
+        "sha256": "42a76c8cefe0b395c090bb34d7ba8d993f8853100cd55142b94d8da5fab39183",
+        "size_bytes": 308,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-001/page-0005/response.headers.txt",
+          "evidence/rcsb-search/P0-DISC-001/page-0006/response.headers.txt"
+        ]
+      },
+      {
+        "sha256": "471f9ac534c2ad075d3dd8f4a6c2c654fd97c631aa6b9f0bd312d617bb48adf6",
+        "size_bytes": 655,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-001/page-0005/request.body.json",
+          "requests/rcsb/P0-DISC-001/page-0005.json"
+        ]
+      },
+      {
+        "sha256": "5a96808f5e3edaf7601e16fffcfd7c066653c02418c1ee51db388a155b4ec7c2",
+        "size_bytes": 655,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-001/page-0003/request.body.json",
+          "requests/rcsb/P0-DISC-001/page-0003.json"
+        ]
+      },
+      {
+        "sha256": "71ffadcd78e4d137893c67a482cde66ea311b9a973d0227bae807d38e66b361e",
+        "size_bytes": 710,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-004/page-0001/request.body.json",
+          "requests/rcsb/P0-DISC-004/page-0001.json"
+        ]
+      },
+      {
+        "sha256": "78e6f331de17cdc6a2a1e53725cf64f34df8237cd7370dbd9d1d5a23a8ed297e",
+        "size_bytes": 972,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-002/page-0003/request.body.json",
+          "requests/rcsb/P0-DISC-002/page-0003.json"
+        ]
+      },
+      {
+        "sha256": "7a9c132a6f38cc9e81d46ce996839d56e1d4d47eb09ae898dbbd32eda4eb56a2",
+        "size_bytes": 655,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-001/page-0002/request.body.json",
+          "requests/rcsb/P0-DISC-001/page-0002.json"
+        ]
+      },
+      {
+        "sha256": "814b38590830ff4b1550d36ebf9e94dee161c41cb3b91a422482598f5e434b25",
+        "size_bytes": 308,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-002/page-0001/response.headers.txt",
+          "evidence/rcsb-search/P0-DISC-002/page-0002/response.headers.txt"
+        ]
+      },
+      {
+        "sha256": "83c76d43e0ba1e2f6cc3680ab9bbf3ff05f75dadb020e959d112549efd3fd16a",
+        "size_bytes": 712,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-003/page-0002/request.body.json",
+          "requests/rcsb/P0-DISC-003/page-0002.json"
+        ]
+      },
+      {
+        "sha256": "8afb431c0b06857789a87f1a75c05dc36f5301feddd7e604a5163aa2172742ff",
+        "size_bytes": 655,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-001/page-0009/request.body.json",
+          "requests/rcsb/P0-DISC-001/page-0009.json"
+        ]
+      },
+      {
+        "sha256": "8eeb62a26686428d3727cb7ad6edc15fbf93e8728f1d36f224b39da028e25faa",
+        "size_bytes": 972,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-002/page-0002/request.body.json",
+          "requests/rcsb/P0-DISC-002/page-0002.json"
+        ]
+      },
+      {
+        "sha256": "b9b9d7d361d9781e46f82250ba900aef5644f960cde76b61e766da3d8c594a62",
+        "size_bytes": 655,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-001/page-0006/request.body.json",
+          "requests/rcsb/P0-DISC-001/page-0006.json"
+        ]
+      },
+      {
+        "sha256": "bb26b9434d5da25516dac4e2ea80bdb610e23fb59dc7788b7d02710114a73f28",
+        "size_bytes": 308,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-003/page-0001/response.headers.txt",
+          "evidence/rcsb-search/P0-DISC-003/page-0002/response.headers.txt"
+        ]
+      },
+      {
+        "sha256": "d9e5780121e686cd009213d90a4da406174228dd4ac63f40a4b5f4e21571a01c",
+        "size_bytes": 675,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-005/page-0001/request.body.json",
+          "requests/rcsb/P0-DISC-005/page-0001.json"
+        ]
+      },
+      {
+        "sha256": "f510374c3c7c6b5f94f9821320019b3d0fb3f02397caad4d41c70704afba1f83",
+        "size_bytes": 52,
+        "copy_count": 44,
+        "paths": [
+          "evidence/afdb/P0-DISC-002/P04637/confidence/curl.stderr.txt",
+          "evidence/afdb/P0-DISC-002/P04637/metadata/curl.stderr.txt",
+          "evidence/afdb/P0-DISC-002/P04637/model-cif/curl.stderr.txt",
+          "evidence/afdb/P0-DISC-002/P04637/pae/curl.stderr.txt",
+          "evidence/afdb/P0-DISC-004/O15116/confidence/curl.stderr.txt",
+          "evidence/afdb/P0-DISC-004/O15116/metadata/curl.stderr.txt",
+          "evidence/afdb/P0-DISC-004/O15116/model-cif/curl.stderr.txt",
+          "evidence/afdb/P0-DISC-004/O15116/pae/curl.stderr.txt",
+          "evidence/afdb/P0-DISC-005/WP_505187596.1/metadata/curl.stderr.txt",
+          "evidence/rcsb-materialized/P0-DISC-001/P0-M1B-PROBE-1UBQ/entry/curl.stderr.txt",
+          "evidence/rcsb-materialized/P0-DISC-001/P0-M1B-PROBE-1UBQ/mmcif/curl.stderr.txt",
+          "evidence/rcsb-materialized/P0-DISC-001/P0-M1B-PROBE-1UBQ/polymer-entity/curl.stderr.txt",
+          "evidence/rcsb-materialized/P0-DISC-001/P0-M1B-PROBE-1UBQ/polymer-instance/curl.stderr.txt",
+          "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-5XZC/entry/curl.stderr.txt",
+          "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-5XZC/mmcif/curl.stderr.txt",
+          "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-5XZC/polymer-entity/curl.stderr.txt",
+          "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-5XZC/polymer-instance/curl.stderr.txt",
+          "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-6XRE/entry/curl.stderr.txt",
+          "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-6XRE/mmcif/curl.stderr.txt",
+          "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-6XRE/polymer-entity/curl.stderr.txt",
+          "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-6XRE/polymer-instance/curl.stderr.txt",
+          "evidence/rcsb-materialized/P0-DISC-003/P0-M1B-PROBE-6PPV/entry/curl.stderr.txt",
+          "evidence/rcsb-materialized/P0-DISC-003/P0-M1B-PROBE-6PPV/mmcif/curl.stderr.txt",
+          "evidence/rcsb-materialized/P0-DISC-003/P0-M1B-PROBE-6PPV/polymer-entity/curl.stderr.txt",
+          "evidence/rcsb-materialized/P0-DISC-003/P0-M1B-PROBE-6PPV/polymer-instance/curl.stderr.txt",
+          "evidence/rcsb-search/P0-DISC-001/page-0001/curl.stderr.txt",
+          "evidence/rcsb-search/P0-DISC-001/page-0002/curl.stderr.txt",
+          "evidence/rcsb-search/P0-DISC-001/page-0003/curl.stderr.txt",
+          "evidence/rcsb-search/P0-DISC-001/page-0004/curl.stderr.txt",
+          "evidence/rcsb-search/P0-DISC-001/page-0005/curl.stderr.txt",
+          "evidence/rcsb-search/P0-DISC-001/page-0006/curl.stderr.txt",
+          "evidence/rcsb-search/P0-DISC-001/page-0007/curl.stderr.txt",
+          "evidence/rcsb-search/P0-DISC-001/page-0008/curl.stderr.txt",
+          "evidence/rcsb-search/P0-DISC-001/page-0009/curl.stderr.txt",
+          "evidence/rcsb-search/P0-DISC-001/page-0010/curl.stderr.txt",
+          "evidence/rcsb-search/P0-DISC-001/page-0011/curl.stderr.txt",
+          "evidence/rcsb-search/P0-DISC-001/page-0012/curl.stderr.txt",
+          "evidence/rcsb-search/P0-DISC-002/page-0001/curl.stderr.txt",
+          "evidence/rcsb-search/P0-DISC-002/page-0002/curl.stderr.txt",
+          "evidence/rcsb-search/P0-DISC-002/page-0003/curl.stderr.txt",
+          "evidence/rcsb-search/P0-DISC-003/page-0001/curl.stderr.txt",
+          "evidence/rcsb-search/P0-DISC-003/page-0002/curl.stderr.txt",
+          "evidence/rcsb-search/P0-DISC-004/page-0001/curl.stderr.txt",
+          "evidence/rcsb-search/P0-DISC-005/page-0001/curl.stderr.txt"
+        ]
+      },
+      {
+        "sha256": "f662ec17b487558e02110a4aeb2d9fd75a17023eae2477c0eb55cc3593c2a3ea",
+        "size_bytes": 653,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-001/page-0001/request.body.json",
+          "requests/rcsb/P0-DISC-001/page-0001.json"
+        ]
+      },
+      {
+        "sha256": "fa9b63aaf99515557fb8b11519c16c628fe0033e5eaa4bb341f87f81870c6d48",
+        "size_bytes": 655,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-001/page-0007/request.body.json",
+          "requests/rcsb/P0-DISC-001/page-0007.json"
+        ]
+      }
+    ],
+    "empty_files_excluded": 27
+  },
+  "rcsb_pagination": {
+    "cases": [
+      {
+        "case_id": "P0-DISC-001",
+        "page_count": 12,
+        "page_size": 100,
+        "reported_total_count": 1136,
+        "returned_result_count": 1136,
+        "unique_polymer_entity_count": 1136,
+        "unique_entry_count": 1004,
+        "polymer_entities_sharing_an_entry_count": 132,
+        "entries_with_multiple_returned_entities": [
+          {
+            "entry_id": "22TU",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "28LN",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "3J7P",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "3J7R",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "4BBN",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "4DHJ",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "4DHZ",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "4LDT",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "4UG0",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "4UJC",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "4UJD",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "4UJE",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "5AJ0",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "5LKS",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "5LZS",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "5LZT",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "5LZU",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "5LZV",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "5LZW",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "5LZX",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "5LZY",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "5LZZ",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "5T2C",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6HCF",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6HCJ",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6HCM",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6HCQ",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6IP5",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6IP6",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6IP8",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6ISU",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6N13",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6SGC",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6SQR",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6Y0G",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6Y57",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6Z6L",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6Z6M",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6Z6N",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6ZM7",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6ZME",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6ZMI",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6ZMO",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "7BBD",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "7LS1",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "7LS2",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "7MDZ",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "7O7Y",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "7O7Z",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "7O80",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "7O81",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "7OJX",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "7QGG",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "7QVP",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "7R71",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "7XNY",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "7ZJW",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "7ZJX",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8BTK",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8F1F",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8G5Y",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8G60",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8G61",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8G6J",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8GLP",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8IFD",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8IFE",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8K2C",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8P2K",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8PQL",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8QOI",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8SCB",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8VFT",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8VVT",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8XSX",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8XSY",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8XSZ",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8YOO",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8YOP",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9F1B",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9F1C",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9F1D",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9FQZ",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9G8M",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9I14",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9I2D",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9I2E",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9KZU",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9KZX",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9L3L",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9MR4",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9NDP",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9O3V",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9O3W",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9O3Y",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9Q7Q",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9QLO",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9QLP",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9QLQ",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9QOH",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9QQA",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9QQB",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9QQL",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9QZP",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9RG7",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9RPV",
+            "entity_count": 3
+          },
+          {
+            "entry_id": "9RU7",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9RU9",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9S3B",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9S3C",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9S3D",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9SMN",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9SMP",
+            "entity_count": 3
+          },
+          {
+            "entry_id": "9SNA",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9SO9",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9SPF",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9SPI",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9V9Q",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9V9R",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9VXN",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9YPG",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9YPO",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9YPS",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9YPT",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9YPV",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9YPW",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9YPY",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9YPZ",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9YQ0",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9YQ1",
+            "entity_count": 2
+          }
+        ],
+        "across_page_duplicate_occurrences": 0,
+        "reported_total_changed_between_pages": false,
+        "stop_reason": "REPORTED_RESULT_SET_EXHAUSTED",
+        "audit_guard_reached": false,
+        "all_reported_results_captured": true,
+        "pages": [
+          {
+            "page": "page-0001",
+            "start": 0,
+            "rows_requested": 100,
+            "http_status": 200,
+            "reported_total_count": 1136,
+            "result_count": 100,
+            "within_page_duplicate_occurrences": 0
+          },
+          {
+            "page": "page-0002",
+            "start": 100,
+            "rows_requested": 100,
+            "http_status": 200,
+            "reported_total_count": 1136,
+            "result_count": 100,
+            "within_page_duplicate_occurrences": 0
+          },
+          {
+            "page": "page-0003",
+            "start": 200,
+            "rows_requested": 100,
+            "http_status": 200,
+            "reported_total_count": 1136,
+            "result_count": 100,
+            "within_page_duplicate_occurrences": 0
+          },
+          {
+            "page": "page-0004",
+            "start": 300,
+            "rows_requested": 100,
+            "http_status": 200,
+            "reported_total_count": 1136,
+            "result_count": 100,
+            "within_page_duplicate_occurrences": 0
+          },
+          {
+            "page": "page-0005",
+            "start": 400,
+            "rows_requested": 100,
+            "http_status": 200,
+            "reported_total_count": 1136,
+            "result_count": 100,
+            "within_page_duplicate_occurrences": 0
+          },
+          {
+            "page": "page-0006",
+            "start": 500,
+            "rows_requested": 100,
+            "http_status": 200,
+            "reported_total_count": 1136,
+            "result_count": 100,
+            "within_page_duplicate_occurrences": 0
+          },
+          {
+            "page": "page-0007",
+            "start": 600,
+            "rows_requested": 100,
+            "http_status": 200,
+            "reported_total_count": 1136,
+            "result_count": 100,
+            "within_page_duplicate_occurrences": 0
+          },
+          {
+            "page": "page-0008",
+            "start": 700,
+            "rows_requested": 100,
+            "http_status": 200,
+            "reported_total_count": 1136,
+            "result_count": 100,
+            "within_page_duplicate_occurrences": 0
+          },
+          {
+            "page": "page-0009",
+            "start": 800,
+            "rows_requested": 100,
+            "http_status": 200,
+            "reported_total_count": 1136,
+            "result_count": 100,
+            "within_page_duplicate_occurrences": 0
+          },
+          {
+            "page": "page-0010",
+            "start": 900,
+            "rows_requested": 100,
+            "http_status": 200,
+            "reported_total_count": 1136,
+            "result_count": 100,
+            "within_page_duplicate_occurrences": 0
+          },
+          {
+            "page": "page-0011",
+            "start": 1000,
+            "rows_requested": 100,
+            "http_status": 200,
+            "reported_total_count": 1136,
+            "result_count": 100,
+            "within_page_duplicate_occurrences": 0
+          },
+          {
+            "page": "page-0012",
+            "start": 1100,
+            "rows_requested": 100,
+            "http_status": 200,
+            "reported_total_count": 1136,
+            "result_count": 36,
+            "within_page_duplicate_occurrences": 0
+          }
+        ]
+      },
+      {
+        "case_id": "P0-DISC-002",
+        "page_count": 3,
+        "page_size": 100,
+        "reported_total_count": 236,
+        "returned_result_count": 236,
+        "unique_polymer_entity_count": 236,
+        "unique_entry_count": 235,
+        "polymer_entities_sharing_an_entry_count": 1,
+        "entries_with_multiple_returned_entities": [
+          {
+            "entry_id": "1GZH",
+            "entity_count": 2
+          }
+        ],
+        "across_page_duplicate_occurrences": 0,
+        "reported_total_changed_between_pages": false,
+        "stop_reason": "REPORTED_RESULT_SET_EXHAUSTED",
+        "audit_guard_reached": false,
+        "all_reported_results_captured": true,
+        "pages": [
+          {
+            "page": "page-0001",
+            "start": 0,
+            "rows_requested": 100,
+            "http_status": 200,
+            "reported_total_count": 236,
+            "result_count": 100,
+            "within_page_duplicate_occurrences": 0
+          },
+          {
+            "page": "page-0002",
+            "start": 100,
+            "rows_requested": 100,
+            "http_status": 200,
+            "reported_total_count": 236,
+            "result_count": 100,
+            "within_page_duplicate_occurrences": 0
+          },
+          {
+            "page": "page-0003",
+            "start": 200,
+            "rows_requested": 100,
+            "http_status": 200,
+            "reported_total_count": 236,
+            "result_count": 36,
+            "within_page_duplicate_occurrences": 0
+          }
+        ]
+      },
+      {
+        "case_id": "P0-DISC-003",
+        "page_count": 2,
+        "page_size": 100,
+        "reported_total_count": 125,
+        "returned_result_count": 125,
+        "unique_polymer_entity_count": 125,
+        "unique_entry_count": 103,
+        "polymer_entities_sharing_an_entry_count": 22,
+        "entries_with_multiple_returned_entities": [
+          {
+            "entry_id": "3JCR",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "5O9Z",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6AH0",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6AHD",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6QW6",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6QX9",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "7ABG",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8H6E",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8H6J",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8H6K",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8H6L",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8QO9",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8QXD",
+            "entity_count": 3
+          },
+          {
+            "entry_id": "8QZS",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8R08",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8R09",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8R0A",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8R0B",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8RM5",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9R8V",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "9XU3",
+            "entity_count": 2
+          }
+        ],
+        "across_page_duplicate_occurrences": 0,
+        "reported_total_changed_between_pages": false,
+        "stop_reason": "REPORTED_RESULT_SET_EXHAUSTED",
+        "audit_guard_reached": false,
+        "all_reported_results_captured": true,
+        "pages": [
+          {
+            "page": "page-0001",
+            "start": 0,
+            "rows_requested": 100,
+            "http_status": 200,
+            "reported_total_count": 125,
+            "result_count": 100,
+            "within_page_duplicate_occurrences": 0
+          },
+          {
+            "page": "page-0002",
+            "start": 100,
+            "rows_requested": 100,
+            "http_status": 200,
+            "reported_total_count": 125,
+            "result_count": 25,
+            "within_page_duplicate_occurrences": 0
+          }
+        ]
+      },
+      {
+        "case_id": "P0-DISC-004",
+        "page_count": 1,
+        "page_size": 100,
+        "reported_total_count": 0,
+        "returned_result_count": 0,
+        "unique_polymer_entity_count": 0,
+        "unique_entry_count": 0,
+        "polymer_entities_sharing_an_entry_count": 0,
+        "entries_with_multiple_returned_entities": [],
+        "across_page_duplicate_occurrences": 0,
+        "reported_total_changed_between_pages": false,
+        "stop_reason": "SUCCESSFUL_EMPTY_RESPONSE",
+        "audit_guard_reached": false,
+        "all_reported_results_captured": true,
+        "pages": [
+          {
+            "page": "page-0001",
+            "start": 0,
+            "rows_requested": 100,
+            "http_status": 204,
+            "reported_total_count": null,
+            "result_count": 0,
+            "within_page_duplicate_occurrences": 0
+          }
+        ]
+      },
+      {
+        "case_id": "P0-DISC-005",
+        "page_count": 1,
+        "page_size": 100,
+        "reported_total_count": 0,
+        "returned_result_count": 0,
+        "unique_polymer_entity_count": 0,
+        "unique_entry_count": 0,
+        "polymer_entities_sharing_an_entry_count": 0,
+        "entries_with_multiple_returned_entities": [],
+        "across_page_duplicate_occurrences": 0,
+        "reported_total_changed_between_pages": false,
+        "stop_reason": "SUCCESSFUL_EMPTY_RESPONSE",
+        "audit_guard_reached": false,
+        "all_reported_results_captured": true,
+        "pages": [
+          {
+            "page": "page-0001",
+            "start": 0,
+            "rows_requested": 100,
+            "http_status": 204,
+            "reported_total_count": null,
+            "result_count": 0,
+            "within_page_duplicate_occurrences": 0
+          }
+        ]
+      }
+    ],
+    "case_count": 5,
+    "total_page_count": 19,
+    "cross_case_polymer_entity_overlap_count": 0,
+    "cross_case_polymer_entity_overlaps": [],
+    "cross_case_entry_overlap_count": 0,
+    "cross_case_entry_overlaps": [],
+    "deduplication_decision_made": false
+  },
+  "rcsb_materialization": {
+    "probe_count": 4,
+    "response_body_count": 16,
+    "response_body_total_size_bytes": 8401279,
+    "probes": [
+      {
+        "probe_id": "P0-M1B-PROBE-1UBQ",
+        "case_id": "P0-DISC-001",
+        "entry_id": "1UBQ",
+        "entity_id": "1",
+        "chain_id": "A",
+        "frozen_probe_not_a_selection": true,
+        "response_body_count": 4,
+        "response_body_total_size_bytes": 153344,
+        "http_status_by_kind": {
+          "entry": 200,
+          "mmcif": 200,
+          "polymer-entity": 200,
+          "polymer-instance": 200
+        },
+        "response_bodies": [
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-001/P0-M1B-PROBE-1UBQ/entry/response.json",
+            "size_bytes": 9935,
+            "sha256": "5a7d463af93a3f95b4fe52d6cbecbfaa32f2ec27c72a7c9397e10a8eaaf97bfe"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-001/P0-M1B-PROBE-1UBQ/mmcif/1UBQ.cif",
+            "size_bytes": 103220,
+            "sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-001/P0-M1B-PROBE-1UBQ/polymer-entity/response.json",
+            "size_bytes": 26236,
+            "sha256": "e296d0d87fa7f8fa584f00cd52f26d18ac40d33badb6a3a090eafe950971ba14"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-001/P0-M1B-PROBE-1UBQ/polymer-instance/response.json",
+            "size_bytes": 13953,
+            "sha256": "fdf3f834b91e41d0aa42148069ed64fc9f7159b0341d8561d341e45b7d67a845"
+          }
+        ]
+      },
+      {
+        "probe_id": "P0-M1B-PROBE-6XRE",
+        "case_id": "P0-DISC-002",
+        "entry_id": "6XRE",
+        "entity_id": "13",
+        "chain_id": "M",
+        "frozen_probe_not_a_selection": true,
+        "response_body_count": 4,
+        "response_body_total_size_bytes": 7152827,
+        "http_status_by_kind": {
+          "entry": 200,
+          "mmcif": 200,
+          "polymer-entity": 200,
+          "polymer-instance": 200
+        },
+        "response_bodies": [
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-6XRE/entry/response.json",
+            "size_bytes": 11272,
+            "sha256": "51da495a37317781c1b67a7c4266bfe1a73ade26084b5ce5f477842c9ebb16c6"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-6XRE/mmcif/6XRE.cif",
+            "size_bytes": 6959046,
+            "sha256": "48b2a9fa85e6f19adf4672427bb226ed8fc92af8567d09e8915aacad359a7249"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-6XRE/polymer-entity/response.json",
+            "size_bytes": 160380,
+            "sha256": "891cf08a3ed799705022d3625ea1b2133954987dbe047a36a4be46232dbae4c2"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-6XRE/polymer-instance/response.json",
+            "size_bytes": 22129,
+            "sha256": "41d503d3daee841d612b039a7585d285259d93b61c6ea20c5d471d7119d8f0a2"
+          }
+        ]
+      },
+      {
+        "probe_id": "P0-M1B-PROBE-5XZC",
+        "case_id": "P0-DISC-002",
+        "entry_id": "5XZC",
+        "entity_id": "2",
+        "chain_id": "B",
+        "frozen_probe_not_a_selection": true,
+        "response_body_count": 4,
+        "response_body_total_size_bytes": 447263,
+        "http_status_by_kind": {
+          "entry": 200,
+          "mmcif": 200,
+          "polymer-entity": 200,
+          "polymer-instance": 200
+        },
+        "response_bodies": [
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-5XZC/entry/response.json",
+            "size_bytes": 12708,
+            "sha256": "ac61cd42ed0609fbcbbfacd3bb664da50b374789ebdcfbc0f61e53a903b64efe"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-5XZC/mmcif/5XZC.cif",
+            "size_bytes": 268943,
+            "sha256": "744ea7b74175865b1c1c3538d714a75ac10ac5cbee166c0547aa2c2a29f74b9a"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-5XZC/polymer-entity/response.json",
+            "size_bytes": 158476,
+            "sha256": "98389ba98b95bf3e6cdd75dc4acf0c1824725165ad86f29597ca02dcb6c88c6a"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-5XZC/polymer-instance/response.json",
+            "size_bytes": 7136,
+            "sha256": "f2f255ab9e881f3d40a7db981c239c3e7284166023fff0da0accd329b21a823f"
+          }
+        ]
+      },
+      {
+        "probe_id": "P0-M1B-PROBE-6PPV",
+        "case_id": "P0-DISC-003",
+        "entry_id": "6PPV",
+        "entity_id": "1",
+        "chain_id": "A",
+        "frozen_probe_not_a_selection": true,
+        "response_body_count": 4,
+        "response_body_total_size_bytes": 647845,
+        "http_status_by_kind": {
+          "entry": 200,
+          "mmcif": 200,
+          "polymer-entity": 200,
+          "polymer-instance": 200
+        },
+        "response_bodies": [
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-003/P0-M1B-PROBE-6PPV/entry/response.json",
+            "size_bytes": 11325,
+            "sha256": "c5a69a96989515df61f45ab0eca0e383bcbe2ff22aeea7f55bb00ae0b524b349"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-003/P0-M1B-PROBE-6PPV/mmcif/6PPV.cif",
+            "size_bytes": 602939,
+            "sha256": "06564ae8e3b5cb93c079825d51cbd4b898cacbc6bdd655948742f645bb92cf68"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-003/P0-M1B-PROBE-6PPV/polymer-entity/response.json",
+            "size_bytes": 22234,
+            "sha256": "9f6153bdf90cde6a50e194c93f91423d0fbac7c44c8bcd90ce639ce21750208e"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-003/P0-M1B-PROBE-6PPV/polymer-instance/response.json",
+            "size_bytes": 11347,
+            "sha256": "a6c84aab310278bee8abca325b8cee3692573dbe34093ed9cb1f4f93c2dc88af"
+          }
+        ]
+      }
+    ]
+  },
+  "afdb": {
+    "case_count": 3,
+    "cases": [
+      {
+        "case_id": "P0-DISC-002",
+        "queried_identifier": "P04637",
+        "identifier_was_explicit_not_inferred": true,
+        "metadata_http_status": 200,
+        "metadata_shape": "MODEL_LIST",
+        "model_entity_id": "AF-P04637-F1",
+        "latest_version": 6,
+        "response_body_count": 4,
+        "response_body_total_size_bytes": 810080,
+        "response_bodies": [
+          {
+            "path": "evidence/afdb/P0-DISC-002/P04637/confidence/AF-P04637-F1-confidence_v6.json",
+            "size_bytes": 5417,
+            "sha256": "a63a6e43b6fed127c2f3839e45cdb9ad9b3fc6f3135febccf0e95f207c9fdb93"
+          },
+          {
+            "path": "evidence/afdb/P0-DISC-002/P04637/metadata/response.json",
+            "size_bytes": 18911,
+            "sha256": "1ef436288de2bfd9dbc9a24147b758fbe09bd4a1e27db56d0ced3e5bac215589"
+          },
+          {
+            "path": "evidence/afdb/P0-DISC-002/P04637/model-cif/AF-P04637-F1-model_v6.cif",
+            "size_bytes": 363485,
+            "sha256": "4332bff49301d04434b6e3b43c439aa5bd8238760e88c7142f7d0c0851a68e5d"
+          },
+          {
+            "path": "evidence/afdb/P0-DISC-002/P04637/pae/AF-P04637-F1-predicted_aligned_error_v6.json",
+            "size_bytes": 422267,
+            "sha256": "9cfbaa7522ce1aecf0caa3b66bb414815911521b05749493a40a557e58678c5d"
+          }
+        ]
+      },
+      {
+        "case_id": "P0-DISC-004",
+        "queried_identifier": "O15116",
+        "identifier_was_explicit_not_inferred": true,
+        "metadata_http_status": 200,
+        "metadata_shape": "MODEL_LIST",
+        "model_entity_id": "AF-O15116-F1",
+        "latest_version": 6,
+        "response_body_count": 4,
+        "response_body_total_size_bytes": 179470,
+        "response_bodies": [
+          {
+            "path": "evidence/afdb/P0-DISC-004/O15116/confidence/AF-O15116-F1-confidence_v6.json",
+            "size_bytes": 1797,
+            "sha256": "66b9f09f6ea60f48dd841a8c8f0c9a09f6bdf12e75c8cb69990d90a7bc636def"
+          },
+          {
+            "path": "evidence/afdb/P0-DISC-004/O15116/metadata/response.json",
+            "size_bytes": 1990,
+            "sha256": "4106b00fa105ad20d8e4532c4f79c892837fed09fd30e6f3eda9b75279940341"
+          },
+          {
+            "path": "evidence/afdb/P0-DISC-004/O15116/model-cif/AF-O15116-F1-model_v6.cif",
+            "size_bytes": 135937,
+            "sha256": "d37972527c798e13e39fb8202e33d9c5cb816ac211c57591218e753a357d80e1"
+          },
+          {
+            "path": "evidence/afdb/P0-DISC-004/O15116/pae/AF-O15116-F1-predicted_aligned_error_v6.json",
+            "size_bytes": 39746,
+            "sha256": "8826b30d2fa5f9a4adf6ab2bd3b7b993ada14c2d517fdcbc1422e4a52d0bc684"
+          }
+        ]
+      },
+      {
+        "case_id": "P0-DISC-005",
+        "queried_identifier": "WP_505187596.1",
+        "identifier_was_explicit_not_inferred": true,
+        "metadata_http_status": 400,
+        "metadata_shape": "OBJECT_OR_ERROR",
+        "model_entity_id": null,
+        "latest_version": null,
+        "response_body_count": 1,
+        "response_body_total_size_bytes": 101,
+        "response_bodies": [
+          {
+            "path": "evidence/afdb/P0-DISC-005/WP_505187596.1/metadata/response.json",
+            "size_bytes": 101,
+            "sha256": "7d852982aa15df11e9f49715a30540091585db875ec248414b9f79674c2196b3"
+          }
+        ]
+      }
+    ]
+  },
+  "blast": {
+    "profile_id": "p0-s07-blast-discovery-v0.1",
+    "profile_classification": "PROVISIONAL_DISCOVERY_PROFILE",
+    "production_approved": false,
+    "case_count": 4,
+    "cases": [
+      {
+        "case_id": "P0-DISC-001",
+        "tabular_hit_count": 100,
+        "discovery_profile_cap": 100,
+        "cap_was_reached": true,
+        "cap_is_production_default": false,
+        "search_exit_code": 0,
+        "archive": {
+          "path": "evidence/blast/P0-DISC-001/search/result.asn",
+          "size_bytes": 133078,
+          "sha256": "6c63b11bd13360bb76dbff8a075283339e711ca810daae102447210682fb314f"
+        },
+        "tabular": {
+          "path": "evidence/blast/P0-DISC-001/format-tabular/result.tsv",
+          "size_bytes": 30100,
+          "sha256": "84dd8977e3064f4b3e0eb825daaad6ef81d26ddee178497d11d9dedfc1d1fde0"
+        },
+        "json": {
+          "path": "evidence/blast/P0-DISC-001/format-json/result.json",
+          "size_bytes": 115332,
+          "sha256": "85c89d1d85b19ab54e9203ef42985c8de35df6e6a6ce8b985ff28f8ba512b677"
+        }
+      },
+      {
+        "case_id": "P0-DISC-002",
+        "tabular_hit_count": 100,
+        "discovery_profile_cap": 100,
+        "cap_was_reached": true,
+        "cap_is_production_default": false,
+        "search_exit_code": 0,
+        "archive": {
+          "path": "evidence/blast/P0-DISC-002/search/result.asn",
+          "size_bytes": 134842,
+          "sha256": "19fa1895a24daaa23776b74528700f05d1eace869ed40601643df3e1dd6954fa"
+        },
+        "tabular": {
+          "path": "evidence/blast/P0-DISC-002/format-tabular/result.tsv",
+          "size_bytes": 70256,
+          "sha256": "1116a9b00114a837b0f6c7c6a698d7e29640e74110befe3cd5a70d746e62501c"
+        },
+        "json": {
+          "path": "evidence/blast/P0-DISC-002/format-json/result.json",
+          "size_bytes": 173617,
+          "sha256": "222d2b31430dceb57cc0a9878c5b18d2395cfca0811add29755746072e55199c"
+        }
+      },
+      {
+        "case_id": "P0-DISC-003",
+        "tabular_hit_count": 100,
+        "discovery_profile_cap": 100,
+        "cap_was_reached": true,
+        "cap_is_production_default": false,
+        "search_exit_code": 0,
+        "archive": {
+          "path": "evidence/blast/P0-DISC-003/search/result.asn",
+          "size_bytes": 163444,
+          "sha256": "7a2ca70e8fec30fde5e1bbc2c10aa8f97dc43dcf8304767fe486a63365336c8d"
+        },
+        "tabular": {
+          "path": "evidence/blast/P0-DISC-003/format-tabular/result.tsv",
+          "size_bytes": 33195,
+          "sha256": "57e28085186b2407772d5c1111072277957a57dcecee06380decfc985860de71"
+        },
+        "json": {
+          "path": "evidence/blast/P0-DISC-003/format-json/result.json",
+          "size_bytes": 117354,
+          "sha256": "b7a8183b650faa5f015bc6746767adb549caf29866b99ec00bce88195f285b10"
+        }
+      },
+      {
+        "case_id": "P0-DISC-005",
+        "tabular_hit_count": 42,
+        "discovery_profile_cap": 100,
+        "cap_was_reached": false,
+        "cap_is_production_default": false,
+        "search_exit_code": 0,
+        "archive": {
+          "path": "evidence/blast/P0-DISC-005/search/result.asn",
+          "size_bytes": 66337,
+          "sha256": "5c525003ce18565a2d7866b0421d7c33d2eb167d8d9d7fcd871f802ce11fe4c8"
+        },
+        "tabular": {
+          "path": "evidence/blast/P0-DISC-005/format-tabular/result.tsv",
+          "size_bytes": 11961,
+          "sha256": "954ca9390686b027975a2a07d7d4641e7e04ae3ff0eb79fbbce7a1cc5fda802f"
+        },
+        "json": {
+          "path": "evidence/blast/P0-DISC-005/format-json/result.json",
+          "size_bytes": 46110,
+          "sha256": "96e7a02cc29817e43d2cd5eabe96fe7dc3d82d3f8344de7579a66e29e89378b8"
+        }
+      }
+    ]
+  },
+  "exchanges": {
+    "exchange_count": 57,
+    "outcome_counts": {
+      "CLI_SUCCESS": 13,
+      "HTTP_ERROR_RESPONSE": 1,
+      "HTTP_NO_CONTENT": 2,
+      "HTTP_SUCCESS": 41
+    },
+    "integrity_issue_count": 0,
+    "integrity_issues": []
+  },
+  "traceability_gaps": [
+    {
+      "gap": "REMOTE_DATABASE_RELEASE_NOT_FROZEN",
+      "applies_to": [
+        "RCSB",
+        "AlphaFold DB"
+      ],
+      "available_evidence": "request, response, retrieval timestamps, URL, headers, and SHA-256"
+    },
+    {
+      "gap": "FULL_CANDIDATE_MATERIALIZATION_NOT_PERFORMED",
+      "applies_to": [
+        "RCSB search result set"
+      ],
+      "available_evidence": "complete search pages plus four frozen output-composition probes"
+    }
+  ],
+  "d09_review_topics": [
+    "main result versus artifact references",
+    "identity keys at entity/entry/chain/model/assembly levels",
+    "query snapshot contents and source version evidence",
+    "pagination contract and separation of safety guards from production limits"
+  ]
+}

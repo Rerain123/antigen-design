@@ -1,0 +1,49 @@
+{
+  "exchange_id": "p0-s07-task6-acceptance-20260903-b--API-1UBQ-rcsb-graphql-007",
+  "classification": "discovery_evidence",
+  "production_deployment_status": "NOT_DEPLOYED",
+  "started_at": "2026-09-03T03:03:02.232072Z",
+  "finished_at": "2026-09-03T03:03:03.139021Z",
+  "request": {
+    "method": "POST",
+    "url": "https://data.rcsb.org/graphql",
+    "headers": {
+      "accept": "application/json",
+      "content_type": "application/json",
+      "user_agent": "T01-S07-Discovery/0.1 (non-production evidence capture)"
+    },
+    "body_file": "request.body.json",
+    "body_sha256": "2bfa9cfb138419f762e7f494e27f7bbfe78e1b9f6ab65bfc62e4c914c4fc4e66",
+    "timeout_seconds": 120,
+    "connection_override": null,
+    "ssl_revoke_best_effort": true
+  },
+  "response": {
+    "body_file": "response.json",
+    "body_size_bytes": 55342,
+    "body_sha256": "208a977149424b1d1d98a7365bf8ef0cd400931fbf68edfb5f6d4d8b9ba9c03a",
+    "headers_file": "response.headers.txt",
+    "headers_sha256": "4274f3f324d25bfe17e280ecd2421be7ddb9c4c0414a9f1b500e3c855780f677"
+  },
+  "curl": {
+    "executable": "curl.exe",
+    "exit_code": 0,
+    "metrics": {
+      "http_code": 200,
+      "response_code": 200,
+      "exitcode": 0,
+      "content_type": "application/json",
+      "remote_ip": "132.249.213.18",
+      "remote_port": 443,
+      "http_version": "1.1",
+      "method": "POST",
+      "num_redirects": 0,
+      "size_download": 55342.0,
+      "size_upload": 2128.0,
+      "time_total": 0.887065,
+      "ssl_verify_result": 0
+    },
+    "stderr_file": "curl.stderr.txt",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

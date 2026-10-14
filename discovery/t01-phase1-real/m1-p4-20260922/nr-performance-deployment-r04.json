@@ -1,0 +1,36 @@
+{
+  "status": "P4_NR_PERFORMANCE_DEPLOYMENT_PASS",
+  "checked_at_utc": "2026-09-23T10:50:49Z",
+  "deployment_uid": "d0cae2e9-9cd1-486b-a7c7-ddb9827915bd",
+  "deployment_generation": 69,
+  "observed_generation": 69,
+  "service_loaded": {
+    "elapsed_seconds": 0.112,
+    "database_id": "nr-20250624",
+    "manifest_sha256": "ea46b05b6465cd97557cf0e6304cc0e7766e53d4ece4209b55bf59d64d4841cd",
+    "mount_path": "/var/lib/t01/m1-p1-test-data/blast/nr-20250624",
+    "file_count": 2227,
+    "hashes": {
+      "policy": "158148e549b9da5ac9c352fde22d7fa9bdccd80a68cfe3fa2a62c077e59a15a4",
+      "result": "0a9241baa71c251d497cbecca215ca13d69fee64318a4f1f0dc2f35a29d0afa0",
+      "persisted_receipt": "0cc05a11ab7b5bdcd04b7d48463ac5dd435f717b78e47b15fd4936a58eb9da5c"
+    }
+  },
+  "worker_limits": {
+    "cpu": "4",
+    "memory": "16Gi"
+  },
+  "worker_image": "harbor-core.base.svc.cluster.local/qcyz/antigen-design-resident-blast@sha256:47f7b258c072f1f931ca485e03e76f721dd4a621bf1bd24ece9c1c3d1107057a",
+  "blast_wrapper": "#!/bin/sh\nexec /blast/bin/blastp.REAL \"$@\"\n",
+  "target_database_read_only": true,
+  "native_replay": {
+    "status": "P4_R12_NATIVE_REPLAY_PASS",
+    "raw_hsps": 527,
+    "qualified_hsps": 500,
+    "direct_binary": "/blast/bin/blastp.REAL",
+    "native_blast_sha256": "77a71eda9aa8fff5371a679542bd3a205f6bacb13d0999d58fc2a0abcb6b926f"
+  },
+  "scientific_release_gate": "CLOSED",
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED"
+}

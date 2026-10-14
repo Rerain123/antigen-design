@@ -1,0 +1,35 @@
+{
+  "base_method": {
+    "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/method_summary.json",
+    "sha256": "71e2d510361f757ecca4b363312b9eabf18d5fe2a82fd55caf8837dc6ae6ddf4",
+    "size_bytes": 2932
+  },
+  "tool_version": "1.0 - Academic Version",
+  "image_id": "sha256:7f85781fadf8c89ddbafced691d05006caf6881b06aa5b9bae4bd531393bcd72",
+  "runtime_packages": {
+    "torch": "1.5.0+cu92",
+    "fair-esm": "0.4.0",
+    "numpy": "1.23.4",
+    "biopython": "1.79",
+    "matplotlib": "3.5.2"
+  },
+  "parameters": {
+    "cli_scientific_options": "None exposed by this package; original defaults retained",
+    "chunk_size": 1,
+    "esm_repr_layers_argument": 33,
+    "selected_representation_key": 32,
+    "long_sequence_chunk_code": "utils.py start/end code retained; 1022 token chunk and 300 token overlap logic not exercised by >1022 input here",
+    "ensemble": "5 supplied CV models; maximum topology agreement, ties by highest CRF log likelihood",
+    "max_signal_length": 60,
+    "max_alpha_membrane_length": 30,
+    "max_beta_membrane_length": 15,
+    "thread_policy": "Original os.cpu_count()=32; torch intraop32 / interop34; container quota8 CPU, affinity0-7",
+    "device": "CPU, CUDA unavailable",
+    "seed": "No new random seed override; original eval/no_grad behavior retained"
+  },
+  "observation": "Read-only Python line tracing of original tokenization/chunk return and embedding completion",
+  "applicability_note": "Prior long-chunk not-exercised statement belongs to prior batch; actual new observations recorded per case.",
+  "model_execution": "PENDING_EXECUTION",
+  "scientific_accuracy": "NOT_EVALUATED",
+  "production_status": "NOT_DEPLOYED"
+}

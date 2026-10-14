@@ -1,0 +1,137 @@
+{
+  "job_status": {
+    "completionTime": "2026-09-20T07:23:58Z",
+    "conditions": [
+      {
+        "lastProbeTime": "2026-09-20T07:23:58Z",
+        "lastTransitionTime": "2026-09-20T07:23:58Z",
+        "message": "Reached expected number of succeeded pods",
+        "reason": "CompletionsReached",
+        "status": "True",
+        "type": "SuccessCriteriaMet"
+      },
+      {
+        "lastProbeTime": "2026-09-20T07:23:58Z",
+        "lastTransitionTime": "2026-09-20T07:23:58Z",
+        "message": "Reached expected number of succeeded pods",
+        "reason": "CompletionsReached",
+        "status": "True",
+        "type": "Complete"
+      }
+    ],
+    "ready": 0,
+    "startTime": "2026-09-20T07:23:41Z",
+    "succeeded": 1,
+    "terminating": 0,
+    "uncountedTerminatedPods": {}
+  },
+  "pods": [
+    {
+      "annotations": {
+        "hami.io/bind-phase": "success",
+        "hami.io/bind-time": "1789889021",
+        "hami.io/vgpu-devices-allocated": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31,NVIDIA,65536,100:;",
+        "hami.io/vgpu-devices-to-allocate": ";;",
+        "hami.io/vgpu-node": "k8s-a100-02",
+        "hami.io/vgpu-time": "1789889021",
+        "nvidia.com/use-gputype": "A100-SXM-64GB"
+      },
+      "container_statuses": [
+        {
+          "allocatedResources": {
+            "cpu": "1",
+            "memory": "4Gi",
+            "nvidia.com/gpu": "1",
+            "nvidia.com/gpucores": "100",
+            "nvidia.com/gpumem-percentage": "100"
+          },
+          "containerID": "containerd://e6b08f7314dc87254443d6efb60acaa0ad99d957a5d1965be0eaa41f0c25b291",
+          "image": "sha256:cc4e597bd95e3b78b33ee032da92e1abd51867de0b03dd88999da9b7bfb5e2d1",
+          "imageID": "harbor-core.base.svc.cluster.local/qcyz/antigen-af3@sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373",
+          "lastState": {},
+          "name": "probe",
+          "ready": false,
+          "resources": {
+            "limits": {
+              "cpu": "4",
+              "memory": "16Gi",
+              "nvidia.com/gpu": "1",
+              "nvidia.com/gpucores": "100",
+              "nvidia.com/gpumem-percentage": "100"
+            },
+            "requests": {
+              "cpu": "1",
+              "memory": "4Gi",
+              "nvidia.com/gpu": "1",
+              "nvidia.com/gpucores": "100",
+              "nvidia.com/gpumem-percentage": "100"
+            }
+          },
+          "restartCount": 0,
+          "started": false,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://e6b08f7314dc87254443d6efb60acaa0ad99d957a5d1965be0eaa41f0c25b291",
+              "exitCode": 0,
+              "finishedAt": "2026-09-20T07:23:55Z",
+              "reason": "Completed",
+              "startedAt": "2026-09-20T07:23:51Z"
+            }
+          },
+          "user": {
+            "linux": {
+              "gid": 10001,
+              "supplementalGroups": [
+                10001,
+                44,
+                110
+              ],
+              "uid": 10001
+            }
+          },
+          "volumeMounts": [
+            {
+              "mountPath": "/runner",
+              "name": "runner",
+              "readOnly": true,
+              "recursiveReadOnly": "Disabled"
+            },
+            {
+              "mountPath": "/runtime",
+              "name": "runtime"
+            },
+            {
+              "mountPath": "/tmp",
+              "name": "tmp"
+            }
+          ]
+        }
+      ],
+      "containers": [
+        {
+          "image": "harbor-core.base.svc.cluster.local/qcyz/antigen-af3@sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373",
+          "name": "probe",
+          "resources": {
+            "limits": {
+              "cpu": "4",
+              "memory": "16Gi",
+              "nvidia.com/gpu": "1",
+              "nvidia.com/gpucores": "100",
+              "nvidia.com/gpumem-percentage": "100"
+            },
+            "requests": {
+              "cpu": "1",
+              "memory": "4Gi",
+              "nvidia.com/gpu": "1",
+              "nvidia.com/gpucores": "100",
+              "nvidia.com/gpumem-percentage": "100"
+            }
+          }
+        }
+      ],
+      "name": "antigen-af3-gpu64-probe-r01-ntgzj",
+      "node": "k8s-a100-02",
+      "phase": "Succeeded"
+    }
+  ]
+}

@@ -1,0 +1,303 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-af3-inference-r01
+  namespace: him-ws
+immutable: true
+data:
+  run_af3_inference.py: "\"\"\"Fixed 1UBQ engineering inference; preserve all five\
+    \ native AF3 samples.\"\"\"\nimport hashlib\nimport json\nimport math\nimport\
+    \ os\nfrom pathlib import Path\nimport subprocess\nimport time\n\nfrom inspect_af3_data_search\
+    \ import inspect, sha256_file\n\nRUN = Path('/runtime/inference-r01')\nDATA =\
+    \ Path('/runtime/data-search-r01')\nMODEL = Path('/weights/alphafold3-official-r01/af3.bin')\n\
+    EXPECTED_MODEL = 'df8bbf2621f17dd3ee21c2a921e84a50bc2b80cdc0c7971cb915c2826fee1f9b'\n\
+    EXPECTED_MANIFEST = '72c5fb24d43dc1c3c6be13ad8c4e8ead1625d4944fdd48b5d73fb4741894baac'\n\
+    \n\ndef validate_gpu(text):\n    rows = [r.split(',') for r in text.strip().splitlines()]\n\
+    \    if len(rows) != 1 or len(rows[0]) != 3:\n        raise ValueError('Exactly\
+    \ one GPU required')\n    name, uuid, memory = [v.strip() for v in rows[0]]\n\
+    \    if name != 'NVIDIA A100-SXM-64GB' or not uuid.startswith('GPU-'):\n     \
+    \   raise ValueError('Approved 64GB GPU identity required')\n    if not math.isfinite(float(memory))\
+    \ or float(memory) < 60000:\n        raise ValueError('Insufficient visible GPU\
+    \ memory')\n    return {'name': name, 'uuid': uuid, 'memory_MiB': float(memory)}\n\
+    \n\ndef write(name, value):\n    (RUN / name).write_text(json.dumps(value, indent=2,\
+    \ sort_keys=True) + '\\n')\n\n\ndef main():\n    RUN.mkdir(exist_ok=False)\n \
+    \   started = time.monotonic()\n    gpu = validate_gpu(subprocess.check_output(\n\
+    \        ['nvidia-smi', '--query-gpu=name,uuid,memory.total', '--format=csv,noheader,nounits'],\
+    \ text=True))\n    write('gpu.json', gpu)\n    print('AF3_INFERENCE_GPU_VERIFIED',\
+    \ json.dumps(gpu), flush=True)\n    if sha256_file(DATA / 'files-manifest.json')\
+    \ != EXPECTED_MANIFEST:\n        raise ValueError('Data-search manifest differs\
+    \ from independently verified receipt')\n    inspect()\n    if sha256_file(MODEL)\
+    \ != EXPECTED_MODEL:\n        raise ValueError('Decompressed model hash differs')\n\
+    \    source = DATA / 'output/t01-1ubq-af3-data-r01/t01-1ubq-af3-data-r01_data.json'\n\
+    \    value = json.loads(source.read_bytes())\n    sequence = value['sequences'][0]['protein']['sequence']\n\
+    \    if hashlib.sha256(sequence.encode()).hexdigest() != '233b4b0b8c4616095bc3249f9375fc345d32af7deaef07117d0383c51d6f19aa'\
+    \ or value['modelSeeds'] != [1]:\n        raise ValueError('Pinned input identity\
+    \ differs')\n    input_path = RUN / 'input.json'\n    input_path.write_bytes(source.read_bytes())\n\
+    \    command = ['/alphafold3_venv/bin/python', '/app/alphafold/run_alphafold.py',\n\
+    \               '--json_path=' + str(input_path), '--model_dir=' + str(MODEL.parent),\n\
+    \               '--output_dir=' + str(RUN / 'output'), '--run_data_pipeline=false',\n\
+    \               '--run_inference=true', '--num_diffusion_samples=5', '--gpu_device=0']\n\
+    \    write('command.json', {'command': command, 'input_sha256': sha256_file(input_path),\n\
+    \                          'model_sha256': EXPECTED_MODEL, 'source_manifest_sha256':\
+    \ EXPECTED_MANIFEST,\n                          'network_policy': 'DENY_ALL',\
+    \ 'gpu': gpu})\n    env = {**os.environ, 'HOME': '/tmp', 'TMPDIR': '/tmp', 'PYTHONUNBUFFERED':\
+    \ '1'}\n    print('AF3_INFERENCE_START seed=1 samples=5', flush=True)\n    with\
+    \ (RUN / 'inference.log').open('w') as log:\n        process = subprocess.Popen(command,\
+    \ cwd='/app/alphafold', env=env,\n                                   stdout=subprocess.PIPE,\
+    \ stderr=subprocess.STDOUT, text=True)\n        for line in process.stdout:\n\
+    \            print(line, end='', flush=True)\n            log.write(line)\n  \
+    \          log.flush()\n        code = process.wait()\n    if code:\n        raise\
+    \ RuntimeError('AF3 exited with code ' + str(code))\n    samples = sorted((RUN\
+    \ / 'output').glob('*/seed-1_sample-*'))\n    if {p.name for p in samples} !=\
+    \ {f'seed-1_sample-{i}' for i in range(5)}:\n        raise ValueError('Expected\
+    \ all five native sample directories')\n    for sample in samples:\n        for\
+    \ name in ('model.cif', 'confidences.json', 'summary_confidences.json'):\n   \
+    \         if not (sample / name).is_file() or (sample / name).stat().st_size ==\
+    \ 0:\n                raise ValueError('Missing native output: ' + str(sample\
+    \ / name))\n        summary = json.loads((sample / 'summary_confidences.json').read_bytes())\n\
+    \        if not isinstance(summary.get('ptm'), (int, float)) or not 0 <= summary['ptm']\
+    \ <= 1:\n            raise ValueError('Invalid native pTM')\n    files = [{'path':\
+    \ p.relative_to(RUN).as_posix(), 'bytes': p.stat().st_size,\n              'sha256':\
+    \ sha256_file(p)} for p in sorted(RUN.rglob('*')) if p.is_file()]\n    write('files-manifest.json',\
+    \ {'files': files})\n    receipt = {'status': 'AF3_FIVE_NATIVE_SAMPLES_GENERATED_PENDING_INDEPENDENT_AUDIT',\n\
+    \               'sample_count': 5, 'elapsed_seconds': time.monotonic() - started,\n\
+    \               'gpu': gpu, 'files_manifest_sha256': sha256_file(RUN / 'files-manifest.json'),\n\
+    \               'scientific_gate': 'CLOSED', 'usable_for_pipeline': False, 'production_status':\
+    \ 'NOT_DEPLOYED'}\n    write('receipt.json', receipt)\n    print('AF3_INFERENCE_COMPLETE',\
+    \ json.dumps(receipt), flush=True)\n\n\nif __name__ == '__main__':\n    try:\n\
+    \        main()\n    except Exception as error:\n        if RUN.exists():\n  \
+    \          write('failure.json', {'status':'FAILED_PARTIAL_RETAINED', 'error':str(error),\
+    \ 'scientific_gate':'CLOSED'})\n        raise\n"
+  inspect_af3_data_search.py: "\"\"\"Independently verify a completed AF3 local data-search\
+    \ run.\"\"\"\nfrom __future__ import annotations\n\nimport hashlib\nimport json\n\
+    from pathlib import Path, PurePosixPath\nimport shutil\nimport stat\n\n\nRUN_ROOT\
+    \ = Path(\"/runtime/data-search-r01\")\nEXPECTED_STATUS = \"AF3_LOCAL_DATA_SEARCH_VERIFIED_NOT_INFERRED\"\
+    \nEXPECTED_SEQUENCE_SHA256 = \"233b4b0b8c4616095bc3249f9375fc345d32af7deaef07117d0383c51d6f19aa\"\
+    \nEXPECTED_MODEL_SHA256 = \"df8bbf2621f17dd3ee21c2a921e84a50bc2b80cdc0c7971cb915c2826fee1f9b\"\
+    \n\n\ndef sha256_file(path: Path) -> str:\n    digest = hashlib.sha256()\n   \
+    \ with path.open(\"rb\") as stream:\n        while chunk := stream.read(8 * 1024\
+    \ * 1024):\n            digest.update(chunk)\n    return digest.hexdigest()\n\n\
+    \ndef safe_path(value: str) -> PurePosixPath:\n    path = PurePosixPath(value)\n\
+    \    if not value or path.is_absolute() or \"\\\\\" in value or \"..\" in path.parts\
+    \ or path.as_posix() != value:\n        raise ValueError(f\"Unsafe manifest path:\
+    \ {value!r}\")\n    return path\n\n\ndef inspect() -> dict[str, object]:\n   \
+    \ receipt_path = RUN_ROOT / \"data-search-receipt.json\"\n    manifest_path =\
+    \ RUN_ROOT / \"files-manifest.json\"\n    receipt = json.loads(receipt_path.read_bytes())\n\
+    \    for key, expected in {\n        \"schema\": \"t01.af3-data-search/1\",\n\
+    \        \"status\": EXPECTED_STATUS,\n        \"run_id\": \"data-search-r01\"\
+    ,\n        \"sequence_sha256\": EXPECTED_SEQUENCE_SHA256,\n        \"model_sha256\"\
+    : EXPECTED_MODEL_SHA256,\n        \"inference_run\": False,\n        \"gpu_requested\"\
+    : False,\n        \"usable_as_inference_input\": True,\n        \"scientific_gate\"\
+    : \"CLOSED\",\n        \"usable_for_pipeline\": False,\n        \"production_status\"\
+    : \"NOT_DEPLOYED\",\n    }.items():\n        if receipt.get(key) != expected:\n\
+    \            raise ValueError(f\"Receipt mismatch for {key}: {receipt.get(key)!r}\"\
+    )\n    command = json.loads((RUN_ROOT / \"command.json\").read_bytes())\n    command_text\
+    \ = \" \".join(command.get(\"command\", []))\n    if \"--run_data_pipeline=true\"\
+    \ not in command_text or \"--run_inference=false\" not in command_text:\n    \
+    \    raise ValueError(\"Command does not separate data search from inference\"\
+    )\n\n    manifest = json.loads(manifest_path.read_bytes())\n    if manifest.get(\"\
+    schema\") != \"t01.af3-data-search-files/1\":\n        raise ValueError(\"Unexpected\
+    \ data-search manifest schema\")\n    rows = manifest.get(\"files\")\n    if not\
+    \ isinstance(rows, list) or not rows:\n        raise ValueError(\"Data-search\
+    \ manifest is empty\")\n    seen: set[str] = set()\n    total = 0\n    for row\
+    \ in rows:\n        relative = safe_path(row.get(\"path\", \"\"))\n        name\
+    \ = relative.as_posix()\n        if name in seen:\n            raise ValueError(f\"\
+    Duplicate data-search path: {name}\")\n        seen.add(name)\n        path =\
+    \ RUN_ROOT.joinpath(*relative.parts)\n        info = path.lstat()\n        if\
+    \ not stat.S_ISREG(info.st_mode) or path.is_symlink():\n            raise ValueError(f\"\
+    Expected regular data-search file: {path}\")\n        if info.st_size != row.get(\"\
+    bytes\") or sha256_file(path) != row.get(\"sha256\"):\n            raise ValueError(f\"\
+    Data-search file identity mismatch: {name}\")\n        total += info.st_size\n\
+    \    if sha256_file(manifest_path) != receipt.get(\"files_manifest_sha256\"):\n\
+    \        raise ValueError(\"Data-search manifest receipt hash mismatch\")\n\n\
+    \    processed = RUN_ROOT / \"output/t01-1ubq-af3-data-r01/t01-1ubq-af3-data-r01_data.json\"\
+    \n    value = json.loads(processed.read_bytes())\n    protein = value[\"sequences\"\
+    ][0][\"protein\"]\n    if len(protein[\"sequence\"]) != 76 or not protein[\"unpairedMsa\"\
+    ] or not isinstance(protein[\"pairedMsa\"], str):\n        raise ValueError(\"\
+    Processed input is missing the expected protein MSA fields\")\n    templates =\
+    \ protein.get(\"templates\")\n    if not isinstance(templates, list) or len(templates)\
+    \ != receipt[\"processed_input\"][\"template_count\"]:\n        raise ValueError(\"\
+    Processed template count mismatch\")\n    result = {\n        \"schema\": \"t01.af3-data-search-inspection/1\"\
+    ,\n        \"status\": \"AF3_LOCAL_DATA_SEARCH_INDEPENDENTLY_VERIFIED_NOT_INFERRED\"\
+    ,\n        \"scientific_gate\": \"CLOSED\",\n        \"usable_as_inference_input\"\
+    : True,\n        \"usable_for_pipeline\": False,\n        \"production_status\"\
+    : \"NOT_DEPLOYED\",\n        \"file_count\": len(rows),\n        \"total_bytes\"\
+    : total,\n        \"processed_input\": receipt[\"processed_input\"],\n       \
+    \ \"database_filesystem\": {\n            \"total_bytes\": shutil.disk_usage(RUN_ROOT).total,\n\
+    \            \"free_bytes\": shutil.disk_usage(RUN_ROOT).free,\n        },\n \
+    \   }\n    print(\"AF3_LOCAL_DATA_SEARCH_INSPECTION_VERIFIED \" + json.dumps(result,\
+    \ sort_keys=True), flush=True)\n    return result\n\n\nif __name__ == \"__main__\"\
+    :\n    inspect()\n"
+  prepare_af3_data_search.py: "\"\"\"Render the bounded, zero-GPU AF3 local data-search\
+    \ acceptance Job.\"\"\"\nfrom __future__ import annotations\n\nimport hashlib\n\
+    import json\nfrom pathlib import Path\n\nimport yaml\n\n\nROOT = Path(__file__).resolve().parents[1]\n\
+    RUNNER = ROOT / \"scripts/run_af3_data_search.py\"\nOUTPUT = ROOT / \"deploy/alphafold3/data-search.r01.rancher.yaml\"\
+    \nNAME = \"antigen-af3-data-search-r01\"\nRUNTIME_CLAIM = \"antigen-af3-runtime\"\
+    \nIMAGE = (\n    \"harbor-core.base.svc.cluster.local/qcyz/antigen-af3@\"\n  \
+    \  \"sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373\"\
+    \n)\nSEQUENCE = (\n    \"MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG\"\
+    \n)\nSEQUENCE_SHA256 = \"233b4b0b8c4616095bc3249f9375fc345d32af7deaef07117d0383c51d6f19aa\"\
+    \n\n\ndef fold_input() -> dict:\n    value = {\n        \"name\": \"t01-1ubq-af3-data-r01\"\
+    ,\n        \"modelSeeds\": [1],\n        \"sequences\": [{\"protein\": {\"id\"\
+    : \"A\", \"sequence\": SEQUENCE}}],\n        \"dialect\": \"alphafold3\",\n  \
+    \      \"version\": 1,\n    }\n    if hashlib.sha256(SEQUENCE.encode()).hexdigest()\
+    \ != SEQUENCE_SHA256:\n        raise ValueError(\"Pinned 1UBQ sequence identity\
+    \ differs\")\n    return value\n\n\ndef documents() -> list[dict]:\n    config\
+    \ = {\n        \"apiVersion\": \"v1\",\n        \"kind\": \"ConfigMap\",\n   \
+    \     \"metadata\": {\"name\": NAME, \"namespace\": \"him-ws\"},\n        \"immutable\"\
+    : True,\n        \"data\": {\n            \"run_af3_data_search.py\": RUNNER.read_text(encoding=\"\
+    utf-8\"),\n            \"fold_input.json\": json.dumps(fold_input(), indent=2)\
+    \ + \"\\n\",\n        },\n    }\n    policy = {\n        \"apiVersion\": \"networking.k8s.io/v1\"\
+    ,\n        \"kind\": \"NetworkPolicy\",\n        \"metadata\": {\"name\": NAME,\
+    \ \"namespace\": \"him-ws\"},\n        \"spec\": {\n            \"podSelector\"\
+    : {\"matchLabels\": {\"app\": NAME}},\n            \"policyTypes\": [\"Ingress\"\
+    , \"Egress\"],\n        },\n    }\n    runtime_claim = {\n        \"apiVersion\"\
+    : \"v1\",\n        \"kind\": \"PersistentVolumeClaim\",\n        \"metadata\"\
+    : {\"name\": RUNTIME_CLAIM, \"namespace\": \"him-ws\"},\n        \"spec\": {\n\
+    \            \"accessModes\": [\"ReadWriteOnce\"],\n            \"resources\"\
+    : {\"requests\": {\"storage\": \"50Gi\"}},\n            \"storageClassName\":\
+    \ \"ceph-rbd\",\n        },\n    }\n    container = {\n        \"name\": \"data-search\"\
+    ,\n        \"image\": IMAGE,\n        \"imagePullPolicy\": \"IfNotPresent\",\n\
+    \        \"command\": [\"/alphafold3_venv/bin/python\", \"-u\", \"-B\", \"/runner/run_af3_data_search.py\"\
+    ],\n        \"env\": [\n            {\"name\": \"PYTHONDONTWRITEBYTECODE\", \"\
+    value\": \"1\"},\n            {\"name\": \"CUDA_VISIBLE_DEVICES\", \"value\":\
+    \ \"\"},\n            {\"name\": \"JAX_PLATFORMS\", \"value\": \"cpu\"},\n   \
+    \     ],\n        \"resources\": {\n            \"requests\": {\"cpu\": \"8\"\
+    , \"memory\": \"64Gi\", \"ephemeral-storage\": \"512Mi\"},\n            \"limits\"\
+    : {\"cpu\": \"16\", \"memory\": \"96Gi\", \"ephemeral-storage\": \"4Gi\"},\n \
+    \       },\n        \"securityContext\": {\n            \"allowPrivilegeEscalation\"\
+    : False,\n            \"readOnlyRootFilesystem\": True,\n            \"seccompProfile\"\
+    : {\"type\": \"RuntimeDefault\"},\n            \"capabilities\": {\"drop\": [\"\
+    ALL\"]},\n        },\n        \"volumeMounts\": [\n            {\"name\": \"runner\"\
+    , \"mountPath\": \"/runner\", \"readOnly\": True},\n            {\"name\": \"\
+    runner\", \"mountPath\": \"/input\", \"readOnly\": True},\n            {\"name\"\
+    : \"databases\", \"mountPath\": \"/databases\", \"readOnly\": True},\n       \
+    \     {\"name\": \"weights\", \"mountPath\": \"/weights\", \"readOnly\": True},\n\
+    \            {\"name\": \"runtime\", \"mountPath\": \"/runtime\"},\n         \
+    \   {\"name\": \"tmp\", \"mountPath\": \"/tmp\"},\n        ],\n    }\n    job\
+    \ = {\n        \"apiVersion\": \"batch/v1\",\n        \"kind\": \"Job\",\n   \
+    \     \"metadata\": {\"name\": NAME, \"namespace\": \"him-ws\"},\n        \"spec\"\
+    : {\n            \"backoffLimit\": 0,\n            \"activeDeadlineSeconds\":\
+    \ 28800,\n            \"template\": {\n                \"metadata\": {\"labels\"\
+    : {\"app\": NAME}},\n                \"spec\": {\n                    \"restartPolicy\"\
+    : \"Never\",\n                    \"automountServiceAccountToken\": False,\n \
+    \                   \"imagePullSecrets\": [{\"name\": \"harbor\"}],\n        \
+    \            \"securityContext\": {\n                        \"runAsNonRoot\"\
+    : True,\n                        \"runAsUser\": 10001,\n                     \
+    \   \"runAsGroup\": 10001,\n                        \"fsGroup\": 10001,\n    \
+    \                    \"fsGroupChangePolicy\": \"OnRootMismatch\",\n          \
+    \          },\n                    \"containers\": [container],\n            \
+    \        \"volumes\": [\n                        {\"name\": \"runner\", \"configMap\"\
+    : {\"name\": NAME}},\n                        {\"name\": \"databases\", \"persistentVolumeClaim\"\
+    : {\n                            \"claimName\": \"antigen-af3-databases\", \"\
+    readOnly\": True}},\n                        {\"name\": \"weights\", \"persistentVolumeClaim\"\
+    : {\n                            \"claimName\": \"antigen-af3-models\", \"readOnly\"\
+    : True}},\n                        {\"name\": \"runtime\", \"persistentVolumeClaim\"\
+    : {\"claimName\": RUNTIME_CLAIM}},\n                        {\"name\": \"tmp\"\
+    , \"emptyDir\": {\"sizeLimit\": \"4Gi\"}},\n                    ],\n         \
+    \       },\n            },\n        },\n    }\n    documents = [config, policy,\
+    \ runtime_claim, job]\n    json.loads(json.dumps(documents))\n    return documents\n\
+    \n\ndef main() -> None:\n    OUTPUT.write_text(yaml.safe_dump_all(documents(),\
+    \ sort_keys=False), encoding=\"utf-8\")\n    print(\"AF3_DATA_SEARCH_RENDERED\"\
+    , OUTPUT)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: antigen-af3-inference-r01
+  namespace: him-ws
+spec:
+  podSelector:
+    matchLabels:
+      app: antigen-af3-inference-r01
+  policyTypes:
+  - Ingress
+  - Egress
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-af3-inference-r01
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 7200
+  template:
+    metadata:
+      labels:
+        app: antigen-af3-inference-r01
+      annotations:
+        nvidia.com/use-gputype: A100-SXM-64GB
+        nvidia.com/use-gpuuuid: GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+      - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+      - name: inference
+        image: harbor-core.base.svc.cluster.local/qcyz/antigen-af3@sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373
+        imagePullPolicy: IfNotPresent
+        command:
+        - /alphafold3_venv/bin/python
+        - -u
+        - -B
+        - /runner/run_af3_inference.py
+        env:
+        - name: JAX_PLATFORMS
+          value: cuda
+        - name: XLA_PYTHON_CLIENT_PREALLOCATE
+          value: 'false'
+        - name: HOME
+          value: /tmp
+        resources:
+          requests:
+            cpu: '4'
+            memory: 32Gi
+          limits:
+            cpu: '8'
+            memory: 96Gi
+            nvidia.com/gpu: 1
+            nvidia.com/gpumem-percentage: 100
+            nvidia.com/gpucores: 100
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          seccompProfile:
+            type: RuntimeDefault
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: runner
+          mountPath: /runner
+          readOnly: true
+        - name: runtime
+          mountPath: /runtime
+        - name: tmp
+          mountPath: /tmp
+        - name: weights
+          mountPath: /weights
+          readOnly: true
+      volumes:
+      - name: runner
+        configMap:
+          name: antigen-af3-inference-r01
+      - name: runtime
+        persistentVolumeClaim:
+          claimName: antigen-af3-runtime
+      - name: tmp
+        emptyDir:
+          sizeLimit: 4Gi
+      - name: weights
+        persistentVolumeClaim:
+          claimName: antigen-af3-models
+          readOnly: true
+      runtimeClassName: nvidia
+      schedulerName: hami-scheduler

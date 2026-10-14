@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/worker/worker.py", line 81, in main
+    invoke('mmseqs',['mmseqs','easy-cluster','/tmp/selected.fasta','/tmp/dedup','/tmp/mmseqs-tmp',
+  File "/worker/worker.py", line 39, in invoke
+    require(process.returncode==0, 'Native command failed: '+name)
+  File "/worker/compute.py", line 16, in require
+    raise ValueError(message)
+ValueError: Native command failed: mmseqs

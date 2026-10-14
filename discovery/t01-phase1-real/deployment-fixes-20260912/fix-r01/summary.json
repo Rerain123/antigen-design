@@ -1,0 +1,71 @@
+{
+  "schema_version": "t01-deployment-repair-summary-v1",
+  "status": "LOCAL_REPAIR_BATCH_VERIFIED_TARGET_INCOMPLETE",
+  "date": "2026-09-12",
+  "production_status": "NOT_DEPLOYED",
+  "scientific_status": "DEVELOPMENT_UNREVIEWED",
+  "usable_for_pipeline": false,
+  "automatic_handoff": false,
+  "final_tests": {
+    "passed": 1782,
+    "skipped": 1,
+    "seconds": 267.56,
+    "process_exit_code": 0,
+    "log": "root-tests-final-r02.txt"
+  },
+  "candidate": {
+    "version": "0.2.0-rc3",
+    "path": "deploy/t01-phase1-real-target-v0.2-offline.zip",
+    "size_bytes": 116882010,
+    "sha256": "98ebd6e59d52dcbf16a652a24a689b0253f43db7088f4f30c14257dd1d22ca18",
+    "indexed_files": 50,
+    "scientific_jobs": 11,
+    "standalone_verification": "PASS",
+    "source_drift": []
+  },
+  "local_container_validation": {
+    "structure": "PASS_NATIVE_EXECUTION",
+    "aggrescan3d": "PASS_NATIVE_EXECUTION",
+    "control_plane": "PASS",
+    "network": "none",
+    "control_runtime_storage": "tmpfs; process restart, not PVC restore"
+  },
+  "preservation": {
+    "expert_originals": 21,
+    "current_phase1_mock_files": 457,
+    "previous_hardening_files": 56,
+    "old_candidate_indexed_files": 40,
+    "result": "PASS",
+    "legacy_full_mock_and_s07": "UNCHANGED_NOT_RERUN"
+  },
+  "sbom": {
+    "method": "offline dpkg-query and importlib.metadata",
+    "installed_packages": 125,
+    "vulnerability_scan": false
+  },
+  "target": {
+    "cluster_contacted": false,
+    "harbor_pushed": false,
+    "resources_applied": false,
+    "user_confirmed_harbor_and_dedicated_service_account": "NOT_ESTABLISHED"
+  },
+  "remaining": [
+    "Target Harbor/ServiceAccount, real site configuration and CPU execution evidence",
+    "Remaining generic worker target result profiles",
+    "Long task/input/database capacity validation",
+    "AF3/ESMFold2 models and worker deployment",
+    "Expert scientific open items, full automatic design/recalculation/protection/ranking/delivery and applicable G0-G6"
+  ],
+  "failed_or_incomplete_evidence": {
+    "root-tests.txt": "incomplete, no final receipt; not counted as PASS",
+    "root-tests-final.txt": "incomplete, no final receipt; not counted as PASS",
+    "root-tests-r02.txt": "intermediate full test run loaded before final POSIX socket change",
+    "image-build.txt": "failed ACL access",
+    "image-build-r02.txt": "failed BuildKit communication",
+    "control-container.txt": "rc1 CLI configuration failure",
+    "control-container-r02.txt": "rc1 CLI configuration failure with stderr",
+    "control-container-r03.txt": "rc2 immediate restart bind failure",
+    "package-receipt.json": "empty output of invalid CLI invocation",
+    "candidate-verify.txt": "empty output before ZIP existed"
+  }
+}

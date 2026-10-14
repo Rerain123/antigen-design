@@ -1,0 +1,268 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "T01_PHASE1_MOCK_ACCEPTANCE_CATALOG_SCHEMA_v0.1.json",
+  "title": "T01 Phase1 Mock Acceptance Catalog v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "document_type",
+    "acceptance_catalog_version",
+    "fixture_manifest_version",
+    "scenario_catalog_version",
+    "asset_registry_version",
+    "envelope_contract_version",
+    "namespace_root",
+    "specification_state",
+    "data_classification",
+    "scientific_compute",
+    "inventory",
+    "source_documents",
+    "selector_contract",
+    "operator_contract",
+    "execution_matrix",
+    "global_assertions",
+    "acceptance_cases",
+    "coverage_gates",
+    "acceptance_policy"
+  ],
+  "properties": {
+    "$schema": {"const": "T01_PHASE1_MOCK_ACCEPTANCE_CATALOG_SCHEMA_v0.1.json"},
+    "document_type": {"const": "T01_PHASE1_MOCK_ACCEPTANCE_CATALOG"},
+    "acceptance_catalog_version": {"const": "T01-PHASE1-MOCK-ACCEPTANCE-CATALOG-v0.1"},
+    "fixture_manifest_version": {"const": "T01-PHASE1-MOCK-FIXTURE-MANIFEST-v0.1"},
+    "scenario_catalog_version": {"const": "T01-PHASE1-MOCK-SCENARIO-CATALOG-v0.1"},
+    "asset_registry_version": {"const": "T01-PHASE1-MOCK-ASSET-REGISTRY-v0.1"},
+    "envelope_contract_version": {"const": "T01-PHASE1-ENVELOPE-v0.1"},
+    "namespace_root": {"const": "t01_phase1_mock_v01"},
+    "specification_state": {"const": "FROZEN_SPEC_ONLY"},
+    "data_classification": {"const": "MOCK_DATA"},
+    "scientific_compute": {"const": false},
+    "inventory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["acceptance_case_count", "submission_count", "global_assertion_count", "focus_assertion_count", "coverage_gate_count"],
+      "properties": {
+        "acceptance_case_count": {"const": 21},
+        "submission_count": {"const": 23},
+        "global_assertion_count": {"const": 18},
+        "focus_assertion_count": {"const": 44},
+        "coverage_gate_count": {"const": 10}
+      }
+    },
+    "source_documents": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scenario_catalog", "fixture_manifest", "asset_registry", "envelope_schema"],
+      "properties": {
+        "scenario_catalog": {"const": "工作流设计/02-数据契约/T01_PHASE1_MOCK_SCENARIO_CATALOG_v0.1.json"},
+        "fixture_manifest": {"const": "dify/t01-phase1-mock-v0.1/fixtures/T01_PHASE1_MOCK_FIXTURE_MANIFEST_v0.1.json"},
+        "asset_registry": {"const": "工作流设计/03-Dify实现/T01_PHASE1_MOCK_ASSET_REGISTRY_v0.1.json"},
+        "envelope_schema": {"const": "工作流设计/02-数据契约/T01_PHASE1_MOCK_ENVELOPE_SCHEMA_v0.1.json"}
+      }
+    },
+    "selector_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dialect", "normalized_roots", "keyed_selectors", "rule"],
+      "properties": {
+        "dialect": {"const": "T01-PHASE1-ASSERTION-PATH-v0.1"},
+        "normalized_roots": {
+          "type": "array",
+          "const": ["catalog", "fixture", "acceptance", "request", "submission[n]", "run", "trace", "workflow", "original_run"]
+        },
+        "keyed_selectors": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "rule": {"type": "string", "minLength": 1}
+      }
+    },
+    "operator_contract": {
+      "type": "array",
+      "minItems": 28,
+      "maxItems": 28,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/operator"}
+    },
+    "execution_matrix": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {"$ref": "#/$defs/execution_stage"}
+    },
+    "global_assertions": {
+      "type": "array",
+      "minItems": 18,
+      "maxItems": 18,
+      "items": {"$ref": "#/$defs/global_assertion"}
+    },
+    "acceptance_cases": {
+      "type": "array",
+      "minItems": 21,
+      "maxItems": 21,
+      "items": {"$ref": "#/$defs/acceptance_case"}
+    },
+    "coverage_gates": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {"$ref": "#/$defs/coverage_gate"}
+    },
+    "acceptance_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["all_assertions_are_blocking", "warning_only_assertions_allowed", "unknown_operator_policy", "missing_selector_policy", "missing_fixture_policy", "catalog_mismatch_policy", "runtime_pass_claim_before_execution", "m4_freeze_requires"],
+      "properties": {
+        "all_assertions_are_blocking": {"const": true},
+        "warning_only_assertions_allowed": {"const": false},
+        "unknown_operator_policy": {"const": "REJECT"},
+        "missing_selector_policy": {"const": "REJECT"},
+        "missing_fixture_policy": {"const": "REJECT"},
+        "catalog_mismatch_policy": {"const": "REJECT"},
+        "runtime_pass_claim_before_execution": {"const": "FORBIDDEN"},
+        "m4_freeze_requires": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "stage": {
+      "enum": ["M1_07_SPEC_STATIC", "M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M3_MAIN_DEBUG_PARITY", "M4_REGRESSION_FREEZE"]
+    },
+    "operator": {
+      "enum": [
+        "JSON_SCHEMA_VALID",
+        "COUNT_EQUALS",
+        "SET_EQUALS",
+        "BIJECTION",
+        "EXACT_CATALOG_PROJECTION",
+        "FIELD_EQUALS",
+        "FIELD_ABSENT",
+        "MATCHES_REGEX",
+        "REFERENCES_RESOLVE",
+        "CONTAINS_NONE",
+        "NODE_STATUS_ALL",
+        "NODE_ATTEMPT_COUNT_EQUALS",
+        "NODE_ATTEMPT_FIELD_SEQUENCE_EQUALS",
+        "CONTROL_DECISION_SEQUENCE_EQUALS",
+        "EDGE_PRESENT",
+        "EDGE_ABSENT",
+        "EDGE_ORDERED_SUBSEQUENCE",
+        "SUBMISSION_ACTION_EQUALS",
+        "IDENTITY_RELATION_EQUALS",
+        "EMISSION_COUNT_EQUALS",
+        "NO_CONTROL_AFTER_NODE",
+        "NO_SCIENTIFIC_VALUES",
+        "JOIN_PRECONDITION",
+        "ORIGINAL_RUN_UNCHANGED",
+        "NO_STUB_PROMOTION",
+        "PATH_WITHIN",
+        "HASH_UNCHANGED",
+        "NORMALIZED_EQUALS"
+      ]
+    },
+    "expected": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["literal"],
+          "properties": {"literal": {}}
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["source_selector"],
+          "properties": {"source_selector": {"type": "string", "minLength": 1}}
+        }
+      ]
+    },
+    "execution_stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stage", "case_count", "submission_count", "required_execution_count", "state", "scientific_execution_count"],
+      "properties": {
+        "stage": {"$ref": "#/$defs/stage"},
+        "case_count": {"const": 21},
+        "submission_count": {"const": 23},
+        "required_execution_count": {"type": "integer", "minimum": 1},
+        "state": {"enum": ["VERIFIED_AT_M1_07", "DECLARED_NOT_RUN"]},
+        "scientific_execution_count": {"const": 0}
+      }
+    },
+    "global_assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assertion_id", "applies_to", "operator", "actual_selector", "expected", "severity", "description"],
+      "properties": {
+        "assertion_id": {"type": "string", "pattern": "^t01_phase1_mock_v01[.]acceptance[.]global[.][0-9]{3}$"},
+        "applies_to": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/stage"}},
+        "operator": {"$ref": "#/$defs/operator"},
+        "actual_selector": {"type": "string", "minLength": 1},
+        "expected": {"$ref": "#/$defs/expected"},
+        "severity": {"const": "BLOCKER"},
+        "description": {"type": "string", "minLength": 1}
+      }
+    },
+    "focus_assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assertion_id", "source_text", "applies_to", "operator", "actual_selector", "expected", "severity"],
+      "properties": {
+        "assertion_id": {"type": "string", "pattern": "^t01_phase1_mock_v01[.]acceptance[.]case[.][0-9]{3}[.]focus[.][0-9]{2}$"},
+        "source_text": {"type": "string", "minLength": 1},
+        "applies_to": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/stage"}},
+        "operator": {"$ref": "#/$defs/operator"},
+        "actual_selector": {"type": "string", "minLength": 1},
+        "expected": {"$ref": "#/$defs/expected"},
+        "severity": {"const": "BLOCKER"}
+      }
+    },
+    "acceptance_case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["acceptance_case_id", "fixture_case_id", "ordinal", "scenario_key", "scenario_ref", "catalog_scenario_pointer", "inherited_global_assertion_ids", "focus_assertions"],
+      "properties": {
+        "acceptance_case_id": {"type": "string", "pattern": "^t01_phase1_mock_v01[.]acceptance[.]case[.][0-9]{3}$"},
+        "fixture_case_id": {"type": "string", "pattern": "^t01_phase1_mock_v01[.]fixture[.]case[.][0-9]{3}$"},
+        "ordinal": {"type": "integer", "minimum": 1, "maximum": 21},
+        "scenario_key": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+        "scenario_ref": {"type": "string", "pattern": "^t01_phase1_mock_v01[.]scenario[.][a-z][a-z0-9_]*$"},
+        "catalog_scenario_pointer": {"type": "string", "pattern": "^/scenarios/(?:[0-9]|1[0-9]|20)$"},
+        "inherited_global_assertion_ids": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^t01_phase1_mock_v01[.]acceptance[.]global[.][0-9]{3}$"}
+        },
+        "focus_assertions": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 3,
+          "items": {"$ref": "#/$defs/focus_assertion"}
+        }
+      }
+    },
+    "coverage_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gate_id", "category", "required_scenario_keys", "minimum_case_count", "state"],
+      "properties": {
+        "gate_id": {"type": "string", "pattern": "^t01_phase1_mock_v01[.]coverage[.][a-z][a-z0-9_]*$"},
+        "category": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+        "required_scenario_keys": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"}},
+        "minimum_case_count": {"type": "integer", "minimum": 1, "maximum": 21},
+        "state": {"const": "SPEC_COVERAGE_VERIFIED"}
+      }
+    }
+  }
+}

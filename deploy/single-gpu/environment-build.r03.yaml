@@ -1,0 +1,197 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-unified-gpu-build-r03
+  namespace: him-ws
+immutable: true
+data:
+  buildkitd.toml: "debug = false\n[registry.\"docker.io\"]\n  mirrors = [\"dockerproxy.net\"\
+    ]\n[registry.\"harbor-core.base.svc.cluster.local\"]\n  http = true\n  insecure\
+    \ = true\n"
+  Dockerfile: 'FROM harbor-core.base.svc.cluster.local/qcyz/antigen-design-resident-gpu@sha256:2079483853695089e1924d839221aa016481bc9e822b6e436dae8277a428ab8a
+    AS gpu
+
+    FROM harbor-core.base.svc.cluster.local/qcyz/antigen-esmfold2@sha256:372545ebe3469a3d32269c27033d19624d713d75ca162dbe6fff5dafed44f77f
+    AS esmfold2
+
+    FROM harbor-core.base.svc.cluster.local/qcyz/antigen-af3@sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373
+
+    USER 0
+
+    WORKDIR /
+
+    COPY --from=gpu /opt/t01 /opt/t01
+
+    COPY --from=gpu /usr/local /opt/t01/env/proteinmpnn
+
+    COPY --from=esmfold2 /usr/local /opt/t01/env/esmfold2
+
+    COPY setup.py /opt/t01/unified-setup.py
+
+    RUN /opt/t01/env/proteinmpnn/bin/python3.10 -B /opt/t01/unified-setup.py
+
+    ENV PYTHONHOME=/opt/t01/supervisor LD_LIBRARY_PATH=/opt/t01/supervisor/lib PYTHONPATH=/opt/t01/src
+    PYTHONDONTWRITEBYTECODE=1
+
+    RUN /opt/t01/supervisor/bin/python3.11 -B -c "import ssl, ctypes, sqlite3; print(''SUPERVISOR_IMPORT_PASS'')"
+
+    USER 10001:10001
+
+    ENTRYPOINT ["/opt/t01/supervisor/bin/python3.11", "-u", "-B", "-m", "t01_phase1_real.unified_gpu_worker"]
+
+    CMD ["--config", "/etc/t01/unified-gpu.json"]
+
+    '
+  setup.py: "from pathlib import Path\nimport os\nimport shutil\napp=Path('/app')\n\
+    if not (app/'alphafold/run_alphafold.py').is_file(): raise RuntimeError('AF3 source\
+    \ layout differs')\nshutil.copytree(app, '/opt/t01/af3-app', symlinks=True)\n\
+    if not Path('/opt/t01/af3-app/alphafold/run_alphafold.py').is_file(): raise RuntimeError('AF3\
+    \ source copy failed')\nshutil.rmtree(app)\nslot=Path('/run/t01-slot'); slot.mkdir(parents=True,exist_ok=True)\n\
+    os.chown(slot,10001,10001)\n(slot/'package').symlink_to('/opt/t01/af3-app')\n\
+    aliases={'/app':'package','/input.json':'current/input/input.json','/input.fasta':'current/input/input.fasta',\n\
+    \ '/input.structure':'current/input/input.structure','/input.pdb':'current/input/input.pdb',\n\
+    \ '/binding.json':'current/input/binding.json','/native':'current/input/native','/out':'current/output/native',\n\
+    \ '/upstream':'upstream','/database':'database'}\nfor name,target in aliases.items():\n\
+    \ p=Path(name)\n if p.exists() or p.is_symlink(): raise RuntimeError('Unexpected\
+    \ alias collision: '+name)\n p.symlink_to(slot/target)\n# GPU tools retain their\
+    \ existing per-execution temporary directory convention.\nPath('/tmp').rename('/opt/t01/unified-build-tmp')\n\
+    Path('/tmp').symlink_to(slot/'tmp')\n(slot/'tmp').symlink_to('/opt/t01/unified-build-tmp')\n\
+    print('UNIFIED_ENV_LAYOUT_READY')\n"
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: antigen-unified-gpu-build-r03
+  namespace: him-ws
+spec:
+  podSelector:
+    matchLabels:
+      app: antigen-unified-gpu-build-r03
+  policyTypes:
+  - Ingress
+  - Egress
+  egress:
+  - ports:
+    - protocol: UDP
+      port: 53
+    - protocol: TCP
+      port: 53
+  - ports:
+    - protocol: TCP
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: antigen-unified-gpu-build-cache-r01
+  namespace: him-ws
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+  storageClassName: ceph-rbd
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-unified-gpu-build-r03
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 21600
+  template:
+    metadata:
+      labels:
+        app: antigen-unified-gpu-build-r03
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+      - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+      - name: builder
+        image: moby/buildkit@sha256:995077ff90af1afff56ff23018699d7511d122b2b111041f2011bd12afd5c0fe
+        command:
+        - /bin/sh
+        - -ec
+        - 'umask 077
+
+          echo UNIFIED_GPU_BUILD_START
+
+          buildctl-daemonless.sh build --frontend dockerfile.v0 --local context=/context
+          --local dockerfile=/context --opt filename=Dockerfile --opt platform=linux/amd64
+          --output type=image,name=harbor-core.base.svc.cluster.local/qcyz/antigen-unified-gpu:resident-r03,push=true
+          --metadata-file /workspace/build-metadata.json
+
+          echo UNIFIED_GPU_BUILD_PUSHED
+
+          cat /workspace/build-metadata.json
+
+          '
+        env:
+        - name: BUILDKITD_FLAGS
+          value: --oci-worker-no-process-sandbox --config /etc/buildkit/buildkitd.toml
+        resources:
+          requests:
+            cpu: '4'
+            memory: 8Gi
+            ephemeral-storage: 20Gi
+          limits:
+            cpu: '8'
+            memory: 16Gi
+            ephemeral-storage: 50Gi
+        securityContext:
+          allowPrivilegeEscalation: true
+          seccompProfile:
+            type: Unconfined
+          appArmorProfile:
+            type: Unconfined
+          capabilities:
+            drop:
+            - ALL
+            add:
+            - SETUID
+            - SETGID
+        volumeMounts:
+        - name: workspace
+          mountPath: /workspace
+        - name: state
+          mountPath: /home/user/.local/share/buildkit
+        - name: tmp
+          mountPath: /tmp
+        - name: registry-auth
+          mountPath: /home/user/.docker
+          readOnly: true
+        - name: config
+          mountPath: /etc/buildkit/buildkitd.toml
+          subPath: buildkitd.toml
+          readOnly: true
+        - name: config
+          mountPath: /context
+          readOnly: true
+      volumes:
+      - name: workspace
+        emptyDir:
+          sizeLimit: 128Mi
+      - name: state
+        persistentVolumeClaim:
+          claimName: antigen-unified-gpu-build-cache-r01
+      - name: tmp
+        emptyDir:
+          sizeLimit: 4Gi
+      - name: registry-auth
+        secret:
+          secretName: harbor
+          items:
+          - key: .dockerconfigjson
+            path: config.json
+      - name: config
+        configMap:
+          name: antigen-unified-gpu-build-r03

@@ -1,0 +1,832 @@
+{
+    "app": {
+        "account_display_name": "Technical University of Denmark",
+        "account_handle": "DTU",
+        "account_id": "5435075f-aee3-4d50-89d6-c281dbd5927d",
+        "account_profile_picture": "https://biolib.com/api/proxy/img/RhnQVleqj2TGOs8ZDnFPC3Hbp9lg9sXZ1LCb5xWZnms/czM6Ly9wcm9kdWN0/aW9uLWJpb2xpYi00/YjM4ZTMtZ2VuZXJh/bC1zdG9yYWdlL3By/b2ZpbGUtcGljdHVy/ZXMvY2RqbWlyeWRz/amhqZml2LnBuZw",
+        "account_profile_picture_200x200": "https://biolib.com/api/proxy/img/oaAnl6IdrMdbFkO72pZ9wt4LW2sckn8iSSs0NiLlpGA/resize:fill:200:200/czM6Ly9wcm9kdWN0/aW9uLWJpb2xpYi00/YjM4ZTMtZ2VuZXJh/bC1zdG9yYWdlL3By/b2ZpbGUtcGljdHVy/ZXMvY2RqbWlyeWRz/amhqZml2LnBuZw",
+        "active_version": {
+            "public_id": "0ad31250-2646-4a21-94a9-b80dcc917ca3",
+            "source_code_license": "This software is made freely available here for both academic and commercial purposes. For commercial users wishing to run the software on their own servers, a commercial license is required. This is not needed for academic users. To inquire about a commercial license, please contact licensing@biolib.com.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
+            "description": "# DeepTMHMM\n### A Deep Learning Model for Transmembrane Topology Prediction and Classification\n\nProtein structure prediction using deep learning methods have seen several advancements within the last years. \nIn this project, we investigate deep learning for prediction of the membrane topology of transmembrane proteins. \nTransmembrane proteins are relevant for drug development since they make up more than 50% of all human drug targets [3]. \n\nDeepTMHMM is currently the most complete and best-performing method for the prediction of the topology of both alpha-helical and beta-barrel transmembrane proteins.\nThe model encodes the primary amino acid sequence by a pre-trained language model and decodes the topology by a state space model to produce topology and type predictions at unprecedented accuracy.\nDeepTMHMM makes it possible to scan full proteomes in order to detect both classes of transmembrane proteins, and we anticipate our method to be very valuable for the research community.\n \n\n**Note: If you want to run DeepTMHMM on large datasets, then you can run it locally by following the instructions below.**\n\n### Running DeepTHMM Locally\nFor non-commercial use cases, please request a copy of the DeepTMHMM package [here](https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=rURVGECW5U69G3ew50KVeHoV9Bi7sdNBnLmAyRfuhiJUM1lRRVY0MExIMEU1V0UxN1ZDVkFFUzlVQi4u). There are no sequence limitations when running locally and this allows you to process as many sequences as your machine can handle.\n\nFor commercial use cases that require running DeepTMHMM locally, please email licensing@biolib.com.\n\n### Support\nIf you need further support, or have any questions, then don't hesitate to reach out on our [Slack](https://join.slack.com/t/biolibcommunity/shared_invite/zt-k9m6xqbp-Gz84qaKL3Of8P7FRWQ3KIQ)!\n\n### Data:\n[Training Dataset](https://biolib-public-assets.s3.eu-west-1.amazonaws.com/deeptmhmm/DeepTMHMM.3line)\n\n\n[Predictions of cross validated models on dataset](https://biolib-public-assets.s3.eu-west-1.amazonaws.com/deeptmhmm/DeepTMHMM.crossval.top)\n\n\n### Reference:\nRefer to the sidebar on the left for guidance on how to cite DeepTMHMM  \n**Title:** `DeepTMHMM predicts alpha and beta transmembrane proteins using deep neural networks`  \n**bioRxiv link:** https://www.biorxiv.org/content/10.1101/2022.04.08.487609v1",
+            "major": 1,
+            "minor": 0,
+            "patch": 57,
+            "app": {
+                "allow_client_side_execution": true,
+                "state": "public"
+            },
+            "state": "published",
+            "citation": {
+                "public_id": "6ceed49d-ac31-4c4c-8482-dcdf1c7300d3",
+                "entry_type": "misc",
+                "author": "Jeppe Hallgren, Konstantinos D. Tsirigos, Mads D. Pedersen, José Juan Almagro Armenteros, Paolo Marcatili, Henrik Nielsen, Anders Krogh and Ole Winther",
+                "howpublished": "Web Server",
+                "month": "04",
+                "title": "DeepTMHMM predicts alpha and beta transmembrane proteins using deep neural networks",
+                "year": "2022",
+                "url": "https://www.biorxiv.org/content/10.1101/2022.04.08.487609v1",
+                "doi": "https://doi.org/10.1101/2022.04.08.487609"
+            },
+            "created_at": "2026-02-13T12:41:32.190915Z",
+            "stdout_render_type": "text",
+            "main_output_file": "/deeptmhmm_results.md",
+            "main_output_port": null,
+            "example_notebooks": null,
+            "idle_timeout_seconds": null,
+            "requires_user_identity": false,
+            "uuid": "0ad31250-2646-4a21-94a9-b80dcc917ca3",
+            "is_runnable_by_user": true,
+            "is_custom_input_gui": false,
+            "app_uri": "DTU/DeepTMHMM:1.0.57",
+            "app_description": ""
+        },
+        "allow_client_side_execution": true,
+        "app_versions": [
+            {
+                "created_at": "2026-02-13T12:41:32.190915Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 57,
+                "public_id": "0ad31250-2646-4a21-94a9-b80dcc917ca3",
+                "state": "published",
+                "uuid": "0ad31250-2646-4a21-94a9-b80dcc917ca3"
+            },
+            {
+                "created_at": "2026-01-02T22:28:06.353488Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 50,
+                "public_id": "d9caee00-a516-4f07-92b3-0802fd9f1ad4",
+                "state": "published",
+                "uuid": "d9caee00-a516-4f07-92b3-0802fd9f1ad4"
+            },
+            {
+                "created_at": "2025-06-19T10:33:27.577558Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 44,
+                "public_id": "95bdf14c-96f9-46ef-b52c-b32da9e921aa",
+                "state": "published",
+                "uuid": "95bdf14c-96f9-46ef-b52c-b32da9e921aa"
+            },
+            {
+                "created_at": "2024-09-10T13:57:54.064238Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 42,
+                "public_id": "062447cc-e22a-4f68-bc19-7383ab84df5e",
+                "state": "published",
+                "uuid": "062447cc-e22a-4f68-bc19-7383ab84df5e"
+            },
+            {
+                "created_at": "2024-07-16T09:40:28.504239Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 39,
+                "public_id": "129c3713-2967-4c0c-babe-45c977c52e3a",
+                "state": "published",
+                "uuid": "129c3713-2967-4c0c-babe-45c977c52e3a"
+            },
+            {
+                "created_at": "2024-07-15T12:39:31.803800Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 32,
+                "public_id": "d1f2771f-a88a-4127-85d9-388a7e213397",
+                "state": "published",
+                "uuid": "d1f2771f-a88a-4127-85d9-388a7e213397"
+            },
+            {
+                "created_at": "2023-03-30T09:45:48.626011Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 24,
+                "public_id": "0ed95595-6a98-4707-8111-83f7dce6544a",
+                "state": "published",
+                "uuid": "0ed95595-6a98-4707-8111-83f7dce6544a"
+            },
+            {
+                "created_at": "2023-03-30T09:44:22.032501Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 23,
+                "public_id": "b002652f-454e-4542-b75a-6945316607ff",
+                "state": "published",
+                "uuid": "b002652f-454e-4542-b75a-6945316607ff"
+            },
+            {
+                "created_at": "2023-03-30T09:43:49.418169Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 22,
+                "public_id": "d4f7c20f-f2c4-4842-9b90-9a10e1719b04",
+                "state": "published",
+                "uuid": "d4f7c20f-f2c4-4842-9b90-9a10e1719b04"
+            },
+            {
+                "created_at": "2023-03-29T10:25:13.036861Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 21,
+                "public_id": "196eaafc-3261-46bc-ae8c-1ba94ca21caa",
+                "state": "published",
+                "uuid": "196eaafc-3261-46bc-ae8c-1ba94ca21caa"
+            },
+            {
+                "created_at": "2023-01-23T07:52:09.028320Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 20,
+                "public_id": "4641534d-b73c-4318-b21c-323f6300a703",
+                "state": "published",
+                "uuid": "4641534d-b73c-4318-b21c-323f6300a703"
+            },
+            {
+                "created_at": "2023-01-03T15:30:27.218936Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 19,
+                "public_id": "5696022f-f674-40d4-bc9a-fa60deabc54a",
+                "state": "published",
+                "uuid": "5696022f-f674-40d4-bc9a-fa60deabc54a"
+            },
+            {
+                "created_at": "2022-11-15T13:31:10.931299Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 18,
+                "public_id": "d8e487df-482a-4a8b-a9b4-781000af9f97",
+                "state": "published",
+                "uuid": "d8e487df-482a-4a8b-a9b4-781000af9f97"
+            },
+            {
+                "created_at": "2022-11-15T12:54:32.748679Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 17,
+                "public_id": "a3b94434-3408-462b-81e7-f41153278d55",
+                "state": "published",
+                "uuid": "a3b94434-3408-462b-81e7-f41153278d55"
+            },
+            {
+                "created_at": "2022-11-15T11:52:16.995139Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 16,
+                "public_id": "168fcb0b-2a0e-4499-b9a1-b42b1c86eeea",
+                "state": "published",
+                "uuid": "168fcb0b-2a0e-4499-b9a1-b42b1c86eeea"
+            },
+            {
+                "created_at": "2022-10-26T14:00:49.258758Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 15,
+                "public_id": "393ef42d-6e70-48f9-ab4a-21d106737de4",
+                "state": "published",
+                "uuid": "393ef42d-6e70-48f9-ab4a-21d106737de4"
+            },
+            {
+                "created_at": "2022-10-26T11:11:22.199089Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 14,
+                "public_id": "a349c8ec-0504-47f2-a4e8-65518e7e7d34",
+                "state": "published",
+                "uuid": "a349c8ec-0504-47f2-a4e8-65518e7e7d34"
+            },
+            {
+                "created_at": "2022-08-24T11:18:18.059731Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 13,
+                "public_id": "685e7bcf-ea94-4ae7-a329-1a51b0a43cbe",
+                "state": "published",
+                "uuid": "685e7bcf-ea94-4ae7-a329-1a51b0a43cbe"
+            },
+            {
+                "created_at": "2022-07-22T08:41:44.915319Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 12,
+                "public_id": "3994867b-b848-43a4-9bc7-a54fc5ebc23a",
+                "state": "published",
+                "uuid": "3994867b-b848-43a4-9bc7-a54fc5ebc23a"
+            },
+            {
+                "created_at": "2022-06-12T21:06:21.994314Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 11,
+                "public_id": "d3f93d50-f17f-4e11-9f61-689e4b4094d7",
+                "state": "published",
+                "uuid": "d3f93d50-f17f-4e11-9f61-689e4b4094d7"
+            },
+            {
+                "created_at": "2022-05-16T13:35:29.109438Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 10,
+                "public_id": "62ea2e75-ce84-42b6-b07d-31575caffdd4",
+                "state": "published",
+                "uuid": "62ea2e75-ce84-42b6-b07d-31575caffdd4"
+            },
+            {
+                "created_at": "2022-05-10T16:42:27.894449Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 9,
+                "public_id": "073420a7-46b1-4600-86bc-4e9c99260a31",
+                "state": "published",
+                "uuid": "073420a7-46b1-4600-86bc-4e9c99260a31"
+            },
+            {
+                "created_at": "2022-04-14T11:15:23.669965Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 8,
+                "public_id": "a96112f7-7f7f-4b4b-8ae5-a5f21fb75c01",
+                "state": "published",
+                "uuid": "a96112f7-7f7f-4b4b-8ae5-a5f21fb75c01"
+            },
+            {
+                "created_at": "2022-04-14T10:44:24.160269Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 7,
+                "public_id": "f78c534c-6cda-401a-954f-489dc30d4a5a",
+                "state": "published",
+                "uuid": "f78c534c-6cda-401a-954f-489dc30d4a5a"
+            },
+            {
+                "created_at": "2022-04-14T10:43:35.665948Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 6,
+                "public_id": "7851db3f-4716-4ee0-ad13-47016fd48fb2",
+                "state": "published",
+                "uuid": "7851db3f-4716-4ee0-ad13-47016fd48fb2"
+            },
+            {
+                "created_at": "2022-04-11T14:33:10.716933Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 5,
+                "public_id": "1b81ce02-1d03-40d8-ae7b-52bd80c1e928",
+                "state": "published",
+                "uuid": "1b81ce02-1d03-40d8-ae7b-52bd80c1e928"
+            },
+            {
+                "created_at": "2022-04-06T21:55:45.476449Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 4,
+                "public_id": "c490ea4d-5ab0-40de-8c1b-3f84e0da2d56",
+                "state": "published",
+                "uuid": "c490ea4d-5ab0-40de-8c1b-3f84e0da2d56"
+            },
+            {
+                "created_at": "2022-03-24T11:33:50.124403Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 3,
+                "public_id": "6aac7fa8-b79d-440e-b011-6f4a0759fdf4",
+                "state": "published",
+                "uuid": "6aac7fa8-b79d-440e-b011-6f4a0759fdf4"
+            },
+            {
+                "created_at": "2022-03-24T11:30:14.933091Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 2,
+                "public_id": "14195e69-73ba-4e82-861e-b2d101afc8e6",
+                "state": "published",
+                "uuid": "14195e69-73ba-4e82-861e-b2d101afc8e6"
+            },
+            {
+                "created_at": "2022-03-24T10:33:58.892711Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 1,
+                "public_id": "9b31fa7a-cbfe-4a0d-945c-73e6464214a9",
+                "state": "published",
+                "uuid": "9b31fa7a-cbfe-4a0d-945c-73e6464214a9"
+            },
+            {
+                "created_at": "2020-12-01T11:28:50.737455Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 9,
+                "public_id": "513b4b34-6996-4ecf-975d-9acea1cc5e64",
+                "state": "published",
+                "uuid": "513b4b34-6996-4ecf-975d-9acea1cc5e64"
+            },
+            {
+                "created_at": "2020-12-01T11:31:55.886281Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 10,
+                "public_id": "c0069365-3dba-489d-9a67-97809b297322",
+                "state": "published",
+                "uuid": "c0069365-3dba-489d-9a67-97809b297322"
+            },
+            {
+                "created_at": "2020-12-22T21:36:05.751465Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 11,
+                "public_id": "49bb0c13-774f-451a-8f68-aadffe42eb75",
+                "state": "published",
+                "uuid": "49bb0c13-774f-451a-8f68-aadffe42eb75"
+            },
+            {
+                "created_at": "2020-11-20T10:11:28.225612Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 8,
+                "public_id": "ae29f853-9af7-44cc-843f-240c6d36bfcf",
+                "state": "published",
+                "uuid": "ae29f853-9af7-44cc-843f-240c6d36bfcf"
+            },
+            {
+                "created_at": "2021-01-28T10:04:52.130435Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 12,
+                "public_id": "2cf187d0-b65b-4bc8-9171-dfc652504a90",
+                "state": "published",
+                "uuid": "2cf187d0-b65b-4bc8-9171-dfc652504a90"
+            },
+            {
+                "created_at": "2021-01-28T10:05:20.356574Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 13,
+                "public_id": "f24e61b3-a499-4f31-b923-74db6e918029",
+                "state": "published",
+                "uuid": "f24e61b3-a499-4f31-b923-74db6e918029"
+            },
+            {
+                "created_at": "2020-11-15T16:02:05.744529Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 7,
+                "public_id": "1c68f695-704d-4656-b646-c0e931a3bfaf",
+                "state": "published",
+                "uuid": "1c68f695-704d-4656-b646-c0e931a3bfaf"
+            },
+            {
+                "created_at": "2021-01-29T08:44:23.623601Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 14,
+                "public_id": "02c5a406-1781-4a2c-affa-26a28007a263",
+                "state": "published",
+                "uuid": "02c5a406-1781-4a2c-affa-26a28007a263"
+            },
+            {
+                "created_at": "2021-01-29T08:44:58.386071Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 15,
+                "public_id": "0c1ad91d-0008-43e6-b8cb-bd156e3b7661",
+                "state": "published",
+                "uuid": "0c1ad91d-0008-43e6-b8cb-bd156e3b7661"
+            },
+            {
+                "created_at": "2021-01-29T08:45:30.519415Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 16,
+                "public_id": "48e231cc-091a-486f-9077-763f936a8d41",
+                "state": "published",
+                "uuid": "48e231cc-091a-486f-9077-763f936a8d41"
+            },
+            {
+                "created_at": "2021-01-29T08:45:55.147587Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 17,
+                "public_id": "9f37e0ae-a4ea-4ad0-af54-65fcec6a055c",
+                "state": "published",
+                "uuid": "9f37e0ae-a4ea-4ad0-af54-65fcec6a055c"
+            },
+            {
+                "created_at": "2021-02-22T13:32:56.070689Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 18,
+                "public_id": "e1e70a1e-f87b-4a71-9c7f-b0e0ff99cd4d",
+                "state": "published",
+                "uuid": "e1e70a1e-f87b-4a71-9c7f-b0e0ff99cd4d"
+            },
+            {
+                "created_at": "2021-02-22T13:33:55.602840Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 19,
+                "public_id": "a7814426-6046-493d-abaf-a2ce7fabef07",
+                "state": "published",
+                "uuid": "a7814426-6046-493d-abaf-a2ce7fabef07"
+            },
+            {
+                "created_at": "2021-04-28T05:49:31.410540Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 20,
+                "public_id": "3b6673a5-6de1-4999-9d23-5a41434c82b4",
+                "state": "published",
+                "uuid": "3b6673a5-6de1-4999-9d23-5a41434c82b4"
+            },
+            {
+                "created_at": "2021-04-28T05:50:19.244726Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 21,
+                "public_id": "8acc297c-1c04-49e8-9744-583391138496",
+                "state": "published",
+                "uuid": "8acc297c-1c04-49e8-9744-583391138496"
+            },
+            {
+                "created_at": "2021-04-28T05:55:17.290370Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 23,
+                "public_id": "1c5cc892-8e01-4f9e-a9c3-a38698932ae8",
+                "state": "published",
+                "uuid": "1c5cc892-8e01-4f9e-a9c3-a38698932ae8"
+            },
+            {
+                "created_at": "2021-04-28T05:52:51.601646Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 22,
+                "public_id": "701112ff-a152-437e-8172-abe38f633aa9",
+                "state": "published",
+                "uuid": "701112ff-a152-437e-8172-abe38f633aa9"
+            },
+            {
+                "created_at": "2021-06-02T12:58:20.991533Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 32,
+                "public_id": "782ec7d6-9a05-4703-bfcd-ab9a82ffd908",
+                "state": "published",
+                "uuid": "782ec7d6-9a05-4703-bfcd-ab9a82ffd908"
+            },
+            {
+                "created_at": "2020-10-01T11:22:53.048976Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 1,
+                "public_id": "0179bd51-115a-4fc1-b29c-0ffb650e16c1",
+                "state": "published",
+                "uuid": "0179bd51-115a-4fc1-b29c-0ffb650e16c1"
+            },
+            {
+                "created_at": "2020-10-09T12:41:10.869518Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 2,
+                "public_id": "e2c6a543-59f3-464d-8e0d-5b29d763ca79",
+                "state": "published",
+                "uuid": "e2c6a543-59f3-464d-8e0d-5b29d763ca79"
+            },
+            {
+                "created_at": "2020-10-15T13:54:58.479859Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 3,
+                "public_id": "78cf93ba-77f0-4d6d-843e-fe55a88f0a31",
+                "state": "published",
+                "uuid": "78cf93ba-77f0-4d6d-843e-fe55a88f0a31"
+            },
+            {
+                "created_at": "2020-10-15T14:05:02.993299Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 4,
+                "public_id": "860681d1-a7c2-492a-a2be-df7933711199",
+                "state": "published",
+                "uuid": "860681d1-a7c2-492a-a2be-df7933711199"
+            },
+            {
+                "created_at": "2020-10-15T14:07:29.079137Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 5,
+                "public_id": "2ab12567-4420-4b94-93d1-ba31b246b798",
+                "state": "published",
+                "uuid": "2ab12567-4420-4b94-93d1-ba31b246b798"
+            },
+            {
+                "created_at": "2020-11-04T23:11:21.415668Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 6,
+                "public_id": "a3576b8a-0780-4a48-a0ee-7a58675c03a0",
+                "state": "published",
+                "uuid": "a3576b8a-0780-4a48-a0ee-7a58675c03a0"
+            },
+            {
+                "created_at": "2021-04-28T05:58:48.348803Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 24,
+                "public_id": "d5242835-a305-48dd-a513-08dd8727a6e5",
+                "state": "published",
+                "uuid": "d5242835-a305-48dd-a513-08dd8727a6e5"
+            },
+            {
+                "created_at": "2021-04-28T06:01:11.346223Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 25,
+                "public_id": "abd1956a-2884-4b5c-b69b-05d0cf2c1e1b",
+                "state": "published",
+                "uuid": "abd1956a-2884-4b5c-b69b-05d0cf2c1e1b"
+            },
+            {
+                "created_at": "2021-04-28T06:02:05.802766Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 26,
+                "public_id": "a62fb41d-b6f6-4cc5-a506-42055a56e392",
+                "state": "published",
+                "uuid": "a62fb41d-b6f6-4cc5-a506-42055a56e392"
+            },
+            {
+                "created_at": "2021-04-28T06:03:42.472242Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 27,
+                "public_id": "3940bdce-f8f8-4a9d-90a5-474d16a2d90b",
+                "state": "published",
+                "uuid": "3940bdce-f8f8-4a9d-90a5-474d16a2d90b"
+            },
+            {
+                "created_at": "2021-04-28T06:09:08.517700Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 28,
+                "public_id": "ddd8b66c-1853-42a2-8e83-be24954b48f4",
+                "state": "published",
+                "uuid": "ddd8b66c-1853-42a2-8e83-be24954b48f4"
+            },
+            {
+                "created_at": "2021-04-28T06:10:46.235885Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 29,
+                "public_id": "e60f704e-2452-449f-80ce-7a437b8aed63",
+                "state": "published",
+                "uuid": "e60f704e-2452-449f-80ce-7a437b8aed63"
+            },
+            {
+                "created_at": "2021-04-28T06:11:26.232682Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 30,
+                "public_id": "9770ad7d-18bd-415c-ae2d-d3161b8aa393",
+                "state": "published",
+                "uuid": "9770ad7d-18bd-415c-ae2d-d3161b8aa393"
+            },
+            {
+                "created_at": "2021-04-28T07:58:04.692361Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 31,
+                "public_id": "8e1f82b8-4acb-4d2e-a7f1-27779861cf02",
+                "state": "published",
+                "uuid": "8e1f82b8-4acb-4d2e-a7f1-27779861cf02"
+            },
+            {
+                "created_at": "2022-01-18T06:50:58.150365Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 48,
+                "public_id": "82f5fb1c-8542-4440-af6d-5cc08b351cfd",
+                "state": "published",
+                "uuid": "82f5fb1c-8542-4440-af6d-5cc08b351cfd"
+            },
+            {
+                "created_at": "2021-11-23T22:45:08.088483Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 33,
+                "public_id": "9706e20b-192b-493b-9cbe-9da0afdd62f8",
+                "state": "published",
+                "uuid": "9706e20b-192b-493b-9cbe-9da0afdd62f8"
+            },
+            {
+                "created_at": "2021-11-24T10:18:50.109217Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 34,
+                "public_id": "d54a8cc0-f077-4bc1-8aec-6bd8236e44b1",
+                "state": "published",
+                "uuid": "d54a8cc0-f077-4bc1-8aec-6bd8236e44b1"
+            },
+            {
+                "created_at": "2021-11-24T10:22:59.187018Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 35,
+                "public_id": "93c3b76d-26eb-4ac0-86c0-bba9cc3c0624",
+                "state": "published",
+                "uuid": "93c3b76d-26eb-4ac0-86c0-bba9cc3c0624"
+            },
+            {
+                "created_at": "2022-01-12T08:30:48.122658Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 46,
+                "public_id": "09fe6231-5267-43ea-80cb-d40f56ec9542",
+                "state": "published",
+                "uuid": "09fe6231-5267-43ea-80cb-d40f56ec9542"
+            },
+            {
+                "created_at": "2021-12-13T08:35:15.537824Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 40,
+                "public_id": "d84b6215-bfc7-4727-b573-e30532c32feb",
+                "state": "published",
+                "uuid": "d84b6215-bfc7-4727-b573-e30532c32feb"
+            },
+            {
+                "created_at": "2021-12-13T09:10:39.699969Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 41,
+                "public_id": "4a6c1abd-a6c4-4357-bb3e-4e4a0472f5c9",
+                "state": "published",
+                "uuid": "4a6c1abd-a6c4-4357-bb3e-4e4a0472f5c9"
+            },
+            {
+                "created_at": "2021-11-24T11:37:17.767581Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 36,
+                "public_id": "3ee12f07-840a-42af-9f46-cb7e9daa47ee",
+                "state": "published",
+                "uuid": "3ee12f07-840a-42af-9f46-cb7e9daa47ee"
+            },
+            {
+                "created_at": "2021-11-24T11:38:31.697837Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 37,
+                "public_id": "15f85bac-2eaa-424c-aa3d-e954f35a4d7d",
+                "state": "published",
+                "uuid": "15f85bac-2eaa-424c-aa3d-e954f35a4d7d"
+            },
+            {
+                "created_at": "2021-11-24T11:39:46.533064Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 38,
+                "public_id": "6289f7d1-f8f1-4c66-9177-9e26f00d5f82",
+                "state": "published",
+                "uuid": "6289f7d1-f8f1-4c66-9177-9e26f00d5f82"
+            },
+            {
+                "created_at": "2021-11-24T11:40:26.191833Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 39,
+                "public_id": "25865eb9-e71a-4b3b-a9a4-dd81c13373a1",
+                "state": "published",
+                "uuid": "25865eb9-e71a-4b3b-a9a4-dd81c13373a1"
+            },
+            {
+                "created_at": "2022-01-05T21:12:11.275817Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 42,
+                "public_id": "2144df85-1e0b-4d34-9c5e-f4aa328d6485",
+                "state": "published",
+                "uuid": "2144df85-1e0b-4d34-9c5e-f4aa328d6485"
+            },
+            {
+                "created_at": "2022-01-11T08:27:41.782449Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 43,
+                "public_id": "f7fe28d3-3423-4857-8134-e130f70bdb01",
+                "state": "published",
+                "uuid": "f7fe28d3-3423-4857-8134-e130f70bdb01"
+            },
+            {
+                "created_at": "2022-01-11T13:08:07.568040Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 44,
+                "public_id": "dd714649-9536-4f0a-8dcc-ae469777b9fe",
+                "state": "published",
+                "uuid": "dd714649-9536-4f0a-8dcc-ae469777b9fe"
+            },
+            {
+                "created_at": "2022-01-11T16:21:45.841487Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 45,
+                "public_id": "390284e6-441d-43a7-ac01-ac8499dcdd7e",
+                "state": "published",
+                "uuid": "390284e6-441d-43a7-ac01-ac8499dcdd7e"
+            },
+            {
+                "created_at": "2022-01-13T09:09:06.651208Z",
+                "major": 0,
+                "minor": 0,
+                "patch": 47,
+                "public_id": "2292428f-bd2e-4d4f-b5a0-34ae7de99e20",
+                "state": "published",
+                "uuid": "2292428f-bd2e-4d4f-b5a0-34ae7de99e20"
+            },
+            {
+                "created_at": "2022-01-18T07:21:28.076010Z",
+                "major": 0,
+                "minor": 1,
+                "patch": 54,
+                "public_id": "c833630a-18b3-460a-8ce8-9e19a63f3bd2",
+                "state": "published",
+                "uuid": "c833630a-18b3-460a-8ce8-9e19a63f3bd2"
+            },
+            {
+                "created_at": "2022-03-07T11:07:13.716071Z",
+                "major": 0,
+                "minor": 9,
+                "patch": 1,
+                "public_id": "a52adb77-48b2-4817-b2e0-ef6b24cf88ad",
+                "state": "published",
+                "uuid": "a52adb77-48b2-4817-b2e0-ef6b24cf88ad"
+            },
+            {
+                "created_at": "2022-03-14T06:34:07.856109Z",
+                "major": 1,
+                "minor": 0,
+                "patch": 0,
+                "public_id": "b2b9e2c9-35e5-444e-a97a-cba6774ad21a",
+                "state": "published",
+                "uuid": "b2b9e2c9-35e5-444e-a97a-cba6774ad21a"
+            }
+        ],
+        "created_at": "2020-10-01T11:22:52.825806Z",
+        "default_sensitivity_label": null,
+        "description": "",
+        "is_license_required": false,
+        "is_open_source": false,
+        "is_unlisted": false,
+        "is_archived": false,
+        "name": "DeepTMHMM",
+        "public_id": "8eca694a-fe5f-429d-836e-cde55d3341de",
+        "resource_name_prefix": "biolib.com",
+        "resource_uri": "DTU/DeepTMHMM",
+        "state": "public",
+        "tags": [],
+        "type": "app",
+        "visualization_prefer_full_width": false,
+        "visualization_prefer_full_height": false,
+        "is_editable_by_user": false,
+        "show_notification_toggle": false
+    },
+    "app_version": {
+        "public_id": "0ad31250-2646-4a21-94a9-b80dcc917ca3",
+        "source_code_license": "This software is made freely available here for both academic and commercial purposes. For commercial users wishing to run the software on their own servers, a commercial license is required. This is not needed for academic users. To inquire about a commercial license, please contact licensing@biolib.com.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
+        "description": "# DeepTMHMM\n### A Deep Learning Model for Transmembrane Topology Prediction and Classification\n\nProtein structure prediction using deep learning methods have seen several advancements within the last years. \nIn this project, we investigate deep learning for prediction of the membrane topology of transmembrane proteins. \nTransmembrane proteins are relevant for drug development since they make up more than 50% of all human drug targets [3]. \n\nDeepTMHMM is currently the most complete and best-performing method for the prediction of the topology of both alpha-helical and beta-barrel transmembrane proteins.\nThe model encodes the primary amino acid sequence by a pre-trained language model and decodes the topology by a state space model to produce topology and type predictions at unprecedented accuracy.\nDeepTMHMM makes it possible to scan full proteomes in order to detect both classes of transmembrane proteins, and we anticipate our method to be very valuable for the research community.\n \n\n**Note: If you want to run DeepTMHMM on large datasets, then you can run it locally by following the instructions below.**\n\n### Running DeepTHMM Locally\nFor non-commercial use cases, please request a copy of the DeepTMHMM package [here](https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=rURVGECW5U69G3ew50KVeHoV9Bi7sdNBnLmAyRfuhiJUM1lRRVY0MExIMEU1V0UxN1ZDVkFFUzlVQi4u). There are no sequence limitations when running locally and this allows you to process as many sequences as your machine can handle.\n\nFor commercial use cases that require running DeepTMHMM locally, please email licensing@biolib.com.\n\n### Support\nIf you need further support, or have any questions, then don't hesitate to reach out on our [Slack](https://join.slack.com/t/biolibcommunity/shared_invite/zt-k9m6xqbp-Gz84qaKL3Of8P7FRWQ3KIQ)!\n\n### Data:\n[Training Dataset](https://biolib-public-assets.s3.eu-west-1.amazonaws.com/deeptmhmm/DeepTMHMM.3line)\n\n\n[Predictions of cross validated models on dataset](https://biolib-public-assets.s3.eu-west-1.amazonaws.com/deeptmhmm/DeepTMHMM.crossval.top)\n\n\n### Reference:\nRefer to the sidebar on the left for guidance on how to cite DeepTMHMM  \n**Title:** `DeepTMHMM predicts alpha and beta transmembrane proteins using deep neural networks`  \n**bioRxiv link:** https://www.biorxiv.org/content/10.1101/2022.04.08.487609v1",
+        "major": 1,
+        "minor": 0,
+        "patch": 57,
+        "app": {
+            "allow_client_side_execution": true,
+            "state": "public"
+        },
+        "state": "published",
+        "citation": {
+            "public_id": "6ceed49d-ac31-4c4c-8482-dcdf1c7300d3",
+            "entry_type": "misc",
+            "author": "Jeppe Hallgren, Konstantinos D. Tsirigos, Mads D. Pedersen, José Juan Almagro Armenteros, Paolo Marcatili, Henrik Nielsen, Anders Krogh and Ole Winther",
+            "howpublished": "Web Server",
+            "month": "04",
+            "title": "DeepTMHMM predicts alpha and beta transmembrane proteins using deep neural networks",
+            "year": "2022",
+            "url": "https://www.biorxiv.org/content/10.1101/2022.04.08.487609v1",
+            "doi": "https://doi.org/10.1101/2022.04.08.487609"
+        },
+        "created_at": "2026-02-13T12:41:32.190915Z",
+        "stdout_render_type": "text",
+        "main_output_file": "/deeptmhmm_results.md",
+        "main_output_port": null,
+        "example_notebooks": null,
+        "idle_timeout_seconds": null,
+        "requires_user_identity": false,
+        "uuid": "0ad31250-2646-4a21-94a9-b80dcc917ca3",
+        "is_runnable_by_user": true,
+        "is_custom_input_gui": false,
+        "app_uri": "DTU/DeepTMHMM:1.0.57",
+        "app_description": ""
+    },
+    "app_uri": "DTU/DeepTMHMM:1.0.57"
+}

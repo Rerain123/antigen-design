@@ -1,0 +1,352 @@
+{
+  "observed_at_utc": "2026-10-08T02:09:24.459370+00:00",
+  "parent": {
+    "job_id": "t01p1r-job-a7c8933226744c669836b11858585246",
+    "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+    "state": "running",
+    "started_at": "2026-10-08T01:31:16.621888Z",
+    "finished_at": null,
+    "updated_at": "2026-10-08T02:08:49.342215Z",
+    "error_code": null
+  },
+  "sequence_length": 232,
+  "rule_version": "expert-revision-20260929-v2",
+  "progress": {
+    "progress_unit": "business_nodes",
+    "total_nodes": 18,
+    "completed_nodes": 11,
+    "current_nodes": [
+      "N11",
+      "N12"
+    ],
+    "node_counts": {
+      "succeeded": 10,
+      "skipped": 1,
+      "ready": 1,
+      "reconciling": 1,
+      "not_executed": 5
+    },
+    "node_progress": {
+      "N01": {
+        "state": "succeeded",
+        "completed": true,
+        "internal_steps": 2,
+        "step_states": {
+          "succeeded": 2
+        },
+        "active_steps": []
+      },
+      "N02": {
+        "state": "succeeded",
+        "completed": true,
+        "internal_steps": 1,
+        "step_states": {
+          "succeeded": 1
+        },
+        "active_steps": []
+      },
+      "N03": {
+        "state": "succeeded",
+        "completed": true,
+        "internal_steps": 1,
+        "step_states": {
+          "succeeded": 1
+        },
+        "active_steps": []
+      },
+      "N04": {
+        "state": "succeeded",
+        "completed": true,
+        "internal_steps": 1,
+        "step_states": {
+          "succeeded": 1
+        },
+        "active_steps": []
+      },
+      "N05": {
+        "state": "succeeded",
+        "completed": true,
+        "internal_steps": 1,
+        "step_states": {
+          "succeeded": 1
+        },
+        "active_steps": []
+      },
+      "N06": {
+        "state": "succeeded",
+        "completed": true,
+        "internal_steps": 1,
+        "step_states": {
+          "succeeded": 1
+        },
+        "active_steps": []
+      },
+      "N07": {
+        "state": "succeeded",
+        "completed": true,
+        "internal_steps": 1,
+        "step_states": {
+          "succeeded": 1
+        },
+        "active_steps": []
+      },
+      "N08": {
+        "state": "skipped",
+        "completed": true,
+        "internal_steps": 1,
+        "step_states": {
+          "skipped": 1
+        },
+        "active_steps": []
+      },
+      "N09": {
+        "state": "succeeded",
+        "completed": true,
+        "internal_steps": 1,
+        "step_states": {
+          "succeeded": 1
+        },
+        "active_steps": []
+      },
+      "N10": {
+        "state": "succeeded",
+        "completed": true,
+        "internal_steps": 1,
+        "step_states": {
+          "succeeded": 1
+        },
+        "active_steps": []
+      },
+      "N11": {
+        "state": "ready",
+        "completed": false,
+        "internal_steps": 5,
+        "step_states": {
+          "ready": 1,
+          "succeeded": 4
+        },
+        "active_steps": [
+          {
+            "step": "design",
+            "state": "ready"
+          }
+        ]
+      },
+      "N12": {
+        "state": "reconciling",
+        "completed": false,
+        "internal_steps": 3,
+        "step_states": {
+          "succeeded": 2,
+          "reconciling": 1
+        },
+        "active_steps": [
+          {
+            "step": "rx0_s1_af3",
+            "state": "reconciling"
+          }
+        ]
+      },
+      "N13": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 0,
+        "step_states": {},
+        "active_steps": []
+      },
+      "N14": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 0,
+        "step_states": {},
+        "active_steps": []
+      },
+      "N15": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 0,
+        "step_states": {},
+        "active_steps": []
+      },
+      "N16": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 0,
+        "step_states": {},
+        "active_steps": []
+      },
+      "N17": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 0,
+        "step_states": {},
+        "active_steps": []
+      },
+      "N18": {
+        "state": "succeeded",
+        "completed": true,
+        "internal_steps": 1,
+        "step_states": {
+          "succeeded": 1
+        },
+        "active_steps": []
+      }
+    },
+    "internal_step_counts": {
+      "total": 20,
+      "finished": 18,
+      "states": {
+        "succeeded": 17,
+        "ready": 1,
+        "skipped": 1,
+        "reconciling": 1
+      }
+    },
+    "progress_note": "按 N01–N18 统计；已结束节点包含跳过或失败，不等于成功。内部步骤单列，节点数不是耗时百分比。reconciling 是控制器状态；waiting_worker 表示请求已提交但尚无 Worker 执行回执，executing 表示绑定的 Worker 回执记录执行中，finalizing 表示原生进程已确认停止、后端正在收集结果。unknown 不推定正在计算；回执不等于实时 CPU 采样。"
+  },
+  "steps": {
+    "proposal0": {
+      "job_id": "t01p1r-job-b13e966d07dd4d1ebe3a0e5ffca95f34",
+      "tool_id": "t01.real.proteinmpnn",
+      "state": "succeeded",
+      "started_at": "2026-10-08T01:47:57.219810Z",
+      "finished_at": "2026-10-08T01:48:12.446511Z",
+      "updated_at": "2026-10-08T01:48:12.770713Z",
+      "error_code": null,
+      "error_message": null,
+      "generated_count": 12,
+      "unique_sequences": 12,
+      "tool_invoked": true
+    },
+    "proposal1": {
+      "job_id": "t01p1r-job-c96eef74229f466a94c130f3e09d2e21",
+      "tool_id": "t01.real.proteinmpnn",
+      "state": "succeeded",
+      "started_at": "2026-10-08T01:48:17.378300Z",
+      "finished_at": "2026-10-08T01:48:28.545401Z",
+      "updated_at": "2026-10-08T01:48:28.812387Z",
+      "error_code": null,
+      "error_message": null,
+      "generated_count": 12,
+      "unique_sequences": 12,
+      "tool_invoked": true
+    },
+    "formal0": {
+      "job_id": "t01p1r-job-070db7a164ee4b5296d4a568850a2cee",
+      "tool_id": "t01.real.proteinmpnn",
+      "state": "succeeded",
+      "started_at": "2026-10-08T01:48:42.137218Z",
+      "finished_at": "2026-10-08T01:49:03.456488Z",
+      "updated_at": "2026-10-08T01:49:03.717949Z",
+      "error_code": null,
+      "error_message": null,
+      "generated_count": 24,
+      "unique_sequences": 18,
+      "tool_invoked": true
+    },
+    "cheap0": {
+      "job_id": "t01p1r-job-e6382b8644644e2098ad2fb0d9d6b4b5",
+      "tool_id": "t01.real.esm_if1",
+      "state": "succeeded",
+      "started_at": "2026-10-08T01:49:23.005764Z",
+      "finished_at": "2026-10-08T01:50:11.421050Z",
+      "updated_at": "2026-10-08T01:50:11.885369Z",
+      "error_code": null,
+      "error_message": null
+    },
+    "design_inputs": {
+      "job_id": "t01p1r-job-fab2bc998a7449d8ac452210cea33ecd",
+      "tool_id": "t01.real.design_audit",
+      "state": "succeeded",
+      "started_at": "2026-10-08T01:38:53.780940Z",
+      "finished_at": "2026-10-08T01:38:58.565637Z",
+      "updated_at": "2026-10-08T01:38:58.762048Z",
+      "error_code": null,
+      "error_message": null,
+      "permissions": {
+        "fixed": 0,
+        "restricted": 232,
+        "open": 0
+      }
+    },
+    "wt_msa": {
+      "job_id": "t01p1r-job-e045b5137b2e411d9dd3a148924a7b83",
+      "tool_id": "t01.real.af3",
+      "state": "succeeded",
+      "started_at": "2026-10-08T01:50:27.704527Z",
+      "finished_at": "2026-10-08T02:07:44.070780Z",
+      "updated_at": "2026-10-08T02:07:44.243685Z",
+      "error_code": null,
+      "error_message": null
+    }
+  },
+  "active": [
+    {
+      "step": "rx0_s1_af3",
+      "job_id": "t01p1r-job-6a6f7be8b6c743e7ab0d38620a7524f3",
+      "tool_id": "t01.real.af3",
+      "state": "reconciling",
+      "started_at": "2026-10-08T02:07:45.299176Z",
+      "updated_at": "2026-10-08T02:08:49.260033Z"
+    }
+  ],
+  "gpu_state": {
+    "execution": {
+      "order": 1791425265384596947,
+      "sha256": "016248b495b9c134207e8a7f11f1932e9376f8b0005a2b1ff5b3aec838fd766c",
+      "target": "/var/lib/t01/resident/af3/314b923ed30a6b81c89af09280309d46",
+      "tool": "af3",
+      "uncertain": false
+    },
+    "phase": "active"
+  },
+  "worker_receipt": {
+    "backend": "resident-process",
+    "binding": {
+      "attempt_id": "t01p1r-attempt-c4657371c79c4fcb9c73d22493acab61",
+      "execution_identity": "exec-t01p1r-attempt-6c6fe6de69ed49338c4a80bce519ef42",
+      "job_id": "t01p1r-job-6a6f7be8b6c743e7ab0d38620a7524f3"
+    },
+    "execution_id": "314b923ed30a6b81c89af09280309d46",
+    "exit_code": null,
+    "outputs": {},
+    "process_identity": {
+      "birth": "68701764",
+      "pid": 699,
+      "platform": "linux"
+    },
+    "process_name": "resident:58d75121468c4ac7d9d162b212e3fa62515ca4192621980ca696c0e896829080:314b923ed30a6b81c89af09280309d46",
+    "request_sha256": "016248b495b9c134207e8a7f11f1932e9376f8b0005a2b1ff5b3aec838fd766c",
+    "scientific_signoff": null,
+    "state": "running",
+    "stopped_confirmed": false,
+    "usable_for_pipeline": false,
+    "version": "0.1.0"
+  },
+  "log_files": [
+    {
+      "path": "execution.json",
+      "size": 709,
+      "mtime": "2026-10-08T02:07:45.605468+00:00"
+    },
+    {
+      "path": "output/stdout.txt",
+      "size": 2170,
+      "mtime": "2026-10-08T02:07:59.791121+00:00"
+    },
+    {
+      "path": "output/stderr.txt",
+      "size": 389,
+      "mtime": "2026-10-08T02:07:46.735538+00:00"
+    },
+    {
+      "path": "output/native/raw/inference.log",
+      "size": 2170,
+      "mtime": "2026-10-08T02:07:59.791121+00:00"
+    }
+  ],
+  "formal_record_count": 0,
+  "revision_outcomes": null,
+  "failures": [],
+  "read_only": true
+}

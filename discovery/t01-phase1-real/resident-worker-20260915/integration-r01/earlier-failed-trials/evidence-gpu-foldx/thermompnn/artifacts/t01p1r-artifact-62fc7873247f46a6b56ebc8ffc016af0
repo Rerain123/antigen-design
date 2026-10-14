@@ -1,0 +1,32 @@
+/opt/t01/env/thermompnn/lib/python3.10/site-packages/Bio/pairwise2.py:278: BiopythonDeprecationWarning: Bio.pairwise2 has been deprecated, and we intend to remove it in a future release of Biopython. As an alternative, please consider using Bio.Align.PairwiseAligner as a replacement, and contact the Biopython developers if you still need the Bio.pairwise2 module.
+  warnings.warn(
+/opt/t01/env/thermompnn/lib/python3.10/site-packages/lightning_fabric/utilities/cloud_io.py:51: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  return torch.load(f, map_location=map_location)  # type: ignore[arg-type]
+/app/transfer_model.py:25: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  checkpoint = torch.load(checkpoint_path, map_location='cpu')
+Traceback (most recent call last):
+  File "/app/analysis/custom_inference.py", line 156, in <module>
+    main(cfg, args)
+  File "/app/analysis/custom_inference.py", line 58, in main
+    "ThermoMPNN": get_trained_model(model_name=args.model_path,
+  File "/t01/assets/thermompnn-2b04fd370e39/analysis/thermompnn_benchmarking.py", line 81, in get_trained_model
+    return TransferModelPL.load_from_checkpoint(model_name, cfg=config).model
+  File "/opt/t01/env/thermompnn/lib/python3.10/site-packages/pytorch_lightning/core/module.py", line 1531, in load_from_checkpoint
+    loaded = _load_from_checkpoint(
+  File "/opt/t01/env/thermompnn/lib/python3.10/site-packages/pytorch_lightning/core/saving.py", line 88, in _load_from_checkpoint
+    storage = _load_state(cls, checkpoint, strict=strict, **kwargs)
+  File "/opt/t01/env/thermompnn/lib/python3.10/site-packages/pytorch_lightning/core/saving.py", line 141, in _load_state
+    obj = cls(**_cls_kwargs)
+  File "/app/train_thermompnn.py", line 32, in __init__
+    self.model = TransferModel(cfg)
+  File "/app/transfer_model.py", line 53, in __init__
+    self.prot_mpnn = get_protein_mpnn(cfg)
+  File "/app/transfer_model.py", line 25, in get_protein_mpnn
+    checkpoint = torch.load(checkpoint_path, map_location='cpu') 
+  File "/opt/t01/env/thermompnn/lib/python3.10/site-packages/torch/serialization.py", line 1479, in load
+    with _open_file_like(f, "rb") as opened_file:
+  File "/opt/t01/env/thermompnn/lib/python3.10/site-packages/torch/serialization.py", line 759, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/opt/t01/env/thermompnn/lib/python3.10/site-packages/torch/serialization.py", line 740, in __init__
+    super().__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: '/proj/kuhl_lab/ThermoMPNN/vanilla_model_weights/v_48_020.pt'

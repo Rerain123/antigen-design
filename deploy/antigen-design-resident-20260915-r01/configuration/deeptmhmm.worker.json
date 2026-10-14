@@ -1,0 +1,30 @@
+{
+  "version": "0.1.0",
+  "commands": [
+    {
+      "tool": "deeptmhmm",
+      "argv": [
+        "/usr/local/bin/python",
+        "-B",
+        "/opt/t01/src/t01_phase1_real/development/container_probe.py"
+      ],
+      "environment": {
+        "CUDA_VISIBLE_DEVICES": "-1",
+        "MKL_NUM_THREADS": "2",
+        "MPLCONFIGDIR": "/tmp/matplotlib",
+        "OMP_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "1",
+        "PATH": "/usr/local/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin",
+        "PYTHONPATH": "/app",
+        "PYTHONUNBUFFERED": "1",
+        "T01_NATIVE_CWD": "/app",
+        "T01_NATIVE_PACKAGE": "/t01/assets/deeptmhmm-academic-1.0-0a7a6c5d009e",
+        "T01_PRIVATE_TMP": "1",
+        "T01_RESIDENT_OFFLINE": "1",
+        "T01_RESIDENT_SLOT": "/run/t01-slot",
+        "T01_SOURCE_IMAGE_ID": "sha256:7f85781fadf8c89ddbafced691d05006caf6881b06aa5b9bae4bd531393bcd72"
+      },
+      "memory_bytes": 25769803776
+    }
+  ]
+}

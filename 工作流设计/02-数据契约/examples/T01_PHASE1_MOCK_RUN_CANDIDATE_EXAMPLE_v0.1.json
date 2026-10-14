@@ -1,0 +1,1298 @@
+{
+  "envelope_type": "PHASE1_RUN_RESULT",
+  "contract_version": "T01-PHASE1-ENVELOPE-v0.1",
+  "topology_version": "T01-PHASE1-18NODE-OFFLINE",
+  "node_registry_version": "T01-PHASE1-NODE-REGISTRY-v0.1",
+  "control_flow_version": "T01-PHASE1-CONTROL-FLOW-v0.1",
+  "envelope_id": "t01-phase1-mock-v01-env-00000000-0000-4000-8000-000000000002",
+  "created_at": "2026-09-04T08:10:00Z",
+  "execution_mode": "MOCK",
+  "execution_profile": "PHASE1_FULL",
+  "data_classification": "MOCK_DATA",
+  "scientific_compute": false,
+  "run_id": "t01-phase1-mock-v01-run-aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+  "request_id": "t01-phase1-mock-v01-req-11111111-1111-4111-8111-111111111111",
+  "idempotency_key": "idem-candidate-001",
+  "scenario_ref": "t01_phase1_mock_v01.scenario.n16_missing_expression_host",
+  "run_status": "COMPLETED",
+  "recovery_of_run_id": null,
+  "started_at": "2026-09-04T08:00:00Z",
+  "finished_at": "2026-09-04T08:10:00Z",
+  "current_node_ids": [],
+  "input_fingerprints": {
+    "protein_sequence_sha256": "e4449e4ec83f953c4c94703d790dca35e06dd97f66f4b644c3ef45b918f0fc84",
+    "structure_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "control_decisions": [
+    {
+      "decision_id": "dec-cand-gate",
+      "control_type": "DESIGN_SUITABILITY",
+      "decision": "DESIGN_SUITABLE",
+      "reason_code": "DESIGN_SUITABLE",
+      "reason": "Mock control fact selects the design branch.",
+      "node_id": null,
+      "attempt_id": null,
+      "producer": {
+        "actor_type": "BACKEND",
+        "actor_id": "phase1-control-plane",
+        "component_version": "SPEC_ONLY"
+      },
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_facts": {
+        "mock_only": true
+      }
+    },
+    {
+      "decision_id": "dec-cand-n12",
+      "control_type": "N12_VALIDATION",
+      "decision": "VALIDATED_CANDIDATES_AVAILABLE",
+      "reason_code": "VALIDATED_CANDIDATES_AVAILABLE",
+      "reason": "Mock cycle 1 exposes at least one validated candidate.",
+      "node_id": "N12",
+      "attempt_id": "att-n12-1",
+      "producer": {
+        "actor_type": "BACKEND",
+        "actor_id": "phase1-control-plane",
+        "component_version": "SPEC_ONLY"
+      },
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_facts": {
+        "mock_only": true,
+        "design_cycle": 1
+      }
+    },
+    {
+      "decision_id": "dec-cand-n15",
+      "control_type": "N15_DELIVERY_RECOMMENDATION",
+      "decision": "CANDIDATE_RECOMMENDED",
+      "reason_code": "CANDIDATE_RECOMMENDED",
+      "reason": "Mock ranking recommends a candidate.",
+      "node_id": "N15",
+      "attempt_id": "att-n15-1",
+      "producer": {
+        "actor_type": "BACKEND",
+        "actor_id": "phase1-control-plane",
+        "component_version": "SPEC_ONLY"
+      },
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_facts": {
+        "mock_only": true
+      }
+    },
+    {
+      "decision_id": "dec-cand-n16",
+      "control_type": "N16_APPLICABILITY",
+      "decision": "SKIP_CONDITION",
+      "reason_code": "EXPRESSION_HOST_NOT_PROVIDED",
+      "reason": "No expression_host was supplied; N16 is conditionally skipped.",
+      "node_id": "N16",
+      "attempt_id": null,
+      "producer": {
+        "actor_type": "BACKEND",
+        "actor_id": "phase1-control-plane",
+        "component_version": "SPEC_ONLY"
+      },
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_facts": {
+        "mock_only": true
+      }
+    },
+    {
+      "decision_id": "dec-cand-n17",
+      "control_type": "N17_APPLICABILITY",
+      "decision": "EXECUTE",
+      "reason_code": "N17_APPLICABLE",
+      "reason": "Mock facts mark N17 applicable.",
+      "node_id": "N17",
+      "attempt_id": null,
+      "producer": {
+        "actor_type": "BACKEND",
+        "actor_id": "phase1-control-plane",
+        "component_version": "SPEC_ONLY"
+      },
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_facts": {
+        "mock_only": true
+      }
+    }
+  ],
+  "edge_traversals": [
+    {
+      "traversal_id": "trav-001",
+      "sequence": 1,
+      "edge_id": "E001",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": null,
+      "target_node_id": "N01",
+      "attempt_id": null,
+      "control_decision_id": null
+    },
+    {
+      "traversal_id": "trav-002",
+      "sequence": 2,
+      "edge_id": "E002",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": "N01",
+      "target_node_id": "N02",
+      "attempt_id": null,
+      "control_decision_id": null
+    },
+    {
+      "traversal_id": "trav-003",
+      "sequence": 3,
+      "edge_id": "E003",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": "N02",
+      "target_node_id": "N03",
+      "attempt_id": null,
+      "control_decision_id": null
+    },
+    {
+      "traversal_id": "trav-004",
+      "sequence": 4,
+      "edge_id": "E004",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": "N03",
+      "target_node_id": "N04",
+      "attempt_id": null,
+      "control_decision_id": null
+    },
+    {
+      "traversal_id": "trav-005",
+      "sequence": 5,
+      "edge_id": "E005",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": "N04",
+      "target_node_id": "N05",
+      "attempt_id": null,
+      "control_decision_id": null
+    },
+    {
+      "traversal_id": "trav-006",
+      "sequence": 6,
+      "edge_id": "E006",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": "N05",
+      "target_node_id": "N06",
+      "attempt_id": null,
+      "control_decision_id": null
+    },
+    {
+      "traversal_id": "trav-007",
+      "sequence": 7,
+      "edge_id": "E007",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": "N06",
+      "target_node_id": "N07",
+      "attempt_id": null,
+      "control_decision_id": null
+    },
+    {
+      "traversal_id": "trav-008",
+      "sequence": 8,
+      "edge_id": "E008",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": "N07",
+      "target_node_id": "N08",
+      "attempt_id": null,
+      "control_decision_id": null
+    },
+    {
+      "traversal_id": "trav-009",
+      "sequence": 9,
+      "edge_id": "E009",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": "N08",
+      "target_node_id": "N09",
+      "attempt_id": null,
+      "control_decision_id": null
+    },
+    {
+      "traversal_id": "trav-010",
+      "sequence": 10,
+      "edge_id": "E010",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": "N09",
+      "target_node_id": "N10",
+      "attempt_id": null,
+      "control_decision_id": null
+    },
+    {
+      "traversal_id": "trav-011",
+      "sequence": 11,
+      "edge_id": "E011",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": "N10",
+      "target_node_id": null,
+      "attempt_id": null,
+      "control_decision_id": null
+    },
+    {
+      "traversal_id": "trav-012",
+      "sequence": 12,
+      "edge_id": "E014",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": null,
+      "target_node_id": "N11",
+      "attempt_id": null,
+      "control_decision_id": "dec-cand-gate"
+    },
+    {
+      "traversal_id": "trav-013",
+      "sequence": 13,
+      "edge_id": "E015",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": "N11",
+      "target_node_id": "N12",
+      "attempt_id": "att-n11-1",
+      "control_decision_id": null
+    },
+    {
+      "traversal_id": "trav-014",
+      "sequence": 14,
+      "edge_id": "E017",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": "N12",
+      "target_node_id": "N13",
+      "attempt_id": "att-n12-1",
+      "control_decision_id": "dec-cand-n12"
+    },
+    {
+      "traversal_id": "trav-015",
+      "sequence": 15,
+      "edge_id": "E019",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": "N13",
+      "target_node_id": "N14",
+      "attempt_id": null,
+      "control_decision_id": null
+    },
+    {
+      "traversal_id": "trav-016",
+      "sequence": 16,
+      "edge_id": "E020",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": "N14",
+      "target_node_id": "N15",
+      "attempt_id": null,
+      "control_decision_id": null
+    },
+    {
+      "traversal_id": "trav-017",
+      "sequence": 17,
+      "edge_id": "E021",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": "N15",
+      "target_node_id": null,
+      "attempt_id": null,
+      "control_decision_id": "dec-cand-n15"
+    },
+    {
+      "traversal_id": "trav-018",
+      "sequence": 18,
+      "edge_id": "E022",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": null,
+      "target_node_id": "N16",
+      "attempt_id": null,
+      "control_decision_id": "dec-cand-n16"
+    },
+    {
+      "traversal_id": "trav-019",
+      "sequence": 19,
+      "edge_id": "E023",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": null,
+      "target_node_id": "N17",
+      "attempt_id": null,
+      "control_decision_id": "dec-cand-n17"
+    },
+    {
+      "traversal_id": "trav-020",
+      "sequence": 20,
+      "edge_id": "E024",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": "N16",
+      "target_node_id": null,
+      "attempt_id": null,
+      "control_decision_id": "dec-cand-n16"
+    },
+    {
+      "traversal_id": "trav-021",
+      "sequence": 21,
+      "edge_id": "E025",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": "N17",
+      "target_node_id": null,
+      "attempt_id": "att-n17-1",
+      "control_decision_id": "dec-cand-n17"
+    },
+    {
+      "traversal_id": "trav-022",
+      "sequence": 22,
+      "edge_id": "E026",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": null,
+      "target_node_id": "N18",
+      "attempt_id": null,
+      "control_decision_id": null
+    },
+    {
+      "traversal_id": "trav-023",
+      "sequence": 23,
+      "edge_id": "E027",
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "source_node_id": "N18",
+      "target_node_id": null,
+      "attempt_id": "att-n18-1",
+      "control_decision_id": null
+    }
+  ],
+  "node_results": [
+    {
+      "node_id": "N01",
+      "status": "SUCCEEDED",
+      "started_at": "2026-09-04T08:00:00Z",
+      "finished_at": "2026-09-04T08:10:00Z",
+      "output_completeness": "COMPLETE",
+      "output": {
+        "payload_type": "T01_PHASE1_N01_OPAQUE_OUTPUT",
+        "payload_version": "UNFROZEN",
+        "data": {
+          "mock_only": true,
+          "scientific_payload_schema_frozen": false
+        },
+        "artifacts": []
+      },
+      "attempts": [
+        {
+          "attempt_id": "att-n01-1",
+          "attempt_number": 1,
+          "attempt_kind": "INITIAL",
+          "status": "SUCCEEDED",
+          "design_cycle": null,
+          "recovery_of_attempt_id": null,
+          "started_at": "2026-09-04T08:00:00Z",
+          "finished_at": "2026-09-04T08:10:00Z",
+          "executor": {
+            "actor_type": "MOCK_SCENARIO",
+            "actor_id": "phase1-mock-scenario",
+            "component_version": "SPEC_ONLY"
+          },
+          "parameters": {},
+          "input_artifact_ids": [],
+          "output_artifact_ids": [],
+          "issues": [],
+          "metrics": {
+            "queue_ms": 0,
+            "runtime_ms": 100
+          }
+        }
+      ],
+      "disposition": null,
+      "issues": [],
+      "upstream_node_ids": [],
+      "control_decision_ids": []
+    },
+    {
+      "node_id": "N02",
+      "status": "SUCCEEDED",
+      "started_at": "2026-09-04T08:00:00Z",
+      "finished_at": "2026-09-04T08:10:00Z",
+      "output_completeness": "COMPLETE",
+      "output": {
+        "payload_type": "T01_PHASE1_N02_OPAQUE_OUTPUT",
+        "payload_version": "UNFROZEN",
+        "data": {
+          "mock_only": true,
+          "scientific_payload_schema_frozen": false
+        },
+        "artifacts": []
+      },
+      "attempts": [
+        {
+          "attempt_id": "att-n02-1",
+          "attempt_number": 1,
+          "attempt_kind": "INITIAL",
+          "status": "SUCCEEDED",
+          "design_cycle": null,
+          "recovery_of_attempt_id": null,
+          "started_at": "2026-09-04T08:00:00Z",
+          "finished_at": "2026-09-04T08:10:00Z",
+          "executor": {
+            "actor_type": "MOCK_SCENARIO",
+            "actor_id": "phase1-mock-scenario",
+            "component_version": "SPEC_ONLY"
+          },
+          "parameters": {},
+          "input_artifact_ids": [],
+          "output_artifact_ids": [],
+          "issues": [],
+          "metrics": {
+            "queue_ms": 0,
+            "runtime_ms": 100
+          }
+        }
+      ],
+      "disposition": null,
+      "issues": [],
+      "upstream_node_ids": [
+        "N01"
+      ],
+      "control_decision_ids": []
+    },
+    {
+      "node_id": "N03",
+      "status": "SUCCEEDED",
+      "started_at": "2026-09-04T08:00:00Z",
+      "finished_at": "2026-09-04T08:10:00Z",
+      "output_completeness": "COMPLETE",
+      "output": {
+        "payload_type": "T01_PHASE1_N03_OPAQUE_OUTPUT",
+        "payload_version": "UNFROZEN",
+        "data": {
+          "mock_only": true,
+          "scientific_payload_schema_frozen": false
+        },
+        "artifacts": []
+      },
+      "attempts": [
+        {
+          "attempt_id": "att-n03-1",
+          "attempt_number": 1,
+          "attempt_kind": "INITIAL",
+          "status": "SUCCEEDED",
+          "design_cycle": null,
+          "recovery_of_attempt_id": null,
+          "started_at": "2026-09-04T08:00:00Z",
+          "finished_at": "2026-09-04T08:10:00Z",
+          "executor": {
+            "actor_type": "MOCK_SCENARIO",
+            "actor_id": "phase1-mock-scenario",
+            "component_version": "SPEC_ONLY"
+          },
+          "parameters": {},
+          "input_artifact_ids": [],
+          "output_artifact_ids": [],
+          "issues": [],
+          "metrics": {
+            "queue_ms": 0,
+            "runtime_ms": 100
+          }
+        }
+      ],
+      "disposition": null,
+      "issues": [],
+      "upstream_node_ids": [
+        "N02"
+      ],
+      "control_decision_ids": []
+    },
+    {
+      "node_id": "N04",
+      "status": "SUCCEEDED",
+      "started_at": "2026-09-04T08:00:00Z",
+      "finished_at": "2026-09-04T08:10:00Z",
+      "output_completeness": "COMPLETE",
+      "output": {
+        "payload_type": "T01_PHASE1_N04_OPAQUE_OUTPUT",
+        "payload_version": "UNFROZEN",
+        "data": {
+          "mock_only": true,
+          "scientific_payload_schema_frozen": false
+        },
+        "artifacts": []
+      },
+      "attempts": [
+        {
+          "attempt_id": "att-n04-1",
+          "attempt_number": 1,
+          "attempt_kind": "INITIAL",
+          "status": "SUCCEEDED",
+          "design_cycle": null,
+          "recovery_of_attempt_id": null,
+          "started_at": "2026-09-04T08:00:00Z",
+          "finished_at": "2026-09-04T08:10:00Z",
+          "executor": {
+            "actor_type": "MOCK_SCENARIO",
+            "actor_id": "phase1-mock-scenario",
+            "component_version": "SPEC_ONLY"
+          },
+          "parameters": {},
+          "input_artifact_ids": [],
+          "output_artifact_ids": [],
+          "issues": [],
+          "metrics": {
+            "queue_ms": 0,
+            "runtime_ms": 100
+          }
+        }
+      ],
+      "disposition": null,
+      "issues": [],
+      "upstream_node_ids": [
+        "N03"
+      ],
+      "control_decision_ids": []
+    },
+    {
+      "node_id": "N05",
+      "status": "SUCCEEDED",
+      "started_at": "2026-09-04T08:00:00Z",
+      "finished_at": "2026-09-04T08:10:00Z",
+      "output_completeness": "COMPLETE",
+      "output": {
+        "payload_type": "T01_PHASE1_N05_OPAQUE_OUTPUT",
+        "payload_version": "UNFROZEN",
+        "data": {
+          "mock_only": true,
+          "scientific_payload_schema_frozen": false
+        },
+        "artifacts": []
+      },
+      "attempts": [
+        {
+          "attempt_id": "att-n05-1",
+          "attempt_number": 1,
+          "attempt_kind": "INITIAL",
+          "status": "SUCCEEDED",
+          "design_cycle": null,
+          "recovery_of_attempt_id": null,
+          "started_at": "2026-09-04T08:00:00Z",
+          "finished_at": "2026-09-04T08:10:00Z",
+          "executor": {
+            "actor_type": "MOCK_SCENARIO",
+            "actor_id": "phase1-mock-scenario",
+            "component_version": "SPEC_ONLY"
+          },
+          "parameters": {},
+          "input_artifact_ids": [],
+          "output_artifact_ids": [],
+          "issues": [],
+          "metrics": {
+            "queue_ms": 0,
+            "runtime_ms": 100
+          }
+        }
+      ],
+      "disposition": null,
+      "issues": [],
+      "upstream_node_ids": [
+        "N04"
+      ],
+      "control_decision_ids": []
+    },
+    {
+      "node_id": "N06",
+      "status": "SUCCEEDED",
+      "started_at": "2026-09-04T08:00:00Z",
+      "finished_at": "2026-09-04T08:10:00Z",
+      "output_completeness": "COMPLETE",
+      "output": {
+        "payload_type": "T01_PHASE1_N06_OPAQUE_OUTPUT",
+        "payload_version": "UNFROZEN",
+        "data": {
+          "mock_only": true,
+          "scientific_payload_schema_frozen": false
+        },
+        "artifacts": []
+      },
+      "attempts": [
+        {
+          "attempt_id": "att-n06-1",
+          "attempt_number": 1,
+          "attempt_kind": "INITIAL",
+          "status": "SUCCEEDED",
+          "design_cycle": null,
+          "recovery_of_attempt_id": null,
+          "started_at": "2026-09-04T08:00:00Z",
+          "finished_at": "2026-09-04T08:10:00Z",
+          "executor": {
+            "actor_type": "MOCK_SCENARIO",
+            "actor_id": "phase1-mock-scenario",
+            "component_version": "SPEC_ONLY"
+          },
+          "parameters": {},
+          "input_artifact_ids": [],
+          "output_artifact_ids": [],
+          "issues": [],
+          "metrics": {
+            "queue_ms": 0,
+            "runtime_ms": 100
+          }
+        }
+      ],
+      "disposition": null,
+      "issues": [],
+      "upstream_node_ids": [
+        "N05"
+      ],
+      "control_decision_ids": []
+    },
+    {
+      "node_id": "N07",
+      "status": "SUCCEEDED",
+      "started_at": "2026-09-04T08:00:00Z",
+      "finished_at": "2026-09-04T08:10:00Z",
+      "output_completeness": "COMPLETE",
+      "output": {
+        "payload_type": "T01_PHASE1_N07_OPAQUE_OUTPUT",
+        "payload_version": "UNFROZEN",
+        "data": {
+          "mock_only": true,
+          "scientific_payload_schema_frozen": false
+        },
+        "artifacts": []
+      },
+      "attempts": [
+        {
+          "attempt_id": "att-n07-1",
+          "attempt_number": 1,
+          "attempt_kind": "INITIAL",
+          "status": "SUCCEEDED",
+          "design_cycle": null,
+          "recovery_of_attempt_id": null,
+          "started_at": "2026-09-04T08:00:00Z",
+          "finished_at": "2026-09-04T08:10:00Z",
+          "executor": {
+            "actor_type": "MOCK_SCENARIO",
+            "actor_id": "phase1-mock-scenario",
+            "component_version": "SPEC_ONLY"
+          },
+          "parameters": {},
+          "input_artifact_ids": [],
+          "output_artifact_ids": [],
+          "issues": [],
+          "metrics": {
+            "queue_ms": 0,
+            "runtime_ms": 100
+          }
+        }
+      ],
+      "disposition": null,
+      "issues": [],
+      "upstream_node_ids": [
+        "N06"
+      ],
+      "control_decision_ids": []
+    },
+    {
+      "node_id": "N08",
+      "status": "SUCCEEDED",
+      "started_at": "2026-09-04T08:00:00Z",
+      "finished_at": "2026-09-04T08:10:00Z",
+      "output_completeness": "COMPLETE",
+      "output": {
+        "payload_type": "T01_PHASE1_N08_OPAQUE_OUTPUT",
+        "payload_version": "UNFROZEN",
+        "data": {
+          "mock_only": true,
+          "scientific_payload_schema_frozen": false
+        },
+        "artifacts": []
+      },
+      "attempts": [
+        {
+          "attempt_id": "att-n08-1",
+          "attempt_number": 1,
+          "attempt_kind": "INITIAL",
+          "status": "SUCCEEDED",
+          "design_cycle": null,
+          "recovery_of_attempt_id": null,
+          "started_at": "2026-09-04T08:00:00Z",
+          "finished_at": "2026-09-04T08:10:00Z",
+          "executor": {
+            "actor_type": "MOCK_SCENARIO",
+            "actor_id": "phase1-mock-scenario",
+            "component_version": "SPEC_ONLY"
+          },
+          "parameters": {},
+          "input_artifact_ids": [],
+          "output_artifact_ids": [],
+          "issues": [],
+          "metrics": {
+            "queue_ms": 0,
+            "runtime_ms": 100
+          }
+        }
+      ],
+      "disposition": null,
+      "issues": [],
+      "upstream_node_ids": [
+        "N07"
+      ],
+      "control_decision_ids": []
+    },
+    {
+      "node_id": "N09",
+      "status": "SUCCEEDED",
+      "started_at": "2026-09-04T08:00:00Z",
+      "finished_at": "2026-09-04T08:10:00Z",
+      "output_completeness": "COMPLETE",
+      "output": {
+        "payload_type": "T01_PHASE1_N09_OPAQUE_OUTPUT",
+        "payload_version": "UNFROZEN",
+        "data": {
+          "mock_only": true,
+          "scientific_payload_schema_frozen": false
+        },
+        "artifacts": []
+      },
+      "attempts": [
+        {
+          "attempt_id": "att-n09-1",
+          "attempt_number": 1,
+          "attempt_kind": "INITIAL",
+          "status": "SUCCEEDED",
+          "design_cycle": null,
+          "recovery_of_attempt_id": null,
+          "started_at": "2026-09-04T08:00:00Z",
+          "finished_at": "2026-09-04T08:10:00Z",
+          "executor": {
+            "actor_type": "MOCK_SCENARIO",
+            "actor_id": "phase1-mock-scenario",
+            "component_version": "SPEC_ONLY"
+          },
+          "parameters": {},
+          "input_artifact_ids": [],
+          "output_artifact_ids": [],
+          "issues": [],
+          "metrics": {
+            "queue_ms": 0,
+            "runtime_ms": 100
+          }
+        }
+      ],
+      "disposition": null,
+      "issues": [],
+      "upstream_node_ids": [
+        "N08"
+      ],
+      "control_decision_ids": []
+    },
+    {
+      "node_id": "N10",
+      "status": "SUCCEEDED",
+      "started_at": "2026-09-04T08:00:00Z",
+      "finished_at": "2026-09-04T08:10:00Z",
+      "output_completeness": "COMPLETE",
+      "output": {
+        "payload_type": "T01_PHASE1_N10_OPAQUE_OUTPUT",
+        "payload_version": "UNFROZEN",
+        "data": {
+          "mock_only": true,
+          "scientific_payload_schema_frozen": false
+        },
+        "artifacts": []
+      },
+      "attempts": [
+        {
+          "attempt_id": "att-n10-1",
+          "attempt_number": 1,
+          "attempt_kind": "INITIAL",
+          "status": "SUCCEEDED",
+          "design_cycle": null,
+          "recovery_of_attempt_id": null,
+          "started_at": "2026-09-04T08:00:00Z",
+          "finished_at": "2026-09-04T08:10:00Z",
+          "executor": {
+            "actor_type": "MOCK_SCENARIO",
+            "actor_id": "phase1-mock-scenario",
+            "component_version": "SPEC_ONLY"
+          },
+          "parameters": {},
+          "input_artifact_ids": [],
+          "output_artifact_ids": [],
+          "issues": [],
+          "metrics": {
+            "queue_ms": 0,
+            "runtime_ms": 100
+          }
+        }
+      ],
+      "disposition": null,
+      "issues": [],
+      "upstream_node_ids": [
+        "N09"
+      ],
+      "control_decision_ids": [
+        "dec-cand-gate"
+      ]
+    },
+    {
+      "node_id": "N11",
+      "status": "SUCCEEDED",
+      "started_at": "2026-09-04T08:00:00Z",
+      "finished_at": "2026-09-04T08:10:00Z",
+      "output_completeness": "COMPLETE",
+      "output": {
+        "payload_type": "T01_PHASE1_N11_OPAQUE_OUTPUT",
+        "payload_version": "UNFROZEN",
+        "data": {
+          "mock_only": true,
+          "scientific_payload_schema_frozen": false
+        },
+        "artifacts": []
+      },
+      "attempts": [
+        {
+          "attempt_id": "att-n11-1",
+          "attempt_number": 1,
+          "attempt_kind": "INITIAL",
+          "status": "SUCCEEDED",
+          "design_cycle": 1,
+          "recovery_of_attempt_id": null,
+          "started_at": "2026-09-04T08:00:00Z",
+          "finished_at": "2026-09-04T08:10:00Z",
+          "executor": {
+            "actor_type": "MOCK_SCENARIO",
+            "actor_id": "phase1-mock-scenario",
+            "component_version": "SPEC_ONLY"
+          },
+          "parameters": {
+            "candidate_budget": 24,
+            "exploration_factor": 0.1
+          },
+          "input_artifact_ids": [],
+          "output_artifact_ids": [],
+          "issues": [],
+          "metrics": {
+            "queue_ms": 0,
+            "runtime_ms": 100
+          }
+        }
+      ],
+      "disposition": null,
+      "issues": [],
+      "upstream_node_ids": [
+        "N10"
+      ],
+      "control_decision_ids": []
+    },
+    {
+      "node_id": "N12",
+      "status": "SUCCEEDED",
+      "started_at": "2026-09-04T08:00:00Z",
+      "finished_at": "2026-09-04T08:10:00Z",
+      "output_completeness": "COMPLETE",
+      "output": {
+        "payload_type": "T01_PHASE1_N12_OPAQUE_OUTPUT",
+        "payload_version": "UNFROZEN",
+        "data": {
+          "mock_only": true,
+          "scientific_payload_schema_frozen": false
+        },
+        "artifacts": []
+      },
+      "attempts": [
+        {
+          "attempt_id": "att-n12-1",
+          "attempt_number": 1,
+          "attempt_kind": "INITIAL",
+          "status": "SUCCEEDED",
+          "design_cycle": 1,
+          "recovery_of_attempt_id": null,
+          "started_at": "2026-09-04T08:00:00Z",
+          "finished_at": "2026-09-04T08:10:00Z",
+          "executor": {
+            "actor_type": "MOCK_SCENARIO",
+            "actor_id": "phase1-mock-scenario",
+            "component_version": "SPEC_ONLY"
+          },
+          "parameters": {},
+          "input_artifact_ids": [],
+          "output_artifact_ids": [],
+          "issues": [],
+          "metrics": {
+            "queue_ms": 0,
+            "runtime_ms": 100
+          }
+        }
+      ],
+      "disposition": null,
+      "issues": [],
+      "upstream_node_ids": [
+        "N11"
+      ],
+      "control_decision_ids": [
+        "dec-cand-n12"
+      ]
+    },
+    {
+      "node_id": "N13",
+      "status": "SUCCEEDED",
+      "started_at": "2026-09-04T08:00:00Z",
+      "finished_at": "2026-09-04T08:10:00Z",
+      "output_completeness": "COMPLETE",
+      "output": {
+        "payload_type": "T01_PHASE1_N13_OPAQUE_OUTPUT",
+        "payload_version": "UNFROZEN",
+        "data": {
+          "mock_only": true,
+          "scientific_payload_schema_frozen": false
+        },
+        "artifacts": []
+      },
+      "attempts": [
+        {
+          "attempt_id": "att-n13-1",
+          "attempt_number": 1,
+          "attempt_kind": "INITIAL",
+          "status": "SUCCEEDED",
+          "design_cycle": null,
+          "recovery_of_attempt_id": null,
+          "started_at": "2026-09-04T08:00:00Z",
+          "finished_at": "2026-09-04T08:10:00Z",
+          "executor": {
+            "actor_type": "MOCK_SCENARIO",
+            "actor_id": "phase1-mock-scenario",
+            "component_version": "SPEC_ONLY"
+          },
+          "parameters": {},
+          "input_artifact_ids": [],
+          "output_artifact_ids": [],
+          "issues": [],
+          "metrics": {
+            "queue_ms": 0,
+            "runtime_ms": 100
+          }
+        }
+      ],
+      "disposition": null,
+      "issues": [],
+      "upstream_node_ids": [
+        "N12"
+      ],
+      "control_decision_ids": []
+    },
+    {
+      "node_id": "N14",
+      "status": "SUCCEEDED",
+      "started_at": "2026-09-04T08:00:00Z",
+      "finished_at": "2026-09-04T08:10:00Z",
+      "output_completeness": "COMPLETE",
+      "output": {
+        "payload_type": "T01_PHASE1_N14_OPAQUE_OUTPUT",
+        "payload_version": "UNFROZEN",
+        "data": {
+          "mock_only": true,
+          "scientific_payload_schema_frozen": false
+        },
+        "artifacts": []
+      },
+      "attempts": [
+        {
+          "attempt_id": "att-n14-1",
+          "attempt_number": 1,
+          "attempt_kind": "INITIAL",
+          "status": "SUCCEEDED",
+          "design_cycle": null,
+          "recovery_of_attempt_id": null,
+          "started_at": "2026-09-04T08:00:00Z",
+          "finished_at": "2026-09-04T08:10:00Z",
+          "executor": {
+            "actor_type": "MOCK_SCENARIO",
+            "actor_id": "phase1-mock-scenario",
+            "component_version": "SPEC_ONLY"
+          },
+          "parameters": {},
+          "input_artifact_ids": [],
+          "output_artifact_ids": [],
+          "issues": [],
+          "metrics": {
+            "queue_ms": 0,
+            "runtime_ms": 100
+          }
+        }
+      ],
+      "disposition": null,
+      "issues": [],
+      "upstream_node_ids": [
+        "N13"
+      ],
+      "control_decision_ids": []
+    },
+    {
+      "node_id": "N15",
+      "status": "SUCCEEDED",
+      "started_at": "2026-09-04T08:00:00Z",
+      "finished_at": "2026-09-04T08:10:00Z",
+      "output_completeness": "COMPLETE",
+      "output": {
+        "payload_type": "T01_PHASE1_N15_OPAQUE_OUTPUT",
+        "payload_version": "UNFROZEN",
+        "data": {
+          "mock_only": true,
+          "scientific_payload_schema_frozen": false
+        },
+        "artifacts": []
+      },
+      "attempts": [
+        {
+          "attempt_id": "att-n15-1",
+          "attempt_number": 1,
+          "attempt_kind": "INITIAL",
+          "status": "SUCCEEDED",
+          "design_cycle": null,
+          "recovery_of_attempt_id": null,
+          "started_at": "2026-09-04T08:00:00Z",
+          "finished_at": "2026-09-04T08:10:00Z",
+          "executor": {
+            "actor_type": "MOCK_SCENARIO",
+            "actor_id": "phase1-mock-scenario",
+            "component_version": "SPEC_ONLY"
+          },
+          "parameters": {},
+          "input_artifact_ids": [],
+          "output_artifact_ids": [],
+          "issues": [],
+          "metrics": {
+            "queue_ms": 0,
+            "runtime_ms": 100
+          }
+        }
+      ],
+      "disposition": null,
+      "issues": [],
+      "upstream_node_ids": [
+        "N14"
+      ],
+      "control_decision_ids": [
+        "dec-cand-n15"
+      ]
+    },
+    {
+      "node_id": "N16",
+      "status": "SKIPPED_CONDITION",
+      "started_at": null,
+      "finished_at": "2026-09-04T08:10:00Z",
+      "output_completeness": "NONE",
+      "output": null,
+      "attempts": [],
+      "disposition": {
+        "kind": "CONDITION_NOT_MET",
+        "reason_code": "EXPRESSION_HOST_NOT_PROVIDED",
+        "reason": "No expression_host was supplied; host_species was not used as a substitute.",
+        "decided_at": "2026-09-04T08:10:00Z",
+        "control_decision_id": "dec-cand-n16"
+      },
+      "issues": [],
+      "upstream_node_ids": [
+        "N15"
+      ],
+      "control_decision_ids": [
+        "dec-cand-n16"
+      ]
+    },
+    {
+      "node_id": "N17",
+      "status": "SUCCEEDED",
+      "started_at": "2026-09-04T08:00:00Z",
+      "finished_at": "2026-09-04T08:10:00Z",
+      "output_completeness": "COMPLETE",
+      "output": {
+        "payload_type": "T01_PHASE1_N17_OPAQUE_OUTPUT",
+        "payload_version": "UNFROZEN",
+        "data": {
+          "mock_only": true,
+          "scientific_payload_schema_frozen": false
+        },
+        "artifacts": []
+      },
+      "attempts": [
+        {
+          "attempt_id": "att-n17-1",
+          "attempt_number": 1,
+          "attempt_kind": "INITIAL",
+          "status": "SUCCEEDED",
+          "design_cycle": null,
+          "recovery_of_attempt_id": null,
+          "started_at": "2026-09-04T08:00:00Z",
+          "finished_at": "2026-09-04T08:10:00Z",
+          "executor": {
+            "actor_type": "MOCK_SCENARIO",
+            "actor_id": "phase1-mock-scenario",
+            "component_version": "SPEC_ONLY"
+          },
+          "parameters": {},
+          "input_artifact_ids": [],
+          "output_artifact_ids": [],
+          "issues": [],
+          "metrics": {
+            "queue_ms": 0,
+            "runtime_ms": 100
+          }
+        }
+      ],
+      "disposition": null,
+      "issues": [],
+      "upstream_node_ids": [
+        "N15"
+      ],
+      "control_decision_ids": [
+        "dec-cand-n17"
+      ]
+    },
+    {
+      "node_id": "N18",
+      "status": "SUCCEEDED",
+      "started_at": "2026-09-04T08:00:00Z",
+      "finished_at": "2026-09-04T08:10:00Z",
+      "output_completeness": "COMPLETE",
+      "output": {
+        "payload_type": "T01_PHASE1_N18_OPAQUE_OUTPUT",
+        "payload_version": "UNFROZEN",
+        "data": {
+          "mock_only": true,
+          "scientific_payload_schema_frozen": false,
+          "assembled_result_kind": "CANDIDATE"
+        },
+        "artifacts": [
+          {
+            "artifact_id": "art-final-candidate-001",
+            "artifact_role": "FINAL_RESULT",
+            "uri": "artifact://examples/results/candidate-001",
+            "media_type": "application/json",
+            "format": "JSON",
+            "size_bytes": 1024,
+            "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "integrity_status": "VERIFIED",
+            "created_at": "2026-09-04T08:10:00Z",
+            "producer": {
+              "actor_type": "MOCK_SCENARIO",
+              "actor_id": "phase1-mock-scenario",
+              "component_version": "SPEC_ONLY"
+            },
+            "source_node_id": "N18",
+            "source_attempt_id": "att-n18-1",
+            "metadata": {
+              "example_only": true,
+              "scientific_payload_schema_frozen": false
+            }
+          }
+        ]
+      },
+      "attempts": [
+        {
+          "attempt_id": "att-n18-1",
+          "attempt_number": 1,
+          "attempt_kind": "INITIAL",
+          "status": "SUCCEEDED",
+          "design_cycle": null,
+          "recovery_of_attempt_id": null,
+          "started_at": "2026-09-04T08:00:00Z",
+          "finished_at": "2026-09-04T08:10:00Z",
+          "executor": {
+            "actor_type": "MOCK_SCENARIO",
+            "actor_id": "phase1-mock-scenario",
+            "component_version": "SPEC_ONLY"
+          },
+          "parameters": {},
+          "input_artifact_ids": [],
+          "output_artifact_ids": [
+            "art-final-candidate-001"
+          ],
+          "issues": [],
+          "metrics": {
+            "queue_ms": 0,
+            "runtime_ms": 100
+          }
+        }
+      ],
+      "disposition": null,
+      "issues": [],
+      "upstream_node_ids": [
+        "N16",
+        "N17"
+      ],
+      "control_decision_ids": []
+    }
+  ],
+  "result": {
+    "result_kind": "CANDIDATE",
+    "summary": {
+      "payload_type": "CandidateRecord",
+      "payload_version": "UNFROZEN",
+      "mock_only": true,
+      "scientific_payload_schema_frozen": false,
+      "n16_status": "SKIPPED_CONDITION",
+      "n17_status": "SUCCEEDED"
+    },
+    "artifacts": [
+      {
+        "artifact_id": "art-final-candidate-001",
+        "artifact_role": "FINAL_RESULT",
+        "uri": "artifact://examples/results/candidate-001",
+        "media_type": "application/json",
+        "format": "JSON",
+        "size_bytes": 1024,
+        "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "integrity_status": "VERIFIED",
+        "created_at": "2026-09-04T08:10:00Z",
+        "producer": {
+          "actor_type": "MOCK_SCENARIO",
+          "actor_id": "phase1-mock-scenario",
+          "component_version": "SPEC_ONLY"
+        },
+        "source_node_id": "N18",
+        "source_attempt_id": "att-n18-1",
+        "metadata": {
+          "example_only": true,
+          "scientific_payload_schema_frozen": false
+        }
+      }
+    ],
+    "handoff": {
+      "status": "NOT_DEPLOYED",
+      "delivered": false,
+      "external_reference": null,
+      "occurred_at": "2026-09-04T08:10:00Z",
+      "issue_id": null
+    }
+  },
+  "issues": [],
+  "audit": {
+    "trace_id": "trace-candidate-001",
+    "correlation_id": "corr-candidate-001",
+    "events": [
+      {
+        "event_id": "evt-candidate-001-1",
+        "sequence": 1,
+        "event_type": "RUN_CREATED",
+        "occurred_at": "2026-09-04T08:00:00Z",
+        "actor": {
+          "actor_type": "MOCK_SCENARIO",
+          "actor_id": "phase1-mock-scenario",
+          "component_version": "SPEC_ONLY"
+        },
+        "node_id": null,
+        "attempt_id": null,
+        "edge_id": null,
+        "control_decision_id": null,
+        "details": {
+          "run_id": "t01-phase1-mock-v01-run-aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+        }
+      },
+      {
+        "event_id": "evt-candidate-001-2",
+        "sequence": 2,
+        "event_type": "RUN_STATE_CHANGED",
+        "occurred_at": "2026-09-04T08:10:00Z",
+        "actor": {
+          "actor_type": "MOCK_SCENARIO",
+          "actor_id": "phase1-mock-scenario",
+          "component_version": "SPEC_ONLY"
+        },
+        "node_id": null,
+        "attempt_id": null,
+        "edge_id": null,
+        "control_decision_id": null,
+        "details": {
+          "from": "RUNNING",
+          "to": "COMPLETED"
+        }
+      }
+    ],
+    "audit_artifacts": []
+  }
+}

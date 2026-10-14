@@ -1,0 +1,189 @@
+{
+  "apiVersion": "batch/v1",
+  "kind": "Job",
+  "metadata": {
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"batch/v1\",\"kind\":\"Job\",\"metadata\":{\"annotations\":{},\"labels\":{\"app\":\"antigen-esmfold2-capacity393-r01\"},\"name\":\"antigen-esmfold2-capacity393-r01\",\"namespace\":\"him-ws\"},\"spec\":{\"activeDeadlineSeconds\":1800,\"backoffLimit\":0,\"template\":{\"metadata\":{\"labels\":{\"app\":\"antigen-esmfold2-capacity393-r01\"}},\"spec\":{\"affinity\":{\"podAffinity\":{\"requiredDuringSchedulingIgnoredDuringExecution\":[{\"labelSelector\":{\"matchLabels\":{\"app.kubernetes.io/name\":\"antigen-design\"}},\"topologyKey\":\"kubernetes.io/hostname\"}]}},\"automountServiceAccountToken\":false,\"containers\":[{\"command\":[\"python\",\"-u\",\"-B\",\"/config/launch.py\"],\"image\":\"harbor-core.base.svc.cluster.local/qcyz/antigen-esmfold2@sha256:372545ebe3469a3d32269c27033d19624d713d75ca162dbe6fff5dafed44f77f\",\"name\":\"worker\",\"resources\":{\"limits\":{\"cpu\":\"8\",\"ephemeral-storage\":\"8Gi\",\"memory\":\"64Gi\",\"nvidia.com/gpu\":1,\"nvidia.com/gpumem\":32768},\"requests\":{\"cpu\":\"2\",\"ephemeral-storage\":\"2Gi\",\"memory\":\"32Gi\"}},\"securityContext\":{\"allowPrivilegeEscalation\":false,\"capabilities\":{\"drop\":[\"ALL\"]},\"readOnlyRootFilesystem\":true},\"volumeMounts\":[{\"mountPath\":\"/models\",\"name\":\"models\",\"readOnly\":true},{\"mountPath\":\"/config\",\"name\":\"config\",\"readOnly\":true},{\"mountPath\":\"/tmp\",\"name\":\"tmp\"},{\"mountPath\":\"/shared\",\"name\":\"shared\"}]}],\"imagePullSecrets\":[{\"name\":\"harbor\"}],\"restartPolicy\":\"Never\",\"runtimeClassName\":\"nvidia\",\"schedulerName\":\"hami-scheduler\",\"securityContext\":{\"fsGroup\":10001,\"fsGroupChangePolicy\":\"OnRootMismatch\",\"runAsGroup\":10001,\"runAsNonRoot\":true,\"runAsUser\":10001},\"volumes\":[{\"name\":\"models\",\"persistentVolumeClaim\":{\"claimName\":\"antigen-esmfold2-models\"}},{\"configMap\":{\"name\":\"antigen-esmfold2-capacity393-r01\"},\"name\":\"config\"},{\"emptyDir\":{\"sizeLimit\":\"8Gi\"},\"name\":\"tmp\"},{\"name\":\"shared\",\"persistentVolumeClaim\":{\"claimName\":\"antigen-design-runtime\"}}]}}}}\n"
+    },
+    "creationTimestamp": "2026-09-18T00:30:24Z",
+    "generation": 1,
+    "labels": {
+      "app": "antigen-esmfold2-capacity393-r01"
+    },
+    "name": "antigen-esmfold2-capacity393-r01",
+    "namespace": "him-ws",
+    "resourceVersion": "45833595",
+    "uid": "253f1921-e65f-4d8c-8d0f-eccfcde015e3"
+  },
+  "spec": {
+    "activeDeadlineSeconds": 1800,
+    "backoffLimit": 0,
+    "completionMode": "NonIndexed",
+    "completions": 1,
+    "manualSelector": false,
+    "parallelism": 1,
+    "podReplacementPolicy": "TerminatingOrFailed",
+    "selector": {
+      "matchLabels": {
+        "batch.kubernetes.io/controller-uid": "253f1921-e65f-4d8c-8d0f-eccfcde015e3"
+      }
+    },
+    "suspend": false,
+    "template": {
+      "metadata": {
+        "labels": {
+          "app": "antigen-esmfold2-capacity393-r01",
+          "batch.kubernetes.io/controller-uid": "253f1921-e65f-4d8c-8d0f-eccfcde015e3",
+          "batch.kubernetes.io/job-name": "antigen-esmfold2-capacity393-r01",
+          "controller-uid": "253f1921-e65f-4d8c-8d0f-eccfcde015e3",
+          "job-name": "antigen-esmfold2-capacity393-r01"
+        }
+      },
+      "spec": {
+        "affinity": {
+          "podAffinity": {
+            "requiredDuringSchedulingIgnoredDuringExecution": [
+              {
+                "labelSelector": {
+                  "matchLabels": {
+                    "app.kubernetes.io/name": "antigen-design"
+                  }
+                },
+                "topologyKey": "kubernetes.io/hostname"
+              }
+            ]
+          }
+        },
+        "automountServiceAccountToken": false,
+        "containers": [
+          {
+            "command": [
+              "python",
+              "-u",
+              "-B",
+              "/config/launch.py"
+            ],
+            "image": "harbor-core.base.svc.cluster.local/qcyz/antigen-esmfold2@sha256:372545ebe3469a3d32269c27033d19624d713d75ca162dbe6fff5dafed44f77f",
+            "imagePullPolicy": "IfNotPresent",
+            "name": "worker",
+            "resources": {
+              "limits": {
+                "cpu": "8",
+                "ephemeral-storage": "8Gi",
+                "memory": "64Gi",
+                "nvidia.com/gpu": "1",
+                "nvidia.com/gpumem": "32768"
+              },
+              "requests": {
+                "cpu": "2",
+                "ephemeral-storage": "2Gi",
+                "memory": "32Gi"
+              }
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              },
+              "readOnlyRootFilesystem": true
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File",
+            "volumeMounts": [
+              {
+                "mountPath": "/models",
+                "name": "models",
+                "readOnly": true
+              },
+              {
+                "mountPath": "/config",
+                "name": "config",
+                "readOnly": true
+              },
+              {
+                "mountPath": "/tmp",
+                "name": "tmp"
+              },
+              {
+                "mountPath": "/shared",
+                "name": "shared"
+              }
+            ]
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "imagePullSecrets": [
+          {
+            "name": "harbor"
+          }
+        ],
+        "restartPolicy": "Never",
+        "runtimeClassName": "nvidia",
+        "schedulerName": "hami-scheduler",
+        "securityContext": {
+          "fsGroup": 10001,
+          "fsGroupChangePolicy": "OnRootMismatch",
+          "runAsGroup": 10001,
+          "runAsNonRoot": true,
+          "runAsUser": 10001
+        },
+        "terminationGracePeriodSeconds": 30,
+        "volumes": [
+          {
+            "name": "models",
+            "persistentVolumeClaim": {
+              "claimName": "antigen-esmfold2-models"
+            }
+          },
+          {
+            "configMap": {
+              "defaultMode": 420,
+              "name": "antigen-esmfold2-capacity393-r01"
+            },
+            "name": "config"
+          },
+          {
+            "emptyDir": {
+              "sizeLimit": "8Gi"
+            },
+            "name": "tmp"
+          },
+          {
+            "name": "shared",
+            "persistentVolumeClaim": {
+              "claimName": "antigen-design-runtime"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "status": {
+    "completionTime": "2026-09-18T00:31:49Z",
+    "conditions": [
+      {
+        "lastProbeTime": "2026-09-18T00:31:49Z",
+        "lastTransitionTime": "2026-09-18T00:31:49Z",
+        "message": "Reached expected number of succeeded pods",
+        "reason": "CompletionsReached",
+        "status": "True",
+        "type": "SuccessCriteriaMet"
+      },
+      {
+        "lastProbeTime": "2026-09-18T00:31:49Z",
+        "lastTransitionTime": "2026-09-18T00:31:49Z",
+        "message": "Reached expected number of succeeded pods",
+        "reason": "CompletionsReached",
+        "status": "True",
+        "type": "Complete"
+      }
+    ],
+    "ready": 0,
+    "startTime": "2026-09-18T00:30:24Z",
+    "succeeded": 1,
+    "terminating": 0,
+    "uncountedTerminatedPods": {}
+  }
+}

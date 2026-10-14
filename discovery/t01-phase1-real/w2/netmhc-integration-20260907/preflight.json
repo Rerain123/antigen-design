@@ -1,0 +1,53 @@
+{
+  "checked_on": "2026-09-07",
+  "status": "BLOCKED_ON_LICENSED_ASSETS",
+  "qualification": "ENGINEERING_PREFLIGHT_ONLY",
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED",
+  "local_search": {
+    "result": "NO_NETMHC_PACKAGES_FOUND",
+    "searched_roots": [
+      "C:/Users/wing/Downloads",
+      "C:/Users/wing/Desktop",
+      "C:/Users/wing/Documents",
+      "D:/work"
+    ],
+    "excluded_independent_project": "D:/work/蛋白智能体/工具部署"
+  },
+  "docker": {
+    "server_version": "29.5.3",
+    "netmhc_images_found": 0,
+    "existing_t01_images": [
+      "t01-bepipred-development:3.0-bp3-0.0.12.7-20260906",
+      "t01-deeptmhmm-academic:1.0-cpu-20260905",
+      "t01-freesasa-g0:2.2.1-20260905"
+    ]
+  },
+  "registered_smoke": {
+    "runtime_root": "D:/work/蛋白智能体/var/t01-phase1-real/netmhc-admission-smoke-20260907",
+    "job_id": "t01p1r-job-762f538de05b45548f217ad1be7ce060",
+    "tool_id": "t01.real.netmhc",
+    "node_id": "N05",
+    "execution_profile_sha256": "fb5f858516272710ec30c4eb9a5c5779235f0bfbeac91e5d97896220c9e0831f",
+    "state": "failed",
+    "error_code": "ASSET_MISSING",
+    "container_started": false,
+    "diagnostic_published": true,
+    "usable_for_pipeline": false
+  },
+  "verification": {
+    "netmhc_tests": "32 passed",
+    "shared_targeted_tests": "268 passed",
+    "root_tests": "1126 passed, 1 existing Windows symlink privilege skip",
+    "documentation": "PASS; 191 Markdown files"
+  },
+  "not_present": [
+    "NetMHCpan 4.2 academic Linux archive and hash",
+    "NetMHCIIpan 4.3 academic Linux archive and hash",
+    "licence record",
+    "package-local allele inventories",
+    "observed standalone CLI command and output",
+    "pinned offline image",
+    "real-output acceptance index.json"
+  ]
+}

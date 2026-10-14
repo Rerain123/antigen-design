@@ -1,0 +1,28 @@
+{
+  "status": "DEPLOYED_AND_VERIFIED",
+  "scope": "Read-only native report archive delivery; scientific results unchanged",
+  "source_files": {
+    "src/t01_phase1_real/service_api/native_results.py": "c9eb355591930ff329424b2572db3944eb6e3c9b3430adc5a94ac89f6d520adf",
+    "src/t01_phase1_real/service_api/object_storage.py": "b65a82be0192bcd42642aaef65a2ae92e2f73a2b70b1d4602c1f9ed45d84107f"
+  },
+  "root_cause": "The existing native export exceeded both the 512 MiB expanded and 64 MiB compressed limits, preventing report publication.",
+  "changes": [
+    "Compress each hash-verified member before reading the next raw artifact",
+    "Retain single-file 32 MiB bound, use 1 GiB total expanded and 128 MiB compressed bounds",
+    "Match RustFS native attachment bound to 128 MiB; ordinary report bound remains 32 MiB",
+    "Preserve ownership, request/producer binding, hashes, deterministic archive bytes and immutable publication keys"
+  ],
+  "tests": {
+    "receipt": "export-fix-tests.xml",
+    "passed": 145,
+    "failed": 0,
+    "skipped": 0
+  },
+  "real_read_only_probe": "export-probe.json",
+  "scientific_jobs_submitted": 0,
+  "online_deployed": true,
+  "committed": true,
+  "pushed": true,
+  "deployed_commit": "98a24c83432bf9869884f8a32e1cc1c339e3b3b5",
+  "deployment_receipt": "deployment-r02/closeout.json"
+}

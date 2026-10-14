@@ -1,0 +1,31 @@
+{
+  "status": "HIMAT_SEQUENCE_DEPLOYED_HASH_PASS",
+  "observed_at_utc": "2026-09-24T02:40:51.139737+00:00",
+  "deployment": "him-ws/antigen-design",
+  "source_hashes": {
+    "service_api/transport.py": "312056f67b8d6a9281118371ddd14ef97eaa2b6ffb186e18768a8db4fbf371bc",
+    "service_api/himat.py": "f63362f4549613300f122064a1b169e4743d0eb2f2ce004faeb773b37e9542a5",
+    "development/workflow/policy.py": "d951a4016dae03a97742b12143d736c51fee486ad8d104d12dcbf31f8e71a0ca",
+    "development/esmfold2/policy.py": "39d5d8876b1a17558f9c651a8dab51ac863e476db0a686bdd5b7d810f1535692",
+    "development/esmfold2/profile.json": "6f078c3e5c4f76187ce7c658e4423193f75093c15397499842fb3765cb2b3df9"
+  },
+  "gpu_worker_hashes": {
+    "policy_sha256": "39d5d8876b1a17558f9c651a8dab51ac863e476db0a686bdd5b7d810f1535692",
+    "profile_sha256": "6f078c3e5c4f76187ce7c658e4423193f75093c15397499842fb3765cb2b3df9",
+    "profile_max_aa": 999
+  },
+  "himat_scopes": [
+    "query",
+    "download"
+  ],
+  "himat_tools": [
+    "t01_phase1_real_service_v01.tool.workflow.submit_sequence",
+    "t01_phase1_real_service_v01.tool.workflow.check"
+  ],
+  "submission_suspended": true,
+  "fixed_sample_tool_absent": true,
+  "new_workflow_submitted": false,
+  "scientific_gate": "CLOSED",
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED"
+}

@@ -1,0 +1,33 @@
+{
+  "scope": "ISOLATED_LOCAL_DOCKER_G0_RAW_OUTPUT",
+  "python": "3.11.16",
+  "os": "Linux-6.18.33.1-microsoft-standard-WSL2-x86_64-with-glibc2.36",
+  "freesasa_python_version": "2.2.1",
+  "biopython_version": "1.88",
+  "numpy_version": "2.4.6",
+  "freesasa_module": {
+    "path": "/usr/local/lib/python3.11/site-packages/freesasa.cpython-311-x86_64-linux-gnu.so",
+    "size_bytes": 2253008,
+    "sha256": "218450bc4d196da9cf99c5b210ff0cb1e4a70c1c9378ce3933e8b892804cfd91"
+  },
+  "license_metadata": "MIT",
+  "default_structure_options": {
+    "hetatm": false,
+    "hydrogen": false,
+    "join-models": false,
+    "skip-unknown": false,
+    "halt-at-unknown": false
+  },
+  "effective_parameters": {
+    "algorithm": "LeeRichards",
+    "probe-radius": 1.4,
+    "n-points": 100,
+    "n-slices": 20,
+    "n-threads": 1
+  },
+  "parameter_scope": "Observed package defaults for G0; production profile not approved",
+  "network_interfaces": [
+    "lo"
+  ],
+  "network_scope": "Runtime launched with Docker network=none; dependencies fetched during image build"
+}

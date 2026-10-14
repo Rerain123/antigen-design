@@ -1,0 +1,169 @@
+{
+  "scope": "LOCAL_DEVELOPMENT_NOT_CUSTOMER_TARGET",
+  "recorded_at": "2026-09-05T07:45:02.868342+00:00",
+  "python": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "commands": {
+    "docker": "C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.EXE",
+    "wsl": "C:\\Windows\\system32\\wsl.EXE",
+    "nvidia-smi": "C:\\Windows\\system32\\nvidia-smi.EXE",
+    "biolib": null,
+    "deeptmhmm": null,
+    "dtu_protein_predict": null
+  },
+  "python_packages": {},
+  "disks": {
+    "C:/": {
+      "total": 322144563200,
+      "used": 222528106496,
+      "free": 99616456704
+    },
+    "D:/": {
+      "total": 700595564544,
+      "used": 54728019968,
+      "free": 645867544576
+    }
+  },
+  "observations": [
+    {
+      "command": [
+        "docker",
+        "context",
+        "inspect",
+        "--format",
+        "{{.Endpoints.docker.Host}}"
+      ],
+      "started_at": "2026-09-05T07:44:57.622656+00:00",
+      "elapsed_seconds": 0.1584969999967143,
+      "exit_code": 0,
+      "stdout": "npipe:////./pipe/dockerDesktopLinuxEngine\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "version",
+        "--format",
+        "{{json .Server}}"
+      ],
+      "started_at": "2026-09-05T07:44:57.781272+00:00",
+      "elapsed_seconds": 0.18669869999939692,
+      "exit_code": 0,
+      "stdout": "{\"Platform\":{\"Name\":\"Docker Desktop 4.77.0 (228796)\"},\"Version\":\"29.5.3\",\"ApiVersion\":\"1.54\",\"MinAPIVersion\":\"1.40\",\"Os\":\"linux\",\"Arch\":\"amd64\",\"Components\":[{\"Name\":\"Engine\",\"Version\":\"29.5.3\",\"Details\":{\"ApiVersion\":\"1.54\",\"Arch\":\"amd64\",\"BuildTime\":\"Wed Jun  3 17:59:56 2026\",\"Experimental\":\"false\",\"GitCommit\":\"285b471\",\"GoVersion\":\"go1.26.4\",\"KernelVersion\":\"6.18.33.1-microsoft-standard-WSL2\",\"MinAPIVersion\":\"1.40\",\"Module\":\"github.com/moby/moby/v2\",\"ModuleVersion\":\"v2.0.0+unknown\",\"Os\":\"linux\"}},{\"Name\":\"containerd\",\"Version\":\"v2.2.4\",\"Details\":{\"GitCommit\":\"193637f7ee8ae5f5aa5248f49e7baa3e6164966e\"}},{\"Name\":\"runc\",\"Version\":\"1.3.5\",\"Details\":{\"GitCommit\":\"v1.3.5-0-g488fc13e\"}},{\"Name\":\"docker-init\",\"Version\":\"0.19.0\",\"Details\":{\"GitCommit\":\"de40ad0\"}}],\"GitCommit\":\"285b471\",\"GoVersion\":\"go1.26.4\",\"KernelVersion\":\"6.18.33.1-microsoft-standard-WSL2\",\"BuildTime\":\"2026-06-03T17:59:56.000000000+00:00\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "info",
+        "--format",
+        "{\"cpus\":{{.NCPU}},\"memory_bytes\":{{.MemTotal}},\"os\":\"{{.OSType}}\",\"architecture\":\"{{.Architecture}}\"}"
+      ],
+      "started_at": "2026-09-05T07:44:57.967882+00:00",
+      "elapsed_seconds": 0.6341596999991452,
+      "exit_code": 0,
+      "stdout": "{\"cpus\":32,\"memory_bytes\":16332316672,\"os\":\"linux\",\"architecture\":\"x86_64\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "image",
+        "ls",
+        "--no-trunc",
+        "--format",
+        "{{json .}}"
+      ],
+      "started_at": "2026-09-05T07:44:58.601961+00:00",
+      "elapsed_seconds": 0.29072760000053677,
+      "exit_code": 0,
+      "stdout": "{\"Containers\":\"0\",\"CreatedAt\":\"2026-09-05 14:40:09 +0800 CST\",\"CreatedSince\":\"About an hour ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:bb6c6b5ce1add12dc9bda3538a218568a9e80c048c12525fc130eaa970dbb9e5\",\"Repository\":\"t01-freesasa-g0\",\"SharedSize\":\"N/A\",\"Size\":\"608MB\",\"Tag\":\"2.2.1-20260905\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"0\",\"CreatedAt\":\"2026-09-03 10:36:57 +0800 CST\",\"CreatedSince\":\"2 days ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:b24ecdd9c3392b3da549e39e1021c3a116bb446d1d74208187c5fb59fa2daf2f\",\"Repository\":\"expert-match-no-lfs-test\",\"SharedSize\":\"N/A\",\"Size\":\"794MB\",\"Tag\":\"20260903\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"0\",\"CreatedAt\":\"2026-09-03 10:14:12 +0800 CST\",\"CreatedSince\":\"2 days ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:c3799f7cb013bab4605ec9cb7207ce5859370afed31d4daf692af85f28eda264\",\"Repository\":\"expert-match-bootstrap-test\",\"SharedSize\":\"N/A\",\"Size\":\"640MB\",\"Tag\":\"20260903\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"0\",\"CreatedAt\":\"2026-09-01 08:16:51 +0800 CST\",\"CreatedSince\":\"4 days ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84\",\"Repository\":\"python\",\"SharedSize\":\"N/A\",\"Size\":\"199MB\",\"Tag\":\"3.11-slim-bookworm\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"4\",\"CreatedAt\":\"2026-08-25 19:14:33 +0800 CST\",\"CreatedSince\":\"10 days ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:52be6088dd842e01bc58cdb23a701266a55aa3814b24057c18adfb4d351f8079\",\"Repository\":\"langgenius/dify-api\",\"SharedSize\":\"N/A\",\"Size\":\"4.06GB\",\"Tag\":\"1.17.0\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"1\",\"CreatedAt\":\"2026-08-25 19:12:20 +0800 CST\",\"CreatedSince\":\"10 days ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:6a81fcdd82b51f6fe3436cdc25d1a358cd301a2c3457554bf96de7f5f32a6b5a\",\"Repository\":\"langgenius/dify-web\",\"SharedSize\":\"N/A\",\"Size\":\"892MB\",\"Tag\":\"1.17.0\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"1\",\"CreatedAt\":\"2026-08-25 19:11:34 +0800 CST\",\"CreatedSince\":\"10 days ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:bdb2ed516bd3c872007c128f67c3a3218c6bf20fd6bae32f274ba3cb884ec4d6\",\"Repository\":\"langgenius/dify-agent-backend\",\"SharedSize\":\"N/A\",\"Size\":\"1.45GB\",\"Tag\":\"1.17.0\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"1\",\"CreatedAt\":\"2026-08-25 19:10:10 +0800 CST\",\"CreatedSince\":\"10 days ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:316279a82ead635306071d2b6a2ee15395daec10e0348f2002c101403d107646\",\"Repository\":\"langgenius/dify-agent-local-sandbox\",\"SharedSize\":\"N/A\",\"Size\":\"779MB\",\"Tag\":\"1.17.0\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"0\",\"CreatedAt\":\"2026-08-25 08:41:53 +0800 CST\",\"CreatedSince\":\"11 days ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:1c59e2c3c818eaa0f0628f695b36e7c9e362d6b219b36a54a32df645cbd7e1af\",\"Repository\":\"postgres\",\"SharedSize\":\"N/A\",\"Size\":\"630MB\",\"Tag\":\"18-bookworm\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"1\",\"CreatedAt\":\"2026-08-25 08:22:27 +0800 CST\",\"CreatedSince\":\"11 days ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:b34848eff6db786b6b1282d3a9c3fd0b5563dfb6d261df4923378b419e0d24f0\",\"Repository\":\"nginx\",\"SharedSize\":\"N/A\",\"Size\":\"241MB\",\"Tag\":\"latest\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"1\",\"CreatedAt\":\"2026-08-19 00:58:05 +0800 CST\",\"CreatedSince\":\"2 weeks ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:d0c875bdacfb5c4d2c2d9124de3f53cee1dc9ceff8936bd459fabc135cb33015\",\"Repository\":\"redis\",\"SharedSize\":\"N/A\",\"Size\":\"41.8MB\",\"Tag\":\"6-alpine\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"1\",\"CreatedAt\":\"2026-08-14 03:19:07 +0800 CST\",\"CreatedSince\":\"3 weeks ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:fe0737ba566a2c5b2a28f34433c0a423261900ec17b9bf7ad115e1aae7e57f1b\",\"Repository\":\"postgres\",\"SharedSize\":\"N/A\",\"Size\":\"417MB\",\"Tag\":\"15-alpine\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"1\",\"CreatedAt\":\"2026-08-07 13:53:27 +0800 CST\",\"CreatedSince\":\"4 weeks ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:34412a22d1e1d1a6c73727fef88cffbcdd9be7a21bf9ad3076b4bf5c1b88fd9b\",\"Repository\":\"langgenius/dify-plugin-daemon\",\"SharedSize\":\"N/A\",\"Size\":\"2.28GB\",\"Tag\":\"0.6.10-local\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"0\",\"CreatedAt\":\"2026-07-30 09:49:25 +0800 CST\",\"CreatedSince\":\"5 weeks ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:7edb6f140a091de21eae8a4120b0821cb4fd8a8481e52729cc7859161e2e5c9f\",\"Repository\":\"primer3web\",\"SharedSize\":\"N/A\",\"Size\":\"271MB\",\"Tag\":\"4.1.0\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"1\",\"CreatedAt\":\"2026-05-28 22:42:28 +0800 CST\",\"CreatedSince\":\"3 months ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:7e6567253cbf1a21329b84bd82485e8cc2e4ae940b1b7386d1b6e91aecd8d760\",\"Repository\":\"agentmemory/hermes-memory\",\"SharedSize\":\"N/A\",\"Size\":\"3.04GB\",\"Tag\":\"1.0.0-beta\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"1\",\"CreatedAt\":\"2026-05-13 10:21:49 +0800 CST\",\"CreatedSince\":\"3 months ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:dc2d74b28e4cf8984fa52af1f39bc7c3d9c73760b41a74d629f5d11b1ab28616\",\"Repository\":\"busybox\",\"SharedSize\":\"N/A\",\"Size\":\"6.81MB\",\"Tag\":\"latest\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"1\",\"CreatedAt\":\"2026-04-27 10:03:55 +0800 CST\",\"CreatedSince\":\"4 months ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:750e1111426ef31a9217b81c98cccfb750f17b182af3221102e420afa9f0928e\",\"Repository\":\"langgenius/dify-sandbox\",\"SharedSize\":\"N/A\",\"Size\":\"848MB\",\"Tag\":\"0.2.15\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"1\",\"CreatedAt\":\"2026-03-24 05:33:59 +0800 CST\",\"CreatedSince\":\"5 months ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:96498ffd522e70807ab6384a5c0485a79b9c7c08ca79ba08623edcad1054e62d\",\"Repository\":\"hello-world\",\"SharedSize\":\"N/A\",\"Size\":\"25.9kB\",\"Tag\":\"latest\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"2\",\"CreatedAt\":\"2025-11-24 21:31:32 +0800 CST\",\"CreatedSince\":\"9 months ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:6a097f68bae708cedbabd6188d68c7e2e7a38cedd05a176e1cc0ba29e3bbe029\",\"Repository\":\"ubuntu/squid\",\"SharedSize\":\"N/A\",\"Size\":\"303MB\",\"Tag\":\"latest\",\"UniqueSize\":\"N/A\"}\n{\"Containers\":\"1\",\"CreatedAt\":\"2024-10-17 00:53:31 +0800 CST\",\"CreatedSince\":\"22 months ago\",\"Digest\":\"\\u003cnone\\u003e\",\"ID\":\"sha256:53fa576934f8e2c9130dc3a61a0f9b7d9330fe0ff456ccb37db05d03b700abc9\",\"Repository\":\"semitechnologies/weaviate\",\"SharedSize\":\"N/A\",\"Size\":\"234MB\",\"Tag\":\"1.27.0\",\"UniqueSize\":\"N/A\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "ps",
+        "--format",
+        "{{.Names}} {{.Image}} {{.Status}}"
+      ],
+      "started_at": "2026-09-05T07:44:58.892620+00:00",
+      "elapsed_seconds": 0.231435199999396,
+      "exit_code": 0,
+      "stdout": "docker-api-1 langgenius/dify-api:1.17.0 Up About an hour (healthy)\ndocker-agent_backend-1 langgenius/dify-agent-backend:1.17.0 Up About an hour\ndocker-plugin_daemon-1 langgenius/dify-plugin-daemon:0.6.10-local Up About an hour\ndocker-ssrf_proxy-1 ubuntu/squid:latest Up About an hour\ndocker-nginx-1 nginx:latest Up About an hour\ndocker-worker-1 langgenius/dify-api:1.17.0 Up About an hour\ndocker-api_websocket-1 langgenius/dify-api:1.17.0 Up About an hour\ndocker-worker_beat-1 langgenius/dify-api:1.17.0 Up About an hour\ndocker-sandbox-1 langgenius/dify-sandbox:0.2.15 Up About an hour (healthy)\ndocker-web-1 langgenius/dify-web:1.17.0 Up About an hour\ndocker-agent_ssrf_proxy-1 ubuntu/squid:latest Up About an hour\ndocker-local_sandbox-1 langgenius/dify-agent-local-sandbox:1.17.0 Up About an hour (healthy)\ndocker-db_postgres-1 postgres:15-alpine Up About an hour (healthy)\ndocker-redis-1 redis:6-alpine Up About an hour (healthy)\ndocker-weaviate-1 semitechnologies/weaviate:1.27.0 Up About an hour\nhermes-memory agentmemory/hermes-memory:1.0.0-beta Up About an hour (healthy)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "wsl",
+        "--list",
+        "--verbose"
+      ],
+      "started_at": "2026-09-05T07:44:59.124205+00:00",
+      "elapsed_seconds": 0.0594755999991321,
+      "exit_code": 0,
+      "stdout": "  NAME              STATE           VERSION\r\n* Ubuntu            Stopped         2\r\n  docker-desktop    Running         2\r\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=name,memory.total,driver_version",
+        "--format=csv,noheader"
+      ],
+      "started_at": "2026-09-05T07:44:59.190624+00:00",
+      "elapsed_seconds": 0.05147759999817936,
+      "exit_code": 0,
+      "stdout": "NVIDIA GeForce RTX 5070 Ti Laptop GPU, 12227 MiB, 591.74\r\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "wsl",
+        "-d",
+        "Ubuntu",
+        "--exec",
+        "python3",
+        "-c",
+        "import json,shutil,sys; from importlib import metadata; print(json.dumps({'python':sys.version,'commands':{n:shutil.which(n) for n in ['biolib','deeptmhmm','dtu_protein_predict']},'packages':{d.metadata['Name']:d.version for d in metadata.distributions() if any(t in d.metadata['Name'].lower() for t in ['biolib','deeptm','torch'])}}))"
+      ],
+      "started_at": "2026-09-05T07:44:59.241668+00:00",
+      "elapsed_seconds": 3.6259054000001925,
+      "exit_code": 0,
+      "stdout": "{\"python\": \"3.14.4 (main, Apr  8 2026, 04:02:31) [GCC 15.2.0]\", \"commands\": {\"biolib\": null, \"deeptmhmm\": null, \"dtu_protein_predict\": null}, \"packages\": {}}\n",
+      "stderr": "wsl: 检测到 localhost 代理配置，但未镜像到 WSL。NAT 模式下的 WSL 不支持 localhost 代理。\r\n"
+    }
+  ],
+  "expert_sources_before": {
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/AgentA_Schema_v10.5_20260902.md": "8121bbe5078badb63d0c53aa7ac08e7da693de81918bef540d3f60e4fa58135e",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/AgentA_SKILL_v10.5_20260902.md": "b9bf71d60046acc32422a16aecbb3d1f4376824a6512d867ebdbb23588ee1833",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/AgentA_SOP_v10.5_20260902.md": "856019022796f13413208f844d53aa82f10278215676fcf5177daa98f645160c",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/camsol_params.json": "fb135655bf2bf326db5c94a3c914a6a85eb2dd0de1bf6aa909ca2f8f27f629f4",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/camsol_params.json.sha256": "05bf151be4adb0659294254f704b05a2bed43884dcb872dd22e00d899ec184f4",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_A1_NetMHCpan_v10.5.md": "be60d67d0e87bd7a9f3f8cfd08f92890cd245d036139ed939a374a0c629379e0",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_A3_BepiPred_v10.5.md": "162d5576f0a4f02842f06f94f93d6a3cb8dbff158429ef24a5ea72151717bd97",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_A5_DeepTMHMM_v10.5.md": "95b377f9a401d7bcf663fb8b85b0733d1d451c3213f3e6116217c949acde53a9",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_C15_ProteinMPNN_v10.5.md": "7a14dec74871a33e1a964ceda0f22b874196953cafd16f020590c8c42ae69948",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_C18_ESM-IF1_v10.5.md": "bb6e3245b1c071bffb2579c400b3b880fe434ca1220c93bbc214253ba24f16b8",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_C20_IEDB镜像_BLAST_v10.5.md": "a89fe2ccd80012a0c47519bbf5fd0549f651f0eab902b5be22ce9d60703e119b",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_C24_PROPKA_v10.5.md": "2a0d8a7d964e5c7449903b102f4d0d3d1f72f42b478e50926f91fe9f8fa002a7",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_C34_FreeSASA_v10.5.md": "36915039a7c89f9cbf3911b02b5a7bdc1c7bccc4233b0da5c35f4e3940701221",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_C35_FoldX_v10.5.md": "c1d6d72d70b982a01e57e528835d5cfffc85f0388e1c86cb7e9422f75b48551d",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_C43_ThermoMPNN_v10.5.md": "948ea6f2291f81ee5c6cc5a4da5c67cb4a1b82c3d2b2fdd90274bc7b563de8d0",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_C44_CamSol重实现_v10.5.md": "bd1195e86d520a10a7b2a77e715d7d73ab6d29109feed50e208fed53c68f3bb9",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_C45_AGGRESCAN3D_v10.5.md": "3e7bb65a06aa13ecc515a3ab40d511569a0714bf4540f366a4b362d0a74cc130",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_UniProt注释接口_v10.5.md": "9fbe2cc77d74f80b668e1899062a87b56ddaaf4f5346446f58a78b7bdd751e9e",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_结构预测获取链_v10.5.md": "b44f9e3662c751b637702531215faa96e0a3b0c450be9f8dd725d7bac55b6721",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/一期实施环境清单_v10.5.md": "89e8d2a2fb20b0dfe5a0cf200f403cde9c91444756c60ba62b621d1c98c22f3a",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/一期裁剪算法图（一期 18 节点 + 落地优先级）.md": "ee4a3e5dfa85f9e19eda60edb46bfd6735a2233cbd4d94038d6100a7c66e3f87",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/交付说明.md": "a7cd4b7723d81dab17494457fd273d5906394defb456e63f6fc8cc14f025d725"
+  },
+  "collector_sha256": "f9cc86234c53db6b18ff51c98b0998b68907214fcdba6df18376f92cce49a0fc",
+  "limitations": [
+    "No customer server access/profile supplied",
+    "No search inside unrelated Docker images or independent deployment project",
+    "No license entitlement inferred from package availability"
+  ],
+  "model_execution": "NOT_RUN",
+  "production_status": "NOT_DEPLOYED"
+}

@@ -1,0 +1,187 @@
+{
+  "apiVersion": "batch/v1",
+  "kind": "Job",
+  "metadata": {
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"batch/v1\",\"kind\":\"Job\",\"metadata\":{\"annotations\":{},\"labels\":{\"app\":\"antigen-esmfold2-validation\"},\"name\":\"antigen-esmfold2-validation-r03\",\"namespace\":\"him-ws\"},\"spec\":{\"activeDeadlineSeconds\":7200,\"backoffLimit\":0,\"template\":{\"metadata\":{\"annotations\":{\"antigen-design/repair-source-sha256\":\"0d131998678a98690701d241db748d66ed849610aa9b054d589475fca78d56f4\"},\"labels\":{\"app\":\"antigen-esmfold2-validation\"}},\"spec\":{\"automountServiceAccountToken\":false,\"containers\":[{\"args\":[\"--input\",\"/config/request.json\",\"--output-dir\",\"/runs/engineering-r03\",\"--profile\",\"/config/profile.json\"],\"command\":[\"python\",\"-u\",\"-B\",\"-c\",\"import hashlib,pathlib,runpy,sys; expected={'run_structure.py': '8763edf2b8d08f79708680792b1ba9c4e7ecff3abc1aea1d331e6a9e0d61a21d', 'esmc_strict_loader.py': '871335fde4d91c984ae6464715ffd4c49e363c3be33f99051d38db9c10219fd7'}; assert all(hashlib.sha256((pathlib.Path(\\\"/config\\\")/n).read_bytes()).hexdigest()==h for n,h in expected.items()), \\\"repair source hash mismatch\\\"; sys.path.insert(0,\\\"/config\\\"); print(\\\"ESMFOLD2_VALIDATION_START r03_strict_checkpoint_loading\\\",flush=True); runpy.run_path(\\\"/config/run_structure.py\\\",run_name=\\\"__main__\\\"); print(\\\"ESMFOLD2_VALIDATION_COMPLETED engineering_result_requires_review\\\",flush=True)\"],\"image\":\"harbor-core.base.svc.cluster.local/qcyz/antigen-esmfold2@sha256:372545ebe3469a3d32269c27033d19624d713d75ca162dbe6fff5dafed44f77f\",\"name\":\"worker\",\"resources\":{\"limits\":{\"cpu\":\"8\",\"ephemeral-storage\":\"8Gi\",\"memory\":\"64Gi\",\"nvidia.com/gpu\":1,\"nvidia.com/gpumem\":32768},\"requests\":{\"cpu\":\"2\",\"ephemeral-storage\":\"2Gi\",\"memory\":\"32Gi\"}},\"securityContext\":{\"allowPrivilegeEscalation\":false,\"capabilities\":{\"drop\":[\"ALL\"]},\"readOnlyRootFilesystem\":true},\"volumeMounts\":[{\"mountPath\":\"/models\",\"name\":\"models\",\"readOnly\":true},{\"mountPath\":\"/runs\",\"name\":\"runtime\"},{\"mountPath\":\"/config\",\"name\":\"config\",\"readOnly\":true},{\"mountPath\":\"/tmp\",\"name\":\"tmp\"}]}],\"imagePullSecrets\":[{\"name\":\"harbor\"}],\"restartPolicy\":\"Never\",\"runtimeClassName\":\"nvidia\",\"schedulerName\":\"hami-scheduler\",\"securityContext\":{\"fsGroup\":10001,\"fsGroupChangePolicy\":\"OnRootMismatch\",\"runAsGroup\":10001,\"runAsNonRoot\":true,\"runAsUser\":10001},\"volumes\":[{\"name\":\"models\",\"persistentVolumeClaim\":{\"claimName\":\"antigen-esmfold2-models\"}},{\"name\":\"runtime\",\"persistentVolumeClaim\":{\"claimName\":\"antigen-esmfold2-runtime\"}},{\"configMap\":{\"name\":\"antigen-esmfold2-validation-r03\"},\"name\":\"config\"},{\"emptyDir\":{\"sizeLimit\":\"8Gi\"},\"name\":\"tmp\"}]}}}}\n"
+    },
+    "creationTimestamp": "2026-09-17T03:13:20Z",
+    "generation": 1,
+    "labels": {
+      "app": "antigen-esmfold2-validation"
+    },
+    "name": "antigen-esmfold2-validation-r03",
+    "namespace": "him-ws",
+    "resourceVersion": "45047353",
+    "uid": "25620762-2d48-4a79-abb0-ae721b3158ec"
+  },
+  "spec": {
+    "activeDeadlineSeconds": 7200,
+    "backoffLimit": 0,
+    "completionMode": "NonIndexed",
+    "completions": 1,
+    "manualSelector": false,
+    "parallelism": 1,
+    "podReplacementPolicy": "TerminatingOrFailed",
+    "selector": {
+      "matchLabels": {
+        "batch.kubernetes.io/controller-uid": "25620762-2d48-4a79-abb0-ae721b3158ec"
+      }
+    },
+    "suspend": false,
+    "template": {
+      "metadata": {
+        "annotations": {
+          "antigen-design/repair-source-sha256": "0d131998678a98690701d241db748d66ed849610aa9b054d589475fca78d56f4"
+        },
+        "labels": {
+          "app": "antigen-esmfold2-validation",
+          "batch.kubernetes.io/controller-uid": "25620762-2d48-4a79-abb0-ae721b3158ec",
+          "batch.kubernetes.io/job-name": "antigen-esmfold2-validation-r03",
+          "controller-uid": "25620762-2d48-4a79-abb0-ae721b3158ec",
+          "job-name": "antigen-esmfold2-validation-r03"
+        }
+      },
+      "spec": {
+        "automountServiceAccountToken": false,
+        "containers": [
+          {
+            "args": [
+              "--input",
+              "/config/request.json",
+              "--output-dir",
+              "/runs/engineering-r03",
+              "--profile",
+              "/config/profile.json"
+            ],
+            "command": [
+              "python",
+              "-u",
+              "-B",
+              "-c",
+              "import hashlib,pathlib,runpy,sys; expected={'run_structure.py': '8763edf2b8d08f79708680792b1ba9c4e7ecff3abc1aea1d331e6a9e0d61a21d', 'esmc_strict_loader.py': '871335fde4d91c984ae6464715ffd4c49e363c3be33f99051d38db9c10219fd7'}; assert all(hashlib.sha256((pathlib.Path(\"/config\")/n).read_bytes()).hexdigest()==h for n,h in expected.items()), \"repair source hash mismatch\"; sys.path.insert(0,\"/config\"); print(\"ESMFOLD2_VALIDATION_START r03_strict_checkpoint_loading\",flush=True); runpy.run_path(\"/config/run_structure.py\",run_name=\"__main__\"); print(\"ESMFOLD2_VALIDATION_COMPLETED engineering_result_requires_review\",flush=True)"
+            ],
+            "image": "harbor-core.base.svc.cluster.local/qcyz/antigen-esmfold2@sha256:372545ebe3469a3d32269c27033d19624d713d75ca162dbe6fff5dafed44f77f",
+            "imagePullPolicy": "IfNotPresent",
+            "name": "worker",
+            "resources": {
+              "limits": {
+                "cpu": "8",
+                "ephemeral-storage": "8Gi",
+                "memory": "64Gi",
+                "nvidia.com/gpu": "1",
+                "nvidia.com/gpumem": "32768"
+              },
+              "requests": {
+                "cpu": "2",
+                "ephemeral-storage": "2Gi",
+                "memory": "32Gi"
+              }
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              },
+              "readOnlyRootFilesystem": true
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File",
+            "volumeMounts": [
+              {
+                "mountPath": "/models",
+                "name": "models",
+                "readOnly": true
+              },
+              {
+                "mountPath": "/runs",
+                "name": "runtime"
+              },
+              {
+                "mountPath": "/config",
+                "name": "config",
+                "readOnly": true
+              },
+              {
+                "mountPath": "/tmp",
+                "name": "tmp"
+              }
+            ]
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "imagePullSecrets": [
+          {
+            "name": "harbor"
+          }
+        ],
+        "restartPolicy": "Never",
+        "runtimeClassName": "nvidia",
+        "schedulerName": "hami-scheduler",
+        "securityContext": {
+          "fsGroup": 10001,
+          "fsGroupChangePolicy": "OnRootMismatch",
+          "runAsGroup": 10001,
+          "runAsNonRoot": true,
+          "runAsUser": 10001
+        },
+        "terminationGracePeriodSeconds": 30,
+        "volumes": [
+          {
+            "name": "models",
+            "persistentVolumeClaim": {
+              "claimName": "antigen-esmfold2-models"
+            }
+          },
+          {
+            "name": "runtime",
+            "persistentVolumeClaim": {
+              "claimName": "antigen-esmfold2-runtime"
+            }
+          },
+          {
+            "configMap": {
+              "defaultMode": 420,
+              "name": "antigen-esmfold2-validation-r03"
+            },
+            "name": "config"
+          },
+          {
+            "emptyDir": {
+              "sizeLimit": "8Gi"
+            },
+            "name": "tmp"
+          }
+        ]
+      }
+    }
+  },
+  "status": {
+    "completionTime": "2026-09-17T03:16:16Z",
+    "conditions": [
+      {
+        "lastProbeTime": "2026-09-17T03:16:16Z",
+        "lastTransitionTime": "2026-09-17T03:16:16Z",
+        "message": "Reached expected number of succeeded pods",
+        "reason": "CompletionsReached",
+        "status": "True",
+        "type": "SuccessCriteriaMet"
+      },
+      {
+        "lastProbeTime": "2026-09-17T03:16:16Z",
+        "lastTransitionTime": "2026-09-17T03:16:16Z",
+        "message": "Reached expected number of succeeded pods",
+        "reason": "CompletionsReached",
+        "status": "True",
+        "type": "Complete"
+      }
+    ],
+    "ready": 0,
+    "startTime": "2026-09-17T03:13:20Z",
+    "succeeded": 1,
+    "terminating": 0,
+    "uncountedTerminatedPods": {}
+  }
+}

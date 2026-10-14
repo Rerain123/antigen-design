@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="5" skipped="0" tests="93" time="45.634" timestamp="2026-10-10T17:04:08.558907+08:00" hostname="DESKTOP-8B96JVR"><testcase classname="tests.test_controller_latency" name="test_exact_inputs_fresh_objects_and_scope_cleanup" time="0.000" /><testcase classname="tests.test_controller_latency" name="test_bounds_and_thread_isolation" time="0.001" /><testcase classname="tests.test_controller_latency" name="test_traversal_exception_clears_cache" time="0.000" /><testcase classname="tests.test_controller_latency" name="test_only_exact_maintenance_predictor_pair_is_compatible" time="0.001" /><testcase classname="tests.test_controller_latency" name="test_maintenance_wait_does_not_reset_active_time" time="0.001" /><testcase classname="tests.test_controller_latency" name="test_operator_maintenance_preserves_original_run[None]" time="0.110"><failure message="t01_phase1_real.common.RuntimeFault: Request or snapshot violates additive development job schema">tmp_path = WindowsPath('D:/work/antigen.design/.tmp/latency-tests-r03/test_operator_maintenance_pres0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001FD1EF02810&gt;
+damage = None
+
+    @pytest.mark.parametrize('damage',[None,'science_source','checkpoint','time','predictor'])
+    def test_operator_maintenance_preserves_original_run(tmp_path,monkeypatch,damage):
+        from t01_phase1_real.common import encode,sha
+        from t01_phase1_real.development import Runtime
+        from t01_phase1_real.service_api import controller_maintenance as maintenance
+        from t01_phase1_real.service_api.controller_recovery import accepted
+        from t01_phase1_real.development.workflow import policy
+        from t01_phase1_real.development.bepipred import policy as bp
+        from test_local_workflow import body
+        rt=Runtime(tmp_path/'runtime');original=rt.submit_workflow(encode(body()),'maintenance')
+        jid=original['job_id'];old_profile=dict(id='predictor',version='1',sha256='a'*64)
+        new_profile=dict(old_profile,sha256='b'*64)
+        old=tmp_path/'source'/'src'/'t01_phase1_real'/'development'/'workflow'/'service.py'
+        old.parent.mkdir(parents=True);old.write_bytes(b'new')
+        manifest={'t01_phase1_real/development/workflow/service.py':sha(b'old')}
+        if damage=='science_source':
+            other=old.parent.parent/'scientific.py';other.write_bytes(b'changed')
+            manifest['t01_phase1_real/development/scientific.py']=sha(b'old')
+        monkeypatch.setattr(maintenance,'REPO',tmp_path/'source')
+        monkeypatch.setattr(maintenance,'now',lambda:'2026-10-10T09:00:00Z')
+        monkeypatch.setattr(bp,'registered_profile',lambda:new_profile)
+        with rt._tx() as db:
+            job=rt._job(db,jid);rt._store(db,dict(job,state='running'),job,'fixture')
+            child=dict(job,job_id='t01p1r-job-predictor',state='succeeded',tool_id='t01.real.bepipred',execution_profile=old_profile)
+&gt;           rt._store(db,child,None,'fixture')
+
+tests\test_controller_latency.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\t01_phase1_real\development\runtime.py:95: in _store
+    validate(value,'job')
+src\t01_phase1_real\development\contracts.py:38: in validate
+    ensure(_validators[key].is_valid(value),'INVALID_REQUEST','Request or snapshot violates additive development '+name+' schema')
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = False, code = 'INVALID_REQUEST'
+message = 'Request or snapshot violates additive development job schema'
+
+    def ensure(value, code, message):
+        if not value:
+&gt;           raise RuntimeFault(code,message)
+E           t01_phase1_real.common.RuntimeFault: Request or snapshot violates additive development job schema
+
+src\t01_phase1_real\common.py:30: RuntimeFault</failure></testcase><testcase classname="tests.test_controller_latency" name="test_operator_maintenance_preserves_original_run[science_source]" time="0.087"><failure message="t01_phase1_real.common.RuntimeFault: Request or snapshot violates additive development job schema">tmp_path = WindowsPath('D:/work/antigen.design/.tmp/latency-tests-r03/test_operator_maintenance_pres1')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001FD1EE4B8D0&gt;
+damage = 'science_source'
+
+    @pytest.mark.parametrize('damage',[None,'science_source','checkpoint','time','predictor'])
+    def test_operator_maintenance_preserves_original_run(tmp_path,monkeypatch,damage):
+        from t01_phase1_real.common import encode,sha
+        from t01_phase1_real.development import Runtime
+        from t01_phase1_real.service_api import controller_maintenance as maintenance
+        from t01_phase1_real.service_api.controller_recovery import accepted
+        from t01_phase1_real.development.workflow import policy
+        from t01_phase1_real.development.bepipred import policy as bp
+        from test_local_workflow import body
+        rt=Runtime(tmp_path/'runtime');original=rt.submit_workflow(encode(body()),'maintenance')
+        jid=original['job_id'];old_profile=dict(id='predictor',version='1',sha256='a'*64)
+        new_profile=dict(old_profile,sha256='b'*64)
+        old=tmp_path/'source'/'src'/'t01_phase1_real'/'development'/'workflow'/'service.py'
+        old.parent.mkdir(parents=True);old.write_bytes(b'new')
+        manifest={'t01_phase1_real/development/workflow/service.py':sha(b'old')}
+        if damage=='science_source':
+            other=old.parent.parent/'scientific.py';other.write_bytes(b'changed')
+            manifest['t01_phase1_real/development/scientific.py']=sha(b'old')
+        monkeypatch.setattr(maintenance,'REPO',tmp_path/'source')
+        monkeypatch.setattr(maintenance,'now',lambda:'2026-10-10T09:00:00Z')
+        monkeypatch.setattr(bp,'registered_profile',lambda:new_profile)
+        with rt._tx() as db:
+            job=rt._job(db,jid);rt._store(db,dict(job,state='running'),job,'fixture')
+            child=dict(job,job_id='t01p1r-job-predictor',state='succeeded',tool_id='t01.real.bepipred',execution_profile=old_profile)
+&gt;           rt._store(db,child,None,'fixture')
+
+tests\test_controller_latency.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\t01_phase1_real\development\runtime.py:95: in _store
+    validate(value,'job')
+src\t01_phase1_real\development\contracts.py:38: in validate
+    ensure(_validators[key].is_valid(value),'INVALID_REQUEST','Request or snapshot violates additive development '+name+' schema')
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = False, code = 'INVALID_REQUEST'
+message = 'Request or snapshot violates additive development job schema'
+
+    def ensure(value, code, message):
+        if not value:
+&gt;           raise RuntimeFault(code,message)
+E           t01_phase1_real.common.RuntimeFault: Request or snapshot violates additive development job schema
+
+src\t01_phase1_real\common.py:30: RuntimeFault</failure></testcase><testcase classname="tests.test_controller_latency" name="test_operator_maintenance_preserves_original_run[checkpoint]" time="0.094"><failure message="t01_phase1_real.common.RuntimeFault: Request or snapshot violates additive development job schema">tmp_path = WindowsPath('D:/work/antigen.design/.tmp/latency-tests-r03/test_operator_maintenance_pres2')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001FD4F105250&gt;
+damage = 'checkpoint'
+
+    @pytest.mark.parametrize('damage',[None,'science_source','checkpoint','time','predictor'])
+    def test_operator_maintenance_preserves_original_run(tmp_path,monkeypatch,damage):
+        from t01_phase1_real.common import encode,sha
+        from t01_phase1_real.development import Runtime
+        from t01_phase1_real.service_api import controller_maintenance as maintenance
+        from t01_phase1_real.service_api.controller_recovery import accepted
+        from t01_phase1_real.development.workflow import policy
+        from t01_phase1_real.development.bepipred import policy as bp
+        from test_local_workflow import body
+        rt=Runtime(tmp_path/'runtime');original=rt.submit_workflow(encode(body()),'maintenance')
+        jid=original['job_id'];old_profile=dict(id='predictor',version='1',sha256='a'*64)
+        new_profile=dict(old_profile,sha256='b'*64)
+        old=tmp_path/'source'/'src'/'t01_phase1_real'/'development'/'workflow'/'service.py'
+        old.parent.mkdir(parents=True);old.write_bytes(b'new')
+        manifest={'t01_phase1_real/development/workflow/service.py':sha(b'old')}
+        if damage=='science_source':
+            other=old.parent.parent/'scientific.py';other.write_bytes(b'changed')
+            manifest['t01_phase1_real/development/scientific.py']=sha(b'old')
+        monkeypatch.setattr(maintenance,'REPO',tmp_path/'source')
+        monkeypatch.setattr(maintenance,'now',lambda:'2026-10-10T09:00:00Z')
+        monkeypatch.setattr(bp,'registered_profile',lambda:new_profile)
+        with rt._tx() as db:
+            job=rt._job(db,jid);rt._store(db,dict(job,state='running'),job,'fixture')
+            child=dict(job,job_id='t01p1r-job-predictor',state='succeeded',tool_id='t01.real.bepipred',execution_profile=old_profile)
+&gt;           rt._store(db,child,None,'fixture')
+
+tests\test_controller_latency.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\t01_phase1_real\development\runtime.py:95: in _store
+    validate(value,'job')
+src\t01_phase1_real\development\contracts.py:38: in validate
+    ensure(_validators[key].is_valid(value),'INVALID_REQUEST','Request or snapshot violates additive development '+name+' schema')
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = False, code = 'INVALID_REQUEST'
+message = 'Request or snapshot violates additive development job schema'
+
+    def ensure(value, code, message):
+        if not value:
+&gt;           raise RuntimeFault(code,message)
+E           t01_phase1_real.common.RuntimeFault: Request or snapshot violates additive development job schema
+
+src\t01_phase1_real\common.py:30: RuntimeFault</failure></testcase><testcase classname="tests.test_controller_latency" name="test_operator_maintenance_preserves_original_run[time]" time="0.075"><failure message="t01_phase1_real.common.RuntimeFault: Request or snapshot violates additive development job schema">tmp_path = WindowsPath('D:/work/antigen.design/.tmp/latency-tests-r03/test_operator_maintenance_pres3')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001FD4F0BA1D0&gt;
+damage = 'time'
+
+    @pytest.mark.parametrize('damage',[None,'science_source','checkpoint','time','predictor'])
+    def test_operator_maintenance_preserves_original_run(tmp_path,monkeypatch,damage):
+        from t01_phase1_real.common import encode,sha
+        from t01_phase1_real.development import Runtime
+        from t01_phase1_real.service_api import controller_maintenance as maintenance
+        from t01_phase1_real.service_api.controller_recovery import accepted
+        from t01_phase1_real.development.workflow import policy
+        from t01_phase1_real.development.bepipred import policy as bp
+        from test_local_workflow import body
+        rt=Runtime(tmp_path/'runtime');original=rt.submit_workflow(encode(body()),'maintenance')
+        jid=original['job_id'];old_profile=dict(id='predictor',version='1',sha256='a'*64)
+        new_profile=dict(old_profile,sha256='b'*64)
+        old=tmp_path/'source'/'src'/'t01_phase1_real'/'development'/'workflow'/'service.py'
+        old.parent.mkdir(parents=True);old.write_bytes(b'new')
+        manifest={'t01_phase1_real/development/workflow/service.py':sha(b'old')}
+        if damage=='science_source':
+            other=old.parent.parent/'scientific.py';other.write_bytes(b'changed')
+            manifest['t01_phase1_real/development/scientific.py']=sha(b'old')
+        monkeypatch.setattr(maintenance,'REPO',tmp_path/'source')
+        monkeypatch.setattr(maintenance,'now',lambda:'2026-10-10T09:00:00Z')
+        monkeypatch.setattr(bp,'registered_profile',lambda:new_profile)
+        with rt._tx() as db:
+            job=rt._job(db,jid);rt._store(db,dict(job,state='running'),job,'fixture')
+            child=dict(job,job_id='t01p1r-job-predictor',state='succeeded',tool_id='t01.real.bepipred',execution_profile=old_profile)
+&gt;           rt._store(db,child,None,'fixture')
+
+tests\test_controller_latency.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\t01_phase1_real\development\runtime.py:95: in _store
+    validate(value,'job')
+src\t01_phase1_real\development\contracts.py:38: in validate
+    ensure(_validators[key].is_valid(value),'INVALID_REQUEST','Request or snapshot violates additive development '+name+' schema')
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = False, code = 'INVALID_REQUEST'
+message = 'Request or snapshot violates additive development job schema'
+
+    def ensure(value, code, message):
+        if not value:
+&gt;           raise RuntimeFault(code,message)
+E           t01_phase1_real.common.RuntimeFault: Request or snapshot violates additive development job schema
+
+src\t01_phase1_real\common.py:30: RuntimeFault</failure></testcase><testcase classname="tests.test_controller_latency" name="test_operator_maintenance_preserves_original_run[predictor]" time="0.087"><failure message="t01_phase1_real.common.RuntimeFault: Request or snapshot violates additive development job schema">tmp_path = WindowsPath('D:/work/antigen.design/.tmp/latency-tests-r03/test_operator_maintenance_pres4')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001FD4F4079D0&gt;
+damage = 'predictor'
+
+    @pytest.mark.parametrize('damage',[None,'science_source','checkpoint','time','predictor'])
+    def test_operator_maintenance_preserves_original_run(tmp_path,monkeypatch,damage):
+        from t01_phase1_real.common import encode,sha
+        from t01_phase1_real.development import Runtime
+        from t01_phase1_real.service_api import controller_maintenance as maintenance
+        from t01_phase1_real.service_api.controller_recovery import accepted
+        from t01_phase1_real.development.workflow import policy
+        from t01_phase1_real.development.bepipred import policy as bp
+        from test_local_workflow import body
+        rt=Runtime(tmp_path/'runtime');original=rt.submit_workflow(encode(body()),'maintenance')
+        jid=original['job_id'];old_profile=dict(id='predictor',version='1',sha256='a'*64)
+        new_profile=dict(old_profile,sha256='b'*64)
+        old=tmp_path/'source'/'src'/'t01_phase1_real'/'development'/'workflow'/'service.py'
+        old.parent.mkdir(parents=True);old.write_bytes(b'new')
+        manifest={'t01_phase1_real/development/workflow/service.py':sha(b'old')}
+        if damage=='science_source':
+            other=old.parent.parent/'scientific.py';other.write_bytes(b'changed')
+            manifest['t01_phase1_real/development/scientific.py']=sha(b'old')
+        monkeypatch.setattr(maintenance,'REPO',tmp_path/'source')
+        monkeypatch.setattr(maintenance,'now',lambda:'2026-10-10T09:00:00Z')
+        monkeypatch.setattr(bp,'registered_profile',lambda:new_profile)
+        with rt._tx() as db:
+            job=rt._job(db,jid);rt._store(db,dict(job,state='running'),job,'fixture')
+            child=dict(job,job_id='t01p1r-job-predictor',state='succeeded',tool_id='t01.real.bepipred',execution_profile=old_profile)
+&gt;           rt._store(db,child,None,'fixture')
+
+tests\test_controller_latency.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\t01_phase1_real\development\runtime.py:95: in _store
+    validate(value,'job')
+src\t01_phase1_real\development\contracts.py:38: in validate
+    ensure(_validators[key].is_valid(value),'INVALID_REQUEST','Request or snapshot violates additive development '+name+' schema')
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = False, code = 'INVALID_REQUEST'
+message = 'Request or snapshot violates additive development job schema'
+
+    def ensure(value, code, message):
+        if not value:
+&gt;           raise RuntimeFault(code,message)
+E           t01_phase1_real.common.RuntimeFault: Request or snapshot violates additive development job schema
+
+src\t01_phase1_real\common.py:30: RuntimeFault</failure></testcase><testcase classname="tests.test_controller_recovery" name="test_map_replay_distinguishes_failed_diagnostic_from_success[None-False]" time="0.001" /><testcase classname="tests.test_controller_recovery" name="test_map_replay_distinguishes_failed_diagnostic_from_success[None-True]" time="0.000" /><testcase classname="tests.test_controller_recovery" name="test_map_replay_distinguishes_failed_diagnostic_from_success[receipt-False]" time="0.000" /><testcase classname="tests.test_controller_recovery" name="test_map_replay_distinguishes_failed_diagnostic_from_success[receipt-True]" time="0.000" /><testcase classname="tests.test_controller_recovery" name="test_map_replay_distinguishes_failed_diagnostic_from_success[snapshot-False]" time="0.000" /><testcase classname="tests.test_controller_recovery" name="test_map_replay_distinguishes_failed_diagnostic_from_success[snapshot-True]" time="0.000" /><testcase classname="tests.test_controller_recovery" name="test_driver_retries_existing_identity_and_persists_failure[1-2-recovered]" time="0.001" /><testcase classname="tests.test_controller_recovery" name="test_driver_retries_existing_identity_and_persists_failure[10-3-blocked]" time="0.001" /><testcase classname="tests.test_controller_recovery" name="test_native_collection_does_not_wait_for_parent_replay_or_extend_deadline" time="0.000" /><testcase classname="tests.test_controller_recovery" name="test_owner_status_exposes_controller_failure_instead_of_running" time="0.191" /><testcase classname="tests.test_controller_recovery" name="test_upgrade_receipt_cannot_cover_a_different_job_or_profile" time="0.000" /><testcase classname="tests.test_controller_recovery" name="test_operator_upgrade_preserves_identity_budget_and_requires_quiescence[None]" time="0.118" /><testcase classname="tests.test_controller_recovery" name="test_operator_upgrade_preserves_identity_budget_and_requires_quiescence[checkpoint]" time="0.103" /><testcase classname="tests.test_controller_recovery" name="test_operator_upgrade_preserves_identity_budget_and_requires_quiescence[dispatcher]" time="0.100" /><testcase classname="tests.test_controller_recovery" name="test_operator_upgrade_preserves_identity_budget_and_requires_quiescence[stop]" time="0.107" /><testcase classname="tests.test_controller_recovery" name="test_operator_upgrade_preserves_identity_budget_and_requires_quiescence[child]" time="0.106" /><testcase classname="tests.test_expert_revision_workflow" name="test_opt_in_and_legacy_order_separate" time="0.000" /><testcase classname="tests.test_expert_revision_workflow" name="test_missing_input_delivers_real_report_without_native_jobs" time="2.926" /><testcase classname="tests.test_expert_revision_workflow" name="test_native_admission_budget_resume_cancel" time="0.214" /><testcase classname="tests.test_expert_revision_workflow" name="test_proposal_cannot_enter_esm_source" time="0.001" /><testcase classname="tests.test_expert_revision_workflow" name="test_formal_shared_version_handshake_required" time="0.001" /><testcase classname="tests.test_expert_revision_workflow" name="test_sampling_controller_restart_and_policy_stop" time="0.291" /><testcase classname="tests.test_expert_revision_workflow" name="test_zero_structure_budget_stops_before_proposals" time="0.129" /><testcase classname="tests.test_expert_revision_workflow" name="test_actual_assembly_keeps_full_inventory_schema_and_report" time="0.023" /><testcase classname="tests.test_expert_revision_runtime" name="test_actual_admission_recovery_consumption_and_idempotence[1-1]" time="0.778" /><testcase classname="tests.test_expert_revision_runtime" name="test_actual_admission_recovery_consumption_and_idempotence[6-2]" time="1.143" /><testcase classname="tests.test_expert_revision_runtime" name="test_missing_foldx_policy_does_not_block_structure" time="0.364" /><testcase classname="tests.test_expert_revision_runtime" name="test_dual_budget_is_atomic" time="0.167" /><testcase classname="tests.test_expert_revision_runtime" name="test_cancel_stops_children_and_prevents_foldx" time="0.418" /><testcase classname="tests.test_expert_revision_runtime" name="test_required_fail_and_advisory_disagreement" time="0.000" /><testcase classname="tests.test_expert_revision_runtime" name="test_configuration_requires_explicit_scoped_policy" time="0.000" /><testcase classname="tests.test_expert_revision_runtime" name="test_frozen_request_tamper_rejected" time="0.303" /><testcase classname="tests.test_expert_revision_runtime" name="test_quality_failure_vs_execution_failure[False]" time="0.391" /><testcase classname="tests.test_expert_revision_runtime" name="test_quality_failure_vs_execution_failure[True]" time="0.395" /><testcase classname="tests.test_expert_revision_runtime" name="test_stage_time_clips_native_timeout" time="0.291" /><testcase classname="tests.test_expert_revision_runtime" name="test_foldx_native_output_tamper_quarantined" time="0.750" /><testcase classname="tests.test_expert_revision_runtime" name="test_foldx_zero_budget_keeps_not_run" time="0.394" /><testcase classname="tests.test_expert_revision_runtime" name="test_main_revision_controller_reaches_native_consumers" time="1.069" /><testcase classname="tests.test_expert_revision_v2_runtime" name="test_actual_v2_native_admission_recovery_and_policy_gates[True-False-True]" time="4.105" /><testcase classname="tests.test_expert_revision_v2_runtime" name="test_actual_v2_native_admission_recovery_and_policy_gates[False-False-False]" time="1.870" /><testcase classname="tests.test_expert_revision_v2_runtime" name="test_actual_v2_native_admission_recovery_and_policy_gates[True-True-False]" time="3.121" /><testcase classname="tests.test_expert_revision_v2_runtime" name="test_confirmed_empty_targets_survive_incomplete_predictors_and_recovery" time="2.711" /><testcase classname="tests.test_expert_revision_v2_runtime" name="test_cancellation_and_identity_tamper_stop_downstream" time="0.360" /><testcase classname="tests.test_expert_revision_v2_runtime" name="test_v2_child_bound_identity_replayed" time="3.474" /><testcase classname="tests.test_expert_revision_v2_runtime" name="test_main_controller_freeze_and_dispatches_v2" time="5.785" /><testcase classname="tests.test_expert_revision_v2_runtime" name="test_freeze_requires_pre_generation_and_detects_changed_inputs" time="0.191" /><testcase classname="tests.test_expert_revision_v2_runtime" name="test_pool_replay_and_cumulative_budget" time="3.368" /><testcase classname="tests.test_expert_revision_v2_runtime" name="test_real_assembly_schema_and_html_replay" time="3.672" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[succeeded-None-proposal0]" time="0.146" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[succeeded-None-proposal1]" time="0.157" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[succeeded-None-formal0]" time="0.165" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[succeeded-None-cheap0]" time="0.146" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[succeeded-None-rx0_s1_af3]" time="0.157" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[succeeded-None-z0_s1_bepipred]" time="0.152" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[failed-TOOL_FAILED-proposal0]" time="0.159" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[failed-TOOL_FAILED-proposal1]" time="0.139" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[failed-TOOL_FAILED-formal0]" time="0.141" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[failed-TOOL_FAILED-cheap0]" time="0.142" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[failed-TOOL_FAILED-rx0_s1_af3]" time="0.140" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[failed-TOOL_FAILED-z0_s1_bepipred]" time="0.159" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[timed_out-TIMEOUT-proposal0]" time="0.136" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[timed_out-TIMEOUT-proposal1]" time="0.160" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[timed_out-TIMEOUT-formal0]" time="0.141" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[timed_out-TIMEOUT-cheap0]" time="0.140" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[timed_out-TIMEOUT-rx0_s1_af3]" time="0.146" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[timed_out-TIMEOUT-z0_s1_bepipred]" time="0.146" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[failed-ASSET_MISSING-proposal0]" time="0.138" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[failed-ASSET_MISSING-proposal1]" time="0.140" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[failed-ASSET_MISSING-formal0]" time="0.145" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[failed-ASSET_MISSING-cheap0]" time="0.162" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[failed-ASSET_MISSING-rx0_s1_af3]" time="0.159" /><testcase classname="tests.test_revision_terminal_sync" name="test_independent_collection_updates_parent_without_resubmitting[failed-ASSET_MISSING-z0_s1_bepipred]" time="0.159" /><testcase classname="tests.test_revision_terminal_sync" name="test_collection_during_poll_still_syncs[queued]" time="0.135" /><testcase classname="tests.test_revision_terminal_sync" name="test_collection_during_poll_still_syncs[running]" time="0.140" /><testcase classname="tests.test_revision_terminal_sync" name="test_integrity_failure_is_not_a_scientific_rejection" time="0.134" /><testcase classname="tests.test_revision_terminal_sync" name="test_terminal_parent_is_not_mutated[cancelled]" time="0.133" /><testcase classname="tests.test_revision_terminal_sync" name="test_terminal_parent_is_not_mutated[succeeded]" time="0.141" /><testcase classname="tests.test_revision_terminal_sync" name="test_finish_rejects_unsynchronized_or_active_children[succeeded-running-None]" time="0.129" /><testcase classname="tests.test_revision_terminal_sync" name="test_finish_rejects_unsynchronized_or_active_children[running-running-None]" time="0.145" /><testcase classname="tests.test_revision_terminal_sync" name="test_finish_rejects_unsynchronized_or_active_children[failed-succeeded-TOOL_FAILED]" time="0.141" /><testcase classname="tests.test_revision_terminal_sync" name="test_finish_rejects_unsynchronized_or_active_children[failed-failed-TIMEOUT]" time="0.131" /><testcase classname="tests.test_revision_terminal_sync" name="test_two_completed_batches_reach_formal_scheduling" time="0.186" /><testcase classname="tests.test_revision_terminal_sync" name="test_reverification_refuses_historical_stale_completion" time="0.118" /></testsuite></testsuites>

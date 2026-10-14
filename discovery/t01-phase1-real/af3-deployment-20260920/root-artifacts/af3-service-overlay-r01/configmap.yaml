@@ -1,0 +1,1576 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-af3-service-code-r02
+  namespace: him-ws
+immutable: true
+data:
+  af3-development--contracts.py: "\"\"\"Narrow additive N03-N10 registrations over\
+    \ the preserved W1 schema version.\n\nAll fields, artifact rules and lifecycle\
+    \ shapes retain the existing contract.\nThe old on-disk schemas and their historical\
+    \ hashes are never rewritten.\n\"\"\"\nimport copy\nfrom jsonschema import Draft202012Validator,\
+    \ FormatChecker\nfrom ..common import SCHEMAS, decode, ensure, validate as original_validate\n\
+    \nBEPIPRED='t01.real.bepipred'\nNETMHC='t01.real.netmhc'\nBLAST='t01.real.blast'\n\
+    GLYCOSYLATION='t01.real.glycosylation'\nEPITOPE_MAP='t01.real.epitope_map'\nADDITIVE={'t01.real.local_workflow':'N18',BLAST:'N03',BEPIPRED:'N04',NETMHC:'N05',EPITOPE_MAP:'N06',GLYCOSYLATION:'N07','t01.real.homology':'N08',\n\
+    \    't01.real.domains':'N09','t01.real.developability':'N10','t01.real.wt_draft':'N18','t01.real.proteinmpnn':'N11','t01.real.esm_if1':'N12','t01.real.design_audit':'N12',\n\
+    \    't01.real.thermompnn':'N17','t01.real.foldx':'N14','t01.real.variant_report':'N15','t01.real.epitope_protection':'N13','t01.real.optimize_codons':'N16','t01.real.wt_reference':'N17','t01.real.local_delivery':'N18'}\n\
+    _validators={}\nADDITIVE['t01.real.esmfold2'] = 'N01'\nADDITIVE['t01.real.af3']\
+    \ = 'N01'\n\n\ndef validate(value,name):\n    if not isinstance(value,dict) or\
+    \ value.get('tool_id') not in ADDITIVE or name not in ('submit','job'):\n    \
+    \    return original_validate(value,name)\n    ensure(value.get('contract_version')=='0.1.0','UNSUPPORTED_VERSION','Unsupported\
+    \ contract version')\n    key=(value['tool_id'],name)\n    if key not in _validators:\n\
+    \        schema=copy.deepcopy(decode((SCHEMAS/(name+'.schema.json')).read_bytes()))\n\
+    \        schema['properties']['tool_id']={'const':value['tool_id']}\n        schema['properties']['node_id']={'const':ADDITIVE[value['tool_id']]}\n\
+    \        if value['tool_id']=='t01.real.optimize_codons' and name=='job':\n  \
+    \          schema['properties']['error_code']['anyOf'][0]['enum'].extend([\n \
+    \               'UNSUPPORTED_EXPRESSION_HOST','HOST_PROFILE_REQUIRED','CODON_TABLE_MISSING',\n\
+    \                'CODON_TABLE_INVALID','DEPENDENCY_MISSING','DEPENDENCY_MISMATCH'])\n\
+    \        Draft202012Validator.check_schema(schema)\n        _validators[key]=Draft202012Validator(schema,format_checker=FormatChecker())\n\
+    \    ensure(_validators[key].is_valid(value),'INVALID_REQUEST','Request or snapshot\
+    \ violates additive development '+name+' schema')\n"
+  af3-development--registry.py: "\"\"\"Fixed development Worker registrations sharing\
+    \ the same task/container lifecycle.\"\"\"\nfrom . import policy as deep\nfrom\
+    \ .structure import policy as structure\nfrom .bepipred import policy as bepipred\n\
+    from .netmhc import policy as netmhc\nfrom .blast import policy as blast\nfrom\
+    \ .epitope_map import policy as epitope_map\nfrom .glycosylation import policy\
+    \ as glycosylation\nfrom .homology import policy as homology\nfrom .domains import\
+    \ policy as domains\nfrom .developability import policy as developability\nfrom\
+    \ .wt_draft import policy as wt_draft\nfrom .proteinmpnn import policy as proteinmpnn\n\
+    from .esm_if1 import policy as esm_if1\nfrom .design_backend import policy as\
+    \ design_backend\nfrom .thermompnn import policy as thermompnn\nfrom .foldx import\
+    \ policy as foldx\nfrom .variant_report import policy as variant_report\nfrom\
+    \ .epitope_protection import policy as epitope_protection\nfrom .codon import\
+    \ policy as codon\nfrom .wt_reference import policy as wt_reference\nfrom .local_delivery\
+    \ import policy as local_delivery\nfrom .workflow import policy as workflow\n\
+    from .esmfold2 import policy as esmfold2\nfrom .af3 import policy as af3\nfrom\
+    \ ..common import ensure\n\nTOOLS=(af3.TOOL,esmfold2.TOOL,workflow.TOOL,deep.TOOL,structure.TOOL,bepipred.TOOL,netmhc.TOOL,blast.TOOL,epitope_map.TOOL,glycosylation.TOOL,homology.TOOL,\n\
+    \    domains.TOOL,developability.TOOL,wt_draft.TOOL,proteinmpnn.TOOL,esm_if1.TOOL,design_backend.TOOL,variant_report.TOOL,epitope_protection.TOOL,wt_reference.TOOL,local_delivery.TOOL,codon.TOOL,thermompnn.TOOL,foldx.TOOL)\n\
+    \n\ndef spec(tool_id):\n    if tool_id == af3.TOOL: return af3\n    if tool_id\
+    \ == esmfold2.TOOL: return esmfold2\n    ensure(tool_id in TOOLS,'PROFILE_NOT_APPROVED','Development\
+    \ Worker is not registered')\n    return {workflow.TOOL:workflow,deep.TOOL:deep,structure.TOOL:structure,bepipred.TOOL:bepipred,netmhc.TOOL:netmhc,blast.TOOL:blast,epitope_map.TOOL:epitope_map,\n\
+    \        glycosylation.TOOL:glycosylation,homology.TOOL:homology,domains.TOOL:domains,developability.TOOL:developability,\n\
+    \        wt_draft.TOOL:wt_draft,proteinmpnn.TOOL:proteinmpnn,esm_if1.TOOL:esm_if1,design_backend.TOOL:design_backend,variant_report.TOOL:variant_report,epitope_protection.TOOL:epitope_protection,codon.TOOL:codon,wt_reference.TOOL:wt_reference,local_delivery.TOOL:local_delivery,\n\
+    \        thermompnn.TOOL:thermompnn,foldx.TOOL:foldx}[tool_id]\n\n\ndef result(job,body,files,execution,fault=None):\n\
+    \    if job['tool_id']==af3.TOOL:\n        from .af3.result import result as build\n\
+    \    elif job['tool_id']==esmfold2.TOOL:\n        from .esmfold2.result import\
+    \ result as build\n    elif job['tool_id']==deep.TOOL:\n        from .deeptmhmm\
+    \ import result as build\n    elif job['tool_id']==structure.TOOL:\n        from\
+    \ .structure.result import result as build\n    elif job['tool_id']==bepipred.TOOL:\n\
+    \        from .bepipred.result import result as build\n    elif job['tool_id']==netmhc.TOOL:\n\
+    \        from .netmhc.result import result as build\n    elif job['tool_id']==blast.TOOL:\n\
+    \        from .blast.result import result as build\n    elif job['tool_id']==epitope_map.TOOL:\n\
+    \        from .epitope_map.result import result as build\n    elif job['tool_id']==domains.TOOL:\n\
+    \        from .domains.service import result as build\n    elif job['tool_id']==homology.TOOL:\n\
+    \        from .homology.result import result as build\n    elif job['tool_id']==developability.TOOL:\n\
+    \        from .developability.service import result as build\n    elif job['tool_id']==wt_draft.TOOL:\n\
+    \        from .wt_draft.service import result as build\n    elif job['tool_id']==proteinmpnn.TOOL:\n\
+    \        from .proteinmpnn.result import result as build\n    elif job['tool_id']==wt_reference.TOOL:\n\
+    \        from .wt_reference.service import result as build\n    elif job['tool_id']==local_delivery.TOOL:\n\
+    \        from .local_delivery.service import result as build\n    elif job['tool_id']==codon.TOOL:\n\
+    \        from .codon.service import result as build\n    elif job['tool_id']==epitope_protection.TOOL:\n\
+    \        from .epitope_protection.service import result as build\n    elif job['tool_id']==variant_report.TOOL:\n\
+    \        from .variant_report.service import result as build\n    elif job['tool_id']==design_backend.TOOL:\n\
+    \        from .design_backend.service import result as build\n    elif job['tool_id']==esm_if1.TOOL:\n\
+    \        from .esm_if1.result import result as build\n    elif job['tool_id']==thermompnn.TOOL:\n\
+    \        from .thermompnn.result import result as build\n    elif job['tool_id']==foldx.TOOL:\n\
+    \        from .foldx.result import result as build\n    else:\n        from .glycosylation.result\
+    \ import result as build\n    return build(job,body,files,execution,fault)\n"
+  af3-development--runtime.py: "\"\"\"Development Worker registry over the existing\
+    \ transactional task store and lifecycle.\"\"\"\nimport copy\nfrom datetime import\
+    \ datetime, timezone\nimport sys\nimport subprocess\nimport time\n\nfrom ..common\
+    \ import (REPO, TOOL as ENGINEERING, TERMINAL, RuntimeFault, decode, encode,\n\
+    \    ensure, identifier, new_id, now, sha, TRANSITIONS)\nfrom ..files import publish,\
+    \ read_locked, read_verified, within\nfrom ..runtime import Runtime as StoreRuntime\n\
+    from . import docker\nfrom .policy import TOOL, request, registered_profile, sequence_id\n\
+    from .registry import TOOLS, spec\nfrom .structure import policy as structure\n\
+    from .bepipred import policy as bepipred\nfrom .netmhc import policy as netmhc\n\
+    from .blast import policy as blast\nfrom .epitope_map import policy as epitope_map\n\
+    from .glycosylation import policy as glycosylation\nfrom .homology import policy\
+    \ as homology\nfrom .domains import policy as domains\nfrom .developability import\
+    \ policy as developability\nfrom .wt_draft import policy as wt_draft\nfrom .proteinmpnn\
+    \ import policy as proteinmpnn\nfrom .esm_if1 import policy as esm_if1\nfrom .design_backend\
+    \ import policy as design_backend\nfrom .thermompnn import policy as thermompnn\n\
+    from .foldx import policy as foldx\nfrom .variant_report import policy as variant_report\n\
+    from .epitope_protection import policy as epitope_protection\nfrom .codon import\
+    \ policy as codon\nfrom .wt_reference import policy as wt_reference\nfrom .local_delivery\
+    \ import policy as local_delivery\nfrom .workflow import policy as workflow\n\
+    from .esmfold2 import policy as esmfold2\nfrom .af3 import policy as af3\nfrom\
+    \ .contracts import validate\n\nPREDICTION_TOOLS = (esmfold2.TOOL, af3.TOOL)\n\
+    \n\ndef prediction_source(tool_id):\n    if tool_id == esmfold2.TOOL:\n      \
+    \  from .esmfold2 import source\n        return source\n    if tool_id == af3.TOOL:\n\
+    \        from .af3 import source\n        return source\n    raise RuntimeFault('FORBIDDEN',\
+    \ 'Predicted structure producer is not registered')\n\n\nclass Runtime(StoreRuntime):\n\
+    \    \"\"\"Same SQLite/schema/IDs/transactions; fixed development Worker registrations.\"\
+    \"\"\n\n    def __init__(self,*args,blast_database_root=None,homology_database_root=None,domains_database_root=None,**kwargs):\n\
+    \        super().__init__(*args,**kwargs)\n        self.blast_database_root=blast_database_root\n\
+    \        self.homology_database_root=homology_database_root\n        self.domains_database_root=domains_database_root\n\
+    \        self._development_fault=None  # Internal acceptance harness only; never\
+    \ a request parameter.\n\n    def submit_workflow(self,raw,key,structure_data=None):\n\
+    \        from .workflow.service import submit\n        return submit(self,raw,key,structure_data)\n\
+    \n    def workflow(self,job_id):\n        from .workflow.service import snapshot\n\
+    \        return snapshot(self,job_id)\n\n    def recover(self,job_id):\n     \
+    \   if self.get(job_id)['tool_id']==workflow.TOOL:return self.dispatch(job_id)\n\
+    \        return super().recover(job_id)\n\n    def control(self,raw):\n      \
+    \  value=super().control(raw)\n        if decode(raw).get('operation')=='cancel'\
+    \ and value.get('tool_id')==workflow.TOOL:\n            from .workflow.service\
+    \ import stop_children\n            stop_children(self,value['job_id'])\n    \
+    \    return value\n\n    def _store(self,db,value,before=None,event='state'):\n\
+    \        if value['tool_id'] in TOOLS:\n            value.update(evidence_kind='G0_REAL_OUTPUT',usable_for_pipeline=False,review_required=True)\n\
+    \            ensure(value['run_mode']=='g0_probe','PROFILE_NOT_APPROVED','Scientific\
+    \ pipeline consumption is closed')\n        if value['tool_id'] in (af3.TOOL,esmfold2.TOOL,blast.TOOL,bepipred.TOOL,netmhc.TOOL,epitope_map.TOOL,glycosylation.TOOL,homology.TOOL,\n\
+    \            domains.TOOL,developability.TOOL,wt_draft.TOOL,proteinmpnn.TOOL,esm_if1.TOOL,design_backend.TOOL,variant_report.TOOL,epitope_protection.TOOL,wt_reference.TOOL,local_delivery.TOOL,workflow.TOOL,codon.TOOL,thermompnn.TOOL,foldx.TOOL):\n\
+    \            # Same tables, transactions and transition rules; only the additive\n\
+    \            # N04/tool schema differs from the preserved W1 store implementation.\n\
+    \            validate(value,'job')\n            if before is not None:\n     \
+    \           ensure(before['state'] not in TERMINAL,'INVALID_STATE','Terminal job\
+    \ is immutable')\n                ensure(value['state']==before['state'] or value['state']\
+    \ in TRANSITIONS[before['state']],'INVALID_STATE','Illegal lifecycle transition')\n\
+    \                value['revision']=before['revision']+1;value['updated_at']=now()\n\
+    \                db.execute('UPDATE jobs SET data=? WHERE id=?',(encode(value).decode(),value['job_id']))\n\
+    \            else:db.execute('INSERT INTO jobs VALUES(?,?,?,?)',(value['job_id'],value['run_id'],self.scope,encode(value).decode()))\n\
+    \            db.execute('INSERT INTO events VALUES(?,?,?)',(value['job_id'],value['revision'],encode(dict(event=event,snapshot=value)).decode()))\n\
+    \            return\n        return super()._store(db,value,before,event)\n\n\
+    \    def submit(self,raw):\n        ensure(isinstance(raw,bytes) and len(raw)<=65536,'INVALID_REQUEST','Bounded\
+    \ UTF-8 bytes required')\n        body=decode(raw)\n        if not isinstance(body,dict)\
+    \ or body.get('tool_id') not in (af3.TOOL,esmfold2.TOOL,blast.TOOL,bepipred.TOOL,netmhc.TOOL,epitope_map.TOOL,\n\
+    \            glycosylation.TOOL,homology.TOOL,domains.TOOL,developability.TOOL,wt_draft.TOOL,proteinmpnn.TOOL,esm_if1.TOOL,design_backend.TOOL,variant_report.TOOL,epitope_protection.TOOL,wt_reference.TOOL,local_delivery.TOOL,workflow.TOOL,codon.TOOL,\n\
+    \            thermompnn.TOOL,foldx.TOOL):return super().submit(raw)\n        validate(body,'submit')\n\
+    \        with self._tx() as db:\n            def action():\n                self._admit(db,body)\n\
+    \                return self._new_job(db,body,raw)\n            return self._idempotent(db,'submit',body['idempotency_key'],raw,action)\n\
+    \n    def _stage(self,db,run_id,raw,tool_id=TOOL):\n        self._run(db,run_id);spec(tool_id).request(raw)\n\
+    \        aid=new_id('artifact'); relative=f'runs/{run_id}/inputs/{aid}.json'\n\
+    \        ref=self._artifact(aid,run_id,None,None,'request',raw);ref['evidence_kind']='LOCAL_INPUT'\n\
+    \        publish(self.root,relative,raw)\n        db.execute('INSERT INTO artifacts\
+    \ VALUES(?,?,?,?)',(aid,run_id,relative,encode(ref).decode()))\n        return\
+    \ ref\n\n    def stage_request(self,run_id,raw,tool_id=ENGINEERING):\n       \
+    \ if tool_id==ENGINEERING:return super().stage_request(run_id,raw)\n        ensure(tool_id\
+    \ in TOOLS,'PROFILE_NOT_APPROVED','Worker not registered')\n        ensure(isinstance(raw,bytes)\
+    \ and len(raw)<=65536,'INVALID_REQUEST','Bounded request bytes required')\n  \
+    \      with self._tx() as db: return self._stage(db,run_id,raw,tool_id)\n\n  \
+    \  def _structure_bytes(self,db,body,run_id):\n        ref=body['structure_artifact']\n\
+    \        if ref['job_id'] is not None:\n            producer=self._job(db,ref['job_id'])\n\
+    \            return prediction_source(producer['tool_id']).structure_bytes(self,db,body,run_id)\n\
+    \        ensure(ref['run_id']==run_id,'FORBIDDEN','Structure belongs to another\
+    \ run')\n        self._run(db,run_id)\n        row=db.execute('SELECT relative_path,data\
+    \ FROM artifacts WHERE id=?',(ref['artifact_id'],)).fetchone()\n        ensure(row\
+    \ and decode(row['data'])==ref,'FORBIDDEN','Unregistered structure input')\n \
+    \       return read_verified(self.root,row['relative_path'],ref['sha256'],ref['size_bytes'],structure.MAX_STRUCTURE_BYTES)\n\
+    \n    def submit_structure(self,raw,key,data):\n        ensure(isinstance(raw,bytes)\
+    \ and len(raw)<=32768,'INVALID_REQUEST','Bounded metadata bytes required')\n \
+    \       metadata=structure.metadata(raw)\n        ensure(isinstance(data,bytes)\
+    \ and 0<len(data)<=structure.MAX_STRUCTURE_BYTES,'INVALID_REQUEST','Structure\
+    \ must be nonempty and at most 4 MiB')\n        # Both original metadata bytes\
+    \ and file bytes define duplicate submission.\n        fingerprint=encode(dict(metadata_sha256=sha(raw),structure_sha256=sha(data)))\n\
+    \        with self._tx() as db:\n            def action():\n                run=dict(contract_version='0.1.0',run_id=new_id('run'),created_at=now())\n\
+    \                db.execute('INSERT INTO runs VALUES(?,?,?)',(run['run_id'],self.scope,encode(run).decode()))\n\
+    \                aid=new_id('artifact');relative=f'runs/{run[\"run_id\"]}/inputs/{aid}.structure'\n\
+    \                ref=self._artifact(aid,run['run_id'],None,None,'input',data)\n\
+    \                ref.update(evidence_kind='LOCAL_INPUT',media_type='chemical/x-pdb'\
+    \ if metadata['declared_format']=='PDB' else 'chemical/x-cif')\n             \
+    \   publish(self.root,relative,data)\n                db.execute('INSERT INTO\
+    \ artifacts VALUES(?,?,?,?)',(aid,run['run_id'],relative,encode(ref).decode()))\n\
+    \                ref=self._stage(db,run['run_id'],encode(dict(metadata,structure_artifact=ref)),structure.TOOL)\n\
+    \                body=dict(contract_version='0.1.0',run_id=run['run_id'],request_id=new_id('request'),idempotency_key=key,\n\
+    \                    tool_id=structure.TOOL,node_id=structure.NODE,run_mode='g0_probe',request_artifact=ref,execution_profile=structure.registered_profile(),rule_profile=None)\n\
+    \                self._admit(db,body)\n                return self._new_job(db,body,encode(body))\n\
+    \            return self._idempotent(db,'local_structure',key,fingerprint,action)\n\
+    \n    def submit_structure_in_run(self,run_id,raw,key,data):\n        \"\"\"Submit\
+    \ a local structure into an existing owned run with atomic idempotency.\"\"\"\n\
+    \        ensure(isinstance(raw,bytes) and len(raw)<=32768,'INVALID_REQUEST','Bounded\
+    \ metadata bytes required')\n        metadata=structure.metadata(raw)\n      \
+    \  ensure(isinstance(data,bytes) and 0<len(data)<=structure.MAX_STRUCTURE_BYTES,\n\
+    \            'INVALID_REQUEST','Structure must be nonempty and at most 4 MiB')\n\
+    \        fingerprint=encode(dict(metadata_sha256=sha(raw),structure_sha256=sha(data)))\n\
+    \        with self._tx() as db:\n            def action():\n                self._run(db,run_id)\n\
+    \                aid=new_id('artifact');relative=f'runs/{run_id}/inputs/{aid}.structure'\n\
+    \                ref=self._artifact(aid,run_id,None,None,'input',data)\n     \
+    \           ref.update(evidence_kind='LOCAL_INPUT',media_type='chemical/x-pdb'\
+    \ if metadata['declared_format']=='PDB' else 'chemical/x-cif')\n             \
+    \   publish(self.root,relative,data)\n                db.execute('INSERT INTO\
+    \ artifacts VALUES(?,?,?,?)',(aid,run_id,relative,encode(ref).decode()))\n   \
+    \             request_ref=self._stage(db,run_id,encode(dict(metadata,structure_artifact=ref)),structure.TOOL)\n\
+    \                body=dict(contract_version='0.1.0',run_id=run_id,request_id=new_id('request'),idempotency_key=key,\n\
+    \                    tool_id=structure.TOOL,node_id=structure.NODE,run_mode='g0_probe',request_artifact=request_ref,\n\
+    \                    execution_profile=structure.registered_profile(),rule_profile=None)\n\
+    \                self._admit(db,body)\n                return self._new_job(db,body,encode(body))\n\
+    \            return self._idempotent(db,'local_structure_in_run:'+run_id,key,fingerprint,action)\n\
+    \n    def _request_bytes(self,job):\n        with self._db() as db:return self._input(db,job['request_artifact'],job['run_id'])\n\
+    \n    def _registered_result_artifact(self,db,ref,expected_tool):\n        \"\"\
+    \"Resolve an exact same-scope terminal ArtifactRef and bind its result identity.\"\
+    \"\"\n        job=self._job(db,ref['job_id'])\n        ensure(job['tool_id']==expected_tool\
+    \ and job['run_id']==ref['run_id'] and job['attempt_id']==ref['attempt_id']\n\
+    \            and job['state'] in TERMINAL and ref in job['artifacts'],'FORBIDDEN','Upstream\
+    \ ArtifactRef/job identity differs')\n        row=db.execute('SELECT relative_path,data\
+    \ FROM artifacts WHERE id=?',(ref['artifact_id'],)).fetchone()\n        ensure(row\
+    \ and decode(row['data'])==ref,'FORBIDDEN','Upstream artifact registration differs')\n\
+    \        raw=read_verified(self.root,row['relative_path'],ref['sha256'],ref['size_bytes'],32*1024**2)\n\
+    \        value=decode(raw)\n        binding=value.get('binding') if isinstance(value,dict)\
+    \ else None\n        ensure(isinstance(binding,dict) and value.get('tool_id')==expected_tool\
+    \ and binding.get('job_id')==job['job_id']\n            and binding.get('run_id')==job['run_id']\
+    \ and binding.get('attempt_id')==job['attempt_id']\n            and value.get('usable_for_pipeline')\
+    \ is False and value.get('automatic_handoff') is False,\n            'OUTPUT_INVALID','Upstream\
+    \ result binding/qualification differs')\n        return job,raw,value\n\n   \
+    \ def source_input(self,job_id,expected_tool):\n        \"\"\"Build a request\
+    \ source from a registered N03/N04/N05 terminal task.\"\"\"\n        ensure(expected_tool\
+    \ in (blast.TOOL,bepipred.TOOL,netmhc.TOOL),'INVALID_REQUEST','Unsupported N06\
+    \ upstream tool')\n        with self._db() as db:\n            job=self._job(db,job_id);ensure(job['tool_id']==expected_tool\
+    \ and job['state'] in TERMINAL,\n                'INVALID_STATE','Upstream task\
+    \ must be terminal and match the requested tool')\n            role='result' if\
+    \ job['state']=='succeeded' else 'diagnostic'\n            ref=next((item for\
+    \ item in job['artifacts'] if item['role']==role),None)\n            ensure(ref\
+    \ is not None,'INVALID_STATE','Upstream terminal task has no result/diagnostic\
+    \ ArtifactRef')\n            self._registered_result_artifact(db,ref,expected_tool)\n\
+    \            return dict(state='available' if role=='result' else 'upstream_unavailable',artifact=ref,\n\
+    \                reason_code=None if role=='result' else job['error_code'])\n\n\
+    \    def _epitope_sources(self,db,body):\n        sequence_sha=sha(body['protein_sequence'].encode());sources={};receipts={}\n\
+    \        for name,tool in (('bepipred',bepipred.TOOL),('netmhc',netmhc.TOOL),('blast',blast.TOOL)):\n\
+    \            item=body[name+'_input'];state=item['state']\n            if state\
+    \ in ('not_provided','not_executed'):\n                receipts[name]=dict(state=state,artifact=None,verified=True);continue\n\
+    \            job,raw,value=self._registered_result_artifact(db,item['artifact'],tool)\n\
+    \            ensure(value['binding'].get('sequence_sha256')==sequence_sha,'OUTPUT_INVALID','Upstream\
+    \ sequence SHA-256 differs from N06')\n            if state=='available':\n  \
+    \              ensure(job['state']=='succeeded' and item['artifact']['role']=='result','OUTPUT_INVALID','Available\
+    \ upstream task is not a success result')\n                sources[name]=(raw,value)\n\
+    \            else:\n                ensure(job['state']!='succeeded' and item['artifact']['role']=='diagnostic'\n\
+    \                    and item['reason_code']==job['error_code'],'OUTPUT_INVALID','Unavailable\
+    \ upstream diagnostic/reason differs')\n            receipts[name]=dict(state=state,artifact=item['artifact'],verified=True,upstream_state=job['state'],\n\
+    \                upstream_error=job['error_code'])\n            if name=='blast'\
+    \ and value.get('binding'):\n                receipts[name].update(database_id=value['binding'].get('database_id'),\n\
+    \                    database_manifest_sha256=value['binding'].get('database_manifest_sha256'))\n\
+    \        return sources,receipts\n\n    @staticmethod\n    def _n06_hotspot_derivation(value):\n\
+    \        \"\"\"Classify the N06 hotspot payload without inventing unresolved window\
+    \ conversion.\"\"\"\n        ensure(value.get('status') in ('maps_unreviewed','partial_maps_unreviewed')\n\
+    \            and isinstance(value.get('epitopes'),dict),'OUTPUT_INVALID','N06\
+    \ result is not a usable development map artifact')\n        hotspot_map=value['epitopes'].get('b_cell_antigenic_hotspot_map')\n\
+    \        ensure(isinstance(hotspot_map,dict),'OUTPUT_INVALID','N06 hotspot map\
+    \ is absent')\n        hotspots=hotspot_map.get('hotspots')\n        if hotspots\
+    \ is None:return None,'N06_HOTSPOTS_REVIEW_REQUIRED'\n        ensure(isinstance(hotspots,list),'OUTPUT_INVALID','N06\
+    \ hotspots must be a list or null')\n        exact=[]\n        for row in hotspots:\n\
+    \            ensure(isinstance(row,dict) and set(row)>={'start','end'} and type(row['start'])\
+    \ is int\n                and type(row['end']) is int and 1<=row['start']<=row['end'],\n\
+    \                'OUTPUT_INVALID','N06 hotspot coordinates are malformed')\n \
+    \           exact.append(dict(start=row['start'],end=row['end']))\n        if\
+    \ any(row['end']-row['start']+1!=20 for row in exact):\n            return None,'OI_029_WINDOW_CONVERSION_REQUIRED'\n\
+    \        return exact,None\n\n    def _n06_hotspot_source(self,db,body):\n   \
+    \     \"\"\"Validate N07 context against a registered N06 artifact, or label a\
+    \ legacy fixture.\"\"\"\n        item=body['hotspot_input'];source=item['source']\n\
+    \        if item['state']=='not_provided':return dict(status='NOT_APPLICABLE',verified=True,artifact=None)\n\
+    \        if set(source)=={'node_id','source_id','sha256'}:\n            return\
+    \ dict(status='CONTRACT_FIXTURE_NOT_ARTIFACT_VERIFIED',verified=False,artifact=None,\n\
+    \                source_id=source['source_id'])\n        ref=source['artifact'];job,_,value=self._registered_result_artifact(db,ref,epitope_map.TOOL)\n\
+    \        ensure(job['state']=='succeeded' and ref['role']=='result','OUTPUT_INVALID','N07\
+    \ requires a successful N06 result artifact')\n        ensure(value['binding'].get('sequence_sha256')==sha(body['protein_sequence'].encode()),\n\
+    \            'OUTPUT_INVALID','N06 sequence SHA-256 differs from N07')\n     \
+    \   hotspots,reason=self._n06_hotspot_derivation(value)\n        if item['state']=='available':\n\
+    \            ensure(reason is None and item['hotspots']==hotspots and item['reason_code']\
+    \ is None,\n                'OUTPUT_INVALID','N07 hotspot windows differ from\
+    \ the verified N06 result')\n        else:\n            ensure(item['hotspots']\
+    \ is None and item['reason_code']==reason,\n                'OUTPUT_INVALID','N07\
+    \ unavailable reason differs from the verified N06 result')\n        return dict(status='VERIFIED_N06_ARTIFACT_REF',verified=True,artifact=ref,\n\
+    \            upstream_job_id=job['job_id'],upstream_status=value['status'],derived_reason_code=reason)\n\
+    \n    def n06_hotspot_input(self,job_id,sequence):\n        \"\"\"Build exact\
+    \ N07 hotspot context from a registered terminal N06 result.\"\"\"\n        with\
+    \ self._db() as db:\n            job=self._job(db,job_id)\n            ensure(job['tool_id']==epitope_map.TOOL\
+    \ and job['state']=='succeeded',\n                'INVALID_STATE','N07 source\
+    \ must be a successful N06 task')\n            ref=next((row for row in job['artifacts']\
+    \ if row['role']=='result'),None)\n            ensure(ref is not None,'INVALID_STATE','N06\
+    \ task has no result ArtifactRef')\n            _,_,value=self._registered_result_artifact(db,ref,epitope_map.TOOL)\n\
+    \            ensure(value['binding'].get('sequence_sha256')==sha(sequence.encode()),\n\
+    \                'OUTPUT_INVALID','N06 sequence SHA-256 differs from requested\
+    \ N07 sequence')\n            hotspots,reason=self._n06_hotspot_derivation(value)\n\
+    \            source=dict(kind='artifact_ref',node_id='N06',artifact=ref)\n   \
+    \         return dict(state='available' if reason is None else 'upstream_unavailable',hotspots=hotspots,\n\
+    \                source=source,reason_code=reason)\n\n    def submit_sequence(self,raw,key,tool_id=TOOL):\n\
+    \        \"\"\"Atomic convenience operation; duplicates retain the exact same\
+    \ run/job/artifact.\"\"\"\n        ensure(isinstance(raw,bytes) and len(raw)<=65536,'INVALID_REQUEST','Bounded\
+    \ request bytes required')\n        ensure(tool_id in (af3.TOOL,esmfold2.TOOL,TOOL,blast.TOOL,bepipred.TOOL,netmhc.TOOL,epitope_map.TOOL,glycosylation.TOOL,homology.TOOL,\n\
+    \            domains.TOOL,developability.TOOL,wt_draft.TOOL,proteinmpnn.TOOL,esm_if1.TOOL,design_backend.TOOL,variant_report.TOOL,epitope_protection.TOOL,wt_reference.TOOL,local_delivery.TOOL,workflow.TOOL,codon.TOOL,thermompnn.TOOL,foldx.TOOL),\n\
+    \            'PROFILE_NOT_APPROVED','Sequence Worker not registered')\n      \
+    \  worker=spec(tool_id);worker.request(raw)\n        with self._tx() as db:\n\
+    \            def action():\n                run=dict(contract_version='0.1.0',run_id=new_id('run'),created_at=now())\n\
+    \                db.execute('INSERT INTO runs VALUES(?,?,?)',(run['run_id'],self.scope,encode(run).decode()))\n\
+    \                ref=self._stage(db,run['run_id'],raw,tool_id)\n             \
+    \   body=dict(contract_version='0.1.0',run_id=run['run_id'],request_id=new_id('request'),idempotency_key=key,\n\
+    \                    tool_id=tool_id,node_id=worker.NODE,run_mode='g0_probe',request_artifact=ref,execution_profile=worker.registered_profile(),\n\
+    \                    rule_profile=worker.registered_rules() if worker.TOOL in\
+    \ (epitope_map.TOOL,glycosylation.TOOL,homology.TOOL,domains.TOOL,\n         \
+    \               developability.TOOL,wt_draft.TOOL,proteinmpnn.TOOL,esm_if1.TOOL,design_backend.TOOL,variant_report.TOOL,epitope_protection.TOOL,wt_reference.TOOL,local_delivery.TOOL,workflow.TOOL,codon.TOOL,thermompnn.TOOL,foldx.TOOL)\
+    \ else None)\n                self._admit(db,body)\n                return self._new_job(db,body,encode(body))\n\
+    \            domain={af3.TOOL:'af3',esmfold2.TOOL:'esmfold2',TOOL:'deeptmhmm',blast.TOOL:'blast',bepipred.TOOL:'bepipred',netmhc.TOOL:'netmhc',epitope_map.TOOL:'epitope_map',\n\
+    \                glycosylation.TOOL:'glycosylation',homology.TOOL:'homology',domains.TOOL:'domains',\n\
+    \                developability.TOOL:'developability',wt_draft.TOOL:'wt_draft',proteinmpnn.TOOL:'proteinmpnn',esm_if1.TOOL:'esm_if1',design_backend.TOOL:'design_backend',variant_report.TOOL:'variant_report',epitope_protection.TOOL:'epitope_protection',codon.TOOL:'codon',wt_reference.TOOL:'wt_reference',local_delivery.TOOL:'local_delivery',workflow.TOOL:'local_workflow',\n\
+    \                thermompnn.TOOL:'thermompnn',foldx.TOOL:'foldx'}[tool_id]\n \
+    \           return self._idempotent(db,domain,key,raw,action)\n\n    def submit_sequence_in_run(self,run_id,raw,key,tool_id=TOOL):\n\
+    \        \"\"\"Submit a registered sequence task into an existing owned run without\
+    \ weakening admission checks.\"\"\"\n        ensure(isinstance(raw,bytes) and\
+    \ len(raw)<=65536,'INVALID_REQUEST','Bounded request bytes required')\n      \
+    \  ensure(tool_id in (af3.TOOL,esmfold2.TOOL,TOOL,blast.TOOL,bepipred.TOOL,netmhc.TOOL,epitope_map.TOOL,glycosylation.TOOL,homology.TOOL,\n\
+    \            domains.TOOL,developability.TOOL,wt_draft.TOOL,proteinmpnn.TOOL,esm_if1.TOOL,design_backend.TOOL,variant_report.TOOL,epitope_protection.TOOL,wt_reference.TOOL,local_delivery.TOOL,workflow.TOOL,codon.TOOL,thermompnn.TOOL,foldx.TOOL),\n\
+    \            'PROFILE_NOT_APPROVED','Sequence Worker not registered')\n      \
+    \  worker=spec(tool_id);worker.request(raw)\n        with self._tx() as db:\n\
+    \            def action():\n                self._run(db,run_id)\n           \
+    \     ref=self._stage(db,run_id,raw,tool_id)\n                body=dict(contract_version='0.1.0',run_id=run_id,request_id=new_id('request'),idempotency_key=key,\n\
+    \                    tool_id=tool_id,node_id=worker.NODE,run_mode='g0_probe',request_artifact=ref,execution_profile=worker.registered_profile(),\n\
+    \                    rule_profile=worker.registered_rules() if worker.TOOL in\
+    \ (epitope_map.TOOL,glycosylation.TOOL,homology.TOOL,domains.TOOL,\n         \
+    \               developability.TOOL,wt_draft.TOOL,proteinmpnn.TOOL,esm_if1.TOOL,design_backend.TOOL,variant_report.TOOL,epitope_protection.TOOL,wt_reference.TOOL,local_delivery.TOOL,workflow.TOOL,codon.TOOL,thermompnn.TOOL,foldx.TOOL)\
+    \ else None)\n                self._admit(db,body)\n                return self._new_job(db,body,encode(body))\n\
+    \            domain={af3.TOOL:'af3',esmfold2.TOOL:'esmfold2',TOOL:'deeptmhmm',blast.TOOL:'blast',bepipred.TOOL:'bepipred',netmhc.TOOL:'netmhc',epitope_map.TOOL:'epitope_map',\n\
+    \                glycosylation.TOOL:'glycosylation',homology.TOOL:'homology',domains.TOOL:'domains',developability.TOOL:'developability',\n\
+    \                wt_draft.TOOL:'wt_draft',proteinmpnn.TOOL:'proteinmpnn',esm_if1.TOOL:'esm_if1',design_backend.TOOL:'design_backend',\n\
+    \                variant_report.TOOL:'variant_report',epitope_protection.TOOL:'epitope_protection',codon.TOOL:'codon',wt_reference.TOOL:'wt_reference',\n\
+    \                local_delivery.TOOL:'local_delivery',workflow.TOOL:'local_workflow',thermompnn.TOOL:'thermompnn',foldx.TOOL:'foldx'}[tool_id]\n\
+    \            return self._idempotent(db,domain+'_in_run:'+run_id,key,raw,action)\n\
+    \n    def _admit(self,db,body):\n        if body.get('tool_id') not in TOOLS:return\
+    \ super()._admit(db,body)\n        worker=spec(body['tool_id'])\n        validate(body,'submit')\n\
+    \        expected_rules=worker.registered_rules() if worker.TOOL in (epitope_map.TOOL,glycosylation.TOOL,homology.TOOL,domains.TOOL,\n\
+    \            developability.TOOL,wt_draft.TOOL,proteinmpnn.TOOL,esm_if1.TOOL,design_backend.TOOL,variant_report.TOOL,epitope_protection.TOOL,wt_reference.TOOL,local_delivery.TOOL,workflow.TOOL,codon.TOOL,thermompnn.TOOL,foldx.TOOL)\
+    \ else None\n        ensure(body['node_id']==worker.NODE and body['run_mode']=='g0_probe'\
+    \ and body['rule_profile']==expected_rules,\n            'PROFILE_NOT_APPROVED','Worker\
+    \ accepts its registered node in development mode only')\n        ensure(body['execution_profile']==worker.registered_profile(),'PROFILE_NOT_APPROVED','Unregistered\
+    \ or changed development profile')\n        identifier(body['request_id'])\n \
+    \       ensure(not body['request_id'].startswith(('t01p1m-','t01-phase1-mock-','t01-mock-')),'FORBIDDEN','Foreign\
+    \ request namespace')\n        ref=body['request_artifact']\n        ensure(ref['evidence_kind']=='LOCAL_INPUT'\
+    \ and ref['role']=='request' and ref['job_id'] is None\n            and ref['attempt_id']\
+    \ is None,'FORBIDDEN','Invalid development input artifact')\n        content=worker.request(self._input(db,ref,body['run_id']))\n\
+    \        if worker.TOOL in PREDICTION_TOOLS:\n            from .. import resident_execution\n\
+    \            ensure(resident_execution.enabled(), 'ASSET_MISSING', 'Prediction\
+    \ requires its registered resident worker')\n            config,_ = resident_execution.configuration()\n\
+    \            key=resident_execution.key(worker.TOOL)\n            resident_execution.registered(config['tools'].get(key),key,worker.IMAGE)\n\
+    \        if worker.TOOL==workflow.TOOL:\n            from .workflow.service import\
+    \ configuration\n            ensure('configuration' in content and content['configuration']==configuration(self),\n\
+    \                'INVALID_REQUEST','Use workflow-submit to register workflow inputs\
+    \ and fixed configuration')\n            if content['structure_artifact'] is not\
+    \ None:self._structure_bytes(db,content,body['run_id'])\n        if worker.TOOL==structure.TOOL:self._structure_bytes(db,content,body['run_id'])\n\
+    \        elif worker.TOOL==epitope_map.TOOL:self._epitope_sources(db,content)\n\
+    \        elif worker.TOOL==glycosylation.TOOL:self._n06_hotspot_source(db,content)\n\
+    \        elif worker.TOOL==domains.TOOL:\n            from .domains.service import\
+    \ sources\n            sources(self,db,content,expected_run_id=body['run_id'])\n\
+    \        elif worker.TOOL==developability.TOOL:\n            from .developability.service\
+    \ import sources\n            sources(self,db,content)\n        elif worker.TOOL==wt_reference.TOOL:\n\
+    \            from .wt_reference.source import sources\n            sources(self,db,content)\n\
+    \        elif worker.TOOL==local_delivery.TOOL:\n            from .local_delivery.source\
+    \ import sources\n            sources(self,db,content)\n        elif worker.TOOL==epitope_protection.TOOL:\n\
+    \            from .epitope_protection.source import sources\n            sources(self,db,content)\n\
+    \        elif worker.TOOL==variant_report.TOOL:\n            from .variant_report.source\
+    \ import sources\n            sources(self,db,content)\n        elif worker.TOOL==design_backend.TOOL:\n\
+    \            from .design_backend.source import sources\n            sources(self,db,content)\n\
+    \        elif worker.TOOL==wt_draft.TOOL:\n            from .wt_draft.service\
+    \ import sources\n            sources(self,db,content)\n        elif worker.TOOL\
+    \ in (proteinmpnn.TOOL,esm_if1.TOOL,thermompnn.TOOL,foldx.TOOL):\n           \
+    \ from .proteinmpnn.source import sources\n            if body['tool_id']==esm_if1.TOOL:\n\
+    \                from .esm_if1.source import sources\n            elif body['tool_id']==thermompnn.TOOL:\n\
+    \                from .thermompnn.source import sources\n            elif body['tool_id']==foldx.TOOL:\n\
+    \                from .foldx.source import sources\n            sources(self,db,content,expected_run_id=body['run_id'])\n\
+    \n    def dispatch(self,job_id):\n        if self.get(job_id)['tool_id']==workflow.TOOL:\n\
+    \            from .workflow.service import dispatch\n            return dispatch(self,job_id)\n\
+    \        if self.get(job_id)['tool_id']==local_delivery.TOOL:\n            from\
+    \ .local_delivery.service import dispatch\n            return dispatch(self,job_id)\n\
+    \        if self.get(job_id)['tool_id']==wt_reference.TOOL:\n            from\
+    \ .wt_reference.service import dispatch\n            return dispatch(self,job_id)\n\
+    \        if self.get(job_id)['tool_id']==codon.TOOL:\n            from .codon.service\
+    \ import dispatch\n            return dispatch(self,job_id)\n        if self.get(job_id)['tool_id']==epitope_protection.TOOL:\n\
+    \            from .epitope_protection.service import dispatch\n            return\
+    \ dispatch(self,job_id)\n        if self.get(job_id)['tool_id']==variant_report.TOOL:\n\
+    \            from .variant_report.service import dispatch\n            return\
+    \ dispatch(self,job_id)\n        if self.get(job_id)['tool_id']==design_backend.TOOL:\n\
+    \            from .design_backend.service import dispatch\n            return\
+    \ dispatch(self,job_id)\n        if self.get(job_id)['tool_id']==wt_draft.TOOL:\n\
+    \            from .wt_draft.service import dispatch\n            return dispatch(self,job_id)\n\
+    \        if self.get(job_id)['tool_id']==developability.TOOL:\n            from\
+    \ .developability.service import dispatch\n            return dispatch(self,job_id)\n\
+    \        if self.get(job_id)['tool_id']==domains.TOOL:\n            from .domains.service\
+    \ import dispatch\n            return dispatch(self,job_id)\n        if self.get(job_id)['tool_id']==epitope_map.TOOL:return\
+    \ self._dispatch_epitope_map(job_id)\n        if self.get(job_id)['tool_id']==glycosylation.TOOL:return\
+    \ self._dispatch_glycosylation(job_id)\n        if self.get(job_id)['tool_id']\
+    \ not in TOOLS:return super().dispatch(job_id)\n        from ..winprocess import\
+    \ current_identity\n        with self._tx() as db:\n            before=self._job(db,job_id)\n\
+    \            worker=spec(before['tool_id'])\n            if before['state']!='queued':return\
+    \ before\n            try:\n                ensure(before['execution_profile']==worker.registered_profile(),'PROFILE_NOT_APPROVED','Development\
+    \ code changed since admission')\n                raw=self._input(db,before['request_artifact'],before['run_id']);body=worker.request(raw)\n\
+    \                data=self._structure_bytes(db,body,before['run_id']) if worker.TOOL==structure.TOOL\
+    \ else None\n                upstream={};source_receipt=None\n               \
+    \ if worker.TOOL in (proteinmpnn.TOOL,esm_if1.TOOL,thermompnn.TOOL,foldx.TOOL):\n\
+    \                    from .proteinmpnn.source import sources\n               \
+    \     if worker.TOOL==esm_if1.TOOL:\n                        from .esm_if1.source\
+    \ import sources\n                    elif worker.TOOL==thermompnn.TOOL:\n   \
+    \                     from .thermompnn.source import sources\n               \
+    \     elif worker.TOOL==foldx.TOOL:\n                        from .foldx.source\
+    \ import sources\n                    upstream,source_receipt=sources(self,db,body,expected_run_id=before['run_id'])\n\
+    \            except RuntimeFault as exc:\n                value=copy.deepcopy(before);value.update(state='failed',finished_at=now(),error_code=exc.code,scientific_disposition='rejected')\n\
+    \                self._store(db,value,before,'preflight_failed');return value\n\
+    \            allowed=(None,'tool_failure','corrupt_output','crash_after_start','crash_after_receipt')\n\
+    \            if worker.TOOL==netmhc.TOOL:allowed=allowed+('mhc_i_failure','mhc_ii_failure','both_channels_failure')\n\
+    \            if worker.TOOL in (blast.TOOL,homology.TOOL,proteinmpnn.TOOL,esm_if1.TOOL,thermompnn.TOOL,foldx.TOOL):allowed=allowed+('slow_worker',)\n\
+    \            if worker.TOOL==esm_if1.TOOL:allowed=allowed+('first_variant_failure','all_variants_failure')\n\
+    \            ensure(self._development_fault in allowed,\n                'INVALID_REQUEST','Unknown\
+    \ internal development fault')\n            value=copy.deepcopy(before)\n    \
+    \        value.update(state='running',attempt_id=new_id('attempt'),execution_identity='exec-'+new_id('attempt'),\n\
+    \                lease_epoch=1,started_at=now())\n            path=self.attempt_path(value)\n\
+    \            publish(self.root,path+'/input.json',raw)\n            internal_id=getattr(worker,'sequence_id',sequence_id)(body['protein_sequence'])\n\
+    \            publish(self.root,path+'/input.fasta',('>'+internal_id+'\\n'+body['protein_sequence']+'\\\
+    n').encode())\n            for name,content in upstream.items():publish(self.root,path+'/'+name,content)\n\
+    \            if data is not None:\n                publish(self.root,path+'/input.structure',data)\n\
+    \                binding={k:value[k] for k in ['run_id','request_id','job_id','attempt_id','execution_identity','execution_profile']}\n\
+    \                binding.update(input_sha256=sha(raw),sequence_sha256=sha(body['protein_sequence'].encode()),structure_sha256=sha(data))\n\
+    \                publish(self.root,path+'/binding.json',encode(binding))\n   \
+    \             if body['structure_artifact']['evidence_kind']=='G0_REAL_OUTPUT':\n\
+    \                    producer=self._job(db,body['structure_artifact']['job_id'])\n\
+    \                    verified_prediction=prediction_source(producer['tool_id']).verified\n\
+    \                    evidence=verified_prediction(self,db,body['structure_artifact']['job_id'],\n\
+    \                        body['protein_sequence'],body['host_species'],value['run_id'],include_quality=True)\n\
+    \                    evidence['binding']=binding\n                    publish(self.root,path+'/prediction-evidence.json',encode(evidence))\n\
+    \            if worker.TOOL in PREDICTION_TOOLS:\n                binding={k:value[k]\
+    \ for k in ['run_id','request_id','job_id','attempt_id','execution_identity','execution_profile']}\n\
+    \                binding.update(input_sha256=sha(raw),sequence_sha256=sha(body['protein_sequence'].encode()))\n\
+    \                publish(self.root,path+'/binding.json',encode(binding))\n   \
+    \         within(self.root,path+'/output').mkdir()\n            ex=dict(phase='reserved',dispatcher=current_identity(),supervisor=None,tree_stopped=False,\n\
+    \                container_name=worker.SLOT,container_id=None,timeout_seconds=body['timeout_seconds'],fault=self._development_fault,\n\
+    \                deadline=None,container_started=False)\n            from .. import\
+    \ resident_execution\n            if resident_execution.enabled(): ex['backend']='resident-process'\n\
+    \            self._execution_store(db,job_id,ex);self._store(db,value,before,'claimed')\n\
+    \            if worker.TOOL in (proteinmpnn.TOOL,esm_if1.TOOL,thermompnn.TOOL,foldx.TOOL):\n\
+    \                ex['source_receipt']=source_receipt;self._execution_store(db,job_id,ex)\n\
+    \        from .. import resident_execution\n        if self.execution(job_id).get('backend')=='resident-process':return\
+    \ resident_execution.reconcile(self,job_id)\n        from ..deployment import\
+    \ execution as kubernetes_execution\n        if kubernetes_execution.enabled():return\
+    \ kubernetes_execution.reconcile(self,job_id)\n        with self._tx() as db:\n\
+    \            current=self._job(db,job_id);ex=self._execution(db,job_id)\n    \
+    \        if current['state'] in TERMINAL or ex['phase']!='reserved':return current\n\
+    \            ex['phase']='spawn_intent';self._execution_store(db,job_id,ex)\n\
+    \        # The child registers under the attempt mutex before any Docker operation.\n\
+    \        # No suspended process can be orphaned by a dispatcher crash.\n     \
+    \   try:\n            command=[sys.executable,'-X','utf8',str(REPO/'scripts/t01_development_supervisor.py'),\n\
+    \                '--root',str(self.root),'--scope',self.scope,'--job-id',job_id]\n\
+    \            if worker.TOOL==blast.TOOL and self.blast_database_root is not None:\n\
+    \                command+=['--blast-database-root',str(self.blast_database_root)]\n\
+    \            if worker.TOOL==homology.TOOL and self.homology_database_root is\
+    \ not None:\n                command += ['--homology-database-root',str(self.homology_database_root)]\n\
+    \            subprocess.Popen(command,cwd=REPO,\n                stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,\n\
+    \                close_fds=True,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))\n\
+    \        except OSError as exc:return self._unknown(job_id,'Supervisor launch\
+    \ failed: '+str(exc))\n        return self.get(job_id)\n\n    def _dispatch_epitope_map(self,job_id):\n\
+    \        \"\"\"Run bounded S-19 branches after re-verifying exact N03/N04/N05\
+    \ artifacts.\"\"\"\n        from ..winprocess import current_identity\n      \
+    \  from .epitope_map.result import compute\n        with self._tx() as db:\n \
+    \           before=self._job(db,job_id)\n            if before['state']!='queued':return\
+    \ before\n            try:\n                ensure(before['execution_profile']==epitope_map.registered_profile()\n\
+    \                    and before['rule_profile']==epitope_map.registered_rules(),\n\
+    \                    'PROFILE_NOT_APPROVED','N06 implementation or rule profile\
+    \ changed since admission')\n                raw=self._input(db,before['request_artifact'],before['run_id']);body=epitope_map.request(raw)\n\
+    \                sources,source_receipts=self._epitope_sources(db,body)\n    \
+    \        except RuntimeFault as exc:\n                value=copy.deepcopy(before);value.update(state='failed',finished_at=now(),error_code=exc.code,scientific_disposition='rejected')\n\
+    \                self._store(db,value,before,'preflight_failed');return value\n\
+    \            fault=self._development_fault\n            ensure(fault in (None,'compute_failure','corrupt_output','interrupt_after_claim'),\n\
+    \                'INVALID_REQUEST','Unknown internal N06 development fault')\n\
+    \            value=copy.deepcopy(before);value.update(state='running',attempt_id=new_id('attempt'),\n\
+    \                execution_identity='exec-'+new_id('attempt'),lease_epoch=1,started_at=now())\n\
+    \            path=self.attempt_path(value);fasta=('>'+epitope_map.sequence_id(body['protein_sequence'])+'\\\
+    n'+body['protein_sequence']+'\\n').encode()\n            publish(self.root,path+'/input.json',raw);publish(self.root,path+'/input.fasta',fasta)\n\
+    \            for name,(source_raw,_) in sources.items():publish(self.root,path+'/input/'+name+'-result.json',source_raw)\n\
+    \            within(self.root,path+'/output').mkdir()\n            ex=dict(phase='local_compute',dispatcher=current_identity(),supervisor=None,tree_stopped=False,\n\
+    \                backend='trusted-local-in-process',container_started=False,container_id=None,network_used=False,\n\
+    \                timeout_seconds=body['timeout_seconds'],fault=fault,sources_verified=True,source_receipts=source_receipts)\n\
+    \            self._execution_store(db,job_id,ex);self._store(db,value,before,'claimed')\n\
+    \        if fault=='interrupt_after_claim':\n            with self._tx() as db:\n\
+    \                ex=self._execution(db,job_id);ex.update(phase='interrupted_fixture',tree_stopped=True)\n\
+    \                self._execution_store(db,job_id,ex)\n            return self.get(job_id)\n\
+    \        started=time.perf_counter();files={'input.json':raw,'input.fasta':fasta}\n\
+    \        files.update({'input/'+name+'-result.json':source_raw for name,(source_raw,_)\
+    \ in sources.items()})\n        error=None;diagnostic=None;exit_code=0\n     \
+    \   try:\n            if fault=='compute_failure':raise RuntimeFault('TOOL_FAILED','Controlled\
+    \ N06 local calculation failure')\n            decoded={name:value for name,(_,value)\
+    \ in sources.items()};computed=compute(body,decoded)\n            observed=encode(dict(method='s19-bounded-map-v10.5',\n\
+    \                source_sha256={name:sha(encode(value)) for name,value in decoded.items()},result=computed))\n\
+    \            if fault=='corrupt_output':observed=b'{\"truncated\":true}'\n   \
+    \         publish(self.root,path+'/output/observation.json',observed);files['output/observation.json']=observed\n\
+    \        except (RuntimeFault,OSError,ValueError) as exc:\n            error=exc.code\
+    \ if isinstance(exc,RuntimeFault) else 'TOOL_FAILED';diagnostic=str(exc);exit_code=1\n\
+    \        elapsed=time.perf_counter()-started\n        if elapsed>body['timeout_seconds']:\n\
+    \            error='TIMEOUT';diagnostic='N06 local calculation exceeded its declared\
+    \ deadline';exit_code=124\n            with self._tx() as db:\n              \
+    \  current=self._job(db,job_id)\n                if current['stop_reason'] is\
+    \ None:self._stop(db,current,'timeout')\n        actual=dict(job_id=job_id,attempt_id=value['attempt_id'],execution_identity=value['execution_identity'],\n\
+    \            exit_code=exit_code,error_code=error,diagnostic=diagnostic,stopped_confirmed=True,\n\
+    \            backend='trusted-local-in-process',container_id=None,network_used=False,elapsed_seconds=elapsed,\n\
+    \            sources_verified=True,source_receipts=source_receipts,recovered=False)\n\
+    \        current=self.get(job_id);built=self._build_epitope_map_result(current,body,files,actual,fault)\n\
+    \        ex=self.execution(job_id);ex.update(phase='collected',tree_stopped=True,elapsed_seconds=elapsed)\n\
+    \        return self._finish_development(job_id,ex,files,built)\n\n    @staticmethod\n\
+    \    def _build_epitope_map_result(job,body,files,execution,fault):\n        from\
+    \ .epitope_map.result import result\n        return result(job,body,files,execution,fault)\n\
+    \n    def _dispatch_glycosylation(self,job_id):\n        \"\"\"Run the bounded\
+    \ deterministic S-12 calculation in the trusted backend.\"\"\"\n        from ..winprocess\
+    \ import current_identity\n        from .glycosylation.result import scan\n  \
+    \      import Bio\n        with self._tx() as db:\n            before=self._job(db,job_id)\n\
+    \            if before['state']!='queued':return before\n            try:\n  \
+    \              ensure(before['execution_profile']==glycosylation.registered_profile()\n\
+    \                    and before['rule_profile']==glycosylation.registered_rules(),\n\
+    \                    'PROFILE_NOT_APPROVED','N07 implementation or rule profile\
+    \ changed since admission')\n                raw=self._input(db,before['request_artifact'],before['run_id']);body=glycosylation.request(raw)\n\
+    \                hotspot_receipt=self._n06_hotspot_source(db,body);n06_raw=None\n\
+    \                source=body['hotspot_input']['source']\n                if hotspot_receipt['status']=='VERIFIED_N06_ARTIFACT_REF':\n\
+    \                    _,n06_raw,_=self._registered_result_artifact(db,source['artifact'],epitope_map.TOOL)\n\
+    \            except RuntimeFault as exc:\n                value=copy.deepcopy(before);value.update(state='failed',finished_at=now(),error_code=exc.code,scientific_disposition='rejected')\n\
+    \                self._store(db,value,before,'preflight_failed');return value\n\
+    \            fault=self._development_fault\n            ensure(fault in (None,'compute_failure','corrupt_output','interrupt_after_claim'),\n\
+    \                'INVALID_REQUEST','Unknown internal N07 development fault')\n\
+    \            value=copy.deepcopy(before);value.update(state='running',attempt_id=new_id('attempt'),\n\
+    \                execution_identity='exec-'+new_id('attempt'),lease_epoch=1,started_at=now())\n\
+    \            path=self.attempt_path(value)\n            publish(self.root,path+'/input.json',raw)\n\
+    \            publish(self.root,path+'/input.fasta',('>'+glycosylation.sequence_id(body['protein_sequence'])+'\\\
+    n'+body['protein_sequence']+'\\n').encode())\n            if n06_raw is not None:publish(self.root,path+'/input/n06-result.json',n06_raw)\n\
+    \            within(self.root,path+'/output').mkdir()\n            ex=dict(phase='local_compute',dispatcher=current_identity(),supervisor=None,tree_stopped=False,\n\
+    \                backend='trusted-local-in-process',container_started=False,container_id=None,network_used=False,\n\
+    \                timeout_seconds=body['timeout_seconds'],fault=fault,hotspot_source_verification=hotspot_receipt)\n\
+    \            self._execution_store(db,job_id,ex);self._store(db,value,before,'claimed')\n\
+    \        if fault=='interrupt_after_claim':\n            with self._tx() as db:\n\
+    \                ex=self._execution(db,job_id);ex.update(phase='interrupted_fixture',tree_stopped=True)\n\
+    \                self._execution_store(db,job_id,ex)\n            return self.get(job_id)\n\
+    \        started=time.perf_counter();files={'input.json':raw,\n            'input.fasta':('>'+glycosylation.sequence_id(body['protein_sequence'])+'\\\
+    n'+body['protein_sequence']+'\\n').encode()}\n        if n06_raw is not None:files['input/n06-result.json']=n06_raw\n\
+    \        error=None;diagnostic=None;exit_code=0\n        try:\n            if\
+    \ fault=='compute_failure':raise RuntimeFault('TOOL_FAILED','Controlled local\
+    \ calculation failure')\n            observed=encode(dict(biopython_version=Bio.__version__,method='overlap-aware-regex-lookahead',result=scan(body)))\n\
+    \            if fault=='corrupt_output':observed=b'{\"truncated\":true}'\n   \
+    \         publish(self.root,path+'/output/observation.json',observed);files['output/observation.json']=observed\n\
+    \        except (RuntimeFault,OSError,ValueError) as exc:\n            error=exc.code\
+    \ if isinstance(exc,RuntimeFault) else 'TOOL_FAILED';diagnostic=str(exc);exit_code=1\n\
+    \        elapsed=time.perf_counter()-started\n        if elapsed>body['timeout_seconds']:\n\
+    \            error='TIMEOUT';diagnostic='Local calculation exceeded its declared\
+    \ deadline';exit_code=124\n            with self._tx() as db:\n              \
+    \  current=self._job(db,job_id)\n                if current['stop_reason'] is\
+    \ None:self._stop(db,current,'timeout')\n        actual=dict(job_id=job_id,attempt_id=value['attempt_id'],execution_identity=value['execution_identity'],\n\
+    \            exit_code=exit_code,error_code=error,diagnostic=diagnostic,stopped_confirmed=True,\n\
+    \            backend='trusted-local-in-process',container_id=None,network_used=False,biopython_version=Bio.__version__,\n\
+    \            elapsed_seconds=elapsed,recovered=False,hotspot_source_verification=hotspot_receipt)\n\
+    \        current=self.get(job_id)\n        built=self._build_glycosylation_result(current,body,files,actual,fault)\n\
+    \        ex=self.execution(job_id);ex.update(phase='collected',tree_stopped=True,elapsed_seconds=elapsed)\n\
+    \        return self._finish_development(job_id,ex,files,built)\n\n    @staticmethod\n\
+    \    def _build_glycosylation_result(job,body,files,execution,fault):\n      \
+    \  from .glycosylation.result import result\n        return result(job,body,files,execution,fault)\n\
+    \n    def reconcile(self,job_id):\n        from .. import resident_execution\n\
+    \        if self.execution(job_id).get('backend')=='resident-process':\n     \
+    \       return resident_execution.reconcile(self,job_id)\n        from ..deployment\
+    \ import execution as kubernetes_execution\n        if self.execution(job_id).get('backend')=='kubernetes':\n\
+    \            return kubernetes_execution.reconcile(self,job_id)\n        if self.get(job_id)['tool_id']==workflow.TOOL:\n\
+    \            from .workflow.service import dispatch\n            return dispatch(self,job_id)\n\
+    \        before=self.get(job_id)\n        if before['tool_id']==codon.TOOL:\n\
+    \            from .codon.service import recover\n            return recover(self,before)\n\
+    \        if before['tool_id'] in (epitope_map.TOOL,glycosylation.TOOL,domains.TOOL,developability.TOOL,wt_draft.TOOL,design_backend.TOOL,variant_report.TOOL,epitope_protection.TOOL,wt_reference.TOOL,local_delivery.TOOL,workflow.TOOL,codon.TOOL):return\
+    \ self._reconcile_local(before)\n        if before['tool_id'] not in TOOLS:return\
+    \ super().reconcile(job_id)\n        if before['state'] in TERMINAL or before['state']=='queued':return\
+    \ before\n        from ..winprocess import alive, initialization_lock\n      \
+    \  ex=self.execution(job_id)\n        if not ex.get('supervisor') and before['state']!='reconciling'\
+    \ and alive(ex.get('dispatcher')) is True:\n            return before  # Registration\
+    \ in flight; explicit recover fences a launch gap.\n        if alive(ex.get('supervisor'))\
+    \ is True:\n            if before['state']=='reconciling':\n                with\
+    \ self._tx() as db:\n                    current=self._job(db,job_id)\n      \
+    \              if current['state']=='reconciling':\n                        value=copy.deepcopy(current);value['state']='stop_requested'\
+    \ if value['stop_reason'] else 'running'\n                        value['lease_epoch']+=1;self._store(db,value,current,'reattached')\n\
+    \            return self.get(job_id)\n        try:\n            with initialization_lock('Local\\\
+    \\T01-development-'+job_id):\n                current=self.get(job_id)\n     \
+    \           if current['state'] in TERMINAL:return current\n                ex=self.execution(job_id)\n\
+    \                if ex.get('supervisor') and alive(ex.get('supervisor')) is None:\n\
+    \                    return self._unknown(job_id,'Supervisor identity unavailable')\n\
+    \                from .supervisor import collect_stopped\n                if not\
+    \ ex.get('container_started') and not ex.get('container_id'):\n              \
+    \      # A dead preflight supervisor never created an execution tree.\n      \
+    \              return collect_stopped(self,current,None,recovered=True)\n    \
+    \            info=docker.inspect(self.root,ex.get('container_id') or spec(current['tool_id']).SLOT)\n\
+    \                if docker.owned(self.root,current,info):\n                  \
+    \  info=docker.stop(self.root,current,info)\n                    # A dead supervisor\
+    \ never silently restarts/reuses an in-flight inference.\n                   \
+    \ return collect_stopped(self,current,info,recovered=True)\n                if\
+    \ info is not None and ex.get('container_id')==info['Id']:\n                 \
+    \   return self._unknown(job_id,'Container ownership changed')\n             \
+    \   # Name is absent or belongs to another attempt; ours cannot still occupy it.\n\
+    \                return collect_stopped(self,current,None,recovered=True)\n  \
+    \      except (RuntimeFault,OSError) as exc:\n            return self._unknown(job_id,str(exc))\n\
+    \n    def _unknown(self,job_id,diagnostic):\n        with self._tx() as db:\n\
+    \            current=self._job(db,job_id)\n            if current['state'] in\
+    \ TERMINAL:return current\n            ex=self._execution(db,job_id);ex['recovery_diagnostic']=diagnostic;self._execution_store(db,job_id,ex)\n\
+    \            if current['state']!='reconciling':\n                value=copy.deepcopy(current);value.update(state='reconciling',lease_epoch=current['lease_epoch']+1)\n\
+    \                self._store(db,value,current,'execution_unknown');return value\n\
+    \            return current\n\n    def _reconcile_local(self,before):\n      \
+    \  \"\"\"An N06/N07 local in-process calculation has no child tree to guess or\
+    \ restart.\"\"\"\n        if before['state'] in TERMINAL or before['state']=='queued':return\
+    \ before\n        from ..winprocess import alive\n        ex=self.execution(before['job_id'])\n\
+    \        if ex.get('phase')!='interrupted_fixture' and alive(ex.get('dispatcher'))\
+    \ is True:\n            if before['state']=='reconciling':\n                with\
+    \ self._tx() as db:\n                    current=self._job(db,before['job_id'])\n\
+    \                    if current['state']=='reconciling':\n                   \
+    \     value=copy.deepcopy(current);value['state']='stop_requested' if value['stop_reason']\
+    \ else 'running'\n                        value['lease_epoch']+=1;self._store(db,value,current,'reattached')\n\
+    \            return self.get(before['job_id'])\n        if ex.get('a3d_kubernetes_spec')\
+    \ and not ex.get('a3d_stop_confirmed'):\n            from ..deployment.a3d import\
+    \ cleanup_interrupted\n            if not cleanup_interrupted(self,before,ex):return\
+    \ self.get(before['job_id'])\n        if ex.get('a3d_resident_target') and not\
+    \ ex.get('a3d_resident_stop_confirmed'):\n            from ..resident_a3d import\
+    \ cleanup_interrupted\n            if not cleanup_interrupted(self,before,ex):\n\
+    \                return self._unknown(before['job_id'],'Nested resident A3D stop\
+    \ is unconfirmed')\n            ex=self.execution(before['job_id'])\n        worker=spec(before['tool_id'])\n\
+    \        body=worker.request(self._request_bytes(before));path=self.attempt_path(before)\n\
+    \        files={'input.json':self._request_bytes(before)}\n        fasta=within(self.root,path+'/input.fasta')\n\
+    \        if fasta.is_file():files['input.fasta']=read_locked(fasta)\n        names=('bepipred','netmhc','blast')\
+    \ if worker.TOOL==epitope_map.TOOL else ('structure',) if worker.TOOL==developability.TOOL\
+    \ else ('n06',)\n        for name in names:\n            source=within(self.root,path+'/input/'+name+'-result.json')\n\
+    \            if source.is_file():files['input/'+name+'-result.json']=read_locked(source,32*1024**2)\n\
+    \        if worker.TOOL in (wt_draft.TOOL,design_backend.TOOL,variant_report.TOOL,epitope_protection.TOOL,wt_reference.TOOL,local_delivery.TOOL,workflow.TOOL,codon.TOOL):\n\
+    \            for source in within(self.root,path+'/input').glob('*.json'):\n \
+    \               files['input/'+source.name]=read_locked(source,32*1024**2)\n \
+    \       actual=dict(job_id=before['job_id'],attempt_id=before['attempt_id'],execution_identity=before['execution_identity'],\n\
+    \            exit_code=None,error_code='INTERRUPTED',diagnostic='Local calculation\
+    \ dispatcher ended before durable result publication',\n            stopped_confirmed=True,backend='trusted-local-in-process',container_id=None,network_used=False,\n\
+    \            elapsed_seconds=None,recovered=True)\n        if worker.TOOL==local_delivery.TOOL:\n\
+    \            from .local_delivery.service import result as builder\n         \
+    \   actual.update(source_receipts=ex.get('source_receipts'))\n        elif worker.TOOL==wt_reference.TOOL:\n\
+    \            from .wt_reference.service import result as builder\n           \
+    \ actual.update(source_receipts=ex.get('source_receipts'))\n        elif worker.TOOL==epitope_protection.TOOL:\n\
+    \            from .epitope_protection.service import result as builder\n     \
+    \       actual.update(source_receipts=ex.get('source_receipts'))\n        elif\
+    \ worker.TOOL==variant_report.TOOL:\n            from .variant_report.service\
+    \ import result as builder\n            actual.update(source_receipts=ex.get('source_receipts'))\n\
+    \        elif worker.TOOL==design_backend.TOOL:\n            from .design_backend.service\
+    \ import result as builder\n            actual.update(source_receipts=ex.get('source_receipts'))\n\
+    \        elif worker.TOOL==wt_draft.TOOL:\n            from .wt_draft.service\
+    \ import result as builder\n            actual.update(source_receipts=ex.get('source_receipts'))\n\
+    \        elif worker.TOOL==domains.TOOL:\n            from .domains.service import\
+    \ result as builder\n            actual.update(source_receipts=ex.get('source_receipts'),database_receipt=None)\n\
+    \        elif worker.TOOL==developability.TOOL:\n            from .developability.service\
+    \ import result as builder\n            actual.update(source_receipt=ex.get('source_receipt'))\n\
+    \        elif worker.TOOL==epitope_map.TOOL:\n            actual.update(sources_verified=ex.get('sources_verified'),source_receipts=ex.get('source_receipts'))\n\
+    \            builder=self._build_epitope_map_result\n        else:\n         \
+    \   actual.update(biopython_version=__import__('Bio').__version__,\n         \
+    \       hotspot_source_verification=ex.get('hotspot_source_verification'))\n \
+    \           builder=self._build_glycosylation_result\n        current=self.get(before['job_id']);built=builder(current,body,files,actual,ex.get('fault'))\n\
+    \        ex.update(phase='collected',tree_stopped=True,recovered=True)\n     \
+    \   return self._finish_development(before['job_id'],ex,files,built)\n\n    def\
+    \ _finish_development(self,job_id,ex,files,result):\n        with self._tx() as\
+    \ db:\n            before=self._job(db,job_id)\n            if before['state']\
+    \ in TERMINAL:return before\n            ensure(ex.get('tree_stopped'),'INVALID_STATE','Container\
+    \ stop must be confirmed before terminal publication')\n            value=copy.deepcopy(before)\n\
+    \            error=result['execution'].get('error_code')\n            if before['stop_reason']:\n\
+    \                error='CANCELLED' if before['stop_reason']=='cancel' else 'TIMEOUT'\n\
+    \                value.update(state='cancelled' if error=='CANCELLED' else 'timed_out',stop_confirmed=True)\n\
+    \                result.update(status='unreliable',null_reason=error)\n      \
+    \          if before['tool_id']==TOOL:result.update(topology=None,raw_record=None)\n\
+    \                elif before['tool_id']==bepipred.TOOL:result.update(raw_scores=None,raw_record=None)\n\
+    \                elif before['tool_id']==netmhc.TOOL:result.update(channels=dict(mhc_i=None,mhc_ii=None))\n\
+    \                elif before['tool_id']==blast.TOOL:result.update(search=None)\n\
+    \                elif before['tool_id']==homology.TOOL:result.update(homolog_set=None,analysis=None)\n\
+    \                elif before['tool_id']==epitope_map.TOOL:result.update(epitopes=None,branch_status=None,blast_similarity=None)\n\
+    \                elif before['tool_id']==glycosylation.TOOL:result.update(glycosylation=None,sequons=None,hotspot_assessment=None)\n\
+    \                elif before['tool_id']==developability.TOOL:result.update(developability=None,steps=None)\n\
+    \                elif before['tool_id']==wt_draft.TOOL:result.update(draft=None)\n\
+    \                elif before['tool_id']==design_backend.TOOL:result.update(audit=None)\n\
+    \                elif before['tool_id']==variant_report.TOOL:result.update(report=None)\n\
+    \                elif before['tool_id']==epitope_protection.TOOL:result.update(protection=None)\n\
+    \                elif before['tool_id']==wt_reference.TOOL:result.update(reference=None)\n\
+    \                elif before['tool_id']==local_delivery.TOOL:result.update(delivery=None)\n\
+    \                elif before['tool_id']==workflow.TOOL:\n                    result.update(workflow=None)\n\
+    \                    # Cancellation can arrive after assembly but before the terminal\n\
+    \                    # transaction. Do not publish its already-built export ZIP.\n\
+    \                    files={name:raw for name,raw in files.items() if name!='output/package.zip'}\n\
+    \                elif before['tool_id']==codon.TOOL:result.update(dna=None)\n\
+    \                elif before['tool_id']==proteinmpnn.TOOL:result.update(generation=None)\n\
+    \                elif before['tool_id']==esm_if1.TOOL:result.update(scoring=None,baseline=None,engineering_rules=None)\n\
+    \                elif before['tool_id']==thermompnn.TOOL:result.update(scan=None)\n\
+    \                elif before['tool_id']==foldx.TOOL:result.update(repair=None,ddg_results=None,variant_ddg=None)\n\
+    \                elif before['tool_id'] in PREDICTION_TOOLS:result.update(prediction=None)\n\
+    \                else:result.update(analysis=None)\n                result['execution']['error_code']=error\n\
+    \                result['warnings']=[dict(level='failure',severity='WARNING',code=error,message='\u6267\
+    \u884C\u5DF2\u505C\u6B62\uFF0C\u7ED3\u679C\u4E0D\u4F9B\u6D88\u8D39')]\n      \
+    \      else:value['state']='failed' if error else 'succeeded'\n            value.update(finished_at=now(),error_code=error,exit_code=result['execution'].get('exit_code'),\n\
+    \                scientific_disposition='review_required' if value['state']=='succeeded'\
+    \ else 'rejected')\n            refs=[]\n            for name,raw in sorted(files.items()):\n\
+    \                role='log' if name in ('stdout.txt','stderr.txt') else 'raw'\n\
+    \                ref=self._publish_development(db,value,role,raw,'application/octet-stream')\n\
+    \                value['artifacts'].append(ref);refs.append(dict(path=name,artifact=ref))\n\
+    \            result['raw_artifacts']=refs\n            ref=self._publish_development(db,value,'result'\
+    \ if value['state']=='succeeded' else 'diagnostic',encode(result),'application/json')\n\
+    \            value['artifacts'].append(ref)\n            ex.update(phase='finished',tree_stopped=True)\n\
+    \            self._execution_store(db,job_id,ex);self._store(db,value,before,'completed')\n\
+    \            return value\n\n    def _publish_development(self,db,job,role,raw,media):\n\
+    \        aid=new_id('artifact');relative=self.attempt_path(job)+'/published/'+aid+'.bin'\n\
+    \        publish(self.root,relative,raw)\n        ref=self._artifact(aid,job['run_id'],job['job_id'],job['attempt_id'],role,raw)\n\
+    \        ref.update(evidence_kind='G0_REAL_OUTPUT',media_type=media)\n       \
+    \ db.execute('INSERT INTO artifacts VALUES(?,?,?,?)',(aid,job['run_id'],relative,encode(ref).decode()))\n\
+    \        return ref\n\n    def artifact_bytes(self,job_id,artifact_id):\n    \
+    \    if self.get(job_id)['tool_id'] not in TOOLS:return super().artifact_bytes(job_id,artifact_id)\n\
+    \        with self._db() as db:\n            job=self._job(db,job_id)\n      \
+    \      ref=next((r for r in job['artifacts'] if r['artifact_id']==artifact_id),None)\n\
+    \            ensure(ref is not None,'FORBIDDEN','Artifact does not belong to job')\n\
+    \            row=db.execute('SELECT relative_path,data FROM artifacts WHERE id=?',(artifact_id,)).fetchone()\n\
+    \            ensure(row and decode(row['data'])==ref,'FORBIDDEN','Artifact registration\
+    \ mismatch')\n            return read_verified(self.root,row['relative_path'],ref['sha256'],ref['size_bytes'],32*1024**2)\n\
+    \n    def result(self,job_id):\n        job=self.get(job_id)\n        ref=next((r\
+    \ for r in job['artifacts'] if r['role'] in ('result','diagnostic')),None)\n \
+    \       ensure(ref is not None,'INVALID_STATE','No terminal result/diagnostic\
+    \ artifact')\n        return decode(self.artifact_bytes(job_id,ref['artifact_id']))\n"
+  af3-development--supervisor.py: "\"\"\"Durable Docker supervision: ownership, offline\
+    \ limits, stop/recovery and publication.\"\"\"\nimport argparse\nfrom datetime\
+    \ import datetime, timedelta, timezone\nimport os\nimport time\n\nfrom ..common\
+    \ import RuntimeFault, TERMINAL, decode, encode, ensure, now, sha\nfrom ..files\
+    \ import no_links, publish, read_locked, read_verified, within\nfrom ..winprocess\
+    \ import initialization_lock, current_identity\nfrom . import docker, deeptmhmm\n\
+    from .policy import IMAGE, registered_profile, request, sequence_id, verify_assets\n\
+    from .runtime import Runtime\nfrom .registry import spec, result as build_result\n\
+    from .structure import policy as structure\nfrom .bepipred import policy as bepipred\n\
+    from .blast import policy as blast\nfrom .homology import policy as homology\n\
+    from .proteinmpnn import policy as proteinmpnn\nfrom .esm_if1 import policy as\
+    \ esm_if1\nfrom .thermompnn import policy as thermompnn\nfrom .foldx import policy\
+    \ as foldx\n\n\ndef save(root,path,raw):\n    \"\"\"Keep the first observation;\
+    \ recovery verifies the recorded raw inventory.\"\"\"\n    dest=within(root,path)\n\
+    \    if dest.exists():return\n    publish(root,path,raw)\n\n\ndef output_files(runtime,job):\n\
+    \    path=runtime.attempt_path(job);folder=within(runtime.root,path)\n    result={};total=0\n\
+    \    for p in sorted(folder.rglob('*')):\n        if 'published' in p.relative_to(folder).parts:continue\n\
+    \        no_links(p)\n        if not p.is_file():continue\n        raw=read_locked(p,32*1024**2);total+=len(raw)\n\
+    \        ensure(total<=128*1024**2 and len(result)<128,'OUTPUT_INVALID','Output\
+    \ exceeds bounded artifact inventory')\n        result[p.relative_to(folder).as_posix()]=raw\n\
+    \    return result\n\n\ndef inspect_contract(info,tool_id=None):\n    worker=spec(tool_id\
+    \ or 't01.real.deeptmhmm');limits=worker.LIMITS\n    h=info['HostConfig']\n  \
+    \  ensure(h['NetworkMode']=='none' and h['ReadonlyRootfs'] and h['Memory']==h['MemorySwap']==limits['memory']\n\
+    \        and h['NanoCpus']==limits['cpus']*10**9 and h['CpusetCpus']==limits['cpuset']\
+    \ and h['PidsLimit']==limits['pids'],\n        'OUTPUT_INVALID','Actual container\
+    \ isolation/resource policy differs')\n    mounts={m['Destination']:m for m in\
+    \ info['Mounts']}\n    readonly={'/code/t01_structure_mapping','/worker','/profile.json','/input.json','/input.structure','/binding.json'}\
+    \ if worker.TOOL==structure.TOOL else {'/app','/input.fasta','/probe.py'}\n  \
+    \  if worker.TOOL==bepipred.TOOL:readonly=readonly|{'/torch/hub/checkpoints'}\n\
+    \    if worker.TOOL=='t01.real.netmhc':readonly={'/worker.py','/input.json','/input.fasta'}\n\
+    \    if worker.TOOL in (blast.TOOL,homology.TOOL):readonly={'/worker.py','/input.json','/input.fasta','/database'}\n\
+    \    if worker.TOOL==homology.TOOL:readonly={'/worker','/input.json','/input.fasta','/database'}\n\
+    \    if worker.TOOL in (proteinmpnn.TOOL,esm_if1.TOOL,thermompnn.TOOL,foldx.TOOL):\n\
+    \        readonly={'/worker.py','/app','/native','/input.json','/input.fasta'}\n\
+    \        if worker.TOOL==thermompnn.TOOL:readonly|={'/upstream','/app/local.yaml'}\n\
+    \        requests=h.get('DeviceRequests')\n        if worker.TOOL in (proteinmpnn.TOOL,esm_if1.TOOL,thermompnn.TOOL):\n\
+    \            ensure(isinstance(requests,list) and len(requests)==1 and requests[0]['DeviceIDs']==['0']\n\
+    \                and ['gpu'] in requests[0]['Capabilities'],'OUTPUT_INVALID','Registered\
+    \ GPU request differs')\n        else:\n            ensure(not requests,'OUTPUT_INVALID','FoldX\
+    \ must not request a GPU')\n    ensure(set(mounts)==readonly|{'/out'} and all(not\
+    \ mounts[p]['RW'] for p in readonly) and mounts['/out']['RW'],\n        'OUTPUT_INVALID','Container\
+    \ mount isolation differs')\n\n\ndef collect_stopped(runtime,job,info,recovered=False,error=None):\n\
+    \    worker=spec(job['tool_id'])\n    ex=runtime.execution(job['job_id']);path=runtime.attempt_path(job)\n\
+    \    receipt_path=within(runtime.root,path+'/receipt.json')\n    receipt=None;receipt_error=None\n\
+    \    if receipt_path.exists():\n        try:\n            raw_receipt=read_locked(receipt_path)\n\
+    \            ensure(sha(raw_receipt)==ex.get('receipt_sha256'),'OUTPUT_INVALID','Recovery\
+    \ receipt hash mismatch')\n            receipt=decode(raw_receipt)\n         \
+    \   ensure(isinstance(receipt,dict) and receipt['job_id']==job['job_id'] and receipt['attempt_id']==job['attempt_id']\n\
+    \                and receipt['execution_identity']==job['execution_identity']\
+    \ and receipt['stopped_confirmed'] is True,\n                'OUTPUT_INVALID','Recovery\
+    \ receipt identity mismatch')\n        except (RuntimeFault,KeyError,TypeError,ValueError)\
+    \ as exc:\n            receipt=None;receipt_error=str(exc);error='OUTPUT_INVALID'\n\
+    \    if recovered and not receipt:error=error or 'INTERRUPTED'\n    if info is\
+    \ not None:\n        ensure(docker.owned(runtime.root,job,info) and not info['State']['Running'],\n\
+    \            'INVALID_STATE','Container is foreign or running')\n        inspect_contract(info,job['tool_id'])\n\
+    \        logs=docker.call(runtime.root,['logs',info['Id']])\n        save(runtime.root,path+'/stdout.txt',logs.stdout);save(runtime.root,path+'/stderr.txt',logs.stderr)\n\
+    \        save(runtime.root,path+'/container-inspect.json',encode(info))\n    \
+    \    code=info['State']['ExitCode'];oom=info['State']['OOMKilled']\n        if\
+    \ info['State']['Status']=='created':error=error or 'INTERRUPTED'\n        if\
+    \ code in (124,137) and ex.get('deadline') and datetime.now(timezone.utc)>=datetime.fromisoformat(ex['deadline']):\n\
+    \            with runtime._tx() as db:\n                current=runtime._job(db,job['job_id'])\n\
+    \                if not current['stop_reason']:runtime._stop(db,current,'timeout')\n\
+    \            job=runtime.get(job['job_id'])\n        error=error or ('TOOL_FAILED'\
+    \ if code!=0 or oom else None)\n    elif receipt:\n        ensure(receipt['job_id']==job['job_id']\
+    \ and receipt['attempt_id']==job['attempt_id']\n            and receipt['execution_identity']==job['execution_identity']\
+    \ and receipt['stopped_confirmed'],\n            'OUTPUT_INVALID','Recovery receipt\
+    \ identity mismatch')\n        code=receipt['exit_code'];oom=receipt['oom_killed'];error=error\
+    \ or receipt['error_code']\n    else:\n        code=None;oom=False;error=error\
+    \ or 'INTERRUPTED'\n    diagnostic=receipt_error or ex.get('supervisor_diagnostic')\
+    \ or ('Supervisor interrupted; owned container stopped' if recovered and error\
+    \ else error)\n    actual=dict(job_id=job['job_id'],attempt_id=job['attempt_id'],execution_identity=job['execution_identity'],\n\
+    \        exit_code=code,oom_killed=oom,error_code=error,diagnostic=diagnostic,stopped_confirmed=True,\n\
+    \        image_id=worker.IMAGE,container_id=info['Id'] if info else ex.get('container_id'),recovered=recovered)\n\
+    \    if worker.TOOL in (blast.TOOL,homology.TOOL):actual['database_receipt']=ex.get('database_receipt')\n\
+    \    if worker.TOOL in (proteinmpnn.TOOL,esm_if1.TOOL,thermompnn.TOOL,foldx.TOOL):actual['source_receipt']=ex.get('source_receipt')\n\
+    \    if job['stop_reason']:\n        actual['error_code']='CANCELLED' if job['stop_reason']=='cancel'\
+    \ else 'TIMEOUT'\n    if not receipt and not receipt_path.exists():\n        raw_inventory=encode({n:sha(raw)\
+    \ for n,raw in output_files(runtime,job).items()})\n        save(runtime.root,path+'/raw-inventory.json',raw_inventory)\n\
+    \        actual['raw_inventory_sha256']=sha(raw_inventory)\n        save(runtime.root,path+'/receipt.json',encode(actual))\n\
+    \        ex['receipt_sha256']=sha(encode(actual))\n        with runtime._tx()\
+    \ as db:runtime._execution_store(db,job['job_id'],ex)\n    if info is not None:\n\
+    \        removed=docker.call(runtime.root,['rm',info['Id']])\n        save(runtime.root,path+'/container-remove.json',encode(dict(exit_code=removed.returncode,stdout=removed.stdout.decode(errors='replace'),stderr=removed.stderr.decode(errors='replace'))))\n\
+    \        ensure(removed.returncode==0,'ASSET_MISSING','Stopped container cleanup\
+    \ unconfirmed')\n    if ex.get('fault')=='crash_after_receipt' and not recovered:os._exit(94)\n\
+    \    files={}\n    try:\n        files=output_files(runtime,job)\n        if receipt:\n\
+    \            evidence_path=within(runtime.root,path+'/raw-inventory.json')\n \
+    \           ensure(evidence_path.is_file(),'OUTPUT_INVALID','Missing recovery\
+    \ raw inventory')\n            expected=decode(read_locked(evidence_path))\n \
+    \           ensure(sha(read_locked(evidence_path))==receipt['raw_inventory_sha256'],'OUTPUT_INVALID','Recovery\
+    \ inventory hash changed')\n            ensure(all(n in files and sha(files[n])==h\
+    \ for n,h in expected.items()),'OUTPUT_INVALID','Recovery raw artifact hash changed')\n\
+    \        body=worker.request(read_verified(runtime.root,path+'/input.json',job['request_artifact']['sha256'],job['request_artifact']['size_bytes'],65536))\n\
+    \        ensure(job['execution_profile']==worker.registered_profile(),'OUTPUT_INVALID','Development\
+    \ profile changed during execution/recovery')\n        internal_id=getattr(worker,'sequence_id',sequence_id)(body['protein_sequence'])\n\
+    \        expected_fasta=('>'+internal_id+'\\n'+body['protein_sequence']+'\\n').encode()\n\
+    \        ensure(files['input.fasta']==expected_fasta,'OUTPUT_INVALID','Executed\
+    \ FASTA binding differs')\n        if worker.TOOL in (proteinmpnn.TOOL,esm_if1.TOOL,thermompnn.TOOL,foldx.TOOL)\
+    \ and actual['error_code'] is None:\n            from .proteinmpnn.source import\
+    \ sources\n            if worker.TOOL==esm_if1.TOOL:\n                from .esm_if1.source\
+    \ import sources\n            elif worker.TOOL==thermompnn.TOOL:\n           \
+    \     from .thermompnn.source import sources\n            elif worker.TOOL==foldx.TOOL:\n\
+    \                from .foldx.source import sources\n            with runtime._db()\
+    \ as db:_,checked=sources(runtime,db,body,expected_run_id=job['run_id'])\n   \
+    \         ensure(checked==ex.get('source_receipt'),'HASH_MISMATCH','ProteinMPNN\
+    \ upstream changed before publication')\n        value=build_result(job,body,files,actual,ex.get('fault'))\n\
+    \    except (RuntimeFault,KeyError,ValueError) as exc:\n        files['collection-error.json']=encode(dict(error=str(exc)))\n\
+    \        body=worker.request(runtime._request_bytes(job))\n        actual.update(error_code='OUTPUT_INVALID',diagnostic=str(exc))\n\
+    \        value=build_result(job,body,files,actual,ex.get('fault'))\n    ex.update(tree_stopped=True,container_stopped=True,container_exit_code=code,oom_killed=oom)\n\
+    \    return runtime._finish_development(job['job_id'],ex,files,value)\n\n\ndef\
+    \ supervise(root,scope,job_id,blast_database_root=None,homology_database_root=None):\n\
+    \    runtime=Runtime(root,scope,blast_database_root=blast_database_root,homology_database_root=homology_database_root)\n\
+    \    # One collector per attempt; recovery can acquire this mutex after supervisor\
+    \ death.\n    with initialization_lock('Local\\\\T01-development-'+job_id):\n\
+    \        job=runtime.get(job_id);ex=runtime.execution(job_id)\n        worker=spec(job['tool_id'])\n\
+    \        if job['state'] in TERMINAL:return\n        with runtime._tx() as db:\n\
+    \            ensure(ex['phase']=='spawn_intent' and ex['supervisor'] is None,'INVALID_STATE','Supervisor\
+    \ cannot register twice')\n            ex.update(phase='supervising',supervisor=current_identity());runtime._execution_store(db,job_id,ex)\n\
+    \        path=runtime.attempt_path(job)\n        try:\n            ensure(job['execution_profile']==worker.registered_profile(),'PROFILE_NOT_APPROVED','Worker\
+    \ profile changed after dispatch')\n            body=worker.request(read_verified(runtime.root,path+'/input.json',job['request_artifact']['sha256'],job['request_artifact']['size_bytes'],65536))\n\
+    \            receipt=worker.verify_assets();database_path=None;database_receipt=None\n\
+    \            if worker.TOOL in (proteinmpnn.TOOL,esm_if1.TOOL,thermompnn.TOOL,foldx.TOOL):\n\
+    \                from .proteinmpnn.source import sources\n                if worker.TOOL==esm_if1.TOOL:\n\
+    \                    from .esm_if1.source import sources\n                elif\
+    \ worker.TOOL==thermompnn.TOOL:\n                    from .thermompnn.source import\
+    \ sources\n                elif worker.TOOL==foldx.TOOL:\n                   \
+    \ from .foldx.source import sources\n                with runtime._db() as db:prepared,checked=sources(runtime,db,body,expected_run_id=job['run_id'])\n\
+    \                ensure(checked==ex.get('source_receipt') and all(read_locked(within(runtime.root,path+'/'+n),32*1024**2)==raw\n\
+    \                    for n,raw in prepared.items()),'HASH_MISMATCH','ProteinMPNN\
+    \ staged source/constraints changed')\n            if worker.TOOL in (blast.TOOL,homology.TOOL):\n\
+    \                database_receipt=worker.verify_database(runtime.homology_database_root\
+    \ if worker.TOOL==homology.TOOL else runtime.blast_database_root,body)\n     \
+    \           database_path=database_receipt.pop('mount_path')\n               \
+    \ with runtime._tx() as db:\n                    ex=runtime._execution(db,job_id);ex['database_receipt']=database_receipt;runtime._execution_store(db,job_id,ex)\n\
+    \            save(runtime.root,path+'/assets-before.json',encode(dict(verified_files=len(receipt['files']),archive_sha256=receipt['archive_sha256'])))\n\
+    \            image=docker.call(runtime.root,['image','inspect','--format','{{.Id}}',worker.IMAGE])\n\
+    \            ensure(image.returncode==0 and image.stdout.decode().strip()==worker.IMAGE,'ASSET_MISSING','Pinned\
+    \ image not available locally')\n            cmd=docker.command(runtime.root,job,path,body['timeout_seconds'],database_path)\n\
+    \            save(runtime.root,path+'/command.json',encode(dict(argv=docker.client(runtime.root)+cmd,profile=job['execution_profile'],binding=docker.labels(runtime.root,job))))\n\
+    \            if ex.get('fault'):\n                save(runtime.root,path+'/fault.json',encode(dict(kind='CONTROLLED_INTEGRATION_FAULT',name=ex['fault'],source_output_preserved=True)))\n\
+    \            if ex.get('fault')=='tool_failure':within(runtime.root,path+'/output/result').mkdir()\n\
+    \            if ex.get('fault') in ('first_variant_failure','all_variants_failure'):\n\
+    \                within(runtime.root,path+'/output/'+ex['fault']).mkdir()\n  \
+    \          if ex.get('fault')=='slow_worker':within(runtime.root,path+'/output/slow_worker').mkdir()\n\
+    \            if ex.get('fault') in ('mhc_i_failure','mhc_ii_failure','both_channels_failure'):\n\
+    \                names=('mhc_i_failure','mhc_ii_failure') if ex['fault']=='both_channels_failure'\
+    \ else (ex['fault'],)\n                for name in names:within(runtime.root,path+'/output/'+name).mkdir()\n\
+    \            # Docker's unique fixed slot serializes models across runtime roots/processes.\n\
+    \            waiting=time.monotonic()\n            while True:\n             \
+    \   job=runtime.get(job_id)\n                if job['stop_reason']:return collect_stopped(runtime,job,None,error='CANCELLED')\n\
+    \                info=docker.inspect(runtime.root,worker.SLOT)\n             \
+    \   if info is None:\n                    created=docker.call(runtime.root,cmd,30)\n\
+    \                    save(runtime.root,path+'/create.json',encode(dict(exit_code=created.returncode,stdout=created.stdout.decode(errors='replace'),stderr=created.stderr.decode(errors='replace'))))\n\
+    \                    if created.returncode!=0 and b'Conflict' not in created.stderr:\n\
+    \                        raise RuntimeFault('TOOL_FAILED','Docker create failed;\
+    \ inspect create.json')\n                    info=docker.inspect(runtime.root,worker.SLOT)\n\
+    \                if docker.owned(runtime.root,job,info):break\n              \
+    \  if time.monotonic()-waiting>=900:\n                    with runtime._tx() as\
+    \ db:runtime._stop(db,runtime._job(db,job_id),'timeout')\n                   \
+    \ return collect_stopped(runtime,runtime.get(job_id),None,error='TIMEOUT')\n \
+    \               time.sleep(.2)\n            ex=runtime.execution(job_id)\n   \
+    \         ex.update(container_id=info['Id'],deadline=(datetime.now(timezone.utc)+timedelta(seconds=body['timeout_seconds'])).isoformat(),container_started=True)\n\
+    \            with runtime._tx() as db:runtime._execution_store(db,job_id,ex)\n\
+    \            started=docker.call(runtime.root,['start',info['Id']],30)\n     \
+    \       save(runtime.root,path+'/start.json',encode(dict(exit_code=started.returncode,stdout=started.stdout.decode(errors='replace'),stderr=started.stderr.decode(errors='replace'))))\n\
+    \            ensure(started.returncode==0,'TOOL_FAILED','Docker start failed')\n\
+    \            if ex.get('fault')=='crash_after_start':os._exit(93)\n          \
+    \  while True:\n                job=runtime.get(job_id);info=docker.inspect(runtime.root,ex['container_id'])\n\
+    \                ensure(docker.owned(runtime.root,job,info),'ASSET_MISSING','Owned\
+    \ execution is unavailable')\n                if not job['stop_reason'] and datetime.now(timezone.utc)>=datetime.fromisoformat(ex['deadline']):\n\
+    \                    with runtime._tx() as db:runtime._stop(db,runtime._job(db,job_id),'timeout')\n\
+    \                    job=runtime.get(job_id)\n                if job['stop_reason']:info=docker.stop(runtime.root,job,info)\n\
+    \                if not info['State']['Running']:break\n                time.sleep(.15)\n\
+    \            worker.verify_assets()\n            if worker.TOOL in (blast.TOOL,homology.TOOL):\n\
+    \                after=worker.verify_database(runtime.homology_database_root if\
+    \ worker.TOOL==homology.TOOL else runtime.blast_database_root,body);after.pop('mount_path')\n\
+    \                ensure(after==database_receipt,'HASH_MISMATCH','BLAST database\
+    \ changed during execution')\n            save(runtime.root,path+'/assets-after.json',encode(dict(verified_files=len(receipt['files']),archive_sha256=receipt['archive_sha256'])))\n\
+    \            return collect_stopped(runtime,job,info)\n        except (RuntimeFault,OSError,ValueError)\
+    \ as exc:\n            with runtime._tx() as db:\n                ex=runtime._execution(db,job_id);ex['supervisor_diagnostic']=str(exc);runtime._execution_store(db,job_id,ex)\n\
+    \            try:\n                job=runtime.get(job_id);ex=runtime.execution(job_id)\n\
+    \                # Admission/profile/asset failures happen before Docker create.\
+    \ There is\n                # no owned process to inspect or stop, so finish their\
+    \ diagnostic without\n                # turning an exact preflight failure into\
+    \ an unknown Docker state.\n                info=None if not ex.get('container_started')\
+    \ and not ex.get('container_id') else docker.inspect(runtime.root,ex.get('container_id')\
+    \ or worker.SLOT)\n                if docker.owned(runtime.root,job,info):info=docker.stop(runtime.root,job,info)\n\
+    \                else:info=None\n                return collect_stopped(runtime,job,info,error=exc.code\
+    \ if isinstance(exc,RuntimeFault) else 'TOOL_FAILED')\n            except (RuntimeFault,OSError,ValueError)\
+    \ as stop_error:\n                runtime._unknown(job_id,str(stop_error))\n\n\
+    \ndef main():\n    p=argparse.ArgumentParser(description=__doc__)\n    for name\
+    \ in ['root','scope','job-id']:p.add_argument('--'+name,required=True)\n    p.add_argument('--blast-database-root')\n\
+    \    p.add_argument('--homology-database-root')\n    a=p.parse_args();supervise(a.root,a.scope,a.job_id,a.blast_database_root,a.homology_database_root)\n"
+  af3-development--workflow--policy.py: "from pathlib import Path\nfrom ...common\
+    \ import REPO, decode, encode, ensure, sha\n\nTOOL = 't01.real.local_workflow'\n\
+    NODE = 'N18'\nOPTIONS = ('topology', 'blast', 'bepipred', 'netmhc', 'homology',\
+    \ 'domains', 'developability')\nORDER = ('structure', 'topology', 'blast', 'bepipred',\
+    \ 'netmhc', 'epitope_map',\n         'glycosylation', 'homology', 'domains', 'developability',\
+    \ 'wt_draft',\n         'design', 'rescore', 'protection', 'stability', 'variant_report',\
+    \ 'codon',\n         'wt_reference', 'local_delivery')\nNODES = dict(zip(ORDER,\
+    \ ('N01','N02','N03','N04','N05','N06','N07','N08','N09','N10',\n            \
+    \            'N18','N11','N12','N13','N14','N15','N16','N17','N18')))\nNODES['prediction']\
+    \ = 'N01'\n\n\ndef order(body):\n    return ('prediction',) + ORDER if body.get('prediction')\
+    \ is not None else ORDER\n\ndef request(raw):\n    ensure(isinstance(raw, bytes)\
+    \ and len(raw) <= 65536, 'INVALID_REQUEST', 'Bounded workflow JSON required')\n\
+    \    b = decode(raw)\n    required = {'protein_sequence','user_sequence_id','host_species','expression_host','organism',\n\
+    \                'structure','analysis','reuse_jobs','timeout_seconds'}\n    ensure(isinstance(b,\
+    \ dict) and (set(b) - {'prediction'}) in (required, required | {'structure_artifact','configuration'}),\n\
+    \           'INVALID_REQUEST', 'Exact workflow fields required')\n    s = b['protein_sequence']\n\
+    \    ensure(isinstance(s,str) and 9 <= len(s) <= 2000 and set(s) <= set('ACDEFGHIKLMNPQRSTVWY'),\n\
+    \           'INVALID_REQUEST', 'Workflow requires an exact 9..2000 AA20 sequence')\n\
+    \    for name in ('user_sequence_id','host_species'):\n        ensure(isinstance(b[name],str)\
+    \ and 0 < len(b[name]) <= 128, 'INVALID_REQUEST', 'Explicit sequence label and\
+    \ host required')\n    for name in ('expression_host','organism'):\n        ensure(b[name]\
+    \ is None or isinstance(b[name],str) and 0 < len(b[name]) <= 128,\n          \
+    \     'INVALID_REQUEST', 'Explicit name or null required')\n    ensure(type(b['timeout_seconds'])\
+    \ is int and 1 <= b['timeout_seconds'] <= 7200,\n           'INVALID_REQUEST',\
+    \ 'Workflow deadline must be 1..7200 seconds')\n    ensure(isinstance(b['analysis'],dict)\
+    \ and set(b['analysis']) == set(OPTIONS),\n           'INVALID_REQUEST', 'All\
+    \ analysis options required; null explicitly disables a branch')\n    forbidden\
+    \ = {'protein_sequence','user_sequence_id','host_species','upstream','structure_input','topology_input'}\n\
+    \    for option in b['analysis'].values():\n        ensure(option is None or isinstance(option,dict)\
+    \ and not (set(option) & forbidden),\n               'INVALID_REQUEST', 'Analysis\
+    \ parameters cannot override workflow identity or upstream bindings')\n    from\
+    \ .. import policy as topology\n    from ..bepipred import policy as bepipred\n\
+    \    for name,maximum in [('topology',topology.MAX_AA),('bepipred',bepipred.MAX_AA)]:\n\
+    \        if b['analysis'][name] is not None:\n            ensure(len(s)<=maximum,'INVALID_REQUEST',\n\
+    \                   f'Workflow {name} input exceeds its current verified support\
+    \ cap of {maximum} aa; no truncation is performed')\n    ensure(isinstance(b['reuse_jobs'],dict)\
+    \ and set(b['reuse_jobs']) <= {'structure','variant_report','wt_reference'},\n\
+    \           'INVALID_REQUEST', 'Only explicit historical structure/report/reference\
+    \ reuse is supported')\n    import re\n    ensure(all(isinstance(j,str) and re.fullmatch('t01p1r-job-[0-9a-f]{32}',j)\
+    \ for j in b['reuse_jobs'].values()),\n           'INVALID_REQUEST', 'Registered\
+    \ historical job IDs required')\n    ensure(not (b['structure'] is not None and\
+    \ 'structure' in b['reuse_jobs']),\n           'INVALID_REQUEST', 'New structure\
+    \ and reused structure are mutually exclusive')\n    if b['structure'] is not\
+    \ None:\n        from ..structure import policy\n        ensure(isinstance(b['structure'],dict),'INVALID_REQUEST','Structure\
+    \ metadata must be an object')\n        policy.metadata(encode(dict(b['structure'],protein_sequence=s,host_species=b['host_species'])))\n\
+    \        ensure(not (set(b['structure']) & {'protein_sequence','host_species','structure_artifact'}),\n\
+    \               'INVALID_REQUEST', 'Structure identity belongs to workflow')\n\
+    \    if b.get('prediction') is not None:\n        opt = b['prediction']\n    \
+    \    ensure(isinstance(opt,dict) and set(opt)=={'engine','seed','timeout_seconds'}\n\
+    \               and opt['engine'] in ('esmfold2','af3')\n               and b['structure']\
+    \ is None and 'structure' not in b['reuse_jobs'],\n               'INVALID_REQUEST',\
+    \ 'Explicit local prediction excludes uploaded/reused structure')\n        if\
+    \ opt['engine']=='esmfold2':\n            from ..esmfold2 import policy as prediction\n\
+    \        else:\n            from ..af3 import policy as prediction\n        prediction.request(encode(dict(protein_sequence=s,user_sequence_id=b['user_sequence_id'],host_species=b['host_species'],\n\
+    \                                       seed=opt['seed'],timeout_seconds=opt['timeout_seconds'])))\n\
+    \    return b\n\ndef sequence_id(s): return 't01flow_' + sha(s.encode())[:16]\n\
+    \ndef registered_rules():\n    return dict(id='local-workflow-closed-gate',version='0.1.0',sha256=sha(encode(dict(\n\
+    \        order=ORDER,optional_prediction=('esmfold2','af3'),automatic_routing=False,\n\
+    \        gate='CLOSED',md='EXCLUDED'))))\n\ndef registered_profile():\n    paths\
+    \ = sorted((Path(__file__).parent.parent).rglob('*.py'))\n    return dict(id='local-workflow-controller',version='0.1.0',sha256=sha(encode(\n\
+    \        {p.relative_to(REPO).as_posix():sha(p.read_bytes()) for p in paths})))\n"
+  af3-development--workflow--service.py: "\"\"\"Transactional dependency scheduling\
+    \ over the existing jobs/executions store.\n\nA tick owns the controller only\
+    \ while scheduling/reconciling. Child insertion and\nparent linkage share one\
+    \ transaction, fencing cancellation and crash duplicates.\n\"\"\"\nimport copy\n\
+    import io\nimport zipfile\nfrom datetime import datetime, timezone\nfrom pathlib\
+    \ import Path\nfrom ...common import TERMINAL, RuntimeFault, decode, encode, ensure,\
+    \ new_id, now, sha\nfrom ...files import publish\nfrom ...winprocess import current_identity,\
+    \ alive\nfrom . import policy\n\ndef configuration(rt):\n    return {n: str(Path(getattr(rt,n)).resolve())\
+    \ if getattr(rt,n) is not None else None\n            for n in ('blast_database_root','homology_database_root','domains_database_root')}\n\
+    \ndef envelope(run, ref, worker, key):\n    return dict(contract_version='0.1.0',run_id=run,request_id=new_id('request'),idempotency_key=key,\n\
+    \                tool_id=worker.TOOL,node_id=worker.NODE,run_mode='g0_probe',request_artifact=ref,\n\
+    \                execution_profile=worker.registered_profile(),\n            \
+    \    rule_profile=worker.registered_rules() if hasattr(worker,'registered_rules')\
+    \ else None)\n\ndef submit(rt, raw, key, structure_data=None):\n    body = policy.request(raw)\n\
+    \    ensure('configuration' not in body, 'INVALID_REQUEST', 'Internal configuration\
+    \ cannot be supplied')\n    from ..structure import policy as sp\n    ensure((body['structure']\
+    \ is None) == (structure_data is None), 'INVALID_REQUEST', 'Structure metadata\
+    \ and bytes must be supplied together')\n    if structure_data is not None:\n\
+    \        ensure(isinstance(structure_data,bytes) and 0 < len(structure_data) <=\
+    \ sp.MAX_STRUCTURE_BYTES,\n               'INVALID_REQUEST', 'Structure must be\
+    \ 1 byte..4 MiB')\n    config = configuration(rt)\n    fingerprint = encode(dict(input_sha256=sha(raw),structure_sha256=sha(structure_data)\
+    \ if structure_data is not None else None,configuration=config))\n    with rt._tx()\
+    \ as db:\n        def action():\n            run = dict(contract_version='0.1.0',run_id=new_id('run'),created_at=now())\n\
+    \            db.execute('INSERT INTO runs VALUES(?,?,?)',(run['run_id'],rt.scope,encode(run).decode()))\n\
+    \            ref = None\n            if structure_data is not None:\n        \
+    \        aid = new_id('artifact'); path = f'runs/{run[\"run_id\"]}/inputs/{aid}.structure'\n\
+    \                ref = rt._artifact(aid,run['run_id'],None,None,'input',structure_data)\n\
+    \                ref.update(evidence_kind='LOCAL_INPUT',media_type='application/octet-stream')\n\
+    \                publish(rt.root,path,structure_data)\n                db.execute('INSERT\
+    \ INTO artifacts VALUES(?,?,?,?)',(aid,run['run_id'],path,encode(ref).decode()))\n\
+    \            staged = dict(body,structure_artifact=ref,configuration=config)\n\
+    \            ref = rt._stage(db,run['run_id'],encode(staged),policy.TOOL)\n  \
+    \          req = envelope(run['run_id'],ref,policy,key)\n            rt._admit(db,req)\n\
+    \            return rt._new_job(db,req,encode(req))\n        return rt._idempotent(db,'local_workflow',key,fingerprint,action)\n\
+    \ndef prediction_source(engine):\n    if engine == 'esmfold2':\n        from ..esmfold2\
+    \ import source\n        return source\n    if engine == 'af3':\n        from\
+    \ ..af3 import source\n        return source\n    raise RuntimeFault('INVALID_REQUEST','Unknown\
+    \ prediction engine')\n\n\ndef worker(name, body=None):\n    if name == 'prediction':\n\
+    \        ensure(body is not None and body.get('prediction') is not None,\n   \
+    \            'INVALID_REQUEST','Prediction engine context required')\n       \
+    \ if body['prediction']['engine']=='esmfold2':\n            from ..esmfold2 import\
+    \ policy as prediction\n        else:\n            from ..af3 import policy as\
+    \ prediction\n        return prediction\n    from ..registry import spec\n   \
+    \ from ..wt_draft.policy import PRODUCERS\n    tool = PRODUCERS.get(name, 't01.real.'\
+    \ + name)\n    return spec(tool)\n\ndef source(rt, row):\n    if not row or not\
+    \ row.get('job_id'): return None\n    j = rt.get(row['job_id'])\n    return dict(job_id=j['job_id'],artifact=next((r\
+    \ for r in j['artifacts'] if r['role'] in ('result','diagnostic')),None))\n\n\
+    def verified(rt, body, name, jid):\n    j = rt.get(jid)\n    ensure(j['tool_id']\
+    \ == worker(name,body).TOOL and j['run_mode'] == 'g0_probe' and not j['usable_for_pipeline'],\n\
+    \           'FORBIDDEN', 'Workflow child producer or qualification differs')\n\
+    \    request_raw = rt._request_bytes(j); req = decode(request_raw)\n    ensure(req.get('protein_sequence')\
+    \ == body['protein_sequence'], 'OUTPUT_INVALID', 'Workflow child sequence differs')\n\
+    \    ensure(req.get('host_species') in (None,body['host_species']), 'OUTPUT_INVALID',\
+    \ 'Workflow child host differs')\n    for ref in j['artifacts']: rt.artifact_bytes(jid,ref['artifact_id'])\n\
+    \    s = source(rt,dict(job_id=jid))\n    if s['artifact']:\n        with rt._db()\
+    \ as db: _,_,value = rt._registered_result_artifact(db,s['artifact'],worker(name,body).TOOL)\n\
+    \        ensure(value['binding'].get('input_sha256') == sha(request_raw)\n   \
+    \            and value['binding'].get('sequence_sha256') == sha(body['protein_sequence'].encode())\n\
+    \               and value.get('qualification') == 'DEVELOPMENT_UNREVIEWED'\n \
+    \              and value.get('scientific_signoff') is None and value.get('production_status')\
+    \ == 'NOT_DEPLOYED',\n               'OUTPUT_INVALID', 'Workflow child binding\
+    \ or signoff differs')\n    return j\n\ndef typed(rt, rows, name):\n    s = source(rt,rows.get(name))\n\
+    \    if s is None or s['artifact'] is None: return dict(state='not_provided',artifact=None,reason_code=None)\n\
+    \    j = rt.get(s['job_id'])\n    return dict(state='available' if j['state']=='succeeded'\
+    \ else 'upstream_unavailable',\n                artifact=s['artifact'],reason_code=j['error_code'])\n\
+    \ndef request_for(rt, b, rows, name):\n    base = dict(protein_sequence=b['protein_sequence'],user_sequence_id=b['user_sequence_id'],timeout_seconds=30)\n\
+    \    if name == 'prediction':\n        opt = b['prediction']\n        return dict(base,host_species=b['host_species'],seed=opt['seed'],timeout_seconds=opt['timeout_seconds']),\
+    \ None\n    if name == 'structure':\n        if b.get('prediction') is not None:\n\
+    \            row = rows.get('prediction', {})\n            if row.get('state')\
+    \ != 'succeeded': return None, 'PREDICTION_UNAVAILABLE'\n            source_module=prediction_source(b['prediction']['engine'])\n\
+    \            job = rt.get(row['job_id'])\n            with rt._db() as db:\n \
+    \               ref, _ = source_module.verified(rt,db,job['job_id'],b['protein_sequence'],b['host_species'],job['run_id'])\n\
+    \            engine=b['prediction']['engine']\n            return dict(protein_sequence=b['protein_sequence'],host_species=b['host_species'],structure_artifact=ref,\n\
+    \                        structure_name=engine+'.cif',declared_format='MMCIF',selection=dict(model_index=0,chain_selector='A'),\n\
+    \                        context_chain_ids=['A'],source_declaration=dict(kind='predicted',note=engine+'\
+    \ job '+job['job_id']),timeout_seconds=120), None\n        if b['structure'] is\
+    \ None: return None, 'PREDICTION_SERVICE_NOT_DEPLOYED'\n        return dict(b['structure'],protein_sequence=b['protein_sequence'],host_species=b['host_species'],structure_artifact=b['structure_artifact']),\
+    \ None\n    if name in policy.OPTIONS:\n        opt = b['analysis'][name]\n  \
+    \      if opt is None:\n            return None, 'ALLELE_PANEL_NOT_PROVIDED' if\
+    \ name=='netmhc' else 'DATABASE_NOT_PROVIDED' if name in ('blast','homology','domains')\
+    \ else 'NOT_REQUESTED'\n        req = dict(base,**opt)\n        if name=='netmhc':\
+    \ req['host_species']=b['host_species']\n        if name in ('domains','developability'):\
+    \ req['structure_input']=typed(rt,rows,'structure')\n        if name=='domains':\
+    \ req['topology_input']=typed(rt,rows,'topology')\n        return req,None\n \
+    \   if name=='epitope_map':\n        inputs={n+'_input':typed(rt,rows,n) for n\
+    \ in ('bepipred','netmhc','blast')}\n        if inputs['blast_input']['state']=='not_provided':\n\
+    \            inputs['blast_input']=dict(state='not_executed',artifact=None,reason_code='WORKFLOW_BLAST_NOT_EXECUTED')\n\
+    \        return dict(base,**inputs),None\n    if name=='glycosylation':\n    \
+    \    n06=rows.get('epitope_map',{})\n        hotspot=rt.n06_hotspot_input(n06['job_id'],b['protein_sequence'])\
+    \ if n06.get('state')=='succeeded' else dict(state='not_provided',hotspots=None,source=None,reason_code=None)\n\
+    \        return dict(base,hotspot_input=hotspot),None\n    if name=='wt_draft':\n\
+    \        return dict(base,host_species=b['host_species'],organism=b['organism'],\n\
+    \                    upstream={n:source(rt,rows.get(n)) for n in worker(name).PRODUCERS}),None\n\
+    \    if name in ('design','rescore','protection','stability'): return None,'SCIENTIFIC_GATE_CLOSED'\n\
+    \    if name=='variant_report':\n        return dict(base,variant_source='N11_DESIGN_AUDIT',upstream=dict(design_audit=None,foldx=None),foldx_bindings=[]),None\n\
+    \    if name=='codon': return None,'EXPRESSION_HOST_NOT_PROVIDED' if b['expression_host']\
+    \ is None else 'NO_ELIGIBLE_SEQUENCE'\n    if name=='wt_reference':\n        return\
+    \ dict(base,upstream={n:source(rt,rows.get(n)) for n in worker(name).PRODUCERS}),None\n\
+    \    if name=='local_delivery':\n        return dict(base,host_species=b['host_species'],expression_host=b['expression_host'],dna_bindings=[],\n\
+    \                    upstream={n:source(rt,rows.get(n)) for n in worker(name).PRODUCERS}),None\n\
+    \    raise RuntimeFault('INVALID_REQUEST','Unknown workflow node')\n\ndef _record(rt,\
+    \ jid, name, row):\n    with rt._tx() as db:\n        j=rt._job(db,jid);ex=rt._execution(db,jid)\n\
+    \        if j['state'] in TERMINAL:return\n        ex['nodes'][name]=dict(row,node_id=policy.NODES[name])\n\
+    \        rt._execution_store(db,jid,ex);rt._store(db,copy.deepcopy(j),j,'workflow_node_'+name)\n\
+    \ndef _create_child(rt, jid, name, req):\n    with rt._tx() as db:\n        j=rt._job(db,jid);ex=rt._execution(db,jid)\n\
+    \        if j['stop_reason'] or j['state'] in TERMINAL:return None\n        body=policy.request(rt._input(db,j['request_artifact'],j['run_id']))\n\
+    \        w=worker(name,body)\n        remaining=body['timeout_seconds']-(datetime.now(timezone.utc)-datetime.fromisoformat(ex['started_at'].replace('Z','+00:00'))).total_seconds()\n\
+    \        if remaining <= 0:\n            rt._stop(db,j,'timeout');return None\n\
+    \        req=dict(req,timeout_seconds=min(req['timeout_seconds'],max(1,int(remaining))))\n\
+    \        if name in ex['nodes']:return ex['nodes'][name].get('job_id')\n     \
+    \   ref=rt._stage(db,j['run_id'],encode(req),w.TOOL)\n        request=envelope(j['run_id'],ref,w,jid+'-'+name)\n\
+    \        rt._admit(db,request)\n        child=rt._new_job(db,request,encode(request))\n\
+    \        ex['nodes'][name]=dict(node_id=policy.NODES[name],job_id=child['job_id'],state='queued',origin='NEW_EXECUTION',reason_code=None)\n\
+    \        rt._execution_store(db,jid,ex);rt._store(db,copy.deepcopy(j),j,'workflow_child_submitted')\n\
+    \        return child['job_id']\n\ndef stop_children(rt,jid):\n    for row in\
+    \ rt.execution(jid).get('nodes',{}).values():\n        if row.get('origin')!='NEW_EXECUTION'\
+    \ or not row.get('job_id'):continue\n        child=rt.get(row['job_id'])\n   \
+    \     if child['state'] not in TERMINAL:\n            rt.control(encode(dict(contract_version='0.1.0',operation='cancel',job_id=child['job_id'],idempotency_key=jid+'-stop-'+child['job_id'])))\n\
+    \            rt.reconcile(child['job_id'])\n\ndef snapshot(rt,jid,verify=True):\n\
+    \    j=rt.get(jid);ensure(j['tool_id']==policy.TOOL,'INVALID_REQUEST','Workflow\
+    \ task required')\n    body=policy.request(rt._request_bytes(j));ex=rt.execution(jid);rows=copy.deepcopy(ex.get('nodes',{}))\n\
+    \    for name,row in rows.items():\n        if row.get('job_id'):\n          \
+    \  child=verified(rt,body,name,row['job_id']) if verify else rt.get(row['job_id'])\n\
+    \            row.update(state=child['state'],error_code=child['error_code'],attempt_id=child['attempt_id'],\n\
+    \                       request_artifact=child['request_artifact'],execution_profile=child['execution_profile'],\n\
+    \                       rule_profile=child['rule_profile'],artifacts=child['artifacts'])\n\
+    \            row.update(qualification='DEVELOPMENT_UNREVIEWED',scientific_signoff=None,usable_for_pipeline=False)\n\
+    \    for name in policy.order(body):\n        rows.setdefault(name,dict(node_id=policy.NODES[name],job_id=None,state='not_executed',reason_code=j['error_code']\
+    \ or 'PENDING_DEPENDENCIES'))\n    return dict(job=j,nodes=rows,configuration=body['configuration'],sequence_sha256=sha(body['protein_sequence'].encode()),\n\
+    \                qualification='DEVELOPMENT_UNREVIEWED',usable_for_pipeline=False,automatic_handoff=False,\n\
+    \                scientific_gate='CLOSED',scientific_signoff=None,production_status='NOT_DEPLOYED',md='EXCLUDED')\n\
+    \ndef finish(rt,jid,error=None):\n    j=rt.get(jid);ex=rt.execution(jid)\n   \
+    \ if j['stop_reason']:\n        stop_children(rt,jid)\n        if any(rt.get(r['job_id'])['state']\
+    \ not in TERMINAL for r in ex['nodes'].values()\n               if r.get('job_id')\
+    \ and r.get('origin')=='NEW_EXECUTION'):return rt.get(jid)\n    data=snapshot(rt,jid,verify=error\
+    \ is None)\n    data['parent_at_assembly']=data.pop('job')\n    data['report_scope']='Snapshot\
+    \ before terminal publication; query the parent job for current lifecycle state'\n\
+    \    # A stopped or integrity-failed workflow never exports a consumable package.\n\
+    \    files={'output/workflow.json':encode(data)}\n    text=['# Local workflow\
+    \ engineering report','','Scientific Gate: CLOSED; DEVELOPMENT_UNREVIEWED; NOT_DEPLOYED.','',\n\
+    \          '| Node | Branch | State | Reason | Origin |','|---|---|---|---|---|']\n\
+    \    for name,row in data['nodes'].items():\n        text.append('| '+ ' | '.join(str(v\
+    \ or '') for v in (row['node_id'],name,row['state'],row.get('reason_code') or\
+    \ row.get('error_code'),row.get('origin'))) +' |')\n    files['output/workflow-report.md']=('\\\
+    n'.join(text)+'\\n').encode()\n    if error is None and not j['stop_reason']:\n\
+    \        contents={'workflow.json':files['output/workflow.json'],'workflow-report.md':files['output/workflow-report.md']}\n\
+    \        delivery=ex['nodes'].get('local_delivery',{})\n        if delivery.get('state')=='succeeded':\n\
+    \            value=rt.result(delivery['job_id'])\n            ref=next(r['artifact']\
+    \ for r in value['raw_artifacts'] if r['path']=='output/package.zip')\n      \
+    \      contents['local-delivery.zip']=rt.artifact_bytes(delivery['job_id'],ref['artifact_id'])\n\
+    \        contents['manifest.json']=encode(dict(files=[dict(path=n,size_bytes=len(raw),sha256=sha(raw))\
+    \ for n,raw in sorted(contents.items())]))\n        buf=io.BytesIO()\n       \
+    \ with zipfile.ZipFile(buf,'w',zipfile.ZIP_DEFLATED) as z:\n            for name,raw\
+    \ in sorted(contents.items()):\n                info=zipfile.ZipInfo(name,(2026,1,1,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;z.writestr(info,raw)\n\
+    \        files['output/package.zip']=buf.getvalue()\n    binding={k:j[k] for k\
+    \ in ('run_id','request_id','job_id','attempt_id','execution_identity','execution_profile','rule_profile')}\n\
+    \    binding.update(input_sha256=j['request_artifact']['sha256'],sequence_sha256=data['sequence_sha256'])\n\
+    \    result=dict(contract_version='0.1.0',tool_id=policy.TOOL,binding=binding,\n\
+    \                qualification='DEVELOPMENT_UNREVIEWED',evidence_kind='G0_REAL_OUTPUT',usable_for_pipeline=False,\n\
+    \                automatic_handoff=False,scientific_signoff=None,production_status='NOT_DEPLOYED',requires_review=True,\n\
+    \                scientific_gate='CLOSED',status='completed_with_gaps' if not\
+    \ error else 'unreliable',\n                workflow=data,null_reason=error,warnings=[],execution=dict(error_code=error,exit_code=1\
+    \ if error else 0,\n                    stopped_confirmed=True,network_used=False,backend='local-workflow-controller'))\n\
+    \    ex.update(tree_stopped=True,dispatcher=None)\n    return rt._finish_development(jid,ex,files,result)\n\
+    \ndef dispatch(rt,jid):\n    with rt._tx() as db:\n        before=rt._job(db,jid)\n\
+    \        if before['state'] in TERMINAL:return before\n        body=policy.request(rt._input(db,before['request_artifact'],before['run_id']))\n\
+    \        ex=rt._execution(db,jid)\n        owner=ex.get('dispatcher')\n      \
+    \  if owner and alive(owner):return before\n        if before['state']=='queued':\n\
+    \            j=copy.deepcopy(before)\n            j.update(state='running',attempt_id=new_id('attempt'),execution_identity='exec-'+new_id('attempt'),lease_epoch=1,started_at=now())\n\
+    \            ex=dict(nodes={},phase='scheduling',tree_stopped=False,started_at=j['started_at'])\n\
+    \            rt._store(db,j,before,'workflow_claimed')\n        ex['dispatcher']=current_identity();rt._execution_store(db,jid,ex)\n\
+    \    try:\n        ensure(body['configuration']==configuration(rt) and before['execution_profile']==policy.registered_profile(),\n\
+    \               'PROFILE_NOT_APPROVED','Workflow code or local database configuration\
+    \ changed')\n        if body['structure_artifact'] is not None:\n            with\
+    \ rt._db() as db:rt._structure_bytes(db,body,before['run_id'])\n        for name\
+    \ in policy.order(body):\n            j=rt.get(jid);ex=rt.execution(jid)\n   \
+    \         elapsed=(datetime.now(timezone.utc)-datetime.fromisoformat(ex['started_at'].replace('Z','+00:00'))).total_seconds()\n\
+    \            if elapsed>=body['timeout_seconds'] and not j['stop_reason']:\n \
+    \               with rt._tx() as db:rt._stop(db,rt._job(db,jid),'timeout')\n \
+    \               j=rt.get(jid)\n            if j['stop_reason']:return finish(rt,jid)\n\
+    \            rows=ex['nodes'];row=rows.get(name)\n            if row and not row.get('job_id'):continue\n\
+    \            if row and row.get('job_id'):\n                child=verified(rt,body,name,row['job_id'])\n\
+    \                if child['state'] in TERMINAL:\n                    if row['state']!=child['state']:_record(rt,jid,name,dict(row,state=child['state'],reason_code=child['error_code']))\n\
+    \                    continue\n                if child['state']=='queued':rt.dispatch(child['job_id'])\n\
+    \                else:rt.recover(child['job_id'])\n                child=rt.get(child['job_id'])\n\
+    \                _record(rt,jid,name,dict(row,state=child['state'],reason_code=child['error_code']))\n\
+    \                if child['state'] not in TERMINAL:return rt.get(jid)\n      \
+    \          verified(rt,body,name,child['job_id']);continue\n            if name\
+    \ in body['reuse_jobs']:\n                child=verified(rt,body,name,body['reuse_jobs'][name])\n\
+    \                ensure(child['state']=='succeeded','INVALID_STATE','Historical\
+    \ reuse requires terminal success')\n                _record(rt,jid,name,dict(job_id=child['job_id'],state=child['state'],origin='HISTORICAL_REUSE',reason_code=None))\n\
+    \                continue\n            try:\n                req,reason=request_for(rt,body,rows,name)\n\
+    \                if req is None:\n                    _record(rt,jid,name,dict(job_id=None,state='skipped',reason_code=reason,origin=None));continue\n\
+    \                # Recheck every prior source before constructing or admitting\
+    \ a dependent job.\n                for upstream,r in rows.items():\n        \
+    \            if r.get('job_id'):verified(rt,body,upstream,r['job_id'])\n     \
+    \           child_id=_create_child(rt,jid,name,req)\n                if child_id\
+    \ is None:return finish(rt,jid)\n                rt.dispatch(child_id)\n     \
+    \           child=rt.get(child_id)\n                _record(rt,jid,name,dict(job_id=child_id,state=child['state'],reason_code=child['error_code'],origin='NEW_EXECUTION'))\n\
+    \                if child['state'] not in TERMINAL:return rt.get(jid)\n      \
+    \      except RuntimeFault as exc:\n                if exc.code in ('HASH_MISMATCH','FORBIDDEN','PROFILE_NOT_APPROVED','OUTPUT_INVALID'):raise\n\
+    \                if rt.execution(jid)['nodes'].get(name,{}).get('job_id'):raise\n\
+    \                _record(rt,jid,name,dict(job_id=None,state='blocked',reason_code=exc.code,detail=str(exc),origin=None))\n\
+    \        return finish(rt,jid)\n    except RuntimeFault as exc:\n        stop_children(rt,jid)\n\
+    \        # Keep active children tracked; subsequent recovery confirms their stop.\n\
+    \        active=any(rt.get(r['job_id'])['state'] not in TERMINAL for r in rt.execution(jid)['nodes'].values()\n\
+    \                   if r.get('job_id') and r.get('origin')=='NEW_EXECUTION')\n\
+    \        if active:return rt.get(jid)\n        return finish(rt,jid,exc.code)\n\
+    \    finally:\n        with rt._tx() as db:\n            ex=rt._execution(db,jid);ex['dispatcher']=None;rt._execution_store(db,jid,ex)\n"
+  af3-development--af3--__init__.py: '"""Explicit offline AlphaFold 3 engineering
+    tasks; no scientific qualification."""
+
+    '
+  af3-development--af3--native_worker.py: "\"\"\"Run the pinned AF3 data pipeline\
+    \ and five-sample inference in one owned slot.\"\"\"\nfrom __future__ import annotations\n\
+    \nimport hashlib\nimport importlib.metadata\nimport math\nimport os\nfrom pathlib\
+    \ import Path\nimport subprocess\nimport sys\n\nfrom .primitives import decode,\
+    \ encode, ensure, sha\n\n\ndef file_sha(path):\n    digest = hashlib.sha256()\n\
+    \    with path.open('rb') as stream:\n        while chunk := stream.read(8 * 1024\
+    \ * 1024):\n            digest.update(chunk)\n    return digest.hexdigest()\n\n\
+    \ndef write(path, value):\n    path.write_bytes(encode(value))\n\n\ndef gpu_identity(expected):\n\
+    \    text = subprocess.check_output(\n        ['nvidia-smi', '--query-gpu=name,uuid,memory.total',\
+    \ '--format=csv,noheader,nounits'], text=True)\n    rows = [line.split(',') for\
+    \ line in text.strip().splitlines()]\n    ensure(len(rows) == 1 and len(rows[0])\
+    \ == 3, 'PROFILE_NOT_APPROVED', 'Exactly one visible GPU required')\n    name,\
+    \ uuid, memory = [part.strip() for part in rows[0]]\n    try:\n        memory_mib\
+    \ = float(memory)\n    except ValueError as exc:\n        raise ValueError('GPU\
+    \ memory is not numeric') from exc\n    ensure(name == expected['name'] and uuid\
+    \ == expected['uuid'] and math.isfinite(memory_mib)\n           and memory_mib\
+    \ == expected['memory_mib'],\n           'PROFILE_NOT_APPROVED', 'Approved A100\
+    \ 64GB identity required')\n    return dict(name=name, uuid=uuid, memory_mib=memory_mib)\n\
+    \n\ndef database_identity(profile):\n    value = profile['database']; root = Path(value['root'])\n\
+    \    receipt = decode(Path(value['receipt']).read_bytes())\n    ensure(receipt.get('decompressed')\
+    \ is True and receipt.get('output_root') == root.name\n           and receipt.get('file_count')\
+    \ == value['file_count']\n           and receipt.get('total_bytes') == value['total_bytes']\n\
+    \           and receipt.get('status') == 'AF3_DATABASES_EXTRACTED_VERIFIED_NOT_DEPLOYED',\n\
+    \           'ASSET_MISSING', 'AF3 extraction receipt differs')\n    ensure(all((root\
+    \ / relative).exists() for relative in value['required_paths']),\n           'ASSET_MISSING',\
+    \ 'AF3 required database path missing')\n    return receipt\n\n\ndef run(request_path,\
+    \ output, profile_path):\n    output.mkdir(exist_ok=False)\n    request = decode(request_path.read_bytes());\
+    \ profile = decode(profile_path.read_bytes())\n    ensure(request['engine'] ==\
+    \ 'alphafold3' and request['asset_profile_id'] == profile['id'],\n           'PROFILE_NOT_APPROVED',\
+    \ 'AF3 request/profile differs')\n    sequence = request['inputs']['sequence']\n\
+    \    ensure(request['parameters']['seed'] == 1 and request['parameters']['num_samples']\
+    \ == 5,\n           'PROFILE_NOT_APPROVED', 'AF3 seed/sample profile differs')\n\
+    \    model = Path(profile['model']['path'])\n    ensure(model.is_file() and file_sha(model)\
+    \ == profile['model']['sha256'],\n           'ASSET_MISSING', 'AF3 decompressed\
+    \ weight identity differs')\n    database_receipt = database_identity(profile)\n\
+    \    gpu = gpu_identity(profile['device'])\n    write(output / 'request.json',\
+    \ request)\n    (output / 'profile.json').write_bytes(profile_path.read_bytes())\n\
+    \    write(output / 'gpu.json', gpu)\n    internal_name = 't01-af3-' + sha(sequence.encode())[:16]\n\
+    \    folding_input = dict(name=internal_name, modelSeeds=[request['parameters']['seed']],\n\
+    \                         sequences=[dict(protein=dict(id='A', sequence=sequence))],\n\
+    \                         dialect='alphafold3', version=1)\n    write(output /\
+    \ 'fold-input.json', folding_input)\n    app_root = Path('/opt/t01/af3-app')\n\
+    \    app_output = output / 'app-output'\n    command = ['/alphafold3_venv/bin/python',\
+    \ str(app_root / 'alphafold/run_alphafold.py'),\n               '--json_path='\
+    \ + str(output / 'fold-input.json'),\n               '--model_dir=' + str(model.parent),\
+    \ '--db_dir=' + profile['database']['root'],\n               '--output_dir=' +\
+    \ str(app_output), '--run_data_pipeline=true', '--run_inference=true',\n     \
+    \          '--num_diffusion_samples=5', '--gpu_device=0',\n               '--jackhmmer_n_cpu='\
+    \ + str(profile['inference']['jackhmmer_n_cpu']),\n               '--nhmmer_n_cpu='\
+    \ + str(profile['inference']['nhmmer_n_cpu']),\n               '--max_template_date='\
+    \ + profile['inference']['max_template_date']]\n    write(output / 'command.json',\
+    \ dict(argv=command, cwd=str(app_root / 'alphafold'),\n          network='INHERITED_SECCOMP_AND_POD_DENY_ALL',\
+    \ input_sha256=sha(encode(folding_input))))\n    environment = {**os.environ,\
+    \ 'HOME':'/tmp', 'TMPDIR':'/tmp', 'XDG_CACHE_HOME':'/tmp/cache',\n           \
+    \        'PYTHONDONTWRITEBYTECODE':'1', 'PYTHONUNBUFFERED':'1', 'JAX_PLATFORMS':'cuda',\n\
+    \                   'XLA_PYTHON_CLIENT_PREALLOCATE':'false'}\n    with (output\
+    \ / 'inference.log').open('w', encoding='utf-8') as log:\n        process = subprocess.Popen(command,\
+    \ cwd=app_root / 'alphafold', env=environment,\n                             \
+    \      stdout=subprocess.PIPE, stderr=subprocess.STDOUT,\n                   \
+    \                text=True, bufsize=1)\n        assert process.stdout is not None\n\
+    \        for line in process.stdout:\n            sys.stdout.write(line); sys.stdout.flush();\
+    \ log.write(line); log.flush()\n        code = process.wait()\n    ensure(code\
+    \ == 0, 'TOOL_FAILED', 'AF3 native command failed')\n    samples = []\n    for\
+    \ directory in sorted(app_output.glob('*/seed-*_sample-*')):\n        parts =\
+    \ directory.name.replace('seed-', '').replace('sample-', '').split('_')\n    \
+    \    ensure(len(parts) == 2 and all(part.isdigit() for part in parts),\n     \
+    \          'OUTPUT_INVALID', 'Unexpected AF3 sample directory')\n        seed,\
+    \ sample_index = map(int, parts)\n        prefix = directory.parent.name + '_'\
+    \ + directory.name + '_'\n        paths = {kind:(directory / (prefix + suffix)).relative_to(output).as_posix()\
+    \ for kind,suffix in {\n            'structure':'model.cif', 'confidence':'confidences.json',\n\
+    \            'summary':'summary_confidences.json'}.items()}\n        ensure(all((output\
+    \ / path).is_file() and (output / path).stat().st_size for path in paths.values()),\n\
+    \               'OUTPUT_INVALID', 'AF3 native sample artifact missing')\n    \
+    \    samples.append(dict(seed=seed, sample_index=sample_index, **paths))\n   \
+    \ ensure([(row['seed'], row['sample_index']) for row in samples] == [(1, i) for\
+    \ i in range(5)],\n           'OUTPUT_INVALID', 'Expected exactly five seed-1\
+    \ AF3 samples')\n    execution = dict(source_image_id=profile['source_image_id'],\
+    \ model_sha256=file_sha(model),\n        database_receipt=database_receipt, gpu=gpu,\
+    \ samples=samples,\n        packages=dict(alphafold3=importlib.metadata.version('alphafold3'),\n\
+    \                      jax=importlib.metadata.version('jax')),\n        scientific_gate='CLOSED',\
+    \ usable_for_pipeline=False, production_status='NOT_DEPLOYED')\n    write(output\
+    \ / 'execution.json', execution)\n    files = [path for path in sorted(output.rglob('*'))\
+    \ if path.is_file() and path.name != 'manifest.json']\n    write(output / 'manifest.json',\
+    \ dict(schema='t01.af3-native-files/1', files=[\n        dict(path=path.relative_to(output).as_posix(),\
+    \ size_bytes=path.stat().st_size, sha256=file_sha(path))\n        for path in\
+    \ files]))\n\n\nif __name__ == '__main__':\n    raise SystemExit('Use t01_phase1_real.development.af3.worker')\n"
+  af3-development--af3--policy.py: "from pathlib import Path\nimport re\n\nfrom ..esmfold2.primitives\
+    \ import decode, encode, ensure, sha\n\n\nTOOL = 't01.real.af3'\nNODE = 'N01'\n\
+    HERE = Path(__file__).parent\nIMAGE = 'sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373'\n\
+    SLOT = 't01p1r-af3-development-slot'\nMAX_AA = 76\n\n\ndef profile():\n    return\
+    \ decode((HERE / 'profile.json').read_bytes())\n\n\ndef request(raw):\n    body\
+    \ = decode(raw)\n    ensure(isinstance(body, dict) and set(body) == {\n      \
+    \  'protein_sequence', 'user_sequence_id', 'host_species', 'seed', 'timeout_seconds'},\n\
+    \        'INVALID_REQUEST', 'Exact AF3 request fields required')\n    ensure(isinstance(body['protein_sequence'],\
+    \ str)\n           and re.fullmatch('[ACDEFGHIKLMNPQRSTVWY]{9,76}', body['protein_sequence']),\n\
+    \           'INVALID_REQUEST', 'AF3 engineering support is bounded to 9..76 AA20\
+    \ residues')\n    for key in ('user_sequence_id', 'host_species'):\n        ensure(isinstance(body[key],\
+    \ str) and 0 < len(body[key].strip()) <= 128,\n               'INVALID_REQUEST',\
+    \ 'Explicit bounded sequence label and host required')\n    ensure(type(body['seed'])\
+    \ is int and body['seed'] == 1,\n           'INVALID_REQUEST', 'Current verified\
+    \ AF3 profile requires seed 1')\n    ensure(type(body['timeout_seconds']) is int\
+    \ and 1 <= body['timeout_seconds'] <= 7200,\n           'INVALID_REQUEST', 'Deadline\
+    \ must be 1..7200 seconds')\n    return body\n\n\ndef registered_profile():\n\
+    \    paths = list(HERE.glob('*.py')) + list(HERE.glob('*.json'))\n    return dict(id='af3-v3.0.2-resident-r01',\
+    \ version='0.1.0', sha256=sha(encode({\n        path.name: sha(path.read_bytes())\
+    \ for path in sorted(paths)})))\n\n\ndef verify_assets():\n    value = profile()\n\
+    \    ensure(value['scientific_gate'] == 'CLOSED' and value['source_image_id']\
+    \ == IMAGE,\n           'PROFILE_NOT_APPROVED', 'AF3 source identity or science\
+    \ gate differs')\n    return {'model_and_database_verification': 'REQUIRED_IN_WORKER',\n\
+    \            'profile_sha256': sha((HERE / 'profile.json').read_bytes())}\n\n\n\
+    def native_request(body, binding):\n    value = profile()\n    return dict(contract_version='t01.structure-worker/0.1',\
+    \ request_id=binding['job_id'],\n                engine='alphafold3', asset_profile_id=value['id'],\n\
+    \                inputs=dict(sequence_id='seq-' + sha(body['protein_sequence'].encode())[:16],\n\
+    \                            sequence=body['protein_sequence'], host_species=body['host_species'],\
+    \ chain_id='A'),\n                parameters=dict(seed=body['seed'], num_samples=value['inference']['num_diffusion_samples'],\n\
+    \                                msa_mode='local', max_template_date=value['inference']['max_template_date'],\n\
+    \                                timeout_seconds=body['timeout_seconds']))\n"
+  af3-development--af3--primitives.py: 'from ..esmfold2.primitives import RuntimeFault,
+    decode, encode, ensure, sha
+
+
+    __all__ = [''RuntimeFault'', ''decode'', ''encode'', ''ensure'', ''sha'']
+
+    '
+  af3-development--af3--profile.json: "{\n  \"id\": \"af3-v3.0.2-resident-r01\",\n\
+    \  \"engine\": \"alphafold3\",\n  \"version\": \"3.0.2\",\n  \"commit\": \"f6a5aecf6eea2b5de4f846df86921630c5036b0b\"\
+    ,\n  \"source_image_id\": \"sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373\"\
+    ,\n  \"model\": {\n    \"path\": \"/af3-weights/alphafold3-official-r01/af3.bin\"\
+    ,\n    \"sha256\": \"df8bbf2621f17dd3ee21c2a921e84a50bc2b80cdc0c7971cb915c2826fee1f9b\"\
+    \n  },\n  \"database\": {\n    \"root\": \"/af3-databases/alphafold3-v3.0/unpacked-r03\"\
+    ,\n    \"receipt\": \"/af3-databases/alphafold3-v3.0/extraction-receipt.json\"\
+    ,\n    \"file_count\": 195867,\n    \"total_bytes\": 672435030513,\n    \"required_paths\"\
+    : [\n      \"pdb_seqres_2022_09_28.fasta\",\n      \"rfam_14_9_clust_seq_id_90_cov_80_rep_seq.fasta\"\
+    ,\n      \"rnacentral_active_seq_id_90_cov_80_linclust.fasta\",\n      \"bfd-first_non_consensus_sequences.fasta\"\
+    ,\n      \"nt_rna_2023_02_23_clust_seq_id_90_cov_80_rep_seq.fasta\",\n      \"\
+    uniref90_2022_05.fa\",\n      \"uniprot_all_2021_04.fa\",\n      \"mgy_clusters_2022_05.fa\"\
+    ,\n      \"mmcif_files\"\n    ]\n  },\n  \"inference\": {\n    \"num_diffusion_samples\"\
+    : 5,\n    \"max_template_date\": \"2021-09-30\",\n    \"jackhmmer_n_cpu\": 8,\n\
+    \    \"nhmmer_n_cpu\": 8,\n    \"selection_primary\": \"highest_ptm_single_chain\"\
+    ,\n    \"tie_break\": \"lowest_seed_then_sample_index_reproducibility_only\"\n\
+    \  },\n  \"device\": {\n    \"name\": \"NVIDIA A100-SXM-64GB\",\n    \"uuid\"\
+    : \"GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31\",\n    \"memory_mib\": 65536\n \
+    \ },\n  \"scientific_gate\": \"CLOSED\",\n  \"usable_for_pipeline\": false,\n\
+    \  \"production_status\": \"NOT_DEPLOYED\"\n}\n"
+  af3-development--af3--result.py: "from ...common import RuntimeFault, decode, ensure,\
+    \ sha\nfrom ...resident_result import image_matches, isolation_matches\nfrom .\
+    \ import policy\nfrom .standard import normalize\n\n\ndef result(job,body,files,execution,fault=None):\n\
+    \    binding={key:job[key] for key in ('run_id','request_id','job_id','attempt_id','execution_identity','execution_profile')}\n\
+    \    binding.update(input_sha256=job['request_artifact']['sha256'],sequence_sha256=sha(body['protein_sequence'].encode()))\n\
+    \    value=dict(contract_version='0.1.0',tool_id=policy.TOOL,binding=binding,execution=execution,\n\
+    \        qualification='DEVELOPMENT_UNREVIEWED',evidence_kind='G0_REAL_OUTPUT',scientific_signoff=None,\n\
+    \        production_status='NOT_DEPLOYED',usable_for_pipeline=False,automatic_handoff=False,requires_review=True,\n\
+    \        scientific_gate='CLOSED',status='unreliable',null_reason=execution.get('error_code'),warnings=[],prediction=None)\n\
+    \    try:\n        if execution.get('error_code'):raise RuntimeFault(execution['error_code'],'AF3\
+    \ execution did not finish')\n        ensure(execution.get('backend')=='resident-process'\
+    \ and image_matches(execution,policy.IMAGE),\n               'OUTPUT_INVALID','Clean\
+    \ registered resident AF3 execution required')\n        runtime=decode(files['output/runtime.json'])\n\
+    \        ensure(runtime['binding']==binding and runtime['input_sha256']==sha(files['input.json'])\n\
+    \               and runtime['python_exit_code']==0 and runtime['socket_probe']=='INET_INET6_DENIED'\n\
+    \               and isolation_matches(runtime,files,policy.IMAGE),'OUTPUT_INVALID','AF3\
+    \ execution isolation differs')\n        ensure(runtime['source_sha256']=={path.name:sha(path.read_bytes())\
+    \ for path in sorted(policy.HERE.iterdir())\n               if path.suffix in\
+    \ ('.py','.json')},'OUTPUT_INVALID','AF3 worker source changed')\n        native={name[len('output/raw/'):]:raw\
+    \ for name,raw in files.items() if name.startswith('output/raw/')}\n        standard=normalize(native,body,binding)\n\
+    \        ensure(all(files['output/'+name]==raw for name,raw in standard.items()),\n\
+    \               'OUTPUT_INVALID','AF3 standard result differs from native output')\n\
+    \        value.update(status='predicted_engineering_unreviewed',null_reason=None,prediction=decode(standard['result.json']))\n\
+    \    except (RuntimeFault,KeyError,ValueError,TypeError,OSError) as exc:\n   \
+    \     value['null_reason']=getattr(exc,'code','OUTPUT_INVALID')\n        execution.update(error_code=value['null_reason'],diagnostic=str(exc));value['warnings']=[str(exc)]\n\
+    \    return value\n"
+  af3-development--af3--source.py: "\"\"\"Resolve a verified selected AF3 sample without\
+    \ relabelling its native outputs.\"\"\"\nfrom ...common import decode, encode,\
+    \ ensure\nfrom ...files import read_verified\nfrom . import policy\nfrom .result\
+    \ import result as rebuild\n\n\ndef verified(rt,db,job_id,sequence,host,run_id,include_quality=False):\n\
+    \    job=rt._job(db,job_id)\n    ensure(job['run_id']==run_id and job['tool_id']==policy.TOOL\
+    \ and job['state']=='succeeded',\n           'FORBIDDEN','AF3 prediction must\
+    \ be a successful task in the current run')\n    ref=next((row for row in job['artifacts']\
+    \ if row['role']=='result'),None)\n    ensure(ref is not None,'OUTPUT_INVALID','AF3\
+    \ prediction result missing')\n    _,_,value=rt._registered_result_artifact(db,ref,policy.TOOL)\n\
+    \    body=policy.request(rt._input(db,job['request_artifact'],run_id))\n    ensure(body['protein_sequence']==sequence\
+    \ and body['host_species']==host,\n           'OUTPUT_INVALID','AF3 prediction\
+    \ sequence or host differs')\n    files={};refs={}\n    for item in value['raw_artifacts']:\n\
+    \        name,artifact=item['path'],item['artifact']\n        row=db.execute('SELECT\
+    \ relative_path,data FROM artifacts WHERE id=?',(artifact['artifact_id'],)).fetchone()\n\
+    \        ensure(name not in files and artifact in job['artifacts'] and row and\
+    \ decode(row['data'])==artifact,\n               'FORBIDDEN','AF3 output registration\
+    \ differs')\n        files[name]=read_verified(rt.root,row['relative_path'],artifact['sha256'],artifact['size_bytes'],32*1024**2)\n\
+    \        refs[name]=artifact\n    fresh=rebuild(job,body,files,dict(value['execution']))\n\
+    \    ensure(fresh['prediction'] is not None and fresh['prediction']==value['prediction']\n\
+    \           and fresh['binding']==value['binding'] and value['qualification']=='DEVELOPMENT_UNREVIEWED'\n\
+    \           and value['scientific_signoff'] is None,'OUTPUT_INVALID','AF3 source\
+    \ validation failed')\n    if include_quality:\n        selected=next(model for\
+    \ model in value['prediction']['models'] if model['selected'])\n        return\
+    \ dict(prediction_job_id=job_id,prediction_attempt_id=job['attempt_id'],\n   \
+    \         structure_artifact=refs['output/tool-structure.cif'],\n            native_structure_artifact=refs['output/'+selected['structure_path']],\n\
+    \            quality_artifact=refs['output/prediction-quality.json'],\n      \
+    \      quality=decode(files['output/prediction-quality.json']),\n            conversion=decode(files['output/structure-conversion.json']))\n\
+    \    return refs['output/tool-structure.cif'],files['output/tool-structure.cif']\n\
+    \n\ndef structure_bytes(rt,db,body,run_id):\n    ref=body['structure_artifact']\n\
+    \    expected,raw=verified(rt,db,ref['job_id'],body['protein_sequence'],body['host_species'],run_id)\n\
+    \    ensure(ref==expected and body['source_declaration']['kind']=='predicted'\n\
+    \           and body['declared_format']=='MMCIF' and body['selection']=={'model_index':0,'chain_selector':'A'}\n\
+    \           and body['context_chain_ids']==['A'],'FORBIDDEN','AF3 structure identity/selection\
+    \ differs')\n    return raw\n"
+  af3-development--af3--standard.py: "\"\"\"Validate all native AF3 samples and derive\
+    \ the project structure contract.\"\"\"\nfrom __future__ import annotations\n\n\
+    import io\nimport math\nfrom pathlib import PurePosixPath\n\nfrom Bio.Data.PDBData\
+    \ import protein_letters_3to1\nfrom Bio.PDB.MMCIF2Dict import MMCIF2Dict\n\nfrom\
+    \ ..esmfold2.quality import assess\nfrom .primitives import decode, encode, ensure,\
+    \ sha\nfrom . import policy\n\n\ndef safe_name(value):\n    path = PurePosixPath(value)\n\
+    \    ensure(isinstance(value, str) and value and not path.is_absolute() and '\\\
+    \\' not in value\n           and '..' not in path.parts and path.as_posix() ==\
+    \ value,\n           'OUTPUT_INVALID', 'Unsafe AF3 native artifact path')\n  \
+    \  return value\n\n\ndef inventory(native):\n    ensure('manifest.json' in native,\
+    \ 'OUTPUT_INVALID', 'AF3 native manifest missing')\n    manifest = decode(native['manifest.json'])\n\
+    \    ensure(isinstance(manifest, dict) and manifest.get('schema') == 't01.af3-native-files/1'\n\
+    \           and isinstance(manifest.get('files'), list) and manifest['files'],\n\
+    \           'OUTPUT_INVALID', 'AF3 native manifest schema differs')\n    seen\
+    \ = set()\n    for row in manifest['files']:\n        ensure(isinstance(row, dict)\
+    \ and set(row) == {'path','size_bytes','sha256'},\n               'OUTPUT_INVALID',\
+    \ 'AF3 native manifest row differs')\n        name = safe_name(row['path'])\n\
+    \        ensure(name not in seen and name in native and type(row['size_bytes'])\
+    \ is int\n               and row['size_bytes'] == len(native[name]) and row['sha256']\
+    \ == sha(native[name]),\n               'OUTPUT_INVALID', 'AF3 native artifact\
+    \ identity differs')\n        seen.add(name)\n    ensure(set(native) == seen |\
+    \ {'manifest.json'}, 'OUTPUT_INVALID', 'Unlisted AF3 native artifact')\n    return\
+    \ manifest\n\n\ndef columns(raw):\n    value = MMCIF2Dict(io.StringIO(raw.decode('utf-8')))\n\
+    \    names = ('id','group_PDB','label_asym_id','auth_asym_id','pdbx_PDB_model_num',\n\
+    \             'label_alt_id','label_seq_id','auth_seq_id','label_comp_id',\n \
+    \            'pdbx_PDB_ins_code','label_atom_id','Cartn_x','Cartn_y','Cartn_z',\n\
+    \             'B_iso_or_equiv','occupancy')\n    result = {}\n    for name in\
+    \ names:\n        row = value.get('_atom_site.' + name)\n        ensure(isinstance(row,\
+    \ list) and row, 'OUTPUT_INVALID', 'AF3 atom column missing: ' + name)\n     \
+    \   result[name] = row\n    count = len(result['id'])\n    ensure(all(len(row)\
+    \ == count for row in result.values()) and len(set(result['id'])) == count,\n\
+    \           'OUTPUT_INVALID', 'AF3 atom table is malformed')\n    return result,\
+    \ count\n\n\ndef model(native, row, sequence):\n    for key in ('structure','confidence','summary'):\n\
+    \        safe_name(row[key]); ensure(row[key] in native, 'OUTPUT_INVALID', 'AF3\
+    \ sample artifact missing')\n    atom, count = columns(native[row['structure']])\n\
+    \    confidence_raw = decode(native[row['confidence']])\n    atom_scores = confidence_raw.get('atom_plddts')\n\
+    \    ensure(isinstance(atom_scores, list) and len(atom_scores) == count,\n   \
+    \        'OUTPUT_INVALID', 'AF3 atom confidence count differs')\n    ensure(set(atom['label_asym_id'])\
+    \ == set(atom['auth_asym_id']) == {'A'}\n           and set(atom['pdbx_PDB_model_num'])\
+    \ == {'1'} and set(atom['group_PDB']) == {'ATOM'}\n           and set(atom['label_alt_id'])\
+    \ <= {'.','?'},\n           'OUTPUT_INVALID', 'AF3 model/chain/alternate identity\
+    \ differs')\n    residues = {}; ca = {}\n    for index, raw_score in enumerate(atom_scores):\n\
+    \        ensure(type(raw_score) in (int,float) and math.isfinite(raw_score) and\
+    \ 0 <= raw_score <= 100,\n               'OUTPUT_INVALID', 'AF3 atom confidence\
+    \ is invalid')\n        score = float(atom['B_iso_or_equiv'][index])\n       \
+    \ ensure(math.isfinite(score) and abs(score - raw_score) <= 0.011\n          \
+    \     and all(math.isfinite(float(atom['Cartn_' + axis][index])) for axis in 'xyz'),\n\
+    \               'OUTPUT_INVALID', 'AF3 CIF/confidence coordinate record differs')\n\
+    \        occupancy = float(atom['occupancy'][index])\n        ensure(math.isfinite(occupancy)\
+    \ and 0 <= occupancy <= 1,\n               'OUTPUT_INVALID', 'AF3 occupancy is\
+    \ missing or out of range')\n        position = int(atom['label_seq_id'][index]);\
+    \ residue_name = atom['label_comp_id'][index]\n        auth_residue_name = atom.get('auth_comp_id',\
+    \ atom['label_comp_id'])[index]\n        ensure(residue_name in protein_letters_3to1\
+    \ and int(atom['auth_seq_id'][index]) == position\n               and auth_residue_name\
+    \ == residue_name\n               and atom['pdbx_PDB_ins_code'][index] in ('.','?'),\n\
+    \               'OUTPUT_INVALID', 'AF3 residue identity is ambiguous')\n     \
+    \   record = residues.setdefault(position, dict(aa=protein_letters_3to1[residue_name],\
+    \ atoms=set()))\n        name = atom['label_atom_id'][index]\n        ensure(record['aa']\
+    \ == protein_letters_3to1[residue_name] and name not in record['atoms'],\n   \
+    \            'OUTPUT_INVALID', 'AF3 duplicate/inconsistent residue atom')\n  \
+    \      record['atoms'].add(name)\n        if name == 'CA':\n            ensure(position\
+    \ not in ca, 'OUTPUT_INVALID', 'AF3 residue has duplicate C-alpha')\n        \
+    \    ca[position] = score / 100\n    positions = list(range(1, len(sequence) +\
+    \ 1))\n    ensure(sorted(residues) == positions and sorted(ca) == positions\n\
+    \           and ''.join(residues[pos]['aa'] for pos in positions) == sequence\n\
+    \           and all({'N','CA','C','O'} <= residues[pos]['atoms'] for pos in positions),\n\
+    \           'OUTPUT_INVALID', 'AF3 sequence, C-alpha set or backbone differs')\n\
+    \    summary = decode(native[row['summary']])\n    ptm = summary.get('ptm'); ranking\
+    \ = summary.get('ranking_score')\n    fraction = summary.get('fraction_disordered');\
+    \ clash = summary.get('has_clash')\n    clash_valid = (type(clash) is bool or\n\
+    \                   (type(clash) in (int,float) and math.isfinite(clash) and clash\
+    \ in (0, 1)))\n    ensure(type(ptm) in (int,float) and math.isfinite(ptm) and\
+    \ 0 <= ptm <= 1\n           and summary.get('iptm') is None and type(ranking)\
+    \ in (int,float) and math.isfinite(ranking)\n           and type(fraction) in\
+    \ (int,float) and math.isfinite(fraction) and 0 <= fraction <= 1\n           and\
+    \ clash_valid,\n           'OUTPUT_INVALID', 'AF3 single-chain summary confidence\
+    \ differs')\n    scores = [ca[pos] for pos in positions]\n    model_id = f\"af3-seed-{row['seed']}-sample-{row['sample_index']}\"\
+    \n    normalized = dict(model_id=model_id, sequence_sha256=sha(sequence.encode()),\
+    \ raw_scale='0_100',\n        normalization='AF3 mmCIF C-alpha B_iso_or_equiv\
+    \ divided by 100 once',\n        definition_source='ToolSpec_\u7ED3\u6784\u9884\
+    \u6D4B\u83B7\u53D6\u94FE_v10.5 \xA72c and AgentA_SOP_v10.5 S-08',\n        mean_plddt=math.fsum(scores)/len(scores),\
+    \ residues=[dict(sequence_position=pos,\n        amino_acid=sequence[pos-1], chain_id='A',\
+    \ label_seq_id=pos, auth_seq_id=pos,\n        insertion_code='', plddt_raw=scores[pos-1]*100,\
+    \ plddt=scores[pos-1], missing_reason=None)\n        for pos in positions])\n\
+    \    return dict(model_id=model_id, seed=row['seed'], sample_index=row['sample_index'],\n\
+    \                structure=row['structure'], confidence=row['confidence'], summary_path=row['summary'],\n\
+    \                structure_sha256=sha(native[row['structure']]), confidence_native_sha256=sha(native[row['confidence']]),\n\
+    \                ptm=float(ptm), iptm=None, raw_scores=summary, scores=scores,\n\
+    \                normalized=normalized, atom_count=count)\n\n\ndef select(models):\n\
+    \    highest = max(row['ptm'] for row in models)\n    tied = sorted((row for row\
+    \ in models if row['ptm'] == highest),\n                  key=lambda row:(row['seed'],\
+    \ row['sample_index']))\n    selected = tied[0]\n    ensure(not bool(selected['raw_scores']['has_clash']),\n\
+    \           'OUTPUT_INVALID', 'Highest-pTM deterministic AF3 selection has a native\
+    \ clash')\n    return selected, dict(primary='highest_ptm_single_chain', highest_ptm=highest,\n\
+    \        tied_model_ids=[row['model_id'] for row in tied], selected_model_id=selected['model_id'],\n\
+    \        tie_break='lowest_seed_then_sample_index_reproducibility_only',\n   \
+    \     tie_break_scientific_preference=False, official_ranking_score_used=False,\n\
+    \        basis='AgentA_SOP_v10.5 S-08 and ToolSpec_\u7ED3\u6784\u9884\u6D4B\u83B7\
+    \u53D6\u94FE_v10.5 \xA72c; tie is an engineering reproducibility rule')\n\n\n\
+    def normalize(native, body, binding):\n    inventory(native)\n    expected = policy.native_request(body,\
+    \ binding)\n    ensure(decode(native['request.json']) == expected and decode(native['profile.json'])\
+    \ == policy.profile(),\n           'OUTPUT_INVALID', 'AF3 executed request/profile\
+    \ differs')\n    folding = decode(native['fold-input.json'])\n    ensure(folding\
+    \ == dict(name='t01-af3-' + sha(body['protein_sequence'].encode())[:16],\n   \
+    \     modelSeeds=[1], sequences=[dict(protein=dict(id='A',sequence=body['protein_sequence']))],\n\
+    \        dialect='alphafold3', version=1), 'OUTPUT_INVALID', 'AF3 folding input\
+    \ differs')\n    command = decode(native['command.json'])\n    flags = command['argv']\n\
+    \    ensure(flags[:2] == ['/alphafold3_venv/bin/python','/opt/t01/af3-app/alphafold/run_alphafold.py']\n\
+    \           and '--run_data_pipeline=true' in flags and '--run_inference=true'\
+    \ in flags\n           and '--num_diffusion_samples=5' in flags and '--gpu_device=0'\
+    \ in flags\n           and command['network'] == 'INHERITED_SECCOMP_AND_POD_DENY_ALL'\n\
+    \           and command['input_sha256'] == sha(encode(folding)),\n           'OUTPUT_INVALID',\
+    \ 'AF3 native command differs')\n    execution = decode(native['execution.json']);\
+    \ profile = policy.profile()\n    ensure(execution['source_image_id'] == policy.IMAGE\
+    \ and execution['model_sha256'] == profile['model']['sha256']\n           and\
+    \ execution['packages'] == {'alphafold3':'3.0.2','jax':'0.9.1'}\n           and\
+    \ execution['gpu'] == profile['device']\n           and execution['scientific_gate']\
+    \ == 'CLOSED' and execution['usable_for_pipeline'] is False\n           and execution['production_status']\
+    \ == 'NOT_DEPLOYED',\n           'OUTPUT_INVALID', 'AF3 execution environment\
+    \ differs')\n    receipt = execution['database_receipt']\n    ensure(receipt.get('decompressed')\
+    \ is True and receipt.get('output_root') == 'unpacked-r03'\n           and receipt.get('file_count')\
+    \ == profile['database']['file_count']\n           and receipt.get('total_bytes')\
+    \ == profile['database']['total_bytes'],\n           'OUTPUT_INVALID', 'AF3 database\
+    \ execution receipt differs')\n    samples = execution['samples']\n    ensure(isinstance(samples,list)\
+    \ and [(row.get('seed'),row.get('sample_index')) for row in samples]\n       \
+    \    == [(1,index) for index in range(5)]\n           and all(set(row) == {'seed','sample_index','structure','confidence','summary'}\
+    \ for row in samples),\n           'OUTPUT_INVALID', 'AF3 sample inventory differs')\n\
+    \    sequence = body['protein_sequence']; sequence_sha = sha(sequence.encode())\n\
+    \    models = [model(native,row,sequence) for row in samples]\n    selected, selection\
+    \ = select(models)\n    outputs = {}; standard_models = []\n    for row in models:\n\
+    \        confidence_path = 'confidence/' + row['model_id'] + '.json'\n       \
+    \ raw = encode(row['normalized']); outputs[confidence_path] = raw\n        standard_models.append(dict(model_id=row['model_id'],\
+    \ seed=row['seed'], sample_index=row['sample_index'],\n            selected=row\
+    \ is selected, tied_for_highest_ptm=row['model_id'] in selection['tied_model_ids'],\n\
+    \            source='af3_predicted', structure_path='raw/' + row['structure'],\n\
+    \            structure_sha256=row['structure_sha256'], format='mmcif', confidence_path=confidence_path,\n\
+    \            confidence_sha256=sha(raw), ptm=row['ptm'], iptm=None, raw_scores=row['raw_scores']))\n\
+    \    selected_confidence = encode(selected['normalized'])\n    quality = assess(selected['scores'],\
+    \ selected['ptm'], source='af3_predicted')\n    parameters = dict(request=expected['parameters'],\
+    \ inference=profile['inference'], selection=selection)\n    provenance = dict(binding=binding,\
+    \ input_sha256=sha(encode(body)),\n        native_sha256={name:sha(raw) for name,raw\
+    \ in sorted(native.items())},\n        profile_sha256=sha(native['profile.json']),\
+    \ source_image_id=policy.IMAGE,\n        model_sha256=profile['model']['sha256'],\
+    \ database_receipt=receipt, selection=selection)\n    conversion = dict(operation='native_mmcif_reuse',\
+    \ source_path='raw/' + selected['structure'],\n        source_sha256=selected['structure_sha256'],\
+    \ derived_path='tool-structure.cif',\n        derived_sha256=selected['structure_sha256'],\
+    \ occupancy='native_verified_0_to_1',\n        scientific_gate='CLOSED')\n   \
+    \ warnings = [dict(code='ENGINEERING_ONLY',message='Scientific qualification closed'),\n\
+    \                dict(code='SINGLE_CHAIN_IPTM_NOT_APPLICABLE',message='Native\
+    \ ipTM is null for all samples')]\n    if len(selection['tied_model_ids']) > 1:\n\
+    \        warnings.append(dict(code='PTM_TIE_REPRODUCIBILITY_SELECTION',\n    \
+    \        message='All highest-pTM models are retained; deterministic seed/sample\
+    \ order is not a scientific preference'))\n    standard = dict(contract_version='t01.structure-worker/0.1',\
+    \ request_id=binding['job_id'],\n        attempt_id=binding['attempt_id'], status='succeeded',\
+    \ engine='alphafold3',\n        engine_version=dict(alphafold3=profile['version'],\
+    \ commit=profile['commit']),\n        asset_profile_id=profile['id'], sequence_id=body['user_sequence_id'],\
+    \ sequence=sequence,\n        sequence_sha256=sequence_sha, host_species=body['host_species'],\n\
+    \        profile_sha256=provenance['profile_sha256'], model_sha256=profile['model']['sha256'],\n\
+    \        database_receipt=receipt, models=standard_models, selection=selection,\n\
+    \        parameters_path='parameters.json', parameters_sha256=sha(encode(parameters)),\n\
+    \        provenance_path='provenance.json', provenance_sha256=sha(encode(provenance)),\n\
+    \        quality=dict(path='prediction-quality.json',sha256=sha(encode(quality))),\n\
+    \        tool_structure=dict(path='tool-structure.cif',sha256=selected['structure_sha256'],\n\
+    \                            conversion_path='structure-conversion.json',conversion_sha256=sha(encode(conversion))),\n\
+    \        errors=[],warnings=warnings,scientific_gate='CLOSED',usable_for_pipeline=False,automatic_handoff=False)\n\
+    \    outputs.update({'result.json':encode(standard), 'confidence.json':selected_confidence,\n\
+    \        'parameters.json':encode(parameters), 'provenance.json':encode(provenance),\n\
+    \        'tool-structure.cif':native[selected['structure']], 'structure-conversion.json':encode(conversion),\n\
+    \        'prediction-quality.json':encode(quality)})\n    return outputs\n"
+  af3-development--af3--worker.py: "\"\"\"Resident AF3 command supervised by the shared\
+    \ process cancellation layer.\"\"\"\nimport argparse\nimport os\nfrom pathlib\
+    \ import Path\nimport socket\n\nfrom .primitives import decode, encode, ensure,\
+    \ sha\nfrom . import policy\nfrom .native_worker import run\nfrom .standard import\
+    \ normalize\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument('--input-dir',\
+    \ type=Path, required=True)\n    parser.add_argument('--output-dir', type=Path,\
+    \ required=True)\n    args = parser.parse_args()\n    body_raw = (args.input_dir\
+    \ / 'input.json').read_bytes(); body = policy.request(body_raw)\n    binding =\
+    \ decode((args.input_dir / 'binding.json').read_bytes())\n    ensure(binding['input_sha256']\
+    \ == sha(body_raw) and binding['execution_profile'] == policy.registered_profile(),\n\
+    \           'PROFILE_NOT_APPROVED', 'Bound AF3 input or implementation changed')\n\
+    \    for family in (socket.AF_INET, socket.AF_INET6):\n        try:\n        \
+    \    handle = socket.socket(family, socket.SOCK_STREAM)\n        except PermissionError:\n\
+    \            continue\n        else:\n            handle.close(); raise RuntimeError('Resident\
+    \ INET socket restriction is not active')\n    args.output_dir.mkdir(exist_ok=True)\n\
+    \    request_path = args.output_dir / 'native-request.json'\n    request_path.write_bytes(encode(policy.native_request(body,binding)))\n\
+    \    native_root = args.output_dir / 'raw'\n    run(request_path,native_root,policy.HERE/'profile.json')\n\
+    \    native = {path.relative_to(native_root).as_posix():path.read_bytes()\n  \
+    \            for path in sorted(native_root.rglob('*')) if path.is_file()}\n \
+    \   for name,raw in normalize(native,body,binding).items():\n        path = args.output_dir\
+    \ / name; path.parent.mkdir(parents=True,exist_ok=True); path.write_bytes(raw)\n\
+    \    observation = decode((args.output_dir.parent/'executor-observation.json').read_bytes())\n\
+    \    runtime = dict(input_sha256=sha(body_raw),binding=binding,\n        source_sha256={path.name:sha(path.read_bytes())\
+    \ for path in sorted(policy.HERE.iterdir())\n                       if path.suffix\
+    \ in ('.py','.json')},\n        network_interfaces=observation['network_interfaces'],cpu_affinity=observation['cpu_affinity'],\n\
+    \        socket_probe='INET_INET6_DENIED',python_exit_code=0)\n    (args.output_dir/'runtime.json').write_bytes(encode(runtime))\n\
+    \n\nif __name__ == '__main__':\n    main()\n"

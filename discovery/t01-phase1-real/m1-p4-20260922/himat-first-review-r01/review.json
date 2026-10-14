@@ -1,0 +1,346 @@
+{
+  "status": "FORENSIC_REVIEW_COMPLETE_NOT_ACCEPTANCE",
+  "job_id": "t01p1r-job-120f08a88827456e83bfdf5e6ef19b92",
+  "run_id": "t01p1r-run-44199d1960334909b953022f05a43858",
+  "scope": "Existing run only; no implementation changes, deployment, resubmission or scientific computation",
+  "parent_state": "succeeded",
+  "parent_started_at": "2026-09-24T05:17:41.378002Z",
+  "parent_finished_at": "2026-09-24T06:07:04.823524Z",
+  "artifact_verification": {
+    "count": 139,
+    "archive_sha256": "890455555a6f7e2e72348185bf7967c65634670b857a10f587b299c352d002be"
+  },
+  "service_source_hashes_match_local": true,
+  "child_jobs": {
+    "total": 11,
+    "succeeded": 9,
+    "failed": 2
+  },
+  "internal_node_records": 20,
+  "unique_business_nodes": 18,
+  "nodes": {
+    "bepipred": {
+      "job_id": "t01p1r-job-c6ce48cffcb44e879c5b74c62088b257",
+      "node_id": "N04",
+      "origin": "NEW_EXECUTION",
+      "reason_code": null,
+      "recorded_at": "2026-09-24T06:06:59.590534Z",
+      "state": "succeeded"
+    },
+    "blast": {
+      "job_id": "t01p1r-job-c7309e57a72f4642b7d1c805016ae9b7",
+      "node_id": "N03",
+      "origin": "NEW_EXECUTION",
+      "reason_code": "OUTPUT_INVALID",
+      "recorded_at": "2026-09-24T06:06:37.668830Z",
+      "state": "failed"
+    },
+    "codon": {
+      "job_id": null,
+      "node_id": "N16",
+      "origin": null,
+      "reason_code": "EXPRESSION_HOST_NOT_PROVIDED",
+      "recorded_at": "2026-09-24T06:07:02.919943Z",
+      "state": "skipped"
+    },
+    "design": {
+      "job_id": null,
+      "node_id": "N11",
+      "origin": null,
+      "reason_code": "DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "recorded_at": "2026-09-24T06:07:02.093363Z",
+      "state": "skipped"
+    },
+    "developability": {
+      "job_id": "t01p1r-job-88b7c64d6df54bd084e6fefff680a869",
+      "node_id": "N10",
+      "origin": "NEW_EXECUTION",
+      "reason_code": null,
+      "recorded_at": "2026-09-24T06:07:00.993688Z",
+      "state": "succeeded"
+    },
+    "domains": {
+      "job_id": null,
+      "node_id": "N09",
+      "origin": null,
+      "reason_code": "DATABASE_NOT_PROVIDED",
+      "recorded_at": "2026-09-24T06:07:00.715495Z",
+      "state": "skipped"
+    },
+    "epitope_map": {
+      "job_id": "t01p1r-job-75785eb9380f42548074161bad9f403e",
+      "node_id": "N06",
+      "origin": "NEW_EXECUTION",
+      "reason_code": null,
+      "recorded_at": "2026-09-24T06:07:00.417886Z",
+      "state": "succeeded"
+    },
+    "glycosylation": {
+      "job_id": "t01p1r-job-abf388f1036d48709b1e6f707183ad3d",
+      "node_id": "N07",
+      "origin": "NEW_EXECUTION",
+      "reason_code": null,
+      "recorded_at": "2026-09-24T06:07:00.692123Z",
+      "state": "succeeded"
+    },
+    "homology": {
+      "job_id": null,
+      "node_id": "N08",
+      "origin": null,
+      "reason_code": "DATABASE_NOT_PROVIDED",
+      "recorded_at": "2026-09-24T06:07:00.705254Z",
+      "state": "skipped"
+    },
+    "local_delivery": {
+      "job_id": "t01p1r-job-d22d2edfaec043c7be61ebd33e287973",
+      "node_id": "N18",
+      "origin": "NEW_EXECUTION",
+      "reason_code": null,
+      "recorded_at": "2026-09-24T06:07:04.554989Z",
+      "state": "succeeded"
+    },
+    "netmhc": {
+      "job_id": null,
+      "node_id": "N05",
+      "origin": null,
+      "reason_code": "ALLELE_PANEL_NOT_PROVIDED",
+      "recorded_at": "2026-09-24T06:06:59.636613Z",
+      "state": "skipped"
+    },
+    "prediction": {
+      "job_id": "t01p1r-job-8c6c68a4ee4649938ffa77fb3fef0866",
+      "node_id": "N01",
+      "origin": "NEW_EXECUTION",
+      "reason_code": "TOOL_FAILED",
+      "recorded_at": "2026-09-24T05:17:43.933920Z",
+      "state": "failed"
+    },
+    "protection": {
+      "job_id": null,
+      "node_id": "N13",
+      "origin": null,
+      "reason_code": "DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "recorded_at": "2026-09-24T06:07:02.142105Z",
+      "state": "skipped"
+    },
+    "rescore": {
+      "job_id": null,
+      "node_id": "N12",
+      "origin": null,
+      "reason_code": "DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "recorded_at": "2026-09-24T06:07:02.111826Z",
+      "state": "skipped"
+    },
+    "stability": {
+      "job_id": null,
+      "node_id": "N14",
+      "origin": null,
+      "reason_code": "DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "recorded_at": "2026-09-24T06:07:02.165614Z",
+      "state": "skipped"
+    },
+    "structure": {
+      "job_id": null,
+      "node_id": "N01",
+      "origin": null,
+      "reason_code": "PREDICTION_UNAVAILABLE",
+      "recorded_at": "2026-09-24T05:17:43.969615Z",
+      "state": "skipped"
+    },
+    "topology": {
+      "job_id": "t01p1r-job-8261915f1db84086880d51d4d6935868",
+      "node_id": "N02",
+      "origin": "NEW_EXECUTION",
+      "reason_code": null,
+      "recorded_at": "2026-09-24T05:18:12.882917Z",
+      "state": "succeeded"
+    },
+    "variant_report": {
+      "job_id": "t01p1r-job-70e820aaa3e445c49a0a732590629ed5",
+      "node_id": "N15",
+      "origin": "NEW_EXECUTION",
+      "reason_code": null,
+      "recorded_at": "2026-09-24T06:07:02.865507Z",
+      "state": "succeeded"
+    },
+    "wt_draft": {
+      "job_id": "t01p1r-job-1b77bd706e6f4037a2fef0f1afb6603a",
+      "node_id": "N18",
+      "origin": "NEW_EXECUTION",
+      "reason_code": null,
+      "recorded_at": "2026-09-24T06:07:02.074275Z",
+      "state": "succeeded"
+    },
+    "wt_reference": {
+      "job_id": "t01p1r-job-efad61304920404f85d6e32821f821df",
+      "node_id": "N17",
+      "origin": "NEW_EXECUTION",
+      "reason_code": null,
+      "recorded_at": "2026-09-24T06:07:03.424620Z",
+      "state": "succeeded"
+    }
+  },
+  "blast_replay": {
+    "native_runtime_contract_pass": true,
+    "native_exit_code": 0,
+    "native_elapsed_seconds": 2902.963614391978,
+    "native_hsp_count": 500,
+    "native_sha256": "3953118b245c2fd7c78ba4944eaa4d94baf3ac6378a58ecce01a5cc95b702f1f",
+    "current_parser_failures": [
+      {
+        "line": 4,
+        "query_start": 2,
+        "query_end": 233,
+        "query_length": 233,
+        "native_qcovhsp": 99.0,
+        "exact_coverage": 99.57081545064378,
+        "diagnostic": "Native rounded query coverage differs from 1-based query interval"
+      },
+      {
+        "line": 129,
+        "query_start": 1,
+        "query_end": 232,
+        "query_length": 233,
+        "native_qcovhsp": 99.0,
+        "exact_coverage": 99.57081545064378,
+        "diagnostic": "Native rounded query coverage differs from 1-based query interval"
+      },
+      {
+        "line": 183,
+        "query_start": 1,
+        "query_end": 232,
+        "query_length": 233,
+        "native_qcovhsp": 99.0,
+        "exact_coverage": 99.57081545064378,
+        "diagnostic": "Native rounded query coverage differs from 1-based query interval"
+      },
+      {
+        "line": 313,
+        "query_start": 1,
+        "query_end": 232,
+        "query_length": 233,
+        "native_qcovhsp": 99.0,
+        "exact_coverage": 99.57081545064378,
+        "diagnostic": "Native rounded query coverage differs from 1-based query interval"
+      }
+    ],
+    "upstream_formatter_reference": "https://github.com/ncbi/ncbi-cxx-toolkit-public/blob/main/src/objtools/align_format/tabular.cpp#L685-L695",
+    "upstream_reference_note": "Current upstream source matches observed pinned 2.17.0+ output; source release tag not independently bound.",
+    "in_memory_proposed_formatter_replay": {
+      "parsed_hsps": 500,
+      "qualifying_hsps": 500,
+      "false_99_for_full_coverage_rejected": true,
+      "production_source_changed": false,
+      "original_result_reclassified": false
+    }
+  },
+  "progress_projection_reproduction": {
+    "job_id": "t01p1r-job-120f08a88827456e83bfdf5e6ef19b92",
+    "run_id": "t01p1r-run-44199d1960334909b953022f05a43858",
+    "state": "running",
+    "terminal": false,
+    "completed_nodes": 0,
+    "total_nodes": 1,
+    "current_nodes": [],
+    "scientific_gate": "CLOSED",
+    "usable_for_pipeline": false,
+    "production_status": "NOT_DEPLOYED"
+  },
+  "suitable_gate_generic_design_probe": {
+    "request": null,
+    "reason": "SCIENTIFIC_CONSUMPTION_NOT_RELEASED",
+    "synthetic_routing_only": true
+  },
+  "report_outcome": "DESIGN_INPUTS_UNAVAILABLE",
+  "card_failure_codes_present": false,
+  "outer_workflow_report_failure_codes_present": true,
+  "findings": [
+    {
+      "id": "F1",
+      "priority": "P1",
+      "kind": "observed_failure",
+      "title": "ESMFold2 native import uses stale 76 aa policy",
+      "locations": [
+        "scripts/verify_himat_sequence_deploy.py:40",
+        "scripts/prepare_himat_esmfold2_path_fix.py:84"
+      ],
+      "impact": "N01 fails in 2.085 s before inference; structure-dependent calculations unavailable.",
+      "recommendation": "Apply prepared r06 only after fresh idle/rollout preflight; verify actual interpreter PYTHONPATH and imported policy/profile, then validate a new independent 233 aa run. Do not equate policy admission with inference support."
+    },
+    {
+      "id": "F2",
+      "priority": "P1",
+      "kind": "observed_failure",
+      "title": "BLAST coverage formatter rejected by parser",
+      "locations": [
+        "src/t01_phase1_real/development/blast/result.py:39",
+        "tests/test_blast_development.py:163"
+      ],
+      "impact": "Native BLAST exits 0 after 2902.964 s; four valid near-full coverage rows reject all 500 HSPs.",
+      "recommendation": "Validate integer qcovhsp using the fixed tool formatting behavior, retain exact interval coverage for threshold decisions, add near-99/full-100/corruption regression cases and archived-byte replay. Do not widen all numeric tolerances or change scientific thresholds."
+    },
+    {
+      "id": "F3",
+      "priority": "P1",
+      "kind": "observed_presentation_defect",
+      "title": "Primary markdown and HiMat card omit concrete upstream failures",
+      "locations": [
+        "src/t01_phase1_real/development/local_delivery/compute.py:18",
+        "src/t01_phase1_real/service_api/himat.py:169"
+      ],
+      "impact": "COMPLETED card lists only seven generic gaps; N01 TOOL_FAILED and N03 OUTPUT_INVALID are absent. Outer workflow-report.md retains both.",
+      "recommendation": "Project structured parent/child failures and conditional skips into both readable report and card; distinguish report delivery from computational completeness; expose N10 partial and N17 scan_invocations=0. Preserve existing card discriminator."
+    },
+    {
+      "id": "F4",
+      "priority": "P1",
+      "kind": "source_proven_capability_gap",
+      "title": "Generic HiMat entry cannot reach design execution even with suitable gate",
+      "locations": [
+        "src/t01_phase1_real/service_api/himat.py:72",
+        "src/t01_phase1_real/development/workflow/service.py:222"
+      ],
+      "impact": "HiMat sends neither m1_test nor validated design constraints; generic N11/N12/N13/N14 always return a skip reason. Fixing N01 alone does not enable ProteinMPNN.",
+      "recommendation": "Implement a general sequence-bound engineering design request under approved constraint provenance and true applicability gate; retain unknown protections, never reuse fixed 1UBQ masks, and verify both design and WT/missing-input branches. Remaining input/policy decisions belong to designated management/science owners."
+    },
+    {
+      "id": "F5",
+      "priority": "P2",
+      "kind": "source_and_history_replay",
+      "title": "Progress omits reconciling and counts internal records as business nodes",
+      "locations": [
+        "src/t01_phase1_real/service_api/himat.py:121"
+      ],
+      "impact": "Historical N03 reconciling is projected to current_nodes=[]; this generic run has 20 internal records for 18 unique business nodes.",
+      "recommendation": "Include active reconciliation/stop state with accurate semantics, group by N01..N18, and report successful/failed/skipped counts separately."
+    },
+    {
+      "id": "F6",
+      "priority": "P1",
+      "kind": "source_and_run_policy_inconsistency",
+      "title": "Generic child failure propagation differs from M1 and synchronous exception path",
+      "locations": [
+        "src/t01_phase1_real/development/workflow/service.py:370",
+        "src/t01_phase1_real/development/workflow/service.py:409"
+      ],
+      "impact": "Generic child OUTPUT_INVALID is absorbed while direct OUTPUT_INVALID exceptions are fatal; this run ends parent succeeded/completed_with_gaps. Missing inputs and execution failures lack a shared explicit classification.",
+      "recommendation": "Separate allowed missing-input degradation from real execution/integrity failures consistently across dispatch/resume; follow approved failure policy, and retain diagnostic delivery without labelling computation complete. Add generic-entry failure-path checks, not only m1_test checks."
+    }
+  ],
+  "known_input_gaps": {
+    "N05": "Explicit MHC allele panel absent; host pig is not an allele panel",
+    "N08": "HiMat analysis.homology=null; no approved homology input package bound",
+    "N09": "HiMat analysis.domains=null; no local annotation package bound",
+    "N10": "Only expressibility computed; 1/6 dimensions, n10_complete=false; structure missing and CamSol unresolved",
+    "N16": "Expression host absent; host_species does not substitute expression_host",
+    "N17": "Reference aggregation succeeded, scan_invocations=0; no FoldX/ThermoMPNN scan jobs"
+  },
+  "not_verified": [
+    "HiMat browser rendering and browser-side attachment download independently",
+    "new 233 aa inference after r06",
+    "scientific signoff"
+  ],
+  "scientific_gate": "CLOSED",
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED"
+}

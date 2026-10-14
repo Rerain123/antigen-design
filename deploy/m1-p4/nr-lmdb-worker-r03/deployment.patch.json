@@ -1,0 +1,32 @@
+[
+  {
+    "op": "test",
+    "path": "/metadata/resourceVersion",
+    "value": "50388534"
+  },
+  {
+    "op": "test",
+    "path": "/metadata/uid",
+    "value": "d0cae2e9-9cd1-486b-a7c7-ddb9827915bd"
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/5/volumeMounts/-",
+    "value": {
+      "name": "p4-blast-worker-config",
+      "mountPath": "/opt/t01/worker.json",
+      "subPath": "worker.json",
+      "readOnly": true
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/volumes/-",
+    "value": {
+      "name": "p4-blast-worker-config",
+      "configMap": {
+        "name": "antigen-m1-p4-blast-worker-config-r01"
+      }
+    }
+  }
+]

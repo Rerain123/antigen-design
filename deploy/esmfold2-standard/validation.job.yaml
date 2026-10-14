@@ -1,0 +1,77 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-esmfold2-validation-r01
+  namespace: him-ws
+  labels:
+    app: antigen-esmfold2-validation
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 7200
+  ttlSecondsAfterFinished: 86400
+  template:
+    metadata:
+      labels:
+        app: antigen-esmfold2-validation
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      runtimeClassName: nvidia
+      schedulerName: hami-scheduler
+      imagePullSecrets:
+        - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+      containers:
+        - name: worker
+          image: harbor-core.base.svc.cluster.local/qcyz/antigen-esmfold2@sha256:372545ebe3469a3d32269c27033d19624d713d75ca162dbe6fff5dafed44f77f
+          args:
+            - --input
+            - /config/request.json
+            - --output-dir
+            - /runs/engineering-r01
+            - --profile
+            - /config/profile.json
+          resources:
+            requests:
+              cpu: "2"
+              memory: 32Gi
+              ephemeral-storage: 2Gi
+            limits:
+              cpu: "8"
+              memory: 64Gi
+              ephemeral-storage: 8Gi
+              nvidia.com/gpu: 1
+              nvidia.com/gpumem: 32768
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            - name: models
+              mountPath: /models
+              readOnly: true
+            - name: runtime
+              mountPath: /runs
+            - name: config
+              mountPath: /config
+              readOnly: true
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: antigen-esmfold2-models
+        - name: runtime
+          persistentVolumeClaim:
+            claimName: antigen-esmfold2-runtime
+        - name: config
+          configMap:
+            name: antigen-esmfold2-validation-r01
+        - name: tmp
+          emptyDir:
+            sizeLimit: 8Gi

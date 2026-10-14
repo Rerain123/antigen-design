@@ -1,0 +1,23 @@
+{
+  "spec": {
+    "template": {
+      "spec": {
+        "containers": [
+          {
+            "name": "service",
+            "env": [
+              {"name": "RUSTFS_ENABLED", "value": "true"},
+              {"name": "RUSTFS_ENDPOINT_URL", "value": "https://rustfs.ne.scqcyz.cn"},
+              {"name": "RUSTFS_PUBLIC_BASE_URL", "value": "https://rustfs.ne.scqcyz.cn"},
+              {"name": "RUSTFS_BUCKET", "value": "antigen-design"},
+              {"name": "RUSTFS_OBJECT_PREFIX", "value": "data"},
+              {"name": "RUSTFS_REGION", "value": "us-east-1"},
+              {"name": "RUSTFS_ACCESS_KEY_ID", "valueFrom": {"secretKeyRef": {"name": "antigen-design-rustfs", "key": "RUSTFS_ACCESS_KEY_ID"}}},
+              {"name": "RUSTFS_SECRET_ACCESS_KEY", "valueFrom": {"secretKeyRef": {"name": "antigen-design-rustfs", "key": "RUSTFS_SECRET_ACCESS_KEY"}}}
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

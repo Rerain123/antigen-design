@@ -1,0 +1,82 @@
+{
+  "fixture_kind": "SYNTHETIC_POSTPROCESSING_ONLY",
+  "scientific_compute": false,
+  "description": "人工后处理测试，不来自 FreeSASA 或真实蛋白；不验证 T-01 输入长度合法性。浮点算术断言可用 1e-12 误差，不是科学验收容差。",
+  "cases": [
+    {
+      "id": "FS-U01",
+      "sequence": "ARG",
+      "absolute_sasa_a2": [
+        64.5,
+        137.0,
+        52.0
+      ],
+      "expected_per_residue": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "expected_buried_fraction": 0.0
+    },
+    {
+      "id": "FS-U02",
+      "sequence": "ARG",
+      "absolute_sasa_a2": [
+        64.5,
+        null,
+        10.4
+      ],
+      "expected_per_residue": [
+        0.5,
+        null,
+        0.1
+      ],
+      "expected_buried_fraction": 0.3333333333333333,
+      "expected_missing_positions": [
+        2
+      ],
+      "note": "分母为 3，不是非空元素数 2"
+    },
+    {
+      "id": "FS-U03",
+      "sequence": "A",
+      "absolute_sasa_a2": [
+        25.8
+      ],
+      "expected_per_residue": [
+        0.2
+      ],
+      "expected_buried_fraction": 0.0,
+      "note": "严格小于 0.20；等于边界不计入埋藏"
+    },
+    {
+      "id": "FS-U04",
+      "sequence": "AXG",
+      "absolute_sasa_a2": [
+        64.5,
+        50.0,
+        10.4
+      ],
+      "expected_per_residue": [
+        0.5,
+        null,
+        0.1
+      ],
+      "expected_unknown_positions": [
+        2
+      ],
+      "expected_review_required": true,
+      "note": "只验证后处理未知残基守卫，不决定生产序列字母表"
+    },
+    {
+      "id": "FS-U05",
+      "sequence": "A",
+      "absolute_sasa_a2": [
+        258.0
+      ],
+      "expected_review_required": true,
+      "expected_usable_for_pipeline": false,
+      "note": "人工出域用例：保留原始面积，不静默裁剪为 1；最终处置待确认"
+    }
+  ]
+}

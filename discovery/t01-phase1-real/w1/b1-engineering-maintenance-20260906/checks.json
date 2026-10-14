@@ -1,0 +1,71 @@
+{
+  "scope": "B1 E01-E04 maintenance checks; original first failure retained",
+  "checks": [
+    {
+      "name": "root_initial",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 -m pytest -o addopts='' -q",
+      "exit_code": 1,
+      "output": "........................................................................ [ 11%]\r\n........................................................................ [ 22%]\r\n........................................................................ [ 33%]\r\n........................................F............................... [ 45%]\r\n........................................................................ [ 56%]\r\n.......................................................s................ [ 67%]\r\n........................................................................ [ 78%]\r\n........................................................................ [ 90%]\r\n...............................................................          [100%]\r\n================================== FAILURES ===================================\r\n_______________ test_progressive_documentation_layout_and_links _______________\r\n\r\n    def test_progressive_documentation_layout_and_links() -> None:\r\n>       assert check_docs.validate_docs() == []\r\nE       AssertionError: assert ['docs/projec...ICATION.json'] == []\r\nE         \r\nE         Left contains one more item: 'docs/project/phase1/PHASE1_REAL_W1_B1_ENGINEERING_REVIEW.md:4 链接不存在：PHASE1_REAL_W1_B1_ENGINEERING_VERIFICATION.json'\r\nE         Use -v to get more diff\r\n\r\ntests\\test_docs.py:11: AssertionError\r\n=========================== short test summary info ===========================\r\nFAILED tests/test_docs.py::test_progressive_documentation_layout_and_links - ...\r\n1 failed, 637 passed, 1 skipped in 93.46s (0:01:33)\r\n"
+    },
+    {
+      "name": "root_tests",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 -m pytest -o addopts='' -q --junitxml=.tmp/b1-engineering-maintenance-20260906/root-tests.xml",
+      "exit_code": 0,
+      "output": "........................................................................ [ 11%]\r\n........................................................................ [ 22%]\r\n........................................................................ [ 33%]\r\n........................................................................ [ 45%]\r\n........................................................................ [ 56%]\r\n.......................................................s................ [ 67%]\r\n........................................................................ [ 78%]\r\n........................................................................ [ 90%]\r\n...............................................................          [100%]\r\n- generated xml file: D:\\work\\蛋白智能体\\.tmp\\b1-engineering-maintenance-20260906\\root-tests.xml -\r\n638 passed, 1 skipped in 92.31s (0:01:32)\r\n"
+    },
+    {
+      "name": "documentation",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/check_docs.py",
+      "exit_code": 0,
+      "output": "documentation_status=PASS markdown_files=173\r\n"
+    },
+    {
+      "name": "facts",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/check_b1_engineering.py verify --reparse",
+      "exit_code": 0,
+      "output": "{\"status\": \"PASS\", \"cases\": 40, \"artifacts\": 378, \"protected_files\": 315, \"reparsed\": true, \"scientific_acceptance\": \"NOT_RUN\", \"production_status\": \"NOT_DEPLOYED\"}\r\n"
+    },
+    {
+      "name": "old_b1",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/check_w1_b1_review.py --reparse",
+      "exit_code": 0,
+      "output": "{\"status\": \"PASS_REVIEW_PREPARATION\", \"case_count\": 23, \"expert_sources\": 22, \"request_result_pairs\": 2, \"reparsed\": true, \"scientific_approval\": \"NOT_GRANTED\", \"production_status\": \"NOT_DEPLOYED\"}\r\n"
+    },
+    {
+      "name": "r58_boundaries",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 discovery/t01-phase1-real/w1/r58-freesasa-boundaries-20260905/verify_evidence.py",
+      "exit_code": 0,
+      "output": "{\"status\": \"PASS\", \"batch_files\": 212, \"expert_sources_unchanged\": 22, \"prior_r58_evidence_files_unchanged\": 16, \"raw_calculations\": 6, \"scientific_acceptance\": \"NOT_RUN\", \"production_status\": \"NOT_DEPLOYED\"}\r\n"
+    },
+    {
+      "name": "runtime_original",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/check_w1_runtime.py",
+      "exit_code": 0,
+      "output": "{\"status\": \"PASS_ENGINEERING_ONLY\", \"runtime_tests\": 51, \"runtime_cases\": 15, \"cli_cases\": 5, \"source_verification\": \"ARCHIVED_EXECUTED_SOURCES\", \"source_files\": 16, \"output_files\": 62, \"production_status\": \"NOT_DEPLOYED\"}\r\n"
+    },
+    {
+      "name": "runtime_fix",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/check_w1_runtime.py --batch discovery/t01-phase1-real/w1/runtime-file-fix-20260905",
+      "exit_code": 0,
+      "output": "{\"status\": \"PASS_ENGINEERING_ONLY\", \"runtime_tests\": 51, \"runtime_cases\": 15, \"cli_cases\": 5, \"source_verification\": \"CURRENT_REPOSITORY\", \"source_files\": 16, \"output_files\": 62, \"production_status\": \"NOT_DEPLOYED\"}\r\n"
+    },
+    {
+      "name": "mock_freeze",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/t01_phase1_mock/run_m4_campaign.py verify",
+      "exit_code": 0,
+      "output": "{\"status\": \"PASS\", \"release_state\": \"FROZEN\", \"campaign_id\": \"t01p1m-v01-reg-20260904-release-freeze-03\", \"frozen_asset_count\": 457}\r\n"
+    },
+    {
+      "name": "handoffs",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/package_tool_handoffs.py --check",
+      "exit_code": 0,
+      "output": "{\r\n  \"status\": \"PASS\",\r\n  \"scope\": \"handoff_archive_and_engineering_interface\",\r\n  \"scientific_tool_execution\": \"NOT_RUN\",\r\n  \"scientific_acceptance\": \"NOT_RUN\",\r\n  \"packages\": [\r\n    {\r\n      \"package_id\": \"PH1-TOOL-FREESASA\",\r\n      \"version\": \"0.1\",\r\n      \"revision\": \"shared-interface-20260905\",\r\n      \"archive_sha256\": \"6cdb87a80d3b18064f3cbbd529ab58f21e182d593a5d043ff5d90358015c13ba\",\r\n      \"file_count\": 56,\r\n      \"source_copies_verified\": 6,\r\n      \"closed_local_links\": 42,\r\n      \"interface_files_identical\": 38,\r\n      \"synthetic_pairs_checked\": 8\r\n    },\r\n    {\r\n      \"package_id\": \"PH1-TOOL-BEPIPRED\",\r\n      \"version\": \"0.1\",\r\n      \"revision\": \"shared-interface-20260905\",\r\n      \"archive_sha256\": \"215ad2849c1a2ee1f7f007d140a1bb7808728ba43372686490070df9bd79cfab\",\r\n      \"file_count\": 56,\r\n      \"source_copies_verified\": 6,\r\n      \"closed_local_links\": 41,\r\n      \"interface_files_identical\": 38,\r\n      \"synthetic_pairs_checked\": 8\r\n    }\r\n  ]\r\n}\r\n"
+    },
+    {
+      "name": "contract",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/check_w1_contract.py",
+      "exit_code": 0,
+      "output": "{\"status\": \"PASS\", \"scope\": \"STATIC_CONTRACT_ONLY\", \"expert_sources\": 22, \"source_files\": 32, \"job_examples\": 8, \"submit_examples\": 1, \"control_examples\": 4, \"runtime_cases_declared\": 15, \"scientific_cases_declared\": 8, \"runtime_execution\": \"NOT_RUN\", \"scientific_execution\": \"NOT_RUN\", \"production_status\": \"NOT_DEPLOYED\"}\r\n"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "status": "LOCAL_BUILD_AND_IMPORT_VERIFIED",
+  "scientific_gate": "CLOSED",
+  "platform": "linux/amd64",
+  "python": "3.12.14",
+  "torch": "2.7.1+cu126",
+  "cuda": "12.6",
+  "transformers_version": "4.57.6",
+  "esm_version": "3.3.0",
+  "base_image": "public.ecr.aws/docker/library/python:3.12-slim-bookworm@sha256:782412e85d0f0984994c290652577d4018aff08145c85b262bb63dc0c7522254",
+  "sources": {
+    "biohub_esm_commit": "b6b0e8815dc3174a9fe9afd36b222aea57d536c5",
+    "biohub_transformers_commit": "ef32577f55da19a4989cd7b22e004dc43a4998cb"
+  },
+  "local_images": {
+    "environment_manifest_digest": "sha256:34e2c26c1865740cb427e21d1df6e925e868454a7f1833563f54a639100b7157",
+    "worker_manifest_digest": "sha256:7f54308a9f00fe2d53b82f6a60bbc767cb14d8599aedf8894ca98ac3795d26c6",
+    "worker_size_bytes": 3411936560
+  },
+  "checks": {
+    "network": "none",
+    "root_filesystem": "read-only",
+    "uid": 10001,
+    "imports": [
+      "transformers.models.esmfold2.modeling_esmfold2.ESMFold2Model",
+      "esm.models.esmfold2.ESMFold2InputBuilder"
+    ],
+    "result": "PASS"
+  }
+}

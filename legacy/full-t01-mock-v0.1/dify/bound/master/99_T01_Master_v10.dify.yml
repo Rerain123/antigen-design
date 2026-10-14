@@ -1,0 +1,1867 @@
+app:
+  description: T-01 v10 Dify调试主流程。LLM不参与科学计算；主流程只调用MCP/阶段工作流并按后端枚举路由。当前模板为Mock调试配置。
+  icon: 🧩
+  icon_background: '#E8F5E9'
+  mode: workflow
+  name: T01_Master_v10
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types: []
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: start
+        targetType: tool
+      id: edge_T01_START_source_T01_CONFIGURE_RUN
+      source: T01_START
+      sourceHandle: source
+      target: T01_CONFIGURE_RUN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_T01_CONFIGURE_RUN_source_T01_VALIDATE_REQUEST
+      source: T01_CONFIGURE_RUN
+      sourceHandle: source
+      target: T01_VALIDATE_REQUEST
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_T01_VALIDATE_REQUEST_source_T01_IF_INPUT_REQUIRED
+      source: T01_VALIDATE_REQUEST
+      sourceHandle: source
+      target: T01_IF_INPUT_REQUIRED
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_T01_G00_LENGTH_source_T01_IF_LENGTH_HALT
+      source: T01_G00_LENGTH
+      sourceHandle: source
+      target: T01_IF_LENGTH_HALT
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_T01_G01_CONTEXT_source_T01_IF_CONTEXT_HIGH
+      source: T01_G01_CONTEXT
+      sourceHandle: source
+      target: T01_IF_CONTEXT_HIGH
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_T01_0B_INJECT_HIGH_source_T01_P2_CONTEXT_HIGH
+      source: T01_0B_INJECT_HIGH
+      sourceHandle: source
+      target: T01_P2_CONTEXT_HIGH
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_T01_0B_INJECT_NONHIGH_source_T01_P2_CONTEXT_NONHIGH
+      source: T01_0B_INJECT_NONHIGH
+      sourceHandle: source
+      target: T01_P2_CONTEXT_NONHIGH
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_T01_P2_CONTEXT_NONHIGH_source_T01_P3_CONTEXT
+      source: T01_P2_CONTEXT_NONHIGH
+      sourceHandle: source
+      target: T01_P3_CONTEXT
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_T01_P3_CONTEXT_source_T01_IF_P3_CONTEXT_SKIP
+      source: T01_P3_CONTEXT
+      sourceHandle: source
+      target: T01_IF_P3_CONTEXT_SKIP
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_T01_P0_FULL_source_T01_IF_P0_FAILED
+      source: T01_P0_FULL
+      sourceHandle: source
+      target: T01_IF_P0_FAILED
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_T01_P1_FULL_source_T01_P2_FULL
+      source: T01_P1_FULL
+      sourceHandle: source
+      target: T01_P2_FULL
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_T01_P2_FULL_source_T01_T11_PREPARE
+      source: T01_P2_FULL
+      sourceHandle: source
+      target: T01_T11_PREPARE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_T01_T11_PREPARE_source_T01_P3_FULL
+      source: T01_T11_PREPARE
+      sourceHandle: source
+      target: T01_P3_FULL
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_T01_P3_FULL_source_T01_IF_P3_FULL_SKIP
+      source: T01_P3_FULL
+      sourceHandle: source
+      target: T01_IF_P3_FULL_SKIP
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: variable-aggregator
+        targetType: tool
+      id: edge_T01_DESIGN_ENTRY_JOIN_source_T01_T15_GUARD
+      source: T01_DESIGN_ENTRY_JOIN
+      sourceHandle: source
+      target: T01_T15_GUARD
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_T01_T15_GUARD_source_T01_T16_BUNDLE
+      source: T01_T15_GUARD
+      sourceHandle: source
+      target: T01_T16_BUNDLE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_T01_T16_BUNDLE_source_T01_P4_DESIGN
+      source: T01_T16_BUNDLE
+      sourceHandle: source
+      target: T01_P4_DESIGN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_T01_P4_DESIGN_source_T01_IF_DESIGN_EXHAUSTED
+      source: T01_P4_DESIGN
+      sourceHandle: source
+      target: T01_IF_DESIGN_EXHAUSTED
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_T01_P5_VARIANTS_source_T01_P6_FINAL_SCIENCE
+      source: T01_P5_VARIANTS
+      sourceHandle: source
+      target: T01_P6_FINAL_SCIENCE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: variable-aggregator
+        targetType: tool
+      id: edge_T01_P7_ENTRY_JOIN_source_T01_P7_OUTPUT
+      source: T01_P7_ENTRY_JOIN
+      sourceHandle: source
+      target: T01_P7_OUTPUT
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: variable-aggregator
+      id: edge_T01_P7_OUTPUT_source_T01_TERMINAL_JOIN
+      source: T01_P7_OUTPUT
+      sourceHandle: source
+      target: T01_TERMINAL_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: variable-aggregator
+        targetType: end
+      id: edge_T01_TERMINAL_JOIN_source_T01_END
+      source: T01_TERMINAL_JOIN
+      sourceHandle: source
+      target: T01_END
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: variable-aggregator
+      id: edge_T01_IF_INPUT_REQUIRED_true_T01_TERMINAL_JOIN
+      source: T01_IF_INPUT_REQUIRED
+      sourceHandle: 'true'
+      target: T01_TERMINAL_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_T01_IF_INPUT_REQUIRED_false_T01_G00_LENGTH
+      source: T01_IF_INPUT_REQUIRED
+      sourceHandle: 'false'
+      target: T01_G00_LENGTH
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: variable-aggregator
+      id: edge_T01_IF_LENGTH_HALT_true_T01_TERMINAL_JOIN
+      source: T01_IF_LENGTH_HALT
+      sourceHandle: 'true'
+      target: T01_TERMINAL_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_T01_IF_LENGTH_HALT_false_T01_G01_CONTEXT
+      source: T01_IF_LENGTH_HALT
+      sourceHandle: 'false'
+      target: T01_G01_CONTEXT
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_T01_IF_CONTEXT_HIGH_true_T01_0B_INJECT_HIGH
+      source: T01_IF_CONTEXT_HIGH
+      sourceHandle: 'true'
+      target: T01_0B_INJECT_HIGH
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: if-else
+      id: edge_T01_IF_CONTEXT_HIGH_false_T01_IF_CONTEXT_NONHIGH
+      source: T01_IF_CONTEXT_HIGH
+      sourceHandle: 'false'
+      target: T01_IF_CONTEXT_NONHIGH
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_T01_IF_CONTEXT_NONHIGH_true_T01_0B_INJECT_NONHIGH
+      source: T01_IF_CONTEXT_NONHIGH
+      sourceHandle: 'true'
+      target: T01_0B_INJECT_NONHIGH
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_T01_IF_CONTEXT_NONHIGH_false_T01_P0_FULL
+      source: T01_IF_CONTEXT_NONHIGH
+      sourceHandle: 'false'
+      target: T01_P0_FULL
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: variable-aggregator
+      id: edge_T01_P2_CONTEXT_HIGH_source_T01_DESIGN_ENTRY_JOIN
+      source: T01_P2_CONTEXT_HIGH
+      sourceHandle: source
+      target: T01_DESIGN_ENTRY_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: variable-aggregator
+      id: edge_T01_IF_P3_CONTEXT_SKIP_true_T01_P7_ENTRY_JOIN
+      source: T01_IF_P3_CONTEXT_SKIP
+      sourceHandle: 'true'
+      target: T01_P7_ENTRY_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: variable-aggregator
+      id: edge_T01_IF_P3_CONTEXT_SKIP_false_T01_DESIGN_ENTRY_JOIN
+      source: T01_IF_P3_CONTEXT_SKIP
+      sourceHandle: 'false'
+      target: T01_DESIGN_ENTRY_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: variable-aggregator
+      id: edge_T01_IF_P0_FAILED_true_T01_TERMINAL_JOIN
+      source: T01_IF_P0_FAILED
+      sourceHandle: 'true'
+      target: T01_TERMINAL_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_T01_IF_P0_FAILED_false_T01_P1_FULL
+      source: T01_IF_P0_FAILED
+      sourceHandle: 'false'
+      target: T01_P1_FULL
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: variable-aggregator
+      id: edge_T01_IF_P3_FULL_SKIP_true_T01_P7_ENTRY_JOIN
+      source: T01_IF_P3_FULL_SKIP
+      sourceHandle: 'true'
+      target: T01_P7_ENTRY_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: variable-aggregator
+      id: edge_T01_IF_P3_FULL_SKIP_false_T01_DESIGN_ENTRY_JOIN
+      source: T01_IF_P3_FULL_SKIP
+      sourceHandle: 'false'
+      target: T01_DESIGN_ENTRY_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: variable-aggregator
+      id: edge_T01_IF_DESIGN_EXHAUSTED_true_T01_P7_ENTRY_JOIN
+      source: T01_IF_DESIGN_EXHAUSTED
+      sourceHandle: 'true'
+      target: T01_P7_ENTRY_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_T01_IF_DESIGN_EXHAUSTED_false_T01_P5_VARIANTS
+      source: T01_IF_DESIGN_EXHAUSTED
+      sourceHandle: 'false'
+      target: T01_P5_VARIANTS
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: variable-aggregator
+      id: edge_T01_P6_FINAL_SCIENCE_source_T01_P7_ENTRY_JOIN
+      source: T01_P6_FINAL_SCIENCE
+      sourceHandle: source
+      target: T01_P7_ENTRY_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - variable: run_id
+          label: 运行 ID
+          type: text-input
+          required: true
+          max_length: 128
+          options: []
+        - variable: scenario_id
+          label: Mock 场景
+          type: select
+          required: true
+          max_length: 128
+          options:
+          - MOCK-HAPPY-PATH
+          - MOCK-SHORT-MHC-HALT
+          - MOCK-SHORT-WARNING
+          - MOCK-CONTEXT-HIGH
+          - MOCK-CONTEXT-NONHIGH
+          - MOCK-NO-STRUCTURE
+          - MOCK-LOW-STRUCTURE
+          - MOCK-BACTERIA
+          - MOCK-MEMBRANE-SKIP
+          - MOCK-MEMBRANE-CONFIRMED
+          - MOCK-POOR-RESCUE-SUCCESS
+          - MOCK-POOR-RESCUE-FAIL
+          - MOCK-DESIGN-RETRY-48
+          - MOCK-DESIGN-RETRY-64
+          - MOCK-DESIGN-ALL-REJECTED
+          - MOCK-EPITOPE-STRUCTURAL-FAIL
+          - MOCK-EPITOPE-PREDICTION-FAIL
+          - MOCK-VARIANT-SAFETY-FAIL
+          - MOCK-19B-SKIPPED
+          - MOCK-SC10-WARNING
+          - MOCK-MD-RUN
+          - MOCK-MD-SKIP
+          - MOCK-TOOL-TIMEOUT
+          - MOCK-OUTPUT-MISSING
+          - MOCK-OUTPUT-INVALID
+        - variable: t01_input_json
+          label: T-01 输入 JSON
+          type: paragraph
+          required: true
+          max_length: 65535
+          options: []
+        - variable: execution_mode
+          label: 执行模式
+          type: select
+          required: true
+          max_length: 128
+          options:
+          - mock
+      height: 238
+      id: T01_START
+      position:
+        x: 0
+        y: 380
+      positionAbsolute:
+        x: 0
+        y: 380
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: mock.configure_run_from_json · Dify orchestration boundary tool.
+        selected: false
+        title: 初始化Mock运行
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 初始化Mock运行
+        tool_name: mock.configure_run_from_json
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          scenario_id:
+            type: variable
+            value:
+            - T01_START
+            - scenario_id
+          t01_input_json:
+            type: variable
+            value:
+            - T01_START
+            - t01_input_json
+      height: 98
+      id: T01_CONFIGURE_RUN
+      position:
+        x: 320
+        y: 380
+      positionAbsolute:
+        x: 320
+        y: 380
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01.validate_request · Validate collected T-01 input without scientific calculation.
+        selected: false
+        title: 输入契约校验
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 输入契约校验
+        tool_name: t01.validate_request
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          step_id:
+            type: constant
+            value: START
+          node_id:
+            type: constant
+            value: T01_VALIDATE_REQUEST
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#T01_START.run_id#}}:T01_VALIDATE_REQUEST:attempt-1'
+      height: 98
+      id: T01_VALIDATE_REQUEST
+      position:
+        x: 640
+        y: 380
+      positionAbsolute:
+        x: 640
+        y: 380
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 需要补充输入?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: T01_IF_INPUT_REQUIRED_condition
+            variable_selector:
+            - T01_VALIDATE_REQUEST
+            - status
+            comparison_operator: is
+            value: WAITING_USER
+            varType: string
+      height: 150
+      id: T01_IF_INPUT_REQUIRED
+      position:
+        x: 960
+        y: 380
+      positionAbsolute:
+        x: 960
+        y: 380
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01.evaluate_length_guard · Return HALT, WARNING, or PASS from sequence length and epitope mode.
+        selected: false
+        title: 长度守卫
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 长度守卫
+        tool_name: t01.evaluate_length_guard
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          step_id:
+            type: constant
+            value: G-LENGTH
+          node_id:
+            type: constant
+            value: T01_G00_LENGTH
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#T01_START.run_id#}}:T01_G00_LENGTH:attempt-1'
+      height: 98
+      id: T01_G00_LENGTH
+      position:
+        x: 1280
+        y: 380
+      positionAbsolute:
+        x: 1280
+        y: 380
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 长度门控停止?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: T01_IF_LENGTH_HALT_condition
+            variable_selector:
+            - T01_G00_LENGTH
+            - data
+            - route
+            comparison_operator: is
+            value: HALT
+            varType: string
+      height: 150
+      id: T01_IF_LENGTH_HALT
+      position:
+        x: 1600
+        y: 380
+      positionAbsolute:
+        x: 1600
+        y: 380
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01.route_context_scores · Route context injection as NONE, HIGH, or NON_HIGH.
+        selected: false
+        title: 0b上下文路由
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 0b上下文路由
+        tool_name: t01.route_context_scores
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          step_id:
+            type: constant
+            value: G0B
+          node_id:
+            type: constant
+            value: T01_G01_CONTEXT
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#T01_START.run_id#}}:T01_G01_CONTEXT:attempt-1'
+      height: 98
+      id: T01_G01_CONTEXT
+      position:
+        x: 1920
+        y: 380
+      positionAbsolute:
+        x: 1920
+        y: 380
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 高置信上下文?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: T01_IF_CONTEXT_HIGH_condition
+            variable_selector:
+            - T01_G01_CONTEXT
+            - data
+            - route
+            comparison_operator: is
+            value: HIGH
+            varType: string
+      height: 150
+      id: T01_IF_CONTEXT_HIGH
+      position:
+        x: 2240
+        y: 380
+      positionAbsolute:
+        x: 2240
+        y: 380
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 非高置信上下文?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: T01_IF_CONTEXT_NONHIGH_condition
+            variable_selector:
+            - T01_G01_CONTEXT
+            - data
+            - route
+            comparison_operator: is
+            value: NON_HIGH
+            varType: string
+      height: 150
+      id: T01_IF_CONTEXT_NONHIGH
+      position:
+        x: 2560
+        y: 620
+      positionAbsolute:
+        x: 2560
+        y: 620
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01.inject_context_scores · Validate and unpack injected sequence/structure context.
+        selected: false
+        title: 0b高置信注入
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 0b高置信注入
+        tool_name: t01.inject_context_scores
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          step_id:
+            type: constant
+            value: 0b
+          node_id:
+            type: constant
+            value: T01_0B_INJECT_HIGH
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#T01_START.run_id#}}:T01_0B_INJECT_HIGH:attempt-1'
+      height: 98
+      id: T01_0B_INJECT_HIGH
+      position:
+        x: 2560
+        y: 80
+      positionAbsolute:
+        x: 2560
+        y: 80
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01_p2_conservation_domain · Dify orchestration boundary tool.
+        selected: false
+        title: P2补跑S-16（HIGH）
+        type: tool
+        provider_id: 8788c81a-36a7-4193-8e5a-fc9ab79e7cd9
+        provider_name: 8788c81a-36a7-4193-8e5a-fc9ab79e7cd9
+        provider_type: workflow
+        tool_configurations: {}
+        tool_label: P2补跑S-16（HIGH）
+        tool_name: t01_p2_conservation_domain
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          execution_mode:
+            type: constant
+            value: mock
+          entry_mode:
+            type: constant
+            value: context_only
+      height: 98
+      id: T01_P2_CONTEXT_HIGH
+      position:
+        x: 2880
+        y: 80
+      positionAbsolute:
+        x: 2880
+        y: 80
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01.inject_context_scores · Validate and unpack injected sequence/structure context.
+        selected: false
+        title: 0b非高置信注入
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 0b非高置信注入
+        tool_name: t01.inject_context_scores
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          step_id:
+            type: constant
+            value: 0b
+          node_id:
+            type: constant
+            value: T01_0B_INJECT_NONHIGH
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#T01_START.run_id#}}:T01_0B_INJECT_NONHIGH:attempt-1'
+      height: 98
+      id: T01_0B_INJECT_NONHIGH
+      position:
+        x: 2880
+        y: 620
+      positionAbsolute:
+        x: 2880
+        y: 620
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01_p2_conservation_domain · Dify orchestration boundary tool.
+        selected: false
+        title: P2补跑S-16（NON_HIGH）
+        type: tool
+        provider_id: 8788c81a-36a7-4193-8e5a-fc9ab79e7cd9
+        provider_name: 8788c81a-36a7-4193-8e5a-fc9ab79e7cd9
+        provider_type: workflow
+        tool_configurations: {}
+        tool_label: P2补跑S-16（NON_HIGH）
+        tool_name: t01_p2_conservation_domain
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          execution_mode:
+            type: constant
+            value: mock
+          entry_mode:
+            type: constant
+            value: context_only
+      height: 98
+      id: T01_P2_CONTEXT_NONHIGH
+      position:
+        x: 3200
+        y: 620
+      positionAbsolute:
+        x: 3200
+        y: 620
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01_p3_wt_developability · Dify orchestration boundary tool.
+        selected: false
+        title: 从step12重算结构依赖维度
+        type: tool
+        provider_id: 62979f20-701b-4603-ac8a-c96ea65fc79a
+        provider_name: 62979f20-701b-4603-ac8a-c96ea65fc79a
+        provider_type: workflow
+        tool_configurations: {}
+        tool_label: 从step12重算结构依赖维度
+        tool_name: t01_p3_wt_developability
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          execution_mode:
+            type: constant
+            value: mock
+      height: 98
+      id: T01_P3_CONTEXT
+      position:
+        x: 3520
+        y: 620
+      positionAbsolute:
+        x: 3520
+        y: 620
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 上下文路径R-57跳过?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: T01_IF_P3_CONTEXT_SKIP_condition
+            variable_selector:
+            - T01_P3_CONTEXT
+            - stage_route
+            comparison_operator: is
+            value: DESIGN_SKIPPED
+            varType: string
+      height: 150
+      id: T01_IF_P3_CONTEXT_SKIP
+      position:
+        x: 3840
+        y: 620
+      positionAbsolute:
+        x: 3840
+        y: 620
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01_p0_structure · Dify orchestration boundary tool.
+        selected: false
+        title: P0完整结构阶段
+        type: tool
+        provider_id: a9a9a376-de18-49a9-a321-e2ad924c9b41
+        provider_name: a9a9a376-de18-49a9-a321-e2ad924c9b41
+        provider_type: workflow
+        tool_configurations: {}
+        tool_label: P0完整结构阶段
+        tool_name: t01_p0_structure
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          execution_mode:
+            type: constant
+            value: mock
+      height: 98
+      id: T01_P0_FULL
+      position:
+        x: 2880
+        y: 1000
+      positionAbsolute:
+        x: 2880
+        y: 1000
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: P0失败?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: T01_IF_P0_FAILED_condition
+            variable_selector:
+            - T01_P0_FULL
+            - stage_status
+            comparison_operator: is
+            value: FAILED
+            varType: string
+      height: 150
+      id: T01_IF_P0_FAILED
+      position:
+        x: 3200
+        y: 1000
+      positionAbsolute:
+        x: 3200
+        y: 1000
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01_p1_epitope_safety · Dify orchestration boundary tool.
+        selected: false
+        title: P1完整表位安全阶段
+        type: tool
+        provider_id: 8c93d464-26f5-446e-979d-3a8c9cdfd8db
+        provider_name: 8c93d464-26f5-446e-979d-3a8c9cdfd8db
+        provider_type: workflow
+        tool_configurations: {}
+        tool_label: P1完整表位安全阶段
+        tool_name: t01_p1_epitope_safety
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          execution_mode:
+            type: constant
+            value: mock
+      height: 98
+      id: T01_P1_FULL
+      position:
+        x: 3520
+        y: 1000
+      positionAbsolute:
+        x: 3520
+        y: 1000
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01_p2_conservation_domain · Dify orchestration boundary tool.
+        selected: false
+        title: P2完整保守功能域阶段
+        type: tool
+        provider_id: 8788c81a-36a7-4193-8e5a-fc9ab79e7cd9
+        provider_name: 8788c81a-36a7-4193-8e5a-fc9ab79e7cd9
+        provider_type: workflow
+        tool_configurations: {}
+        tool_label: P2完整保守功能域阶段
+        tool_name: t01_p2_conservation_domain
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          execution_mode:
+            type: constant
+            value: mock
+          entry_mode:
+            type: constant
+            value: full
+      height: 98
+      id: T01_P2_FULL
+      position:
+        x: 3840
+        y: 1000
+      positionAbsolute:
+        x: 3840
+        y: 1000
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01.prepare_permission_inputs · Prepare fixed/degraded/epitope inputs for permissions.
+        selected: false
+        title: step11权限输入准备
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: step11权限输入准备
+        tool_name: t01.prepare_permission_inputs
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          step_id:
+            type: constant
+            value: step11
+          node_id:
+            type: constant
+            value: T01_T11_PREPARE
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#T01_START.run_id#}}:T01_T11_PREPARE:attempt-1'
+      height: 98
+      id: T01_T11_PREPARE
+      position:
+        x: 4160
+        y: 1000
+      positionAbsolute:
+        x: 4160
+        y: 1000
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01_p3_wt_developability · Dify orchestration boundary tool.
+        selected: false
+        title: P3 WT可开发性与R-57
+        type: tool
+        provider_id: 62979f20-701b-4603-ac8a-c96ea65fc79a
+        provider_name: 62979f20-701b-4603-ac8a-c96ea65fc79a
+        provider_type: workflow
+        tool_configurations: {}
+        tool_label: P3 WT可开发性与R-57
+        tool_name: t01_p3_wt_developability
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          execution_mode:
+            type: constant
+            value: mock
+      height: 98
+      id: T01_P3_FULL
+      position:
+        x: 4480
+        y: 1000
+      positionAbsolute:
+        x: 4480
+        y: 1000
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 完整路径R-57跳过?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: T01_IF_P3_FULL_SKIP_condition
+            variable_selector:
+            - T01_P3_FULL
+            - stage_route
+            comparison_operator: is
+            value: DESIGN_SKIPPED
+            varType: string
+      height: 150
+      id: T01_IF_P3_FULL_SKIP
+      position:
+        x: 4800
+        y: 1000
+      positionAbsolute:
+        x: 4800
+        y: 1000
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: step15入口汇合
+        type: variable-aggregator
+        advanced_settings:
+          group_enabled: false
+          groups: []
+        output_type: object
+        variables:
+        - - T01_P2_CONTEXT_HIGH
+          - stage_result
+        - - T01_P3_CONTEXT
+          - stage_result
+        - - T01_P3_FULL
+          - stage_result
+      height: 108
+      id: T01_DESIGN_ENTRY_JOIN
+      position:
+        x: 5120
+        y: 520
+      positionAbsolute:
+        x: 5120
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01.evaluate_mutable_length · Evaluate mutable-length routing values.
+        selected: false
+        title: step15 mutable_length守卫
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: step15 mutable_length守卫
+        tool_name: t01.evaluate_mutable_length
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          step_id:
+            type: constant
+            value: step15
+          node_id:
+            type: constant
+            value: T01_T15_GUARD
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#T01_START.run_id#}}:T01_T15_GUARD:attempt-1'
+      height: 98
+      id: T01_T15_GUARD
+      position:
+        x: 5440
+        y: 520
+      positionAbsolute:
+        x: 5440
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01.build_evidence_bundle · Build the required six-key evidence bundle.
+        selected: false
+        title: step16六键evidence_bundle
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: step16六键evidence_bundle
+        tool_name: t01.build_evidence_bundle
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          step_id:
+            type: constant
+            value: step16
+          node_id:
+            type: constant
+            value: T01_T16_BUNDLE
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#T01_START.run_id#}}:T01_T16_BUNDLE:attempt-1'
+      height: 98
+      id: T01_T16_BUNDLE
+      position:
+        x: 5760
+        y: 520
+      positionAbsolute:
+        x: 5760
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01_p4_design · Dify orchestration boundary tool.
+        selected: false
+        title: P4序列设计与重试
+        type: tool
+        provider_id: c9780a24-bc59-4146-80ba-58dfe60aa7e4
+        provider_name: c9780a24-bc59-4146-80ba-58dfe60aa7e4
+        provider_type: workflow
+        tool_configurations: {}
+        tool_label: P4序列设计与重试
+        tool_name: t01_p4_design
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          execution_mode:
+            type: constant
+            value: mock
+      height: 98
+      id: T01_P4_DESIGN
+      position:
+        x: 6080
+        y: 520
+      positionAbsolute:
+        x: 6080
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 设计三轮全淘汰?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: T01_IF_DESIGN_EXHAUSTED_condition
+            variable_selector:
+            - T01_P4_DESIGN
+            - stage_route
+            comparison_operator: is
+            value: EXHAUSTED
+            varType: string
+      height: 150
+      id: T01_IF_DESIGN_EXHAUSTED
+      position:
+        x: 6400
+        y: 520
+      positionAbsolute:
+        x: 6400
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01_p5_variant_evaluation · Dify orchestration boundary tool.
+        selected: false
+        title: P5变体重评与排序
+        type: tool
+        provider_id: b9db3b4d-9558-41a4-adfb-0dd00ee2503a
+        provider_name: b9db3b4d-9558-41a4-adfb-0dd00ee2503a
+        provider_type: workflow
+        tool_configurations: {}
+        tool_label: P5变体重评与排序
+        tool_name: t01_p5_variant_evaluation
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          execution_mode:
+            type: constant
+            value: mock
+      height: 98
+      id: T01_P5_VARIANTS
+      position:
+        x: 6720
+        y: 760
+      positionAbsolute:
+        x: 6720
+        y: 760
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01_p6_codon_stability_md · Dify orchestration boundary tool.
+        selected: false
+        title: P6密码子/WT扫描/MD
+        type: tool
+        provider_id: 8252d58c-59b3-46ad-a537-c92402de9931
+        provider_name: 8252d58c-59b3-46ad-a537-c92402de9931
+        provider_type: workflow
+        tool_configurations: {}
+        tool_label: P6密码子/WT扫描/MD
+        tool_name: t01_p6_codon_stability_md
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          execution_mode:
+            type: constant
+            value: mock
+      height: 98
+      id: T01_P6_FINAL_SCIENCE
+      position:
+        x: 7040
+        y: 760
+      positionAbsolute:
+        x: 7040
+        y: 760
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 阶段7入口汇合
+        type: variable-aggregator
+        advanced_settings:
+          group_enabled: false
+          groups: []
+        output_type: object
+        variables:
+        - - T01_P6_FINAL_SCIENCE
+          - stage_result
+        - - T01_P4_DESIGN
+          - stage_result
+        - - T01_P3_CONTEXT
+          - stage_result
+        - - T01_P3_FULL
+          - stage_result
+      height: 108
+      id: T01_P7_ENTRY_JOIN
+      position:
+        x: 7360
+        y: 520
+      positionAbsolute:
+        x: 7360
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01_p7_output_handoff · Dify orchestration boundary tool.
+        selected: false
+        title: P7输出与交接
+        type: tool
+        provider_id: 5983a9f2-abdd-4b84-8e42-cdc2976784ae
+        provider_name: 5983a9f2-abdd-4b84-8e42-cdc2976784ae
+        provider_type: workflow
+        tool_configurations: {}
+        tool_label: P7输出与交接
+        tool_name: t01_p7_output_handoff
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            type: variable
+            value:
+            - T01_START
+            - run_id
+          execution_mode:
+            type: constant
+            value: mock
+      height: 98
+      id: T01_P7_OUTPUT
+      position:
+        x: 7680
+        y: 520
+      positionAbsolute:
+        x: 7680
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 终态结果汇合
+        type: variable-aggregator
+        advanced_settings:
+          group_enabled: false
+          groups: []
+        output_type: object
+        variables:
+        - - T01_P7_OUTPUT
+          - stage_result
+        - - T01_P0_FULL
+          - stage_result
+        - - T01_VALIDATE_REQUEST
+          - json
+        - - T01_G00_LENGTH
+          - json
+      height: 108
+      id: T01_TERMINAL_JOIN
+      position:
+        x: 8000
+        y: 520
+      positionAbsolute:
+        x: 8000
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 结束
+        type: end
+        outputs:
+        - variable: run_id
+          value_selector:
+          - T01_START
+          - run_id
+        - variable: execution_mode
+          value_selector:
+          - T01_START
+          - execution_mode
+        - variable: result
+          value_selector:
+          - T01_TERMINAL_JOIN
+          - output
+      height: 178
+      id: T01_END
+      position:
+        x: 8320
+        y: 520
+      positionAbsolute:
+        x: 8320
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    viewport:
+      x: 0
+      y: 0
+      zoom: 0.55
+  rag_pipeline_variables: []

@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/probe.py", line 40, in main
+    namespace=runpy.run_path(sys.argv[0],run_name='__main__')
+  File "/usr/local/lib/python3.10/runpy.py", line 289, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "/usr/local/lib/python3.10/runpy.py", line 96, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "/usr/local/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/app/bepipred3_CLI.py", line 47, in <module>
+    MyAntigens = bepipred3.Antigens(fasta_file, esm_dir, add_seq_len=add_seq_len)
+  File "/usr/local/lib/python3.10/site-packages/bp3/bepipred3.py", line 132, in __init__
+    self.accs, self.seqs = self.read_accs_and_sequences_from_fasta(fasta_file)
+  File "/usr/local/lib/python3.10/site-packages/bp3/bepipred3.py", line 255, in read_accs_and_sequences_from_fasta
+    self.check_accepted_AAs(accs, sequences)
+  File "/usr/local/lib/python3.10/site-packages/bp3/bepipred3.py", line 152, in check_accepted_AAs
+    sys.exit(f"Nonstandard amino acid character detected in acc: {acc}. Allowed character lower and uppercase amino acids:\n{accepted_AAs}")
+SystemExit: Nonstandard amino acid character detected in acc: t01seq_feb5990bf0929febfe775675149e020f63b9f54a3c9e8372aef0321271640d2f. Allowed character lower and uppercase amino acids:
+{'A', 'L', 'N', 'X', 'E', 'K', 'Z', 'T', 'C', 'O', 'M', 'V', 'Y', 'G', '.', 'R', '-', 'D', 'H', 'U', 'S', 'W', 'F', 'Q', 'P', 'B', 'I'}

@@ -1,0 +1,7 @@
+{
+  "cause": "pytest private temporary directories grant OWNER RIGHTS; Docker-created output ownership prevented Windows reads and left a stopped container occupying the fixed test slot",
+  "resolution": "Fixture grants inheritable current-user access only to its own runtime root; bounded 90s wait with unchanged 60s tool budget",
+  "result": "6 passed",
+  "production_source_changed": false,
+  "detail": "pytest recreates private temporary-directory ACLs and removes inherited named-user access; fixture now grants current-user inheritance directly on its own runtime root before Docker writes"
+}

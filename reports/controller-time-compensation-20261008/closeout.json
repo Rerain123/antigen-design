@@ -1,0 +1,126 @@
+{
+  "status": "USER_CANCELLED",
+  "source_job_id": "t01p1r-job-a7c8933226744c669836b11858585246",
+  "job_id": "t01p1r-job-7d298b4c99c342cfbdf8709ebe2b0041",
+  "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+  "clock": {
+    "charged_before_seconds": 28931.419363,
+    "consumed_effective_seconds": 18300.053892000004,
+    "formula": "floor(original_timeout - charged_before + outage_credit)",
+    "original_timeout_seconds": 28800,
+    "outage_credit_seconds": 10631.365471,
+    "remaining_seconds": 10499,
+    "source_finished_at": "2026-10-08T09:42:17.500147Z"
+  },
+  "tests_passed": 59,
+  "source_original_unchanged": true,
+  "scientific_budget_reset": false,
+  "new_native_model_work_before_resume": 0,
+  "deployed_generation": 145,
+  "production_source_changes": 0,
+  "expected_deadline": "2026-10-08T12:57:07.817005+00:00",
+  "receipt": "continuation-submission.json",
+  "live_status": "latest.json",
+  "checked_at": "2026-10-08T10:30:10.027130+00:00",
+  "active_nodes": [
+    {
+      "job_id": "t01p1r-job-33157ddf171441d890b121f94ffef3d3",
+      "node": "z0_s12_netmhc",
+      "started_at": "2026-10-08T10:28:42.241972Z",
+      "state": "running"
+    }
+  ],
+  "counts": [
+    {
+      "count": 19,
+      "state": "succeeded",
+      "tool": "t01.real.af3"
+    },
+    {
+      "count": 8,
+      "state": "succeeded",
+      "tool": "t01.real.bepipred"
+    },
+    {
+      "count": 1,
+      "state": "succeeded",
+      "tool": "t01.real.blast"
+    },
+    {
+      "count": 1,
+      "state": "succeeded",
+      "tool": "t01.real.deeptmhmm"
+    },
+    {
+      "count": 1,
+      "state": "succeeded",
+      "tool": "t01.real.design_audit"
+    },
+    {
+      "count": 19,
+      "state": "succeeded",
+      "tool": "t01.real.developability"
+    },
+    {
+      "count": 1,
+      "state": "succeeded",
+      "tool": "t01.real.domains"
+    },
+    {
+      "count": 7,
+      "state": "succeeded",
+      "tool": "t01.real.epitope_map"
+    },
+    {
+      "count": 1,
+      "state": "succeeded",
+      "tool": "t01.real.esm_if1"
+    },
+    {
+      "count": 19,
+      "state": "succeeded",
+      "tool": "t01.real.esmfold2"
+    },
+    {
+      "count": 1,
+      "state": "succeeded",
+      "tool": "t01.real.glycosylation"
+    },
+    {
+      "count": 19,
+      "state": "succeeded",
+      "tool": "t01.real.ingest_structure"
+    },
+    {
+      "count": 1,
+      "state": "running",
+      "tool": "t01.real.netmhc"
+    },
+    {
+      "count": 6,
+      "state": "succeeded",
+      "tool": "t01.real.netmhc"
+    },
+    {
+      "count": 1,
+      "state": "timed_out",
+      "tool": "t01.real.netmhc"
+    },
+    {
+      "count": 3,
+      "state": "succeeded",
+      "tool": "t01.real.proteinmpnn"
+    },
+    {
+      "count": 1,
+      "state": "succeeded",
+      "tool": "t01.real.wt_draft"
+    }
+  ],
+  "controller_fault": null,
+  "whole_workflow_complete": false,
+  "cancel_evidence": "cancel-verification.json",
+  "cancelled_at": "2026-10-08T10:54:27.736271Z",
+  "active_jobs": [],
+  "automatic_resume_authorized": false
+}

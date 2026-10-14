@@ -1,0 +1,73 @@
+{
+  "status": "LOCAL_REPAIR_VERIFIED_TARGET_R03_NOT_STARTED",
+  "scientific_gate": "CLOSED",
+  "r02": {
+    "job": "antigen-esmfold2-validation-r02",
+    "pod": "antigen-esmfold2-validation-r02-ww927",
+    "status": "Failed",
+    "exit_code": 1,
+    "finished_at": "2026-09-17T02:58:18Z",
+    "loading_problem": "Published split ESMC checkpoint supplied to native fused-layout loader; missing backbone parameters were initialized",
+    "terminal_error": "torch.linalg.svd failed to converge",
+    "svd_causality": "Not established until rerun with valid checkpoint loading"
+  },
+  "reference": "https://github.com/Biohub/esm/blob/43b4548b86762edfa747b07d5f440aad3c33acee/esm/models/esmc/checkpoint_layout.py",
+  "local_validation": {
+    "tiny_encoder_parameters_bitwise_equal": true,
+    "tiny_encoder_forward_fp32_bitwise_equal": true,
+    "rejected": [
+      "missing_key",
+      "unexpected_key",
+      "shape_mismatch",
+      "non_finite_tensor"
+    ],
+    "real_esmc_headers": {
+      "checkpoint_tensors": 1048,
+      "encoder_tensors": 1042,
+      "native_parameters": 802,
+      "full_6b_tensor_values_loaded": false
+    },
+    "real_esmfold2_loading": {
+      "missing_keys": 0,
+      "unexpected_keys": 0,
+      "mismatched_keys": 0,
+      "error_msgs": 0
+    },
+    "cpu_audit_only": "GPU-only Triton import disabled only in CPU audit; delivered worker unchanged in this respect",
+    "host_tests_passed": 20,
+    "server_dry_run": "PASS"
+  },
+  "target_r03": {
+    "job": "antigen-esmfold2-validation-r03",
+    "output": "/runs/engineering-r03",
+    "started": false,
+    "model_and_environment_pvc_bytes_modified": false
+  },
+  "files": [
+    {
+      "path": "user-r02-log.txt",
+      "bytes": 42388,
+      "sha256": "f4d0d22f4b40cbad2e2df3fb0b8f27f83f37c825f6a116fb520de6f505d013e5"
+    },
+    {
+      "path": "official-checkpoint_layout.py",
+      "bytes": 7301,
+      "sha256": "cc0bdb403027a6ad1f204b616dfdd5f9cd1b9189b44d916497aa575cd6942fec"
+    },
+    {
+      "path": "cpu-verification.py",
+      "bytes": 2963,
+      "sha256": "a2ae061150fb1581f0542abeef0fbac55f6f3eec4bbeb10eaa811dd4d06db0e4"
+    },
+    {
+      "path": "esmc_strict_loader.py",
+      "bytes": 7369,
+      "sha256": "871335fde4d91c984ae6464715ffd4c49e363c3be33f99051d38db9c10219fd7"
+    },
+    {
+      "path": "run_structure.r03.py",
+      "bytes": 15344,
+      "sha256": "48603ed79e051bebc81301c969c7f710a400c2af4bfdc33c78d2a7b99236ee68"
+    }
+  ]
+}

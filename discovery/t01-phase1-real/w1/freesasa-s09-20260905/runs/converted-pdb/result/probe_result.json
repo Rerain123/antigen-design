@@ -1,0 +1,48 @@
+{
+  "input": {
+    "path": "/input/1UBQ.cif",
+    "size_bytes": 103220,
+    "sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6"
+  },
+  "command": [
+    "/usr/local/bin/python",
+    "/probe_raw.py",
+    "--input",
+    "/input/1UBQ.cif",
+    "--mode",
+    "cif-to-pdb",
+    "--output-dir",
+    "/out/result"
+  ],
+  "started_at": "2026-09-05T06:44:37.534257+00:00",
+  "mode": "cif-to-pdb",
+  "production_result": null,
+  "usable_for_pipeline": false,
+  "review_required": true,
+  "mapping_approval": "NOT_GRANTED",
+  "scientific_acceptance": "NOT_RUN",
+  "conversion": {
+    "source": {
+      "path": "/input/1UBQ.cif",
+      "size_bytes": 103220,
+      "sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6"
+    },
+    "derived": {
+      "path": "/out/result/converted.pdb",
+      "size_bytes": 53549,
+      "sha256": "590efc8b4ed6b9881b8caae7a8e5f08faec514ba316066daf8fc7f2defe52fa3"
+    },
+    "atom_rows": 660,
+    "identity_and_pdb_precision_roundtrip": "PASS",
+    "coordinate_check": "Compare at PDB's three decimal places; not a scientific tolerance or general losslessness claim"
+  },
+  "execution_status": "succeeded",
+  "raw_artifact": {
+    "path": "/out/result/raw.json",
+    "size_bytes": 192554,
+    "sha256": "6af79f2d040d8c315db0668fc0ec1ec2a9155de044b4ca51060969457035efd1"
+  },
+  "tool_probe_exit_code": 0,
+  "elapsed_seconds": 0.3007278159999487,
+  "finished_at": "2026-09-05T06:44:37.835001+00:00"
+}

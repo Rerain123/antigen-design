@@ -1,0 +1,35 @@
+{
+  "checked_at": "2026-10-10T02:29:59.107851+00:00",
+  "operations": [
+    {
+      "command": [
+        "create",
+        "-f",
+        "deploy/gpu-on-demand/r06/workloads.json",
+        "--dry-run=server",
+        "-o",
+        "name"
+      ],
+      "exit_code": 0,
+      "stdout": "configmap/antigen-source-ac2fa939eb7d9132\nconfigmap/antigen-source-ac2fa939eb7d9132-meta\nconfigmap/antigen-gpu-assigned-76fc9d9453aa\ndeployment.apps/antigen-design-worker-structure\ndeployment.apps/antigen-design-worker-deeptmhmm\ndeployment.apps/antigen-design-worker-bepipred\ndeployment.apps/antigen-design-worker-netmhc\ndeployment.apps/antigen-design-worker-blast\ndeployment.apps/antigen-design-worker-homology\ndeployment.apps/antigen-design-worker-foldx\ndeployment.apps/antigen-design-worker-aggrescan3d\nconfigmap/antigen-design-gpu-controller-d1b6954d8d95\nnetworkpolicy.networking.k8s.io/antigen-design-gpu-demand-offline\ndeployment.apps/antigen-design-gpu-demand\ndeployment.apps/antigen-design-gpu-controller\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "patch",
+        "deployment",
+        "antigen-design",
+        "--type=json",
+        "--patch-file",
+        "deploy/gpu-on-demand/r06/cpu.patch.json",
+        "--dry-run=server",
+        "-o",
+        "name"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "The request is invalid: the server rejected our request due to an error in our request\n"
+    }
+  ],
+  "cluster_mutations": 0
+}

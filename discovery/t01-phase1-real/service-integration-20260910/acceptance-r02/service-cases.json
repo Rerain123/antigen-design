@@ -1,0 +1,93 @@
+{
+  "recorded_at": "2026-09-10T02:52:50.407245Z",
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "service_restart_recovery",
+      "job_id": "t01p1r-job-bef081c6e6514c66b75810ca03065bd0",
+      "state": "succeeded",
+      "same_job": true
+    },
+    {
+      "case": "restart_configuration_drift_fails_closed",
+      "job_id": "t01p1r-job-0b5ae6af144b47689bbf3bae45992685",
+      "state": "failed",
+      "error_code": "PROFILE_NOT_APPROVED"
+    },
+    {
+      "case": "health",
+      "status": 200,
+      "value": {
+        "authentication": "bearer",
+        "production_status": "NOT_DEPLOYED",
+        "profile": {
+          "database_root_sha256": {
+            "blast_database_root": null,
+            "domains_database_root": null,
+            "homology_database_root": null
+          },
+          "max_workers": 2,
+          "runtime_root_sha256": "6ba2a67e1ebb0d0b0692ff29e84b366cdf5b899badbd46af436713ade848f363"
+        },
+        "scientific_gate": "CLOSED",
+        "server": "t01-phase1-real-service-v01",
+        "status": "ok",
+        "tool_count": 8,
+        "version": "0.1.0"
+      }
+    },
+    {
+      "case": "missing_auth",
+      "status": 401,
+      "error_code": "UNAUTHENTICATED"
+    },
+    {
+      "case": "wrong_auth",
+      "status": 401,
+      "error_code": "UNAUTHENTICATED"
+    },
+    {
+      "case": "controlled_upload",
+      "upload": {
+        "created_at": "2026-09-10T02:46:04.421729Z",
+        "media_type": "chemical/x-cif",
+        "name": "local-1ubq.cif",
+        "sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+        "size_bytes": 103220,
+        "upload_id": "t01p1r-upload-be58bedb8b30405aa347c3394d37ffbf"
+      },
+      "foreign_status": 403,
+      "invalid_path_status": "INVALID_REQUEST"
+    },
+    {
+      "case": "disconnect_duplicate_conflict_and_report",
+      "job_id": "t01p1r-job-167fad06cec84ebf9aaaa1d87c6bb51f",
+      "state": "succeeded",
+      "bepipred_state": "succeeded",
+      "replay_action": "REPLAYED",
+      "conflict_status": 409,
+      "foreign_status": 403,
+      "report_sha256": "435f1307d4345196dd354d8ae2d6d08970ccfff6769d0330370070ac91fe1035",
+      "report_size_bytes": 35554
+    },
+    {
+      "case": "cancel_recover_retry",
+      "cancelled_job_id": "t01p1r-job-8581cbdd10674d0ebeb55ba739dd9cd2",
+      "cancelled_state": "cancelled",
+      "report_status": 409,
+      "recovery_state": "cancelled",
+      "retry_job_id": "t01p1r-job-c749cc79ee284f1ba64ad5495bafd073",
+      "retry_state": "succeeded"
+    },
+    {
+      "case": "real_dify_success_and_failure_routes",
+      "app_id": "2d57ce78-6a63-47a8-940c-62628379aed9",
+      "success_run_id": "e4e4c70e-0a4b-41ce-8a1f-dd8bd958fdbc",
+      "success_job_id": "t01p1r-job-27a3d0a8923b4f8cac96479118d05d70",
+      "report_sha256": "409ab6ce34b930041eda9fca47f487f00eee03cb0716c1a56e49c89374f20a47",
+      "failure_run_id": "41c8dec5-b8ce-4476-a7a8-7d6f6c550217",
+      "failure_job_id": "t01p1r-job-0b5ae6af144b47689bbf3bae45992685",
+      "failure_error_code": "PROFILE_NOT_APPROVED"
+    }
+  ]
+}

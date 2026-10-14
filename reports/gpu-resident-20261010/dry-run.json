@@ -1,0 +1,31 @@
+[
+  {
+    "args": [
+      "patch",
+      "deployment",
+      "antigen-design",
+      "--type=json",
+      "--patch-file",
+      "deploy/gpu-resident/r01/cpu.patch.json",
+      "--dry-run=server",
+      "-o",
+      "name"
+    ],
+    "returncode": 0,
+    "stdout": "deployment.apps/antigen-design\n",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "create",
+      "-f",
+      "deploy/gpu-resident/r01/workloads.json",
+      "--dry-run=server",
+      "-o",
+      "name"
+    ],
+    "returncode": 0,
+    "stdout": "configmap/antigen-source-bcd79cb8ce17874b\nconfigmap/antigen-source-bcd79cb8ce17874b-part1\nconfigmap/antigen-source-bcd79cb8ce17874b-meta\nconfigmap/antigen-gpu-assigned-76fc9d9453aa\ndeployment.apps/antigen-design-worker-structure\ndeployment.apps/antigen-design-worker-deeptmhmm\ndeployment.apps/antigen-design-worker-bepipred\ndeployment.apps/antigen-design-worker-netmhc\ndeployment.apps/antigen-design-worker-blast\ndeployment.apps/antigen-design-worker-homology\ndeployment.apps/antigen-design-worker-foldx\ndeployment.apps/antigen-design-worker-aggrescan3d\nnetworkpolicy.networking.k8s.io/antigen-design-gpu-resident-offline\ndeployment.apps/antigen-design-gpu-resident\n",
+    "stderr": ""
+  }
+]

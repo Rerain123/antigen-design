@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/worker.py", line 74, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/worker.py", line 51, in main
+    if (OUT/'result').is_dir():raise RuntimeError('controlled whole-tool failure')
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: controlled whole-tool failure

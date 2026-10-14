@@ -1,0 +1,30 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "LocateReportBucket",
+      "Effect": "Allow",
+      "Action": ["s3:GetBucketLocation"],
+      "Resource": ["arn:aws:s3:::antigen-design"]
+    },
+    {
+      "Sid": "ListReportPrefix",
+      "Effect": "Allow",
+      "Action": ["s3:ListBucket"],
+      "Resource": ["arn:aws:s3:::antigen-design"],
+      "Condition": {"StringLike": {"s3:prefix": ["data", "data/", "data/*"]}}
+    },
+    {
+      "Sid": "ReadWriteReports",
+      "Effect": "Allow",
+      "Action": ["s3:PutObject", "s3:GetObject"],
+      "Resource": ["arn:aws:s3:::antigen-design/data/*"]
+    },
+    {
+      "Sid": "CleanupOnlyStorageProbes",
+      "Effect": "Allow",
+      "Action": ["s3:DeleteObject"],
+      "Resource": ["arn:aws:s3:::antigen-design/data/_probes/*"]
+    }
+  ]
+}

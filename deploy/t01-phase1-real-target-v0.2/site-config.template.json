@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.1.0",
+  "namespace": "him-ws",
+  "api_server": "REPLACE_WITH_VERIFIED_HTTPS_API_ORIGIN",
+  "control_image": "REPLACE_WITH_HARBOR_PLATFORM_DIGEST",
+  "runtime_claim": "t01-phase1-real-runtime",
+  "storage_class": "ceph-rbd",
+  "storage_size": "2Ti",
+  "source_assets_claim": "t01-source-assets",
+  "credentials_secret": "t01-service-credentials",
+  "image_pull_secrets": [
+    "t01-registry-pull"
+  ],
+  "tools": {
+    "structure": {
+      "image": "REPLACE_WITH_HARBOR_STRUCTURE_PLATFORM_DIGEST",
+      "asset_claim": "t01-structure-assets",
+      "gpu_resource_key": null
+    }
+  },
+  "database_claims": {}
+}

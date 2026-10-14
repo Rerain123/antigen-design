@@ -1,0 +1,82 @@
+{
+  "registered_at": "2026-09-05T08:18:12.055326+00:00",
+  "scope": "PUBLIC_SOFTWARE_DOCUMENTATION_AND_DATA_ONLY",
+  "downloads": [
+    {
+      "file": "pybiolib-pypi.json",
+      "source_url": "https://pypi.org/pypi/pybiolib/json",
+      "capture": "urllib response bytes",
+      "bytes": 1765348,
+      "sha256": "a3275dd49b42ea396b0def26ec74fda4ad682e1198928a6ae729bf9aab0ae83e",
+      "local_file_mtime_utc": "2026-09-05T07:46:58.764102+00:00"
+    },
+    {
+      "file": "pybiolib-1.4.457-py3-none-any.whl",
+      "source_url": "https://files.pythonhosted.org/packages/2b/3e/f00c5af17e75211e04d4bbfadc341146ef2d9a4b2ec1c9d0dc764d1d733c/pybiolib-1.4.457-py3-none-any.whl",
+      "capture": "urllib response bytes; verified against PyPI SHA-256",
+      "bytes": 170777,
+      "sha256": "a8d740072b8a829335ba438f134a0362d27fc0872b302cbbf3f7c36a7e2dec38",
+      "local_file_mtime_utc": "2026-09-05T07:46:59.240784+00:00"
+    },
+    {
+      "file": "deeptmhmm-app.html",
+      "source_url": "https://dtu.biolib.com/DeepTMHMM/",
+      "capture": "urllib response bytes; JavaScript shell",
+      "bytes": 751927,
+      "sha256": "39c64be1c8760022a013b226b83bec7d7ee3574902677f530012e27445c97920",
+      "local_file_mtime_utc": "2026-09-05T07:47:00.995229+00:00"
+    },
+    {
+      "file": "app-metadata.json",
+      "source_url": "https://biolib.com/api/app/?uri=DTU%2FDeepTMHMM",
+      "capture": "PowerShell response Content re-encoded as UTF-8; not wire bytes",
+      "bytes": 38840,
+      "sha256": "41a11cc8fc7daa747feb8beb91dd95f60f65977856f2a4fa23f766418e31a6fd",
+      "local_file_mtime_utc": "2026-09-05T08:06:48.646067+00:00"
+    },
+    {
+      "file": "dtu-fasta-example.html",
+      "source_url": "https://services.healthtech.dtu.dk/services/DeepTMHMM-1.0/fasta_example.html",
+      "capture": "Invoke-WebRequest OutFile",
+      "bytes": 2658,
+      "sha256": "221b14461ba1ef9263fbf0cf7957d9987bced7c73f295e911b42beb71f7eeca0",
+      "local_file_mtime_utc": "2026-09-05T07:48:03.177628+00:00"
+    },
+    {
+      "file": "dtu-service.html",
+      "source_url": "https://services.healthtech.dtu.dk/services/DeepTMHMM-1.0/",
+      "capture": "Invoke-WebRequest OutFile",
+      "bytes": 19807,
+      "sha256": "750151c9b5fc0989a5972ea2a79695eed4350f86d084435ae18aaf420c42dfe9",
+      "local_file_mtime_utc": "2026-09-05T08:13:29.015738+00:00"
+    },
+    {
+      "file": "DeepTMHMM.3line",
+      "source_url": "https://biolib-public-assets.s3.eu-west-1.amazonaws.com/deeptmhmm/DeepTMHMM.3line",
+      "capture": "Invoke-WebRequest OutFile; direct link in official app description",
+      "bytes": 3751126,
+      "sha256": "dc1a0489e8ecbb127fcbb23b3ee6c093218441afea9d9812badbbb914577f1a3",
+      "local_file_mtime_utc": "2026-09-05T08:07:39.539533+00:00"
+    },
+    {
+      "file": "DeepTMHMM.crossval.top",
+      "source_url": "https://biolib-public-assets.s3.eu-west-1.amazonaws.com/deeptmhmm/DeepTMHMM.crossval.top",
+      "capture": "Invoke-WebRequest OutFile; direct link in official app description",
+      "bytes": 5568749,
+      "sha256": "244babb6face4ab622c1f1e7480deb750c2115363ce22fb03c646ca93671ec33",
+      "local_file_mtime_utc": "2026-09-05T08:07:43.009748+00:00"
+    }
+  ],
+  "prediction_submissions": 0,
+  "external_application_submissions": 0,
+  "initial_download_issue": {
+    "script": "fetch_public_sources.py",
+    "failed_url": "https://services.healthtech.dtu.dk/services/DeepTMHMM-1.0/fasta_example.html",
+    "error": "urllib.error.URLError: SSL: CERTIFICATE_VERIFY_FAILED; unable to get local issuer certificate",
+    "result": "PARTIAL_DOWNLOAD; initial script did not write retrieval.json",
+    "resolution": "Retried with Windows Invoke-WebRequest default TLS verification; download succeeded. TLS verification was not disabled."
+  },
+  "sdk_extraction": "sdk_sources contains selected .py/METADATA/LICENSE/entry_points.txt copied from the verified wheel; verifier compares each copy to the archive",
+  "metadata_route_source": "sdk_sources/biolib/biolib_api_client/biolib_app_api.py get_by_uri; anonymous GET /api/app/?uri=DTU%2FDeepTMHMM",
+  "clock_note": "File mtime is a local file fact; not asserted as server publication time or request start time"
+}

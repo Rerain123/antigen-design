@@ -1,0 +1,47 @@
+{
+  "status": "LOCAL_FIXES_VERIFIED_TARGET_CLOSURE_INCOMPLETE",
+  "production_status": "NOT_DEPLOYED",
+  "full_suite": {
+    "passed": 1730,
+    "skipped": 1,
+    "seconds": 359.41,
+    "log": "current-root-tests.txt",
+    "scope": "Loaded before final Job terminal-condition guard; final affected suite below covers that change"
+  },
+  "final_targeted_suite": {
+    "passed": 48,
+    "log": "targeted-final-r02-tests.txt"
+  },
+  "intermediate_failure": {
+    "log": "targeted-final-tests.txt",
+    "cause": "Success-counter-only test fixture lacked Job Complete condition; corrected fixture and final suite passed"
+  },
+  "linux_real_probe": "linux-process-probe.json",
+  "original_candidate_readonly": "original-candidate-audit.json",
+  "source_audit": "source-audit.json",
+  "cluster_applied": false,
+  "scientific_consumption": false,
+  "original_24_excluded_unchanged": true,
+  "remaining": [
+    {
+      "item": "Target access, image digests and mounted asset inventory",
+      "owner": "User operates target server; assistant configures from returned evidence",
+      "closure": "Read-only target inventory and verified asset mappings"
+    },
+    {
+      "item": "CNI network denial, RWO placement and cancellation/restart cleanup",
+      "owner": "User executes target tests; assistant implements and assesses results",
+      "closure": "Real cluster observations with exact Job UID and stopped Pods"
+    },
+    {
+      "item": "Kubernetes native scientific result validation profile",
+      "owner": "Engineering implementation; scientific acceptance remains separate",
+      "closure": "Real target runtime observations and per-tool native output validation; current bridge publishes diagnostic only"
+    },
+    {
+      "item": "Rebuild and verify updated offline deployment candidate",
+      "owner": "Engineering",
+      "closure": "New image and immutable release manifest after remaining target integration changes"
+    }
+  ]
+}

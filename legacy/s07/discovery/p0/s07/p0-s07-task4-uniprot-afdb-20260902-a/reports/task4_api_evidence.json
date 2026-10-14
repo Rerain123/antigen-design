@@ -1,0 +1,378 @@
+{
+  "schema_version": "1.0",
+  "campaign_id": "p0-s07-task4-uniprot-afdb-20260902-a",
+  "generated_at": "2026-09-03T00:38:56.119239+00:00",
+  "scope": "S-07 task 4 public API evidence",
+  "execution_mode": "api_discovery",
+  "overall_status": "EVIDENCE_COMPLETE_RULE_CONFIRMATION_PENDING",
+  "production_deployment_status": "NOT_DEPLOYED",
+  "scientific_acceptance": "NOT_RUN",
+  "deployment_boundary": {
+    "current_p0": "public APIs plus small frozen evidence files",
+    "target_server": "local mirrors/caches are a later deployment option owned and validated by the receiving deployment team",
+    "workstation_bulk_database": "not required for task 4"
+  },
+  "blast_profile": {
+    "service": "EMBL-EBI Job Dispatcher NCBI BLAST REST API",
+    "program": "blastp",
+    "database": "uniprotkb_swissprot",
+    "matrix": "BLOSUM62",
+    "max_alignments": 100,
+    "max_scores": 100,
+    "expect": 10,
+    "filter": "F",
+    "meaning": "discovery output profile only; not a scientific acceptance rule"
+  },
+  "api_versions": {
+    "blast": {
+      "tool_version": "BLASTP 2.16.0+",
+      "database": "uniprotkb_swissprot",
+      "database_created": "2026-09-01T11:35:00+01:00",
+      "database_sequence_count": 575748,
+      "database_residue_count": 209017843
+    },
+    "uniprot": {
+      "release": "2026_03",
+      "release_date": "02-September-2026",
+      "api_deployment_date": "02-September-2026"
+    },
+    "afdb": {
+      "model_version": 6,
+      "model_id": "AF-O15116-F1"
+    }
+  },
+  "checks": [
+    {
+      "check_id": "T4-C01",
+      "name": "direct accession resolves to an exact AFDB model",
+      "passed": true
+    },
+    {
+      "check_id": "T4-C02",
+      "name": "BLAST accession can be rechecked through UniProt and AFDB APIs",
+      "passed": true
+    },
+    {
+      "check_id": "T4-C03",
+      "name": "normal BLAST no-hit remains distinct from API failure",
+      "passed": true
+    },
+    {
+      "check_id": "T4-C04",
+      "name": "valid UniProt accession without AFDB model is observed as 404",
+      "passed": true
+    },
+    {
+      "check_id": "T4-C05",
+      "name": "unsupported identifier is distinct from no model",
+      "passed": true
+    },
+    {
+      "check_id": "T4-C06",
+      "name": "near BLAST hit does not hide target/reference sequence mismatch",
+      "passed": true
+    },
+    {
+      "check_id": "T4-C07",
+      "name": "multiple exact full-length accessions are retained",
+      "passed": true
+    },
+    {
+      "check_id": "T4-C08",
+      "name": "base accession response is checked at model/isoform sequence level",
+      "passed": true
+    },
+    {
+      "check_id": "T4-C09",
+      "name": "AFDB structure, residue confidence, and PAE are internally sized",
+      "passed": true
+    }
+  ],
+  "acceptance_cases": [
+    {
+      "case_id": "T4-A01",
+      "scenario": "existing_valid_accession",
+      "evidence_status": "PASS",
+      "routing_fact": "AFDB model found; continue to S-09",
+      "rule_status": "EXPERT_RULE_CLEAR"
+    },
+    {
+      "case_id": "T4-A02",
+      "scenario": "blast_finds_exact_uniprot_accession",
+      "evidence_status": "PASS",
+      "routing_fact": "UniProt and AFDB sequence/model round-trip succeeds",
+      "rule_status": "EXPERT_RULE_CLEAR"
+    },
+    {
+      "case_id": "T4-A03",
+      "scenario": "blast_returns_no_hit",
+      "evidence_status": "PASS",
+      "routing_fact": "normal empty result; S-07 may return null after required sources complete",
+      "rule_status": "EXPERT_RULE_CLEAR"
+    },
+    {
+      "case_id": "T4-A04",
+      "scenario": "valid_uniprot_accession_without_afdb_model",
+      "evidence_status": "PASS",
+      "routing_fact": "normal AFDB no-model result; continue fallback to S-08",
+      "rule_status": "EXPERT_RULE_CLEAR"
+    },
+    {
+      "case_id": "T4-A05",
+      "scenario": "unsupported_identifier",
+      "evidence_status": "PASS",
+      "routing_fact": "invalid identifier error; must not be labelled no model",
+      "rule_status": "ENGINEERING_ERROR_CLASSIFICATION_CLEAR"
+    },
+    {
+      "case_id": "T4-A06",
+      "scenario": "near_hit_sequence_mismatch",
+      "evidence_status": "OBSERVED",
+      "routing_fact": "candidate retained with explicit mismatch; no automatic scientific eligibility decision",
+      "rule_status": "EXPERT_CONFIRMATION_REQUIRED"
+    },
+    {
+      "case_id": "T4-A07",
+      "scenario": "multiple_exact_full_length_accessions",
+      "evidence_status": "OBSERVED",
+      "routing_fact": "all exact candidates retained; no array-order selection",
+      "rule_status": "EXPERT_CONFIRMATION_REQUIRED"
+    },
+    {
+      "case_id": "T4-A08",
+      "scenario": "base_accession_returns_nonmatching_isoforms",
+      "evidence_status": "PASS",
+      "routing_fact": "no matching model selected from four returned isoforms",
+      "rule_status": "SEQUENCE_RECHECK_CLEAR; FINAL_ELIGIBILITY_DEPENDS_ON_T4-Q01"
+    }
+  ],
+  "observations": {
+    "direct_accession": {
+      "accession": "O15116",
+      "all_sequences_exact": true,
+      "model_id": "AF-O15116-F1",
+      "model_version": 6,
+      "metadata_global_metric": 89.69,
+      "derived_mean_confidence": 89.70842105263158,
+      "confidence_residue_count": 133,
+      "pae_shape": [
+        133,
+        133
+      ],
+      "max_predicted_aligned_error": 31.75
+    },
+    "blast_exact_round_trip": {
+      "top_hit": {
+        "rank": 1,
+        "accession": "O15116",
+        "organism": "Homo sapiens",
+        "target_length": 133,
+        "identity_pct": 100.0,
+        "query_coverage": 1.0,
+        "target_coverage": 1.0,
+        "evalue": 5e-90,
+        "bit_score": 260.0,
+        "query_start": 1,
+        "query_end": 133,
+        "target_start": 1,
+        "target_end": 133,
+        "exact_query_sequence": true,
+        "exact_full_length_sequence": true
+      },
+      "uniprot_sequence_exact": true,
+      "afdb_sequence_exact": true
+    },
+    "blast_no_hit": {
+      "terminal_status": "FINISHED",
+      "reported_hit_count": 0
+    },
+    "valid_accession_no_model": {
+      "C0HLM8": {
+        "uniprot_http_status": 200,
+        "uniprot_sequence_length": 12,
+        "afdb_http_status": 404,
+        "afdb_model_count": 0
+      },
+      "P80438": {
+        "uniprot_http_status": 200,
+        "uniprot_sequence_length": 24,
+        "afdb_http_status": 404,
+        "afdb_model_count": 0
+      }
+    },
+    "unsupported_identifier": {
+      "accession": "NP_055277.1",
+      "afdb_http_status": 400,
+      "error": "Invalid identifier format. Please use a UniProt accession or a supported AlphaFold DB ID."
+    },
+    "near_hit_sequence_mismatch": {
+      "top_hit": {
+        "rank": 1,
+        "accession": "O15116",
+        "organism": "Homo sapiens",
+        "target_length": 133,
+        "identity_pct": 99.2,
+        "query_coverage": 1.0,
+        "target_coverage": 1.0,
+        "evalue": 2.9e-89,
+        "bit_score": 258.1,
+        "query_start": 1,
+        "query_end": 133,
+        "target_start": 1,
+        "target_end": 133,
+        "exact_query_sequence": false,
+        "exact_full_length_sequence": false
+      },
+      "mismatches": [
+        {
+          "position": 43,
+          "input": "A",
+          "reference": "L"
+        }
+      ]
+    },
+    "one_to_many": {
+      "exact_full_length_count": 3,
+      "exact_full_length_accessions": [
+        "P62975",
+        "P68197",
+        "Q865C5"
+      ],
+      "models": {
+        "P62975": {
+          "http_status": 200,
+          "sequence_exact": true,
+          "global_metric_value": 95.62,
+          "organism": "Oryctolagus cuniculus"
+        },
+        "P68197": {
+          "http_status": 200,
+          "sequence_exact": true,
+          "global_metric_value": 95.62,
+          "organism": "Ceratitis capitata"
+        },
+        "Q865C5": {
+          "http_status": 200,
+          "sequence_exact": true,
+          "global_metric_value": 95.56,
+          "organism": "Camelus dromedarius"
+        }
+      }
+    },
+    "base_accession_multiple_models": {
+      "accession": "Q86UQ4",
+      "input_length": 5058,
+      "returned_model_count": 4,
+      "returned_models": [
+        {
+          "entry_id": "AF-Q86UQ4-7-F1",
+          "accession": "Q86UQ4-7",
+          "sequence_length": 2292
+        },
+        {
+          "entry_id": "AF-Q86UQ4-6-F1",
+          "accession": "Q86UQ4-6",
+          "sequence_length": 2217
+        },
+        {
+          "entry_id": "AF-Q86UQ4-5-F1",
+          "accession": "Q86UQ4-5",
+          "sequence_length": 2323
+        },
+        {
+          "entry_id": "AF-Q86UQ4-2-F1",
+          "accession": "Q86UQ4-2",
+          "sequence_length": 317
+        }
+      ],
+      "exact_model_count": 0
+    }
+  },
+  "rule_gaps": [
+    {
+      "issue_id": "S07-T4-Q01",
+      "question": "Which identity/coverage rule makes a BLAST-derived UniProt accession eligible for AFDB fallback?",
+      "source_gap": "S-07 specifies BLAST versus UniProt but gives no fallback threshold; the explicit >95%/>90% rule is written for C3/PDB search.",
+      "evidence": {
+        "exact_case": {
+          "accession": "O15116",
+          "identity_pct": 100.0,
+          "query_coverage": 1.0
+        },
+        "one_substitution_case": {
+          "accession": "O15116",
+          "identity_pct": 99.2,
+          "query_coverage": 1.0,
+          "mismatches": [
+            {
+              "position": 43,
+              "input": "A",
+              "reference": "L"
+            }
+          ]
+        }
+      },
+      "impact": "Changes whether an existing AFDB model is used or S-08 predicts a new structure.",
+      "recommended_interim_boundary": "Automatically accept only an exact full-length sequence match. Preserve non-exact candidates and R-58 mapping facts, but do not auto-select them until the expert sets the eligibility profile.",
+      "status": "PENDING_EXPERT_CONFIRMATION"
+    },
+    {
+      "issue_id": "S07-T4-Q02",
+      "question": "How should multiple eligible accessions/models be selected, and how should organism_name participate?",
+      "source_gap": "S-07 accepts organism_name but supplies no ranking or tie-break rule for multiple UniProt/AFDB records.",
+      "evidence": {
+        "exact_full_length_accessions": [
+          "P62975",
+          "P68197",
+          "Q865C5"
+        ],
+        "models": {
+          "P62975": {
+            "http_status": 200,
+            "sequence_exact": true,
+            "global_metric_value": 95.62,
+            "organism": "Oryctolagus cuniculus"
+          },
+          "P68197": {
+            "http_status": 200,
+            "sequence_exact": true,
+            "global_metric_value": 95.62,
+            "organism": "Ceratitis capitata"
+          },
+          "Q865C5": {
+            "http_status": 200,
+            "sequence_exact": true,
+            "global_metric_value": 95.56,
+            "organism": "Camelus dromedarius"
+          }
+        }
+      },
+      "impact": "Different accessions can have different provenance and AFDB confidence values even when their protein sequences are identical.",
+      "recommended_interim_boundary": "Apply sequence eligibility first and exact organism match second. If more than one model remains, return an ambiguity result and do not select by API order, accession text, or an unapproved quality tie-break.",
+      "status": "PENDING_EXPERT_CONFIRMATION"
+    },
+    {
+      "issue_id": "S07-T4-Q03",
+      "question": "Should the BLAST API search UniProtKB/Swiss-Prot only or all UniProtKB?",
+      "source_gap": "The expert text says 'BLAST vs UniProt' without fixing Swiss-Prot versus Swiss-Prot plus TrEMBL.",
+      "evidence": {
+        "api_supported_databases": [
+          "uniprotkb_swissprot",
+          "uniprotkb_swissprotsv",
+          "uniprotkb_trembl",
+          "uniprotkb",
+          "afdb"
+        ],
+        "discovery_profile_used": "uniprotkb_swissprot"
+      },
+      "impact": "Changes coverage, reviewed status, result volume, and the chance that an accession has an AFDB model.",
+      "recommended_interim_boundary": "Keep the P0 evidence profile on reviewed Swiss-Prot and expose the database as a versioned execution-profile field. Do not claim all-UniProt coverage until the expert confirms it.",
+      "status": "PENDING_EXPERT_CONFIRMATION"
+    }
+  ],
+  "excluded_work": [
+    "The earlier workstation Swiss-Prot bulk/index experiment is not part of the API acceptance path.",
+    "No AFDB bulk coordinate archive was downloaded.",
+    "No target-server deployment or production adapter was performed."
+  ]
+}

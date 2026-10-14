@@ -1,0 +1,14 @@
+{"artifacts_verified":27,"case":"full-chain","error_code":null,"job_id":"t01p1r-job-df8b98737aa8439db532417818e9664f","state":"succeeded"}
+{"artifacts_verified":32,"case":"identical-reference","error_code":null,"job_id":"t01p1r-job-dde09c3d199345628b5653a3c3da25cf","state":"succeeded"}
+{"artifacts_verified":32,"case":"sparse-missing-annotations","error_code":null,"job_id":"t01p1r-job-e09e76132b3d4874982c3bbabc21287e","state":"succeeded"}
+{"artifacts_verified":27,"case":"independent-groups","error_code":null,"job_id":"t01p1r-job-8f073a89ae3949f7b1f3bba1ec7f6108","state":"succeeded"}
+Traceback (most recent call last):
+  File "D:\work\蛋白智能体\scripts\run_homology_acceptance.py", line 164, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "D:\work\蛋白智能体\scripts\run_homology_acceptance.py", line 113, in main
+    finish('short-input',submit('short-input',short))
+  File "D:\work\蛋白智能体\scripts\run_homology_acceptance.py", line 88, in finish
+    assert final['state']==state and final['error_code']==error,(name,final['state'],final['error_code'],value and value['execution'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('short-input', 'failed', 'TOOL_FAILED', {'attempt_id': 't01p1r-attempt-b0c7cd24320a4ec5b42166704613fb85', 'container_id': '9a24d802fe4f72290ddec3155bd21e9849d46d486eb60b5e66cf375c6e73493c', 'database_receipt': {'database_id': 'engineering-short', 'files': [{'bytes': 1977, 'path': 'annotations.json', 'sha256': 'ae03ddee805316cb89bcd2d9eefccb634db1b3b22a49866f5fa2afa191b3ae65'}, {'bytes': 114, 'path': 'sequences.fasta', 'sha256': '2b0991f0988e87ae96a7f61d63a890e1b59c716c585a5a5b8ff8028cc527e18b'}], 'manifest_sha256': 'e87b78f768bf7b1fdf610eb0f8470cc1875de3102013bf2698fcc39b526ae700', 'purpose': 'N08_HOMOLOG_COLLECTION', 'qualification': 'ENGINEERING_FIXTURE', 'source': {'license': 'Project engineering fixture', 'name': 'Deterministic synthetic N08 sequence collection', 'reference': 'scripts/run_homology_acceptance.py; random seed 808; no biological provenance claimed', 'release_date': '2026-09-07', 'version': '20260907'}}, 'diagnostic': 'TOOL_FAILED', 'error_code': 'TOOL_FAILED', 'execution_identity': 'exec-t01p1r-attempt-26948163d1e943d89f9d199530ee76e5', 'exit_code': 1, 'image_id': 'sha256:3679b2d22c59629380e47db3af59c7b4c3741e6330ab6962aa51ce526c67d32d', 'job_id': 't01p1r-job-a081bb9e64de44c4a7bfeef804b49cf2', 'oom_killed': False, 'raw_inventory_sha256': 'c8f05456e6a9f26458fd32689eda438f6a54bec050e331baa60d8d85661cfc61', 'recovered': False, 'stopped_confirmed': True})

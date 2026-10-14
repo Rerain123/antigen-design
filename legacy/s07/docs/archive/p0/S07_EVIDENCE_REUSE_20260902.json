@@ -1,0 +1,378 @@
+{
+  "schema_version": "s07-evidence-reuse.v0.1",
+  "created_at": "2026-09-02T11:04:59.478402+00:00",
+  "purpose": "S-07 任务细化的既有证据复用清单；仅校验文件完整性，不执行新检索或作出科学选择。",
+  "production_deployment_status": "NOT_DEPLOYED",
+  "candidate_pool_status": "REPRESENTATIVE_OBSERVATIONS_NOT_A_COMPLETE_SEARCH_RESULT",
+  "scientific_acceptance": "NOT_RUN",
+  "historical_classification_adopted": false,
+  "historical_search_parameters_adopted": false,
+  "verified_artifact_count": 23,
+  "artifact_reference_count": 24,
+  "integrity_status": "PASS",
+  "source_documents": [
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/reports/candidate_structure_manifest.json",
+      "size_bytes": 14817,
+      "sha256": "e437ad749ebe37bb3b626e68c1b636664d3f8640596c7a1598cae835d4abbbd5"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/reports/sequence_mapping_report.json",
+      "size_bytes": 9895,
+      "sha256": "624bfbe209f2acc4c8b9c74e268f67cc8f99d80c6bb868e2da4ee526a7ec64ab"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-m1b-20260901-d/reports/output_audit.json",
+      "size_bytes": 50397,
+      "sha256": "e325d7496355760d421d00583686fe47cf114085511f5edb0be186e1c92328ca"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/AgentA_SOP_v10.5_20260902.md",
+      "size_bytes": 222446,
+      "sha256": "856019022796f13413208f844d53aa82f10278215676fcf5177daa98f645160c"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_结构预测获取链_v10.5.md",
+      "size_bytes": 12301,
+      "sha256": "b44f9e3662c751b637702531215faa96e0a3b0c450be9f8dd725d7bac55b6721"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/AgentA_Schema_v10.5_20260902.md",
+      "size_bytes": 47902,
+      "sha256": "8121bbe5078badb63d0c53aa7ac08e7da693de81918bef540d3f60e4fa58135e"
+    }
+  ],
+  "samples": [
+    {
+      "candidate_id": "RCSB:1UBQ_1:A",
+      "historical_case_id": "P0-DISC-001",
+      "observed_facts": {
+        "target_length": 76,
+        "entity_length": 76,
+        "sequence_identity": 1.0,
+        "aligned_target_residue_count": 76,
+        "aligned_target_fraction": 1.0,
+        "coordinate_mapped_target_residue_count": 76,
+        "coordinate_mapped_target_fraction": 1.0,
+        "mapped_but_unobserved_target_ranges": [],
+        "unaligned_target_ranges": []
+      },
+      "entry_facts": {
+        "experimental_method": "X-ray",
+        "resolution_angstrom": 1.8
+      },
+      "artifact_paths": [
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-001/mmcif-1UBQ/1UBQ.cif",
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-001/search-exact-attempt-04/response.json",
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-001/entry-1UBQ/response.json",
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-001/polymer-entity-1UBQ-1/response.json",
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-001/polymer-instance-1UBQ-A/response.json"
+      ],
+      "reuse_status": "INPUT_EVIDENCE_ONLY",
+      "production_selected": false,
+      "scientific_acceptance": "NOT_RUN"
+    },
+    {
+      "candidate_id": "RCSB:6XRE_13:M",
+      "historical_case_id": "P0-DISC-002",
+      "observed_facts": {
+        "target_length": 393,
+        "entity_length": 393,
+        "sequence_identity": 1.0,
+        "aligned_target_residue_count": 393,
+        "aligned_target_fraction": 1.0,
+        "coordinate_mapped_target_residue_count": 314,
+        "coordinate_mapped_target_fraction": 0.79898219,
+        "mapped_but_unobserved_target_ranges": [
+          {
+            "start": 1,
+            "end": 11
+          },
+          {
+            "start": 62,
+            "end": 87
+          },
+          {
+            "start": 352,
+            "end": 393
+          }
+        ],
+        "unaligned_target_ranges": []
+      },
+      "entry_facts": {
+        "experimental_method": "EM",
+        "resolution_angstrom": 4.6
+      },
+      "artifact_paths": [
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-002/mmcif-6XRE-attempt-02/6XRE.cif",
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-002/search-attempt-01/response.json",
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-002/entry-6XRE/response.json",
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-002/polymer-entity-6XRE-13/response.json",
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-002/polymer-instance-6XRE-M/response.json"
+      ],
+      "reuse_status": "INPUT_EVIDENCE_ONLY",
+      "production_selected": false,
+      "scientific_acceptance": "NOT_RUN"
+    },
+    {
+      "candidate_id": "RCSB:5XZC_2:B",
+      "historical_case_id": "P0-DISC-002",
+      "observed_facts": {
+        "target_length": 393,
+        "entity_length": 265,
+        "sequence_identity": 1.0,
+        "aligned_target_residue_count": 265,
+        "aligned_target_fraction": 0.67430025,
+        "coordinate_mapped_target_residue_count": 232,
+        "coordinate_mapped_target_fraction": 0.59033079,
+        "mapped_but_unobserved_target_ranges": [
+          {
+            "start": 292,
+            "end": 324
+          }
+        ],
+        "unaligned_target_ranges": [
+          {
+            "start": 1,
+            "end": 91
+          },
+          {
+            "start": 357,
+            "end": 393
+          }
+        ]
+      },
+      "entry_facts": {
+        "experimental_method": "EM",
+        "resolution_angstrom": 10.7
+      },
+      "artifact_paths": [
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-002/mmcif-5XZC-attempt-02/5XZC.cif",
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-002/search-attempt-01/response.json",
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-002/entry-5XZC/response.json",
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-002/polymer-entity-5XZC-2/response.json",
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-002/polymer-instance-5XZC-B/response.json"
+      ],
+      "reuse_status": "INPUT_EVIDENCE_ONLY",
+      "production_selected": false,
+      "scientific_acceptance": "NOT_RUN"
+    },
+    {
+      "candidate_id": "RCSB:6PPV_1:A",
+      "historical_case_id": "P0-DISC-003",
+      "observed_facts": {
+        "target_length": 133,
+        "entity_length": 86,
+        "sequence_identity": 0.625,
+        "aligned_target_residue_count": 72,
+        "aligned_target_fraction": 0.54135338,
+        "coordinate_mapped_target_residue_count": 69,
+        "coordinate_mapped_target_fraction": 0.51879699,
+        "mapped_but_unobserved_target_ranges": [
+          {
+            "start": 7,
+            "end": 8
+          },
+          {
+            "start": 78,
+            "end": 78
+          }
+        ],
+        "unaligned_target_ranges": [
+          {
+            "start": 1,
+            "end": 6
+          },
+          {
+            "start": 79,
+            "end": 133
+          }
+        ]
+      },
+      "entry_facts": {
+        "experimental_method": "X-ray",
+        "resolution_angstrom": 2.05
+      },
+      "artifact_paths": [
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-003/mmcif-6PPV/6PPV.cif",
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-003/homolog-search-attempt-01/response.json",
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-003/entry-6PPV/response.json",
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-003/polymer-entity-6PPV-1/response.json",
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-003/polymer-instance-6PPV-A/response.json"
+      ],
+      "reuse_status": "INPUT_EVIDENCE_ONLY",
+      "production_selected": false,
+      "scientific_acceptance": "NOT_RUN"
+    },
+    {
+      "candidate_id": "AFDB:AF-O15116-F1:v6:A",
+      "historical_case_id": "P0-DISC-004",
+      "observed_facts": {
+        "target_length": 133,
+        "entity_length": 133,
+        "sequence_identity": 1.0,
+        "aligned_target_residue_count": 133,
+        "aligned_target_fraction": 1.0,
+        "coordinate_mapped_target_residue_count": 133,
+        "coordinate_mapped_target_fraction": 1.0,
+        "mapped_but_unobserved_target_ranges": [],
+        "unaligned_target_ranges": []
+      },
+      "entry_facts": null,
+      "artifact_paths": [
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/afdb/P0-DISC-004/model-cif-v6/AF-O15116-F1-model_v6.cif",
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/afdb/P0-DISC-004/prediction-O15116-attempt-02/response.json",
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/afdb/P0-DISC-004/confidence-v6/AF-O15116-F1-confidence_v6.json",
+        "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/afdb/P0-DISC-004/pae-v6/AF-O15116-F1-predicted_aligned_error_v6.json"
+      ],
+      "reuse_status": "INPUT_EVIDENCE_ONLY",
+      "production_selected": false,
+      "scientific_acceptance": "NOT_RUN"
+    }
+  ],
+  "verified_artifacts": [
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-001/mmcif-1UBQ/1UBQ.cif",
+      "size_bytes": 103220,
+      "sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-001/search-exact-attempt-04/response.json",
+      "size_bytes": 87374,
+      "sha256": "bfa3c09c9f1ce2008201928581a8075c8b8b47c6e4a0fef7db26642ef621a951",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-001/entry-1UBQ/response.json",
+      "size_bytes": 9935,
+      "sha256": "5a7d463af93a3f95b4fe52d6cbecbfaa32f2ec27c72a7c9397e10a8eaaf97bfe",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-001/polymer-entity-1UBQ-1/response.json",
+      "size_bytes": 26236,
+      "sha256": "e296d0d87fa7f8fa584f00cd52f26d18ac40d33badb6a3a090eafe950971ba14",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-001/polymer-instance-1UBQ-A/response.json",
+      "size_bytes": 13953,
+      "sha256": "fdf3f834b91e41d0aa42148069ed64fc9f7159b0341d8561d341e45b7d67a845",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-002/mmcif-6XRE-attempt-02/6XRE.cif",
+      "size_bytes": 6959046,
+      "sha256": "48b2a9fa85e6f19adf4672427bb226ed8fc92af8567d09e8915aacad359a7249",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-002/search-attempt-01/response.json",
+      "size_bytes": 121327,
+      "sha256": "97ed4c2a67d703d347116c85e2fd98309edd9bc53e86cb6eb99206f90100c497",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-002/entry-6XRE/response.json",
+      "size_bytes": 11272,
+      "sha256": "51da495a37317781c1b67a7c4266bfe1a73ade26084b5ce5f477842c9ebb16c6",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-002/polymer-entity-6XRE-13/response.json",
+      "size_bytes": 160380,
+      "sha256": "891cf08a3ed799705022d3625ea1b2133954987dbe047a36a4be46232dbae4c2",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-002/polymer-instance-6XRE-M/response.json",
+      "size_bytes": 22129,
+      "sha256": "41d503d3daee841d612b039a7585d285259d93b61c6ea20c5d471d7119d8f0a2",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-002/mmcif-5XZC-attempt-02/5XZC.cif",
+      "size_bytes": 268943,
+      "sha256": "744ea7b74175865b1c1c3538d714a75ac10ac5cbee166c0547aa2c2a29f74b9a",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-002/entry-5XZC/response.json",
+      "size_bytes": 12708,
+      "sha256": "ac61cd42ed0609fbcbbfacd3bb664da50b374789ebdcfbc0f61e53a903b64efe",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-002/polymer-entity-5XZC-2/response.json",
+      "size_bytes": 158476,
+      "sha256": "98389ba98b95bf3e6cdd75dc4acf0c1824725165ad86f29597ca02dcb6c88c6a",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-002/polymer-instance-5XZC-B/response.json",
+      "size_bytes": 7136,
+      "sha256": "f2f255ab9e881f3d40a7db981c239c3e7284166023fff0da0accd329b21a823f",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-003/mmcif-6PPV/6PPV.cif",
+      "size_bytes": 602939,
+      "sha256": "06564ae8e3b5cb93c079825d51cbd4b898cacbc6bdd655948742f645bb92cf68",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-003/homolog-search-attempt-01/response.json",
+      "size_bytes": 88626,
+      "sha256": "c7b0cf5c2e75a6f227d33f34ca22c8f010344a61f0e797034bdf26eda2e6882c",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-003/entry-6PPV/response.json",
+      "size_bytes": 11325,
+      "sha256": "c5a69a96989515df61f45ab0eca0e383bcbe2ff22aeea7f55bb00ae0b524b349",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-003/polymer-entity-6PPV-1/response.json",
+      "size_bytes": 22234,
+      "sha256": "9f6153bdf90cde6a50e194c93f91423d0fbac7c44c8bcd90ce639ce21750208e",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/rcsb/P0-DISC-003/polymer-instance-6PPV-A/response.json",
+      "size_bytes": 11347,
+      "sha256": "a6c84aab310278bee8abca325b8cee3692573dbe34093ed9cb1f4f93c2dc88af",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/afdb/P0-DISC-004/model-cif-v6/AF-O15116-F1-model_v6.cif",
+      "size_bytes": 135937,
+      "sha256": "d37972527c798e13e39fb8202e33d9c5cb816ac211c57591218e753a357d80e1",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/afdb/P0-DISC-004/prediction-O15116-attempt-02/response.json",
+      "size_bytes": 1990,
+      "sha256": "4106b00fa105ad20d8e4532c4f79c892837fed09fd30e6f3eda9b75279940341",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/afdb/P0-DISC-004/confidence-v6/AF-O15116-F1-confidence_v6.json",
+      "size_bytes": 1797,
+      "sha256": "66b9f09f6ea60f48dd841a8c8f0c9a09f6bdf12e75c8cb69990d90a7bc636def",
+      "integrity_status": "PASS"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/afdb/P0-DISC-004/pae-v6/AF-O15116-F1-predicted_aligned_error_v6.json",
+      "size_bytes": 39746,
+      "sha256": "8826b30d2fa5f9a4adf6ab2bd3b7b993ada14c2d517fdcbc1422e4a52d0bc684",
+      "integrity_status": "PASS"
+    }
+  ],
+  "missing_experiments": [
+    "专家规定的 BLAST vs UniProt accession fallback 尚未由旧 wwPDB 实验覆盖。",
+    "服务器本地 PDB/AlphaFold DB/UniProt 数据发布和检索等价性尚未验收。",
+    "正常均无、阈值边界、并列候选和故障分支需准备单独受控用例；旧观测不直接提供生产预期。"
+  ]
+}

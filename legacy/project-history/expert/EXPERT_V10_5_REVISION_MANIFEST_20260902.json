@@ -1,0 +1,253 @@
+{
+  "review_date": "2026-09-02",
+  "purpose": "Read-only comparison of the two expert deliveries; no scientific implementation or external literature validation.",
+  "original_root": "工作流设计/01-业务依据/抗原智能体_v10.5",
+  "revised_root": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902",
+  "revised_received_root": "抗原智能体_v10.5(1)",
+  "current_source_state": {
+    "date": "2026-09-02",
+    "retention_policy": "CURRENT_EXPERT_PACKAGE_ONLY",
+    "decision_source": "user",
+    "current_root_field": "revised_root",
+    "available_files": 21,
+    "original_root_available": false,
+    "revised_received_root_available": false,
+    "current_sha256_check": "PASS",
+    "historical_fields_note": "original_root, OldSHA256, comparison counts and archive_verification describe prior review/archive states, not current file availability."
+  },
+  "archive_verification": {
+    "date": "2026-09-02",
+    "status": "PASS",
+    "copied_files": 21,
+    "source_archive_sha256_match": true,
+    "original_archive_preserved": true,
+    "source_retained_at_verification": true,
+    "received_root_is_provenance_only": true,
+    "documentation_without_receiving_copy": "PASS",
+    "tests_passed": 86
+  },
+  "hash_algorithm": "SHA-256",
+  "counts": {
+    "original_files": 20,
+    "revised_files": 21,
+    "unchanged": 16,
+    "changed": 4,
+    "added": 1,
+    "removed": 0
+  },
+  "sop_line_comparison": {
+    "original_lines": 3342,
+    "revised_lines": 3342,
+    "changed_lines_excluding_line_endings": 2537,
+    "whitespace_only_changed_lines": 2507,
+    "non_whitespace_changed_lines": 30,
+    "caveat": "Whitespace normalization identifies textual changes only; lost pseudocode indentation is a separate review issue."
+  },
+  "p0_sections_equal_ignoring_whitespace": [
+    "S-04",
+    "S-07",
+    "S-08",
+    "S-09",
+    "S-11"
+  ],
+  "camsol_parameter_validation": {
+    "original_json_parse": "PASS",
+    "revised_json_parse": "PASS",
+    "original_sha256_sidecar": "PASS",
+    "revised_sha256_sidecar": "PASS",
+    "revised_mu_random": null,
+    "revised_sigma_random": null,
+    "revised_roseman_values": "TO_BE_FILLED_BY_IMPLEMENTER"
+  },
+  "files": [
+    {
+      "Name": "交付说明.md",
+      "Status": "ADDED",
+      "OldBytes": 0,
+      "NewBytes": 1611,
+      "OldSHA256": null,
+      "NewSHA256": "A7CD4B7723D81DAB17494457FD273D5906394DEFB456E63F6FC8CC14F025D725",
+      "NewModified": "2026-09-02 12:30:10"
+    },
+    {
+      "Name": "一期实施环境清单_v10.5.md",
+      "Status": "UNCHANGED",
+      "OldBytes": 15136,
+      "NewBytes": 15136,
+      "OldSHA256": "89E8D2A2FB20B0DFE5A0CF200F403CDE9C91444756C60BA62B621D1C98C22F3A",
+      "NewSHA256": "89E8D2A2FB20B0DFE5A0CF200F403CDE9C91444756C60BA62B621D1C98C22F3A",
+      "NewModified": "2026-09-02 11:13:06"
+    },
+    {
+      "Name": "AgentA_Schema_v10.5_20260902.md",
+      "Status": "UNCHANGED",
+      "OldBytes": 47902,
+      "NewBytes": 47902,
+      "OldSHA256": "8121BBE5078BADB63D0C53AA7AC08E7DA693DE81918BEF540D3F60E4FA58135E",
+      "NewSHA256": "8121BBE5078BADB63D0C53AA7AC08E7DA693DE81918BEF540D3F60E4FA58135E",
+      "NewModified": "2026-09-02 11:43:40"
+    },
+    {
+      "Name": "AgentA_SKILL_v10.5_20260902.md",
+      "Status": "UNCHANGED",
+      "OldBytes": 24220,
+      "NewBytes": 24220,
+      "OldSHA256": "B9BF71D60046ACC32422A16AECBB3D1F4376824A6512D867EBDBB23588EE1833",
+      "NewSHA256": "B9BF71D60046ACC32422A16AECBB3D1F4376824A6512D867EBDBB23588EE1833",
+      "NewModified": "2026-09-02 11:44:20"
+    },
+    {
+      "Name": "AgentA_SOP_v10.5_20260902.md",
+      "Status": "CHANGED",
+      "OldBytes": 240701,
+      "NewBytes": 222446,
+      "OldSHA256": "5435D22D54E090A1EAD37570B5AB8F25026695D01B480944FD7EE4248A85782B",
+      "NewSHA256": "856019022796F13413208F844D53AA82F10278215676FCF5177DAA98F645160C",
+      "NewModified": "2026-09-02 12:27:44"
+    },
+    {
+      "Name": "camsol_params.json",
+      "Status": "CHANGED",
+      "OldBytes": 3948,
+      "NewBytes": 5461,
+      "OldSHA256": "CE06E56CDAF33BC2380A91E3A8E70A09B1FD57903F6495CC6C5C41C6B1F6ACF4",
+      "NewSHA256": "FB135655BF2BF326DB5C94A3C914A6A85EB2DD0DE1BF6AA909CA2F8F27F629F4",
+      "NewModified": "2026-09-02 12:22:10"
+    },
+    {
+      "Name": "camsol_params.json.sha256",
+      "Status": "CHANGED",
+      "OldBytes": 66,
+      "NewBytes": 65,
+      "OldSHA256": "3CE6BFD650569FB0DB4BF74AAFCA2B6BB0037316EEF01E5E853B70883E97A85B",
+      "NewSHA256": "05BF151BE4ADB0659294254F704B05A2BED43884DCB872DD22E00D899EC184F4",
+      "NewModified": "2026-09-02 12:22:30"
+    },
+    {
+      "Name": "ToolSpec_结构预测获取链_v10.5.md",
+      "Status": "UNCHANGED",
+      "OldBytes": 12301,
+      "NewBytes": 12301,
+      "OldSHA256": "B44F9E3662C751B637702531215FAA96E0A3B0C450BE9F8DD725D7BAC55B6721",
+      "NewSHA256": "B44F9E3662C751B637702531215FAA96E0A3B0C450BE9F8DD725D7BAC55B6721",
+      "NewModified": "2026-09-02 11:13:06"
+    },
+    {
+      "Name": "ToolSpec_A1_NetMHCpan_v10.5.md",
+      "Status": "UNCHANGED",
+      "OldBytes": 10639,
+      "NewBytes": 10639,
+      "OldSHA256": "BE60D67D0E87BD7A9F3F8CFD08F92890CD245D036139ED939A374A0C629379E0",
+      "NewSHA256": "BE60D67D0E87BD7A9F3F8CFD08F92890CD245D036139ED939A374A0C629379E0",
+      "NewModified": "2026-09-02 11:13:06"
+    },
+    {
+      "Name": "ToolSpec_A3_BepiPred_v10.5.md",
+      "Status": "UNCHANGED",
+      "OldBytes": 4674,
+      "NewBytes": 4674,
+      "OldSHA256": "162D5576F0A4F02842F06F94F93D6A3CB8DBFF158429EF24A5EA72151717BD97",
+      "NewSHA256": "162D5576F0A4F02842F06F94F93D6A3CB8DBFF158429EF24A5EA72151717BD97",
+      "NewModified": "2026-09-02 11:13:06"
+    },
+    {
+      "Name": "ToolSpec_A5_DeepTMHMM_v10.5.md",
+      "Status": "UNCHANGED",
+      "OldBytes": 8822,
+      "NewBytes": 8822,
+      "OldSHA256": "95B377F9A401D7BCF663FB8B85B0733D1D451C3213F3E6116217C949ACDE53A9",
+      "NewSHA256": "95B377F9A401D7BCF663FB8B85B0733D1D451C3213F3E6116217C949ACDE53A9",
+      "NewModified": "2026-09-02 11:13:06"
+    },
+    {
+      "Name": "ToolSpec_C15_ProteinMPNN_v10.5.md",
+      "Status": "UNCHANGED",
+      "OldBytes": 14299,
+      "NewBytes": 14299,
+      "OldSHA256": "7A14DEC74871A33E1A964CEDA0F22B874196953CAFD16F020590C8C42AE69948",
+      "NewSHA256": "7A14DEC74871A33E1A964CEDA0F22B874196953CAFD16F020590C8C42AE69948",
+      "NewModified": "2026-09-02 11:13:06"
+    },
+    {
+      "Name": "ToolSpec_C18_ESM-IF1_v10.5.md",
+      "Status": "UNCHANGED",
+      "OldBytes": 10522,
+      "NewBytes": 10522,
+      "OldSHA256": "BB6E3245B1C071BFFB2579C400B3B880FE434CA1220C93BBC214253BA24F16B8",
+      "NewSHA256": "BB6E3245B1C071BFFB2579C400B3B880FE434CA1220C93BBC214253BA24F16B8",
+      "NewModified": "2026-09-02 11:13:06"
+    },
+    {
+      "Name": "ToolSpec_C20_IEDB镜像_BLAST_v10.5.md",
+      "Status": "UNCHANGED",
+      "OldBytes": 9864,
+      "NewBytes": 9864,
+      "OldSHA256": "A89FE2CCD80012A0C47519BBF5FD0549F651F0EAB902B5BE22CE9D60703E119B",
+      "NewSHA256": "A89FE2CCD80012A0C47519BBF5FD0549F651F0EAB902B5BE22CE9D60703E119B",
+      "NewModified": "2026-09-02 11:13:06"
+    },
+    {
+      "Name": "ToolSpec_C24_PROPKA_v10.5.md",
+      "Status": "UNCHANGED",
+      "OldBytes": 11965,
+      "NewBytes": 11965,
+      "OldSHA256": "2A0D8A7D964E5C7449903B102F4D0D3D1F72F42B478E50926F91FE9F8FA002A7",
+      "NewSHA256": "2A0D8A7D964E5C7449903B102F4D0D3D1F72F42B478E50926F91FE9F8FA002A7",
+      "NewModified": "2026-09-02 11:13:06"
+    },
+    {
+      "Name": "ToolSpec_C34_FreeSASA_v10.5.md",
+      "Status": "UNCHANGED",
+      "OldBytes": 7270,
+      "NewBytes": 7270,
+      "OldSHA256": "36915039A7C89F9CBF3911B02B5A7BDC1C7BCCC4233B0DA5C35F4E3940701221",
+      "NewSHA256": "36915039A7C89F9CBF3911B02B5A7BDC1C7BCCC4233B0DA5C35F4E3940701221",
+      "NewModified": "2026-09-02 11:13:06"
+    },
+    {
+      "Name": "ToolSpec_C35_FoldX_v10.5.md",
+      "Status": "UNCHANGED",
+      "OldBytes": 12459,
+      "NewBytes": 12459,
+      "OldSHA256": "C1D6D72D70B982A01E57E528835D5CFFFC85F0388E1C86CB7E9422F75B48551D",
+      "NewSHA256": "C1D6D72D70B982A01E57E528835D5CFFFC85F0388E1C86CB7E9422F75B48551D",
+      "NewModified": "2026-09-02 11:13:06"
+    },
+    {
+      "Name": "ToolSpec_C43_ThermoMPNN_v10.5.md",
+      "Status": "UNCHANGED",
+      "OldBytes": 6660,
+      "NewBytes": 6660,
+      "OldSHA256": "948EA6F2291F81EE5C6CC5A4DA5C67CB4A1B82C3D2B2FDD90274BC7B563DE8D0",
+      "NewSHA256": "948EA6F2291F81EE5C6CC5A4DA5C67CB4A1B82C3D2B2FDD90274BC7B563DE8D0",
+      "NewModified": "2026-09-02 11:13:06"
+    },
+    {
+      "Name": "ToolSpec_C44_CamSol重实现_v10.5.md",
+      "Status": "CHANGED",
+      "OldBytes": 12543,
+      "NewBytes": 14203,
+      "OldSHA256": "D774785AB20E9366B422A59B84011E83F5BF5F54D68A643D83F4CEAE750B4E45",
+      "NewSHA256": "BD1195E86D520A10A7B2A77E715D7D73AB6D29109FEED50E208FED53C68F3BB9",
+      "NewModified": "2026-09-02 12:22:10"
+    },
+    {
+      "Name": "ToolSpec_C45_AGGRESCAN3D_v10.5.md",
+      "Status": "UNCHANGED",
+      "OldBytes": 6022,
+      "NewBytes": 6022,
+      "OldSHA256": "3E7BB65A06AA13ECC515A3AB40D511569A0714BF4540F366A4B362D0A74CC130",
+      "NewSHA256": "3E7BB65A06AA13ECC515A3AB40D511569A0714BF4540F366A4B362D0A74CC130",
+      "NewModified": "2026-09-02 11:13:06"
+    },
+    {
+      "Name": "ToolSpec_UniProt注释接口_v10.5.md",
+      "Status": "UNCHANGED",
+      "OldBytes": 6888,
+      "NewBytes": 6888,
+      "OldSHA256": "9FBE2CC77D74F80B668E1899062A87B56DDAAF4F5346446F58A78B7BDD751E9E",
+      "NewSHA256": "9FBE2CC77D74F80B668E1899062A87B56DDAAF4F5346446F58A78B7BDD751E9E",
+      "NewModified": "2026-09-02 11:13:06"
+    }
+  ]
+}

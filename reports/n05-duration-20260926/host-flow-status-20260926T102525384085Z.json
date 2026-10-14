@@ -1,0 +1,480 @@
+{
+  "job_id": "t01p1r-job-bb8f2270151e4d7dbb2ae371e511f10a",
+  "run_id": "t01p1r-run-d0741d93313d457f9ab131b25410372e",
+  "state": "succeeded",
+  "error_code": null,
+  "nodes": {
+    "bepipred": {
+      "node_id": "N04",
+      "job_id": "t01p1r-job-73d30584826a427ca9d80afc1d51a905",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "blast": {
+      "node_id": "N03",
+      "job_id": "t01p1r-job-781723af242a497595134f6971cd83f5",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "codon": {
+      "node_id": "N16",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "N15_NOT_COMPLETE",
+      "detail": null
+    },
+    "design": {
+      "node_id": "N11",
+      "job_id": "t01p1r-job-3e00048189c748fab71483f61cc2f20e",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "design_audit": {
+      "node_id": "N12",
+      "job_id": null,
+      "state": "blocked",
+      "reason_code": "INVALID_REQUEST",
+      "detail": "Selected N11 record absent"
+    },
+    "design_inputs": {
+      "node_id": "N11",
+      "job_id": "t01p1r-job-1b393240373b492ba8cb905865f31f0a",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "developability": {
+      "node_id": "N10",
+      "job_id": "t01p1r-job-081762f9e5894092bb7be46ff5a941a9",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "domains": {
+      "node_id": "N09",
+      "job_id": "t01p1r-job-1ca24f66dfa54d1d80c501b63119098f",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "epitope_map": {
+      "node_id": "N06",
+      "job_id": "t01p1r-job-6e6c045ca6dc4f4b84e12a92ba6dc188",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "glycosylation": {
+      "node_id": "N07",
+      "job_id": "t01p1r-job-0c6ff24e181746c5b74f8aadbed6f984",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "homology": {
+      "node_id": "N08",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "DATABASE_NOT_PROVIDED",
+      "detail": null
+    },
+    "local_delivery": {
+      "node_id": "N18",
+      "job_id": "t01p1r-job-d568d1a6a7e9408285ee977d8e8e117c",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "netmhc": {
+      "node_id": "N05",
+      "job_id": "t01p1r-job-8e87d6cb063442bbbb144a4cacfbc307",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "prediction": {
+      "node_id": "N01",
+      "job_id": "t01p1r-job-bb2b8c7984d3444d8e531f2b38631ee1",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "preselection": {
+      "node_id": "N12",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "DESIGN_NOT_EXECUTED",
+      "detail": null
+    },
+    "protection": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_SCORED_NON_WT_REPRESENTATIVE",
+      "detail": null
+    },
+    "rep1_bepipred": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep1_blast": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep1_developability": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep1_epitope_map": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep1_glycosylation": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep1_netmhc": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep1_prediction": {
+      "node_id": "N12",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep1_structure": {
+      "node_id": "N12",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep2_bepipred": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep2_blast": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep2_developability": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep2_epitope_map": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep2_glycosylation": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep2_netmhc": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep2_prediction": {
+      "node_id": "N12",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep2_structure": {
+      "node_id": "N12",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep3_bepipred": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep3_blast": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep3_developability": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep3_epitope_map": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep3_glycosylation": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep3_netmhc": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep3_prediction": {
+      "node_id": "N12",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rep3_structure": {
+      "node_id": "N12",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_REPRESENTATIVE_IN_SLOT",
+      "detail": null
+    },
+    "rescore": {
+      "node_id": "N12",
+      "job_id": null,
+      "state": "blocked",
+      "reason_code": "INVALID_REQUEST",
+      "detail": "Requested N11 sample does not exist"
+    },
+    "retry1_design": {
+      "node_id": "N11",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "PREVIOUS_ROUND_NOT_COMPLETE",
+      "detail": null
+    },
+    "retry1_design_audit": {
+      "node_id": "N12",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "PREVIOUS_ROUND_NOT_COMPLETE",
+      "detail": null
+    },
+    "retry1_rescore": {
+      "node_id": "N12",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "PREVIOUS_ROUND_NOT_COMPLETE",
+      "detail": null
+    },
+    "retry2_design": {
+      "node_id": "N11",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "PREVIOUS_ROUND_NOT_COMPLETE",
+      "detail": null
+    },
+    "retry2_design_audit": {
+      "node_id": "N12",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "PREVIOUS_ROUND_NOT_COMPLETE",
+      "detail": null
+    },
+    "retry2_rescore": {
+      "node_id": "N12",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "PREVIOUS_ROUND_NOT_COMPLETE",
+      "detail": null
+    },
+    "stability": {
+      "node_id": "N14",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "N13_NOT_COMPLETE",
+      "detail": null
+    },
+    "structure": {
+      "node_id": "N01",
+      "job_id": "t01p1r-job-8fcfb136b5aa4845b4a8fe01150625f6",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "topology": {
+      "node_id": "N02",
+      "job_id": "t01p1r-job-42e77784b3ff4084820c3d1bd50f4a9a",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "variant_report": {
+      "node_id": "N15",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "N12_AUDIT_NOT_COMPLETE",
+      "detail": null
+    },
+    "wt_bepipred": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_SCORED_NON_WT_REPRESENTATIVE",
+      "detail": null
+    },
+    "wt_developability": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_SCORED_NON_WT_REPRESENTATIVE",
+      "detail": null
+    },
+    "wt_draft": {
+      "node_id": "N18",
+      "job_id": "t01p1r-job-9a4e7df9b67b4cbbbefe79c6249b5dea",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "wt_epitope_map": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_SCORED_NON_WT_REPRESENTATIVE",
+      "detail": null
+    },
+    "wt_foldx": {
+      "node_id": "N17",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "N15_NOT_COMPLETE",
+      "detail": null
+    },
+    "wt_glycosylation": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_SCORED_NON_WT_REPRESENTATIVE",
+      "detail": null
+    },
+    "wt_netmhc": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "NO_SCORED_NON_WT_REPRESENTATIVE",
+      "detail": null
+    },
+    "wt_reference": {
+      "node_id": "N17",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "N15_NOT_COMPLETE",
+      "detail": null
+    },
+    "wt_thermompnn": {
+      "node_id": "N17",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "N15_NOT_COMPLETE",
+      "detail": null
+    }
+  },
+  "pending_confirmation": null,
+  "facts": {
+    "design_inputs": {
+      "fixed": 233,
+      "restricted": 0,
+      "open": 0,
+      "confirmation_required": false,
+      "mask_conversion_error": null
+    },
+    "design": {
+      "count": 0
+    }
+  },
+  "batch_progress": {
+    "netmhc": {
+      "submitted": 4,
+      "states": {
+        "succeeded": 4
+      },
+      "storage_preflight": {
+        "free_bytes": 147983826944,
+        "predicted_native_rows": 118636,
+        "required_bytes": 434525856
+      }
+    }
+  },
+  "active_progress": {},
+  "card_type": "primer_design_output",
+  "card_summary": "任务 t01p1r-job-bb8f2270151e4d7dbb2ae371e511f10a 已生成工程报告；后端结论 DESIGN_ELIGIBLE_RELEASE_CLOSED。N11 候选设计已执行。科学资格状态单独判断。节点跳过及部分计算见缺项说明。科学资格 CLOSED / false / NOT_DEPLOYED。",
+  "controlled_downloads": [
+    {
+      "file_name": "report.md",
+      "bytes": 5545,
+      "sha256": "44cdda01ed0f720e44ce13e61623aa6f8d05387c1931f350cb008ff3ed432e6e",
+      "verified": true
+    },
+    {
+      "file_name": "t01p1r-job-bb8f2270151e4d7dbb2ae371e511f10a.zip",
+      "bytes": 409260,
+      "sha256": "d6818e04e32628992301af6b3a4b11b0e2dc55845ed1d34423f211e0b2d96fd3",
+      "verified": true
+    },
+    {
+      "file_name": "antigen-report.html",
+      "bytes": 62312,
+      "sha256": "7c1bf470199c317a1c087cc7ea70387d74e942d389fa24acad4af3a50b0f61b5",
+      "verified": true
+    }
+  ],
+  "transport": "service loopback HiMat MCP and attachment routes; not browser UI",
+  "scientific_gate": "CLOSED",
+  "public_report_api_called": false
+}

@@ -1,0 +1,95 @@
+{
+  "parent_state": "cancelled",
+  "child_state": "cancelled",
+  "tree_stopped": true,
+  "mutation_counts": [
+    107,
+    110,
+    113,
+    104,
+    107,
+    101,
+    101,
+    108,
+    102,
+    114,
+    102,
+    97,
+    92,
+    102,
+    105,
+    99,
+    109,
+    101,
+    99,
+    105,
+    104,
+    105,
+    112,
+    94
+  ],
+  "native_budget_seconds": 14400,
+  "native_probe_scope": "9-aa engineering fixture, not PCV2 throughput or scientific acceptance",
+  "serial_seconds": 14.670636073000423,
+  "parallel_seconds": 9.571969738999542,
+  "serial_repeat": {
+    "label": "serial-repeat",
+    "indices": [
+      0,
+      1,
+      2
+    ],
+    "seconds": 14.468149823999738,
+    "identical": true,
+    "different_files": []
+  },
+  "screen_false": {
+    "label": "serial-quiet",
+    "indices": [
+      0,
+      1,
+      2
+    ],
+    "seconds": 14.46684686900062,
+    "identical": true,
+    "different_files": []
+  },
+  "mean_std_comparison": [
+    {
+      "candidate_index": 1,
+      "serial_mean": 0.322313,
+      "parallel_mean": 0.322313,
+      "serial_std": 0.0103159,
+      "parallel_std": 0.0103159
+    },
+    {
+      "candidate_index": 2,
+      "serial_mean": 2.3928,
+      "parallel_mean": 2.36754,
+      "serial_std": 0.165356,
+      "parallel_std": 0.167623
+    },
+    {
+      "candidate_index": 3,
+      "serial_mean": 0.953071,
+      "parallel_mean": 0.953071,
+      "serial_std": 0.00672654,
+      "parallel_std": 0.00672665
+    }
+  ],
+  "parallel_equivalence": "DIFFERENT",
+  "decision": "Parallel production implementation awaits user decision on observed numerical differences",
+  "local_change": "Stream native diagnostics to files; no native command or process-group change",
+  "deployed": false,
+  "restarted": false,
+  "caveats": [
+    "No verified explanation of native batch-order numerical dependence",
+    "No evidence that two-way parallelism completes PCV2 within 4-hour tool budget",
+    "No reduction of candidates, mutations, five runs, or scientific thresholds"
+  ],
+  "evidence_sha256": {
+    "reports/n14-performance-20260928/stop-confirmation.json": "45d58fd349c3e842ec6bb79ad9ac63736c4dea413e2de2e3dc0f8a4881531a9c",
+    "reports/n14-performance-20260928/parallel-native-probe-r03/comparison.json": "4a949dd2bb09c4b75ff7c218f33122ac7417c70e31d9268b80eafcccfad52bfe",
+    "reports/n14-performance-20260928/streaming-tests.junit.xml": "d71300ab73d70fa6dc0c6160aaaa107beffd2e72da9308dbcd2f04da85c1134e"
+  }
+}

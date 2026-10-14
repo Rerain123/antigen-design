@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: antigen-esmfold2-assets-upload
+  namespace: him-ws
+  labels:
+    app: antigen-esmfold2-assets-upload
+spec:
+  restartPolicy: Never
+  automountServiceAccountToken: false
+  imagePullSecrets:
+    - name: harbor
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 10001
+    runAsGroup: 10001
+    fsGroup: 10001
+  containers:
+    - name: uploader
+      image: harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:3c1fde091e6b5aef0d4df246f7b9d489ca4b2e0cc3d224b36316e237a1711b5d
+      command: ["python", "-B", "-c", "import time; time.sleep(86400)"]
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          cpu: "1"
+          memory: 512Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+        capabilities:
+          drop: ["ALL"]
+      volumeMounts:
+        - name: models
+          mountPath: /models
+        - name: tmp
+          mountPath: /tmp
+  volumes:
+    - name: models
+      persistentVolumeClaim:
+        claimName: antigen-esmfold2-models
+    - name: tmp
+      emptyDir:
+        sizeLimit: 1Gi

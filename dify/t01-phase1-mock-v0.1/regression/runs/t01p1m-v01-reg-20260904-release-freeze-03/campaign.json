@@ -1,0 +1,95 @@
+{
+  "document_type": "T01_PHASE1_MOCK_M4_CAMPAIGN",
+  "campaign_version": "T01-PHASE1-MOCK-M4-CAMPAIGN-v0.1",
+  "campaign_id": "t01p1m-v01-reg-20260904-release-freeze-03",
+  "state": "PREPARED",
+  "prepared_at": "2026-09-04T13:54:02.386125Z",
+  "binding_profile": "local_dify_1_17",
+  "target": {
+    "environment": "LOCAL_DIFY_DOCKER",
+    "dify_version": "1.17.0",
+    "dsl_version": "0.7.0",
+    "transport_health": {
+      "endpoint_scope": "LOCALHOST_ONLY",
+      "status": "ok",
+      "server": "t01-phase1-mock-v01",
+      "tool_count": 26,
+      "mock_only": true,
+      "scientific_compute": false
+    }
+  },
+  "source_evidence": {
+    "asset_chain": {
+      "path": "dify/t01-phase1-mock-v0.1/regression/runs/t01p1m-v01-reg-20260904-release-freeze-03/asset-chain.json",
+      "bytes": 8274,
+      "sha256": "1a1a027d705aef8aa4b44323128258a3542d484a84a0707109e425ff6df45fd4"
+    },
+    "m3_import": {
+      "path": "dify/t01-phase1-mock-v0.1/evidence/m3/local_dify_1_17/import-evidence.json",
+      "bytes": 7278,
+      "sha256": "a46f64283a0ec43d886075c1adc99580ff6d52f63bb6f1cda7f135ae26edabf8"
+    }
+  },
+  "expected_applications": [
+    {
+      "role": "PRIMARY",
+      "stable_workflow_id": "t01_phase1_mock_v01.workflow.main",
+      "app_name": "T01_Phase1_Mock_v0.1",
+      "app_id": "a5fa1d0e-45a9-469e-aef9-4c55639f9eba",
+      "draft_workflow_id": "181b59ac-a9f6-427a-a261-8a690c9c6409"
+    },
+    {
+      "role": "DEBUG",
+      "stable_workflow_id": "t01_phase1_mock_v01.workflow.debug",
+      "app_name": "T01_Phase1_Mock_v0.1_Debug",
+      "app_id": "52dd71b0-9b76-4c85-b50c-e5aead4b293b",
+      "draft_workflow_id": "63b89ec7-51f0-4472-a1b4-045efaddb5c3"
+    }
+  ],
+  "roles": {
+    "main": {
+      "role": "PRIMARY",
+      "app_name": "T01_Phase1_Mock_v0.1",
+      "app_id": "a5fa1d0e-45a9-469e-aef9-4c55639f9eba",
+      "draft_workflow_id": "181b59ac-a9f6-427a-a261-8a690c9c6409",
+      "stable_workflow_id": "t01_phase1_mock_v01.workflow.main",
+      "runtime_root": "var/t01-phase1-mock-v0.1/m4-campaigns/t01p1m-v01-reg-20260904-release-freeze-03/main/runtime",
+      "submission_batch": "dify/t01-phase1-mock-v0.1/regression/runs/t01p1m-v01-reg-20260904-release-freeze-03/main/submissions.batch.json",
+      "submission_capture": "dify/t01-phase1-mock-v0.1/regression/runs/t01p1m-v01-reg-20260904-release-freeze-03/main/submissions.capture.json",
+      "lifecycle_capture": "dify/t01-phase1-mock-v0.1/regression/runs/t01p1m-v01-reg-20260904-release-freeze-03/main/lifecycle.capture.json",
+      "finalization_batch": "dify/t01-phase1-mock-v0.1/regression/runs/t01p1m-v01-reg-20260904-release-freeze-03/main/finalizations.batch.json",
+      "finalization_capture": "dify/t01-phase1-mock-v0.1/regression/runs/t01p1m-v01-reg-20260904-release-freeze-03/main/finalizations.capture.json",
+      "submission_batch_evidence": {
+        "path": "dify/t01-phase1-mock-v0.1/regression/runs/t01p1m-v01-reg-20260904-release-freeze-03/main/submissions.batch.json",
+        "bytes": 66503,
+        "sha256": "fd9732adb18c394a2d9abeb4062adfd7d9c86f608c5a1a73045d5be6766c016f"
+      }
+    },
+    "debug": {
+      "role": "DEBUG",
+      "app_name": "T01_Phase1_Mock_v0.1_Debug",
+      "app_id": "52dd71b0-9b76-4c85-b50c-e5aead4b293b",
+      "draft_workflow_id": "63b89ec7-51f0-4472-a1b4-045efaddb5c3",
+      "stable_workflow_id": "t01_phase1_mock_v01.workflow.debug",
+      "runtime_root": "var/t01-phase1-mock-v0.1/m4-campaigns/t01p1m-v01-reg-20260904-release-freeze-03/debug/runtime",
+      "submission_batch": "dify/t01-phase1-mock-v0.1/regression/runs/t01p1m-v01-reg-20260904-release-freeze-03/debug/submissions.batch.json",
+      "submission_capture": "dify/t01-phase1-mock-v0.1/regression/runs/t01p1m-v01-reg-20260904-release-freeze-03/debug/submissions.capture.json",
+      "lifecycle_capture": "dify/t01-phase1-mock-v0.1/regression/runs/t01p1m-v01-reg-20260904-release-freeze-03/debug/lifecycle.capture.json",
+      "finalization_batch": "dify/t01-phase1-mock-v0.1/regression/runs/t01p1m-v01-reg-20260904-release-freeze-03/debug/finalizations.batch.json",
+      "finalization_capture": "dify/t01-phase1-mock-v0.1/regression/runs/t01p1m-v01-reg-20260904-release-freeze-03/debug/finalizations.capture.json",
+      "submission_batch_evidence": {
+        "path": "dify/t01-phase1-mock-v0.1/regression/runs/t01p1m-v01-reg-20260904-release-freeze-03/debug/submissions.batch.json",
+        "bytes": 66508,
+        "sha256": "ff7918edec2498d10fdc19ff0141efac1efca0177f973a097815ee0375922168"
+      }
+    }
+  },
+  "evidence_policy": {
+    "reuse_m3_execution_root": false,
+    "canonical_submission_count_per_role": 23,
+    "checkpoint_plan_count_per_role": 4,
+    "checkpoint_count_per_role": 16,
+    "scientific_compute": false,
+    "production_state": "NOT_DEPLOYED"
+  }
+}

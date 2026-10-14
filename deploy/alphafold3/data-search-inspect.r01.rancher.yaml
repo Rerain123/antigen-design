@@ -1,0 +1,150 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-af3-data-search-inspect-r01
+  namespace: him-ws
+immutable: true
+data:
+  inspect_af3_data_search.py: "\"\"\"Independently verify a completed AF3 local data-search\
+    \ run.\"\"\"\nfrom __future__ import annotations\n\nimport hashlib\nimport json\n\
+    from pathlib import Path, PurePosixPath\nimport shutil\nimport stat\n\n\nRUN_ROOT\
+    \ = Path(\"/runtime/data-search-r01\")\nEXPECTED_STATUS = \"AF3_LOCAL_DATA_SEARCH_VERIFIED_NOT_INFERRED\"\
+    \nEXPECTED_SEQUENCE_SHA256 = \"233b4b0b8c4616095bc3249f9375fc345d32af7deaef07117d0383c51d6f19aa\"\
+    \nEXPECTED_MODEL_SHA256 = \"df8bbf2621f17dd3ee21c2a921e84a50bc2b80cdc0c7971cb915c2826fee1f9b\"\
+    \n\n\ndef sha256_file(path: Path) -> str:\n    digest = hashlib.sha256()\n   \
+    \ with path.open(\"rb\") as stream:\n        while chunk := stream.read(8 * 1024\
+    \ * 1024):\n            digest.update(chunk)\n    return digest.hexdigest()\n\n\
+    \ndef safe_path(value: str) -> PurePosixPath:\n    path = PurePosixPath(value)\n\
+    \    if not value or path.is_absolute() or \"\\\\\" in value or \"..\" in path.parts\
+    \ or path.as_posix() != value:\n        raise ValueError(f\"Unsafe manifest path:\
+    \ {value!r}\")\n    return path\n\n\ndef inspect() -> dict[str, object]:\n   \
+    \ receipt_path = RUN_ROOT / \"data-search-receipt.json\"\n    manifest_path =\
+    \ RUN_ROOT / \"files-manifest.json\"\n    receipt = json.loads(receipt_path.read_bytes())\n\
+    \    for key, expected in {\n        \"schema\": \"t01.af3-data-search/1\",\n\
+    \        \"status\": EXPECTED_STATUS,\n        \"run_id\": \"data-search-r01\"\
+    ,\n        \"sequence_sha256\": EXPECTED_SEQUENCE_SHA256,\n        \"model_sha256\"\
+    : EXPECTED_MODEL_SHA256,\n        \"inference_run\": False,\n        \"gpu_requested\"\
+    : False,\n        \"usable_as_inference_input\": True,\n        \"scientific_gate\"\
+    : \"CLOSED\",\n        \"usable_for_pipeline\": False,\n        \"production_status\"\
+    : \"NOT_DEPLOYED\",\n    }.items():\n        if receipt.get(key) != expected:\n\
+    \            raise ValueError(f\"Receipt mismatch for {key}: {receipt.get(key)!r}\"\
+    )\n    command = json.loads((RUN_ROOT / \"command.json\").read_bytes())\n    command_text\
+    \ = \" \".join(command.get(\"command\", []))\n    if \"--run_data_pipeline=true\"\
+    \ not in command_text or \"--run_inference=false\" not in command_text:\n    \
+    \    raise ValueError(\"Command does not separate data search from inference\"\
+    )\n\n    manifest = json.loads(manifest_path.read_bytes())\n    if manifest.get(\"\
+    schema\") != \"t01.af3-data-search-files/1\":\n        raise ValueError(\"Unexpected\
+    \ data-search manifest schema\")\n    rows = manifest.get(\"files\")\n    if not\
+    \ isinstance(rows, list) or not rows:\n        raise ValueError(\"Data-search\
+    \ manifest is empty\")\n    seen: set[str] = set()\n    total = 0\n    for row\
+    \ in rows:\n        relative = safe_path(row.get(\"path\", \"\"))\n        name\
+    \ = relative.as_posix()\n        if name in seen:\n            raise ValueError(f\"\
+    Duplicate data-search path: {name}\")\n        seen.add(name)\n        path =\
+    \ RUN_ROOT.joinpath(*relative.parts)\n        info = path.lstat()\n        if\
+    \ not stat.S_ISREG(info.st_mode) or path.is_symlink():\n            raise ValueError(f\"\
+    Expected regular data-search file: {path}\")\n        if info.st_size != row.get(\"\
+    bytes\") or sha256_file(path) != row.get(\"sha256\"):\n            raise ValueError(f\"\
+    Data-search file identity mismatch: {name}\")\n        total += info.st_size\n\
+    \    if sha256_file(manifest_path) != receipt.get(\"files_manifest_sha256\"):\n\
+    \        raise ValueError(\"Data-search manifest receipt hash mismatch\")\n\n\
+    \    processed = RUN_ROOT / \"output/t01-1ubq-af3-data-r01/t01-1ubq-af3-data-r01_data.json\"\
+    \n    value = json.loads(processed.read_bytes())\n    protein = value[\"sequences\"\
+    ][0][\"protein\"]\n    if len(protein[\"sequence\"]) != 76 or not protein[\"unpairedMsa\"\
+    ] or not isinstance(protein[\"pairedMsa\"], str):\n        raise ValueError(\"\
+    Processed input is missing the expected protein MSA fields\")\n    templates =\
+    \ protein.get(\"templates\")\n    if not isinstance(templates, list) or len(templates)\
+    \ != receipt[\"processed_input\"][\"template_count\"]:\n        raise ValueError(\"\
+    Processed template count mismatch\")\n    result = {\n        \"schema\": \"t01.af3-data-search-inspection/1\"\
+    ,\n        \"status\": \"AF3_LOCAL_DATA_SEARCH_INDEPENDENTLY_VERIFIED_NOT_INFERRED\"\
+    ,\n        \"scientific_gate\": \"CLOSED\",\n        \"usable_as_inference_input\"\
+    : True,\n        \"usable_for_pipeline\": False,\n        \"production_status\"\
+    : \"NOT_DEPLOYED\",\n        \"file_count\": len(rows),\n        \"total_bytes\"\
+    : total,\n        \"processed_input\": receipt[\"processed_input\"],\n       \
+    \ \"database_filesystem\": {\n            \"total_bytes\": shutil.disk_usage(RUN_ROOT).total,\n\
+    \            \"free_bytes\": shutil.disk_usage(RUN_ROOT).free,\n        },\n \
+    \   }\n    print(\"AF3_LOCAL_DATA_SEARCH_INSPECTION_VERIFIED \" + json.dumps(result,\
+    \ sort_keys=True), flush=True)\n    return result\n\n\nif __name__ == \"__main__\"\
+    :\n    inspect()\n"
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: antigen-af3-data-search-inspect-r01
+  namespace: him-ws
+spec:
+  podSelector:
+    matchLabels:
+      app: antigen-af3-data-search-inspect-r01
+  policyTypes:
+  - Ingress
+  - Egress
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-af3-data-search-inspect-r01
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 1800
+  template:
+    metadata:
+      labels:
+        app: antigen-af3-data-search-inspect-r01
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+      - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+      - name: inspect
+        image: harbor-core.base.svc.cluster.local/qcyz/antigen-af3@sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373
+        imagePullPolicy: IfNotPresent
+        command:
+        - /alphafold3_venv/bin/python
+        - -u
+        - -B
+        - /inspect/inspect_af3_data_search.py
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+            ephemeral-storage: 128Mi
+          limits:
+            cpu: '1'
+            memory: 1Gi
+            ephemeral-storage: 1Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          seccompProfile:
+            type: RuntimeDefault
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: inspect
+          mountPath: /inspect
+          readOnly: true
+        - name: runtime
+          mountPath: /runtime
+          readOnly: true
+        - name: tmp
+          mountPath: /tmp
+      volumes:
+      - name: inspect
+        configMap:
+          name: antigen-af3-data-search-inspect-r01
+      - name: runtime
+        persistentVolumeClaim:
+          claimName: antigen-af3-runtime
+          readOnly: true
+      - name: tmp
+        emptyDir:
+          sizeLimit: 1Gi

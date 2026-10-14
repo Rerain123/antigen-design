@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="21" time="13.501" timestamp="2026-09-27T17:40:06.603948+08:00" hostname="DESKTOP-8B96JVR"><testcase classname="tests.test_n17_continuation" name="test_scan_failure_route_is_only_operational_and_internal[TOOL_FAILED-wt_foldx]" time="0.000" /><testcase classname="tests.test_n17_continuation" name="test_scan_failure_route_is_only_operational_and_internal[TOOL_FAILED-wt_thermompnn]" time="0.000" /><testcase classname="tests.test_n17_continuation" name="test_scan_failure_route_is_only_operational_and_internal[TIMEOUT-wt_foldx]" time="0.000" /><testcase classname="tests.test_n17_continuation" name="test_scan_failure_route_is_only_operational_and_internal[TIMEOUT-wt_thermompnn]" time="0.000" /><testcase classname="tests.test_n17_continuation" name="test_scan_failure_route_is_only_operational_and_internal[ASSET_MISSING-wt_foldx]" time="0.000" /><testcase classname="tests.test_n17_continuation" name="test_scan_failure_route_is_only_operational_and_internal[ASSET_MISSING-wt_thermompnn]" time="0.000" /><testcase classname="tests.test_n17_continuation" name="test_partial_scan_keeps_successful_engine_and_final_report[failed-TOOL_FAILED-foldx]" time="1.186" /><testcase classname="tests.test_n17_continuation" name="test_partial_scan_keeps_successful_engine_and_final_report[failed-TOOL_FAILED-thermompnn]" time="1.105" /><testcase classname="tests.test_n17_continuation" name="test_partial_scan_keeps_successful_engine_and_final_report[timed_out-TIMEOUT-foldx]" time="1.175" /><testcase classname="tests.test_n17_continuation" name="test_partial_scan_keeps_successful_engine_and_final_report[timed_out-TIMEOUT-thermompnn]" time="1.299" /><testcase classname="tests.test_n17_continuation" name="test_multichain_skip_is_verified_not_fabricated_failure" time="0.857" /><testcase classname="tests.test_n17_continuation" name="test_partial_delivery_never_bypasses_identity_or_stop_guards[unconfirmed_stop]" time="0.894" /><testcase classname="tests.test_n17_continuation" name="test_partial_delivery_never_bypasses_identity_or_stop_guards[cross_run]" time="0.890" /><testcase classname="tests.test_n17_continuation" name="test_partial_delivery_never_bypasses_identity_or_stop_guards[foreign_source]" time="0.913" /><testcase classname="tests.test_n17_continuation" name="test_partial_delivery_never_bypasses_identity_or_stop_guards[cancel]" time="0.837" /><testcase classname="tests.test_n17_continuation" name="test_partial_delivery_never_bypasses_identity_or_stop_guards[integrity]" time="0.882" /><testcase classname="tests.test_n17_continuation" name="test_partial_delivery_never_bypasses_identity_or_stop_guards[scope]" time="0.872" /><testcase classname="tests.test_n17_continuation" name="test_partial_delivery_never_bypasses_identity_or_stop_guards[false_results]" time="0.862" /><testcase classname="tests.test_n17_continuation" name="test_scan_budget_preserves_report_time[120-True-60]" time="0.386"><failure message="t01_phase1_real.common.RuntimeFault: Backend evidence mode requires fresh inputs and excludes supplied masks">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000021EE2ACF050&gt;
+remaining = 120, submitted = True, budget = 60
+
+    @pytest.mark.parametrize('remaining,submitted,budget',[(120,True,60),(60,False,None),(20,False,None)])
+    def test_scan_budget_preserves_report_time(monkeypatch,remaining,submitted,budget):
+        from contextlib import nullcontext
+        from test_m1_service_p4 import RecordedInputs
+        from t01_phase1_real.development.workflow import confirmation,m1 as route
+        class Controller(RecordedInputs):
+            def __init__(self):
+                super().__init__();self.ex={'nodes':copy.deepcopy(self.rows)}
+                self.ex['nodes']['wt_foldx']={'state':'ready'}
+                self.parent=dict(job_id='parent',run_id='run',state='running',stop_reason=None,request_artifact={})
+                self.body['engineering_design']=engineering.MODE
+            def _tx(self):return nullcontext(None)
+            def _job(self,*a):return self.parent
+            def _execution(self,*a):return self.ex
+            def _input(self,*a):return encode(self.body)
+            def _request_bytes(self,j):return encode(self.jobs[j['job_id']]['request'])
+            def _stage(self,db,run,raw,tool):self.staged=decode(raw);return {}
+            def _admit(self,*a):pass
+            def _new_job(self,*a):return {'job_id':'child'}
+            def _execution_store(self,db,jid,ex):self.ex=ex
+            def _store(self,*a):pass
+        rt=Controller()
+        monkeypatch.setattr(engineering,'effective',lambda rt,b,rows:(b,None))
+        req,_=route.request_for(rt,rt.body,rt.rows,'wt_foldx')
+        monkeypatch.setattr(confirmation,'elapsed',lambda ex:rt.body['timeout_seconds']-remaining)
+&gt;       result=service._create_child(rt,'parent','wt_foldx',req)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_n17_continuation.py:143: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\t01_phase1_real\development\workflow\service.py:311: in _create_child
+    body=policy.request(rt._input(db,j['request_artifact'],j['run_id']))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\t01_phase1_real\development\workflow\policy.py:74: in request
+    ensure(b['engineering_design'] == MODE and b.get('m1_test') is None and not b['reuse_jobs'] and len(s) &lt;= 999,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = False, code = 'INVALID_REQUEST'
+message = 'Backend evidence mode requires fresh inputs and excludes supplied masks'
+
+    def ensure(value, code, message):
+        if not value:
+&gt;           raise RuntimeFault(code,message)
+E           t01_phase1_real.common.RuntimeFault: Backend evidence mode requires fresh inputs and excludes supplied masks
+
+src\t01_phase1_real\common.py:30: RuntimeFault</failure></testcase><testcase classname="tests.test_n17_continuation" name="test_scan_budget_preserves_report_time[60-False-None]" time="0.431"><failure message="t01_phase1_real.common.RuntimeFault: Backend evidence mode requires fresh inputs and excludes supplied masks">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000021EE2ACEE50&gt;
+remaining = 60, submitted = False, budget = None
+
+    @pytest.mark.parametrize('remaining,submitted,budget',[(120,True,60),(60,False,None),(20,False,None)])
+    def test_scan_budget_preserves_report_time(monkeypatch,remaining,submitted,budget):
+        from contextlib import nullcontext
+        from test_m1_service_p4 import RecordedInputs
+        from t01_phase1_real.development.workflow import confirmation,m1 as route
+        class Controller(RecordedInputs):
+            def __init__(self):
+                super().__init__();self.ex={'nodes':copy.deepcopy(self.rows)}
+                self.ex['nodes']['wt_foldx']={'state':'ready'}
+                self.parent=dict(job_id='parent',run_id='run',state='running',stop_reason=None,request_artifact={})
+                self.body['engineering_design']=engineering.MODE
+            def _tx(self):return nullcontext(None)
+            def _job(self,*a):return self.parent
+            def _execution(self,*a):return self.ex
+            def _input(self,*a):return encode(self.body)
+            def _request_bytes(self,j):return encode(self.jobs[j['job_id']]['request'])
+            def _stage(self,db,run,raw,tool):self.staged=decode(raw);return {}
+            def _admit(self,*a):pass
+            def _new_job(self,*a):return {'job_id':'child'}
+            def _execution_store(self,db,jid,ex):self.ex=ex
+            def _store(self,*a):pass
+        rt=Controller()
+        monkeypatch.setattr(engineering,'effective',lambda rt,b,rows:(b,None))
+        req,_=route.request_for(rt,rt.body,rt.rows,'wt_foldx')
+        monkeypatch.setattr(confirmation,'elapsed',lambda ex:rt.body['timeout_seconds']-remaining)
+&gt;       result=service._create_child(rt,'parent','wt_foldx',req)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_n17_continuation.py:143: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\t01_phase1_real\development\workflow\service.py:311: in _create_child
+    body=policy.request(rt._input(db,j['request_artifact'],j['run_id']))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\t01_phase1_real\development\workflow\policy.py:74: in request
+    ensure(b['engineering_design'] == MODE and b.get('m1_test') is None and not b['reuse_jobs'] and len(s) &lt;= 999,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = False, code = 'INVALID_REQUEST'
+message = 'Backend evidence mode requires fresh inputs and excludes supplied masks'
+
+    def ensure(value, code, message):
+        if not value:
+&gt;           raise RuntimeFault(code,message)
+E           t01_phase1_real.common.RuntimeFault: Backend evidence mode requires fresh inputs and excludes supplied masks
+
+src\t01_phase1_real\common.py:30: RuntimeFault</failure></testcase><testcase classname="tests.test_n17_continuation" name="test_scan_budget_preserves_report_time[20-False-None]" time="0.453"><failure message="t01_phase1_real.common.RuntimeFault: Backend evidence mode requires fresh inputs and excludes supplied masks">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000021EE1565B10&gt;
+remaining = 20, submitted = False, budget = None
+
+    @pytest.mark.parametrize('remaining,submitted,budget',[(120,True,60),(60,False,None),(20,False,None)])
+    def test_scan_budget_preserves_report_time(monkeypatch,remaining,submitted,budget):
+        from contextlib import nullcontext
+        from test_m1_service_p4 import RecordedInputs
+        from t01_phase1_real.development.workflow import confirmation,m1 as route
+        class Controller(RecordedInputs):
+            def __init__(self):
+                super().__init__();self.ex={'nodes':copy.deepcopy(self.rows)}
+                self.ex['nodes']['wt_foldx']={'state':'ready'}
+                self.parent=dict(job_id='parent',run_id='run',state='running',stop_reason=None,request_artifact={})
+                self.body['engineering_design']=engineering.MODE
+            def _tx(self):return nullcontext(None)
+            def _job(self,*a):return self.parent
+            def _execution(self,*a):return self.ex
+            def _input(self,*a):return encode(self.body)
+            def _request_bytes(self,j):return encode(self.jobs[j['job_id']]['request'])
+            def _stage(self,db,run,raw,tool):self.staged=decode(raw);return {}
+            def _admit(self,*a):pass
+            def _new_job(self,*a):return {'job_id':'child'}
+            def _execution_store(self,db,jid,ex):self.ex=ex
+            def _store(self,*a):pass
+        rt=Controller()
+        monkeypatch.setattr(engineering,'effective',lambda rt,b,rows:(b,None))
+        req,_=route.request_for(rt,rt.body,rt.rows,'wt_foldx')
+        monkeypatch.setattr(confirmation,'elapsed',lambda ex:rt.body['timeout_seconds']-remaining)
+&gt;       result=service._create_child(rt,'parent','wt_foldx',req)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_n17_continuation.py:143: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\t01_phase1_real\development\workflow\service.py:311: in _create_child
+    body=policy.request(rt._input(db,j['request_artifact'],j['run_id']))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\t01_phase1_real\development\workflow\policy.py:74: in request
+    ensure(b['engineering_design'] == MODE and b.get('m1_test') is None and not b['reuse_jobs'] and len(s) &lt;= 999,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = False, code = 'INVALID_REQUEST'
+message = 'Backend evidence mode requires fresh inputs and excludes supplied masks'
+
+    def ensure(value, code, message):
+        if not value:
+&gt;           raise RuntimeFault(code,message)
+E           t01_phase1_real.common.RuntimeFault: Backend evidence mode requires fresh inputs and excludes supplied masks
+
+src\t01_phase1_real\common.py:30: RuntimeFault</failure></testcase></testsuite></testsuites>

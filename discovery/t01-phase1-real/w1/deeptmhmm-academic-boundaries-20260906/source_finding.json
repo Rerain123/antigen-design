@@ -1,0 +1,50 @@
+{
+  "finding": {
+    "id": "B2-E01",
+    "kind": "ORIGINAL_TOKENIZER_SILENT_UNKNOWN_SUBSTITUTION",
+    "input": "ACDEFGHIK*",
+    "original_exit_code": 0,
+    "unknown_token_id": 3,
+    "unknown_decoded_token": "<unk>",
+    "impact": "Original package does not enforce project input domain. Keep INVALID_SEQUENCE_SYMBOL preflight and exact token reconstruction guard.",
+    "production_input_domain_expanded": false
+  },
+  "predeclared_expectation": "EXPECT_EXECUTION_FAILURE",
+  "expectation_status": "NOT_MET",
+  "original_plan": {
+    "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/plan.json",
+    "sha256": "64a57451c0ee0ce3b1fa7a74fafcf9458cc15544715a33969e7488c7595ff156",
+    "size_bytes": 16986
+  },
+  "original_execution": {
+    "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/invalid-symbol/execution.json",
+    "sha256": "747e796ba2c9453875ed502a239b55b35e68bbad521bddc06442c907ed519906",
+    "size_bytes": 4325
+  },
+  "original_token_trace": {
+    "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/invalid-symbol/output/token_trace.jsonl",
+    "sha256": "ff07be92e637859ad0ef26e7211076a3698a29fcaa0f8d6714aa950236f8fbc1",
+    "size_bytes": 816
+  },
+  "first_assessment_failure": {
+    "path": "discovery/t01-phase1-real/w1/b2-boundaries-maintenance-20260906/first-assessment-failure.json",
+    "sha256": "e5af5059741297cf3d6ec50d08cac04560621d834b4008b3343361cde76759dd",
+    "size_bytes": 662
+  },
+  "initial_checker": {
+    "path": "discovery/t01-phase1-real/w1/b2-boundaries-maintenance-20260906/check_b2_boundaries.before_finding.py",
+    "sha256": "7f19a153222bf39a17dcc358237ec6315535c88cb864c9fe19e5ee8559a221c9",
+    "size_bytes": 11825
+  },
+  "existing_input_guard": {
+    "path": "scripts/b2_review_contract.py",
+    "sha256": "8f6ae95f451a940b630c898ce0a4b274b214a690baefb11fc10967a72de66f50",
+    "size_bytes": 11558
+  },
+  "current_post_execution_guard": {
+    "path": "scripts/b2_boundary_evidence.py",
+    "sha256": "c0b27b7ec6250a0e10a4c4a21d4243080adc890f22dfed517a386a400c2e7847",
+    "size_bytes": 7839
+  },
+  "resolution": "Retain original unmet expectation; report source behavior separately. Existing project INVALID_SEQUENCE_SYMBOL preflight and exact token reconstruction both reject this input/output; no scientific alphabet extension."
+}

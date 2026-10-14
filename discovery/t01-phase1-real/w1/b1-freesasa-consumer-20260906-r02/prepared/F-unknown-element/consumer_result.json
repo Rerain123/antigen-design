@@ -1,0 +1,128 @@
+{
+  "scope": "B1_FREESASA_CONSUMER_PREPARATION",
+  "binding": {
+    "b1_binding": {
+      "run_id": "t01p1r-run-b1-sasa-F-unknown-element",
+      "request_id": "b1-sasa-F-unknown-element",
+      "job_id": "t01p1r-job-b1-facts-e592fd94d8f84cdf9b1a4c464d632820",
+      "attempt_id": "t01p1r-attempt-b1-facts-e592fd94d8f84cdf9b1a4c464d632820",
+      "request_sha256": "395125c788513fa01eb20974ed790a44652db6c23bc8dac32debf98c308e572a",
+      "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+      "structure_sha256": "ddfd9ab262ac56d428edadb98c5662354d49e90bc32af069bea8e92f6ae033d7"
+    },
+    "b1_result_sha256": "db332e35405c4296a8c7710e7d280025b4016eaf51ce8eb7db7c679aa9094aee",
+    "b1_structure_artifact": {
+      "artifact_id": "t01p1r-artifact-b1-sasa-F-unknown-element",
+      "run_id": "t01p1r-run-b1-sasa-F-unknown-element",
+      "job_id": null,
+      "attempt_id": null,
+      "role": "input",
+      "media_type": "chemical/x-cif",
+      "sha256": "ddfd9ab262ac56d428edadb98c5662354d49e90bc32af069bea8e92f6ae033d7",
+      "size_bytes": 1181,
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    "b1_fact_artifacts": {
+      "preflight": {
+        "artifact_id": "t01p1r-artifact-b1-preflight-e592fd94d8f84cdf9b1a4c464d632820",
+        "run_id": "t01p1r-run-b1-sasa-F-unknown-element",
+        "job_id": "t01p1r-job-b1-facts-e592fd94d8f84cdf9b1a4c464d632820",
+        "attempt_id": "t01p1r-attempt-b1-facts-e592fd94d8f84cdf9b1a4c464d632820",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "8548dca995a4698d75d02492cf782f69e093da883d7d792d994976152085c3e4",
+        "size_bytes": 1721,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      },
+      "raw_metadata": {
+        "artifact_id": "t01p1r-artifact-b1-raw-metadata-e592fd94d8f84cdf9b1a4c464d632820",
+        "run_id": "t01p1r-run-b1-sasa-F-unknown-element",
+        "job_id": "t01p1r-job-b1-facts-e592fd94d8f84cdf9b1a4c464d632820",
+        "attempt_id": "t01p1r-attempt-b1-facts-e592fd94d8f84cdf9b1a4c464d632820",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "cfcbbc1f3cc9ebab7eb954e38b28911eef2e2fff8814d4a85346bf3355778473",
+        "size_bytes": 1643,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      },
+      "raw_addresses": {
+        "artifact_id": "t01p1r-artifact-b1-raw-addresses-e592fd94d8f84cdf9b1a4c464d632820",
+        "run_id": "t01p1r-run-b1-sasa-F-unknown-element",
+        "job_id": "t01p1r-job-b1-facts-e592fd94d8f84cdf9b1a4c464d632820",
+        "attempt_id": "t01p1r-attempt-b1-facts-e592fd94d8f84cdf9b1a4c464d632820",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "f1c668feb2cec298a93b7b3882dee1d8ce7931f4bfe6f1d1fcbc8049c65953a7",
+        "size_bytes": 100539,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      }
+    },
+    "consumer_selection_sha256": "5d71d87695e9cd7a952677d7657013a0f9090d951f61eb3099d4df8ebd9fca90",
+    "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+  },
+  "route": "native_atoms",
+  "status": "REJECTED_BEFORE_TOOL",
+  "error_code": "ELEMENT_UNAVAILABLE",
+  "error": "Missing or unsupported explicit element; no element guessing",
+  "error_details": {
+    "raw_row_index": 1,
+    "raw_residue_id": "raw-residue-1",
+    "raw_address": {
+      "auth_asym_id": [
+        "A",
+        null
+      ],
+      "auth_seq_id": [
+        "42",
+        null
+      ],
+      "pdbx_PDB_ins_code": [
+        null,
+        "not_applicable"
+      ],
+      "label_asym_id": [
+        "LABEL_A",
+        null
+      ],
+      "label_seq_id": [
+        "1",
+        null
+      ],
+      "label_entity_id": [
+        "1",
+        null
+      ],
+      "label_comp_id": [
+        "ALA",
+        null
+      ],
+      "auth_comp_id": [
+        "ALA",
+        null
+      ],
+      "group_PDB": [
+        "ATOM",
+        null
+      ]
+    },
+    "element": {
+      "value": null,
+      "raw_value": "?",
+      "missing": "unknown",
+      "style": "bare",
+      "location": {
+        "start": 505,
+        "end": 506,
+        "line": 24,
+        "column": 8
+      },
+      "source_field": "_atom_site.type_symbol"
+    }
+  },
+  "preparation_sha256": null,
+  "scientific_approval": null,
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED",
+  "tool_invoked": false,
+  "calculation_started": false
+}

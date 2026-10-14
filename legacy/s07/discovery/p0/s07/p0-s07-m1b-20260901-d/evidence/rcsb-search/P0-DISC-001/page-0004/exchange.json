@@ -1,0 +1,49 @@
+{
+  "exchange_id": "p0-s07-m1b-20260901-d--P0-DISC-001--rcsb-search-page-0004",
+  "classification": "discovery_evidence",
+  "production_deployment_status": "NOT_DEPLOYED",
+  "started_at": "2026-09-01T09:37:33.415991Z",
+  "finished_at": "2026-09-01T09:37:36.440645Z",
+  "request": {
+    "method": "POST",
+    "url": "https://search.rcsb.org/rcsbsearch/v2/query",
+    "headers": {
+      "accept": "application/json",
+      "content_type": "application/json",
+      "user_agent": "T01-S07-Discovery/0.1 (non-production evidence capture)"
+    },
+    "body_file": "request.body.json",
+    "body_sha256": "6401d61cc8473c79c0b22b881eedec32af253c494be779712b6fd70ea44eeaa7",
+    "timeout_seconds": 90,
+    "connection_override": null,
+    "ssl_revoke_best_effort": true
+  },
+  "response": {
+    "body_file": "response.json",
+    "body_size_bytes": 87318,
+    "body_sha256": "eeb4dd9569b048ce3b9636f4659c92d1c32159929789b7aa60b8d5c9214cb680",
+    "headers_file": "response.headers.txt",
+    "headers_sha256": "e220c85613b1156dd214fdc999526ddd1a2461ef1e830f4d9c5dd062b363b9c4"
+  },
+  "curl": {
+    "executable": "curl.exe",
+    "exit_code": 0,
+    "metrics": {
+      "http_code": 200,
+      "response_code": 200,
+      "exitcode": 0,
+      "content_type": "application/json",
+      "remote_ip": "132.249.213.19",
+      "remote_port": 443,
+      "http_version": "1.1",
+      "method": "POST",
+      "num_redirects": 0,
+      "size_download": 87318.0,
+      "size_upload": 655.0,
+      "time_total": 3.008111,
+      "ssl_verify_result": 0
+    },
+    "stderr_file": "curl.stderr.txt",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

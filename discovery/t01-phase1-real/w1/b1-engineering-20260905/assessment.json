@@ -1,0 +1,1169 @@
+{
+  "status": "PASS",
+  "planned_sha256": "72a7e524dd2d3e4813581d578387ea919ed4fbcaba06b396946e30ae2f5e2f8d",
+  "cases": [
+    {
+      "id": "E-real-1ubq",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-real-1ubq.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-real-1ubq.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-real-1ubq"
+      ],
+      "started_at": "2026-09-05T16:21:33.468705+00:00",
+      "finished_at": "2026-09-05T16:21:34.278992+00:00",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "recorded",
+        "reparsed": true,
+        "atom_count": 660,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-real-5xzc",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-real-5xzc.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-real-5xzc.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-real-5xzc"
+      ],
+      "started_at": "2026-09-05T16:21:34.475133+00:00",
+      "finished_at": "2026-09-05T16:21:36.184478+00:00",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "recorded",
+        "reparsed": true,
+        "atom_count": 1547,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-pdb-icode",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-pdb-icode.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-pdb-icode.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-pdb-icode"
+      ],
+      "started_at": "2026-09-05T16:21:37.018295+00:00",
+      "finished_at": "2026-09-05T16:21:37.440532+00:00",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "recorded",
+        "reparsed": true,
+        "atom_count": 8,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-format-cif-as-pdb",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-format-cif-as-pdb.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-format-cif-as-pdb.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-format-cif-as-pdb"
+      ],
+      "started_at": "2026-09-05T16:21:37.455413+00:00",
+      "finished_at": "2026-09-05T16:21:37.851322+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"FORMAT_MISMATCH\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 1,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-format-pdb-as-cif",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-format-pdb-as-cif.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-format-pdb-as-cif.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-format-pdb-as-cif"
+      ],
+      "started_at": "2026-09-05T16:21:37.854426+00:00",
+      "finished_at": "2026-09-05T16:21:38.259144+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"FORMAT_MISMATCH\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 8,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-zip",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-zip.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-zip.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-zip"
+      ],
+      "started_at": "2026-09-05T16:21:38.262210+00:00",
+      "finished_at": "2026-09-05T16:21:38.675260+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"INPUT_UNSUPPORTED\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 0,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-url",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-url.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-url.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-url"
+      ],
+      "started_at": "2026-09-05T16:21:38.677849+00:00",
+      "finished_at": "2026-09-05T16:21:39.078600+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"INPUT_UNSUPPORTED\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 0,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-empty",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-empty.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-empty.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-empty"
+      ],
+      "started_at": "2026-09-05T16:21:39.080948+00:00",
+      "finished_at": "2026-09-05T16:21:39.474198+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"PARSE_FAILED\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 0,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-broken-loop",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-broken-loop.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-broken-loop.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-broken-loop"
+      ],
+      "started_at": "2026-09-05T16:21:39.477207+00:00",
+      "finished_at": "2026-09-05T16:21:39.853560+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"PARSE_FAILED\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 0,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-duplicate-tag",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-duplicate-tag.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-duplicate-tag.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-duplicate-tag"
+      ],
+      "started_at": "2026-09-05T16:21:39.856086+00:00",
+      "finished_at": "2026-09-05T16:21:40.257667+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"PARSE_FAILED\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 0,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-multiple-blocks",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-multiple-blocks.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-multiple-blocks.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-multiple-blocks"
+      ],
+      "started_at": "2026-09-05T16:21:40.259676+00:00",
+      "finished_at": "2026-09-05T16:21:40.657371+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"INPUT_UNSUPPORTED\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 0,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-invalid-coordinate",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-invalid-coordinate.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-invalid-coordinate.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-invalid-coordinate"
+      ],
+      "started_at": "2026-09-05T16:21:40.660386+00:00",
+      "finished_at": "2026-09-05T16:21:41.035118+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"PARSE_FAILED\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 1,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-nan-coordinate",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-nan-coordinate.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-nan-coordinate.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-nan-coordinate"
+      ],
+      "started_at": "2026-09-05T16:21:41.038311+00:00",
+      "finished_at": "2026-09-05T16:21:41.442414+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"PARSE_FAILED\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 1,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-numeric-uncertainty",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-numeric-uncertainty.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-numeric-uncertainty.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-numeric-uncertainty"
+      ],
+      "started_at": "2026-09-05T16:21:41.445931+00:00",
+      "finished_at": "2026-09-05T16:21:41.874756+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"INPUT_UNSUPPORTED\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 1,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-missing-chain",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-missing-chain.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-missing-chain.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-missing-chain"
+      ],
+      "started_at": "2026-09-05T16:21:41.877763+00:00",
+      "finished_at": "2026-09-05T16:21:42.282266+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"SELECTION_NOT_FOUND\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 1,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-label-is-not-author-selector",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-label-is-not-author-selector.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-label-is-not-author-selector.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-label-is-not-author-selector"
+      ],
+      "started_at": "2026-09-05T16:21:42.285347+00:00",
+      "finished_at": "2026-09-05T16:21:42.661065+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"SELECTION_NOT_FOUND\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 1,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-missing-model",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-missing-model.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-missing-model.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-missing-model"
+      ],
+      "started_at": "2026-09-05T16:21:42.665217+00:00",
+      "finished_at": "2026-09-05T16:21:43.055575+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"SELECTION_NOT_FOUND\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 1,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-model-required",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-model-required.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-model-required.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-model-required"
+      ],
+      "started_at": "2026-09-05T16:21:43.059039+00:00",
+      "finished_at": "2026-09-05T16:21:43.483671+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"SELECTION_REQUIRED\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 2,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-model-selected",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-model-selected.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-model-selected.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-model-selected"
+      ],
+      "started_at": "2026-09-05T16:21:43.487182+00:00",
+      "finished_at": "2026-09-05T16:21:43.879893+00:00",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "recorded",
+        "reparsed": true,
+        "atom_count": 2,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-auto-context",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-auto-context.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-auto-context.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-auto-context"
+      ],
+      "started_at": "2026-09-05T16:21:43.884403+00:00",
+      "finished_at": "2026-09-05T16:21:44.314337+00:00",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "recorded",
+        "reparsed": true,
+        "atom_count": 4,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-nonprotein-chain",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-nonprotein-chain.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-nonprotein-chain.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-nonprotein-chain"
+      ],
+      "started_at": "2026-09-05T16:21:44.318498+00:00",
+      "finished_at": "2026-09-05T16:21:44.714362+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"SELECTION_NOT_PROTEIN\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 4,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-no-protein",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-no-protein.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-no-protein.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-no-protein"
+      ],
+      "started_at": "2026-09-05T16:21:44.717840+00:00",
+      "finished_at": "2026-09-05T16:21:45.091997+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"SELECTION_NOT_PROTEIN\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 1,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-character-versus-icode",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-character-versus-icode.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-character-versus-icode.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-character-versus-icode"
+      ],
+      "started_at": "2026-09-05T16:21:45.095454+00:00",
+      "finished_at": "2026-09-05T16:21:45.507930+00:00",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "recorded",
+        "reparsed": true,
+        "atom_count": 2,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-author-long-chain",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-author-long-chain.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-author-long-chain.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-author-long-chain"
+      ],
+      "started_at": "2026-09-05T16:21:45.510950+00:00",
+      "finished_at": "2026-09-05T16:21:45.932199+00:00",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "recorded",
+        "reparsed": true,
+        "atom_count": 1,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-author-negative",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-author-negative.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-author-negative.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-author-negative"
+      ],
+      "started_at": "2026-09-05T16:21:45.936235+00:00",
+      "finished_at": "2026-09-05T16:21:46.334854+00:00",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "recorded",
+        "reparsed": true,
+        "atom_count": 1,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-author-leading-zero",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-author-leading-zero.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-author-leading-zero.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-author-leading-zero"
+      ],
+      "started_at": "2026-09-05T16:21:46.337880+00:00",
+      "finished_at": "2026-09-05T16:21:46.732754+00:00",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "recorded",
+        "reparsed": true,
+        "atom_count": 2,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-missing-author",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-missing-author.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-missing-author.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-missing-author"
+      ],
+      "started_at": "2026-09-05T16:21:46.736862+00:00",
+      "finished_at": "2026-09-05T16:21:47.155732+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"INPUT_UNSUPPORTED\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 1,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-quoted-question-author",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-quoted-question-author.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-quoted-question-author.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-quoted-question-author"
+      ],
+      "started_at": "2026-09-05T16:21:47.158368+00:00",
+      "finished_at": "2026-09-05T16:21:47.557112+00:00",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "recorded",
+        "reparsed": true,
+        "atom_count": 1,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-unknown-icode",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-unknown-icode.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-unknown-icode.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-unknown-icode"
+      ],
+      "started_at": "2026-09-05T16:21:47.560367+00:00",
+      "finished_at": "2026-09-05T16:21:47.967955+00:00",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "recorded",
+        "reparsed": true,
+        "atom_count": 1,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-literal-dot-icode",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-literal-dot-icode.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-literal-dot-icode.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-literal-dot-icode"
+      ],
+      "started_at": "2026-09-05T16:21:47.970953+00:00",
+      "finished_at": "2026-09-05T16:21:48.373510+00:00",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "recorded",
+        "reparsed": true,
+        "atom_count": 1,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-long-icode",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-long-icode.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-long-icode.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-long-icode"
+      ],
+      "started_at": "2026-09-05T16:21:48.376959+00:00",
+      "finished_at": "2026-09-05T16:21:48.768296+00:00",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "recorded",
+        "reparsed": true,
+        "atom_count": 1,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-projection-collision",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-projection-collision.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-projection-collision.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-projection-collision"
+      ],
+      "started_at": "2026-09-05T16:21:48.771304+00:00",
+      "finished_at": "2026-09-05T16:21:49.146279+00:00",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "recorded",
+        "reparsed": true,
+        "atom_count": 2,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-duplicate-atom",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-duplicate-atom.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-duplicate-atom.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-duplicate-atom"
+      ],
+      "started_at": "2026-09-05T16:21:49.149791+00:00",
+      "finished_at": "2026-09-05T16:21:49.554688+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"PARSE_FAILED\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 2,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-cif-metadata-conflicts",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-cif-metadata-conflicts.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-cif-metadata-conflicts.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-cif-metadata-conflicts"
+      ],
+      "started_at": "2026-09-05T16:21:49.558693+00:00",
+      "finished_at": "2026-09-05T16:21:49.956266+00:00",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "recorded",
+        "reparsed": true,
+        "atom_count": 1,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-pdb-metadata-conflicts",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-pdb-metadata-conflicts.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-pdb-metadata-conflicts.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-pdb-metadata-conflicts"
+      ],
+      "started_at": "2026-09-05T16:21:49.960267+00:00",
+      "finished_at": "2026-09-05T16:21:50.356257+00:00",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "recorded",
+        "reparsed": true,
+        "atom_count": 8,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-pdb-model-unclosed",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-pdb-model-unclosed.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-pdb-model-unclosed.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-pdb-model-unclosed"
+      ],
+      "started_at": "2026-09-05T16:21:50.360332+00:00",
+      "finished_at": "2026-09-05T16:21:50.759674+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"PARSE_FAILED\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 8,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-pdb-truncated",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-pdb-truncated.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-pdb-truncated.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-pdb-truncated"
+      ],
+      "started_at": "2026-09-05T16:21:50.764493+00:00",
+      "finished_at": "2026-09-05T16:21:51.186780+00:00",
+      "exit_code": 1,
+      "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"PARSE_FAILED\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "rejected",
+        "reparsed": true,
+        "atom_count": 1,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-bom-crlf",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-bom-crlf.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-bom-crlf.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-bom-crlf"
+      ],
+      "started_at": "2026-09-05T16:21:51.189791+00:00",
+      "finished_at": "2026-09-05T16:21:51.594580+00:00",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "recorded",
+        "reparsed": true,
+        "atom_count": 1,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-altloc-retained",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-altloc-retained.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-altloc-retained.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-altloc-retained"
+      ],
+      "started_at": "2026-09-05T16:21:51.597812+00:00",
+      "finished_at": "2026-09-05T16:21:52.006865+00:00",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "recorded",
+        "reparsed": true,
+        "atom_count": 2,
+        "usable_for_pipeline": false
+      }
+    },
+    {
+      "id": "E-nonstandard-retained",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+        "record",
+        "--structure",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-nonstandard-retained.structure",
+        "--request",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\inputs\\E-nonstandard-retained.request.json",
+        "--output-dir",
+        "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-engineering-20260905\\results\\E-nonstandard-retained"
+      ],
+      "started_at": "2026-09-05T16:21:52.009864+00:00",
+      "finished_at": "2026-09-05T16:21:52.434441+00:00",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": "",
+      "status": "PASS",
+      "verification": {
+        "status": "PASS",
+        "outcome": "recorded",
+        "reparsed": true,
+        "atom_count": 1,
+        "usable_for_pipeline": false
+      }
+    }
+  ],
+  "scientific_acceptance": "NOT_RUN",
+  "mapping_approval": "NOT_GRANTED",
+  "production_status": "NOT_DEPLOYED"
+}

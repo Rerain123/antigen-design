@@ -1,0 +1,67 @@
+[
+    {
+        "Id": "sha256:7f85781fadf8c89ddbafced691d05006caf6881b06aa5b9bae4bd531393bcd72",
+        "RepoTags": [
+            "t01-deeptmhmm-academic:1.0-cpu-20260905"
+        ],
+        "RepoDigests": [
+            "t01-deeptmhmm-academic@sha256:7f85781fadf8c89ddbafced691d05006caf6881b06aa5b9bae4bd531393bcd72"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-09-05T09:55:02.494303888Z",
+        "Config": {
+            "Env": [
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "GPG_KEY=E3FF2839C048B25C084DEBE9B26995E310250568",
+                "PYTHON_VERSION=3.8.20",
+                "PIP_DISABLE_PIP_VERSION_CHECK=1",
+                "PIP_NO_CACHE_DIR=1",
+                "MPLBACKEND=Agg",
+                "MPLCONFIGDIR=/tmp/matplotlib",
+                "PYTHONDONTWRITEBYTECODE=1",
+                "HOME=/tmp"
+            ],
+            "Cmd": [
+                "python3"
+            ],
+            "WorkingDir": "/app",
+            "ArgsEscaped": true
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 742708780,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:8d853c8add5d1e7b0aafc4b68a3d9fb8e7a0da27970c2acf831fe63be4a0cd2c",
+                "sha256:c3772b569c3aabd505e4912b639df012470be249526cc4be60f85fe088845f8a",
+                "sha256:5d2d143f3d7f71a716eed0f9fc1581a5d946ebdc7a132390d16628dc4c14a65c",
+                "sha256:d2a2207b52a4685a5b9331277b784a49c325fa410b61f6c12f62a6b195a85806",
+                "sha256:88684ac5787d44dc71d6cdf2014bc4c92e922ed6d6825da9ea8437225cb7ed34",
+                "sha256:9474086ea08c9d92bee2728e705acf62391fd3463667a45bddbf21a563708f41",
+                "sha256:4cfcea727fff5607807297ca1551eb851ae0bdab06e9c2f8da78e505e640effc",
+                "sha256:a560efd1284872386ffcec06cee6426319068c92d48d368831f8ff7da3d4913d",
+                "sha256:896af547a4361ddf1a8d14d9d2080af394bf2efcdf4b916692bce6be9e8df627",
+                "sha256:a3697c2beec20f768f0e973889124259346909857ba2904766ae19e4c792e52c",
+                "sha256:21b294cc6bcf3a32a90fab846b890ecd7d09b97a712b9b411b317d99098f87ce"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-09-05T09:55:26.585269698Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:7f85781fadf8c89ddbafced691d05006caf6881b06aa5b9bae4bd531393bcd72",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "rz2127sikveqxvj9oxj8qi2ol",
+                    "CreatedAt": "2026-09-05T09:55:35.784625357Z"
+                }
+            ]
+        }
+    }
+]

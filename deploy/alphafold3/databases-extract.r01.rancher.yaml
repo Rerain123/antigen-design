@@ -1,0 +1,304 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-af3-databases-extract-r01
+  namespace: him-ws
+immutable: true
+data:
+  extract_af3_databases.py: "\"\"\"Safely extract the pinned AF3 v3.0 database archives.\n\
+    \nThe source archives stay in place.  Extraction is streamed through the system\n\
+    libzstd (no network and no temporary full archive copy), every compressed source\n\
+    is hashed again against its verified receipt, and the final directory is\npublished\
+    \ only after all files have a manifest.  A failed run leaves its\n``*.partial``\
+    \ staging directory for inspection and never retries or overwrites\nan existing\
+    \ published directory.\n\"\"\"\nfrom __future__ import annotations\n\nimport argparse\n\
+    import ctypes\nimport ctypes.util\nimport hashlib\nimport io\nimport json\nimport\
+    \ os\nfrom pathlib import Path, PurePosixPath\nimport shutil\nimport stat\nimport\
+    \ tarfile\nfrom typing import BinaryIO\n\n\nREQUIRED_SOURCE_STATUS = \"DATABASE_ARCHIVES_VERIFIED_NOT_DEPLOYED\"\
+    \nREQUIRED_ARCHIVE_STATUS = \"ARCHIVE_VERIFIED_NOT_DEPLOYED\"\nREQUIRED_OUTPUT_STATUS\
+    \ = \"AF3_DATABASES_EXTRACTED_VERIFIED_NOT_DEPLOYED\"\nRESERVE_BYTES = 64 * 1024**3\n\
+    EXPANDED_ESTIMATE_BYTES = 630_000_000_000\nREAD_SIZE = 8 * 1024 * 1024\n\n\nclass\
+    \ ZSTDInBuffer(ctypes.Structure):\n    _fields_ = [(\"src\", ctypes.c_void_p),\
+    \ (\"size\", ctypes.c_size_t), (\"pos\", ctypes.c_size_t)]\n\n\nclass ZSTDOutBuffer(ctypes.Structure):\n\
+    \    _fields_ = [(\"dst\", ctypes.c_void_p), (\"size\", ctypes.c_size_t), (\"\
+    pos\", ctypes.c_size_t)]\n\n\ndef _load_zstd():\n    name = ctypes.util.find_library(\"\
+    zstd\") or \"libzstd.so.1\"\n    library = ctypes.CDLL(name)\n    library.ZSTD_createDStream.restype\
+    \ = ctypes.c_void_p\n    library.ZSTD_freeDStream.argtypes = [ctypes.c_void_p]\n\
+    \    library.ZSTD_freeDStream.restype = ctypes.c_size_t\n    library.ZSTD_initDStream.argtypes\
+    \ = [ctypes.c_void_p]\n    library.ZSTD_initDStream.restype = ctypes.c_size_t\n\
+    \    library.ZSTD_decompressStream.argtypes = [ctypes.c_void_p, ctypes.POINTER(ZSTDOutBuffer),\
+    \ ctypes.POINTER(ZSTDInBuffer)]\n    library.ZSTD_decompressStream.restype = ctypes.c_size_t\n\
+    \    library.ZSTD_isError.argtypes = [ctypes.c_size_t]\n    library.ZSTD_isError.restype\
+    \ = ctypes.c_uint\n    library.ZSTD_getErrorName.argtypes = [ctypes.c_size_t]\n\
+    \    library.ZSTD_getErrorName.restype = ctypes.c_char_p\n    return library\n\
+    \n\nclass HashingFile:\n    def __init__(self, path: Path):\n        self.path\
+    \ = path\n        self.stream = path.open(\"rb\")\n        self.digest = hashlib.sha256()\n\
+    \        self.bytes = 0\n\n    def read(self, size: int = -1) -> bytes:\n    \
+    \    raw = self.stream.read(size)\n        self.digest.update(raw)\n        self.bytes\
+    \ += len(raw)\n        return raw\n\n    def close(self) -> None:\n        self.stream.close()\n\
+    \n\nclass ZstdReader(io.RawIOBase):\n    def __init__(self, source: HashingFile,\
+    \ library):\n        self.source = source\n        self.library = library\n  \
+    \      self.context = library.ZSTD_createDStream()\n        if not self.context:\n\
+    \            raise RuntimeError(\"libzstd could not create a decompression stream\"\
+    )\n        result = library.ZSTD_initDStream(self.context)\n        self._check(result)\n\
+    \        self.input = b\"\"\n        self.input_buffer = None\n        self.input_state\
+    \ = ZSTDInBuffer()\n        self.eof = False\n\n    def readable(self) -> bool:\n\
+    \        return True\n\n    def _check(self, result: int) -> None:\n        if\
+    \ self.library.ZSTD_isError(result):\n            message = self.library.ZSTD_getErrorName(result).decode(\"\
+    utf-8\", \"replace\")\n            raise ValueError(\"zstd decompression failed:\
+    \ \" + message)\n\n    def readinto(self, target) -> int:\n        if self.eof:\n\
+    \            return 0\n        output = (ctypes.c_ubyte * len(target))()\n   \
+    \     output_state = ZSTDOutBuffer(ctypes.cast(output, ctypes.c_void_p), len(target),\
+    \ 0)\n        while output_state.pos == 0 and not self.eof:\n            if self.input_state.pos\
+    \ >= self.input_state.size:\n                self.input = self.source.read(READ_SIZE)\n\
+    \                if self.input:\n                    self.input_buffer = ctypes.create_string_buffer(self.input)\n\
+    \                    self.input_state = ZSTDInBuffer(ctypes.cast(self.input_buffer,\
+    \ ctypes.c_void_p), len(self.input), 0)\n                else:\n             \
+    \       self.input_state = ZSTDInBuffer(None, 0, 0)\n            result = self.library.ZSTD_decompressStream(self.context,\
+    \ ctypes.byref(output_state), ctypes.byref(self.input_state))\n            self._check(result)\n\
+    \            if result == 0 and not self.input:\n                self.eof = True\n\
+    \            elif not self.input and self.input_state.pos >= self.input_state.size\
+    \ and output_state.pos == 0:\n                raise ValueError(\"zstd stream ended\
+    \ before a complete frame\")\n        size = int(output_state.pos)\n        if\
+    \ size:\n            target[:size] = bytes(output[:size])\n        return size\n\
+    \n    def close(self) -> None:\n        if getattr(self, \"context\", None):\n\
+    \            self.library.ZSTD_freeDStream(self.context)\n            self.context\
+    \ = None\n        super().close()\n\n\ndef read_json(path: Path) -> dict:\n  \
+    \  value = json.loads(path.read_bytes())\n    if not isinstance(value, dict):\n\
+    \        raise ValueError(f\"Expected JSON object: {path}\")\n    return value\n\
+    \n\ndef sha256_file(path: Path) -> str:\n    digest = hashlib.sha256()\n    with\
+    \ path.open(\"rb\") as stream:\n        for chunk in iter(lambda: stream.read(READ_SIZE),\
+    \ b\"\"):\n            digest.update(chunk)\n    return digest.hexdigest()\n\n\
+    \ndef safe_relative(name: str) -> PurePosixPath:\n    path = PurePosixPath(name)\n\
+    \    if not name or path.is_absolute() or \"..\" in path.parts or \"\\\\\" in\
+    \ name or path.as_posix() != name:\n        raise ValueError(\"Unsafe archive\
+    \ member path: \" + repr(name))\n    if any(part in (\"\", \".\") for part in\
+    \ path.parts):\n        raise ValueError(\"Non-canonical archive member path:\
+    \ \" + repr(name))\n    return path\n\n\ndef verify_source_manifest(archives:\
+    \ Path, manifest_path: Path) -> list[dict]:\n    manifest = read_json(manifest_path)\n\
+    \    if manifest.get(\"archives_only\") is not True or manifest.get(\"schema\"\
+    ) != \"t01.af3-database-download/1\":\n        raise ValueError(\"Unexpected AF3\
+    \ database manifest\")\n    saved = read_json(archives / \"database-manifest.json\"\
+    )\n    if saved != manifest:\n        raise ValueError(\"Mounted database manifest\
+    \ differs from pinned manifest\")\n    total = 0\n    verified = []\n    for asset\
+    \ in manifest[\"assets\"]:\n        name, identity = asset[\"file\"], asset[\"\
+    identity\"]\n        if Path(name).name != name or \"/\" in name or \"\\\\\" in\
+    \ name:\n            raise ValueError(\"Unsafe source archive name\")\n      \
+    \  archive = archives / name\n        if not archive.is_file() or archive.is_symlink()\
+    \ or archive.stat().st_size != identity[\"bytes\"]:\n            raise ValueError(\"\
+    Source archive size/type mismatch: \" + name)\n        if read_json(archives /\
+    \ f\"{name}.source.json\") != identity:\n            raise ValueError(\"Source\
+    \ identity mismatch: \" + name)\n        receipt = read_json(archives / f\"{name}.receipt.json\"\
+    )\n        if receipt.get(\"file\") != name or receipt.get(\"status\") != REQUIRED_ARCHIVE_STATUS\
+    \ or receipt.get(\"decompressed\") is not False:\n            raise ValueError(\"\
+    Archive receipt is not verified: \" + name)\n        if not isinstance(receipt.get(\"\
+    sha256\"), str) or len(receipt[\"sha256\"]) != 64:\n            raise ValueError(\"\
+    Archive receipt lacks SHA-256: \" + name)\n        total += identity[\"bytes\"\
+    ]\n        checked = dict(asset)\n        checked[\"sha256\"] = receipt[\"sha256\"\
+    ]\n        verified.append(checked)\n    source_receipt = read_json(archives /\
+    \ \"download-receipt.json\")\n    if source_receipt.get(\"status\") != REQUIRED_SOURCE_STATUS\
+    \ or source_receipt.get(\"decompressed\") is not False:\n        raise ValueError(\"\
+    Database download receipt is not an archive-only verified receipt\")\n    if source_receipt.get(\"\
+    scientific_gate\") != \"CLOSED\" or total != manifest[\"total_bytes\"]:\n    \
+    \    raise ValueError(\"Database source release guard or total differs\")\n  \
+    \  return verified\n\n\ndef begin_source(archive: Path, expected: dict) -> tuple[HashingFile,\
+    \ ZstdReader]:\n    source = HashingFile(archive)\n    try:\n        library =\
+    \ _load_zstd()\n        return source, ZstdReader(source, library)\n    except\
+    \ Exception:\n        source.close()\n        raise\n\n\ndef finish_source(source:\
+    \ HashingFile, expected: dict) -> None:\n    try:\n        if source.bytes !=\
+    \ expected[\"identity\"][\"bytes\"] or source.digest.hexdigest() != expected.get(\"\
+    sha256\"):\n            raise ValueError(\"Compressed source SHA-256/size differs:\
+    \ \" + expected[\"file\"])\n    finally:\n        source.close()\n\n\ndef stream_fasta(archive:\
+    \ Path, expected: dict, target: Path) -> dict:\n    source, decoder = begin_source(archive,\
+    \ expected)\n    digest = hashlib.sha256(); size = 0\n    try:\n        target.parent.mkdir(parents=True,\
+    \ exist_ok=True)\n        with target.open(\"xb\") as output, io.BufferedReader(decoder,\
+    \ buffer_size=READ_SIZE) as stream:\n            while chunk := stream.read(READ_SIZE):\n\
+    \                output.write(chunk); digest.update(chunk); size += len(chunk)\n\
+    \    finally:\n        decoder.close()\n    finish_source(source, expected)\n\
+    \    return {\"path\": target.name, \"size_bytes\": size, \"sha256\": digest.hexdigest(),\
+    \ \"source_archive\": archive.name}\n\n\ndef extract_tar(archive: Path, expected:\
+    \ dict, target: Path) -> list[dict]:\n    source, decoder = begin_source(archive,\
+    \ expected)\n    files: list[dict] = []\n    seen: dict[str, str] = {}\n    try:\n\
+    \        target.mkdir(parents=True, exist_ok=True)\n        with io.BufferedReader(decoder,\
+    \ buffer_size=READ_SIZE) as stream, tarfile.open(fileobj=stream, mode=\"r|\")\
+    \ as tar:\n            for member in tar:\n                relative = safe_relative(member.name)\n\
+    \                key = relative.as_posix()\n                kind = \"dir\" if\
+    \ member.isdir() else \"file\" if member.isfile() else \"other\"\n           \
+    \     if key in seen:\n                    raise ValueError(\"Duplicate tar member:\
+    \ \" + key)\n                if kind == \"other\" or member.issym() or member.islnk()\
+    \ or member.isdev():\n                    raise ValueError(\"Unsupported tar member\
+    \ type: \" + key)\n                seen[key] = kind\n                destination\
+    \ = target.joinpath(*relative.parts)\n                if member.isdir():\n   \
+    \                 destination.mkdir(parents=True, exist_ok=False)\n          \
+    \          continue\n                destination.parent.mkdir(parents=True, exist_ok=True)\n\
+    \                digest = hashlib.sha256(); size = 0\n                extracted\
+    \ = tar.extractfile(member)\n                if extracted is None:\n         \
+    \           raise ValueError(\"Tar member has no readable data: \" + key)\n  \
+    \              with destination.open(\"xb\") as output:\n                    while\
+    \ chunk := extracted.read(READ_SIZE):\n                        output.write(chunk);\
+    \ digest.update(chunk); size += len(chunk)\n                files.append({\"path\"\
+    : key, \"size_bytes\": size, \"sha256\": digest.hexdigest(), \"source_archive\"\
+    : archive.name})\n    finally:\n        decoder.close()\n    finish_source(source,\
+    \ expected)\n    return files\n\n\ndef atomic_json(path: Path, value: dict) ->\
+    \ None:\n    pending = path.with_suffix(path.suffix + \".pending\")\n    pending.write_text(json.dumps(value,\
+    \ ensure_ascii=False, indent=2, sort_keys=True) + \"\\n\", encoding=\"utf-8\"\
+    )\n    pending.replace(path)\n\n\ndef extract(archives: Path, output: Path, manifest_path:\
+    \ Path, run_id: str = \"r01\") -> dict:\n    archives, output, manifest_path =\
+    \ archives.resolve(), output.resolve(), manifest_path.resolve()\n    if output.exists()\
+    \ or output.with_name(output.name + \".partial\").exists():\n        raise ValueError(\"\
+    Output or partial output already exists; refusing overwrite\")\n    if shutil.disk_usage(archives).free\
+    \ < EXPANDED_ESTIMATE_BYTES + RESERVE_BYTES:\n        raise ValueError(\"Insufficient\
+    \ PVC space for AF3 extraction planning bound\")\n    assets = verify_source_manifest(archives,\
+    \ manifest_path)\n    staging = output.with_name(output.name + \".partial\")\n\
+    \    staging.mkdir(parents=False)\n    records = []\n    try:\n        print(\"\
+    AF3_DATABASE_EXTRACTION_START\", len(assets), flush=True)\n        for index,\
+    \ asset in enumerate(assets, 1):\n            name = asset[\"file\"]; archive\
+    \ = archives / name\n            print(\"AF3_DATABASE_EXTRACTION_FILE\", index,\
+    \ len(assets), name, flush=True)\n            if name == \"pdb_2022_09_28_mmcif_files.tar.zst\"\
+    :\n                records.extend(extract_tar(archive, asset, staging))\n    \
+    \        else:\n                target_name = name[:-4]\n                records.append(stream_fasta(archive,\
+    \ asset, staging / target_name))\n        records.sort(key=lambda row: row[\"\
+    path\"])\n        atomic_json(staging / \"extracted-manifest.json\", {\"schema\"\
+    : \"t01.af3-database-extraction/1\", \"files\": records})\n        output.parent.mkdir(parents=True,\
+    \ exist_ok=True)\n        staging.rename(output)\n        receipt = {\"status\"\
+    : REQUIRED_OUTPUT_STATUS, \"scientific_gate\": \"CLOSED\", \"decompressed\": True,\n\
+    \                   \"source_manifest\": str(manifest_path.name), \"output_root\"\
+    : output.name,\n                   \"file_count\": len(records), \"total_bytes\"\
+    : sum(row[\"size_bytes\"] for row in records),\n                   \"files_manifest\"\
+    : \"extracted-manifest.json\"}\n        atomic_json(archives.parent / \"extraction-receipt.json\"\
+    , receipt)\n        print(\"AF3_DATABASES_EXTRACTED_VERIFIED\", len(records),\
+    \ receipt[\"total_bytes\"], flush=True)\n        return receipt\n    except Exception:\n\
+    \        print(\"AF3_DATABASE_EXTRACTION_FAILED_PARTIAL_RETAINED\", staging, flush=True)\n\
+    \        raise\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser()\n\
+    \    parser.add_argument(\"archives\", type=Path)\n    parser.add_argument(\"\
+    output\", type=Path)\n    parser.add_argument(\"manifest\", type=Path)\n    parser.add_argument(\"\
+    --run-id\", default=\"r01\")\n    args = parser.parse_args()\n    result = extract(args.archives,\
+    \ args.output, args.manifest, args.run_id)\n    print(json.dumps(result, ensure_ascii=False,\
+    \ sort_keys=True), flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  database-manifest.json: "{\n  \"schema\": \"t01.af3-database-download/1\",\n  \"\
+    release\": \"alphafold-databases/v3.0\",\n  \"listing_source\": \"https://github.com/google-deepmind/alphafold3/blob/v3.0.2/fetch_databases.sh\"\
+    ,\n  \"identity_checked_date\": \"2026-09-17\",\n  \"archives_only\": true,\n\
+    \  \"total_bytes\": 238784443666,\n  \"assets\": [\n    {\n      \"file\": \"\
+    pdb_seqres_2022_09_28.fasta.zst\",\n      \"generation\": \"1730832733047846\"\
+    ,\n      \"identity\": {\n        \"url\": \"https://storage.googleapis.com/alphafold-databases/v3.0/pdb_seqres_2022_09_28.fasta.zst\"\
+    ,\n        \"bytes\": 26493534,\n        \"etag\": \"\\\"86a1b92d3988ca499d79651d075379b2\\\
+    \"\",\n        \"md5_base64\": \"hqG5LTmIykmdeWUdB1N5sg==\",\n        \"crc32c_base64\"\
+    : \"uZUlYQ==\"\n      }\n    },\n    {\n      \"file\": \"rfam_14_9_clust_seq_id_90_cov_80_rep_seq.fasta.zst\"\
+    ,\n      \"generation\": \"1730832743346741\",\n      \"identity\": {\n      \
+    \  \"url\": \"https://storage.googleapis.com/alphafold-databases/v3.0/rfam_14_9_clust_seq_id_90_cov_80_rep_seq.fasta.zst\"\
+    ,\n        \"bytes\": 56604542,\n        \"etag\": \"\\\"7dd833c908ae8288b320fdb363b56848\\\
+    \"\",\n        \"md5_base64\": \"fdgzyQiugoizIP2zY7VoSA==\",\n        \"crc32c_base64\"\
+    : \"mw7VNQ==\"\n      }\n    },\n    {\n      \"file\": \"rnacentral_active_seq_id_90_cov_80_linclust.fasta.zst\"\
+    ,\n      \"generation\": \"1730833037254881\",\n      \"identity\": {\n      \
+    \  \"url\": \"https://storage.googleapis.com/alphafold-databases/v3.0/rnacentral_active_seq_id_90_cov_80_linclust.fasta.zst\"\
+    ,\n        \"bytes\": 3519676108,\n        \"etag\": \"\\\"f4db49a31a8c2576210d5fa273296117\\\
+    \"\",\n        \"md5_base64\": \"9NtJoxqMJXYhDV+icylhFw==\",\n        \"crc32c_base64\"\
+    : \"iZSwlA==\"\n      }\n    },\n    {\n      \"file\": \"bfd-first_non_consensus_sequences.fasta.zst\"\
+    ,\n      \"generation\": \"1730822885415645\",\n      \"identity\": {\n      \
+    \  \"url\": \"https://storage.googleapis.com/alphafold-databases/v3.0/bfd-first_non_consensus_sequences.fasta.zst\"\
+    ,\n        \"bytes\": 9880478127,\n        \"etag\": \"\\\"ccde88faeb9eb62b0c83d07edcbf3459\\\
+    \"\",\n        \"md5_base64\": \"zN6I+uuetisMg9B+3L80WQ==\",\n        \"crc32c_base64\"\
+    : \"v9fbdw==\"\n      }\n    },\n    {\n      \"file\": \"nt_rna_2023_02_23_clust_seq_id_90_cov_80_rep_seq.fasta.zst\"\
+    ,\n      \"generation\": \"1730828153681603\",\n      \"identity\": {\n      \
+    \  \"url\": \"https://storage.googleapis.com/alphafold-databases/v3.0/nt_rna_2023_02_23_clust_seq_id_90_cov_80_rep_seq.fasta.zst\"\
+    ,\n        \"bytes\": 17028641580,\n        \"etag\": \"\\\"2da99b2f9704896ce9b4f5dd9425e432\\\
+    \"\",\n        \"md5_base64\": \"LambL5cEiWzptPXdlCXkMg==\",\n        \"crc32c_base64\"\
+    : \"0jZlYg==\"\n      }\n    },\n    {\n      \"file\": \"uniref90_2022_05.fa.zst\"\
+    ,\n      \"generation\": \"1730837673075080\",\n      \"identity\": {\n      \
+    \  \"url\": \"https://storage.googleapis.com/alphafold-databases/v3.0/uniref90_2022_05.fa.zst\"\
+    ,\n        \"bytes\": 33271639594,\n        \"etag\": \"\\\"c9136c52ca9e25c2ce8d3a569d47e912\\\
+    \"\",\n        \"md5_base64\": \"yRNsUsqeJcLOjTpWnUfpEg==\",\n        \"crc32c_base64\"\
+    : \"OT/GbQ==\"\n      }\n    },\n    {\n      \"file\": \"uniprot_all_2021_04.fa.zst\"\
+    ,\n      \"generation\": \"1730835786074627\",\n      \"identity\": {\n      \
+    \  \"url\": \"https://storage.googleapis.com/alphafold-databases/v3.0/uniprot_all_2021_04.fa.zst\"\
+    ,\n        \"bytes\": 48688827585,\n        \"etag\": \"\\\"cabf618be6f8c85397c97f49d7da9307\\\
+    \"\",\n        \"md5_base64\": \"yr9hi+b4yFOXyX9J19qTBw==\",\n        \"crc32c_base64\"\
+    : \"k9mSMA==\"\n      }\n    },\n    {\n      \"file\": \"pdb_2022_09_28_mmcif_files.tar.zst\"\
+    ,\n      \"generation\": \"1730832728463652\",\n      \"identity\": {\n      \
+    \  \"url\": \"https://storage.googleapis.com/alphafold-databases/v3.0/pdb_2022_09_28_mmcif_files.tar.zst\"\
+    ,\n        \"bytes\": 56979074571,\n        \"etag\": \"\\\"13447e161d081c7d5df71781b6de2427\\\
+    \"\",\n        \"md5_base64\": \"E0R+Fh0IHH1d9xeBtt4kJw==\",\n        \"crc32c_base64\"\
+    : \"waDF1A==\"\n      }\n    },\n    {\n      \"file\": \"mgy_clusters_2022_05.fa.zst\"\
+    ,\n      \"generation\": \"1730826709796458\",\n      \"identity\": {\n      \
+    \  \"url\": \"https://storage.googleapis.com/alphafold-databases/v3.0/mgy_clusters_2022_05.fa.zst\"\
+    ,\n        \"bytes\": 69333008025,\n        \"etag\": \"\\\"d2482ea92b28ccb14e235bb4868b6d50\\\
+    \"\",\n        \"md5_base64\": \"0kguqSsozLFOI1u0hottUA==\",\n        \"crc32c_base64\"\
+    : \"gPPw4g==\"\n      }\n    }\n  ]\n}\n"
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: antigen-af3-databases-extract-r01
+  namespace: him-ws
+spec:
+  podSelector:
+    matchLabels:
+      app: antigen-af3-databases-extract-r01
+  policyTypes:
+  - Ingress
+  - Egress
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-af3-databases-extract-r01
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 172800
+  template:
+    metadata:
+      labels:
+        app: antigen-af3-databases-extract-r01
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+      - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+      - name: extract
+        image: harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:fba5a32c0550e56a5310160e2fc49d647fcd27d76851073a2d82cc935fb4c2fc
+        command:
+        - python
+        - -u
+        - -B
+        - /extract/extract_af3_databases.py
+        - /databases/alphafold3-v3.0/archives
+        - /databases/alphafold3-v3.0/unpacked
+        - /extract/database-manifest.json
+        - --run-id
+        - r01
+        resources:
+          requests:
+            cpu: 500m
+            memory: 512Mi
+            ephemeral-storage: 256Mi
+          limits:
+            cpu: '2'
+            memory: 2Gi
+            ephemeral-storage: 1Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: databases
+          mountPath: /databases
+        - name: extract
+          mountPath: /extract
+          readOnly: true
+      volumes:
+      - name: databases
+        persistentVolumeClaim:
+          claimName: antigen-af3-databases
+      - name: extract
+        configMap:
+          name: antigen-af3-databases-extract-r01

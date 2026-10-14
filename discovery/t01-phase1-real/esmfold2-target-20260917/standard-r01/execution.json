@@ -1,0 +1,80 @@
+{
+  "active_egress_probe_verified": false,
+  "args": [
+    "--input",
+    "/config/request.json",
+    "--output-dir",
+    "/runs/engineering-r03",
+    "--profile",
+    "/config/profile.json"
+  ],
+  "attempt_id": "25620762-2d48-4a79-abb0-ae721b3158ec",
+  "command": [
+    "python",
+    "-u",
+    "-B",
+    "-c",
+    "import hashlib,pathlib,runpy,sys; expected={'run_structure.py': '8763edf2b8d08f79708680792b1ba9c4e7ecff3abc1aea1d331e6a9e0d61a21d', 'esmc_strict_loader.py': '871335fde4d91c984ae6464715ffd4c49e363c3be33f99051d38db9c10219fd7'}; assert all(hashlib.sha256((pathlib.Path(\"/config\")/n).read_bytes()).hexdigest()==h for n,h in expected.items()), \"repair source hash mismatch\"; sys.path.insert(0,\"/config\"); print(\"ESMFOLD2_VALIDATION_START r03_strict_checkpoint_loading\",flush=True); runpy.run_path(\"/config/run_structure.py\",run_name=\"__main__\"); print(\"ESMFOLD2_VALIDATION_COMPLETED engineering_result_requires_review\",flush=True)"
+  ],
+  "completion_time_utc": "2026-09-17T03:16:16Z",
+  "cpu_preparation_seconds": null,
+  "driver_version": null,
+  "exit_code": null,
+  "gpu_inference_seconds": null,
+  "image": "harbor-core.base.svc.cluster.local/qcyz/antigen-esmfold2@sha256:372545ebe3469a3d32269c27033d19624d713d75ca162dbe6fff5dafed44f77f",
+  "job_name": "antigen-esmfold2-validation-r03",
+  "job_succeeded": 1,
+  "log_path": "logs/cluster.log",
+  "log_streams": "combined Kubernetes log; separate stdout/stderr unavailable",
+  "measurement_limits": [
+    "No scientific accuracy or stereochemical acceptance established.",
+    "No full-length capacity or lifecycle qualification established.",
+    "NetworkPolicy configuration is not an active egress-denial test.",
+    "GPU peak is PyTorch allocated memory, not total device consumption.",
+    "Elapsed time includes integrity checks, loading and inference.",
+    "Backend task integration and N01/N12 routing remain pending."
+  ],
+  "native_measurements": {
+    "asset_file_count": 23,
+    "asset_manifest_sha256": "77ec2cdd4003e59a5c328ce99858be7e2ce42b8b2d7902971e74426f26a39a8f",
+    "cuda": "12.6",
+    "elapsed_seconds": 164.9730987548828,
+    "engine": "esmfold2",
+    "environment_file_count": 35514,
+    "environment_manifest_sha256": "c719aade5db1dacf747cf1f882061a132558ae359bc5a5dd58fc1f5c955bab39",
+    "environment_root": "/models/esmfold2-environment-20260916-r01",
+    "gpu_capability": [
+      8,
+      0
+    ],
+    "gpu_name": "NVIDIA A100-SXM-64GB",
+    "network": "disabled",
+    "offline_asset_paths": {
+      "ccd": "models/ESMFold2/ccd.pkl",
+      "esmc": "models/ESMC-6B",
+      "esmfold2": "models/ESMFold2"
+    },
+    "peak_gpu_memory_bytes": 14027569152,
+    "peak_process_rss_kib": 30429460,
+    "python": "3.12.14",
+    "torch": "2.7.1+cu126",
+    "variant": "standard"
+  },
+  "network_policy_path": "sources/validation.yaml",
+  "resource_limits": {
+    "limits": {
+      "cpu": "8",
+      "ephemeral-storage": "8Gi",
+      "memory": "64Gi",
+      "nvidia.com/gpu": "1",
+      "nvidia.com/gpumem": "32768"
+    },
+    "requests": {
+      "cpu": "2",
+      "ephemeral-storage": "2Gi",
+      "memory": "32Gi"
+    }
+  },
+  "start_time_utc": "2026-09-17T03:13:20Z",
+  "unavailable_reason": "r03 did not archive a Pod exit/driver record or separate stage timings in this bundle."
+}

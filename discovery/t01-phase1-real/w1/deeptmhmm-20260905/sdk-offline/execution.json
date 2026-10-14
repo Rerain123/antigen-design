@@ -1,0 +1,121 @@
+{
+  "recorded_at": "2026-09-05T08:10:08.766932+00:00",
+  "records": [
+    {
+      "label": "image",
+      "command": [
+        "docker",
+        "--host",
+        "npipe:////./pipe/dockerDesktopLinuxEngine",
+        "image",
+        "inspect",
+        "--format",
+        "{{json .Id}}",
+        "python@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.125
+    },
+    {
+      "label": "create",
+      "command": [
+        "docker",
+        "--host",
+        "npipe:////./pipe/dockerDesktopLinuxEngine",
+        "create",
+        "--pull",
+        "never",
+        "--name",
+        "t01-w1-deeptmhmm-sdk-f0c3e0051158",
+        "--network",
+        "none",
+        "--read-only",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--cpus",
+        "2",
+        "--memory",
+        "1g",
+        "--pids-limit",
+        "128",
+        "--tmpfs",
+        "/tmp:rw,size=536870912",
+        "--env",
+        "HOME=/tmp",
+        "--mount",
+        "type=bind,source=D:\\work\\\u86cb\u767d\u667a\u80fd\u4f53\\discovery\\t01-phase1-real\\w1\\deeptmhmm-20260905\\public_sources\\pybiolib-1.4.457-py3-none-any.whl,target=/input/pybiolib-1.4.457-py3-none-any.whl,readonly",
+        "--entrypoint",
+        "python",
+        "python@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84",
+        "-u",
+        "-c",
+        "\nimport importlib.metadata, json, os, subprocess, sys\nsubprocess.run([sys.executable, '-m', 'pip', 'install', '--no-index', '--no-deps',\n                '--disable-pip-version-check', '--target', '/tmp/sdk', '/input/pybiolib-1.4.457-py3-none-any.whl'], check=True)\nsys.path.insert(0, '/tmp/sdk')\nprint(json.dumps({'sdk_version':importlib.metadata.version('pybiolib'),\n                  'network_interfaces':os.listdir('/sys/class/net'),\n                  'operation':'SDK_LOCAL_MODE_NEGATIVE_PROBE', 'model_execution':'NOT_RUN'}), flush=True)\nimport biolib\nsys.argv = ['biolib', 'run', '--local', 'DTU/DeepTMHMM:1.0.57']\nbiolib.call_cli()\n"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.2040000000015425
+    },
+    {
+      "label": "start",
+      "command": [
+        "docker",
+        "--host",
+        "npipe:////./pipe/dockerDesktopLinuxEngine",
+        "start",
+        "--attach",
+        "a6e3622828410157943897941659cf0dd25cf8c3811f21c2f31181f2ceea94d7"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 2.1559999999990396
+    },
+    {
+      "label": "inspect",
+      "command": [
+        "docker",
+        "--host",
+        "npipe:////./pipe/dockerDesktopLinuxEngine",
+        "inspect",
+        "--format",
+        "{{json .State}}\n{{json .HostConfig.NetworkMode}}\n{{json .Image}}",
+        "a6e3622828410157943897941659cf0dd25cf8c3811f21c2f31181f2ceea94d7"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.062000000001717126
+    },
+    {
+      "label": "remove",
+      "command": [
+        "docker",
+        "--host",
+        "npipe:////./pipe/dockerDesktopLinuxEngine",
+        "rm",
+        "--force",
+        "a6e3622828410157943897941659cf0dd25cf8c3811f21c2f31181f2ceea94d7"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.14099999999962165
+    }
+  ],
+  "scope": "LOCAL_DEVELOPMENT_SDK_NEGATIVE_PROBE",
+  "image_id": "sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84",
+  "wheel_sha256": "a8d740072b8a829335ba438f134a0362d27fc0872b302cbbf3f7c36a7e2dec38",
+  "network_mode": "none",
+  "container_state": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 1,
+    "Error": "",
+    "StartedAt": "2026-09-05T08:10:06.560895197Z",
+    "FinishedAt": "2026-09-05T08:10:08.476770598Z"
+  },
+  "timed_out": false,
+  "result": "EXPECTED_LOCAL_MODE_REJECTION",
+  "model_execution": "NOT_RUN",
+  "production_status": "NOT_DEPLOYED"
+}

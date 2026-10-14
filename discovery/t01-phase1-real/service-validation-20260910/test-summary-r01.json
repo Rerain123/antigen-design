@@ -1,0 +1,39 @@
+{
+  "document_type": "T01_PHASE1_REAL_SERVICE_TEST_SUMMARY",
+  "version": "0.1.0",
+  "recorded_at": "2026-09-10T03:04:04.4698775Z",
+  "status": "PASS",
+  "targeted": {
+    "command": ".\\.venv\\Scripts\\python.exe -X utf8 -m pytest -o addopts='' -q tests/test_real_service_api.py",
+    "passed": 7,
+    "failed": 0,
+    "duration_seconds": 36.26
+  },
+  "current_root": {
+    "command": ".\\.venv\\Scripts\\python.exe -X utf8 -m pytest -o addopts='' -q",
+    "passed": 1690,
+    "skipped": 1,
+    "failed": 0,
+    "duration_seconds": 326.48
+  },
+  "mock_frozen_readonly": {
+    "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/t01_phase1_mock/run_m4_campaign.py verify",
+    "status": "PASS",
+    "release_state": "FROZEN",
+    "frozen_asset_count": 457
+  },
+  "compileall": "PASS",
+  "dify_generation_and_binding_check": "PASS",
+  "documentation": {
+    "test_docs_passed": 57,
+    "check_status": "PASS_WITH_HISTORICAL_LINK_ISSUES",
+    "markdown_files": 284,
+    "historical_reference_issues": 29
+  },
+  "acceptance_batch": "acceptance-r02",
+  "acceptance_indexed_files": 36,
+  "independent_evidence_audit": "PASS",
+  "historical_partitions_changed": false,
+  "old_mock_full_regression_run": false,
+  "s07_full_regression_run": false
+}

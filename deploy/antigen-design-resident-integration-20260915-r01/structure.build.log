@@ -1,0 +1,39 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from structure.Dockerfile
+#1 transferring dockerfile: 263B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/antigen-design-resident-structure:assembly-r01
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 14.25kB done
+#4 DONE 0.0s
+
+#5 [1/3] FROM docker.io/library/antigen-design-resident-structure:assembly-r01@sha256:a9834c433f8f209991f30acfe5a0cc488a2e07ff9272e4a941a682de6f06bca1
+#5 resolve docker.io/library/antigen-design-resident-structure:assembly-r01@sha256:a9834c433f8f209991f30acfe5a0cc488a2e07ff9272e4a941a682de6f06bca1 0.0s done
+#5 DONE 0.2s
+
+#6 [2/3] COPY src /opt/t01/src
+#6 DONE 0.1s
+
+#7 [3/3] COPY configuration/structure.worker.json /opt/t01/worker.json
+#7 DONE 0.1s
+
+#8 exporting to image
+#8 exporting layers
+#8 exporting layers 0.3s done
+#8 exporting manifest sha256:d1db25e69763755825320c6003ee8a2a740389327b11889e0af04af9104f8f70 0.0s done
+#8 exporting config sha256:0e93288eb22be92fa70226f64110c1ecd386d2dcb5a3fb9f180ddc07555c76cd 0.0s done
+#8 exporting attestation manifest sha256:e8733b9f1d616acec84543c0a626f19d1a6820c0765dacf957b1711efa3f1779
+#8 exporting attestation manifest sha256:e8733b9f1d616acec84543c0a626f19d1a6820c0765dacf957b1711efa3f1779 0.1s done
+#8 exporting manifest list sha256:0be130e890ad7259a04298c20213a01a9c8d471871e2124ff4fd6628915fcdab 0.0s done
+#8 naming to docker.io/library/antigen-design-resident-structure:integration-r01
+#8 naming to docker.io/library/antigen-design-resident-structure:integration-r01 done
+#8 unpacking to docker.io/library/antigen-design-resident-structure:integration-r01 0.1s done
+#8 DONE 0.7s

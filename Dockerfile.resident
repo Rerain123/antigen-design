@@ -1,0 +1,24 @@
+# Structure resident image; other tool environments require their own assembly.
+# Local build default is the previously verified image, never a downloaded tag.
+ARG SCIENTIFIC_IMAGE=t01-freesasa-g0:2.2.1-20260905
+FROM ${SCIENTIFIC_IMAGE}
+USER 0
+COPY src/t01_phase1_real /opt/t01/src/t01_phase1_real
+COPY src/t01_structure_mapping /opt/t01/src/t01_structure_mapping
+COPY docs/project/phase1/PHASE1_REAL_W1_FREESASA_PROFILE.json /profile.json
+# Fixed aliases preserve the native worker's command and output paths. The
+# unprivileged supervisor changes only /run/t01-slot/current under its slot lock.
+RUN mkdir -p /run/t01-slot /var/lib/t01/resident \
+    && chown -R 10001:10001 /run/t01-slot /var/lib/t01/resident \
+    && ln -s /run/t01-slot/current/input/input.json /input.json \
+    && ln -s /run/t01-slot/current/input/input.fasta /input.fasta \
+    && ln -s /run/t01-slot/current/input/input.structure /input.structure \
+    && ln -s /run/t01-slot/current/input/binding.json /binding.json \
+    && ln -s /run/t01-slot/current/input/native /native \
+    && ln -s /run/t01-slot/current/output/native /out \
+    && ln -s /opt/t01/src /code \
+    && ln -s /opt/t01/src/t01_phase1_real/development/structure /worker
+ENV PYTHONPATH=/opt/t01/src PYTHONDONTWRITEBYTECODE=1
+USER 10001:10001
+WORKDIR /tmp
+ENTRYPOINT ["python", "-B", "-m", "t01_phase1_real.resident_worker"]

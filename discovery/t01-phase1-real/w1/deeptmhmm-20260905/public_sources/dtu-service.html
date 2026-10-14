@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <base target="_blank"> -->
+    <title>DeepTMHMM 1.0 - DTU Health Tech - Bioinformatic Services</title>
+    <meta name="description" content="Prediction of transmembrane helices in proteins">
+    <meta name="keywords" content="DTU, Bioinformatics">
+    <!-- <link rel="stylesheet" href="/css/site.css"> -->
+    <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="/css/healthtech_header.css">
+    <!-- Open Graph Protocol tags. See https://ogp.me/ -->
+    <!--ogtagsgohere-->
+    <!--extraheadgoeshere-->
+</head>
+
+<body onload="on_page_loaded();">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
+        integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
+    <script type="text/javascript">jqNetmester = jQuery.noConflict(true);</script>
+    <script src="/js/header.js"></script>
+    <div class="healthtech-header sticky">
+        <div class="header-inner-container-top">
+            <div class="header-inner-container-top-left">
+                <div>
+                    <p class="font-dtu-bold header-department-text">
+                        DTU Health Tech
+                    </p>
+                    <p class="font-dtu header-department-text">
+                        Department of Health Technology
+                    </p>
+                </div>
+            </div>
+            <div class="header-inner-container-top-right">
+                <div id="contact-link-container">
+                    <a class="font-dtu" id="contact-link" href="https://www.healthtech.dtu.dk/about/contact">Contact</a>
+                    <div id="ht-contact-message" class="font-dtu">
+                        <p>This link is for the general contact of the DTU Health Tech institute.</p>
+                        <p> If you need help with the bioinformatics programs, see the "Getting Help" section below the
+                            program.</p>
+                    </div>
+                </div>
+                <div>
+                    <img class="logo" src="/images/header_footer_icons/dtu-logo.png"
+                        alt="Logo of DTU, the Technical University of Denmark">
+                </div>
+            </div>
+        </div>
+        <div class="bottom-soft-border">
+            <div class="header-inner-container-bottom">
+                <div class="font-dtu header-page-selection-button" id="first-button">
+                    <a class="header-button-text" href="https://www.healthtech.dtu.dk/research"
+                        target="_self">Research</a>
+                </div>
+                <div class="font-dtu header-page-selection-button">
+                    <a class="header-button-text" href="https://www.healthtech.dtu.dk/education"
+                        target="_self">Education</a>
+                </div>
+                <div class="font-dtu header-page-selection-button">
+                    <a class="header-button-text" href="https://www.healthtech.dtu.dk/collaboration" target="_self">
+                        Collaboration</a>
+                </div>
+                <div class="font-dtu header-page-selection-button header-active-button">
+                    <a class="header-button-text" href="https://www.healthtech.dtu.dk/services-and-products"
+                        target="_self">
+                        Services and Products</a>
+                </div>
+                <div class="font-dtu header-page-selection-button">
+                    <a class="header-button-text" href="https://www.healthtech.dtu.dk/news" target="_self">News</a>
+                </div>
+                <div class="font-dtu header-page-selection-button">
+                    <a class="header-button-text" href="https://www.healthtech.dtu.dk/about" target="_self">About</a>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-soft-border">
+            <div class="navbar font-dtu">
+                <div class="navbar-left-grid">
+                    <div class="auto-y-margin" id="navbar-links-container">
+                        <a class="navbar-link" href="https://www.healthtech.dtu.dk/" target="_self">
+                            DTU HEALTH TECH
+                        </a>
+                        <img class="navbar-arrow" src="/images/header_footer_icons/arrow.png">
+                        <a class="navbar-link" href="https://www.healthtech.dtu.dk/services-and-products"
+                            target="_self">
+                            SERVICES AND PRODUCTS
+                        </a>
+                        <img class="navbar-arrow" src="/images/header_footer_icons/arrow.png">
+                        <a class="navbar-link" href="https://services.healthtech.dtu.dk/" target="_self">
+                            BIOINFORMATIC SERVICES
+                        </a>
+                    </div>
+                </div>
+                <div class="navbar-right-grid auto-y-margin">
+                    <div>
+                        <p id="share-text">SHARE ON </p>
+                    </div>
+                    <div class="auto-y-margin">
+                        <a href="" id="fb-icon-share"><img class="share-icon"
+                                src="/images/header_footer_icons/sharing/fb_icon_share.png"></a>
+                    </div>
+                    <div class="auto-y-margin">
+                        <a href="" id="linkedin-icon-share"><img class="share-icon"
+                                src="/images/header_footer_icons/sharing/linkedin_icon_share.png"></a>
+                    </div>
+                    <div class="auto-y-margin">
+                        <a href="" id="twitter-icon-share"><img class="share-icon"
+                                src="/images/header_footer_icons/sharing/twitter_icon_share.png"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content font-dtu bioinformatics" id="bioinformatics_service_parent_container">
+
+
+<script type="text/javascript" src="/js/site.js"></script>
+
+<style>
+#bioinformatics_service_parent_container {width: 960px !important}
+</style>
+<div id="servicetitle"><h1>DeepTMHMM - 1.0</h1></div>
+<h3>Prediction of transmembrane helices in proteins</h3>
+<p>
+DeepTMHMM is a deep learning protein language model-based algorithm that can detect and predict the topology of both alpha helical and beta barrels proteins over all domains of life.
+</p>
+<div class='servicetab'>
+  <button id='servicedefaultOpen' class='servicetablink' tabid='servicetabs-1'>Submission</button>
+  <button class='servicetablink' tabid='servicetabs-2'>Instructions</button>
+  <button class='servicetablink' tabid='servicetabs-3'>Abstract</button>
+  <button class='servicetablink' tabid='servicetabs-8'>Download and license</button>
+</div>
+<div class='serviceframes'>
+  <div id='servicetabs-1' style='overflow:auto;' class='servicetabcontent'>
+<h1>Submit data</h1>
+<hr>
+<form enctype="multipart/form-data" name="agForm" role="form" class="form-horizontal" action="/cgi-bin/webface2.cgi" method="post">
+  <input type=hidden name=configfile value="/var/www/services/services/DeepTMHMM-1.0/webface.cf">
+
+
+  <p><b>Sequence submission: paste the sequence(s) <i>and/or</i> upload a local file </p></b>
+
+  <a target="_blank" href="https://dtu.biolib.com/DeepTMHMM" style="display: inline-block; padding: 2px 10px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px;">Mirror</a> You can also use DeepTMHMM on BioLib
+  <br>
+  <i><b>Note:</b> DTU Healthtech support cannot provide troubleshooting or support for software or services hosted by BioLib</i>
+  <br>
+  <br>
+  Note: If you send more than 1 sequence, no plots will be made.<br>
+  <textarea id="fasta" name="fasta" placeholder="Enter protein sequence(s) in FASTA format (max. 250 sequences)" rows=10 cols=90></textarea><br>
+  <b>Or</b> upload a FASTA file from your computer: <input name="uploadfile" size=64 type="file"><br> <br>
+  For example proteins <a href="/services/DeepTMHMM-1.0/fasta_example.html" target="_blank">Click here</a><br><br>
+
+  <input type="submit" class="btn btn-success" value="Submit" />
+  <input type="reset" value="Clear fields">
+  <br><br><br><br>
+  <h3>Citation</h3>
+  <b>If you use DeepTMHMM, please cite:</b><br><br>
+  Jeppe Hallgren, Konstantinos D. Tsirigos, Mads D. Pedersen, José Juan Almagro Armenteros, Paolo Marcatili, Henrik Nielsen, Anders Krogh and Ole Winther (2022). DeepTMHMM predicts alpha and beta transmembrane proteins using deep neural networks.<a href="https://doi.org/10.1101/2022.04.08.487609">https://doi.org/10.1101/2022.04.08.487609</a><br><br>
+
+</div>
+  <div id='servicetabs-2' style='overflow:auto;' class='servicetabcontent'>
+<h2>Instructions</h2>
+
+<h3>1. Specify the input sequences</h3> 
+All the input sequences must be in one-letter amino acid
+code. The allowed alphabet is as follows:
+<p>
+  <b>A C D E F G H I K L M N P Q R S T V W Y</b>
+</p>
+<p>
+  The sequences can be input in the following two ways:
+</p>
+<p>
+<ul>
+  <li>
+    Paste a single sequence (just the amino acids) or a number of sequences in
+    <a target="_blank" href="/examples/example.fasta.html">FASTA</a>
+    format into the upper window of the main server page.<br><br>
+
+  <li>
+    Select a <a href="/examples/example.fasta.html" target="_blank">FASTA</a>
+    file on your local disk, either by typing the file name into the lower window
+    or by browsing the disk.
+</ul>
+</p>
+<h3>2. Submit the job</h3>
+Click on the <b> "Submit" </b> button. The status of your job (either 'queued'
+or 'running') will be displayed and constantly updated until it terminates and
+the server output appears in the browser window.
+<p>
+  At any time during the wait you may enter your e-mail address and simply leave
+  the window. Your job will continue; you will be notified by e-mail when it has
+  terminated. The e-mail message will contain the URL under which the results are
+  stored; they will remain on the server for 24 hours for you to collect them.
+</p>
+<br>
+<h2>Example Outputs</h2>
+
+<h3>Visualization on structure</h3>
+<p>With <a href="https://ku.biolib.com/MembraneFold/">MembraneFold</a> you can visualize DeepTMHMM's transmembrane prediction on a predicted or experimental structure</p>
+</div>
+  <div id='servicetabs-3' style='overflow:auto;' class='servicetabcontent'>
+<h2>Abstract</h2>
+
+<b>DeepTMHMM predicts alpha and beta transmembrane proteins using deep neural networks</b>
+
+<p>Jeppe Hallgren, Konstantinos D. Tsirigos, Mads D. Pedersen, José Juan Almagro Armenteros, Paolo Marcatili, Henrik Nielsen, Anders Krogh and Ole Winther</p>
+<p><i>BioRxiv</i>, 2022</p>
+<p>Transmembrane proteins span the lipid bilayer and are divided into two major structural classes, namely alpha helical and beta barrels. We introduce DeepTMHMM, a deep learning protein language model-based algorithm that can detect and predict the topology of both alpha helical and beta barrels proteins with unprecedented accuracy. DeepTMHMM scales to proteomes and covers all domains of life, which makes it ideal for metagenomics analyses.</p>
+<p><a href="https://doi.org/10.1101/2022.04.08.487609">https://doi.org/10.1101/2022.04.08.487609</a></p>
+</div>
+  <div id='servicetabs-8' style='overflow:auto;' class='servicetabcontent'>
+<h3>Licensing and Download</h3>
+This software is made freely available here for both academic and commercial purposes.
+Download instruction can be found <a href="https://dtu.biolib.com/DeepTMHMM">here</a>.
+<p>
+For commercial users wishing to run the software on their own servers, a commercial license is required.
+This is not needed for academic users.
+To inquire about a commercial license, please contact <a href="mailto:licensing@biolib.com">licensing@biolib.com</a>.
+
+</div>
+</div>
+<br><hr>
+<h4 id="help-header">GETTING HELP</h4>
+<div align='left'>
+<p>If you need help regarding <span class="help-highlight">technical issues</span> (e.g. errors or missing results) contact <span class="help-highlight">Technical Support</span>. Please include the name of the service and version (e.g. NetPhos-4.0) and the options you have selected. If the error occurs after the job has started running, please include the JOB ID (the long code that you see while the job is running).<br><br>If you have <span class="help-highlight">scientific questions</span> (e.g. how the method works or how to interpret results), contact <span class="help-highlight">Correspondence</span>.<br><br><b>Correspondence: </b><script type="text/javascript">document.write('<a href="mai' + 'lto:' + 'olwi&#' + (107-43) + ';dtu&#46;dk">Ole Winther</a>')</script><span class="help-spacing"></span>
+<b>Technical Support: </b><script type="text/javascript">document.write('<a href="mai' + 'lto:' + 'health-master&#' + (192-128) + ';dtu&#46;dk">Support</a>')</script><span class="help-spacing"></span>
+</div></div>
+
+        </div>
+        <footer>
+            <div class="footer-content">
+                <div class="footer-content-inner-container">
+                    <div>
+                        <img id="footer-logo" src="/images/header_footer_icons/dtu-logo-white.png">
+                        <p class="font-dtu-bold footer-ht-text">DTU Health Tech</p>
+                        <p class="font-dtu footer-ht-text">Department of Health Technology</p>
+                    </div>
+                    <div>
+                        <div class="footer-colmn-title-container">
+                            <p class="footer-column-title">
+                                ADDRESS & INFO
+                            </p>
+                        </div>
+                        <p id="footer-address">
+                            Department of Health Technology<br>
+                            Ørsteds Plads, Building 345C<br>
+                            DK-2800 Kgs. Lyngby<br>
+                            Denmark
+                        </p>
+                    </div>
+                    <div>
+                        <div class="footer-column-title-container">
+                            <p class="footer-column-title">
+                                SHORTCUTS
+                            </p>
+                        </div>
+                        <p class="footer-shortcut-link-container">
+                            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"
+                                class="footer-arrow">
+                                <path
+                                    d="M10.224 0l-.848.849 4.067 4.067H0v1.2h13.443l-4.067 4.067.848.848 5.516-5.515L10.224 0z">
+                                </path>
+                            </svg>
+                            <a class="footer-shortcut-link" href="https://www.dtu.dk/english/search">
+                                Phonebook
+                            </a>
+                        </p>
+                        <p class="footer-shortcut-link-container">
+                            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"
+                                class="footer-arrow">
+                                <path
+                                    d="M10.224 0l-.848.849 4.067 4.067H0v1.2h13.443l-4.067 4.067.848.848 5.516-5.515L10.224 0z">
+                                </path>
+                            </svg>
+                            <a class="footer-shortcut-link" href="https://www.healthtech.dtu.dk/about/contact">
+                                Directions/map
+                            </a>
+                        </p>
+                        <p class="footer-shortcut-link-container">
+                            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"
+                                class="footer-arrow">
+                                <path
+                                    d="M10.224 0l-.848.849 4.067 4.067H0v1.2h13.443l-4.067 4.067.848.848 5.516-5.515L10.224 0z">
+                                </path>
+                            </svg>
+                            <a class="footer-shortcut-link" href="https://www.dtu.dk/english/research/departments-and-groups">
+                                Departments and centres
+                            </a>
+                        </p>
+                        <p class="footer-shortcut-link-container">
+                            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"
+                                class="footer-arrow">
+                                <path
+                                    d="M10.224 0l-.848.849 4.067 4.067H0v1.2h13.443l-4.067 4.067.848.848 5.516-5.515L10.224 0z">
+                                </path>
+                            </svg>
+                            <a class="footer-shortcut-link" href="https://www.healthtech.dtu.dk/about/jobs">
+                                Job and career
+                            </a>
+                        </p>
+                    </div>
+                    <div>
+                        <div class="footer-colmn-title-container hidden">
+                            <p class="footer-column-title">
+                                SHORTCUTS
+                            </p>
+                        </div>
+
+                        <p class="footer-shortcut-link-container">
+                            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"
+                                class="footer-arrow">
+                                <path
+                                    d="M10.224 0l-.848.849 4.067 4.067H0v1.2h13.443l-4.067 4.067.848.848 5.516-5.515L10.224 0z">
+                                </path>
+                            </svg>
+                            <a class="footer-shortcut-link" href="https://orbit.dtu.dk/en/organisations/department-of-health-technology">
+                                DTU Orbit (Research database)
+                            </a>
+                        </p>
+                        <p class="footer-shortcut-link-container">
+                            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"
+                                class="footer-arrow">
+                                <path
+                                    d="M10.224 0l-.848.849 4.067 4.067H0v1.2h13.443l-4.067 4.067.848.848 5.516-5.515L10.224 0z">
+                                </path>
+                            </svg>
+                            <a class="footer-shortcut-link" href="https://www.linkedin.com/school/dtu-health-tech/">
+                                DTU Health Tech on LinkedIn
+                            </a>
+                        </p>
+                        <p class="footer-shortcut-link-container">
+                            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"
+                                class="footer-arrow">
+                                <path
+                                    d="M10.224 0l-.848.849 4.067 4.067H0v1.2h13.443l-4.067 4.067.848.848 5.516-5.515L10.224 0z">
+                                </path>
+                            </svg>
+                            <a class="footer-shortcut-link" href="https://twitter.com/dtu_healthtech">
+                                DTU Health Tech on X
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+
+</html>
+

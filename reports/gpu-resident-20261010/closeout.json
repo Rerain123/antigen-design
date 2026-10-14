@@ -1,0 +1,76 @@
+{
+  "status": "DEPLOYED_ENGINEERING_VERIFIED",
+  "checked_at": "2026-10-10T03:05:57.020439+00:00",
+  "api_generation": 155,
+  "source_sha256": "bcd79cb8ce17874b3bcb107d4a984b22a98d5f401a6b878cf87129aab3da01be",
+  "source_files": 269,
+  "gpu_mode": "resident-exclusive",
+  "gpu_replicas": 1,
+  "idle_release": false,
+  "gpu_device": {
+    "allocation_policy": "scheduler-assigned-exclusive-v1",
+    "event": "UNIFIED_SINGLE_GPU_GUARD_PASS",
+    "memory_mib": 40960.0,
+    "name": "NVIDIA A100-SXM4-40GB",
+    "uuid": "GPU-60efd96d-3f20-1057-4f62-ed24561b9f1e"
+  },
+  "deployments": 10,
+  "all_ready": true,
+  "zero_restarts": true,
+  "new_rbac_resources": 0,
+  "additional_admin_action_required": false,
+  "scientific_jobs_submitted": 0,
+  "scientific_models_executed": false,
+  "cancelled_jobs_resumed": 0,
+  "regression": {
+    "passed": 3277,
+    "receipts": [
+      {
+        "path": "reports\\gpu-flexible-20261010\\current-root-r02.xml",
+        "sha256": "0e897c136ca1e99a261ddf7bfd5e42cf5848811b07c022c6fa32e7e0eada8b5f"
+      },
+      {
+        "path": "reports\\gpu-flexible-20261010\\targeted-r04.xml",
+        "sha256": "6ac765ea19ad58ea4b171944ffe94ee168e7c2693091cb37fd8fad06ab760055"
+      },
+      {
+        "path": "reports\\gpu-flexible-20261010\\resident-final-r01.xml",
+        "sha256": "8b10ee75f91e13468a7cf11dbdd757f2a3dcf6682378cd59df899b0183b77679"
+      }
+    ],
+    "single_final_full_run": false,
+    "skipped": 17,
+    "source_sha256": "bcd79cb8ce17874b3bcb107d4a984b22a98d5f401a6b878cf87129aab3da01be",
+    "tests": 3294
+  },
+  "verifier_tests": {
+    "passed": 2,
+    "failed": 0,
+    "path": "verifier-tests.xml"
+  },
+  "preserved_frozen_assets": 457,
+  "scientific_consumption": "CLOSED",
+  "production_qualification": "NOT_DEPLOYED",
+  "remaining": [
+    "40GB scientific-model capacity not measured in this deployment",
+    "RWO storage constrains all components to k8s-a100-01"
+  ],
+  "previous_verification_attempts": [
+    "Initial Pod logs unavailable while source initializer was starting; later initialized successfully",
+    "Verifier initially selected Deployment metadata labels absent from new objects; corrected to namespace listing with exact expected names",
+    "Verifier initially compared absent ConfigMap defaultMode against server default 420; now normalizes only that verified default, with corruption tests"
+  ],
+  "evidence": {
+    "deployment-verification.json": "bf423b674257f5d24f31ab889f6a622c905ace727067b5a7c789997ea01e61db",
+    "final-state.json": "e283382d77d04c4b84655fae2b474f5dc40371da9ad4517512338bded3730e1c",
+    "regression.json": "9a877ffff336c2f395f03f69de38826e05030f2f12544603abed2c15cf677588",
+    "dry-run.json": "3530f2ed620a5070cecc57ea5afbf5295be1466e6e015b169645bd8648d7e84d",
+    "operations.jsonl": "d74a60cf40253edeb612f78e862dd0c065e9d22ff88e5520eabc89df5bb54d41"
+  },
+  "effective_deployment": "deploy/gpu-resident/r01",
+  "superseded_direction": "On-demand GPU controller/RBAC not deployed; earlier r08 candidate is not active",
+  "docs": {
+    "errors": [],
+    "historical_reference_count": 31
+  }
+}

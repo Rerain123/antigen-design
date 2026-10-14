@@ -1,0 +1,85 @@
+{
+  "scope": "W1-08B2_REVIEW_PREPARATION",
+  "required_engineering_checks": [
+    "Exact input/request/profile/source binding and safe single-record ID",
+    "Six raw labels preserved, full length, only four labels in non-null project topology",
+    "Academic three-line and 8-column region table agreement; 1-based inclusive contiguous regions",
+    "tm_count counts M segments, outside_length counts O residues, has_signal matches S",
+    "P or B forces null/unreliable/failure WARNING/no automatic handoff independently of raw type",
+    "Unavailable/invalid/partial/timeout/cancel never produces invented ordinary labels",
+    "Exact raw corpus/empty-run replay; public annotation lineage separate from model regression",
+    "Original academic asset/output integrity and all scientific profiles remain disabled"
+  ],
+  "release_requirements": [
+    {
+      "id": "B2-G1-INPUT",
+      "owner": "algorithm + engineering",
+      "required": "Approve normalized alphabet, biological domain and length/resource support using named cases",
+      "status": "PENDING"
+    },
+    {
+      "id": "B2-G1-REFERENCE",
+      "owner": "algorithm acceptance",
+      "required": "Accept independently sourced reference labels and training-leakage assessment; sign metrics and thresholds before evaluation",
+      "status": "PENDING"
+    },
+    {
+      "id": "B2-G1-RUNTIME",
+      "owner": "deployment",
+      "required": "Named target CPU/GPU profile, actual package/license receipt, offline asset hashes and target reproduction",
+      "status": "PENDING"
+    },
+    {
+      "id": "B2-G1-CONTRACT",
+      "owner": "engineering + algorithm",
+      "required": "Sign request/result, P/B/null/partial failures, method_summary and downstream handoff contracts",
+      "status": "PENDING"
+    },
+    {
+      "id": "B2-G2-ADAPTER",
+      "owner": "engineering",
+      "required": "After applicable B2 review, implement official adapter: safe ID process execution, output checks, resource stop/recovery and immutable publication",
+      "status": "NOT_STARTED"
+    },
+    {
+      "id": "B2-G3-G6",
+      "owner": "deployment + test + scientific reviewer",
+      "required": "Clean offline packaging, actual N02 integration, wave acceptance and frozen release",
+      "status": "NOT_STARTED"
+    }
+  ],
+  "independent_of": [
+    "B1 structure scientific mapping",
+    "AF3/ESMFold2 assets",
+    "FoldX/ProteinMPNN future-wave validation"
+  ],
+  "downstream": [
+    {
+      "consumer": "S-16 / W3",
+      "normal": "Reuse TMhelix/signal domains; single-TM large outside requires cross-validation",
+      "null": "Use approved local UniProt annotations and regex plus WARNING; no fabricated topology domains"
+    },
+    {
+      "consumer": "S-19 / W2",
+      "normal": "Any hotspot residue outside/signal means in_outside_region=true",
+      "null": "Pass no topology_labels; in_outside_region is unknown/null per nullable Schema, not false evidence"
+    },
+    {
+      "consumer": "S-27 / W5",
+      "normal": "Follow existing topology_allowed expression",
+      "null": "No restriction solely due to missing topology; unreliable/no-auto-handoff state still propagates"
+    },
+    {
+      "consumer": "membrane gate / W4 and scan / W7",
+      "normal": "Consume tm_count/outside_length with S16 cross-check; >50 is existing strict boundary",
+      "null": "Do not dereference null or treat missing topology as biological absence; preserve review state"
+    },
+    {
+      "consumer": "S-05",
+      "normal": "T02-only, outside current T01 wave",
+      "null": "Reference-only default retain/topology_exempted; do not add S05 to W1"
+    }
+  ],
+  "scientific_signoff": null,
+  "production_enabled": false
+}

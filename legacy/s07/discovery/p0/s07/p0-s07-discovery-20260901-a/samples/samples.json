@@ -1,0 +1,92 @@
+{
+  "campaign_id": "p0-s07-discovery-20260901-a",
+  "sequence_normalization": "uppercase ASCII amino-acid letters; no FASTA header or whitespace",
+  "cases": [
+    {
+      "case_id": "P0-DISC-001",
+      "name": "ubiquitin_1ubq_entity_1",
+      "selection_status": "FROZEN",
+      "discovery_intent": [
+        "TARGET_MATCH",
+        "same_sequence_multiple_structures",
+        "entity_and_chain_metadata",
+        "mmcif_artifact"
+      ],
+      "sequence_file": "P0-DISC-001.fasta",
+      "sequence_length": 76,
+      "sequence_sha256": "233b4b0b8c4616095bc3249f9375fc345d32af7deaef07117d0383c51d6f19aa",
+      "source": {
+        "database": "RCSB PDB",
+        "identifier": "1UBQ_1",
+        "url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1UBQ/1"
+      },
+      "expected_result_note": "Discovery intent only; actual classification must be derived from captured evidence."
+    },
+    {
+      "case_id": "P0-DISC-002",
+      "name": "human_tp53_full_length",
+      "selection_status": "FROZEN",
+      "discovery_intent": ["TARGET_DERIVED", "truncation_or_engineered_variant", "coordinate_coverage"],
+      "sequence_file": "P0-DISC-002.fasta",
+      "sequence_length": 393,
+      "sequence_sha256": "e3ca60f18e3b6e98986ad6749215ee3b7a3abc09c191675213d1f243c035c9a3",
+      "source": {
+        "database": "UniProtKB/Swiss-Prot",
+        "identifier": "P04637",
+        "url": "https://rest.uniprot.org/uniprotkb/P04637.fasta",
+        "retrieved_in_exchange": "p0-s07-discovery-20260901-a--P0-DISC-002--uniprot-P04637-fasta"
+      },
+      "expected_result_note": "Selected to expose full-target versus domain/construct results; actual classification is evidence-derived."
+    },
+    {
+      "case_id": "P0-DISC-003",
+      "name": "human_lsm1_homolog_search",
+      "selection_status": "FROZEN",
+      "discovery_intent": ["HOMOLOG_TEMPLATE", "blast_raw_output"],
+      "sequence_file": "P0-DISC-004.fasta",
+      "sequence_length": 133,
+      "sequence_sha256": "6e5a64a8db281d81dec0785dd0e179ea549855e6f10dbdb924db26eba47f4a51",
+      "shared_input_with": "P0-DISC-004",
+      "expected_result_note": "The 0.3-identity search tests template discovery separately from exact target retrieval."
+    },
+    {
+      "case_id": "P0-DISC-004",
+      "name": "human_lsm1_no_uniprot_pdb_cross_reference",
+      "selection_status": "FROZEN",
+      "discovery_intent": ["AFDB_ONLY", "accession_sequence_revalidation", "no_exact_experimental_target"],
+      "sequence_file": "P0-DISC-004.fasta",
+      "sequence_length": 133,
+      "sequence_sha256": "6e5a64a8db281d81dec0785dd0e179ea549855e6f10dbdb924db26eba47f4a51",
+      "source": {
+        "database": "UniProtKB/Swiss-Prot",
+        "identifier": "O15116",
+        "url": "https://rest.uniprot.org/uniprotkb/O15116.fasta",
+        "retrieved_in_exchange": "p0-s07-discovery-20260901-a--P0-DISC-004--uniprot-O15116-fasta"
+      },
+      "selection_evidence_note": "Selected from a dated UniProt query for reviewed human proteins of length 80-150 with no PDB cross-reference; RCSB and AFDB state are independently rechecked in this campaign."
+    },
+    {
+      "case_id": "P0-DISC-005",
+      "name": "recent_refseq_no_target_candidate",
+      "selection_status": "FROZEN",
+      "discovery_intent": ["NO_USABLE_STRUCTURE", "successful_empty_result", "accession_mapping_gap"],
+      "sequence_file": "P0-DISC-005.fasta",
+      "sequence_length": 98,
+      "sequence_sha256": "94e5f5f4932b7e1f580de109b034bcf0e3039a225f34afe196f86794359e52d3",
+      "source": {
+        "database": "NCBI Protein RefSeq",
+        "identifier": "WP_505187596.1",
+        "description": "hypothetical protein [Thermoleptolyngbya sp.]",
+        "selection_window": "2026-08-01 through 2026-09-01",
+        "retrieved_in_exchange": "p0-s07-discovery-20260901-a--sample-selection--ncbi-recent-refseq-top5-fasta"
+      },
+      "expected_result_note": "A dated no-target candidate, not a pre-declared no-hit truth. Lack of a verified UniProt accession is intentionally used to expose the AFDB sequence-to-accession gap."
+    },
+    {
+      "case_id": "P0-DISC-011",
+      "name": "invalid_and_fault_controls",
+      "selection_status": "DEFINED_BY_REQUEST_MATRIX",
+      "discovery_intent": ["input_validation", "http_204", "http_404", "timeout", "truncated_download"]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "checked_at": "2026-09-24T09:30:58.124012+00:00",
+  "process_check": {
+    "blast_processes": []
+  },
+  "idle": {
+    "active_jobs": [],
+    "gpu_state": {
+      "last_execution": {
+        "order": 1790236989833880381,
+        "sha256": "788fea639c19345bb262fbebf73a3d21d8e2872ce2692b53323c4c38cb18bade",
+        "target": "/var/lib/t01/resident/esmfold2/f49e46d7c0f96a6e88748d1f221ade9d",
+        "tool": "esmfold2",
+        "uncertain": false
+      },
+      "last_state": "succeeded",
+      "phase": "idle"
+    }
+  },
+  "children": [
+    {
+      "job_id": "t01p1r-job-120f08a88827456e83bfdf5e6ef19b92",
+      "state": "succeeded",
+      "started_at": "2026-09-24T05:17:41.378002Z",
+      "finished_at": "2026-09-24T06:07:04.823524Z",
+      "error_code": null,
+      "stop_confirmed": false
+    },
+    {
+      "job_id": "t01p1r-job-ffb7755bea434349ad8e1f2cd58c9ad5",
+      "state": "cancelled",
+      "started_at": "2026-09-24T08:04:06.122081Z",
+      "finished_at": "2026-09-24T09:27:32.398676Z",
+      "error_code": "CANCELLED",
+      "stop_confirmed": true
+    },
+    {
+      "job_id": "t01p1r-job-e15d89e91c3a4d3a8b4787f7b0d16daa",
+      "state": "cancelled",
+      "started_at": "2026-09-24T08:05:20.643566Z",
+      "finished_at": "2026-09-24T09:27:31.969527Z",
+      "error_code": "CANCELLED",
+      "stop_confirmed": true
+    }
+  ]
+}

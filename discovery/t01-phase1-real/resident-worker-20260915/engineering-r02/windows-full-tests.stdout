@@ -1,0 +1,65 @@
+........................................................................ [  3%]
+........................................................................ [  7%]
+........................................................................ [ 11%]
+........................................................................ [ 15%]
+........................................................................ [ 19%]
+........................................................................ [ 23%]
+........................................................................ [ 27%]
+........................................................................ [ 31%]
+........................................................................ [ 35%]
+........................................................................ [ 39%]
+........................................................................ [ 43%]
+........................................................................ [ 47%]
+........................................................................ [ 51%]
+........................................................................ [ 55%]
+........................................................................ [ 59%]
+........................................................................ [ 63%]
+.......................ssssssssss....................................... [ 67%]
+........................................................................ [ 71%]
+............................................................F........... [ 75%]
+........................................................................ [ 79%]
+......................s................................................. [ 83%]
+........................................................................ [ 86%]
+........................................................................ [ 90%]
+........................................................................ [ 94%]
+........................................................................ [ 98%]
+.....................                                                    [100%]
+================================== FAILURES ===================================
+__________ test_root_ci_build_and_deployment_entrypoints_are_bounded __________
+
+    def test_root_ci_build_and_deployment_entrypoints_are_bounded():
+        root = Path(__file__).resolve().parents[1]
+        dockerfile = (root / 'Dockerfile').read_text(encoding='utf-8')
+        assert '--network' not in dockerfile  # Network policy is supplied by the build invocation.
+        assert '--no-index --find-links=/build/wheelhouse' in dockerfile
+        assert 'deploy/t01-phase1-real-target-v0.2/wheelhouse' in dockerfile
+        assert 'ENTRYPOINT ["python", "-B", "-m", "t01_phase1_real.linux_service"]' in dockerfile
+        for source, target in RUNTIME_SCRIPT_MAP:
+            assert f'COPY scripts/{source} /app/scripts/{target}' in dockerfile
+    
+        wheels = sorted((root / 'deploy/t01-phase1-real-target-v0.2/wheelhouse').glob('*.whl'))
+        assert len(wheels) == 17
+        assert all('win_' not in wheel.name for wheel in wheels)
+    
+        ignore = (root / '.dockerignore').read_text(encoding='utf-8')
+        assert '!Dockerfile' in ignore and '!deploy/t01-phase1-real-target-v0.2/wheelhouse/**' in ignore
+    
+        jenkins = (root / 'Jenkinsfile').read_text(encoding='utf-8')
+        assert "namespace: 'him-ws'" in jenkins
+>       assert "workloadName: 't01-control-plane'" in jenkins
+E       assert "workloadName: 't01-control-plane'" in "return [\n    clusters: [\n        prod: [kubeConfigCredentialId: 'mataik8s']\n    ],\n    targets: [\n        [name: 'latest', cluster: 'prod', namespace: 'him-ws', workloadName: 'antigen-design', workloadType: 'deployment']\n    ]\n]\n"
+
+tests\test_target_linux_candidate.py:129: AssertionError
+============================== warnings summary ===============================
+src\t01_phase1_real\development\netmhc\result.py:67
+  D:\work\蛋白智能体\src\t01_phase1_real\development\netmhc\result.py:67: DeprecationWarning: invalid escape sequence '\d'
+    ensure(all(re.fullmatch('-?\d+',v) for v in fields[4:9]),'OUTPUT_INVALID','Invalid MHC-I core offsets')
+
+src\t01_phase1_real\development\netmhc\result.py:82
+  D:\work\蛋白智能体\src\t01_phase1_real\development\netmhc\result.py:82: DeprecationWarning: invalid escape sequence '\d'
+    ensure(re.fullmatch('-?\d+',fields[3]) is not None and len(fields[4])==9
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_target_linux_candidate.py::test_root_ci_build_and_deployment_entrypoints_are_bounded
+1 failed, 1809 passed, 11 skipped, 2 warnings in 287.88s (0:04:47)

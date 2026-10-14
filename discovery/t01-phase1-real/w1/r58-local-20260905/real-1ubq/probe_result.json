@@ -1,0 +1,44 @@
+{
+  "scope": "LOCAL_PARSING_AND_MAPPING_PROBE",
+  "production_status": "NOT_DEPLOYED",
+  "scientific_acceptance": "NOT_RUN",
+  "evidence_kind": "local_input",
+  "python": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "command": [
+    "scripts/probe_structure_mapping.py",
+    "--structure",
+    "tests\\fixtures\\structure_mapping\\real\\1UBQ.cif",
+    "--sequence-file",
+    "tests\\fixtures\\structure_mapping\\real\\1UBQ.fasta",
+    "--output-dir",
+    "discovery\\t01-phase1-real\\w1\\r58-local-20260905\\real-1ubq",
+    "--evidence-kind",
+    "local_input"
+  ],
+  "started_at": "2026-09-05T03:53:55.367431+00:00",
+  "network_retrieval": "NONE_IMPLEMENTED",
+  "files": [
+    {
+      "path": "structure_inventory.json",
+      "size_bytes": 86301,
+      "sha256": "a74d7d811e2b1d4c71b08c0552f8fa68bcb2049553c5b465ce7231001a3f445f"
+    },
+    {
+      "path": "mapping.json",
+      "size_bytes": 24155,
+      "sha256": "eb77016ae076cbe8f146e72c4c419e95133ccc521f6b505d853a864f51410c96"
+    }
+  ],
+  "status": "PASS",
+  "parse_status": "succeeded",
+  "mapping_status": "unverified",
+  "target_chain_id": "A",
+  "mapped_positions": 76,
+  "sequence_length": 76,
+  "structure_sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+  "sequence_sha256": "233b4b0b8c4616095bc3249f9375fc345d32af7deaef07117d0383c51d6f19aa",
+  "sequence_file_sha256": "50e96d2705b356a70b0d7163da2d12271126afa5eda3fa5ddd5aead72731280f",
+  "biopython": "1.88",
+  "finished_at": "2026-09-05T03:53:55.501470+00:00"
+}

@@ -1,0 +1,63 @@
+{
+  "facts_version": "0.1.0",
+  "structure_sha256": "0f455c0aa773d7f9427d4fc763c6a247fe49f8729db22d0212033828572ffc88",
+  "scientific_disposition": "not_evaluated",
+  "usable_for_pipeline": false,
+  "declared_format": "MMCIF",
+  "detected_format": "mmcif",
+  "requested_selection": {
+    "model_index": null,
+    "chain_selector": "AUTO"
+  },
+  "status": "rejected",
+  "error_code": "PARSE_FAILED",
+  "diagnostics": [
+    {
+      "code": "PARSE_FAILED",
+      "message": "Non-finite coordinate field: Cartn_x",
+      "location": {
+        "start": 528,
+        "end": 531,
+        "line": 24,
+        "column": 31
+      }
+    }
+  ],
+  "models": [
+    {
+      "model_index": 0,
+      "model_serial": "7",
+      "chains": [
+        {
+          "chain_id": "A",
+          "chain_missing": null,
+          "label_chain_ids": [
+            "LABEL"
+          ],
+          "residue_ids": [
+            "raw-residue-1"
+          ],
+          "protein_residue_count": 1,
+          "nonprotein_residue_count": 0,
+          "residue_letters": [
+            "A"
+          ],
+          "seq_extracted": "A"
+        }
+      ]
+    }
+  ],
+  "auto_candidates": [
+    "A"
+  ],
+  "ingestion_observation": null,
+  "binding": {
+    "run_id": "t01p1r-run-b1-eng-E-nan-coordinate",
+    "request_id": "b1-eng-E-nan-coordinate",
+    "job_id": "t01p1r-job-b1-facts-3d6c27f234af4a31a1c5ac55824ab89e",
+    "attempt_id": "t01p1r-attempt-b1-facts-3d6c27f234af4a31a1c5ac55824ab89e",
+    "request_sha256": "cc50328486b6f04eb01c7596c45837c6d7bb329957f1ff8a7e3782568b3f6044",
+    "sequence_sha256": "559aead08264d5795d3909718cdd05abd49572e84fe55590eef31a88a08fdffd",
+    "structure_sha256": "0f455c0aa773d7f9427d4fc763c6a247fe49f8729db22d0212033828572ffc88"
+  }
+}

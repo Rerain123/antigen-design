@@ -1,0 +1,29 @@
+{
+    "program": "blastp",
+    "version": "BLASTP 2.16.0+",
+    "command": "singularity exec $APPBIN/singularity/ncbiblast:2.16.0 /ncbiblast/bin/blastp -db &quot;uniprotkb_swissprot&quot; -query ncbiblast-R20260903-012750-0462-99067125-p1m.sequence  -num_threads 32 -outfmt 11 -out ncbiblast-R20260903-012750-0462-99067125-p1m.archive -matrix BLOSUM62 -max_target_seqs 100 -evalue 10 -seg no -comp_based_stats F",
+    "query_def": "controlled|synthetic_no_exact_record deterministic engineering negative",
+    "query_stype": "protein",
+    "query_len": 80,
+    "db_count": 1,
+    "db_num": 575748,
+    "db_len": 209017843,
+    "dbs": [
+        {
+            "name": "uniprotkb_swissprot",
+            "stype": "protein",
+            "created": "2026-09-01T11:35:00+01:00"
+        }
+    ],
+    "alignments": 100,
+    "scores": 100,
+    "expect_upper": 10.0,
+    "filter": "F",
+    "gap_extend": 1.0,
+    "gap_open": 11.0,
+    "matrix": "BLOSUM62",
+    "start": "2026-09-03T01:27:50+01:00",
+    "end": "2026-09-03T01:28:00+01:00",
+    "search": "P0Y0M0DT0H0M10.000S",
+    "hits": []
+}

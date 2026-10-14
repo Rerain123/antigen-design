@@ -1,0 +1,30 @@
+{
+  "input": {
+    "path": "/input/partial-icode.pdb",
+    "size_bytes": 725,
+    "sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223"
+  },
+  "command": [
+    "/usr/local/bin/python",
+    "/probe_raw.py",
+    "--input",
+    "/input/partial-icode.pdb",
+    "--mode",
+    "biopython",
+    "--output-dir",
+    "/out/result"
+  ],
+  "started_at": "2026-09-05T06:44:41.099704+00:00",
+  "mode": "biopython",
+  "production_result": null,
+  "usable_for_pipeline": false,
+  "review_required": true,
+  "mapping_approval": "NOT_GRANTED",
+  "scientific_acceptance": "NOT_RUN",
+  "execution_status": "failed",
+  "error_type": "ValueError",
+  "error": "Out of range float values are not JSON compliant: nan",
+  "tool_probe_exit_code": 1,
+  "elapsed_seconds": 0.2457187119999844,
+  "finished_at": "2026-09-05T06:44:41.345441+00:00"
+}

@@ -1,0 +1,14 @@
+{"artifacts":19,"case":"structure","error_code":null,"job_id":"t01p1r-job-adf4ec5719554bc18328f8f3cfe20cfa","state":"succeeded"}
+{"artifacts":33,"case":"proteinmpnn","error_code":null,"job_id":"t01p1r-job-cf65d3912876497f8f8a32e82455d512","state":"succeeded"}
+{"artifacts":49,"case":"esm-if1","error_code":null,"job_id":"t01p1r-job-0402270d6bfa47b0b5ae0915b61ffa9a","state":"succeeded"}
+{"artifacts":29,"case":"thermompnn","error_code":"TOOL_FAILED","job_id":"t01p1r-job-f801e8c12f994f04b69eff5378c18c2d","state":"failed"}
+Traceback (most recent call last):
+  File "/repo/scripts/run_resident_batch_probe.py", line 170, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/repo/scripts/run_resident_batch_probe.py", line 144, in main
+    finish('thermompnn',rt.submit_sequence(encode(thermo_request(ref)),'resident-new-ssm','t01.real.thermompnn'))
+  File "/repo/scripts/run_resident_batch_probe.py", line 118, in finish
+    assert job['state']=='succeeded',(name,job['state'],job['error_code'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('thermompnn', 'failed', 'TOOL_FAILED')

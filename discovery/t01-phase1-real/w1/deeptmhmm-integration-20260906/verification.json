@@ -1,0 +1,42 @@
+{
+  "verified_at": "2026-09-06T11:55:19.448650Z",
+  "status": "PASS_LOCAL_DEVELOPMENT",
+  "delivery_index": {
+    "path": "delivery/index.json",
+    "sha256": "d927301b540b749b380c053a9bb401a48f9fc9f6a73afcbf8fabd0c74bb719f9"
+  },
+  "indexed_files_verified": 305,
+  "published_artifacts_verified": 207,
+  "scenarios": 13,
+  "real_container_attempts": 10,
+  "profile": {
+    "id": "w1-deeptmhmm-academic1-local-development",
+    "version": "0.1.0",
+    "sha256": "1864dab9eb0123bff446c4a2148ab2569e05b66e5a4cf3bdd61319e6be05349f"
+  },
+  "protected_before_count": 817,
+  "protected_live_unchanged": 817,
+  "historical_checker_transitions": [],
+  "root_tests": {
+    "passed": 915,
+    "skipped": 1,
+    "skip_reason": "Existing Windows symbolic-link permission skip",
+    "command": ".\\.venv\\Scripts\\python.exe -X utf8 -m pytest -o addopts='' -q",
+    "log": "root-tests-final.txt",
+    "sha256": "f111130662f63449a782330e45f74f6cfcb54bdd66b04e4ed29da90d13de2791"
+  },
+  "prior_runs": {
+    "initial_docker_diagnostic": "Missing-container error casing fixed; original failed task preserved",
+    "campaign": "Stopped at crash classification assertion: TOOL_FAILED instead of INTERRUPTED; fixed in supervisor",
+    "campaign_final": "13 scenarios passed before final immutable container-ID recovery binding",
+    "root_tests": "12 failures without explicit UTF-8, including historical checker live hash drift",
+    "root_tests_utf8": "1 historical checker binding failure, then fixed without rewriting manifests"
+  },
+  "qualification": "DEVELOPMENT_UNREVIEWED",
+  "usable_for_pipeline": false,
+  "automatic_handoff": false,
+  "scientific_signoff": null,
+  "production_status": "NOT_DEPLOYED",
+  "legacy_full_mock": "NOT_RERUN_NO_PARTITION_CHANGE",
+  "legacy_s07": "NOT_RERUN_NO_PARTITION_CHANGE"
+}

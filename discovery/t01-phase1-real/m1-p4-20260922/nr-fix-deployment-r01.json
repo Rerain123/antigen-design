@@ -1,0 +1,31 @@
+{
+  "status": "P4_NR_FIX_DEPLOYED_PASS",
+  "deployment_generation": 66,
+  "source_hashes": {
+    "development/blast/policy.py": "eb5834f0ec66ddb4aef9ed92b7eea1f96a8a6b22bb38d03548cbca19d5926a7d",
+    "development/blast/prebuilt.py": "9d508495e0f24b5c1eded742122407cdccab8c7e44fab68183c7e8f2f1bbc264",
+    "resident_process.py": "02b8100a16a980006457cdb547a206def6d0b2728fc35d077831d79cb512988c",
+    "development/blast/worker.py": "13e63ff8c5b78192ee78727926dd09e53b4ab6bc40753222980e192807de428b"
+  },
+  "mounted_code_hashes": {
+    "development/blast/policy.py": "eb5834f0ec66ddb4aef9ed92b7eea1f96a8a6b22bb38d03548cbca19d5926a7d",
+    "development/blast/prebuilt.py": "9d508495e0f24b5c1eded742122407cdccab8c7e44fab68183c7e8f2f1bbc264",
+    "resident_process.py": "02b8100a16a980006457cdb547a206def6d0b2728fc35d077831d79cb512988c",
+    "development/blast/worker.py": "13e63ff8c5b78192ee78727926dd09e53b4ab6bc40753222980e192807de428b"
+  },
+  "worker_limits": {
+    "cpu": "4",
+    "memory": "16Gi"
+  },
+  "resident_blast_memory_bytes": 1099511627776,
+  "worker_blast_memory_bytes": 1099511627776,
+  "direct_blast_binary": {
+    "real": true,
+    "wrapper": "#!/bin/sh\nexec /blast/bin/blastp.REAL \"$@\"\n"
+  },
+  "manifest_sha256": "ea46b05b6465cd97557cf0e6304cc0e7766e53d4ece4209b55bf59d64d4841cd",
+  "target_mount_read_only": true,
+  "scientific_release_gate": "CLOSED",
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED"
+}

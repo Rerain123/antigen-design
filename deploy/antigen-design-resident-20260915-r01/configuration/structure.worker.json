@@ -1,0 +1,26 @@
+{
+  "version": "0.1.0",
+  "commands": [
+    {
+      "tool": "structure",
+      "argv": [
+        "/usr/local/bin/python",
+        "-B",
+        "/opt/t01/src/t01_phase1_real/development/structure/worker.py"
+      ],
+      "environment": {
+        "MKL_NUM_THREADS": "2",
+        "MPLCONFIGDIR": "/tmp/matplotlib",
+        "OMP_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "1",
+        "PATH": "/usr/local/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin",
+        "PYTHONUNBUFFERED": "1",
+        "T01_PRIVATE_TMP": "1",
+        "T01_RESIDENT_OFFLINE": "1",
+        "T01_RESIDENT_SLOT": "/run/t01-slot",
+        "T01_SOURCE_IMAGE_ID": "sha256:bb6c6b5ce1add12dc9bda3538a218568a9e80c048c12525fc130eaa970dbb9e5"
+      },
+      "memory_bytes": 8589934592
+    }
+  ]
+}

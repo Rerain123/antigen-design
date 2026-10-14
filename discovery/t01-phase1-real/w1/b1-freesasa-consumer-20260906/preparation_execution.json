@@ -1,0 +1,2163 @@
+{
+  "plan_sha256": "46bd9316f02217f308692c6b496f2d6adef8bf3aad71a3f71a6484d8b7b0ec42",
+  "cases": [
+    {
+      "id": "F-integer-pdb",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-integer-pdb.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-integer-pdb.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-integer-pdb"
+          ],
+          "started_at": "2026-09-06T01:45:41.685211+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-integer-pdb",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-integer-pdb",
+            "--route",
+            "pdb_file",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:45:42.070833+00:00",
+          "exit_code": 0,
+          "stdout": "{\"status\": \"READY_FOR_TOOL_PROBE\", \"error_code\": null, \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-icode-pdb",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-icode-pdb.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-icode-pdb.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-icode-pdb"
+          ],
+          "started_at": "2026-09-06T01:45:42.440709+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-icode-pdb",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-icode-pdb",
+            "--route",
+            "pdb_file",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:45:42.832073+00:00",
+          "exit_code": 0,
+          "stdout": "{\"status\": \"READY_FOR_TOOL_PROBE\", \"error_code\": null, \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-negative-pdb",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-negative-pdb.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-negative-pdb.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-negative-pdb"
+          ],
+          "started_at": "2026-09-06T01:45:43.194160+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-negative-pdb",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-negative-pdb",
+            "--route",
+            "pdb_file",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:45:43.579916+00:00",
+          "exit_code": 0,
+          "stdout": "{\"status\": \"READY_FOR_TOOL_PROBE\", \"error_code\": null, \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-char-pdb",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-char-pdb.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-char-pdb.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-char-pdb"
+          ],
+          "started_at": "2026-09-06T01:45:43.945930+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-char-pdb",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-char-pdb",
+            "--route",
+            "pdb_file",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:45:44.305369+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"PDB_ADDRESS_UNREPRESENTABLE\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-leading-zero-pdb",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-leading-zero-pdb.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-leading-zero-pdb.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-leading-zero-pdb"
+          ],
+          "started_at": "2026-09-06T01:45:44.670373+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-leading-zero-pdb",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-leading-zero-pdb",
+            "--route",
+            "pdb_file",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:45:45.038654+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"PDB_ADDRESS_UNREPRESENTABLE\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-char-icode-collision-pdb",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-char-icode-collision-pdb.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-char-icode-collision-pdb.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-char-icode-collision-pdb"
+          ],
+          "started_at": "2026-09-06T01:45:45.404499+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-char-icode-collision-pdb",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-char-icode-collision-pdb",
+            "--route",
+            "pdb_file",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:45:45.758275+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"PDB_ADDRESS_UNREPRESENTABLE\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-numeric-icode-collision-pdb",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-numeric-icode-collision-pdb.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-numeric-icode-collision-pdb.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-numeric-icode-collision-pdb"
+          ],
+          "started_at": "2026-09-06T01:45:46.137740+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-numeric-icode-collision-pdb",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-numeric-icode-collision-pdb",
+            "--route",
+            "pdb_file",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:45:46.513990+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"FREE_RESIDUE_TOKEN_COLLISION\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-context-ab-pdb",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-context-ab-pdb.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-context-ab-pdb.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-context-ab-pdb"
+          ],
+          "started_at": "2026-09-06T01:45:46.917195+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-context-ab-pdb",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-context-ab-pdb",
+            "--route",
+            "pdb_file",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A",
+            "--context-chain",
+            "B"
+          ],
+          "started_at": "2026-09-06T01:45:47.301233+00:00",
+          "exit_code": 0,
+          "stdout": "{\"status\": \"READY_FOR_TOOL_PROBE\", \"error_code\": null, \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-integer-native",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-integer-native.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-integer-native.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-integer-native"
+          ],
+          "started_at": "2026-09-06T01:45:47.675037+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-integer-native",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-integer-native",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:45:48.060236+00:00",
+          "exit_code": 0,
+          "stdout": "{\"status\": \"READY_FOR_TOOL_PROBE\", \"error_code\": null, \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-icode-native",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-icode-native.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-icode-native.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-icode-native"
+          ],
+          "started_at": "2026-09-06T01:45:48.418925+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-icode-native",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-icode-native",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:45:48.797148+00:00",
+          "exit_code": 0,
+          "stdout": "{\"status\": \"READY_FOR_TOOL_PROBE\", \"error_code\": null, \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-negative-native",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-negative-native.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-negative-native.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-negative-native"
+          ],
+          "started_at": "2026-09-06T01:45:49.232071+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-negative-native",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-negative-native",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:45:49.607780+00:00",
+          "exit_code": 0,
+          "stdout": "{\"status\": \"READY_FOR_TOOL_PROBE\", \"error_code\": null, \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-char-native",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-char-native.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-char-native.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-char-native"
+          ],
+          "started_at": "2026-09-06T01:45:49.989934+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-char-native",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-char-native",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:45:50.399297+00:00",
+          "exit_code": 0,
+          "stdout": "{\"status\": \"READY_FOR_TOOL_PROBE\", \"error_code\": null, \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-leading-zero-native",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-leading-zero-native.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-leading-zero-native.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-leading-zero-native"
+          ],
+          "started_at": "2026-09-06T01:45:50.763972+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-leading-zero-native",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-leading-zero-native",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:45:51.118397+00:00",
+          "exit_code": 0,
+          "stdout": "{\"status\": \"READY_FOR_TOOL_PROBE\", \"error_code\": null, \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-char-icode-collision-native",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-char-icode-collision-native.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-char-icode-collision-native.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-char-icode-collision-native"
+          ],
+          "started_at": "2026-09-06T01:45:51.512611+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-char-icode-collision-native",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-char-icode-collision-native",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:45:51.884415+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"FREE_RESIDUE_TOKEN_COLLISION\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-numeric-icode-collision-native",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-numeric-icode-collision-native.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-numeric-icode-collision-native.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-numeric-icode-collision-native"
+          ],
+          "started_at": "2026-09-06T01:45:52.280886+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-numeric-icode-collision-native",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-numeric-icode-collision-native",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:45:52.682406+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"FREE_RESIDUE_TOKEN_COLLISION\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-context-ab-native",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-context-ab-native.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-context-ab-native.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-context-ab-native"
+          ],
+          "started_at": "2026-09-06T01:45:53.039549+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-context-ab-native",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-context-ab-native",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A",
+            "--context-chain",
+            "B"
+          ],
+          "started_at": "2026-09-06T01:45:53.422042+00:00",
+          "exit_code": 0,
+          "stdout": "{\"status\": \"READY_FOR_TOOL_PROBE\", \"error_code\": null, \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-long-author-native",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-long-author-native.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-long-author-native.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-long-author-native"
+          ],
+          "started_at": "2026-09-06T01:45:53.830041+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-long-author-native",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-long-author-native",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:45:54.198437+00:00",
+          "exit_code": 0,
+          "stdout": "{\"status\": \"READY_FOR_TOOL_PROBE\", \"error_code\": null, \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-long-chain",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-long-chain.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-long-chain.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-long-chain"
+          ],
+          "started_at": "2026-09-06T01:45:54.597723+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-long-chain",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-long-chain",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A",
+            "--context-chain",
+            "AUTH_LONG"
+          ],
+          "started_at": "2026-09-06T01:45:54.978550+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"CHAIN_UNREPRESENTABLE\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-unknown-icode",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-unknown-icode.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-unknown-icode.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-unknown-icode"
+          ],
+          "started_at": "2026-09-06T01:45:55.382664+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-unknown-icode",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-unknown-icode",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:45:55.759607+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"ICODE_UNKNOWN\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-literal-question-icode",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-literal-question-icode.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-literal-question-icode.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-literal-question-icode"
+          ],
+          "started_at": "2026-09-06T01:45:56.143344+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-literal-question-icode",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-literal-question-icode",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:45:56.531383+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"ICODE_UNREPRESENTABLE\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-wrong-model",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-wrong-model.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-wrong-model.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-wrong-model"
+          ],
+          "started_at": "2026-09-06T01:45:56.927739+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-wrong-model",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-wrong-model",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "1",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:45:57.297277+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"MODEL_SELECTION_MISMATCH\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-empty-context",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-empty-context.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-empty-context.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-empty-context"
+          ],
+          "started_at": "2026-09-06T01:45:57.679078+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "entry": "prepare_b1_freesasa.run",
+          "selection": {
+            "route": "native_atoms",
+            "model_index": 0,
+            "context_chain_ids": []
+          },
+          "started_at": "2026-09-06T01:45:58.047898+00:00",
+          "status": "REJECTED_BEFORE_TOOL",
+          "method": "DIRECT_PYTHON_API"
+        }
+      ]
+    },
+    {
+      "id": "F-duplicate-context",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-duplicate-context.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-duplicate-context.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-duplicate-context"
+          ],
+          "started_at": "2026-09-06T01:45:58.064316+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-duplicate-context",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-duplicate-context",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:45:58.435991+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"CONTEXT_SELECTION_INVALID\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-missing-context-chain",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-missing-context-chain.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-missing-context-chain.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-missing-context-chain"
+          ],
+          "started_at": "2026-09-06T01:45:58.842445+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-missing-context-chain",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-missing-context-chain",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A",
+            "--context-chain",
+            "Z"
+          ],
+          "started_at": "2026-09-06T01:45:59.251592+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"CONTEXT_CHAIN_NOT_FOUND\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-excluded-ingestion-chain",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-excluded-ingestion-chain.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-excluded-ingestion-chain.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-excluded-ingestion-chain"
+          ],
+          "started_at": "2026-09-06T01:45:59.623861+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-excluded-ingestion-chain",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-excluded-ingestion-chain",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "B"
+          ],
+          "started_at": "2026-09-06T01:46:00.010048+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"INGESTION_CHAIN_EXCLUDED\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-context-a",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-context-a.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-context-a.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-context-a"
+          ],
+          "started_at": "2026-09-06T01:46:00.367747+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-context-a",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-context-a",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:00.767955+00:00",
+          "exit_code": 0,
+          "stdout": "{\"status\": \"READY_FOR_TOOL_PROBE\", \"error_code\": null, \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-selected-second-model",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-selected-second-model.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-selected-second-model.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-selected-second-model"
+          ],
+          "started_at": "2026-09-06T01:46:01.125230+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-selected-second-model",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-selected-second-model",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "1",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:01.494859+00:00",
+          "exit_code": 0,
+          "stdout": "{\"status\": \"READY_FOR_TOOL_PROBE\", \"error_code\": null, \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-label-gap",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-label-gap.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-label-gap.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-label-gap"
+          ],
+          "started_at": "2026-09-06T01:46:01.839550+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-label-gap",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-label-gap",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:02.238140+00:00",
+          "exit_code": 0,
+          "stdout": "{\"status\": \"READY_FOR_TOOL_PROBE\", \"error_code\": null, \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-label-namespace-collision",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-label-namespace-collision.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-label-namespace-collision.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-label-namespace-collision"
+          ],
+          "started_at": "2026-09-06T01:46:02.597826+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-label-namespace-collision",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-label-namespace-collision",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:03.006746+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"FREE_RESIDUE_TOKEN_COLLISION\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-altloc",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-altloc.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-altloc.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-altloc"
+          ],
+          "started_at": "2026-09-06T01:46:03.390267+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-altloc",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-altloc",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:03.754619+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"ALTLOC_REVIEW_REQUIRED\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-partial-occupancy",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-partial-occupancy.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-partial-occupancy.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-partial-occupancy"
+          ],
+          "started_at": "2026-09-06T01:46:04.137132+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-partial-occupancy",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-partial-occupancy",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:04.524300+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"OCCUPANCY_REVIEW_REQUIRED\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-zero-occupancy",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-zero-occupancy.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-zero-occupancy.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-zero-occupancy"
+          ],
+          "started_at": "2026-09-06T01:46:04.904724+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-zero-occupancy",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-zero-occupancy",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:05.276782+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"OCCUPANCY_REVIEW_REQUIRED\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-unknown-element",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-unknown-element.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-unknown-element.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-unknown-element"
+          ],
+          "started_at": "2026-09-06T01:46:05.658072+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-unknown-element",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-unknown-element",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:06.044567+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"ELEMENT_UNAVAILABLE\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-conflicting-element",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-conflicting-element.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-conflicting-element.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-conflicting-element"
+          ],
+          "started_at": "2026-09-06T01:46:06.421080+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-conflicting-element",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-conflicting-element",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:06.793088+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"ATOM_ELEMENT_CONFLICT\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-atom-namespace",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-atom-namespace.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-atom-namespace.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-atom-namespace"
+          ],
+          "started_at": "2026-09-06T01:46:07.158204+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-atom-namespace",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-atom-namespace",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:07.543426+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"ATOM_NAMESPACE_CONFLICT\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-residue-namespace",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-residue-namespace.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-residue-namespace.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-residue-namespace"
+          ],
+          "started_at": "2026-09-06T01:46:07.909174+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-residue-namespace",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-residue-namespace",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:08.309714+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"RESIDUE_NAMESPACE_CONFLICT\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-nonprotein",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-nonprotein.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-nonprotein.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-nonprotein"
+          ],
+          "started_at": "2026-09-06T01:46:08.699213+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-nonprotein",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-nonprotein",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:09.089833+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"CONTEXT_REVIEW_REQUIRED\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-unknown-protor-radius",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-unknown-protor-radius.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-unknown-protor-radius.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-unknown-protor-radius"
+          ],
+          "started_at": "2026-09-06T01:46:09.502675+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-unknown-protor-radius",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-unknown-protor-radius",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:09.893484+00:00",
+          "exit_code": 0,
+          "stdout": "{\"status\": \"READY_FOR_TOOL_PROBE\", \"error_code\": null, \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-water-hydrogen-ledger",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-water-hydrogen-ledger.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-water-hydrogen-ledger.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-water-hydrogen-ledger"
+          ],
+          "started_at": "2026-09-06T01:46:10.287677+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-water-hydrogen-ledger",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-water-hydrogen-ledger",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:10.662950+00:00",
+          "exit_code": 0,
+          "stdout": "{\"status\": \"READY_FOR_TOOL_PROBE\", \"error_code\": null, \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-precision-native_atoms",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-precision-native_atoms.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-precision-native_atoms.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-precision-native_atoms"
+          ],
+          "started_at": "2026-09-06T01:46:11.069072+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-precision-native_atoms",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-precision-native_atoms",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:11.454151+00:00",
+          "exit_code": 0,
+          "stdout": "{\"status\": \"READY_FOR_TOOL_PROBE\", \"error_code\": null, \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-precision-pdb_file",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-precision-pdb_file.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-precision-pdb_file.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-precision-pdb_file"
+          ],
+          "started_at": "2026-09-06T01:46:11.820102+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-precision-pdb_file",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-precision-pdb_file",
+            "--route",
+            "pdb_file",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:12.199818+00:00",
+          "exit_code": 0,
+          "stdout": "{\"status\": \"READY_FOR_TOOL_PROBE\", \"error_code\": null, \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-metadata",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-metadata.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-metadata.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-metadata"
+          ],
+          "started_at": "2026-09-06T01:46:12.587954+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-metadata",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-metadata",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:12.950140+00:00",
+          "exit_code": 0,
+          "stdout": "{\"status\": \"READY_FOR_TOOL_PROBE\", \"error_code\": null, \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-rejected-b1",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-rejected-b1.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-rejected-b1.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-rejected-b1"
+          ],
+          "started_at": "2026-09-06T01:46:13.307907+00:00",
+          "exit_code": 1,
+          "stdout": "{\"outcome\": \"rejected\", \"error_code\": \"FORMAT_MISMATCH\", \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-rejected-b1",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-rejected-b1",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:13.714413+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"B1_PREFLIGHT_REJECTED\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-original-1ubq",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-original-1ubq.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-original-1ubq.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-original-1ubq"
+          ],
+          "started_at": "2026-09-06T01:46:14.177650+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-original-1ubq",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-original-1ubq",
+            "--route",
+            "native_atoms",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:15.008773+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"ICODE_UNKNOWN\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    },
+    {
+      "id": "F-historical-derived-1ubq",
+      "calls": [
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\probe_b1_input_facts.py",
+            "record",
+            "--structure",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-historical-derived-1ubq.structure",
+            "--request",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\inputs\\F-historical-derived-1ubq.request.json",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-historical-derived-1ubq"
+          ],
+          "started_at": "2026-09-06T01:46:15.827508+00:00",
+          "exit_code": 0,
+          "stdout": "{\"outcome\": \"recorded\", \"error_code\": null, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        },
+        {
+          "command": [
+            "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+            "-X",
+            "utf8",
+            "D:\\work\\蛋白智能体\\scripts\\prepare_b1_freesasa.py",
+            "--bundle",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\b1_bundles\\F-historical-derived-1ubq",
+            "--output-dir",
+            "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906\\prepared\\F-historical-derived-1ubq",
+            "--route",
+            "pdb_file",
+            "--model-index",
+            "0",
+            "--context-chain",
+            "A"
+          ],
+          "started_at": "2026-09-06T01:46:16.445900+00:00",
+          "exit_code": 1,
+          "stdout": "{\"status\": \"REJECTED_BEFORE_TOOL\", \"error_code\": \"OCCUPANCY_REVIEW_REQUIRED\", \"tool_invoked\": false, \"production_status\": \"NOT_DEPLOYED\"}\r\n",
+          "stderr": "",
+          "method": "CLI"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/control_smoke.py", line 36, in <module>
+    process=start(2);client.prepare(base)
+            ^^^^^^^^
+  File "/control_smoke.py", line 29, in start
+    if proc.poll() is not None:raise RuntimeError('Service exited during startup')
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Service exited during startup

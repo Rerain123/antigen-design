@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "T01_PHASE1_MOCK_FIXTURE_MATERIALIZATION_SCHEMA_v0.1.json",
+  "title": "T-01 Phase 1 Mock Fixture Materialization v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "document_type",
+    "materialization_version",
+    "source_fixture_manifest_version",
+    "source_scenario_catalog_version",
+    "envelope_contract_version",
+    "implementation_milestone",
+    "materialization_state",
+    "data_classification",
+    "scientific_compute",
+    "network_access_performed",
+    "legacy_implementation_reused",
+    "dify_dsl_created",
+    "source_sha256",
+    "counts",
+    "files"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "T01_PHASE1_MOCK_FIXTURE_MATERIALIZATION_SCHEMA_v0.1.json"
+    },
+    "document_type": {
+      "const": "T01_PHASE1_MOCK_FIXTURE_MATERIALIZATION"
+    },
+    "materialization_version": {
+      "const": "T01-PHASE1-MOCK-FIXTURE-MATERIALIZATION-v0.1"
+    },
+    "source_fixture_manifest_version": {
+      "const": "T01-PHASE1-MOCK-FIXTURE-MANIFEST-v0.1"
+    },
+    "source_scenario_catalog_version": {
+      "const": "T01-PHASE1-MOCK-SCENARIO-CATALOG-v0.1"
+    },
+    "envelope_contract_version": {
+      "const": "T01-PHASE1-ENVELOPE-v0.1"
+    },
+    "implementation_milestone": {
+      "const": "PH1-MOCK-M2"
+    },
+    "materialization_state": {
+      "const": "MATERIALIZED_AND_VERIFIED"
+    },
+    "data_classification": {
+      "const": "MOCK_DATA"
+    },
+    "scientific_compute": {
+      "const": false
+    },
+    "network_access_performed": {
+      "const": false
+    },
+    "legacy_implementation_reused": {
+      "const": false
+    },
+    "dify_dsl_created": {
+      "const": false
+    },
+    "source_sha256": {
+      "type": "object",
+      "minProperties": 21,
+      "maxProperties": 21,
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      },
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_fixture_count",
+        "request_variant_count",
+        "attempt_fixture_count",
+        "payload_file_count"
+      ],
+      "properties": {
+        "input_fixture_count": {"const": 2},
+        "request_variant_count": {"const": 22},
+        "attempt_fixture_count": {"const": 326},
+        "payload_file_count": {"const": 350}
+      }
+    },
+    "files": {
+      "type": "array",
+      "minItems": 350,
+      "maxItems": 350,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "logical_key",
+          "path",
+          "size_bytes",
+          "sha256",
+          "data_classification",
+          "scientific_compute",
+          "source_pointer"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "INPUT_FIXTURE",
+              "REQUEST_VARIANT",
+              "ATTEMPT_RESULT"
+            ]
+          },
+          "logical_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "path": {
+            "type": "string",
+            "pattern": "^dify/t01-phase1-mock-v0[.]1/fixtures/[A-Za-z0-9._/-]+$"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "data_classification": {
+            "const": "MOCK_DATA"
+          },
+          "scientific_compute": {
+            "const": false
+          },
+          "source_pointer": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

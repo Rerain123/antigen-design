@@ -1,0 +1,65 @@
+{
+  "mapping_version": "0.1.0",
+  "artifact_type": "t01.real.structure_mapping",
+  "evidence_kind": "synthetic_fixture",
+  "mapping_status": "unreliable",
+  "review_required": true,
+  "usable_for_pipeline": false,
+  "sequence": "ARG",
+  "sequence_sha256": "204ca7e7cf7d3e9cd8905f36d40edbe3910102d8ae4dcdb9475b6d5fe959be3d",
+  "structure_sha256": "242109b419f748b06470f341e0cdde94fdb3c91c0f1e8aa0d04961cf25c1a054",
+  "format": "pdb",
+  "model_index": null,
+  "model_serial": null,
+  "selection": {
+    "requested_model_index": null,
+    "requested_chain_id": null
+  },
+  "ingestion_chain_id": null,
+  "target_chain_id": null,
+  "fixed_chain_ids": [],
+  "method": {
+    "id": "exact_ordered_subsequence",
+    "version": "0.1.0",
+    "acceptance_threshold": null
+  },
+  "parser": {
+    "name": "Biopython",
+    "version": "1.88",
+    "strict": true,
+    "chain_namespace": "pdb_chain_id"
+  },
+  "producer_version": "0.1.0",
+  "chain_candidates": [],
+  "entries": [
+    {
+      "sequence_position": 1,
+      "sequence_residue": "A",
+      "structure_residue": null,
+      "reason": "unresolved_mapping"
+    },
+    {
+      "sequence_position": 2,
+      "sequence_residue": "R",
+      "structure_residue": null,
+      "reason": "unresolved_mapping"
+    },
+    {
+      "sequence_position": 3,
+      "sequence_residue": "G",
+      "structure_residue": null,
+      "reason": "unresolved_mapping"
+    }
+  ],
+  "issues": [
+    {
+      "code": "MODEL_SELECTION_REQUIRED",
+      "message": "Multiple models; an explicit model selection and its review are required"
+    },
+    {
+      "code": "G1_REVIEW_PENDING",
+      "message": "This local probe cannot approve scientific mapping or automatic handoff"
+    }
+  ],
+  "review": null
+}

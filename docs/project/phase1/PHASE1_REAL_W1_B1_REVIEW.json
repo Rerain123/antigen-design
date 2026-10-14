@@ -1,0 +1,43 @@
+{
+  "date": "2026-09-05",
+  "scope": "W1-08B1 review preparation, not complete scientific G1",
+  "status": "PREPARED_WITH_EXPLICIT_QUALIFICATION_GAPS",
+  "completed_preparation_items": ["B1-01", "B1-02", "B1-03", "B1-04"],
+  "reviewer": "AI engineering review; no algorithm or customer signoff asserted",
+  "scientific_signoff": "NOT_GRANTED",
+  "production_enabled": false,
+  "modules": [
+    {
+      "tool_id": "t01.real.ingest_structure",
+      "engineering_evidence": "LOCAL_PARSING_AND_REVIEW_CONTRACT_PREPARED",
+      "full_g1": "NOT_PASSED",
+      "production_enabled": false,
+      "remaining": ["B1-A01", "B1-A02", "B1-A03", "B1-E01", "TARGET_ENVIRONMENT_AND_REVIEW"]
+    },
+    {
+      "tool_id": "t01.real.map_structure",
+      "engineering_evidence": "UNVERIFIED_OR_UNRELIABLE_CANDIDATES_ONLY",
+      "full_g1": "NOT_PASSED",
+      "production_enabled": false,
+      "remaining": ["B1-M01", "B1-M02", "B1-M03", "B1-E01", "APPLICABLE_INPUT_DOMAIN_AND_CONSUMER_REVIEW"]
+    }
+  ],
+  "case_oracle": "Predeclared engineering expectations from explicit edits, independently sourced sequences and prior address observations; not scientific gold standards",
+  "case_count": 23,
+  "actual_local_parse_and_candidate_execution": true,
+  "real_source_structures": ["1UBQ", "5XZC"],
+  "customer_supplied_reference_samples": "NONE_PROVIDED",
+  "new_independent_biological_holdouts": 0,
+  "review_contract": "工作流设计/02-数据契约/phase1-real-v0.1/b1-review",
+  "evidence": "discovery/t01-phase1-real/w1/b1-review-20260905",
+  "allowed_followup": "B1 input preflight, source metadata observation and lossless address engineering preparation under W1-03/W1-07",
+  "not_allowed_by_this_review": [
+    "Enable B1 scientific Worker profiles in the runtime registry",
+    "Produce verified mappings or automatically consumable scientific output",
+    "Invent mismatch/gap/identity thresholds or missing-atom denominators",
+    "Infer uploaded structure source/pLDDT from file type or B-factor",
+    "Approve server deployment, complete W1 or downstream production"
+  ],
+  "open_items": {"OI-015": "IN_REVIEW", "OI-023": "IN_REVIEW"},
+  "production_status": "NOT_DEPLOYED"
+}

@@ -1,0 +1,316 @@
+{
+  "status": "HIMAT_P2_PROGRESS_DEPLOYED_VERIFIED",
+  "generation": 83,
+  "service": {
+    "source_hashes": {
+      "service_api/himat.py": "24c6c765ee0aae1c034a261a7e2bea7aa03e6b51325ff53750d25bb5f9f6892a",
+      "service_api/progress.py": "515a0fcde44d3b3f26533611e79c9a7b3913e10fc9c3d366a2aaf6c2b062ac51",
+      "service_api/transport.py": "617ba3fc77bce73325c1bfb712eeef6d6ff81fa9282a1f11a624363f5032a925",
+      "service_api/app.py": "687d03c7e0b08f7e1e256827a3facfb03f125402c5289c072fa2fdd397c641a1"
+    },
+    "blast_original_state": "failed",
+    "blast_native_contract_pass": true,
+    "blast_replay_hsps": 500,
+    "blast_replay_qualifying_hsps": 500,
+    "tool_names": [
+      "workflow_submit_sequence",
+      "workflow_check"
+    ],
+    "card_summary": "任务 t01p1r-job-120f08a88827456e83bfdf5e6ef19b92 已生成工程报告；后端结论 DESIGN_INPUTS_UNAVAILABLE。计算含 2 项失败，报告交付不表示计算成功。科学资格 CLOSED / false / NOT_DEPLOYED。",
+    "card_issues": [
+      "N03 blast: failed / OUTPUT_INVALID",
+      "N16 codon: skipped / EXPRESSION_HOST_NOT_PROVIDED",
+      "N11 design: skipped / DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "N09 domains: skipped / DATABASE_NOT_PROVIDED",
+      "N08 homology: skipped / DATABASE_NOT_PROVIDED",
+      "N05 netmhc: skipped / ALLELE_PANEL_NOT_PROVIDED",
+      "N01 prediction: failed / TOOL_FAILED",
+      "N13 protection: skipped / DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "N12 rescore: skipped / DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "N14 stability: skipped / DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "N01 structure: skipped / PREDICTION_UNAVAILABLE",
+      "variant_report: DEVELOPMENT_UNREVIEWED",
+      "wt_draft: DEVELOPMENT_UNREVIEWED",
+      "wt_reference: DEVELOPMENT_UNREVIEWED",
+      "N16: DNA_NOT_PROVIDED",
+      "delivery: OI_013_AGENT_C_INTERFACE_UNSIGNED",
+      "delivery: OI_014_CANDIDATE_RECORD_MAPPING_UNSIGNED",
+      "delivery: SCIENTIFIC_GATES_NOT_RELEASED"
+    ],
+    "downloads": [
+      {
+        "kind": "attachment_report",
+        "sha256": "7a1e10dfb39680ca19231fb091c0e014dce38d2ca41ca57196018325a92a417d",
+        "bytes": 2258
+      },
+      {
+        "kind": "attachment_zip",
+        "sha256": "7b26f959331a9c722ac964edf81a0479a18eac727ef20882ab6af9fd5fae222e",
+        "bytes": 85515
+      }
+    ],
+    "job_count_unchanged": true,
+    "design_input_mode": "BACKEND_EVIDENCE_V1"
+  },
+  "verification": {
+    "historical_replay": {
+      "job_id": "t01p1r-job-429765bbfc954bb2af8a11570a8d0cbc",
+      "run_id": "t01p1r-run-c7b69186b8b2458ab025fe1bf43084e1",
+      "state": "running",
+      "terminal": false,
+      "progress_unit": "business_nodes",
+      "total_nodes": 18,
+      "completed_nodes": 2,
+      "current_nodes": [
+        "N03"
+      ],
+      "node_counts": {
+        "succeeded": 2,
+        "reconciling": 1,
+        "not_executed": 15
+      },
+      "node_progress": {
+        "N01": {
+          "state": "succeeded",
+          "completed": true,
+          "internal_steps": 2,
+          "step_states": {
+            "succeeded": 2
+          },
+          "active_steps": []
+        },
+        "N02": {
+          "state": "succeeded",
+          "completed": true,
+          "internal_steps": 1,
+          "step_states": {
+            "succeeded": 1
+          },
+          "active_steps": []
+        },
+        "N03": {
+          "state": "reconciling",
+          "completed": false,
+          "internal_steps": 1,
+          "step_states": {
+            "reconciling": 1
+          },
+          "active_steps": [
+            {
+              "step": "blast",
+              "state": "reconciling"
+            }
+          ]
+        },
+        "N04": {
+          "state": "not_executed",
+          "completed": false,
+          "internal_steps": 1,
+          "step_states": {
+            "not_executed": 1
+          },
+          "active_steps": []
+        },
+        "N05": {
+          "state": "not_executed",
+          "completed": false,
+          "internal_steps": 1,
+          "step_states": {
+            "not_executed": 1
+          },
+          "active_steps": []
+        },
+        "N06": {
+          "state": "not_executed",
+          "completed": false,
+          "internal_steps": 1,
+          "step_states": {
+            "not_executed": 1
+          },
+          "active_steps": []
+        },
+        "N07": {
+          "state": "not_executed",
+          "completed": false,
+          "internal_steps": 1,
+          "step_states": {
+            "not_executed": 1
+          },
+          "active_steps": []
+        },
+        "N08": {
+          "state": "not_executed",
+          "completed": false,
+          "internal_steps": 1,
+          "step_states": {
+            "not_executed": 1
+          },
+          "active_steps": []
+        },
+        "N09": {
+          "state": "not_executed",
+          "completed": false,
+          "internal_steps": 1,
+          "step_states": {
+            "not_executed": 1
+          },
+          "active_steps": []
+        },
+        "N10": {
+          "state": "not_executed",
+          "completed": false,
+          "internal_steps": 1,
+          "step_states": {
+            "not_executed": 1
+          },
+          "active_steps": []
+        },
+        "N11": {
+          "state": "not_executed",
+          "completed": false,
+          "internal_steps": 2,
+          "step_states": {
+            "not_executed": 2
+          },
+          "active_steps": []
+        },
+        "N12": {
+          "state": "not_executed",
+          "completed": false,
+          "internal_steps": 9,
+          "step_states": {
+            "not_executed": 9
+          },
+          "active_steps": []
+        },
+        "N13": {
+          "state": "not_executed",
+          "completed": false,
+          "internal_steps": 21,
+          "step_states": {
+            "not_executed": 21
+          },
+          "active_steps": []
+        },
+        "N14": {
+          "state": "not_executed",
+          "completed": false,
+          "internal_steps": 1,
+          "step_states": {
+            "not_executed": 1
+          },
+          "active_steps": []
+        },
+        "N15": {
+          "state": "not_executed",
+          "completed": false,
+          "internal_steps": 1,
+          "step_states": {
+            "not_executed": 1
+          },
+          "active_steps": []
+        },
+        "N16": {
+          "state": "not_executed",
+          "completed": false,
+          "internal_steps": 1,
+          "step_states": {
+            "not_executed": 1
+          },
+          "active_steps": []
+        },
+        "N17": {
+          "state": "not_executed",
+          "completed": false,
+          "internal_steps": 3,
+          "step_states": {
+            "not_executed": 3
+          },
+          "active_steps": []
+        },
+        "N18": {
+          "state": "not_executed",
+          "completed": false,
+          "internal_steps": 2,
+          "step_states": {
+            "not_executed": 2
+          },
+          "active_steps": []
+        }
+      },
+      "internal_step_counts": {
+        "total": 51,
+        "finished": 3,
+        "states": {
+          "reconciling": 1,
+          "succeeded": 3,
+          "not_executed": 47
+        }
+      },
+      "progress_note": "按 N01–N18 统计；已结束节点包含跳过或失败，不等于成功。内部步骤单列，节点数不是耗时百分比。reconciling 是控制器状态；waiting_worker 表示请求已提交但尚无 Worker 执行回执，executing 表示绑定的 Worker 回执记录执行中，finalizing 表示原生进程已确认停止、后端正在收集结果。unknown 不推定正在计算；回执不等于实时 CPU 采样。",
+      "scientific_gate": "CLOSED",
+      "usable_for_pipeline": false,
+      "production_status": "NOT_DEPLOYED"
+    },
+    "receipt_replay": {
+      "phase": "finalizing",
+      "worker_state": "succeeded",
+      "stopped_confirmed": true
+    },
+    "receipt_replay_is_hypothetical_collection_state": true,
+    "tools_description": "用户在后续消息询问进度时按 job_id 调用一次。运行中按 N01–N18 共18个业务节点报告进度；completed_nodes 是已结束节点数，包含跳过或失败，成功/失败/跳过见 node_counts。内部步骤数不作为业务节点总数，也不代表耗时百分比。current_nodes 包含 reconciling 和 stop_requested；查看 active_steps.execution.phase 区分 waiting_worker（等待Worker）、executing（执行回执记录运行中）、finalizing（原生进程已停止、收集结果）和 unknown（未能确认）。不得仅凭父任务 running 或 reconciling 声称 BLAST 正在计算；回执不是实时 CPU 采样。终态直接返回 HiMat 报告卡片及受控下载链接。无需保持聊天连接或在一个回合中反复等待。",
+    "iedb_submission_preserved": {
+      "database_id": "iedb-20260924-r01",
+      "database_manifest_sha256": "96be17e60c108013d320558817037d081edbf8e3c0ed2f9facf83a2d818b6e12",
+      "thresholds": {
+        "identity_percent_min": 70,
+        "query_coverage_percent_min": 80
+      },
+      "timeout_seconds": 7200
+    },
+    "cancelled_cards": [
+      {
+        "job_id": "t01p1r-job-429765bbfc954bb2af8a11570a8d0cbc",
+        "type": "primer_design_output",
+        "summary": "任务 t01p1r-job-429765bbfc954bb2af8a11570a8d0cbc 终态为 cancelled；科学资格 CLOSED / false / NOT_DEPLOYED。"
+      },
+      {
+        "job_id": "t01p1r-job-df485abbd2664ac68030f08bdaa0032a",
+        "type": "primer_design_output",
+        "summary": "任务 t01p1r-job-df485abbd2664ac68030f08bdaa0032a 终态为 cancelled；科学资格 CLOSED / false / NOT_DEPLOYED。"
+      }
+    ],
+    "new_workflow_submitted": false
+  },
+  "idle_before": {
+    "active_jobs": [],
+    "gpu_state": {
+      "last_execution": {
+        "order": 1790236989833880381,
+        "sha256": "788fea639c19345bb262fbebf73a3d21d8e2872ce2692b53323c4c38cb18bade",
+        "target": "/var/lib/t01/resident/esmfold2/f49e46d7c0f96a6e88748d1f221ade9d",
+        "tool": "esmfold2",
+        "uncertain": false
+      },
+      "last_state": "succeeded",
+      "phase": "idle"
+    }
+  },
+  "idle_after": {
+    "active_jobs": [],
+    "gpu_state": {
+      "last_execution": {
+        "order": 1790236989833880381,
+        "sha256": "788fea639c19345bb262fbebf73a3d21d8e2872ce2692b53323c4c38cb18bade",
+        "target": "/var/lib/t01/resident/esmfold2/f49e46d7c0f96a6e88748d1f221ade9d",
+        "tool": "esmfold2",
+        "uncertain": false
+      },
+      "last_state": "succeeded",
+      "phase": "idle"
+    }
+  },
+  "scientific_gate": "CLOSED",
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED"
+}

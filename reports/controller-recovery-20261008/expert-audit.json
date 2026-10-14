@@ -1,0 +1,109 @@
+{
+  "authority_files_verified": [
+    {
+      "path": "工作流设计/01-业务依据/计算流程修订_20260929/Agent A 一期计算规则与流程修订方案_v2_20260929.md",
+      "source_path": "C:/Users/wing/Documents/xwechat_files/wxid_wkxjslqc0iud22_2ef4/msg/file/2026-09/Agent A 一期计算规则与流程修订方案_v2_20260929.md",
+      "bytes": 107669,
+      "sha256": "390fe850317c703cc078c394b7cd42b8f380d182873902546faf2e4cacb4291f"
+    },
+    {
+      "path": "工作流设计/01-业务依据/计算流程修订_20260929/codex-clipboard-7784c06e-dca5-4ed8-871a-da637d1e31cb.png",
+      "source_path": "C:/Users/wing/AppData/Local/Temp/codex-clipboard-7784c06e-dca5-4ed8-871a-da637d1e31cb.png",
+      "bytes": 35252,
+      "sha256": "3ef357922c5d2d1390097a972dd93851404c839730c69f63b852d35d1f8b656e"
+    }
+  ],
+  "rule_version": "expert-revision-20260929-v2",
+  "overall": "CORE_V2_IMPLEMENTED_WITH_REMAINING_DIFFERENCES",
+  "audit_type": "targeted_source_and_current_run_audit_not_complete_scientific_validation",
+  "findings": [
+    {
+      "id": "CORE_CONFIG",
+      "expert": "v2 §1.2、4、10.3",
+      "status": "IMPLEMENTED_PENDING_CALIBRATION",
+      "evidence": [
+        "src/t01_phase1_real/development/workflow/revision_contract.py",
+        "src/t01_phase1_real/development/workflow/revision_v2.py"
+      ],
+      "finding": "预采样2×12、正式24/48/64条件轮次、7%位点/突变负担、结构24/L4 20/FoldX20全任务预算、五轮FoldX、工具尝试1次、不松弛均已配置。建议初值未校准。"
+    },
+    {
+      "id": "SOURCE_AND_STATES",
+      "expert": "v2 §6.5、14、16",
+      "status": "REPAIRED",
+      "evidence": [
+        "src/t01_phase1_real/development/epitope_protection/source.py",
+        "reports/controller-recovery-20261008/replay-before.json",
+        "reports/controller-recovery-20261008/replay-after.json"
+      ],
+      "finding": "超时诊断此前被误当作成功快照，导致KeyError、控制器失联；改为校验诊断及N06来源回执，失败仍是失败，未评估不变为通过。真实只读回放通过，未调用模型。"
+    },
+    {
+      "id": "WT_PERMISSION_AND_SUPPLY",
+      "expert": "v2 §2、3、6、7、8",
+      "status": "IMPLEMENTED_WITH_INPUT_GAPS",
+      "evidence": [
+        "src/t01_phase1_real/development/workflow/revision_sampling.py",
+        "src/t01_phase1_real/development/workflow/revision_v2_runtime.py",
+        "src/t01_phase1_real/development/workflow/revision_v2.py"
+      ],
+      "finding": "WT输入、权限、维度在生成前冻结；S28原始必需项与几何审计分离；AF3有效低质量不挑选ESMFold通过者替代；N13依赖的热点/E4/功能域证据缺失时保留NOT_ASSESSED。"
+    },
+    {
+      "id": "PRE_STRUCTURE_ORDER",
+      "expert": "v2 §10.2",
+      "status": "REMAINING_IMPLEMENTATION_DIFFERENCE",
+      "evidence": [
+        "src/t01_phase1_real/development/workflow/revision_sampling.py:155",
+        "src/t01_phase1_real/development/workflow/revision_runtime.py:304",
+        "src/t01_phase1_real/development/workflow/revision_v2_runtime.py:276"
+      ],
+      "finding": "现有早筛包含权限、预算、化学、精确去重和ESM；结构选择按ESM、突变数、ID。可开发性计算在结构之后；尚未将专家要求的已有序列型可开发性指标接入结构前的选择过程。此次修复不改变运行中科学配置。"
+    },
+    {
+      "id": "FOLDX_APPLICABILITY",
+      "expert": "v2 §10.5",
+      "status": "REMAINING_BRANCH_DIFFERENCE",
+      "evidence": [
+        "src/t01_phase1_real/development/workflow/revision_v2.py:228",
+        "src/t01_phase1_real/development/workflow/revision_v2.py:122",
+        "src/t01_phase1_real/development/workflow/revision_v2.py:152"
+      ],
+      "finding": "正常候选池检查、不同候选20预算及缺证据排除已实现；但当前保护check_status必须PASS、L4必须非null。专家允许有依据的NOT_APPLICABLE分支，代码尚未覆盖该完整不适用路径；不能声称完全一致。当前任务的UNKNOWN证据不是确认不适用，不能借此放行。"
+    },
+    {
+      "id": "SCORES_AND_FAMILIES",
+      "expert": "v2 §12、13",
+      "status": "PARTIAL",
+      "evidence": [
+        "src/t01_phase1_real/development/workflow/revision_v2.py",
+        "src/t01_phase1_real/development/workflow/revision_evaluation.py",
+        "src/t01_phase1_real/development/workflow/revision_v2_runtime.py"
+      ],
+      "finding": "描述/比较/验收分、证据组内Pareto、完整突变签名、软罚、待校准阈值分离。家族分类仅电荷调节/mixed，其他几何类别未完成；CamSol等维度缺口仍存在。"
+    },
+    {
+      "id": "UNATTENDED_OPERATION",
+      "expert": "SOP S-27 空fixed守卫T4；最新用户2026-10-08无中途选择决定",
+      "status": "USER_PRODUCT_POLICY_OVERRIDE",
+      "evidence": [
+        "src/t01_phase1_real/development/workflow/confirmation.py",
+        "src/t01_phase1_real/service_api/himat.py",
+        "src/t01_phase1_real/service_api/client_guide.py"
+      ],
+      "finding": "专家原文为WARNING+用户确认后继续；新用户明确要求无中途选择，新HiMat任务采用预授权T4继续策略，按审计绑定原子记录决定及警告。此为用户交互政策覆盖，并非专家原文已改成自动通过。其他硬门控/预算/缺失规则保留；旧任务不自动迁移。"
+    },
+    {
+      "id": "SCOPE_AND_QUALIFICATION",
+      "expert": "v2 §15、17及当前用户范围",
+      "status": "PARTIAL_NOT_SCIENTIFIC_SIGNOFF",
+      "evidence": [
+        "docs/project/STATUS.md",
+        "docs/project/PHASE1_DELIVERY_PLAN.md"
+      ],
+      "finding": "N08等待专家、完整N18/AgentC延后；HiMat只有序列+宿主，MHC-II、CamSol、部分保护证据及校准/回测未完成。不存在完整专家要求已验收证据。"
+    }
+  ],
+  "scientific_release": false,
+  "expert_originals_modified": false
+}

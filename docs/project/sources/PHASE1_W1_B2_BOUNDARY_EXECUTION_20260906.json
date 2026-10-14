@@ -1,0 +1,18 @@
+{
+  "recorded_date": "2026-09-06",
+  "record_type": "USER_EXPLICIT_B2_DEVELOPMENT_EXECUTION_SCOPE",
+  "exact_user_message": "已核对评审。**下一步建议做 B2 原包边界与执行验证**，补充实际运行证据：\n\n- **短序列与长序列边界**：记录真实 token 数，验证短输入及 1020～1023 aa 等边界的成功或失败行为。\n- **安全 ID 与产物回连**：实际使用新 ID 规则调用原包，核对序列、标签、区段、概率文件及哈希。\n- **失败与产物完整性**：验证执行失败、缺失或损坏输出时，能保留诊断并阻止错误结果被消费。\n\n这些开发验证可以在本机按现有资源限制推进，不依赖 B1 科学确认或 AF3/ESMFold2。\n\n当前仍处于 **W1-08B2 补证阶段**；输入域、独立科学参考、目标环境及契约完成适用签收后，才进入 **W1-09B2 正式适配器实现**。",
+  "authorized_scope": [
+    "Run original Academic package locally under existing offline/resource constraints to collect short/long actual token and execution evidence",
+    "Use safe sequence-hash IDs and verify all original artifacts with exact input and hashes",
+    "Test process failure and post-execution missing/corrupt artifact copies, retaining diagnostics and blocking consumption"
+  ],
+  "stage": "W1-08B2",
+  "independent_of": [
+    "B1 scientific signoff",
+    "AF3/ESMFold2"
+  ],
+  "scientific_signoff": "NOT_GRANTED",
+  "formal_adapter_release": "NOT_GRANTED",
+  "production_enabled": false
+}

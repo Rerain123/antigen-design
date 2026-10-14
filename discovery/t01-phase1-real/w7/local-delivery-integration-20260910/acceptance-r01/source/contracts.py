@@ -1,0 +1,36 @@
+"""Narrow additive N03-N10 registrations over the preserved W1 schema version.
+
+All fields, artifact rules and lifecycle shapes retain the existing contract.
+The old on-disk schemas and their historical hashes are never rewritten.
+"""
+import copy
+from jsonschema import Draft202012Validator, FormatChecker
+from ..common import SCHEMAS, decode, ensure, validate as original_validate
+
+BEPIPRED='t01.real.bepipred'
+NETMHC='t01.real.netmhc'
+BLAST='t01.real.blast'
+GLYCOSYLATION='t01.real.glycosylation'
+EPITOPE_MAP='t01.real.epitope_map'
+ADDITIVE={BLAST:'N03',BEPIPRED:'N04',NETMHC:'N05',EPITOPE_MAP:'N06',GLYCOSYLATION:'N07','t01.real.homology':'N08',
+    't01.real.domains':'N09','t01.real.developability':'N10','t01.real.wt_draft':'N18','t01.real.proteinmpnn':'N11','t01.real.esm_if1':'N12','t01.real.design_audit':'N12',
+    't01.real.thermompnn':'N17','t01.real.foldx':'N14','t01.real.variant_report':'N15','t01.real.epitope_protection':'N13','t01.real.optimize_codons':'N16','t01.real.wt_reference':'N17','t01.real.local_delivery':'N18'}
+_validators={}
+
+
+def validate(value,name):
+    if not isinstance(value,dict) or value.get('tool_id') not in ADDITIVE or name not in ('submit','job'):
+        return original_validate(value,name)
+    ensure(value.get('contract_version')=='0.1.0','UNSUPPORTED_VERSION','Unsupported contract version')
+    key=(value['tool_id'],name)
+    if key not in _validators:
+        schema=copy.deepcopy(decode((SCHEMAS/(name+'.schema.json')).read_bytes()))
+        schema['properties']['tool_id']={'const':value['tool_id']}
+        schema['properties']['node_id']={'const':ADDITIVE[value['tool_id']]}
+        if value['tool_id']=='t01.real.optimize_codons' and name=='job':
+            schema['properties']['error_code']['anyOf'][0]['enum'].extend([
+                'UNSUPPORTED_EXPRESSION_HOST','HOST_PROFILE_REQUIRED','CODON_TABLE_MISSING',
+                'CODON_TABLE_INVALID','DEPENDENCY_MISSING','DEPENDENCY_MISMATCH'])
+        Draft202012Validator.check_schema(schema)
+        _validators[key]=Draft202012Validator(schema,format_checker=FormatChecker())
+    ensure(_validators[key].is_valid(value),'INVALID_REQUEST','Request or snapshot violates additive development '+name+' schema')

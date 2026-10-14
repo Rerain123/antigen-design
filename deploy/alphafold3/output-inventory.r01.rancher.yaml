@@ -1,0 +1,97 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-af3-output-inventory-r01
+  namespace: him-ws
+immutable: true
+data:
+  inventory.py: "from pathlib import Path\nimport json\nroot=Path('/runtime/inference-r01')\n\
+    for path in sorted(root.rglob('*')):\n    if path.is_file():\n        print(path.relative_to(root),\
+    \ path.stat().st_size)\n        if 'sample-0' in str(path) and path.suffix ==\
+    \ '.cif':\n            print('CIF_START', path.read_text()[:14000])\n        if\
+    \ 'sample-0' in str(path) and 'summary_confidences' in path.name:\n          \
+    \  print('SUMMARY',path.read_text())\n        if 'sample-0' in str(path) and path.name.endswith('_confidences.json')\
+    \ and 'summary' not in path.name:\n            value=json.loads(path.read_bytes());print('CONFIDENCE_KEYS',list(value));print('ATOM_PLDDTS',value.get('atom_plddts',[])[:6])\n"
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: antigen-af3-output-inventory-r01
+  namespace: him-ws
+spec:
+  podSelector:
+    matchLabels:
+      app: antigen-af3-output-inventory-r01
+  policyTypes:
+  - Ingress
+  - Egress
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-af3-output-inventory-r01
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 1800
+  template:
+    metadata:
+      labels:
+        app: antigen-af3-output-inventory-r01
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+      - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+      - name: inspect
+        image: harbor-core.base.svc.cluster.local/qcyz/antigen-af3@sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373
+        imagePullPolicy: IfNotPresent
+        command:
+        - /alphafold3_venv/bin/python
+        - -u
+        - -B
+        - /inspect/inventory.py
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+            ephemeral-storage: 128Mi
+          limits:
+            cpu: '1'
+            memory: 1Gi
+            ephemeral-storage: 1Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          seccompProfile:
+            type: RuntimeDefault
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: inspect
+          mountPath: /inspect
+          readOnly: true
+        - name: runtime
+          mountPath: /runtime
+          readOnly: true
+        - name: tmp
+          mountPath: /tmp
+      volumes:
+      - name: inspect
+        configMap:
+          name: antigen-af3-output-inventory-r01
+      - name: runtime
+        persistentVolumeClaim:
+          claimName: antigen-af3-runtime
+          readOnly: true
+      - name: tmp
+        emptyDir:
+          sizeLimit: 1Gi

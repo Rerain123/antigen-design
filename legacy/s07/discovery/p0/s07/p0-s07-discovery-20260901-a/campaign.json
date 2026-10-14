@@ -1,0 +1,49 @@
+{
+  "campaign_id": "p0-s07-discovery-20260901-a",
+  "stage": "P0",
+  "node": "S-07",
+  "tool_contract_name": "structure.fetch",
+  "classification": "discovery_evidence",
+  "status": "EVIDENCE_CAPTURE_COMPLETE_CONTRACT_REVIEW_REQUIRED",
+  "created_date": "2026-09-01",
+  "completed_date": "2026-09-01",
+  "owner": {
+    "role": "developer",
+    "name": "wing"
+  },
+  "execution_mode_note": "Discovery is an evidence classification, not a new MCP ExecutionMode.",
+  "production_deployment_status": "NOT_DEPLOYED",
+  "sources": [
+    "RCSB_PDB_SEARCH_API",
+    "RCSB_PDB_DATA_API",
+    "RCSB_PDB_FILE_DOWNLOAD",
+    "ALPHAFOLD_DB_API",
+    "NCBI_BLAST_PLUS"
+  ],
+  "provisional_hit_semantics": [
+    "TARGET_MATCH",
+    "TARGET_DERIVED",
+    "HOMOLOG_TEMPLATE"
+  ],
+  "required_exit_artifacts": [
+    "raw_evidence",
+    "candidate_structure_manifest",
+    "sequence_mapping_report",
+    "capability_gap_table"
+  ],
+  "exit_artifacts": {
+    "candidate_structure_manifest": "reports/candidate_structure_manifest.json",
+    "sequence_mapping_report": "reports/sequence_mapping_report.json",
+    "capability_gap_table": "reports/capability_gap_table.md",
+    "campaign_summary": "reports/P0_M1_SUMMARY.md",
+    "evidence_inventory": "reports/evidence_inventory.json",
+    "blast_dependency_and_results_manifest": "reports/blast_dependency_and_results_manifest.json"
+  },
+  "next_gate": "S07_CONTRACT_REVIEW_BEFORE_P0_M2",
+  "forbidden_uses": [
+    "scientific_conclusion",
+    "production_candidate_selection",
+    "dify_integration",
+    "deployed_capability_claim"
+  ]
+}

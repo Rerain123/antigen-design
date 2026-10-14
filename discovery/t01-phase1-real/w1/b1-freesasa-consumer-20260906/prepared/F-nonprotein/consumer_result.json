@@ -1,0 +1,115 @@
+{
+  "scope": "B1_FREESASA_CONSUMER_PREPARATION",
+  "binding": {
+    "b1_binding": {
+      "run_id": "t01p1r-run-b1-sasa-F-nonprotein",
+      "request_id": "b1-sasa-F-nonprotein",
+      "job_id": "t01p1r-job-b1-facts-f44e92e67b6c46e9a76e15aa08cacaa0",
+      "attempt_id": "t01p1r-attempt-b1-facts-f44e92e67b6c46e9a76e15aa08cacaa0",
+      "request_sha256": "900bad583238780d774a59c5ea25d473c174cd2da123bebe492ec3b9a22148eb",
+      "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+      "structure_sha256": "59234152295fa44d9913e55801e26ce148bbe581686112c769b37b5e36376f23"
+    },
+    "b1_result_sha256": "9a48dd35f13e6b74dea8945faa0361ef19ce25df80765cbcccb2f7af790d58f1",
+    "b1_structure_artifact": {
+      "artifact_id": "t01p1r-artifact-b1-sasa-F-nonprotein",
+      "run_id": "t01p1r-run-b1-sasa-F-nonprotein",
+      "job_id": null,
+      "attempt_id": null,
+      "role": "input",
+      "media_type": "chemical/x-cif",
+      "sha256": "59234152295fa44d9913e55801e26ce148bbe581686112c769b37b5e36376f23",
+      "size_bytes": 1137,
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    "b1_fact_artifacts": {
+      "preflight": {
+        "artifact_id": "t01p1r-artifact-b1-preflight-f44e92e67b6c46e9a76e15aa08cacaa0",
+        "run_id": "t01p1r-run-b1-sasa-F-nonprotein",
+        "job_id": "t01p1r-job-b1-facts-f44e92e67b6c46e9a76e15aa08cacaa0",
+        "attempt_id": "t01p1r-attempt-b1-facts-f44e92e67b6c46e9a76e15aa08cacaa0",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "4aaf82ac0fdd3bcd24596f115bf79245f6a832dff312ee22a622bd2d8391ce88",
+        "size_bytes": 1741,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      },
+      "raw_metadata": {
+        "artifact_id": "t01p1r-artifact-b1-raw-metadata-f44e92e67b6c46e9a76e15aa08cacaa0",
+        "run_id": "t01p1r-run-b1-sasa-F-nonprotein",
+        "job_id": "t01p1r-job-b1-facts-f44e92e67b6c46e9a76e15aa08cacaa0",
+        "attempt_id": "t01p1r-attempt-b1-facts-f44e92e67b6c46e9a76e15aa08cacaa0",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "61fdf4cf89ca97c3c48aeebd1d4d5f47b5ba297fdab975d6dc7afecc57b5c1ce",
+        "size_bytes": 1633,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      },
+      "raw_addresses": {
+        "artifact_id": "t01p1r-artifact-b1-raw-addresses-f44e92e67b6c46e9a76e15aa08cacaa0",
+        "run_id": "t01p1r-run-b1-sasa-F-nonprotein",
+        "job_id": "t01p1r-job-b1-facts-f44e92e67b6c46e9a76e15aa08cacaa0",
+        "attempt_id": "t01p1r-attempt-b1-facts-f44e92e67b6c46e9a76e15aa08cacaa0",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "36e67665951c3b3181c9951e898911e2d09a2c459bcf60b51b57dbe20a68cde9",
+        "size_bytes": 101973,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      }
+    },
+    "consumer_selection_sha256": "5d71d87695e9cd7a952677d7657013a0f9090d951f61eb3099d4df8ebd9fca90",
+    "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+  },
+  "route": "native_atoms",
+  "status": "REJECTED_BEFORE_TOOL",
+  "error_code": "CONTEXT_REVIEW_REQUIRED",
+  "error": "Selected MODEL has nonstandard/nonprotein context; no silent HETATM removal",
+  "error_details": {
+    "raw_row_index": 1,
+    "raw_residue_id": "raw-residue-1",
+    "raw_address": {
+      "auth_asym_id": [
+        "A",
+        null
+      ],
+      "auth_seq_id": [
+        "42",
+        null
+      ],
+      "pdbx_PDB_ins_code": [
+        null,
+        "not_applicable"
+      ],
+      "label_asym_id": [
+        "LABEL_A",
+        null
+      ],
+      "label_seq_id": [
+        "1",
+        null
+      ],
+      "label_entity_id": [
+        "1",
+        null
+      ],
+      "label_comp_id": [
+        "HEM",
+        null
+      ],
+      "auth_comp_id": [
+        "HEM",
+        null
+      ],
+      "group_PDB": [
+        "HETATM",
+        null
+      ]
+    }
+  },
+  "preparation_sha256": null,
+  "scientific_approval": null,
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED",
+  "tool_invoked": false,
+  "calculation_started": false
+}

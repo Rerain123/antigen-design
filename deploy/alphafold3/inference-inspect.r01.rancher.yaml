@@ -1,0 +1,179 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-af3-inference-inspect-r01
+  namespace: him-ws
+immutable: true
+data:
+  inspect_af3_inference.py: "\"\"\"Read-only audit of five native single-chain AF3\
+    \ samples and their receipts.\"\"\"\nimport hashlib\nimport json\nimport math\n\
+    from pathlib import Path\nimport shlex\n\nRUN = Path('/runtime/inference-r01')\n\
+    SEQ_HASH = '233b4b0b8c4616095bc3249f9375fc345d32af7deaef07117d0383c51d6f19aa'\n\
+    AA = dict(zip('ALA ARG ASN ASP CYS GLN GLU GLY HIS ILE LEU LYS MET PHE PRO SER\
+    \ THR TRP TYR VAL'.split(), 'ARNDCQEGHILKMFPSTWYV'))\n\n\ndef sha(path):\n   \
+    \ return hashlib.sha256(path.read_bytes()).hexdigest()\n\n\ndef atom_rows(text):\n\
+    \    lines = text.splitlines()\n    for i, line in enumerate(lines):\n       \
+    \ if line.strip() != 'loop_':\n            continue\n        fields = []\n   \
+    \     j = i + 1\n        while j < len(lines) and lines[j].startswith('_'):\n\
+    \            fields.append(lines[j].strip())\n            j += 1\n        if not\
+    \ fields or not fields[0].startswith('_atom_site.'):\n            continue\n \
+    \       tokens = []\n        while j < len(lines):\n            line = lines[j].strip()\n\
+    \            if line == '#' or line == 'loop_' or line.startswith('_'):\n    \
+    \            break\n            if line.startswith(';'):\n                raise\
+    \ ValueError('Unexpected multiline atom field')\n            tokens.extend(shlex.split(line))\n\
+    \            j += 1\n        if len(tokens) % len(fields):\n            raise\
+    \ ValueError('Incomplete atom row')\n        return [dict(zip(fields, tokens[k:k+len(fields)]))\
+    \ for k in range(0,len(tokens),len(fields))]\n    raise ValueError('No atom_site\
+    \ loop')\n\n\ndef audit_sample(sample):\n    prefix = sample.parent.name + '_'\
+    \ + sample.name + '_'\n    atoms = atom_rows((sample / (prefix + 'model.cif')).read_text())\n\
+    \    confidence = json.loads((sample / (prefix + 'confidences.json')).read_bytes())\n\
+    \    scores = confidence['atom_plddts']\n    if len(atoms) != len(scores):\n \
+    \       raise ValueError('Atom/confidence counts differ')\n    residues = {}\n\
+    \    ca = {}\n    for atom, score in zip(atoms, scores):\n        def field(name):\n\
+    \            return atom['_atom_site.' + name]\n        if field('label_asym_id')\
+    \ != 'A':\n            raise ValueError('Unexpected chain')\n        if not isinstance(score,\
+    \ (float,int)) or not math.isfinite(score) or not 0 <= score <= 100:\n       \
+    \     raise ValueError('Invalid per-atom confidence')\n        if abs(float(field('B_iso_or_equiv'))\
+    \ - score) > 0.011:\n            raise ValueError('Native CIF/JSON confidence\
+    \ mismatch')\n        if not all(math.isfinite(float(field('Cartn_' + xyz))) for\
+    \ xyz in 'xyz'):\n            raise ValueError('Nonfinite coordinates')\n    \
+    \    rid = int(field('label_seq_id'))\n        residue = residues.setdefault(rid,\
+    \ {'aa': AA[field('label_comp_id')], 'atoms': set()})\n        if residue['aa']\
+    \ != AA[field('label_comp_id')]:\n            raise ValueError('Inconsistent residue\
+    \ identity')\n        name = field('label_atom_id')\n        if name in residue['atoms']:\n\
+    \            raise ValueError('Duplicate atom identity')\n        residue['atoms'].add(name)\n\
+    \        if name == 'CA':\n            ca[rid] = score / 100\n    if set(residues)\
+    \ != set(range(1,77)) or set(ca) != set(residues):\n        raise ValueError('Incomplete\
+    \ 76-residue chain')\n    sequence = ''.join(residues[i]['aa'] for i in range(1,77))\n\
+    \    if hashlib.sha256(sequence.encode()).hexdigest() != SEQ_HASH:\n        raise\
+    \ ValueError('Sequence differs')\n    if any(not {'N','CA','C','O'} <= r['atoms']\
+    \ for r in residues.values()):\n        raise ValueError('Incomplete backbone')\n\
+    \    summary = json.loads((sample / (prefix + 'summary_confidences.json')).read_bytes())\n\
+    \    ptm = summary['ptm']\n    if not isinstance(ptm,(int,float)) or not math.isfinite(ptm)\
+    \ or not 0 <= ptm <= 1:\n        raise ValueError('Invalid pTM')\n    return {'sample':sample.name,'atoms':len(atoms),'residues':76,'ptm':ptm,\n\
+    \            'mean_ca_plddt':sum(ca.values()) / 76,\n            'native_iptm':summary.get('iptm'),\
+    \ 'native_ranking_score':summary.get('ranking_score')}\n\n\ndef inspect():\n \
+    \   # r01's native computation completed, but its wrapper expected unprefixed\
+    \ names.\n    # Independently audit originals; retain the Failed Job and failure.json\
+    \ unchanged.\n    recovery = not (RUN / 'receipt.json').exists()\n    manifest_path\
+    \ = RUN / 'files-manifest.json'\n    if recovery:\n        failure = json.loads((RUN\
+    \ / 'failure.json').read_bytes())\n        if failure.get('error') != 'Missing\
+    \ native output: /runtime/inference-r01/output/t01-1ubq-af3-data-r01/seed-1_sample-0/model.cif':\n\
+    \            raise ValueError('Unexpected failure; recovery rejected')\n     \
+    \   if 'Done running 1 fold jobs.' not in (RUN / 'inference.log').read_text():\n\
+    \            raise ValueError('Native completion evidence missing')\n        rows\
+    \ = [{'path':p.relative_to(RUN).as_posix(),'bytes':p.stat().st_size,'sha256':sha(p)}\n\
+    \                for p in sorted(RUN.rglob('*')) if p.is_file()]\n    else:\n\
+    \        receipt = json.loads((RUN / 'receipt.json').read_bytes())\n        if\
+    \ receipt['status'] != 'AF3_FIVE_NATIVE_SAMPLES_GENERATED_PENDING_INDEPENDENT_AUDIT':\n\
+    \            raise ValueError('Inference not complete')\n        if sha(manifest_path)\
+    \ != receipt['files_manifest_sha256']:\n            raise ValueError('Manifest\
+    \ hash mismatch')\n        rows = json.loads(manifest_path.read_bytes())['files']\n\
+    \    command = json.loads((RUN / 'command.json').read_bytes())\n    for flag in\
+    \ ('--run_data_pipeline=false','--run_inference=true','--num_diffusion_samples=5'):\n\
+    \        if flag not in command['command']:\n            raise ValueError('Unexpected\
+    \ inference command')\n    source = Path('/runtime/data-search-r01/output/t01-1ubq-af3-data-r01/t01-1ubq-af3-data-r01_data.json')\n\
+    \    if sha(RUN / 'input.json') != command['input_sha256'] or sha(source) != command['input_sha256']:\n\
+    \        raise ValueError('Prepared MSA/template input mismatch')\n    seen =\
+    \ set()\n    for row in rows:\n        relative = Path(row['path'])\n        if\
+    \ relative.is_absolute() or '..' in relative.parts or row['path'] in seen:\n \
+    \           raise ValueError('Unsafe or duplicate path')\n        seen.add(row['path'])\n\
+    \        path = RUN / relative\n        if path.is_symlink() or path.stat().st_size\
+    \ != row['bytes'] or sha(path) != row['sha256']:\n            raise ValueError('File\
+    \ identity mismatch: ' + str(path))\n    actual = {p.relative_to(RUN).as_posix()\
+    \ for p in RUN.rglob('*') if p.is_file()}\n    if actual != (seen if recovery\
+    \ else seen | {'receipt.json','files-manifest.json'}):\n        raise ValueError('Unlisted\
+    \ files or missing manifest members')\n    directories = sorted((RUN / 'output').glob('*/seed-1_sample-*'))\n\
+    \    if {p.name for p in directories} != {f'seed-1_sample-{i}' for i in range(5)}:\n\
+    \        raise ValueError('Missing samples')\n    samples = [audit_sample(path)\
+    \ for path in directories]\n    highest = max(s['ptm'] for s in samples)\n   \
+    \ result = {'status':'AF3_FIVE_SAMPLES_INDEPENDENTLY_VERIFIED_ENGINEERING_ONLY',\n\
+    \              'file_count':len(rows),'total_bytes':sum(r['bytes'] for r in rows),\n\
+    \              'files':rows,'wrapper_failure_preserved':recovery,\n          \
+    \    'samples':samples, 'highest_ptm_samples':[s['sample'] for s in samples if\
+    \ s['ptm'] == highest],\n              'scientific_gate':'CLOSED','usable_for_pipeline':False,'production_status':'NOT_DEPLOYED'}\n\
+    \    print('AF3_INFERENCE_AUDIT_PASS', json.dumps(result, sort_keys=True), flush=True)\n\
+    \    return result\n\n\nif __name__ == '__main__':\n    inspect()\n"
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: antigen-af3-inference-inspect-r01
+  namespace: him-ws
+spec:
+  podSelector:
+    matchLabels:
+      app: antigen-af3-inference-inspect-r01
+  policyTypes:
+  - Ingress
+  - Egress
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-af3-inference-inspect-r01
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 1800
+  template:
+    metadata:
+      labels:
+        app: antigen-af3-inference-inspect-r01
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+      - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+      - name: inspect
+        image: harbor-core.base.svc.cluster.local/qcyz/antigen-af3@sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373
+        imagePullPolicy: IfNotPresent
+        command:
+        - /alphafold3_venv/bin/python
+        - -u
+        - -B
+        - /inspect/inspect_af3_inference.py
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+            ephemeral-storage: 128Mi
+          limits:
+            cpu: '1'
+            memory: 1Gi
+            ephemeral-storage: 1Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          seccompProfile:
+            type: RuntimeDefault
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: inspect
+          mountPath: /inspect
+          readOnly: true
+        - name: runtime
+          mountPath: /runtime
+          readOnly: true
+        - name: tmp
+          mountPath: /tmp
+      volumes:
+      - name: inspect
+        configMap:
+          name: antigen-af3-inference-inspect-r01
+      - name: runtime
+        persistentVolumeClaim:
+          claimName: antigen-af3-runtime
+          readOnly: true
+      - name: tmp
+        emptyDir:
+          sizeLimit: 1Gi

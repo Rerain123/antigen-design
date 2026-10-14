@@ -1,0 +1,198 @@
+[
+  {
+    "id": "original",
+    "evidence_kind": "local_input",
+    "model_index": 0,
+    "context_chain_ids": [
+      "A"
+    ],
+    "mapping_expected": "unverified",
+    "missing_positions_expected": [],
+    "schedule_raw": true,
+    "raw_expected": "SUCCESS",
+    "source_parent": "tests/fixtures/structure_mapping/real/1UBQ.cif",
+    "parent_sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+    "input_sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+    "interpretation": "Real local reference"
+  },
+  {
+    "id": "missing-repeat-75",
+    "evidence_kind": "synthetic_fixture",
+    "model_index": 0,
+    "context_chain_ids": [
+      "A"
+    ],
+    "mapping_expected": "unverified",
+    "missing_positions_expected": [
+      75
+    ],
+    "schedule_raw": true,
+    "raw_expected": "SUCCESS",
+    "source_parent": "tests/fixtures/structure_mapping/real/1UBQ.cif",
+    "parent_sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+    "input_sha256": "e68b0558faa81a85f59b9557d77982e48d524ef922d35c1b16ff5444197c19bd",
+    "interpretation": "Synthetic boundary; not a held-out biological reference"
+  },
+  {
+    "id": "insertion-42A",
+    "evidence_kind": "synthetic_fixture",
+    "model_index": 0,
+    "context_chain_ids": [
+      "A"
+    ],
+    "mapping_expected": "unverified",
+    "missing_positions_expected": [],
+    "schedule_raw": true,
+    "raw_expected": "SUCCESS",
+    "source_parent": "tests/fixtures/structure_mapping/real/1UBQ.cif",
+    "parent_sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+    "input_sha256": "72e25cfe36735ca4682dc9588a32dc18392372fd75c9911c2c96422fd29100fc",
+    "interpretation": "Synthetic boundary; not a held-out biological reference"
+  },
+  {
+    "id": "negative-author",
+    "evidence_kind": "synthetic_fixture",
+    "model_index": 0,
+    "context_chain_ids": [
+      "A"
+    ],
+    "mapping_expected": "unverified",
+    "missing_positions_expected": [],
+    "schedule_raw": true,
+    "raw_expected": "SUCCESS",
+    "source_parent": "tests/fixtures/structure_mapping/real/1UBQ.cif",
+    "parent_sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+    "input_sha256": "cb8d5a453cc599ad28b816e846251f01314e3bfc74ea16977b72d03a8cced89f",
+    "interpretation": "Synthetic boundary; not a held-out biological reference"
+  },
+  {
+    "id": "multichain-unique",
+    "evidence_kind": "synthetic_fixture",
+    "model_index": 0,
+    "context_chain_ids": [
+      "A",
+      "B"
+    ],
+    "mapping_expected": "unverified",
+    "missing_positions_expected": [],
+    "schedule_raw": true,
+    "raw_expected": "SUCCESS",
+    "source_parent": "tests/fixtures/structure_mapping/real/1UBQ.cif",
+    "parent_sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+    "input_sha256": "2a4f23750b259929a3914a021b973d90c8d36a4d10ed8bbadbbba1fb1e6ec096",
+    "interpretation": "Synthetic boundary; not a held-out biological reference"
+  },
+  {
+    "id": "multichain-ambiguous",
+    "evidence_kind": "synthetic_fixture",
+    "model_index": 0,
+    "context_chain_ids": [
+      "A",
+      "B"
+    ],
+    "mapping_expected": "unreliable",
+    "missing_positions_expected": [],
+    "schedule_raw": true,
+    "raw_expected": "SUCCESS",
+    "source_parent": "tests/fixtures/structure_mapping/real/1UBQ.cif",
+    "parent_sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+    "input_sha256": "a306a663a95f481d0d12820721e4b45f57d6c6e03923770dcc01bac20747af77",
+    "interpretation": "Synthetic boundary; not a held-out biological reference"
+  },
+  {
+    "id": "replacement-conflict",
+    "evidence_kind": "synthetic_fixture",
+    "model_index": 0,
+    "context_chain_ids": [
+      "A"
+    ],
+    "mapping_expected": "unreliable",
+    "missing_positions_expected": [],
+    "schedule_raw": false,
+    "raw_expected": "NOT_SCHEDULED",
+    "source_parent": "tests/fixtures/structure_mapping/real/1UBQ.cif",
+    "parent_sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+    "input_sha256": "0f0589d405a3dbc207400745f1749ed07653e7c0bbe4c8c012ee417ac77d9085",
+    "interpretation": "Synthetic boundary; not a held-out biological reference"
+  },
+  {
+    "id": "inserted-label-77",
+    "evidence_kind": "synthetic_fixture",
+    "model_index": 0,
+    "context_chain_ids": [
+      "A"
+    ],
+    "mapping_expected": "unreliable",
+    "missing_positions_expected": [],
+    "schedule_raw": false,
+    "raw_expected": "NOT_SCHEDULED",
+    "source_parent": "tests/fixtures/structure_mapping/real/1UBQ.cif",
+    "parent_sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+    "input_sha256": "131c6633f4e473546451e169b0fa5100ff7eb373e895f709a86e8cfec4c898e3",
+    "interpretation": "Synthetic boundary; not a held-out biological reference"
+  },
+  {
+    "id": "noninteger-author",
+    "evidence_kind": "synthetic_fixture",
+    "model_index": 0,
+    "context_chain_ids": [
+      "A"
+    ],
+    "mapping_expected": "PARSE_REJECTED",
+    "missing_positions_expected": [],
+    "schedule_raw": false,
+    "raw_expected": "NOT_SCHEDULED",
+    "source_parent": "tests/fixtures/structure_mapping/real/1UBQ.cif",
+    "parent_sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+    "input_sha256": "47f61b3f3aaa12d40407b2af787440aefeed1cc410dfd1892fa9d51d81a03040",
+    "interpretation": "Synthetic boundary; not a held-out biological reference"
+  },
+  {
+    "id": "long-author-chain",
+    "evidence_kind": "synthetic_fixture",
+    "model_index": 0,
+    "context_chain_ids": [
+      "AUTH"
+    ],
+    "mapping_expected": "unverified",
+    "missing_positions_expected": [],
+    "schedule_raw": false,
+    "raw_expected": "NOT_SCHEDULED",
+    "source_parent": "tests/fixtures/structure_mapping/real/1UBQ.cif",
+    "parent_sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+    "input_sha256": "bc45a18bc99107774480e814f634eef76f0f92f7835da711bc1cca9325f0e6e3",
+    "interpretation": "Synthetic boundary; not a held-out biological reference"
+  },
+  {
+    "id": "numeric-icode-collision",
+    "evidence_kind": "synthetic_fixture",
+    "model_index": 0,
+    "context_chain_ids": [
+      "A"
+    ],
+    "mapping_expected": "unverified",
+    "missing_positions_expected": [],
+    "schedule_raw": true,
+    "raw_expected": "REJECTED",
+    "source_parent": "tests/fixtures/structure_mapping/real/1UBQ.cif",
+    "parent_sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+    "input_sha256": "69d104a936e6be481068e39be35b48b19cb69431842d5ba5e950d509846c4224",
+    "interpretation": "Synthetic boundary; not a held-out biological reference"
+  },
+  {
+    "id": "unknown-atom",
+    "evidence_kind": "synthetic_fixture",
+    "model_index": 0,
+    "context_chain_ids": [
+      "A"
+    ],
+    "mapping_expected": "unverified",
+    "missing_positions_expected": [],
+    "schedule_raw": true,
+    "raw_expected": "REJECTED",
+    "source_parent": "tests/fixtures/structure_mapping/real/1UBQ.cif",
+    "parent_sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+    "input_sha256": "99a303310f793d2ca97b8b55da6fdac38d2a36b70c42c09a863f3f4ed7c8682a",
+    "interpretation": "Synthetic boundary; not a held-out biological reference"
+  }
+]

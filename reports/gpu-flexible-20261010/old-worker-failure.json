@@ -1,0 +1,6 @@
+{
+  "checked_at": "2026-10-10T02:42:31.331967+00:00",
+  "exit_code": 0,
+  "stdout": "[HAMI-core Msg(442:125618294406912:multiprocess_memory_limit.c:862)]: Cleanup on exit for PID 442\n[HAMI-core Msg(442:125618294406912:multiprocess_memory_limit.c:898)]: Exit cleanup complete for PID 442\nTraceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/opt/t01/src/t01_phase1_real/unified_gpu_worker.py\", line 184, in <module>\n    main()\n  File \"/opt/t01/src/t01_phase1_real/unified_gpu_worker.py\", line 163, in main\n    print(json.dumps(gpu_guard(config['uuid'])), flush=True)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/t01/src/t01_phase1_real/unified_gpu_worker.py\", line 143, in gpu_guard\n    raise RuntimeError('Approved 64GB GPU identity mismatch')\nRuntimeError: Approved 64GB GPU identity mismatch\n",
+  "stderr": ""
+}

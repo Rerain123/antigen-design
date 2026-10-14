@@ -1,0 +1,30 @@
+{
+  "checked_at": "2026-09-26T23:24:00+08:00",
+  "operation": "read_only_cluster_and_official_documentation_review",
+  "deployment_generation_observed": 98,
+  "patch_applied": false,
+  "gpu_resources": {"nvidia.com/gpu": "1", "nvidia.com/gpucores": "100", "nvidia.com/gpumem-percentage": "100"},
+  "gpu_type": "A100-SXM-64GB",
+  "gpu_uuid": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31",
+  "worker_host_memory_request": "96Gi",
+  "pod_host_memory_requests_total": "100.5Gi",
+  "failed_pod": {
+    "name": "antigen-design-54694b6f7b-dqqwd",
+    "node": "k8s-a100-02",
+    "scheduled": true,
+    "allocation_annotation": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31,NVIDIA,65536,100:;",
+    "failure_event_time": "2026-09-26T15:19:51Z",
+    "reason": "UnexpectedAdmissionError",
+    "message": "Pod was rejected: Allocate failed due to no healthy devices present; cannot allocate unhealthy devices nvidia.com/gpu, which is unexpected"
+  },
+  "replacement_pod": {
+    "name": "antigen-design-54694b6f7b-t7r45",
+    "phase": "Pending",
+    "reason": "SchedulerError",
+    "message": "node k8s-a100-02 has been locked within 5m0s: node lock contention"
+  },
+  "permissions": {"list_kube_system_pods": false, "read_nodes": false},
+  "conclusion": "Application GPU request syntax matches documented exclusive GPU allocation. Type and UUID passed scheduler matching. Latest failure is node GPU device admission, followed by HAMi node lock contention; initial Insufficient memory does not fully describe current blockage.",
+  "unknowns": ["Original running Pod exit cause", "GPU driver/device-plugin/kubelet health and registration root cause", "Lock ownership and release state", "Installed HAMi version"],
+  "sources": ["https://project-hami.io/zh/docs/get-started/verify-hami", "https://project-hami.io/zh/docs/userguide/configure", "https://github.com/Project-HAMi/HAMi/blob/master/CHANGELOG.md"]
+}

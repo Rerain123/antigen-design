@@ -1,0 +1,55 @@
+{
+  "record_type": "USER_PROVISIONAL_ADOPTION",
+  "recorded_at": "2026-09-05T07:26:55Z",
+  "decision_date_local": "2026-09-05",
+  "source": "Current task user reply to concrete FreeSASA/S-09 proposal",
+  "user_quote": "先采用上述方案，但我还是要向算法负责人确认",
+  "decision_author": "当前会话用户（项目主开发人；未声明算法负责人身份）",
+  "project_decision": "PROVISIONALLY_ADOPTED",
+  "effective_scope": "W1 preparation, acceptance specification and future development baseline; retains all G0-G6 gates",
+  "scientific_confirmation": {
+    "status": "PENDING_ALGORITHM_OWNER_CONFIRMATION",
+    "confirmed_by": null,
+    "confirmed_at": null
+  },
+  "production_approved": false,
+  "g1_released": false,
+  "g2_released": false,
+  "adopted_references": [
+    {
+      "path": "docs/project/phase1/PHASE1_REAL_W1_FREESASA_PROFILE.json",
+      "sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+    },
+    {
+      "path": "docs/project/phase1/PHASE1_REAL_W1_S09_DECISION_PROPOSAL.json",
+      "sha256": "c790552127feb35d7b2e6584fea0dd46d183b6dff692adff9bd1fc06781f424a"
+    }
+  ],
+  "adopted_s09_case_ids": [
+    "S09-D01",
+    "S09-D02a",
+    "S09-D02b",
+    "S09-D03a",
+    "S09-D03b",
+    "S09-D03c"
+  ],
+  "adopted_freesasa": {
+    "classifier": "protor",
+    "probe_radius_a": 1.4,
+    "algorithm": "LeeRichards",
+    "n_slices": 200,
+    "n_threads": 1,
+    "total_relative_error_max": 0.005,
+    "per_residue_absolute_rsa_error_max": 0.01,
+    "reference_convergence_max_absolute_rsa_delta": 0.002,
+    "downstream_classification_changes_allowed": false,
+    "out_of_domain": "OUTPUT_INVALID; preserve raw value; result=null, usable=false, requires_review=true"
+  },
+  "limitations": [
+    "Algorithm owner confirmation remains outstanding at user request",
+    "No normal RSA acceptance for 1UBQ G76 out-of-domain case",
+    "No verified R-58 mapping or target environment scientific acceptance",
+    "Original source catalog and numerical-study snapshots remain unchanged; this later decision supplies their current adoption state"
+  ],
+  "next_confirmation": "Algorithm owner confirms or revises the referenced parameter/context/tolerance profile and six S-09 decisions, with name/date/source and resulting boundary expectations"
+}

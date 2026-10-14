@@ -1,0 +1,115 @@
+{
+  "scope": "B1_FREESASA_CONSUMER_PREPARATION",
+  "binding": {
+    "b1_binding": {
+      "run_id": "t01p1r-run-b1-sasa-F-numeric-icode-collision-native",
+      "request_id": "b1-sasa-F-numeric-icode-collision-native",
+      "job_id": "t01p1r-job-b1-facts-400faf401df3481ebd91bbf8ed581be8",
+      "attempt_id": "t01p1r-attempt-b1-facts-400faf401df3481ebd91bbf8ed581be8",
+      "request_sha256": "9bff79ef8c0785642bda7fa3dcf74459891fe5136e62f770d8c1771faeff54ff",
+      "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+      "structure_sha256": "a0107caeb98872809428d4942a140e16eb0702b284a0764d9e73bed39410676a"
+    },
+    "b1_result_sha256": "70bc2281a26c568d27a27f1e9ec65ed1c847b7698b2a2aee39ac16cafcfbf7f7",
+    "b1_structure_artifact": {
+      "artifact_id": "t01p1r-artifact-b1-sasa-F-numeric-icode-collision-native",
+      "run_id": "t01p1r-run-b1-sasa-F-numeric-icode-collision-native",
+      "job_id": null,
+      "attempt_id": null,
+      "role": "input",
+      "media_type": "chemical/x-cif",
+      "sha256": "a0107caeb98872809428d4942a140e16eb0702b284a0764d9e73bed39410676a",
+      "size_bytes": 1130,
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    "b1_fact_artifacts": {
+      "preflight": {
+        "artifact_id": "t01p1r-artifact-b1-preflight-400faf401df3481ebd91bbf8ed581be8",
+        "run_id": "t01p1r-run-b1-sasa-F-numeric-icode-collision-native",
+        "job_id": "t01p1r-job-b1-facts-400faf401df3481ebd91bbf8ed581be8",
+        "attempt_id": "t01p1r-attempt-b1-facts-400faf401df3481ebd91bbf8ed581be8",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "f593a083d2788f85a8dcbb87fdc8df7ad186988b7366b7a75d3e59284c22a2cd",
+        "size_bytes": 1751,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      },
+      "raw_metadata": {
+        "artifact_id": "t01p1r-artifact-b1-raw-metadata-400faf401df3481ebd91bbf8ed581be8",
+        "run_id": "t01p1r-run-b1-sasa-F-numeric-icode-collision-native",
+        "job_id": "t01p1r-job-b1-facts-400faf401df3481ebd91bbf8ed581be8",
+        "attempt_id": "t01p1r-attempt-b1-facts-400faf401df3481ebd91bbf8ed581be8",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "b16b6b81d8807a0057b298db8645e77ed902e93bf63cc204d8c6909b7cf3e31b",
+        "size_bytes": 1673,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      },
+      "raw_addresses": {
+        "artifact_id": "t01p1r-artifact-b1-raw-addresses-400faf401df3481ebd91bbf8ed581be8",
+        "run_id": "t01p1r-run-b1-sasa-F-numeric-icode-collision-native",
+        "job_id": "t01p1r-job-b1-facts-400faf401df3481ebd91bbf8ed581be8",
+        "attempt_id": "t01p1r-attempt-b1-facts-400faf401df3481ebd91bbf8ed581be8",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "7b8f33bdc106e62ba044053d364a173cb62cdc7acfe37851082eb64f1bbb05d7",
+        "size_bytes": 100311,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      }
+    },
+    "consumer_selection_sha256": "5d71d87695e9cd7a952677d7657013a0f9090d951f61eb3099d4df8ebd9fca90",
+    "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+  },
+  "route": "native_atoms",
+  "status": "REJECTED_BEFORE_TOOL",
+  "error_code": "FREE_RESIDUE_TOKEN_COLLISION",
+  "error": "Distinct raw residue identities collapse to one FreeSASA token",
+  "error_details": {
+    "raw_row_index": 6,
+    "raw_residue_id": "raw-residue-2",
+    "raw_address": {
+      "auth_asym_id": [
+        "A",
+        null
+      ],
+      "auth_seq_id": [
+        "42",
+        null
+      ],
+      "pdbx_PDB_ins_code": [
+        null,
+        "not_applicable"
+      ],
+      "label_asym_id": [
+        "LABEL_A",
+        null
+      ],
+      "label_seq_id": [
+        "2",
+        null
+      ],
+      "label_entity_id": [
+        "1",
+        null
+      ],
+      "label_comp_id": [
+        "ALA",
+        null
+      ],
+      "auth_comp_id": [
+        "ALA",
+        null
+      ],
+      "group_PDB": [
+        "ATOM",
+        null
+      ]
+    }
+  },
+  "preparation_sha256": null,
+  "scientific_approval": null,
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED",
+  "tool_invoked": false,
+  "calculation_started": false
+}

@@ -1,0 +1,41 @@
+{
+  "completed_at": "2026-09-09T01:21:43.6945966Z",
+  "acceptance": {
+    "audit": "discovery/t01-phase1-real/w6/foldx-validation-20260909/evidence-audit-r02.json",
+    "batch": "discovery/t01-phase1-real/w6/foldx-integration-20260909/acceptance-r05/index.json",
+    "indexed_files": 553,
+    "published_artifacts": 456,
+    "request_and_integrity_guards": 11,
+    "status": "PASS",
+    "task_cases": 12
+  },
+  "current_root": {
+    "command": ".\\.venv\\Scripts\\python.exe -X utf8 -m pytest -o addopts='' -q",
+    "passed": 1553,
+    "seconds": 173.19,
+    "skipped": 1,
+    "status": "PASS"
+  },
+  "documentation": {
+    "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts\\check_docs.py",
+    "historical_reference_issues": 29,
+    "markdown_files": 199,
+    "status": "PASS_WITH_HISTORICAL_LINK_ISSUES"
+  },
+  "foldx_slot_container_absent_after_acceptance": true,
+  "image": {
+    "architecture": "amd64",
+    "base_image_id": "sha256:68d914ec641a0b69267ce65184d000a2bc3a9ee2590ab702b82250ab2385735a",
+    "foldx_executable_sha256": "5309d81c3f08b8405d172153aaf9792a244c06f98387c9d57a104302a9cef2cf",
+    "id": "sha256:66539e081922ce4c4fb504c9906feb64044ce668033e63fdc9299d020af8c851",
+    "network_policy": "offline",
+    "os": "linux",
+    "present_after_acceptance": true
+  },
+  "targeted": {
+    "command": ".\\.venv\\Scripts\\python.exe -X utf8 -m pytest -o addopts='' -q tests\\test_foldx_development.py tests\\test_thermompnn_development.py",
+    "passed": 36,
+    "seconds": 0.67,
+    "status": "PASS"
+  }
+}

@@ -1,0 +1,556 @@
+[
+  {
+    "op": "test",
+    "path": "/metadata/uid",
+    "value": "d0cae2e9-9cd1-486b-a7c7-ddb9827915bd"
+  },
+  {
+    "op": "test",
+    "path": "/metadata/resourceVersion",
+    "value": "51747084"
+  },
+  {
+    "op": "replace",
+    "path": "/spec/template/spec/containers/0/volumeMounts",
+    "value": [
+      {
+        "mountPath": "/var/lib/t01",
+        "name": "runtime"
+      },
+      {
+        "mountPath": "/run/secrets/t01",
+        "name": "credentials",
+        "readOnly": true
+      },
+      {
+        "mountPath": "/tmp",
+        "name": "tmp"
+      },
+      {
+        "mountPath": "/app/var/t01-phase1-real/tool-assets",
+        "name": "tool-assets",
+        "readOnly": true
+      },
+      {
+        "mountPath": "/etc/t01/resident.json",
+        "name": "resident-config",
+        "readOnly": true,
+        "subPath": "resident.json"
+      },
+      {
+        "mountPath": "/opt/t01/src/t01_phase1_real/development/runtime.py",
+        "name": "esmfold2-code",
+        "readOnly": true,
+        "subPath": "t01_phase1_real/development/runtime.py"
+      },
+      {
+        "mountPath": "/opt/t01/src/t01_phase1_real/development/proteinmpnn/source.py",
+        "name": "esmfold2-code",
+        "readOnly": true,
+        "subPath": "t01_phase1_real/development/proteinmpnn/source.py"
+      },
+      {
+        "mountPath": "/opt/t01/src/t01_phase1_real/development/esm_if1/source.py",
+        "name": "esmfold2-code",
+        "readOnly": true,
+        "subPath": "t01_phase1_real/development/esm_if1/source.py"
+      },
+      {
+        "mountPath": "/opt/t01/src/t01_phase1_real/development/thermompnn/source.py",
+        "name": "esmfold2-code",
+        "readOnly": true,
+        "subPath": "t01_phase1_real/development/thermompnn/source.py"
+      },
+      {
+        "mountPath": "/opt/t01/src/t01_phase1_real/development/foldx/source.py",
+        "name": "esmfold2-code",
+        "readOnly": true,
+        "subPath": "t01_phase1_real/development/foldx/source.py"
+      },
+      {
+        "mountPath": "/opt/t01/src/t01_phase1_real/development/supervisor.py",
+        "name": "esmfold2-code",
+        "readOnly": true,
+        "subPath": "t01_phase1_real/development/supervisor.py"
+      },
+      {
+        "mountPath": "/opt/t01/src/t01_phase1_real/development/n12_prediction_evidence.py",
+        "name": "esmfold2-code",
+        "readOnly": true,
+        "subPath": "t01_phase1_real/development/n12_prediction_evidence.py"
+      },
+      {
+        "mountPath": "/opt/t01/src/t01_phase1_real/development/esmfold2/source.py",
+        "name": "esmfold2-code",
+        "readOnly": true,
+        "subPath": "t01_phase1_real/development/esmfold2/source.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/proteinmpnn/source.py",
+        "name": "esmfold2-code",
+        "readOnly": true,
+        "subPath": "t01_phase1_real/development/proteinmpnn/source.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/esm_if1/source.py",
+        "name": "esmfold2-code",
+        "readOnly": true,
+        "subPath": "t01_phase1_real/development/esm_if1/source.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/thermompnn/source.py",
+        "name": "esmfold2-code",
+        "readOnly": true,
+        "subPath": "t01_phase1_real/development/thermompnn/source.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/foldx/source.py",
+        "name": "esmfold2-code",
+        "readOnly": true,
+        "subPath": "t01_phase1_real/development/foldx/source.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/n12_prediction_evidence.py",
+        "name": "esmfold2-code",
+        "readOnly": true,
+        "subPath": "t01_phase1_real/development/n12_prediction_evidence.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/esmfold2/source.py",
+        "name": "esmfold2-code",
+        "readOnly": true,
+        "subPath": "t01_phase1_real/development/esmfold2/source.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/esmfold2/standard.py",
+        "name": "esmfold2-code",
+        "readOnly": true,
+        "subPath": "t01_phase1_real/development/esmfold2/standard.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/resident_execution.py",
+        "name": "af3-service-code",
+        "readOnly": true,
+        "subPath": "af3-resident_execution.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/contracts.py",
+        "name": "af3-service-code",
+        "readOnly": true,
+        "subPath": "af3-development--contracts.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/registry.py",
+        "name": "af3-service-code",
+        "readOnly": true,
+        "subPath": "af3-development--registry.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/runtime.py",
+        "name": "af3-service-code",
+        "readOnly": true,
+        "subPath": "af3-development--runtime.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/af3/__init__.py",
+        "name": "af3-service-code",
+        "readOnly": true,
+        "subPath": "af3-development--af3--__init__.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/af3/native_worker.py",
+        "name": "af3-service-code",
+        "readOnly": true,
+        "subPath": "af3-development--af3--native_worker.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/af3/policy.py",
+        "name": "af3-service-code",
+        "readOnly": true,
+        "subPath": "af3-development--af3--policy.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/af3/primitives.py",
+        "name": "af3-service-code",
+        "readOnly": true,
+        "subPath": "af3-development--af3--primitives.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/af3/profile.json",
+        "name": "af3-service-code",
+        "readOnly": true,
+        "subPath": "af3-development--af3--profile.json"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/af3/result.py",
+        "name": "af3-service-code",
+        "readOnly": true,
+        "subPath": "af3-development--af3--result.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/af3/source.py",
+        "name": "af3-service-code",
+        "readOnly": true,
+        "subPath": "af3-development--af3--source.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/af3/standard.py",
+        "name": "af3-service-code",
+        "readOnly": true,
+        "subPath": "af3-development--af3--standard.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/af3/worker.py",
+        "name": "af3-service-code",
+        "readOnly": true,
+        "subPath": "af3-development--af3--worker.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/esmfold2/primitives.py",
+        "name": "af3-service-code",
+        "readOnly": true,
+        "subPath": "af3-development--esmfold2--primitives.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/structure/result.py",
+        "name": "af3-service-code",
+        "readOnly": true,
+        "subPath": "af3-development--structure--result.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/wt_draft/policy.py",
+        "name": "m1-p1-code",
+        "readOnly": true,
+        "subPath": "development--wt_draft--policy.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/wt_draft/compute.py",
+        "name": "m1-p1-code",
+        "readOnly": true,
+        "subPath": "development--wt_draft--compute.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/wt_draft/service.py",
+        "name": "m1-p1-code",
+        "readOnly": true,
+        "subPath": "development--wt_draft--service.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/glycosylation/result.py",
+        "name": "m1-p1-code",
+        "readOnly": true,
+        "subPath": "development--glycosylation--result.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/domains/service.py",
+        "name": "m1-p1-code",
+        "readOnly": true,
+        "subPath": "development--domains--service.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/local_delivery/service.py",
+        "name": "m1-p1-code",
+        "readOnly": true,
+        "subPath": "development--local_delivery--service.py"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/variant_report/policy.py",
+        "name": "m1-p2-code",
+        "readOnly": true,
+        "subPath": "p1"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/esmfold2/quality.py",
+        "name": "m1-p2-code",
+        "readOnly": true,
+        "subPath": "p4"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/foldx/policy.py",
+        "name": "m1-p2-code",
+        "readOnly": true,
+        "subPath": "p5"
+      },
+      {
+        "mountPath": "/app/discovery/t01-phase1-real/w5/design-backend-assets-20260908/BLOSUM62.txt",
+        "name": "m1-p2-code",
+        "readOnly": true,
+        "subPath": "p7"
+      },
+      {
+        "mountPath": "/app/discovery/t01-phase1-real/w5/design-backend-assets-20260908/aaindex1.txt",
+        "name": "m1-p2-code",
+        "readOnly": true,
+        "subPath": "p8"
+      },
+      {
+        "mountPath": "/app/discovery/t01-phase1-real/w5/design-backend-assets-20260908/imgt-classes.html",
+        "name": "m1-p2-code",
+        "readOnly": true,
+        "subPath": "p9"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/foldx/result.py",
+        "name": "m1-p3-code",
+        "readOnly": true,
+        "subPath": "p3"
+      },
+      {
+        "mountPath": "/var/lib/t01/m1-p1-test-data/blast/nr-20250624",
+        "name": "n03-nr-target",
+        "readOnly": true,
+        "subPath": "nr-20250624/raw"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/blast/prebuilt.py",
+        "name": "p4-nr-fixes-r02",
+        "readOnly": true,
+        "subPath": "p1"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/resident_process.py",
+        "name": "p4-nr-fixes-r02",
+        "readOnly": true,
+        "subPath": "p2"
+      },
+      {
+        "mountPath": "/etc/t01/blast-target-receipt.json",
+        "name": "p4-nr-receipt",
+        "readOnly": true,
+        "subPath": "target-receipt.json"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/variant_report/compute.py",
+        "name": "m1-route-code",
+        "readOnly": true,
+        "subPath": "p3"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/variant_report/service.py",
+        "name": "m1-route-code",
+        "readOnly": true,
+        "subPath": "p4"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/variant_report/__init__.py",
+        "name": "m1-route-code",
+        "readOnly": true,
+        "subPath": "p5"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/variant_report/m1.py",
+        "name": "m1-route-code",
+        "readOnly": true,
+        "subPath": "p6"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/variant_report/source.py",
+        "name": "m1-route-code",
+        "readOnly": true,
+        "subPath": "p7"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/epitope_protection/policy.py",
+        "name": "m1-route-code",
+        "readOnly": true,
+        "subPath": "p8"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/epitope_protection/source.py",
+        "name": "m1-route-code",
+        "readOnly": true,
+        "subPath": "p9"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/epitope_protection/compute.py",
+        "name": "m1-route-code",
+        "readOnly": true,
+        "subPath": "p10"
+      },
+      {
+        "mountPath": "/run/himat-secrets/signing-key",
+        "name": "himat-download-key",
+        "readOnly": true,
+        "subPath": "signing-key"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/esmfold2/policy.py",
+        "name": "m1-himat-sequence-code-r04",
+        "readOnly": true,
+        "subPath": "p3"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/esmfold2/profile.json",
+        "name": "m1-himat-sequence-code-r04",
+        "readOnly": true,
+        "subPath": "p4"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/workflow/policy.py",
+        "name": "himat-p1-r07",
+        "readOnly": true,
+        "subPath": "p2"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/local_delivery/m1.py",
+        "name": "himat-p1-r07",
+        "readOnly": true,
+        "subPath": "p3"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/workflow/m1.py",
+        "name": "himat-p1-r07",
+        "readOnly": true,
+        "subPath": "p6"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/blast/policy.py",
+        "name": "antigen-iedb-n03-r11",
+        "readOnly": true,
+        "subPath": "p1"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/blast/result.py",
+        "name": "antigen-iedb-n03-r11",
+        "readOnly": true,
+        "subPath": "p2"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/blast/worker.py",
+        "name": "antigen-iedb-n03-r11",
+        "readOnly": true,
+        "subPath": "p3"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/blast/iedb.py",
+        "name": "antigen-iedb-n03-r11",
+        "readOnly": true,
+        "subPath": "p4"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/epitope_map/policy.py",
+        "name": "antigen-iedb-n03-r11",
+        "readOnly": true,
+        "subPath": "p5"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/epitope_map/result.py",
+        "name": "antigen-iedb-n03-r11",
+        "readOnly": true,
+        "subPath": "p6"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/design_backend/permissions.py",
+        "name": "antigen-iedb-n03-r11",
+        "readOnly": true,
+        "subPath": "p7"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/docker.py",
+        "name": "antigen-iedb-n03-r11",
+        "readOnly": true,
+        "subPath": "p8"
+      },
+      {
+        "mountPath": "/app/src/t01_phase1_real/development/supervisor.py",
+        "name": "antigen-iedb-n03-r11",
+        "readOnly": true,
+        "subPath": "p9"
+      },
+      {
+        "name": "antigen-m1-n11-confirm-r13",
+        "mountPath": "/app/src/t01_phase1_real/service_api/himat.py",
+        "subPath": "p0",
+        "readOnly": true
+      },
+      {
+        "name": "antigen-m1-n11-confirm-r13",
+        "mountPath": "/app/src/t01_phase1_real/service_api/progress.py",
+        "subPath": "p1",
+        "readOnly": true
+      },
+      {
+        "name": "antigen-m1-n11-confirm-r13",
+        "mountPath": "/app/src/t01_phase1_real/service_api/transport.py",
+        "subPath": "p2",
+        "readOnly": true
+      },
+      {
+        "name": "antigen-m1-n11-confirm-r13",
+        "mountPath": "/app/src/t01_phase1_real/service_api/app.py",
+        "subPath": "p3",
+        "readOnly": true
+      },
+      {
+        "name": "antigen-m1-n11-confirm-r13",
+        "mountPath": "/app/src/t01_phase1_real/development/workflow/service.py",
+        "subPath": "p4",
+        "readOnly": true
+      },
+      {
+        "name": "antigen-m1-n11-confirm-r13",
+        "mountPath": "/app/src/t01_phase1_real/development/workflow/engineering.py",
+        "subPath": "p5",
+        "readOnly": true
+      },
+      {
+        "name": "antigen-m1-n11-confirm-r13",
+        "mountPath": "/app/src/t01_phase1_real/development/workflow/confirmation.py",
+        "subPath": "p6",
+        "readOnly": true
+      },
+      {
+        "name": "antigen-m1-n11-confirm-r13",
+        "mountPath": "/app/src/t01_phase1_real/development/workflow/reporting.py",
+        "subPath": "p7",
+        "readOnly": true
+      },
+      {
+        "name": "antigen-m1-n11-confirm-r13",
+        "mountPath": "/app/src/t01_phase1_real/development/design_backend/policy.py",
+        "subPath": "p8",
+        "readOnly": true
+      },
+      {
+        "name": "antigen-m1-n11-confirm-r13",
+        "mountPath": "/app/src/t01_phase1_real/development/design_backend/compute.py",
+        "subPath": "p9",
+        "readOnly": true
+      },
+      {
+        "name": "antigen-m1-n11-confirm-r13",
+        "mountPath": "/app/src/t01_phase1_real/development/proteinmpnn/policy.py",
+        "subPath": "p10",
+        "readOnly": true
+      },
+      {
+        "name": "antigen-m1-n11-confirm-r13",
+        "mountPath": "/app/src/t01_phase1_real/development/local_delivery/policy.py",
+        "subPath": "p11",
+        "readOnly": true
+      },
+      {
+        "name": "antigen-m1-n11-confirm-r13",
+        "mountPath": "/app/src/t01_phase1_real/development/local_delivery/source.py",
+        "subPath": "p12",
+        "readOnly": true
+      },
+      {
+        "name": "antigen-m1-n11-confirm-r13",
+        "mountPath": "/app/src/t01_phase1_real/development/local_delivery/compute.py",
+        "subPath": "p13",
+        "readOnly": true
+      }
+    ]
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/volumes/-",
+    "value": {
+      "name": "antigen-m1-n11-confirm-r13",
+      "configMap": {
+        "name": "antigen-m1-n11-confirm-r13"
+      }
+    }
+  }
+]

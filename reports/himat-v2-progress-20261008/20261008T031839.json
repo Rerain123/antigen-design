@@ -1,0 +1,412 @@
+{
+  "observed_at_utc": "2026-10-08T03:18:39.458017+00:00",
+  "parent": {
+    "job_id": "t01p1r-job-a7c8933226744c669836b11858585246",
+    "tool_id": "t01.real.local_workflow",
+    "state": "running",
+    "started_at": "2026-10-08T01:31:16.621888Z",
+    "finished_at": null,
+    "updated_at": "2026-10-08T03:17:53.506898Z",
+    "error_code": null
+  },
+  "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+  "counts": {
+    "t01.real.local_workflow": {
+      "running": 1
+    },
+    "t01.real.esmfold2": {
+      "succeeded": 11
+    },
+    "t01.real.ingest_structure": {
+      "succeeded": 1
+    },
+    "t01.real.deeptmhmm": {
+      "succeeded": 1
+    },
+    "t01.real.blast": {
+      "succeeded": 1
+    },
+    "t01.real.bepipred": {
+      "succeeded": 1
+    },
+    "t01.real.netmhc": {
+      "succeeded": 5
+    },
+    "t01.real.epitope_map": {
+      "succeeded": 1
+    },
+    "t01.real.glycosylation": {
+      "succeeded": 1
+    },
+    "t01.real.domains": {
+      "succeeded": 1
+    },
+    "t01.real.developability": {
+      "succeeded": 1
+    },
+    "t01.real.wt_draft": {
+      "succeeded": 1
+    },
+    "t01.real.design_audit": {
+      "succeeded": 1
+    },
+    "t01.real.proteinmpnn": {
+      "succeeded": 3
+    },
+    "t01.real.esm_if1": {
+      "succeeded": 1
+    },
+    "t01.real.af3": {
+      "succeeded": 11,
+      "reconciling": 1
+    }
+  },
+  "active": [
+    {
+      "job_id": "t01p1r-job-a7c8933226744c669836b11858585246",
+      "tool_id": "t01.real.local_workflow",
+      "state": "running",
+      "started_at": "2026-10-08T01:31:16.621888Z",
+      "finished_at": null,
+      "updated_at": "2026-10-08T03:17:53.506898Z",
+      "error_code": null
+    },
+    {
+      "job_id": "t01p1r-job-67a60a24216e407384c80b38fc6fb967",
+      "tool_id": "t01.real.af3",
+      "state": "reconciling",
+      "started_at": "2026-10-08T03:14:24.920043Z",
+      "finished_at": null,
+      "updated_at": "2026-10-08T03:16:08.431450Z",
+      "error_code": null
+    }
+  ],
+  "steps": [
+    {
+      "step": "bepipred",
+      "node_id": "N04",
+      "job_id": "t01p1r-job-8bd8075613f243ef90d6e05881d379d0",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "blast",
+      "node_id": "N03",
+      "job_id": "t01p1r-job-102477aa3ef343f9b9b257ab26696254",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "cheap0",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-e6382b8644644e2098ad2fb0d9d6b4b5",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "design_inputs",
+      "node_id": "N11",
+      "job_id": "t01p1r-job-fab2bc998a7449d8ac452210cea33ecd",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "developability",
+      "node_id": "N10",
+      "job_id": "t01p1r-job-4d90ed668dba48798fe7db31d66b2423",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "domains",
+      "node_id": "N09",
+      "job_id": "t01p1r-job-6a1dc073e2674637ae044ba97b08a0bd",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "epitope_map",
+      "node_id": "N06",
+      "job_id": "t01p1r-job-a1aadf3f7ca7469492993c00bcc7c84d",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "formal0",
+      "node_id": "N11",
+      "job_id": "t01p1r-job-070db7a164ee4b5296d4a568850a2cee",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "glycosylation",
+      "node_id": "N07",
+      "job_id": "t01p1r-job-9567728a5cb046dc95f8bb2dd7093cc9",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "netmhc",
+      "node_id": "N05",
+      "job_id": "t01p1r-job-dd17a03b2c6641799f1c19dcd084a19b",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "prediction",
+      "node_id": "N01",
+      "job_id": "t01p1r-job-c68d263b821e424c9bd4b941fb97261f",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "proposal0",
+      "node_id": "N11",
+      "job_id": "t01p1r-job-b13e966d07dd4d1ebe3a0e5ffca95f34",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "proposal1",
+      "node_id": "N11",
+      "job_id": "t01p1r-job-c96eef74229f466a94c130f3e09d2e21",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s10_af3",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-57117104084e405780ded60aacc750c5",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s10_esmfold2",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-87162ad8e866421c81369deca9d2b882",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s11_af3",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-be9c052ce2014bf9ab0e6b1ee115b9a3",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s11_esmfold2",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-f39ccb6c5bf2499ebc5b522183c88b09",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s12_af3",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-eb9e9cb88352437b91b321e13e3ce4df",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s12_esmfold2",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-9526b1c8317c4e8ba5b77ded468f3eb2",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s13_af3",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-67a60a24216e407384c80b38fc6fb967",
+      "state": "reconciling",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s1_af3",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-6a6f7be8b6c743e7ab0d38620a7524f3",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s1_esmfold2",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-5cae204a7c64454ea5f647b9302cd653",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s2_af3",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-a59f8911f460434e97ae42a42e97751f",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s2_esmfold2",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-a50eeea9bc8b4de388f788179de7b337",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s3_af3",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-a89a75af01bb4c9b86390c17766fc727",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s3_esmfold2",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-b99548363ca1433b9baf04a635534ae3",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s4_af3",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-019f3c339fba49cb9f7361772c759f82",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s4_esmfold2",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-b5327dc9dd6a44f6be4c15c2e32ed636",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s5_af3",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-dbe45742a376437696cb7555a031f41c",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s5_esmfold2",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-bd1ac5b1980f40d2bdb41dea66fb5f2e",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s6_af3",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-1f98f47714e14b648e53f547394eeaff",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s6_esmfold2",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-affb545d02ba428db99b36d5d7e237e4",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s9_af3",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-60e08605cc87438985a87f16fe479429",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "rx0_s9_esmfold2",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-c9ea70e8e3034ebda7c69de29b594fde",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "structure",
+      "node_id": "N01",
+      "job_id": "t01p1r-job-baa78c3e8d674838849afa380962eb2a",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "topology",
+      "node_id": "N02",
+      "job_id": "t01p1r-job-6d8498ff87d24fc6840efc9c17829a8f",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "wt_draft",
+      "node_id": "N18",
+      "job_id": "t01p1r-job-86a2d62e47de4aa196f9bb0002574850",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    },
+    {
+      "step": "wt_msa",
+      "node_id": "N12",
+      "job_id": "t01p1r-job-e045b5137b2e411d9dd3a148924a7b83",
+      "state": "succeeded",
+      "reason_code": null,
+      "error_code": null
+    }
+  ],
+  "revision_summary": {
+    "design_outcomes": null,
+    "stop_reason_codes": null,
+    "coverage_complete": null,
+    "acceptance_status": null,
+    "run_execution_status": null
+  },
+  "candidates": [],
+  "gpu": {
+    "last_execution": {
+      "order": 1791429264989368297,
+      "sha256": "6b1f6a2022ddec6b0dde72122a2c85c7ab60ca209518a366c2fe54eea735b9bb",
+      "target": "/var/lib/t01/resident/af3/3c8224173b843ca2268e4be8e95142f3",
+      "tool": "af3",
+      "uncertain": false
+    },
+    "last_state": "succeeded",
+    "phase": "idle"
+  },
+  "worker_receipt": null,
+  "logs": [],
+  "read_only": true
+}

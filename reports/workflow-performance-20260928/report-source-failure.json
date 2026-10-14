@@ -1,0 +1,7 @@
+{
+  "status": "ERROR",
+  "error_code": "INVALID_STATE",
+  "detail": "Stopped workflow cannot deliver N14 results",
+  "traceback": "Traceback (most recent call last):\n  File \"<string>\", line 17, in <module>\n  File \"/app/src/t01_phase1_real/development/variant_report/source.py\", line 91, in sources\n    files['input/n14-pool.json']=encode(verify_report(rt,db,body))\n                                        ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/app/src/t01_phase1_real/development/workflow/stability_pool.py\", line 113, in verify_report\n    ensure(parent.get('state') in ('running','succeeded') and not parent.get('stop_reason'),\n  File \"/app/src/t01_phase1_real/common.py\", line 30, in ensure\n    raise RuntimeFault(code,message)\nt01_phase1_real.common.RuntimeFault: Stopped workflow cannot deliver N14 results\n",
+  "seconds": 19.15138256800128
+}

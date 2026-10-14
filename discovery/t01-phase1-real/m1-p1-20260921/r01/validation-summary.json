@@ -1,0 +1,87 @@
+{
+  "status": "P1_VALIDATION_PASS",
+  "tests": 2226,
+  "passed": 2211,
+  "skipped": 15,
+  "failures": 0,
+  "errors": 0,
+  "duration_seconds": 399.01,
+  "command": "python -B -X utf8 -m pytest -p no:cacheprovider -o addopts= -q --junitxml=.tmp/m1-p1-tests.xml",
+  "junit_sha256": "2c83ed8b51b79852c29589b6aadd905ac48ba98b7d7ae1c1f9b99132e1757550",
+  "skipped_cases": [
+    {
+      "name": "test_native_layout_switches_tmp_and_rejects_unregistered_database[approved]",
+      "reason": "Native directory aliases require Linux"
+    },
+    {
+      "name": "test_native_layout_switches_tmp_and_rejects_unregistered_database[../outside]",
+      "reason": "Native directory aliases require Linux"
+    },
+    {
+      "name": "test_native_layout_switches_tmp_and_rejects_unregistered_database[/etc]",
+      "reason": "Native directory aliases require Linux"
+    },
+    {
+      "name": "test_native_layout_switches_tmp_and_rejects_unregistered_database[missing]",
+      "reason": "Native directory aliases require Linux"
+    },
+    {
+      "name": "test_real_process_replay_and_tamper",
+      "reason": "Real Linux process behavior is exercised in container probe"
+    },
+    {
+      "name": "test_precancel_and_failure",
+      "reason": "Real Linux process behavior is exercised in container probe"
+    },
+    {
+      "name": "test_timeout_stops_descendant",
+      "reason": "Real Linux process behavior is exercised in container probe"
+    },
+    {
+      "name": "test_missing_process_registry_never_claims_stopped",
+      "reason": "Real Linux process behavior is exercised in container probe"
+    },
+    {
+      "name": "test_running_cancel_and_next_task_same_supervisor",
+      "reason": "Real Linux process behavior is exercised in container probe"
+    },
+    {
+      "name": "test_real_supervisor_crash_stops_existing_process_without_replay",
+      "reason": "Real Linux process behavior is exercised in container probe"
+    },
+    {
+      "name": "test_native_freesasa_repeated_in_one_resident_process",
+      "reason": "Real Linux process behavior is exercised in container probe"
+    },
+    {
+      "name": "test_worker_registry_rejects_unregistered_or_request_supplied_command",
+      "reason": "Real Linux process behavior is exercised in container probe"
+    },
+    {
+      "name": "test_resident_cli_handles_two_separate_arrivals",
+      "reason": "Real Linux process behavior is exercised in container probe"
+    },
+    {
+      "name": "test_offline_guard_is_inherited_by_native_child",
+      "reason": "Real Linux process behavior is exercised in container probe"
+    },
+    {
+      "name": "test_symlink_escape_rejected_when_os_allows_symlink",
+      "reason": "Creating symlinks is not available to this Windows account"
+    }
+  ],
+  "frozen_mock": {
+    "status": "PASS",
+    "frozen_asset_count": 457,
+    "campaign_id": "t01p1m-v01-reg-20260904-release-freeze-03",
+    "read_only": true
+  },
+  "legacy_full_mock_regression": "NOT_RERUN_NO_CROSS_PARTITION_CHANGE",
+  "s07_regression": "NOT_RERUN_NO_CROSS_PARTITION_CHANGE",
+  "docs": {
+    "status": "PASS_WITH_HISTORICAL_LINK_ISSUES",
+    "current_navigation_errors": 0,
+    "historical_issues": 29,
+    "verified_in_zip_links": 2
+  }
+}

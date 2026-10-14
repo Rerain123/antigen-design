@@ -1,0 +1,71 @@
+{
+  "date": "2026-09-06",
+  "recorded_at": "2026-09-05T16:35:19.279642+00:00",
+  "scope": "B1 E01-E04 local input facts engineering",
+  "status": "PASS_ENGINEERING_ONLY",
+  "reviewer": "AI engineering review; no algorithm or customer signoff asserted",
+  "completed_items": [
+    "E01",
+    "E02",
+    "E03",
+    "E04"
+  ],
+  "root_tests": {
+    "total": 639,
+    "passed": 638,
+    "failed": 0,
+    "skipped": 1,
+    "duration_seconds": 92.28
+  },
+  "new_tests": 72,
+  "skipped_reason": "One existing Windows symlink test lacks account permission",
+  "first_run": {
+    "failed": 1,
+    "passed": 637,
+    "skipped": 1,
+    "cause": "Documentation checker observed the new verification link before its target file was created",
+    "resolution": "Verification record created, documentation check and entire root suite rerun successfully"
+  },
+  "root_junit": {
+    "path": "discovery/t01-phase1-real/w1/b1-engineering-maintenance-20260906/root-tests.xml",
+    "size_bytes": 89757,
+    "sha256": "47e79436d07fd81506e1537bab7d05d6d01cfa0bd06406def1cd18af813e185a"
+  },
+  "execution_record": {
+    "path": "discovery/t01-phase1-real/w1/b1-engineering-maintenance-20260906/checks.json",
+    "size_bytes": 7490,
+    "sha256": "02dbfe5b362ae0e1a06373974522c7665048a958a8fd7d8d44547746fba6e689"
+  },
+  "campaign": {
+    "path": "discovery/t01-phase1-real/w1/b1-engineering-20260905",
+    "cases": 40,
+    "recorded": 19,
+    "rejected_as_expected": 21,
+    "passed": 40,
+    "artifacts": 378,
+    "protected_files": 315,
+    "expert_originals": 22,
+    "reparsed": true
+  },
+  "read_only_checks": {
+    "old_b1_cases": 23,
+    "old_b1_pairs": 2,
+    "mock_frozen_assets": 457,
+    "handoff_archives": 2,
+    "r58_boundary_files": 212,
+    "original_runtime_sources": 16,
+    "current_runtime_sources": 16
+  },
+  "documentation": {
+    "status": "PASS",
+    "markdown_files": 173
+  },
+  "legacy_regressions": {
+    "status": "NOT_RERUN",
+    "reason": "Only current engineering partition changed; no cross-partition path/isolation change or stage freeze"
+  },
+  "scientific_acceptance": "NOT_RUN",
+  "mapping_approval": "NOT_GRANTED",
+  "production_workers_enabled": false,
+  "production_status": "NOT_DEPLOYED"
+}

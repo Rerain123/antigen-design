@@ -1,0 +1,303 @@
+{
+  "status": "P4_FOLDX_RUNTIME_DIAGNOSIS_R01",
+  "captured_at": "2026-09-23T13:52:49.983973+00:00",
+  "scope": "Read-only timing comparison and current FoldX container resource snapshot",
+  "runs": [
+    {
+      "batch": "r02",
+      "job_id": "t01p1r-job-715fef69d76543898b4b58c35c838269",
+      "started_at": "2026-09-22T12:47:46.003183Z",
+      "finished_at": "2026-09-22T14:51:14.119007Z",
+      "native_elapsed_seconds": 7403.627893149969,
+      "input_structure_sha256": "e2c93010a93adc267324b6aad1da9b7b4f6f43363a281d7343f043c3b49aa6c2",
+      "mutation_list_sha256": "6a34005aaec75d56fcdbfff5d015a69576e9a1f6b7272ffe325200b46f2dc7c1",
+      "executable_sha256": "5309d81c3f08b8405d172153aaf9792a244c06f98387c9d57a104302a9cef2cf",
+      "commands": {
+        "buildmodel": {
+          "argv": [
+            "/app/foldx_20270131",
+            "--command=BuildModel",
+            "--pdb=target_Repair.pdb",
+            "--pdb-dir=/out/repair",
+            "--mutant-file=individual_list.txt",
+            "--numberOfRuns=5",
+            "--output-dir=/out/buildmodel"
+          ],
+          "exit_code": 0
+        },
+        "repair": {
+          "argv": [
+            "/app/foldx_20270131",
+            "--command=RepairPDB",
+            "--pdb=target.pdb",
+            "--pdb-dir=/native",
+            "--output-dir=/out/repair"
+          ],
+          "exit_code": 0
+        }
+      },
+      "model_count": 15,
+      "resident_target": "/var/lib/t01/resident/foldx/58a5ca8231e23529728ad3ae4c062ef5",
+      "evidence": "discovery/t01-phase1-real/m1-p4-20260922/r02/stability.json",
+      "timeline": {
+        "batch": "r02",
+        "started": {
+          "time": "2026-09-22T12:47:48.732479+00:00",
+          "bytes": 1945
+        },
+        "repair_complete": {
+          "time": "2026-09-22T12:48:41.251860+00:00",
+          "bytes": 40361
+        },
+        "models": [
+          {
+            "name": "target_Repair_1_0.pdb",
+            "time": "2026-09-22T12:55:40.714727+00:00",
+            "bytes": 40929
+          },
+          {
+            "name": "target_Repair_1_1.pdb",
+            "time": "2026-09-22T13:02:36.809493+00:00",
+            "bytes": 40929
+          },
+          {
+            "name": "target_Repair_1_2.pdb",
+            "time": "2026-09-22T13:09:59.912991+00:00",
+            "bytes": 40929
+          },
+          {
+            "name": "target_Repair_1_3.pdb",
+            "time": "2026-09-22T13:17:57.183103+00:00",
+            "bytes": 40929
+          },
+          {
+            "name": "target_Repair_1_4.pdb",
+            "time": "2026-09-22T13:25:21.983500+00:00",
+            "bytes": 40929
+          },
+          {
+            "name": "target_Repair_2_0.pdb",
+            "time": "2026-09-22T13:33:28.950889+00:00",
+            "bytes": 38785
+          },
+          {
+            "name": "target_Repair_2_1.pdb",
+            "time": "2026-09-22T13:40:07.527473+00:00",
+            "bytes": 38785
+          },
+          {
+            "name": "target_Repair_2_2.pdb",
+            "time": "2026-09-22T13:47:23.827243+00:00",
+            "bytes": 38785
+          },
+          {
+            "name": "target_Repair_2_3.pdb",
+            "time": "2026-09-22T13:53:47.875077+00:00",
+            "bytes": 38785
+          },
+          {
+            "name": "target_Repair_2_4.pdb",
+            "time": "2026-09-22T13:59:59.113107+00:00",
+            "bytes": 38785
+          },
+          {
+            "name": "target_Repair_3_0.pdb",
+            "time": "2026-09-22T14:10:17.854962+00:00",
+            "bytes": 40058
+          },
+          {
+            "name": "target_Repair_3_1.pdb",
+            "time": "2026-09-22T14:20:44.480362+00:00",
+            "bytes": 40058
+          },
+          {
+            "name": "target_Repair_3_2.pdb",
+            "time": "2026-09-22T14:30:37.980475+00:00",
+            "bytes": 40058
+          },
+          {
+            "name": "target_Repair_3_3.pdb",
+            "time": "2026-09-22T14:41:37.117325+00:00",
+            "bytes": 40058
+          },
+          {
+            "name": "target_Repair_3_4.pdb",
+            "time": "2026-09-22T14:51:12.243649+00:00",
+            "bytes": 40058
+          }
+        ],
+        "native_finished": {
+          "time": "2026-09-22T14:51:12.273648+00:00",
+          "bytes": 6906
+        },
+        "native_file_bytes": 1400128
+      },
+      "model_interval_median_seconds": 461.03525449999995,
+      "repair_seconds": 52.519381,
+      "buildmodel_after_repair_seconds": 7351.021788
+    },
+    {
+      "batch": "r16",
+      "job_id": "t01p1r-job-2033f10ce3144c08813d3f5cc3c17199",
+      "started_at": "2026-09-23T11:22:06.595800Z",
+      "finished_at": "2026-09-23T13:24:59.830801Z",
+      "native_elapsed_seconds": 7369.921121992054,
+      "input_structure_sha256": "e2c93010a93adc267324b6aad1da9b7b4f6f43363a281d7343f043c3b49aa6c2",
+      "mutation_list_sha256": "6a34005aaec75d56fcdbfff5d015a69576e9a1f6b7272ffe325200b46f2dc7c1",
+      "executable_sha256": "5309d81c3f08b8405d172153aaf9792a244c06f98387c9d57a104302a9cef2cf",
+      "commands": {
+        "buildmodel": {
+          "argv": [
+            "/app/foldx_20270131",
+            "--command=BuildModel",
+            "--pdb=target_Repair.pdb",
+            "--pdb-dir=/out/repair",
+            "--mutant-file=individual_list.txt",
+            "--numberOfRuns=5",
+            "--output-dir=/out/buildmodel"
+          ],
+          "exit_code": 0
+        },
+        "repair": {
+          "argv": [
+            "/app/foldx_20270131",
+            "--command=RepairPDB",
+            "--pdb=target.pdb",
+            "--pdb-dir=/native",
+            "--output-dir=/out/repair"
+          ],
+          "exit_code": 0
+        }
+      },
+      "model_count": 15,
+      "resident_target": "/var/lib/t01/resident/foldx/a91540a7e646c8d98f99906acadacd8f",
+      "evidence": "discovery/t01-phase1-real/m1-p4-20260922/r16/stability.json",
+      "timeline": {
+        "batch": "r16",
+        "started": {
+          "time": "2026-09-23T11:22:08.761200+00:00",
+          "bytes": 1945
+        },
+        "repair_complete": {
+          "time": "2026-09-23T11:23:01.893942+00:00",
+          "bytes": 40361
+        },
+        "models": [
+          {
+            "name": "target_Repair_1_0.pdb",
+            "time": "2026-09-23T11:30:15.098064+00:00",
+            "bytes": 40929
+          },
+          {
+            "name": "target_Repair_1_1.pdb",
+            "time": "2026-09-23T11:37:17.213360+00:00",
+            "bytes": 40929
+          },
+          {
+            "name": "target_Repair_1_2.pdb",
+            "time": "2026-09-23T11:44:38.516755+00:00",
+            "bytes": 40929
+          },
+          {
+            "name": "target_Repair_1_3.pdb",
+            "time": "2026-09-23T11:52:31.198837+00:00",
+            "bytes": 40929
+          },
+          {
+            "name": "target_Repair_1_4.pdb",
+            "time": "2026-09-23T11:59:39.457227+00:00",
+            "bytes": 40929
+          },
+          {
+            "name": "target_Repair_2_0.pdb",
+            "time": "2026-09-23T12:07:41.554725+00:00",
+            "bytes": 38785
+          },
+          {
+            "name": "target_Repair_2_1.pdb",
+            "time": "2026-09-23T12:14:19.928624+00:00",
+            "bytes": 38785
+          },
+          {
+            "name": "target_Repair_2_2.pdb",
+            "time": "2026-09-23T12:21:33.359903+00:00",
+            "bytes": 38785
+          },
+          {
+            "name": "target_Repair_2_3.pdb",
+            "time": "2026-09-23T12:27:54.371983+00:00",
+            "bytes": 38785
+          },
+          {
+            "name": "target_Repair_2_4.pdb",
+            "time": "2026-09-23T12:34:02.761073+00:00",
+            "bytes": 38785
+          },
+          {
+            "name": "target_Repair_3_0.pdb",
+            "time": "2026-09-23T12:44:06.518764+00:00",
+            "bytes": 40058
+          },
+          {
+            "name": "target_Repair_3_1.pdb",
+            "time": "2026-09-23T12:54:31.180984+00:00",
+            "bytes": 40058
+          },
+          {
+            "name": "target_Repair_3_2.pdb",
+            "time": "2026-09-23T13:04:27.648640+00:00",
+            "bytes": 40058
+          },
+          {
+            "name": "target_Repair_3_3.pdb",
+            "time": "2026-09-23T13:15:27.093291+00:00",
+            "bytes": 40058
+          },
+          {
+            "name": "target_Repair_3_4.pdb",
+            "time": "2026-09-23T13:24:58.573412+00:00",
+            "bytes": 40058
+          }
+        ],
+        "native_finished": {
+          "time": "2026-09-23T13:24:58.601411+00:00",
+          "bytes": 6906
+        },
+        "native_file_bytes": 1400128
+      },
+      "model_interval_median_seconds": 456.9927385,
+      "repair_seconds": 53.132742,
+      "buildmodel_after_repair_seconds": 7316.707469
+    }
+  ],
+  "same_structure_mutations_executable_and_commands": true,
+  "deployment": {
+    "image": "harbor-core.base.svc.cluster.local/qcyz/antigen-design-resident-foldx@sha256:d991815697e0b57ab31ef096407e443fed2ca2dd46dea7081237d8cf0c7ca7a6",
+    "resources": {
+      "limits": {
+        "cpu": "2",
+        "memory": "4Gi"
+      },
+      "requests": {
+        "cpu": "250m",
+        "memory": "256Mi"
+      }
+    }
+  },
+  "pod": {
+    "name": "antigen-design-9765bc8f6-qznmv",
+    "start_time": "2026-09-23T10:44:02Z",
+    "worker_started_at": "2026-09-23T10:44:06Z",
+    "worker_restart_count": 0
+  },
+  "cgroup_snapshot": {
+    "cpu.max": "200000 100000",
+    "cpu.stat": "usage_usec 7478550825\nuser_usec 7469650229\nsystem_usec 8900595\ncore_sched.force_idle_usec 0\nnr_periods 96780\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+    "memory.peak": "106418176",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0"
+  },
+  "cgroup_scope": "Cumulative since current container start; not a per-job profile",
+  "scientific_release_gate": "CLOSED",
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED"
+}

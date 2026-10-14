@@ -1,0 +1,68 @@
+{
+  "action": "start",
+  "body": {
+    "fixed_positions": [
+      2
+    ],
+    "mode": "buildmodel",
+    "protein_sequence": "RKDEQLIVF",
+    "scan_positions": [],
+    "scope_source": {
+      "purpose": "ENGINEERING_STABILITY_SCOPE",
+      "source_id": "W6 FoldX explicit BuildModel"
+    },
+    "structure_artifact": {
+      "artifact_id": "t01p1r-artifact-c7392143d87140eaa871fad34d61dbc6",
+      "attempt_id": "t01p1r-attempt-069aa97d721c48e0a2e414f9d2f1443d",
+      "evidence_kind": "G0_REAL_OUTPUT",
+      "job_id": "t01p1r-job-e9d055ba456649309b00ba6b4384c8eb",
+      "media_type": "application/json",
+      "role": "result",
+      "run_id": "t01p1r-run-9f68ff05bde0463eacc3ca7b6ae39d69",
+      "sha256": "58232b4de7f4e671a17097529792989c3ca48551471e3754fb1a87c596a38658",
+      "size_bytes": 26453
+    },
+    "timeout_seconds": 300,
+    "user_sequence_id": "W6 FoldX explicit BuildModel",
+    "variants": [
+      {
+        "mutations": [
+          {
+            "mut": "G",
+            "position": 1,
+            "wt": "R"
+          }
+        ],
+        "variant_id": "single-A1G"
+      },
+      {
+        "mutations": [
+          {
+            "mut": "A",
+            "position": 3,
+            "wt": "D"
+          },
+          {
+            "mut": "G",
+            "position": 4,
+            "wt": "E"
+          }
+        ],
+        "variant_id": "double-D3A-E4G"
+      },
+      {
+        "mutations": [
+          {
+            "mut": "A",
+            "position": 9,
+            "wt": "F"
+          }
+        ],
+        "variant_id": "single-K9A"
+      }
+    ]
+  },
+  "case": "foldx-build",
+  "root": "/var/lib/t01/target-science-20260916-r01",
+  "tool": "t01.real.foldx"
+}

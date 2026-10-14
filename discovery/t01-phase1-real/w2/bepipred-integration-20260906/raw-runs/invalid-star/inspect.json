@@ -1,0 +1,297 @@
+[
+    {
+        "Id": "c0b0aa676f54c3278d57bededcb28fcd373da23ef79d0cc8476b5dad5ce17c3c",
+        "Created": "2026-09-06T14:07:05.731344787Z",
+        "Path": "timeout",
+        "Args": [
+            "--signal=KILL",
+            "180",
+            "python",
+            "-B",
+            "/probe.py"
+        ],
+        "State": {
+            "Status": "exited",
+            "Running": false,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 0,
+            "ExitCode": 1,
+            "Error": "",
+            "StartedAt": "2026-09-06T14:07:05.9836069Z",
+            "FinishedAt": "2026-09-06T14:07:08.309890715Z"
+        },
+        "Image": "sha256:e1aff495e254ca4da513286f4ada0e1e0a071a2ffd9e0bc8ae3d2e6c91384149",
+        "ResolvConfPath": "/var/lib/docker/containers/c0b0aa676f54c3278d57bededcb28fcd373da23ef79d0cc8476b5dad5ce17c3c/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/c0b0aa676f54c3278d57bededcb28fcd373da23ef79d0cc8476b5dad5ce17c3c/hostname",
+        "HostsPath": "/var/lib/docker/containers/c0b0aa676f54c3278d57bededcb28fcd373da23ef79d0cc8476b5dad5ce17c3c/hosts",
+        "LogPath": "/var/lib/docker/containers/c0b0aa676f54c3278d57bededcb28fcd373da23ef79d0cc8476b5dad5ce17c3c/c0b0aa676f54c3278d57bededcb28fcd373da23ef79d0cc8476b5dad5ce17c3c-json.log",
+        "Name": "/t01p1r-bepipred-raw-probe",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "none",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": null,
+            "CapDrop": [
+                "ALL"
+            ],
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": true,
+            "SecurityOpt": [
+                "no-new-privileges"
+            ],
+            "Tmpfs": {
+                "/tmp": "rw,noexec,nosuid,size=512m"
+            },
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 10737418240,
+            "NanoCpus": 8000000000,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "0-7",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 10737418240,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": 512,
+            "Ulimits": [],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "Mounts": [
+                {
+                    "Type": "bind",
+                    "Source": "D:\\work\\蛋白智能体\\var\\t01-phase1-real\\tool-assets\\bepipred-3.0-98bedf2471e0",
+                    "Target": "/app",
+                    "ReadOnly": true
+                },
+                {
+                    "Type": "bind",
+                    "Source": "D:\\work\\蛋白智能体\\var\\t01-phase1-real\\tool-assets\\bepipred-esm2-650m",
+                    "Target": "/torch/hub/checkpoints",
+                    "ReadOnly": true
+                },
+                {
+                    "Type": "bind",
+                    "Source": "D:\\work\\蛋白智能体\\src\\t01_phase1_real\\development\\bepipred\\worker.py",
+                    "Target": "/probe.py",
+                    "ReadOnly": true
+                },
+                {
+                    "Type": "bind",
+                    "Source": "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w2\\bepipred-integration-20260906\\raw-runs\\invalid-star\\input.fasta",
+                    "Target": "/input.fasta",
+                    "ReadOnly": true
+                },
+                {
+                    "Type": "bind",
+                    "Source": "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w2\\bepipred-integration-20260906\\raw-runs\\invalid-star\\output",
+                    "Target": "/out"
+                }
+            ],
+            "MaskedPaths": [
+                "/proc/acpi",
+                "/proc/asound",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/sys/devices/virtual/powercap",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "D:\\work\\蛋白智能体\\var\\t01-phase1-real\\tool-assets\\bepipred-3.0-98bedf2471e0",
+                "Destination": "/app",
+                "Mode": "",
+                "RW": false,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "D:\\work\\蛋白智能体\\var\\t01-phase1-real\\tool-assets\\bepipred-esm2-650m",
+                "Destination": "/torch/hub/checkpoints",
+                "Mode": "",
+                "RW": false,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "D:\\work\\蛋白智能体\\src\\t01_phase1_real\\development\\bepipred\\worker.py",
+                "Destination": "/probe.py",
+                "Mode": "",
+                "RW": false,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w2\\bepipred-integration-20260906\\raw-runs\\invalid-star\\input.fasta",
+                "Destination": "/input.fasta",
+                "Mode": "",
+                "RW": false,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w2\\bepipred-integration-20260906\\raw-runs\\invalid-star\\output",
+                "Destination": "/out",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            }
+        ],
+        "Config": {
+            "Hostname": "c0b0aa676f54",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "TORCH_HOME=/torch",
+                "CUDA_VISIBLE_DEVICES=-1",
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "GPG_KEY=A035C8C19219BA821ECEA86B64E628F8D684696D",
+                "PYTHON_VERSION=3.10.21",
+                "PYTHON_SHA256=a0da1e72132e950154eca0f6f47d5db828454700de20e5113667940d81e0db04",
+                "PIP_DISABLE_PIP_VERSION_CHECK=1",
+                "PIP_NO_CACHE_DIR=1",
+                "MPLCONFIGDIR=/tmp/matplotlib",
+                "PYTHONDONTWRITEBYTECODE=1",
+                "PYTHONUNBUFFERED=1",
+                "HOME=/tmp",
+                "OMP_NUM_THREADS=8",
+                "MKL_NUM_THREADS=8",
+                "OPENBLAS_NUM_THREADS=8"
+            ],
+            "Cmd": [
+                "--signal=KILL",
+                "180",
+                "python",
+                "-B",
+                "/probe.py"
+            ],
+            "Image": "sha256:e1aff495e254ca4da513286f4ada0e1e0a071a2ffd9e0bc8ae3d2e6c91384149",
+            "Volumes": null,
+            "WorkingDir": "/app",
+            "Entrypoint": [
+                "timeout"
+            ],
+            "Labels": {},
+            "StopTimeout": 1
+        },
+        "NetworkSettings": {
+            "SandboxID": "",
+            "SandboxKey": "",
+            "Ports": {},
+            "Networks": {
+                "none": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "ad8a96b0571c1d8bc4a4d14c4207399ecbd33861ae9bf53c6ecdad85a93dab3f",
+                    "EndpointID": "",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "MacAddress": "",
+                    "IPPrefixLen": 0,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": null
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:c187b458a7254d489da1e262b468df415ee68342ee7e9b306098a31a217d55a1",
+            "size": 2390,
+            "platform": {
+                "architecture": "amd64",
+                "os": "linux"
+            }
+        }
+    }
+]

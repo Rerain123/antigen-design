@@ -1,0 +1,61 @@
+{
+  "entries": [
+    {
+      "parameters": {
+        "candidate_collection_complete": true,
+        "capped": false,
+        "data_version": null,
+        "evidence_kind": "CONTROLLED",
+        "recorded_parameters": {
+          "fixture_candidate_ids": [
+            "6Q00-A-A-1"
+          ]
+        },
+        "source_operation": "PDB_SEARCH",
+        "source_status": "SUCCEEDED_WITH_RESULTS"
+      },
+      "runtime_seconds": null,
+      "step": "fetch_structure",
+      "tool": "PDB_SEARCH: CONTROLLED_FIXTURE",
+      "version": "CONTROLLED_FIXTURE"
+    },
+    {
+      "parameters": {
+        "candidate_collection_complete": true,
+        "capped": false,
+        "data_version": null,
+        "evidence_kind": "FROZEN_REPLAY",
+        "recorded_parameters": {
+          "candidate_id": "6Q00-A-A-1",
+          "structure_artifact_id": "sha256-14b9d334cb8b7277bf452c38ac61f31618d338aa93b5feff3aba8f869b9a0d87"
+        },
+        "source_operation": "PDB_METADATA",
+        "source_status": "SUCCEEDED_WITH_RESULTS"
+      },
+      "runtime_seconds": null,
+      "step": "fetch_structure",
+      "tool": "PDB_METADATA: BioPython MMCIF2Dict",
+      "version": "1.88"
+    },
+    {
+      "parameters": {
+        "candidate_collection_complete": true,
+        "capped": false,
+        "data_version": null,
+        "evidence_kind": "FROZEN_REPLAY",
+        "recorded_parameters": {
+          "candidate_id": "6Q00-A-A-1",
+          "structure_artifact_id": "sha256-14b9d334cb8b7277bf452c38ac61f31618d338aa93b5feff3aba8f869b9a0d87"
+        },
+        "source_operation": "PDB_STRUCTURE",
+        "source_status": "SUCCEEDED_WITH_RESULTS"
+      },
+      "runtime_seconds": null,
+      "step": "fetch_structure",
+      "tool": "PDB_STRUCTURE: BioPython MMCIF2Dict",
+      "version": "1.88"
+    }
+  ],
+  "pipeline_version": "s07.task5.v1-review",
+  "timestamp": "2026-09-03T01:45:03.116578+00:00"
+}

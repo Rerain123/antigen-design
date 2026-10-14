@@ -1,0 +1,91 @@
+{
+  "command": [
+    "docker",
+    "--config",
+    "D:\\work\\蛋白智能体\\.tmp\\b1-freesasa-docker-client",
+    "--host",
+    "npipe:////./pipe/dockerDesktopLinuxEngine",
+    "run",
+    "--rm",
+    "--pull",
+    "never",
+    "--name",
+    "t01-b1-sasa-daaf2145eb7e",
+    "--network",
+    "none",
+    "--read-only",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "--cpus",
+    "2",
+    "--memory",
+    "1g",
+    "--pids-limit",
+    "64",
+    "--mount",
+    "type=bind,source=D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906-r02,target=/cases,readonly",
+    "--mount",
+    "type=bind,source=D:\\work\\蛋白智能体\\src\\t01_structure_mapping,target=/code/src/t01_structure_mapping,readonly",
+    "--mount",
+    "type=bind,source=D:\\work\\蛋白智能体\\scripts\\run_b1_freesasa_worker.py,target=/worker.py,readonly",
+    "--mount",
+    "type=bind,source=D:\\work\\蛋白智能体\\docs\\project\\phase1\\PHASE1_REAL_W1_FREESASA_PROFILE.json,target=/profile.json,readonly",
+    "--mount",
+    "type=bind,source=D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b1-freesasa-consumer-20260906-r02\\execution,target=/out",
+    "sha256:bb6c6b5ce1add12dc9bda3538a218568a9e80c048c12525fc130eaa970dbb9e5",
+    "python",
+    "-B",
+    "/worker.py"
+  ],
+  "started_at": "2026-09-06T01:50:24.670285+00:00",
+  "image_id": "sha256:bb6c6b5ce1add12dc9bda3538a218568a9e80c048c12525fc130eaa970dbb9e5",
+  "sources": [
+    {
+      "path": "src/t01_structure_mapping/freesasa_consumer.py",
+      "sha256": "cfb45832fecbc7d46aee19b48f88595647a071220c95509e016b9f82e6c48a33",
+      "size_bytes": 20593
+    },
+    {
+      "path": "scripts/prepare_b1_freesasa.py",
+      "sha256": "a520af450d99ea37b3c069d4837fe008fc97bc0e26401d3399e74c02079e7bf5",
+      "size_bytes": 3817
+    },
+    {
+      "path": "scripts/b1_freesasa_cases.py",
+      "sha256": "ac2386f8c0a45b546757bcdf0d42b4fada72cc9fc0ee6b72e3f4e129d8ef772e",
+      "size_bytes": 8142
+    },
+    {
+      "path": "scripts/check_b1_freesasa_consumer.py",
+      "sha256": "0d3ee8c219fdbe0987bfbc1a511ca22086c73b78de019e5d0d27fb3843e86524",
+      "size_bytes": 15022
+    },
+    {
+      "path": "scripts/run_b1_freesasa_consumer.py",
+      "sha256": "03db4f63f854efda11d32b90193d5211ebb6f58f89a91fa270a94560f5463776",
+      "size_bytes": 3965
+    },
+    {
+      "path": "scripts/run_b1_freesasa_worker.py",
+      "sha256": "db0f631ba0332b027e9594fee15f3d6ef7c0eaf3d436bf34197f5f686153cc69",
+      "size_bytes": 6673
+    },
+    {
+      "path": "tests/test_b1_freesasa_consumer.py",
+      "sha256": "055b6b98fb6d39e5784d8f2c9ac8256c38622d9e1944c63fa4bfc1e5f20879ee",
+      "size_bytes": 10654
+    },
+    {
+      "path": "docs/project/phase1/PHASE1_REAL_W1_FREESASA_PROFILE.json",
+      "sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04",
+      "size_bytes": 5960
+    }
+  ],
+  "plan_sha256": "972f66d8141f0cb10bf8538ee47465530069215e0e0cc440158ae2dfd303835a",
+  "production_status": "NOT_DEPLOYED",
+  "elapsed_seconds": 2.588375199999973,
+  "exit_code": 0,
+  "timed_out": false
+}

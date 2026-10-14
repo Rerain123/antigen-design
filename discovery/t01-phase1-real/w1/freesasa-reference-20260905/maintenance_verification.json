@@ -1,0 +1,68 @@
+{
+  "scope": "CURRENT_W1_MAINTENANCE_NOT_SCIENTIFIC_OR_TARGET_RELEASE",
+  "recorded_at_utc": "2026-09-05 07:36:29 UTC",
+  "status": "PASS",
+  "checks": [
+    {
+      "id": "docs",
+      "command": ".\\.venv\\Scripts\\python.exe scripts/check_docs.py",
+      "exit_code": 0,
+      "output": "documentation_status=PASS markdown_files=149\r\n"
+    },
+    {
+      "id": "root_tests",
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest -q -rA",
+      "exit_code": 0,
+      "passed": 318,
+      "skipped": 1,
+      "skip_reason": "Windows account cannot create symbolic links",
+      "output_file": "verification/root_tests.txt"
+    },
+    {
+      "id": "freeze",
+      "command": ".\\.venv\\Scripts\\python.exe scripts/t01_phase1_mock/run_m4_campaign.py verify",
+      "exit_code": 0,
+      "output": "{\"status\": \"PASS\", \"release_state\": \"FROZEN\", \"campaign_id\": \"t01p1m-v01-reg-20260904-release-freeze-03\", \"frozen_asset_count\": 457}\r\n"
+    },
+    {
+      "id": "handoffs",
+      "command": ".\\.venv\\Scripts\\python.exe scripts/package_tool_handoffs.py --check",
+      "exit_code": 0,
+      "output": "{\r\n  \"status\": \"PASS\",\r\n  \"scope\": \"handoff_archive_and_engineering_interface\",\r\n  \"scientific_tool_execution\": \"NOT_RUN\",\r\n  \"scientific_acceptance\": \"NOT_RUN\",\r\n  \"packages\": [\r\n    {\r\n      \"package_id\": \"PH1-TOOL-FREESASA\",\r\n      \"version\": \"0.1\",\r\n      \"revision\": \"shared-interface-20260905\",\r\n      \"archive_sha256\": \"eaf3430ed3931bbe476111b6cc75c237c3f511fe212383df4680691d198afec7\",\r\n      \"file_count\": 56,\r\n      \"source_copies_verified\": 6,\r\n      \"closed_local_links\": 42,\r\n      \"interface_files_identical\": 38,\r\n      \"synthetic_pairs_checked\": 8\r\n    },\r\n    {\r\n      \"package_id\": \"PH1-TOOL-BEPIPRED\",\r\n      \"version\": \"0.1\",\r\n      \"revision\": \"shared-interface-20260905\",\r\n      \"archive_sha256\": \"646da6cabdbf0c8c88a6e3022336e0eb3edeefeb3509f93712e6f05bac3a440c\",\r\n      \"file_count\": 56,\r\n      \"source_copies_verified\": 6,\r\n      \"closed_local_links\": 41,\r\n      \"interface_files_identical\": 38,\r\n      \"synthetic_pairs_checked\": 8\r\n    }\r\n  ]\r\n}\r\n"
+    },
+    {
+      "id": "reference",
+      "command": ".\\.venv\\Scripts\\python.exe discovery/t01-phase1-real/w1/freesasa-reference-20260905/verify_reference.py",
+      "exit_code": 0,
+      "output": "{\r\n  \"status\": \"PASS\",\r\n  \"files_checked\": 30,\r\n  \"expert_originals_checked\": 22,\r\n  \"scope\": \"READ_ONLY_ENGINEERING_EVIDENCE_CHECK\",\r\n  \"numeric_delta_checks\": \"PASS\",\r\n  \"reference_convergence\": \"PASS\",\r\n  \"analytic_geometry_cases\": 4,\r\n  \"published_reference_rounding_abs_a2\": 5e-07,\r\n  \"selected_parameters\": {\r\n    \"algorithm\": \"LeeRichards\",\r\n    \"probe-radius\": 1.4,\r\n    \"n-slices\": 200,\r\n    \"n-threads\": 1\r\n  },\r\n  \"selected_total_sasa_a2\": 4804.922802318354,\r\n  \"independent_reference_total_sasa_a2\": 4804.721529837215,\r\n  \"selected_vs_reference\": {\r\n    \"total_delta_a2\": 0.20127248113931273,\r\n    \"total_relative_error\": 4.189056116767955e-05,\r\n    \"max_abs_residue_sasa_delta_a2\": 0.15080522367182425,\r\n    \"max_abs_rsa_delta\": 0.0005503840279993399,\r\n    \"buried_classification_differences\": []\r\n  },\r\n  \"independent_reference_convergence\": {\r\n    \"total_delta_a2\": 0.7526298793991373,\r\n    \"total_relative_error\": 0.00015664380853818943,\r\n    \"max_abs_residue_sasa_delta_a2\": 0.1987407510076764,\r\n    \"max_abs_rsa_delta\": 0.0008421218263037211,\r\n    \"buried_classification_differences\": []\r\n  },\r\n  \"out_of_domain\": [\r\n    {\r\n      \"chain\": \"A\",\r\n      \"residue_number\": \"76\",\r\n      \"residue_name\": \"GLY\",\r\n      \"selected_absolute_sasa_a2\": 146.97707199895044,\r\n      \"reference_absolute_sasa_a2\": 146.95232499955597,\r\n      \"selected_raw_ratio\": 1.413241076912985,\r\n      \"reference_raw_ratio\": 1.4130031249957304,\r\n      \"normalization_denominator_a2\": 104.0\r\n    }\r\n  ],\r\n  \"terminal_diagnostics\": [\r\n    {\r\n      \"terminus\": \"N\",\r\n      \"selected_raw_mean\": 0.3425783354971849,\r\n      \"reference_raw_mean\": 0.3425289836963465,\r\n      \"diagnostic_classification\": \"partial\",\r\n      \"is_valid_s39_result\": false\r\n    },\r\n    {\r\n      \"terminus\": \"C\",\r\n      \"selected_raw_mean\": 0.4864986425433992,\r\n      \"reference_raw_mean\": 0.48649693432610414,\r\n      \"diagnostic_classification\": \"exposed\",\r\n      \"is_valid_s39_result\": false\r\n    }\r\n  ],\r\n  \"accepted_project_rsa\": false,\r\n  \"mapping_status\": \"unverified\",\r\n  \"scientific_acceptance\": \"NOT_APPROVED\",\r\n  \"s09_decision_status\": \"AWAITING_NAMED_DECISION\",\r\n  \"production_status\": \"NOT_DEPLOYED\"\r\n}\r\n"
+    },
+    {
+      "id": "prior_evidence",
+      "command": ".\\.venv\\Scripts\\python.exe discovery/t01-phase1-real/w1/freesasa-s09-20260905/verify_evidence.py",
+      "exit_code": 0,
+      "output": "{\r\n  \"status\": \"PASS\",\r\n  \"scope\": \"FIXED_BATCH_PROVENANCE_RAW_IDENTITY_AND_DRAFT_CATALOG_ONLY\",\r\n  \"campaign_file_hashes_checked\": 48,\r\n  \"supplement_file_hashes_checked\": 9,\r\n  \"native_repeat_equal\": true,\r\n  \"native_residue_identity_matches_unverified_mapping\": true,\r\n  \"bridge_total_sasa_absolute_difference_a2\": 0.00014580928018403938,\r\n  \"bridge_comparison\": \"OBSERVED_DIFFERENCE_NOT_SCIENTIFIC_TOLERANCE_PASS\",\r\n  \"insertion_code_native_and_bridge_preserved\": true,\r\n  \"synthetic_toy_nan_preserved\": true,\r\n  \"s09_source_derived_cases\": 27,\r\n  \"s09_pending_cases\": 6,\r\n  \"s09_execution\": \"NOT_RUN\",\r\n  \"scientific_acceptance\": \"NOT_RUN\",\r\n  \"production_status\": \"NOT_DEPLOYED\"\r\n}\r\n"
+    }
+  ],
+  "final_document_check": {
+    "exit_code": 0,
+    "markdown_files": 149,
+    "status": "PASS"
+  },
+  "user_adoption_check": {
+    "status": "PASS",
+    "source_path": "docs/project/sources/PHASE1_W1_FREESASA_S09_ADOPTION_20260905.json",
+    "source_sha256": "c33d5bf5cd0868d792472664758a2d2cef3610cd2b9d80aa43cb426127e07c72",
+    "references_checked": 2,
+    "s09_cases": 6,
+    "project_decision": "PROVISIONALLY_ADOPTED",
+    "scientific_confirmation": "PENDING_ALGORITHM_OWNER_CONFIRMATION"
+  },
+  "historical_tests": {
+    "legacy_full_mock": "NOT_RERUN_NO_CROSS_PARTITION_CHANGE",
+    "s07": "NOT_RERUN_NO_CROSS_PARTITION_CHANGE"
+  },
+  "frozen_asset_count": 457,
+  "expert_originals_unchanged": 22,
+  "normal_project_rsa_accepted": false,
+  "production_status": "NOT_DEPLOYED"
+}

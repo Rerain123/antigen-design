@@ -1,0 +1,184 @@
+{
+  "scope": "CONTRACT_STATIC_AND_DECLARED_FUTURE_TESTS",
+  "example_semantics": "HAND_AUTHORED_ENGINEERING_ONLY; zero profile hash is a placeholder, not an approved runtime profile",
+  "submit_example": "examples/submit.json",
+  "job_examples": [
+    "examples/job-queued.json",
+    "examples/job-running.json",
+    "examples/job-stop_requested.json",
+    "examples/job-reconciling.json",
+    "examples/job-succeeded.json",
+    "examples/job-failed.json",
+    "examples/job-cancelled.json",
+    "examples/job-timed_out.json"
+  ],
+  "local_example_files": [
+    {
+      "path": "examples/input.txt",
+      "sha256": "a709d76ffd8d4a52ed715e2a1134ab6cf7023981e3eaa20f4c824164a46e0aa0",
+      "size_bytes": 46
+    },
+    {
+      "path": "examples/output.txt",
+      "sha256": "ffaea7d596870f0c485f2b423441b9b661583ff3e60932a1655345123717f2f3",
+      "size_bytes": 23
+    }
+  ],
+  "runtime_cases": [
+    {
+      "id": "RT01",
+      "module": "A",
+      "trigger": "Identical concurrent submissions",
+      "expected": "One durable job and one execution; changed body with same key conflicts",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "RT02",
+      "module": "A",
+      "trigger": "Admission crash before/after commit",
+      "expected": "No orphan idempotency/job row; committed request recoverable",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "RT03",
+      "module": "A",
+      "trigger": "Claim/start crash windows",
+      "expected": "Unique execution identity reconciled; no duplicate child",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "RT04",
+      "module": "A",
+      "trigger": "Queued cancel versus claim",
+      "expected": "Exactly one serialized outcome; cancelled means not started or confirmed stopped",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "RT05",
+      "module": "A",
+      "trigger": "Running cancel with process descendants",
+      "expected": "Entire owned process tree stops; unrelated processes untouched",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "RT06",
+      "module": "A",
+      "trigger": "Cancel versus success publication",
+      "expected": "Persisted stop intent wins; committed success stays immutable",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "RT07",
+      "module": "A",
+      "trigger": "Engineering wall-time timeout",
+      "expected": "Actual exit confirmed; no scientific fallback triggered",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "RT08",
+      "module": "A",
+      "trigger": "Restart and stale lease callback",
+      "expected": "Adopt same live execution through new epoch; reject old callback",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "RT09",
+      "module": "A",
+      "trigger": "Output written before database commit",
+      "expected": "Validate hash/identity then reconcile; no fabricated result",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "RT10",
+      "module": "A",
+      "trigger": "Worker unreachable",
+      "expected": "Remain reconciling; no retry or second execution",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "RT11",
+      "module": "A",
+      "trigger": "Explicit retry and changed input",
+      "expected": "New linked job/attempt; same immutable input/profile; changed input is new request",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "RT12",
+      "module": "A",
+      "trigger": "Input tamper and path escape",
+      "expected": "Refuse traversal, reparse/symlink escape, cross-run refs and changed opened bytes",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "RT13",
+      "module": "A",
+      "trigger": "Unapproved or unavailable scientific tool",
+      "expected": "Reject before launch; no queued forever, fixture or online fallback",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "RT14",
+      "module": "A",
+      "trigger": "Partial result or wrong attempt",
+      "expected": "No successful/consumable result from incomplete or mismatched output",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "RT15",
+      "module": "A",
+      "trigger": "Provider and storage isolation",
+      "expected": "No Mock imports, identities, frozen writes or scientific fixture promotion",
+      "execution_status": "DECLARED_NOT_RUN"
+    }
+  ],
+  "scientific_cases": [
+    {
+      "id": "SC01",
+      "module": "B1",
+      "expected": "PDB/mmCIF identity, partial/iCode/multi-chain mapping; verified requires applicable evidence and review",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "SC02",
+      "module": "B2",
+      "expected": "DeepTMHMM labels/segments/probabilities and P/B/null downstream guards from real raw output",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "SC03",
+      "module": "B3",
+      "expected": "S-09 source, thresholds/masks and six provisional cases; algorithm confirmation before G1",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "SC04",
+      "module": "B4",
+      "expected": "FreeSASA raw area, context/mapping/null and G76 out-of-domain review; no clipping",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "SC05",
+      "module": "C",
+      "expected": "AF3 five samples, C-alpha scale, actual runtime output/selection and offline assets",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "SC06",
+      "module": "C",
+      "expected": "ESMFold2 actual checkpoint/raw scale/pTM/export and complete nested offline assets",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "SC07",
+      "module": "C",
+      "expected": "Approved long-sequence AF3/ESMFold2 failure routing; no arbitrary failure fallback",
+      "execution_status": "DECLARED_NOT_RUN"
+    },
+    {
+      "id": "SC08",
+      "module": "ALL",
+      "expected": "Target environment and full W1 integrated G0-G6; partial engineering pass cannot release production",
+      "execution_status": "DECLARED_NOT_RUN"
+    }
+  ]
+}

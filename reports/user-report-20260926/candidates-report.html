@@ -1,0 +1,556 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'"><title>抗原设计分析报告</title><style>
+:root{color-scheme:light;--ink:#202a3b;--muted:#667184;--line:#dce0e7;--accent:#344f80;--paper:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:32px}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.85 'Segoe UI','Microsoft YaHei',sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit}header{border-top:5px solid #202d44}.bar{max-width:1120px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:25px 32px;border-bottom:1px solid var(--line)}.brand{font-size:13px;font-weight:600;letter-spacing:2px}.brand b{color:#202d44;font-weight:800}.edition{color:var(--muted);font-size:12px;letter-spacing:1px}main{max-width:1120px;margin:0 auto 55px;padding:0 32px}.hero{padding:48px 0 33px;border-bottom:2px solid #27344b}.kicker{font-size:11px;font-weight:600;letter-spacing:3px;color:var(--accent);margin:0 0 19px}h1{font-family:'SimSun','Songti SC','Noto Serif CJK SC',serif;font-size:44px;line-height:1.45;font-weight:600;letter-spacing:3px;margin:0 0 26px}h2{font-size:23px;line-height:1.5;font-weight:600;margin:0;letter-spacing:.6px}h3{font-size:16px;margin:0 0 12px}p{margin:8px 0}.hero .lead{font-size:22px;font-weight:500;color:#34435a;margin:0 0 10px}.hero .note{max-width:810px;color:var(--muted);font-size:14px}.badge{display:inline-block;color:var(--accent);font-size:12px;font-weight:650;letter-spacing:.4px}.badge.warn{color:#856c41}.badge.danger{color:#9b493b}.notice{padding:12px 0 12px 16px;border-left:2px solid #ad9571;margin:24px 0 0;color:#756247;font-size:13px;max-width:950px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin:0;padding:25px 0 24px;border-bottom:1px solid var(--line)}.stat{padding:0}.stat strong{display:block;font-size:27px;font-weight:500;line-height:1.4;overflow-wrap:anywhere;letter-spacing:.4px;font-variant-numeric:tabular-nums}.stat span{font-size:12px;color:var(--muted);display:block;margin-top:7px}nav{display:flex;gap:8px 26px;flex-wrap:wrap;padding:12px 0;font-size:12px;border-bottom:1px solid var(--line)}nav a{text-decoration:none;color:var(--muted);display:flex;align-items:center;min-height:44px}nav a:hover{color:var(--accent)}.panel{padding:40px 0 36px;border-bottom:1px solid var(--line)}.section-head{display:flex;align-items:baseline;gap:18px;margin-bottom:25px}.section-no{font-family:Georgia,serif;font-size:19px;color:#8190a7;flex-shrink:0}.subtle{color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}.grid>*{min-width:0}.finding{padding:10px 0;margin:15px 0 0}.finding strong{display:block;font-size:15px;font-weight:600;margin-bottom:6px}.fact-list{margin:0}.fact-list div{display:flex;justify-content:space-between;gap:20px;padding:10px 0;border-bottom:1px solid #f0f1f4}.fact-list dt{color:var(--muted)}.fact-list dd{margin:0;text-align:right;overflow-wrap:anywhere}.table-wrap{overflow-x:auto;margin:15px 0}table{border-collapse:collapse;width:100%;font-size:13px}th{text-align:left;color:#526078;font-weight:600;padding:13px 12px;border-top:1px solid #8592a6;border-bottom:1px solid #bfc7d2;white-space:nowrap}td{padding:15px 12px;border-bottom:1px solid #e9ecf0;vertical-align:top;font-variant-numeric:tabular-nums}th:first-child,td:first-child{padding-left:0}th:last-child,td:last-child{padding-right:0}.empty{padding:16px 0;color:var(--muted)}details{border-top:1px solid var(--line);padding:9px 0;margin-top:12px}summary{cursor:pointer;color:var(--accent);font-size:13px;min-height:44px;align-content:center}summary:focus-visible,a:focus-visible,.chart-scroll:focus-visible{outline:2px solid var(--accent);outline-offset:4px}pre{white-space:pre-wrap;word-break:break-word;background:#f5f6f8;padding:16px;font-size:12px;max-height:380px;overflow:auto}.seq{display:grid;grid-template-columns:40px minmax(0,1fr);gap:5px 14px;font:13px/1.9 Consolas,monospace;overflow-wrap:anywhere}.seq span{color:#78849a}.seq code{letter-spacing:1px;word-break:break-all}figure{margin:26px 0 15px}svg{width:100%;display:block;font:12px 'Segoe UI','Microsoft YaHei',sans-serif;fill:#667184}.chart-scroll{overflow-x:auto;overscroll-behavior-x:contain}.chart-hint{display:none}.legend{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;font-size:12px;color:var(--muted)}.legend i{display:inline-block;width:18px;height:2px;vertical-align:middle;margin-right:7px}.limitations{padding-left:20px}.limitations li{padding:5px 0}.footer{color:var(--muted);font-size:11px;letter-spacing:.3px;display:flex;justify-content:space-between;gap:25px;padding:24px 0}.mono{font-family:Consolas,monospace;overflow-wrap:anywhere}small{font-size:12px}.wide-note{margin-bottom:20px}td,.notice,.note{overflow-wrap:anywhere}
+@media screen and (max-width:680px){main{padding:0 22px;margin-bottom:28px}.bar{padding:20px 22px;gap:14px}.hero{padding:34px 0 26px}h1{font-size:32px;letter-spacing:1.5px;margin-bottom:20px}.hero .lead{font-size:19px}.hero .note{font-size:14px}.panel{padding:31px 0 28px}.stats{grid-template-columns:1fr 1fr;gap:24px 22px;padding:23px 0}.stat strong{font-size:25px}.grid{grid-template-columns:1fr;gap:12px}nav{gap:0 18px;padding:9px 0}.brand{letter-spacing:1px;font-size:12px}.edition{max-width:105px;text-align:right;font-size:11px}.footer{display:block;line-height:2}.footer span{display:block}.chart-scroll svg{min-width:620px}.chart-hint{display:block;font-size:12px;color:var(--muted)}.legend{justify-content:flex-start;gap:6px 16px;margin-top:8px}.table-wrap{overflow:visible;margin:12px 0}table,tbody,tr,td{display:block;width:100%}thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}tbody tr{padding:16px 0 18px;border-bottom:1px solid var(--line);margin:0}tbody tr:first-child{border-top:1px solid #8592a6}td,td:first-child,td:last-child{border:0;padding:5px 0;font-size:14px;min-height:30px}td:before{content:attr(data-label);display:block;font-size:12px;font-weight:400;color:var(--muted);margin-bottom:1px}td:first-child{font-weight:650;font-size:16px;margin-bottom:6px}td details{margin:8px 0 0;padding:5px 0}h2{font-size:21px}.section-head{gap:13px;margin-bottom:21px}.fact-list div{gap:12px;font-size:14px}.fact-list dt{flex-shrink:0}.notice{font-size:12px;margin-top:20px}.finding{padding:7px 0}}
+@media screen and (max-width:360px){main{padding:0 18px}.bar{padding:18px}h1{font-size:28px}.stat strong{font-size:23px}h2{font-size:19px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{body{background:white;font-size:11px}main{margin:0;padding:0;max-width:none}header,nav{display:none}.hero{padding:16px 0;border-bottom:2px solid #27344b}h1{font-size:28px}.hero .lead{font-size:17px}.hero .note{font-size:11px}.panel{padding:22px 0;break-inside:auto}.stats{gap:8px;padding:15px 0}.stat strong{font-size:20px}.stat span{font-size:10px}h2,h3,.section-head{break-after:avoid}tr,.finding,figure{break-inside:avoid}details:not([open]){display:none}.table-wrap{overflow:visible}pre{max-height:none}.footer{font-size:10px}.notice{font-size:10px}@page{size:A4;margin:16mm}}
+</style></head><body><header><div class="bar"><div class="brand"><b>ANTIGEN</b> / 抗原设计</div><div class="edition">用户分析报告 · V1.0</div></div></header><main><div class="notice">候选对比样稿：使用历史工程测试结果。该批结构含受控工程修改，全部候选已被排除；仅展示报告能力，不作为科学或实验结论。</div><div class="hero"><p class="kicker">SEQUENCE · EVIDENCE · DESIGN</p><h1>抗原设计分析报告</h1><p class="lead">本轮暂无可推荐候选</p><p class="note">共记录 24 个设计候选，全部被当前筛选规则排除。原始蛋白结果及排除原因保留如下。</p></div><div class="stats"><div class="stat"><strong>76 aa</strong><span>输入蛋白</span></div><div class="stat"><strong>Homo sapiens</strong><span>免疫宿主</span></div><div class="stat"><strong>24</strong><span>候选记录</span></div><div class="stat"><strong>待复核</strong><span>结果使用状态</span></div></div><nav aria-label="报告目录"><a href="#s1">01 分析对象</a><a href="#s2">02 表位与糖基化</a><a href="#s3">03 可开发性</a><a href="#s4">04 候选对比</a><a href="#s5">05 结果说明</a><a href="#s6">06 方法与来源</a></nav><section class="panel" id="s1"><div class="section-head"><span class="section-no">01</span><h2>分析对象与结构概况</h2></div><div class="grid"><dl class="fact-list"><div><dt>分析对象</dt><dd>原始蛋白（WT）</dd></div><div><dt>氨基酸长度</dt><dd>76 aa</dd></div><div><dt>免疫宿主</dt><dd>Homo sapiens</dd></div><div><dt>表达宿主</dt><dd>未提供</dd></div></dl><dl class="fact-list"><div><dt>结构来源</dt><dd>用户提供的实验结构（来源待核验）</dd></div><div><dt>结构置信分档</dt><dd>高</dd></div><div><dt>平均 pLDDT</dt><dd>未评估</dd></div><div><dt>跨膜区数量</dt><dd>0</dd></div></dl></div><p class="notice">结构来源说明：CONTROLLED_ENGINEERING_DERIVATIVE: 28 occupancies set to 1, synthetic quality metadata; coordinates unchanged; never scientific reference</p><details><summary>查看输入氨基酸序列</summary><div class="seq"><span>1</span><code>MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQL</code><span>51</span><code>EDGRTLSDYNIQKESTLHLVLRLRGG</code></div></details></section><section class="panel" id="s2"><div class="section-head"><span class="section-no">02</span><h2>表位与糖基化观察</h2></div><p>预测分数用于观察序列中的相对变化，不能直接等同于实验免疫效果。</p><figure><div class="chart-scroll" tabindex="0" role="region" aria-label="BepiPred 两列原始逐残基分数，窄屏可横向滚动"><svg viewBox="0 0 880 240" role="img" aria-label="BepiPred 两列原始逐残基分数"><title>BepiPred 两列原始逐残基分数</title><path d="M52 180H852" stroke="#e0e7e9"/><text x="42" y="184" text-anchor="end">0.02</text><path d="M52 110.0H852" stroke="#e0e7e9"/><text x="42" y="114.0" text-anchor="end">0.20</text><path d="M52 40H852" stroke="#e0e7e9"/><text x="42" y="44" text-anchor="end">0.39</text><path d="M52.00 148.55 L62.67 72.88 L73.33 174.88 L84.00 96.34 L94.67 164.41 L105.33 91.61 L116.00 76.51 L126.67 51.69 L137.33 53.80 L148.00 71.70 L158.67 51.12 L169.33 56.35 L180.00 76.88 L190.67 81.69 L201.33 150.19 L212.00 65.53 L222.67 167.48 L233.33 64.76 L244.00 87.99 L254.67 69.50 L265.33 100.81 L276.00 99.44 L286.67 175.60 L297.33 77.07 L308.00 89.76 L318.67 180.00 L329.33 163.16 L340.00 82.94 L350.67 127.05 L361.33 178.85 L372.00 90.51 L382.67 62.15 L393.33 89.47 L404.00 56.80 L414.67 72.72 L425.33 95.60 L436.00 53.21 L446.67 84.62 L457.33 41.54 L468.00 71.84 L478.67 164.13 L489.33 71.52 L500.00 178.65 L510.67 132.37 L521.33 109.78 L532.00 87.39 L542.67 91.77 L553.33 55.41 L564.00 76.76 L574.67 158.56 L585.33 46.54 L596.00 68.44 L606.67 97.40 L617.33 51.65 L628.00 107.05 L638.67 173.43 L649.33 45.75 L660.00 60.05 L670.67 94.00 L681.33 72.67 L692.00 162.66 L702.67 58.24 L713.33 52.81 L724.00 42.76 L734.67 68.76 L745.33 93.89 L756.00 176.05 L766.67 87.24 L777.33 146.92 L788.00 103.79 L798.67 59.47 L809.33 46.71 L820.00 56.14 L830.67 40.00 L841.33 109.26 L852.00 139.26" fill="none" stroke="#344f80" stroke-width="2.2"/><path d="M52.00 156.53 L62.67 145.83 L73.33 133.45 L84.00 118.31 L94.67 103.41 L105.33 94.87 L116.00 92.45 L126.67 79.28 L137.33 77.12 L148.00 67.93 L158.67 74.44 L169.33 73.22 L180.00 86.08 L190.67 87.30 L201.33 89.11 L212.00 91.15 L222.67 96.09 L233.33 98.60 L244.00 109.03 L254.67 100.91 L265.33 103.60 L276.00 104.99 L286.67 115.93 L297.33 115.36 L308.00 121.76 L318.67 130.43 L329.33 129.44 L340.00 116.83 L350.67 118.21 L361.33 114.55 L372.00 102.63 L382.67 95.12 L393.33 91.82 L404.00 87.10 L414.67 71.85 L425.33 69.77 L436.00 81.10 L446.67 79.11 L457.33 92.65 L468.00 99.28 L478.67 100.85 L489.33 104.65 L500.00 105.44 L510.67 106.98 L521.33 107.53 L532.00 106.91 L542.67 104.13 L553.33 91.89 L564.00 88.00 L574.67 81.54 L585.33 83.73 L596.00 92.80 L606.67 91.73 L617.33 89.87 L628.00 82.70 L638.67 85.60 L649.33 96.07 L660.00 91.72 L670.67 91.85 L681.33 84.71 L692.00 73.08 L702.67 78.43 L713.33 91.31 L724.00 90.56 L734.67 98.81 L745.33 92.27 L756.00 92.41 L766.67 91.73 L777.33 93.22 L788.00 90.02 L798.67 91.73 L809.33 87.64 L820.00 98.83 L830.67 103.39 L841.33 112.73 L852.00 127.01" fill="none" stroke="#a58b69" stroke-width="2.2"/><text x="52" y="204">1</text><text x="852" y="204" text-anchor="end">76</text><text x="452" y="225" text-anchor="middle">氨基酸位置</text></svg></div><figcaption class="legend"><span><i style="background:#344f80"></i>BepiPred-3.0 score</span><span><i style="background:#a58b69"></i>Linear epitope score</span></figcaption><p class="chart-hint">左右滑动查看完整曲线</p></figure><p class="subtle">保留两列工具原始分数；本报告不据曲线自行选峰、设阈值或补算热点。断点表示缺失值。</p><div class="table-wrap"><table role="table"><thead><tr role="row"><th scope="col" role="columnheader">T 细胞预测通道</th><th scope="col" role="columnheader">当前状态</th><th scope="col" role="columnheader">强结合肽条目（SB）</th></tr></thead><tbody><tr role="row"><td role="cell" data-label="T 细胞预测通道">MHC I</td><td role="cell" data-label="当前状态">已有预测，待复核</td><td role="cell" data-label="强结合肽条目（SB）">1</td></tr><tr role="row"><td role="cell" data-label="T 细胞预测通道">MHC II</td><td role="cell" data-label="当前状态">已有预测，待复核</td><td role="cell" data-label="强结合肽条目（SB）">1</td></tr></tbody></table></div><p class="subtle">SB 为工具给出的强结合分类，条目数不等于实验表位数量。面板覆盖以实际运行配置为准，不将通用面板解释为宿主专用验证。</p><div class="grid"><div class="finding"><strong>综合抗原热点</strong>已记录 0 个热点。 空结果不代表不存在实验表位。</div><div class="finding"><strong>糖基化</strong>检测到 0 个序列位点。 遮蔽风险未完成判定。</div></div></section><section class="panel" id="s3"><div class="section-head"><span class="section-no">03</span><h2>可开发性评估</h2></div><p class="wide-note">综合可开发性分数：<strong>未评估</strong>。缺失值不按零分处理；局部结果不代表完整评估。</p><div class="table-wrap"><table role="table"><thead><tr role="row"><th scope="col" role="columnheader">维度</th><th scope="col" role="columnheader">归一化分数</th><th scope="col" role="columnheader">可用性</th></tr></thead><tbody><tr role="row"><td role="cell" data-label="维度">溶解性</td><td role="cell" data-label="归一化分数">未评估</td><td role="cell" data-label="可用性">尚未得到可用结果</td></tr><tr role="row"><td role="cell" data-label="维度">聚集倾向</td><td role="cell" data-label="归一化分数">未评估</td><td role="cell" data-label="可用性">有局部观察，未纳入综合计算</td></tr><tr role="row"><td role="cell" data-label="维度">pH 稳定性</td><td role="cell" data-label="归一化分数">未评估</td><td role="cell" data-label="可用性">有局部观察，未纳入综合计算</td></tr><tr role="row"><td role="cell" data-label="维度">表达倾向</td><td role="cell" data-label="归一化分数">0.79</td><td role="cell" data-label="可用性">有局部观察，未纳入综合计算</td></tr><tr role="row"><td role="cell" data-label="维度">标签暴露</td><td role="cell" data-label="归一化分数">未评估</td><td role="cell" data-label="可用性">尚未得到可用结果</td></tr><tr role="row"><td role="cell" data-label="维度">结构稳定性</td><td role="cell" data-label="归一化分数">未评估</td><td role="cell" data-label="可用性">尚未得到可用结果</td></tr></tbody></table></div></section><section class="panel" id="s4"><div class="section-head"><span class="section-no">04</span><h2>候选对比</h2></div><p class="subtle">按原始记录顺序展示，共 24 项。ESM-IF1 为序列/结构适配性原始分数，不是综合排名或实验效果。ΔΔG 单位 kcal/mol，负值表示预测更稳定。</p><div class="table-wrap"><table role="table"><thead><tr role="row"><th scope="col" role="columnheader">候选</th><th scope="col" role="columnheader">突变数</th><th scope="col" role="columnheader">ESM-IF1</th><th scope="col" role="columnheader">FoldX ΔΔG</th><th scope="col" role="columnheader">当前结论</th></tr></thead><tbody><tr role="row"><td role="cell" data-label="候选">sample-1</td><td role="cell" data-label="突变数">33</td><td role="cell" data-label="ESM-IF1">-2.459</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4K, T7F, L8P, T9D, K11T, I13L, E24A, N25E, V26L, A28K, Q31E, D32E, E34T, D39E, Q40E, Q41M, R42K, F45Y, A46K, Q49V, G53D, R54K, S57A, Q62K, K63E, E64G, S65D, L67I, H68E, V70E, R72V, L73P, R74S</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-2</td><td role="cell" data-label="突变数">34</td><td role="cell" data-label="ESM-IF1">-2.547</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4Y, K6A, T7F, L8E, T9D, K11T, T12V, I13L, T14E, E18Q, E24A, N25E, V26L, D32E, E34T, D39E, Q40E, R42V, F45Y, A46K, K48Q, Q49V, E51Q, G53D, R54K, S57A, K63E, E64G, S65D, L67I, H68E, V70R, L73P, R74A</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-3</td><td role="cell" data-label="突变数">31</td><td role="cell" data-label="ESM-IF1">-2.594</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4K, T7R, L8E, T9D, K11T, S20D, E24A, N25E, V26L, A28E, Q31E, D32A, E34T, D39E, Q40E, R42K, F45Y, A46K, Q49V, G53D, R54K, S57K, K63E, E64G, S65D, L67I, H68E, V70E, R72V, L73P, R74A</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-4</td><td role="cell" data-label="突变数">32</td><td role="cell" data-label="ESM-IF1">-2.325</td><td role="cell" data-label="FoldX ΔΔG">-2.63</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4K, T7F, L8T, T9D, K11T, I13L, E18S, E24A, N25K, A28E, D32A, E34T, D39A, Q40E, R42K, F45Y, A46K, Q49V, E51K, G53D, R54K, S57A, N60D, Q62K, K63E, E64G, S65A, H68E, V70E, R72V, L73P, R74A</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-5</td><td role="cell" data-label="突变数">31</td><td role="cell" data-label="ESM-IF1">-2.410</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4K, T7F, L8P, T9D, K11T, I13L, E18S, S20D, E24A, N25E, V26L, A28E, D32E, E34T, D39E, Q40E, R42K, F45Y, A46K, Q49V, G53D, R54K, S57A, K63E, E64G, S65D, H68E, V70E, R72V, L73P, R74A</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-6</td><td role="cell" data-label="突变数">37</td><td role="cell" data-label="ESM-IF1">-2.737</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4Y, K6E, T7F, L8E, T9D, K11T, I13L, T14K, E18N, S20D, E24A, N25E, V26L, A28K, Q31E, D32K, E34T, D39E, Q40E, R42V, F45Y, A46K, Q49V, G53D, R54K, S57A, N60D, Q62K, K63E, E64G, S65D, L67I, H68K, V70R, R72K, L73P, R74A</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-7</td><td role="cell" data-label="突变数">33</td><td role="cell" data-label="ESM-IF1">-2.422</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">T7F, L8S, T9D, K11T, I13L, E18S, S20E, E24A, N25E, V26L, A28K, Q31E, D32E, E34T, D39S, Q40E, R42V, I44K, F45Y, A46K, K48E, Q49V, G53D, R54K, S57A, K63E, E64G, S65D, H68E, V70E, R72K, L73P, R74S</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-8</td><td role="cell" data-label="突变数">34</td><td role="cell" data-label="ESM-IF1">-2.489</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4Y, T7F, L8E, T9D, I13L, T14E, E18K, E24A, N25E, V26L, A28K, Q31E, D32E, E34T, D39E, Q40E, R42K, F45Y, A46K, Q49V, E51K, G53D, R54K, S57A, N60D, Q62K, K63E, E64G, S65D, H68Y, V70E, R72V, L73P, R74K</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-9</td><td role="cell" data-label="突变数">35</td><td role="cell" data-label="ESM-IF1">-2.518</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">T7F, L8E, T9D, K11T, T12V, I13L, T14E, P19D, E24A, N25E, V26L, A28E, D32E, E34T, D39E, Q40E, R42V, F45Y, A46K, K48E, Q49V, G53D, R54K, S57A, N60D, Q62E, K63E, E64G, S65D, T66V, H68E, V70R, R72K, L73P, R74K</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-10</td><td role="cell" data-label="突变数">33</td><td role="cell" data-label="ESM-IF1">-2.544</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4Y, T7F, L8E, T9D, K11T, I13L, T14K, E18K, E24A, N25E, V26L, A28K, Q31E, D32E, E34T, D39E, Q40E, R42E, F45Y, A46K, Q49V, G53D, R54K, S57A, Q62K, K63E, E64G, L67I, H68E, V70K, R72V, L73P, R74S</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-11</td><td role="cell" data-label="突变数">35</td><td role="cell" data-label="ESM-IF1">-2.598</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4Y, T7F, L8E, T9D, I13L, T14K, E18K, S20T, E24A, N25E, V26L, A28K, Q31E, D32E, E34T, D39E, Q40E, R42E, F45Y, A46K, Q49I, E51K, G53D, R54K, S57A, N60D, Q62K, K63E, E64G, S65D, H68E, V70K, R72V, L73P, R74K</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-12</td><td role="cell" data-label="突变数">34</td><td role="cell" data-label="ESM-IF1">-2.528</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4Y, K6E, T7F, L8E, T9D, K11T, I13L, T14E, E18S, S20E, E24A, N25E, V26L, A28E, Q31E, D32K, E34T, D39E, Q40E, F45Y, A46K, Q49V, G53E, R54K, S57A, K63E, E64G, S65D, L67I, H68K, V70E, R72V, L73P, R74K</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-13</td><td role="cell" data-label="突变数">33</td><td role="cell" data-label="ESM-IF1">-2.472</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4K, T7F, L8E, T9D, I13L, E18K, E24A, N25E, V26L, A28K, Q31E, D32K, K33Q, E34T, D39E, Q40E, R42I, F45Y, A46K, Q49E, G53D, R54K, S57A, Q62K, K63E, E64G, S65D, L67I, H68E, V70K, R72K, L73P, R74S</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-14</td><td role="cell" data-label="突变数">32</td><td role="cell" data-label="ESM-IF1">-2.615</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4Y, T7F, L8E, T9D, K11T, I13L, E24A, N25E, V26L, A28K, Q31E, D32A, E34T, D39E, Q40E, R42E, F45Y, A46K, K48E, Q49V, G53D, R54K, S57A, Q62E, K63E, E64G, S65D, H68E, V70R, R72V, L73P, R74A</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-15</td><td role="cell" data-label="突变数">37</td><td role="cell" data-label="ESM-IF1">-2.667</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4K, T7F, L8E, T9D, K11T, I13L, E18N, S20D, E24A, N25K, V26L, A28E, Q31E, D32K, E34T, D39E, Q40E, R42E, F45Y, A46K, K48E, Q49V, E51K, G53D, R54K, S57A, N60D, Q62K, K63E, E64G, S65D, L67I, H68E, V70K, R72V, L73P, R74K</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-16</td><td role="cell" data-label="突变数">33</td><td role="cell" data-label="ESM-IF1">-2.333</td><td role="cell" data-label="FoldX ΔΔG">-8.55</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4K, T7F, L8E, T9D, K11T, I13L, E18K, E24A, N25K, V26L, A28E, D32E, E34T, D39E, Q40E, Q41I, R42K, F45Y, A46K, Q49E, E51K, G53D, R54K, S57A, Q62K, K63E, E64G, S65A, H68E, V70K, R72V, L73P, R74K</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-17</td><td role="cell" data-label="突变数">36</td><td role="cell" data-label="ESM-IF1">-2.495</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">T7F, L8E, T9D, K11T, I13L, T14E, E18S, S20D, E24A, N25K, V26L, A28E, Q31E, D32E, E34T, D39E, Q40E, Q41M, R42V, F45Y, A46K, Q49V, E51K, G53D, R54K, S57A, N60D, Q62K, K63E, E64G, S65D, H68E, V70K, R72K, L73P, R74A</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-18</td><td role="cell" data-label="突变数">34</td><td role="cell" data-label="ESM-IF1">-2.407</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4K, K6E, T7F, L8E, T9D, K11T, I13L, P19D, E24A, N25K, V26L, A28E, Q31E, D32E, E34T, D39E, Q40E, R42K, F45Y, A46K, Q49V, G53E, R54K, S57A, Q62K, K63E, E64G, S65D, L67I, H68K, V70E, R72V, L73P, R74K</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-19</td><td role="cell" data-label="突变数">33</td><td role="cell" data-label="ESM-IF1">-2.587</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4K, T7F, L8E, T9D, I13L, T14E, E24A, N25E, V26L, A28K, Q31E, D32E, E34T, D39E, Q40E, Q41M, R42E, F45Y, A46K, Q49V, G53D, R54K, S57E, Q62K, K63E, E64G, S65D, L67I, H68E, V70K, R72K, L73P, R74A</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-20</td><td role="cell" data-label="突变数">33</td><td role="cell" data-label="ESM-IF1">-2.486</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4K, T7F, L8E, T9D, K11T, I13L, T14E, E18N, S20D, E24A, N25E, V26L, A28E, D32E, E34T, D39E, Q40E, R42V, F45Y, A46K, Q49E, G53D, R54K, S57K, Q62K, K63E, E64N, S65D, H68E, V70R, R72K, L73P, R74S</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-21</td><td role="cell" data-label="突变数">37</td><td role="cell" data-label="ESM-IF1">-2.689</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4K, K6E, T7F, L8E, T9D, I13L, T14E, E18N, P19E, S20D, E24A, N25K, V26L, A28K, Q31E, D32E, E34T, D39E, Q40E, R42V, F45Y, A46K, Q49V, G53D, R54K, S57K, N60D, Q62K, K63E, E64G, S65D, L67I, H68K, V70E, R72K, L73P, R74S</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-22</td><td role="cell" data-label="突变数">31</td><td role="cell" data-label="ESM-IF1">-2.297</td><td role="cell" data-label="FoldX ΔΔG">3.50</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4Y, T7F, L8E, T9D, K11T, I13L, T14E, P19D, N25E, A28K, Q31E, D32E, E34T, D39E, Q40E, R42K, F45Y, A46K, Q49E, G53D, R54K, S57A, Q62K, K63E, E64G, S65D, H68E, V70K, R72V, L73P, R74K</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-23</td><td role="cell" data-label="突变数">34</td><td role="cell" data-label="ESM-IF1">-2.487</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">K6E, T7F, L8E, T9D, K11T, T12V, I13L, T14E, E24A, N25E, V26L, A28E, Q31E, D32E, E34T, D39E, Q40E, F45Y, A46K, Q49V, G53D, R54K, S57A, N60D, Q62K, K63E, E64G, S65D, T66V, H68K, V70E, R72V, L73P, R74D</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr><tr role="row"><td role="cell" data-label="候选">sample-24</td><td role="cell" data-label="突变数">28</td><td role="cell" data-label="ESM-IF1">-2.443</td><td role="cell" data-label="FoldX ΔΔG">未评估</td><td role="cell" data-label="当前结论"><span class="badge danger">已排除</span><details><summary>查看突变与依据</summary><p class="mono">F4K, L8E, T9D, K11T, E24A, N25K, V26L, A28E, D32E, E34T, D39E, Q40E, R42E, F45Y, A46K, K48Q, Q49V, G53D, R54K, S57A, K63E, E64G, S65D, H68E, V70R, R72V, L73P, R74A</p><p>序列与结构适配性评分未通过当前筛选规则；突变负担超过当前试运行筛选范围</p></details></td></tr></tbody></table></div></section><section class="panel" id="s5"><div class="section-head"><span class="section-no">05</span><h2>如何理解和使用本次结果</h2></div><ul class="limitations"><li>本报告基于计算预测，尚未经过实验验证；当前结果仍需科学复核。</li><li>综合排名、完整候选复评及部分可开发性维度尚未齐备，因此不指定最佳候选。</li><li>未提供表达宿主时，不以免疫宿主代替；不据此生成密码子优化结论。</li><li>本次仅有 3 个代表候选进入后续复评，其余候选未完成同等检查；被排除者的复评仅供诊断。</li></ul></section><section class="panel" id="s6"><div class="section-head"><span class="section-no">06</span><h2>方法与来源</h2></div><p class="subtle">本页只转述已有计算结果，不修改科学规则、筛选结论或原始产物。可展开核对方法状态及来源标识。</p><details><summary>查看各项分析完成情况</summary><div class="table-wrap"><table role="table"><thead><tr role="row"><th scope="col" role="columnheader">分析项目</th><th scope="col" role="columnheader">执行情况</th></tr></thead><tbody><tr role="row"><td role="cell" data-label="分析项目">B 细胞表位预测</td><td role="cell" data-label="执行情况">已完成计算</td></tr><tr role="row"><td role="cell" data-label="分析项目">文献表位证据</td><td role="cell" data-label="执行情况">已完成计算</td></tr><tr role="row"><td role="cell" data-label="分析项目">可开发性</td><td role="cell" data-label="执行情况">已完成计算</td></tr><tr role="row"><td role="cell" data-label="分析项目">功能区域</td><td role="cell" data-label="执行情况">未执行</td></tr><tr role="row"><td role="cell" data-label="分析项目">综合表位图谱</td><td role="cell" data-label="执行情况">已完成计算</td></tr><tr role="row"><td role="cell" data-label="分析项目">糖基化位点</td><td role="cell" data-label="执行情况">已完成计算</td></tr><tr role="row"><td role="cell" data-label="分析项目">同源保守性</td><td role="cell" data-label="执行情况">未执行</td></tr><tr role="row"><td role="cell" data-label="分析项目">T 细胞表位预测</td><td role="cell" data-label="执行情况">已完成计算</td></tr><tr role="row"><td role="cell" data-label="分析项目">结构质量</td><td role="cell" data-label="执行情况">已完成计算</td></tr><tr role="row"><td role="cell" data-label="分析项目">跨膜与信号肽</td><td role="cell" data-label="执行情况">已完成计算</td></tr></tbody></table></div></details><details><summary>查看来源、缺项和排除依据</summary><pre>{
+  &quot;report_version&quot;: &quot;1.0&quot;,
+  &quot;input_sha256&quot;: &quot;233b4b0b8c4616095bc3249f9375fc345d32af7deaef07117d0383c51d6f19aa&quot;,
+  &quot;run_id&quot;: null,
+  &quot;job_id&quot;: null,
+  &quot;outcome&quot;: &quot;ALL_EXCLUDED&quot;,
+  &quot;source_artifacts&quot;: {
+    &quot;variant_report&quot;: {
+      &quot;state&quot;: &quot;available&quot;,
+      &quot;job_id&quot;: &quot;t01p1r-job-d7a7b740e6544e55b1979ab6f2fbcdec&quot;,
+      &quot;artifact&quot;: {
+        &quot;artifact_id&quot;: &quot;t01p1r-artifact-fdd8fc4a93284e1c8ac01f9d54a03275&quot;,
+        &quot;attempt_id&quot;: &quot;t01p1r-attempt-a9728615f7c242a59adbb4bd7294eacc&quot;,
+        &quot;evidence_kind&quot;: &quot;G0_REAL_OUTPUT&quot;,
+        &quot;job_id&quot;: &quot;t01p1r-job-d7a7b740e6544e55b1979ab6f2fbcdec&quot;,
+        &quot;media_type&quot;: &quot;application/json&quot;,
+        &quot;role&quot;: &quot;result&quot;,
+        &quot;run_id&quot;: &quot;t01p1r-run-37b2e9f985b2405e82890262f81c71c4&quot;,
+        &quot;sha256&quot;: &quot;c179bdb0466a30c3e45b93b95e7051ce80b2485b4cbe45eefadbb7b45005850a&quot;,
+        &quot;size_bytes&quot;: 7126730
+      }
+    },
+    &quot;wt_draft&quot;: {
+      &quot;state&quot;: &quot;available&quot;,
+      &quot;job_id&quot;: &quot;t01p1r-job-e67d832f475d4278b4199cdff517bcfa&quot;,
+      &quot;artifact&quot;: {
+        &quot;artifact_id&quot;: &quot;t01p1r-artifact-aed71fdad6ce40c0abbfba257fe84102&quot;,
+        &quot;attempt_id&quot;: &quot;t01p1r-attempt-337962adbea34fadb612d8f44d313a32&quot;,
+        &quot;evidence_kind&quot;: &quot;G0_REAL_OUTPUT&quot;,
+        &quot;job_id&quot;: &quot;t01p1r-job-e67d832f475d4278b4199cdff517bcfa&quot;,
+        &quot;media_type&quot;: &quot;application/json&quot;,
+        &quot;role&quot;: &quot;result&quot;,
+        &quot;run_id&quot;: &quot;t01p1r-run-37b2e9f985b2405e82890262f81c71c4&quot;,
+        &quot;sha256&quot;: &quot;487bce336e0c2253dd5d21114c393529a6f75ddfa13fe2a6a1f7ad2d3d34bdfa&quot;,
+        &quot;size_bytes&quot;: 595852
+      }
+    },
+    &quot;wt_identity&quot;: {
+      &quot;state&quot;: null,
+      &quot;job_id&quot;: null,
+      &quot;artifact&quot;: null
+    },
+    &quot;wt_reference&quot;: {
+      &quot;state&quot;: &quot;available&quot;,
+      &quot;job_id&quot;: &quot;t01p1r-job-69c43f8242984e03977ef23d1014d0bd&quot;,
+      &quot;artifact&quot;: {
+        &quot;artifact_id&quot;: &quot;t01p1r-artifact-a0e69d70a043442c99264e771696866b&quot;,
+        &quot;attempt_id&quot;: &quot;t01p1r-attempt-753bb38fe194429d88ea2616847e3164&quot;,
+        &quot;evidence_kind&quot;: &quot;G0_REAL_OUTPUT&quot;,
+        &quot;job_id&quot;: &quot;t01p1r-job-69c43f8242984e03977ef23d1014d0bd&quot;,
+        &quot;media_type&quot;: &quot;application/json&quot;,
+        &quot;role&quot;: &quot;result&quot;,
+        &quot;run_id&quot;: &quot;t01p1r-run-37b2e9f985b2405e82890262f81c71c4&quot;,
+        &quot;sha256&quot;: &quot;11f2efbdf1da5746ab81bf7085b45870454dfc3da43c7c0d4b058ba956d1df28&quot;,
+        &quot;size_bytes&quot;: 590921
+      }
+    }
+  },
+  &quot;analysis_sources&quot;: {
+    &quot;bepipred&quot;: {
+      &quot;artifact&quot;: {
+        &quot;artifact_id&quot;: &quot;t01p1r-artifact-a4a4d2ea63e743d29b1dc03b98197735&quot;,
+        &quot;attempt_id&quot;: &quot;t01p1r-attempt-6e30d6197e1346b9a272e9017ed809a7&quot;,
+        &quot;evidence_kind&quot;: &quot;G0_REAL_OUTPUT&quot;,
+        &quot;job_id&quot;: &quot;t01p1r-job-a91054b558494555aa6194bba46cbb2c&quot;,
+        &quot;media_type&quot;: &quot;application/json&quot;,
+        &quot;role&quot;: &quot;result&quot;,
+        &quot;run_id&quot;: &quot;t01p1r-run-37b2e9f985b2405e82890262f81c71c4&quot;,
+        &quot;sha256&quot;: &quot;883f61c99f07b42e0e87bbefb98e784a89bda17ed8506339cfcec21fa14cd1c8&quot;,
+        &quot;size_bytes&quot;: 26494
+      },
+      &quot;status&quot;: &quot;raw_scores_unreviewed&quot;,
+      &quot;warnings&quot;: [
+        {
+          &quot;code&quot;: &quot;LINEAR_ONLY&quot;,
+          &quot;level&quot;: &quot;quality&quot;,
+          &quot;message&quot;: &quot;一期仅线性路径；不运行 DiscoTope&quot;,
+          &quot;severity&quot;: &quot;WARNING&quot;
+        },
+        {
+          &quot;code&quot;: &quot;BEPIPRED_POSTPROCESSING_REVIEW&quot;,
+          &quot;level&quot;: &quot;quality&quot;,
+          &quot;message&quot;: &quot;原始列和原包分类完整保留；OI-026 未签收，项目 linear_scores/peaks/map 保持 null&quot;,
+          &quot;severity&quot;: &quot;WARNING&quot;
+        }
+      ]
+    },
+    &quot;blast&quot;: {
+      &quot;artifact&quot;: {
+        &quot;artifact_id&quot;: &quot;t01p1r-artifact-540c598ad462426abd7600a6db88f9d6&quot;,
+        &quot;attempt_id&quot;: &quot;t01p1r-attempt-57fb37e70fbb48198200b81276e35e64&quot;,
+        &quot;evidence_kind&quot;: &quot;G0_REAL_OUTPUT&quot;,
+        &quot;job_id&quot;: &quot;t01p1r-job-ce0a13627f884c95bd1a014397cd8aa4&quot;,
+        &quot;media_type&quot;: &quot;application/json&quot;,
+        &quot;role&quot;: &quot;result&quot;,
+        &quot;run_id&quot;: &quot;t01p1r-run-37b2e9f985b2405e82890262f81c71c4&quot;,
+        &quot;sha256&quot;: &quot;a8fd43ee3dc39993d4fcc526779b1d31aabdabdbac4807acb45f366e592f960f&quot;,
+        &quot;size_bytes&quot;: 14356
+      },
+      &quot;status&quot;: &quot;no_qualifying_similarity_hit&quot;,
+      &quot;warnings&quot;: [
+        {
+          &quot;code&quot;: &quot;ENGINEERING_DATABASE_ONLY&quot;,
+          &quot;level&quot;: &quot;disclosure&quot;,
+          &quot;message&quot;: &quot;Engineering FASTA/index results do not validate the target database or scientific evidence use&quot;,
+          &quot;severity&quot;: &quot;WARNING&quot;
+        }
+      ]
+    },
+    &quot;developability&quot;: {
+      &quot;artifact&quot;: {
+        &quot;artifact_id&quot;: &quot;t01p1r-artifact-0ed451e5e74a49008d173f05a141d878&quot;,
+        &quot;attempt_id&quot;: &quot;t01p1r-attempt-ae92c23b114943169e5a020b8cbdcaa7&quot;,
+        &quot;evidence_kind&quot;: &quot;G0_REAL_OUTPUT&quot;,
+        &quot;job_id&quot;: &quot;t01p1r-job-06ac79480a7c4dd0a0e1553ac3d3e955&quot;,
+        &quot;media_type&quot;: &quot;application/json&quot;,
+        &quot;role&quot;: &quot;result&quot;,
+        &quot;run_id&quot;: &quot;t01p1r-run-37b2e9f985b2405e82890262f81c71c4&quot;,
+        &quot;sha256&quot;: &quot;ed349af166b8b5254aebbf863cbbc5dda93b4bb58fe954278e12046a56a7cef6&quot;,
+        &quot;size_bytes&quot;: 70254
+      },
+      &quot;status&quot;: &quot;partial_developability_unreviewed&quot;,
+      &quot;warnings&quot;: [
+        &quot;A3D_SPATIAL_CLUSTER_SCIENTIFIC_SIGNOFF_MISSING&quot;,
+        &quot;A3D_NON_HIGH_RISK_CLASSIFICATION_UNRESOLVED&quot;,
+        &quot;STRUCTURE_MAPPING_SCIENTIFIC_SIGNOFF_MISSING&quot;,
+        &quot;OUTPUT_INVALID&quot;,
+        &quot;RELATIVE_DG_ONLY_NO_ABSOLUTE_CALIBRATION&quot;
+      ]
+    },
+    &quot;domains&quot;: {
+      &quot;artifact&quot;: null,
+      &quot;status&quot;: null,
+      &quot;warnings&quot;: null
+    },
+    &quot;epitope_map&quot;: {
+      &quot;artifact&quot;: {
+        &quot;artifact_id&quot;: &quot;t01p1r-artifact-4cdd004bc0e842eba37a393d195c8cd3&quot;,
+        &quot;attempt_id&quot;: &quot;t01p1r-attempt-3909d20a36d049c2957cb5cce3c58c41&quot;,
+        &quot;evidence_kind&quot;: &quot;G0_REAL_OUTPUT&quot;,
+        &quot;job_id&quot;: &quot;t01p1r-job-730b78691e644234a2d0c697b80e4175&quot;,
+        &quot;media_type&quot;: &quot;application/json&quot;,
+        &quot;role&quot;: &quot;result&quot;,
+        &quot;run_id&quot;: &quot;t01p1r-run-37b2e9f985b2405e82890262f81c71c4&quot;,
+        &quot;sha256&quot;: &quot;b64113f592751b01bfe9b264892e84f29f1d971c2347c87aa47005e5bb1cfbac&quot;,
+        &quot;size_bytes&quot;: 86964
+      },
+      &quot;status&quot;: &quot;maps_unreviewed&quot;,
+      &quot;warnings&quot;: [
+        {
+          &quot;code&quot;: &quot;B_CELL_PEAKS_REVIEW_REQUIRED&quot;,
+          &quot;level&quot;: &quot;quality&quot;,
+          &quot;message&quot;: &quot;BepiPred 原始两列已绑定；项目选列、峰提取及后处理仍由 OI-026 约束。&quot;,
+          &quot;severity&quot;: &quot;WARNING&quot;
+        },
+        {
+          &quot;code&quot;: &quot;HOTSPOT_EMPTY_BY_SOURCE_SET_BOUND_UNREVIEWED&quot;,
+          &quot;level&quot;: &quot;quality&quot;,
+          &quot;message&quot;: &quot;按 S-19 固定权重，当前来源集合的逐残基得分上界不超过严格热点阈值；输出工程空热点，科学消费仍未签收。&quot;,
+          &quot;severity&quot;: &quot;WARNING&quot;
+        },
+        {
+          &quot;code&quot;: &quot;WEIGHTED_DENSITY_REVIEW_REQUIRED&quot;,
+          &quot;level&quot;: &quot;quality&quot;,
+          &quot;message&quot;: &quot;OI-007/026 未签收；不选择 BepiPred 项目分数列，不生成逐残基 density。&quot;,
+          &quot;severity&quot;: &quot;WARNING&quot;
+        },
+        {
+          &quot;code&quot;: &quot;BLAST_SIMILARITY_NOT_EPITOPE_EVIDENCE&quot;,
+          &quot;level&quot;: &quot;disclosure&quot;,
+          &quot;message&quot;: &quot;N03 普通蛋白相似性结果已原样回连；不生成 IEDB 命中、E3/E4 证据、表位区或接触残基。&quot;,
+          &quot;severity&quot;: &quot;WARNING&quot;
+        }
+      ]
+    },
+    &quot;glycosylation&quot;: {
+      &quot;artifact&quot;: {
+        &quot;artifact_id&quot;: &quot;t01p1r-artifact-9dc61d9372e4426dacdde0462e6b0ec9&quot;,
+        &quot;attempt_id&quot;: &quot;t01p1r-attempt-d5fd3bb1bd8c4e64b177ef13eaef4bc8&quot;,
+        &quot;evidence_kind&quot;: &quot;G0_REAL_OUTPUT&quot;,
+        &quot;job_id&quot;: &quot;t01p1r-job-3b905ac82e6e4f92b15a092bdf38c58b&quot;,
+        &quot;media_type&quot;: &quot;application/json&quot;,
+        &quot;role&quot;: &quot;result&quot;,
+        &quot;run_id&quot;: &quot;t01p1r-run-37b2e9f985b2405e82890262f81c71c4&quot;,
+        &quot;sha256&quot;: &quot;936c7be0c4835ef5892b2e5c3e8e32bbe044600cbf47b2aae2182ba1e7a2dbe8&quot;,
+        &quot;size_bytes&quot;: 6060
+      },
+      &quot;status&quot;: &quot;completed_empty&quot;,
+      &quot;warnings&quot;: [
+        {
+          &quot;code&quot;: &quot;SEQUON_NOT_EXPERIMENTAL_EVIDENCE&quot;,
+          &quot;level&quot;: &quot;quality&quot;,
+          &quot;message&quot;: &quot;命中仅表示序列 sequon，不代表实验确认的糖基化。&quot;,
+          &quot;severity&quot;: &quot;WARNING&quot;
+        },
+        {
+          &quot;code&quot;: &quot;N06_SOURCE_ARTIFACT_VERIFIED&quot;,
+          &quot;level&quot;: &quot;quality&quot;,
+          &quot;message&quot;: &quot;已校验 N06 任务身份、结果 ArtifactRef、哈希和序列绑定；热点是否可用仍按 N06 当前结果判定。&quot;,
+          &quot;severity&quot;: &quot;WARNING&quot;
+        }
+      ]
+    },
+    &quot;homology&quot;: {
+      &quot;artifact&quot;: null,
+      &quot;status&quot;: null,
+      &quot;warnings&quot;: null
+    },
+    &quot;netmhc&quot;: {
+      &quot;artifact&quot;: {
+        &quot;artifact_id&quot;: &quot;t01p1r-artifact-298ed44b4e274a7b8b0f4c8125bba19d&quot;,
+        &quot;attempt_id&quot;: &quot;t01p1r-attempt-cee935afc78c4f998cbf8a29e8776d3f&quot;,
+        &quot;evidence_kind&quot;: &quot;G0_REAL_OUTPUT&quot;,
+        &quot;job_id&quot;: &quot;t01p1r-job-76a9c921973f4c1e9eb8c65fde54c19b&quot;,
+        &quot;media_type&quot;: &quot;application/json&quot;,
+        &quot;role&quot;: &quot;result&quot;,
+        &quot;run_id&quot;: &quot;t01p1r-run-37b2e9f985b2405e82890262f81c71c4&quot;,
+        &quot;sha256&quot;: &quot;c46857c0ad8c7cdd14f2431fd548d23ce70cf57ea8c29215e11edd0d9b54d292&quot;,
+        &quot;size_bytes&quot;: 144705
+      },
+      &quot;status&quot;: &quot;raw_predictions_unreviewed&quot;,
+      &quot;warnings&quot;: []
+    },
+    &quot;structure&quot;: {
+      &quot;artifact&quot;: {
+        &quot;artifact_id&quot;: &quot;t01p1r-artifact-b04a758358a04e36b7bc51aea9e0e0af&quot;,
+        &quot;attempt_id&quot;: &quot;t01p1r-attempt-493a2c965a274df9b7884009806e37a9&quot;,
+        &quot;evidence_kind&quot;: &quot;G0_REAL_OUTPUT&quot;,
+        &quot;job_id&quot;: &quot;t01p1r-job-5bbe0355421f4e9ba0de451e1704cc06&quot;,
+        &quot;media_type&quot;: &quot;application/json&quot;,
+        &quot;role&quot;: &quot;result&quot;,
+        &quot;run_id&quot;: &quot;t01p1r-run-37b2e9f985b2405e82890262f81c71c4&quot;,
+        &quot;sha256&quot;: &quot;f9f101bbb695abe0a210af3eb5f7d8e093f6a1ba8268972d9570bdc5ffb8afe2&quot;,
+        &quot;size_bytes&quot;: 71918
+      },
+      &quot;status&quot;: &quot;review_required&quot;,
+      &quot;warnings&quot;: [
+        {
+          &quot;code&quot;: &quot;G1_REVIEW_PENDING&quot;,
+          &quot;level&quot;: &quot;failure&quot;,
+          &quot;message&quot;: &quot;This local probe cannot approve scientific mapping or automatic handoff&quot;,
+          &quot;severity&quot;: &quot;WARNING&quot;
+        },
+        {
+          &quot;code&quot;: &quot;RSA_OUT_OF_DOMAIN&quot;,
+          &quot;level&quot;: &quot;failure&quot;,
+          &quot;message&quot;: &quot;保留原始面积和比值；不截断、不输出正常 RSA；OI-027 需要算法确认&quot;,
+          &quot;severity&quot;: &quot;WARNING&quot;
+        }
+      ]
+    },
+    &quot;topology&quot;: {
+      &quot;artifact&quot;: {
+        &quot;artifact_id&quot;: &quot;t01p1r-artifact-77f4123f84bd41a48c675c7cf7f455f4&quot;,
+        &quot;attempt_id&quot;: &quot;t01p1r-attempt-bda83374830c480a9854dd0b66bd9223&quot;,
+        &quot;evidence_kind&quot;: &quot;G0_REAL_OUTPUT&quot;,
+        &quot;job_id&quot;: &quot;t01p1r-job-d1ac63ad7cff474d96eb56b76cc95ca7&quot;,
+        &quot;media_type&quot;: &quot;application/json&quot;,
+        &quot;role&quot;: &quot;result&quot;,
+        &quot;run_id&quot;: &quot;t01p1r-run-37b2e9f985b2405e82890262f81c71c4&quot;,
+        &quot;sha256&quot;: &quot;d7354c286816f2f5825b1bb20e28426e591be07d902d98bf7d5ac3ffa8fed458&quot;,
+        &quot;size_bytes&quot;: 16705
+      },
+      &quot;status&quot;: &quot;parsed_unverified&quot;,
+      &quot;warnings&quot;: []
+    }
+  },
+  &quot;missing_conditions&quot;: [
+    {
+      &quot;code&quot;: &quot;DEVELOPMENT_UNREVIEWED&quot;,
+      &quot;source&quot;: &quot;variant_report&quot;
+    },
+    {
+      &quot;code&quot;: &quot;DEVELOPMENT_UNREVIEWED&quot;,
+      &quot;source&quot;: &quot;wt_draft&quot;
+    },
+    {
+      &quot;code&quot;: &quot;DEVELOPMENT_UNREVIEWED&quot;,
+      &quot;source&quot;: &quot;wt_reference&quot;
+    },
+    {
+      &quot;code&quot;: &quot;OI_013_AGENT_C_INTERFACE_UNSIGNED&quot;,
+      &quot;source&quot;: &quot;delivery&quot;
+    },
+    {
+      &quot;code&quot;: &quot;OI_014_CANDIDATE_RECORD_MAPPING_UNSIGNED&quot;,
+      &quot;source&quot;: &quot;delivery&quot;
+    },
+    {
+      &quot;code&quot;: &quot;SCIENTIFIC_GATES_NOT_RELEASED&quot;,
+      &quot;source&quot;: &quot;delivery&quot;
+    },
+    {
+      &quot;code&quot;: &quot;NO_QUALIFIED_CANDIDATE&quot;,
+      &quot;source&quot;: &quot;N16&quot;
+    }
+  ],
+  &quot;dimension_exclusions&quot;: {
+    &quot;aggregation&quot;: &quot;A3D_SPATIAL_CLUSTER_SCIENTIFIC_SIGNOFF_MISSING&quot;,
+    &quot;ph_stability&quot;: &quot;STRUCTURE_MAPPING_SCIENTIFIC_SIGNOFF_MISSING&quot;,
+    &quot;solubility&quot;: &quot;OI_025_CAMSOL_PARAMETERS_INCOMPLETE&quot;,
+    &quot;stability_ddg&quot;: &quot;STABILITY_DDG_NOT_COMPUTED&quot;,
+    &quot;tag_exposure&quot;: &quot;OUTPUT_INVALID&quot;
+  },
+  &quot;methods&quot;: {
+    &quot;variant_report&quot;: {
+      &quot;network&quot;: false,
+      &quot;rule_profile&quot;: {
+        &quot;id&quot;: &quot;w6-step19b20-engineering-report&quot;,
+        &quot;sha256&quot;: &quot;83b9006fe02382b353982e29547c1e160c138569475bd55fda85e09b0286ed7f&quot;,
+        &quot;version&quot;: &quot;0.1.0&quot;
+      },
+      &quot;scope&quot;: &quot;N14/N15 per-variant engineering report only&quot;
+    },
+    &quot;wt_draft&quot;: {
+      &quot;network&quot;: false,
+      &quot;rule_profile&quot;: {
+        &quot;id&quot;: &quot;w4-gate-wt-local-draft-v105&quot;,
+        &quot;sha256&quot;: &quot;e94196799eb4b2ba1bee8c7432c5b9ccdecec813f97dd075df162ce07a2796ad&quot;,
+        &quot;version&quot;: &quot;0.2.0&quot;
+      },
+      &quot;scope&quot;: &quot;W4 R-57 business routing / WT draft; scientific release and S-44 closed&quot;
+    },
+    &quot;wt_reference&quot;: {
+      &quot;network&quot;: false,
+      &quot;rule_profile&quot;: {
+        &quot;id&quot;: &quot;w7-n17-historical-reference&quot;,
+        &quot;sha256&quot;: &quot;6475c8c560ebfad16eb076da8dc1afc33c50ef05eb7601134198a8feab52cfee&quot;,
+        &quot;version&quot;: &quot;0.1.0&quot;
+      },
+      &quot;scope&quot;: &quot;WT reference historical engineering assembly&quot;
+    }
+  },
+  &quot;analysis_parameters&quot;: {
+    &quot;variant_report&quot;: {
+      &quot;execution_profile&quot;: {
+        &quot;id&quot;: &quot;w6-variant-report-local&quot;,
+        &quot;sha256&quot;: &quot;9225f29b771526c07b3688ec26bdc2a08c5667ac69928a6328b7f06e40d9cc41&quot;,
+        &quot;version&quot;: &quot;0.1.0&quot;
+      },
+      &quot;rule_profile&quot;: {
+        &quot;id&quot;: &quot;w6-step19b20-engineering-report&quot;,
+        &quot;sha256&quot;: &quot;83b9006fe02382b353982e29547c1e160c138569475bd55fda85e09b0286ed7f&quot;,
+        &quot;version&quot;: &quot;0.1.0&quot;
+      }
+    },
+    &quot;wt_draft&quot;: {
+      &quot;execution_profile&quot;: {
+        &quot;id&quot;: &quot;w4-local-wt-assessment-draft&quot;,
+        &quot;sha256&quot;: &quot;6ad5bb76cf0224cf454add28fee2c31e923ff3625d9cefedba15774e9632dd31&quot;,
+        &quot;version&quot;: &quot;0.2.0&quot;
+      },
+      &quot;rule_profile&quot;: {
+        &quot;id&quot;: &quot;w4-gate-wt-local-draft-v105&quot;,
+        &quot;sha256&quot;: &quot;e94196799eb4b2ba1bee8c7432c5b9ccdecec813f97dd075df162ce07a2796ad&quot;,
+        &quot;version&quot;: &quot;0.2.0&quot;
+      }
+    },
+    &quot;wt_identity&quot;: {
+      &quot;execution_profile&quot;: null,
+      &quot;rule_profile&quot;: null
+    },
+    &quot;wt_reference&quot;: {
+      &quot;execution_profile&quot;: {
+        &quot;id&quot;: &quot;w7-n17-local-reference&quot;,
+        &quot;sha256&quot;: &quot;8bd4d2c50eec38a73a4a2b48ffb06184c84d814467084ffb8eb0c5e015fb2225&quot;,
+        &quot;version&quot;: &quot;0.1.0&quot;
+      },
+      &quot;rule_profile&quot;: {
+        &quot;id&quot;: &quot;w7-n17-historical-reference&quot;,
+        &quot;sha256&quot;: &quot;6475c8c560ebfad16eb076da8dc1afc33c50ef05eb7601134198a8feab52cfee&quot;,
+        &quot;version&quot;: &quot;0.1.0&quot;
+      }
+    }
+  },
+  &quot;candidate_exclusions&quot;: [
+    {
+      &quot;id&quot;: &quot;sample-1&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-2&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-3&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-4&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-5&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-6&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-7&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-8&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-9&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-10&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-11&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-12&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-13&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-14&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-15&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-16&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-17&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-18&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-19&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-20&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-21&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-22&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-23&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;sample-24&quot;,
+      &quot;reasons&quot;: [
+        &quot;R35_DETERIORATION_EXCEEDED&quot;,
+        &quot;ENGINEERING_BURDEN_EXCEEDED&quot;
+      ]
+    }
+  ],
+  &quot;scientific_pass&quot;: null,
+  &quot;formal_candidate_record&quot;: false,
+  &quot;basis&quot;: &quot;SOP v10.5 S-42 / T-01 step 27; Schema FailureReport / C29; user-requested HTML presentation&quot;
+}</pre></details></section><footer class="footer"><span>抗原设计 · 用户报告 V1.0</span><span>可离线阅读 · 可使用浏览器打印 / 保存为 PDF</span></footer></main></body></html>

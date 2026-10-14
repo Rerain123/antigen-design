@@ -1,0 +1,1196 @@
+app:
+  description: T-01 v10 阶段7调试流程：Candidate、可选展示、step26三路分叉与Agent C交接。C30仅返回后端事实。
+  icon: 📦
+  icon_background: '#E8F5E9'
+  mode: workflow
+  name: T01_P7_OutputHandoff
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types: []
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P7_S43_BEST_source_P7_S44_BEST
+      source: P7_S43_BEST
+      sourceHandle: source
+      target: P7_S44_BEST
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P7_S43_SKIP_source_P7_S44_SKIP
+      source: P7_S43_SKIP
+      sourceHandle: source
+      target: P7_S44_SKIP
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P7_S43_FAIL_source_P7_S44_FAIL
+      source: P7_S43_FAIL
+      sourceHandle: source
+      target: P7_S44_FAIL
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: start
+        targetType: tool
+      id: edge_P7_START_source_P7_S42_ASSEMBLE
+      source: P7_START
+      sourceHandle: source
+      target: P7_S42_ASSEMBLE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P7_S42_ASSEMBLE_source_P7_VIS_GATE
+      source: P7_S42_ASSEMBLE
+      sourceHandle: source
+      target: P7_VIS_GATE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_P7_VIS_GATE_source_P7_IF_VIS
+      source: P7_VIS_GATE
+      sourceHandle: source
+      target: P7_IF_VIS
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_P7_IF_VIS_true_P7_C29_VISUAL
+      source: P7_IF_VIS
+      sourceHandle: 'true'
+      target: P7_C29_VISUAL
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P7_C29_VISUAL_source_P7_C30_EXPLAIN
+      source: P7_C29_VISUAL
+      sourceHandle: source
+      target: P7_C30_EXPLAIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: variable-aggregator
+      id: edge_P7_C30_EXPLAIN_source_P7_VIS_JOIN
+      source: P7_C30_EXPLAIN
+      sourceHandle: source
+      target: P7_VIS_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: variable-aggregator
+      id: edge_P7_IF_VIS_false_P7_VIS_JOIN
+      source: P7_IF_VIS
+      sourceHandle: 'false'
+      target: P7_VIS_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: variable-aggregator
+        targetType: tool
+      id: edge_P7_VIS_JOIN_source_P7_STEP26_HANDOFF
+      source: P7_VIS_JOIN
+      sourceHandle: source
+      target: P7_STEP26_HANDOFF
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_P7_STEP26_HANDOFF_source_P7_IF_BEST
+      source: P7_STEP26_HANDOFF
+      sourceHandle: source
+      target: P7_IF_BEST
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_P7_IF_BEST_true_P7_S43_BEST
+      source: P7_IF_BEST
+      sourceHandle: 'true'
+      target: P7_S43_BEST
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: if-else
+      id: edge_P7_IF_BEST_false_P7_IF_SKIPPED
+      source: P7_IF_BEST
+      sourceHandle: 'false'
+      target: P7_IF_SKIPPED
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_P7_IF_SKIPPED_true_P7_S43_SKIP
+      source: P7_IF_SKIPPED
+      sourceHandle: 'true'
+      target: P7_S43_SKIP
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_P7_IF_SKIPPED_false_P7_S43_FAIL
+      source: P7_IF_SKIPPED
+      sourceHandle: 'false'
+      target: P7_S43_FAIL
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: variable-aggregator
+      id: edge_P7_S44_BEST_source_P7_RESULT_JOIN
+      source: P7_S44_BEST
+      sourceHandle: source
+      target: P7_RESULT_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: variable-aggregator
+      id: edge_P7_S44_SKIP_source_P7_RESULT_JOIN
+      source: P7_S44_SKIP
+      sourceHandle: source
+      target: P7_RESULT_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: variable-aggregator
+      id: edge_P7_S44_FAIL_source_P7_RESULT_JOIN
+      source: P7_S44_FAIL
+      sourceHandle: source
+      target: P7_RESULT_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: variable-aggregator
+        targetType: end
+      id: edge_P7_RESULT_JOIN_source_P7_END
+      source: P7_RESULT_JOIN
+      sourceHandle: source
+      target: P7_END
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - variable: run_id
+          label: 运行 ID
+          type: text-input
+          required: true
+          max_length: 128
+          options: []
+        - variable: execution_mode
+          label: 执行模式
+          type: select
+          required: true
+          max_length: 128
+          options:
+          - mock
+      height: 154
+      id: P7_START
+      position:
+        x: 0
+        y: 220
+      positionAbsolute:
+        x: 0
+        y: 220
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: output.assemble_candidate_json · Assemble the minimum Candidate JSON contract.
+        selected: false
+        title: S-42 Candidate组装
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-42 Candidate组装
+        tool_name: output.assemble_candidate_json
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P7_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-42
+          node_id:
+            type: constant
+            value: P7_S42_ASSEMBLE
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P7_START.run_id#}}:P7_S42_ASSEMBLE:attempt-1'
+      height: 98
+      id: P7_S42_ASSEMBLE
+      position:
+        x: 320
+        y: 300
+      positionAbsolute:
+        x: 320
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01.route_visualization · Route optional visualization and explanation.
+        selected: false
+        title: 可视化门控
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 可视化门控
+        tool_name: t01.route_visualization
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P7_START
+            - run_id
+          step_id:
+            type: constant
+            value: VIS
+          node_id:
+            type: constant
+            value: P7_VIS_GATE
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P7_START.run_id#}}:P7_VIS_GATE:attempt-1'
+      height: 98
+      id: P7_VIS_GATE
+      position:
+        x: 640
+        y: 300
+      positionAbsolute:
+        x: 640
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 执行C29/C30?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: P7_IF_VIS_condition
+            variable_selector:
+            - P7_VIS_GATE
+            - data
+            - route
+            comparison_operator: is
+            value: RUN_C29_C30
+            varType: string
+      height: 150
+      id: P7_IF_VIS
+      position:
+        x: 960
+        y: 300
+      positionAbsolute:
+        x: 960
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: output.render_comparison_report · Render a mock comparison report.
+        selected: false
+        title: C29 对比报告
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: C29 对比报告
+        tool_name: output.render_comparison_report
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P7_START
+            - run_id
+          step_id:
+            type: constant
+            value: C29
+          node_id:
+            type: constant
+            value: P7_C29_VISUAL
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P7_START.run_id#}}:P7_C29_VISUAL:attempt-1'
+      height: 98
+      id: P7_C29_VISUAL
+      position:
+        x: 1280
+        y: 80
+      positionAbsolute:
+        x: 1280
+        y: 80
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: output.prepare_explanation · Prepare a factual backend summary for LLM explanation.
+        selected: false
+        title: C30 后端事实摘要
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: C30 后端事实摘要
+        tool_name: output.prepare_explanation
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P7_START
+            - run_id
+          step_id:
+            type: constant
+            value: C30
+          node_id:
+            type: constant
+            value: P7_C30_EXPLAIN
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P7_START.run_id#}}:P7_C30_EXPLAIN:attempt-1'
+      height: 98
+      id: P7_C30_EXPLAIN
+      position:
+        x: 1600
+        y: 80
+      positionAbsolute:
+        x: 1600
+        y: 80
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 展示路径汇合
+        type: variable-aggregator
+        advanced_settings:
+          group_enabled: false
+          groups: []
+        output_type: object
+        variables:
+        - - P7_C30_EXPLAIN
+          - json
+        - - P7_S42_ASSEMBLE
+          - json
+      height: 108
+      id: P7_VIS_JOIN
+      position:
+        x: 1920
+        y: 300
+      positionAbsolute:
+        x: 1920
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01.route_handoff · Route variant, design-skipped WT, or failure-report WT handoff.
+        selected: false
+        title: step26 三路交接
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: step26 三路交接
+        tool_name: t01.route_handoff
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P7_START
+            - run_id
+          step_id:
+            type: constant
+            value: step26
+          node_id:
+            type: constant
+            value: P7_STEP26_HANDOFF
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P7_S42_ASSEMBLE
+            - data
+            - candidate
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P7_START.run_id#}}:P7_STEP26_HANDOFF:attempt-1'
+      height: 98
+      id: P7_STEP26_HANDOFF
+      position:
+        x: 2240
+        y: 300
+      positionAbsolute:
+        x: 2240
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: best存在?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: P7_IF_BEST_condition
+            variable_selector:
+            - P7_STEP26_HANDOFF
+            - data
+            - route
+            comparison_operator: is
+            value: BEST
+            varType: string
+      height: 150
+      id: P7_IF_BEST
+      position:
+        x: 2560
+        y: 300
+      positionAbsolute:
+        x: 2560
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 设计跳过?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: P7_IF_SKIPPED_condition
+            variable_selector:
+            - P7_STEP26_HANDOFF
+            - data
+            - route
+            comparison_operator: is
+            value: DESIGN_SKIPPED
+            varType: string
+      height: 150
+      id: P7_IF_SKIPPED
+      position:
+        x: 2880
+        y: 520
+      positionAbsolute:
+        x: 2880
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: handoff.assemble_agent_c · Assemble a mock Agent-C handoff package.
+        selected: false
+        title: S-43 BEST交接组装
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-43 BEST交接组装
+        tool_name: handoff.assemble_agent_c
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P7_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-43
+          node_id:
+            type: constant
+            value: P7_S43_BEST
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: variant
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P7_START.run_id#}}:P7_S43_BEST:attempt-1'
+      height: 98
+      id: P7_S43_BEST
+      position:
+        x: 2880
+        y: 40
+      positionAbsolute:
+        x: 2880
+        y: 40
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: handoff.deliver_agent_c · Mock delivery because the target interface is undefined.
+        selected: false
+        title: S-44 BEST交付
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-44 BEST交付
+        tool_name: handoff.deliver_agent_c
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P7_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-44
+          node_id:
+            type: constant
+            value: P7_S44_BEST
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: variant
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P7_START.run_id#}}:P7_S44_BEST:attempt-1'
+      height: 98
+      id: P7_S44_BEST
+      position:
+        x: 3200
+        y: 40
+      positionAbsolute:
+        x: 3200
+        y: 40
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: handoff.assemble_agent_c · Assemble a mock Agent-C handoff package.
+        selected: false
+        title: S-43 SKIP交接组装
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-43 SKIP交接组装
+        tool_name: handoff.assemble_agent_c
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P7_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-43
+          node_id:
+            type: constant
+            value: P7_S43_SKIP
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt_skipped
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P7_START.run_id#}}:P7_S43_SKIP:attempt-1'
+      height: 98
+      id: P7_S43_SKIP
+      position:
+        x: 3200
+        y: 400
+      positionAbsolute:
+        x: 3200
+        y: 400
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: handoff.deliver_agent_c · Mock delivery because the target interface is undefined.
+        selected: false
+        title: S-44 SKIP交付
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-44 SKIP交付
+        tool_name: handoff.deliver_agent_c
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P7_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-44
+          node_id:
+            type: constant
+            value: P7_S44_SKIP
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt_skipped
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P7_START.run_id#}}:P7_S44_SKIP:attempt-1'
+      height: 98
+      id: P7_S44_SKIP
+      position:
+        x: 3520
+        y: 400
+      positionAbsolute:
+        x: 3520
+        y: 400
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: handoff.assemble_agent_c · Assemble a mock Agent-C handoff package.
+        selected: false
+        title: S-43 FAIL交接组装
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-43 FAIL交接组装
+        tool_name: handoff.assemble_agent_c
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P7_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-43
+          node_id:
+            type: constant
+            value: P7_S43_FAIL
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt_failure
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P7_START.run_id#}}:P7_S43_FAIL:attempt-1'
+      height: 98
+      id: P7_S43_FAIL
+      position:
+        x: 3200
+        y: 700
+      positionAbsolute:
+        x: 3200
+        y: 700
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: handoff.deliver_agent_c · Mock delivery because the target interface is undefined.
+        selected: false
+        title: S-44 FAIL交付
+        type: tool
+        provider_id: t01-mock-mcp
+        provider_name: t01-mock-mcp
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-44 FAIL交付
+        tool_name: handoff.deliver_agent_c
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P7_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-44
+          node_id:
+            type: constant
+            value: P7_S44_FAIL
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt_failure
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P7_START.run_id#}}:P7_S44_FAIL:attempt-1'
+      height: 98
+      id: P7_S44_FAIL
+      position:
+        x: 3520
+        y: 700
+      positionAbsolute:
+        x: 3520
+        y: 700
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 三路交付结果汇合
+        type: variable-aggregator
+        advanced_settings:
+          group_enabled: false
+          groups: []
+        output_type: object
+        variables:
+        - - P7_S44_BEST
+          - json
+        - - P7_S44_SKIP
+          - json
+        - - P7_S44_FAIL
+          - json
+      height: 108
+      id: P7_RESULT_JOIN
+      position:
+        x: 3840
+        y: 300
+      positionAbsolute:
+        x: 3840
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 结束
+        type: end
+        outputs:
+        - variable: run_id
+          value_selector:
+          - P7_START
+          - run_id
+        - variable: stage_result
+          value_selector:
+          - P7_RESULT_JOIN
+          - output
+        - variable: candidate
+          value_selector:
+          - P7_S42_ASSEMBLE
+          - data
+          - candidate
+        - variable: handoff
+          value_selector:
+          - P7_STEP26_HANDOFF
+          - json
+      height: 214
+      id: P7_END
+      position:
+        x: 4160
+        y: 300
+      positionAbsolute:
+        x: 4160
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    viewport:
+      x: 0
+      y: 0
+      zoom: 0.55
+  rag_pipeline_variables: []

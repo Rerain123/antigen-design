@@ -1,0 +1,238 @@
+........................................................................ [  2%]
+........................................................................ [  4%]
+........................................................................ [  6%]
+........................................................................ [  8%]
+.................................F...................................... [ 10%]
+.............................F.......................................... [ 12%]
+...F.................................................................... [ 15%]
+........................................................................ [ 17%]
+........................................................................ [ 19%]
+........................................................................ [ 21%]
+........................................................................ [ 23%]
+........................................................................ [ 25%]
+........................................................................ [ 28%]
+........................................................................ [ 30%]
+........................................................................ [ 32%]
+........................................................................ [ 34%]
+........................................................................ [ 36%]
+........................................................................ [ 38%]
+........................................................................ [ 40%]
+........................................................................ [ 43%]
+........................................................................ [ 45%]
+.................................................ss..................... [ 47%]
+........................................................................ [ 49%]
+........................................................................ [ 51%]
+........................................................................ [ 53%]
+........................................................................ [ 56%]
+........................................................................ [ 58%]
+........................................................................ [ 60%]
+........................................................................ [ 62%]
+........................................................................ [ 64%]
+........................................................................ [ 66%]
+........................................................................ [ 68%]
+........................................................................ [ 71%]
+ssss...........ssssssssss............................................... [ 73%]
+.......................................................................F [ 75%]
+FF...................................................................... [ 77%]
+........................................................................ [ 79%]
+........................................................................ [ 81%]
+........................................................................ [ 84%]
+..........................s............................................. [ 86%]
+........................................................................ [ 88%]
+........................................................................ [ 90%]
+........................................................................ [ 92%]
+........................................................................ [ 94%]
+........................................................................ [ 96%]
+........................................................................ [ 99%]
+.............................                                            [100%]
+================================== FAILURES ===================================
+___________________ test_sealed_consumer_evidence_read_only ___________________
+
+>   ???
+
+D:\work\蛋白智能体\tests\test_b1_freesasa_consumer.py:193: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+batch = WindowsPath('D:/work/antigen.design/discovery/t01-phase1-real/w1/b1-freesasa-consumer-20260906-r02')
+reparse = False
+
+    def verify(batch, reparse=False):
+        manifest = read(batch / 'manifest.json')
+        for base, rows in [(ROOT, manifest['sources']), (batch, manifest['outputs'])]:
+            for row in rows:
+                assert fingerprint(safe_path(base, row['path']), base) == row, row['path']
+        protected = read(batch / 'protected_before.json')['files']
+>       assert all(fingerprint(safe_path(ROOT, row['path'])) == row for row in protected)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError
+
+scripts\check_b1_freesasa_consumer.py:203: AssertionError
+_____________________ test_sealed_campaign_and_originals ______________________
+
+>   ???
+
+D:\work\蛋白智能体\tests\test_b1_input_facts.py:189: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+batch = WindowsPath('D:/work/antigen.design/discovery/t01-phase1-real/w1/b1-engineering-20260905')
+reparse = False
+
+    def verify(batch, reparse=False):
+        manifest = read(batch / 'manifest.json')
+        for base, rows in [(ROOT, manifest['sources']), (batch, manifest['outputs'])]:
+            for row in rows:
+                if fingerprint(safe_path(base, row['path']), base) != row:
+                    raise ValueError('Evidence/source hash mismatch: ' + row['path'])
+        protected = read(batch / 'protected_before.json') if (batch / 'protected_before.json').exists() else None
+        if protected:
+            for row in protected['files']:
+                if fingerprint(safe_path(ROOT, row['path'])) != row:
+>                   raise ValueError('Protected original or prior evidence changed: ' + row['path'])
+E                   ValueError: Protected original or prior evidence changed: src/t01_phase1_real/common.py
+
+scripts\check_b1_engineering.py:127: ValueError
+___________________ test_sealed_boundary_execution_evidence ___________________
+
+>   ???
+
+D:\work\蛋白智能体\tests\test_b2_boundaries.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\check_b2_boundaries.py:198: in verify
+    verify_historical_sources(batch,read(batch/'protected_before.json')['files'])
+scripts\check_b2_boundaries.py:191: in verify_historical_sources
+    else:verify_files(ROOT,[entry])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+scripts\b2_boundary_evidence.py:62: in verify_files
+    require(p.is_file() and fingerprint(p, folder.resolve()) == entry, 'ARTIFACT_HASH_OR_PRESENCE_MISMATCH: '+name)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = False
+message = 'ARTIFACT_HASH_OR_PRESENCE_MISMATCH: src/t01_phase1_real/common.py'
+
+    def require(value, message):
+        if not value:
+>           raise ValueError(message)
+E           ValueError: ARTIFACT_HASH_OR_PRESENCE_MISMATCH: src/t01_phase1_real/common.py
+
+scripts\b2_boundary_evidence.py:18: ValueError
+__________ test_same_run_proteinmpnn_keeps_source_provenance_checks ___________
+
+tmp_path = WindowsPath('D:/work/antigen.design/.tmp/latency-full-r01/test_same_run_proteinmpnn_keep0')
+
+    def test_same_run_proteinmpnn_keeps_source_provenance_checks(tmp_path):
+        rt=Runtime(tmp_path)
+        target=rt.create_run('target-run')
+        foreign=rt.create_run('foreign-run')
+>       _, foreign_ref=structure_result(rt, foreign['run_id'], 'foreign-structure')
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_same_run_submission.py:83: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = <t01_phase1_real.development.runtime.Runtime object at 0x000002289D9F8610>
+run_id = 't01p1r-run-16e875744b0046798e14c991af0553bf'
+key = 'foreign-structure'
+
+    def structure_result(rt, run_id, key):
+        if os.name == 'nt':
+            # pytest's private temp-directory ACL uses OWNER RIGHTS. Docker Desktop
+            # writes as a different owner; grant only this fixture root to this user.
+            account = subprocess.check_output(['whoami'], text=True).strip()
+            subprocess.run(['icacls', str(rt.root), '/grant', account + ':(OI)(CI)F', '/T'],
+                check=True, capture_output=True)
+        fixture=next(row for row in cases() if row['name']=='normal-pdb')
+        job=rt.submit_structure_in_run(run_id, encode(fixture['request']), key, fixture['data'])
+        rt.dispatch(job['job_id'])
+        # Docker cold starts can exceed Runtime.wait's 15-second polling default.
+        # Keep the request's 60-second worker budget and wait through reconciliation.
+        final=rt.wait(job['job_id'], timeout=90)
+>       assert final['state']=='succeeded' and final['run_id']==run_id
+E       AssertionError: assert ('failed' == 'succeeded'
+E         
+E         - succeeded
+E         + failed)
+
+tests\test_same_run_submission.py:41: AssertionError
+___ test_same_run_proteinmpnn_still_rejects_corrupt_local_source[sequence] ____
+
+tmp_path = WindowsPath('D:/work/antigen.design/.tmp/latency-full-r01/test_same_run_proteinmpnn_stil0')
+damage = 'sequence'
+
+    @pytest.mark.parametrize('damage',['sequence','hash'])
+    def test_same_run_proteinmpnn_still_rejects_corrupt_local_source(tmp_path,damage):
+        rt=Runtime(tmp_path);run=rt.create_run('target')
+>       structure,ref=structure_result(rt,run['run_id'],'structure');body=n11_body(ref)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_same_run_submission.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = <t01_phase1_real.development.runtime.Runtime object at 0x00000228AFE8D790>
+run_id = 't01p1r-run-e480802834f64b6aad46c71b75d2f8c2', key = 'structure'
+
+    def structure_result(rt, run_id, key):
+        if os.name == 'nt':
+            # pytest's private temp-directory ACL uses OWNER RIGHTS. Docker Desktop
+            # writes as a different owner; grant only this fixture root to this user.
+            account = subprocess.check_output(['whoami'], text=True).strip()
+            subprocess.run(['icacls', str(rt.root), '/grant', account + ':(OI)(CI)F', '/T'],
+                check=True, capture_output=True)
+        fixture=next(row for row in cases() if row['name']=='normal-pdb')
+        job=rt.submit_structure_in_run(run_id, encode(fixture['request']), key, fixture['data'])
+        rt.dispatch(job['job_id'])
+        # Docker cold starts can exceed Runtime.wait's 15-second polling default.
+        # Keep the request's 60-second worker budget and wait through reconciliation.
+        final=rt.wait(job['job_id'], timeout=90)
+>       assert final['state']=='succeeded' and final['run_id']==run_id
+E       AssertionError: assert ('failed' == 'succeeded'
+E         
+E         - succeeded
+E         + failed)
+
+tests\test_same_run_submission.py:41: AssertionError
+_____ test_same_run_proteinmpnn_still_rejects_corrupt_local_source[hash] ______
+
+tmp_path = WindowsPath('D:/work/antigen.design/.tmp/latency-full-r01/test_same_run_proteinmpnn_stil1')
+damage = 'hash'
+
+    @pytest.mark.parametrize('damage',['sequence','hash'])
+    def test_same_run_proteinmpnn_still_rejects_corrupt_local_source(tmp_path,damage):
+        rt=Runtime(tmp_path);run=rt.create_run('target')
+>       structure,ref=structure_result(rt,run['run_id'],'structure');body=n11_body(ref)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_same_run_submission.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = <t01_phase1_real.development.runtime.Runtime object at 0x000002289EDB41D0>
+run_id = 't01p1r-run-0796505bde964f22a275a7a2a0f23d2a', key = 'structure'
+
+    def structure_result(rt, run_id, key):
+        if os.name == 'nt':
+            # pytest's private temp-directory ACL uses OWNER RIGHTS. Docker Desktop
+            # writes as a different owner; grant only this fixture root to this user.
+            account = subprocess.check_output(['whoami'], text=True).strip()
+            subprocess.run(['icacls', str(rt.root), '/grant', account + ':(OI)(CI)F', '/T'],
+                check=True, capture_output=True)
+        fixture=next(row for row in cases() if row['name']=='normal-pdb')
+        job=rt.submit_structure_in_run(run_id, encode(fixture['request']), key, fixture['data'])
+        rt.dispatch(job['job_id'])
+        # Docker cold starts can exceed Runtime.wait's 15-second polling default.
+        # Keep the request's 60-second worker budget and wait through reconciliation.
+        final=rt.wait(job['job_id'], timeout=90)
+>       assert final['state']=='succeeded' and final['run_id']==run_id
+E       AssertionError: assert ('failed' == 'succeeded'
+E         
+E         - succeeded
+E         + failed)
+
+tests\test_same_run_submission.py:41: AssertionError
+- generated xml file: D:\work\antigen.design\reports\controller-latency-20261010\full-r01.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_b1_freesasa_consumer.py::test_sealed_consumer_evidence_read_only
+FAILED tests/test_b1_input_facts.py::test_sealed_campaign_and_originals - Val...
+FAILED tests/test_b2_boundaries.py::test_sealed_boundary_execution_evidence
+FAILED tests/test_same_run_submission.py::test_same_run_proteinmpnn_keeps_source_provenance_checks
+FAILED tests/test_same_run_submission.py::test_same_run_proteinmpnn_still_rejects_corrupt_local_source[sequence]
+FAILED tests/test_same_run_submission.py::test_same_run_proteinmpnn_still_rejects_corrupt_local_source[hash]
+6 failed, 3318 passed, 17 skipped in 454.23s (0:07:34)

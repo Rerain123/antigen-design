@@ -1,0 +1,81 @@
+{
+  "envelope_type": "PHASE1_RUN_REQUEST",
+  "contract_version": "T01-PHASE1-ENVELOPE-v0.1",
+  "topology_version": "T01-PHASE1-18NODE-OFFLINE",
+  "node_registry_version": "T01-PHASE1-NODE-REGISTRY-v0.1",
+  "control_flow_version": "T01-PHASE1-CONTROL-FLOW-v0.1",
+  "envelope_id": "t01-phase1-mock-v01-env-00000000-0000-4000-8000-000000000001",
+  "created_at": "2026-09-04T08:00:00Z",
+  "execution_mode": "MOCK",
+  "execution_profile": "PHASE1_FULL",
+  "data_classification": "MOCK_DATA",
+  "scientific_compute": false,
+  "request_id": "t01-phase1-mock-v01-req-11111111-1111-4111-8111-111111111111",
+  "idempotency_key": "idem-candidate-001",
+  "scenario_ref": "t01_phase1_mock_v01.scenario.n16_missing_expression_host",
+  "inputs": {
+    "protein_sequence": "MKTAYIAKQRQISFVKSHFSRQLEERLGLIEVQANL",
+    "host_species": "Mus musculus",
+    "structure": {
+      "artifact": {
+        "artifact_id": "art-input-structure-001",
+        "artifact_role": "INPUT_STRUCTURE",
+        "uri": "artifact://examples/input/wt-structure-001",
+        "media_type": "chemical/x-pdb",
+        "format": "PDB",
+        "size_bytes": 2048,
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "integrity_status": "VERIFIED",
+        "created_at": "2026-09-04T08:00:00Z",
+        "producer": {
+          "actor_type": "USER",
+          "actor_id": "example-requester",
+          "component_version": null
+        },
+        "source_node_id": null,
+        "source_attempt_id": null,
+        "metadata": {
+          "example_only": true,
+          "original_filename": "example.pdb"
+        }
+      },
+      "structure_format": "PDB",
+      "chain_selector": "AUTO",
+      "preserve_original_format": true
+    }
+  },
+  "options": {
+    "design_objective": "general",
+    "expression_host": null
+  },
+  "input_fingerprints": {
+    "protein_sequence_sha256": "e4449e4ec83f953c4c94703d790dca35e06dd97f66f4b644c3ef45b918f0fc84",
+    "structure_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "audit": {
+    "trace_id": "trace-candidate-001",
+    "correlation_id": "corr-candidate-001",
+    "events": [
+      {
+        "event_id": "evt-request-candidate-001",
+        "sequence": 1,
+        "event_type": "REQUEST_ACCEPTED",
+        "occurred_at": "2026-09-04T08:00:00Z",
+        "actor": {
+          "actor_type": "BACKEND",
+          "actor_id": "phase1-request-validator",
+          "component_version": "SPEC_ONLY"
+        },
+        "node_id": null,
+        "attempt_id": null,
+        "edge_id": null,
+        "control_decision_id": null,
+        "details": {
+          "validation_profile": "T01-PHASE1-ENVELOPE-v0.1",
+          "remote_lookup_performed": false
+        }
+      }
+    ],
+    "audit_artifacts": []
+  }
+}

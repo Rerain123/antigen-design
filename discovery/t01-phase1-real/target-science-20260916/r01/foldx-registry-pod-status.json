@@ -1,0 +1,54 @@
+{
+  "containers": [
+    {
+      "allocatedResources": {
+        "cpu": "50m",
+        "memory": "64Mi"
+      },
+      "containerID": "containerd://9c75214fdd8f0e1bb3fafaab68e3d7d8ba74ee9ebbd08e219b41a6f9c8da513f",
+      "image": "harbor-core.base.svc.cluster.local/qcyz/antigen-design:latest",
+      "imageID": "harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:78b5875032698cafe2ef82057622dd40949e3afbae5eaf69d701effe600b7dc1",
+      "lastState": {},
+      "name": "registry",
+      "ready": false,
+      "resources": {
+        "limits": {
+          "cpu": "500m",
+          "memory": "128Mi"
+        },
+        "requests": {
+          "cpu": "50m",
+          "memory": "64Mi"
+        }
+      },
+      "restartCount": 0,
+      "started": false,
+      "state": {
+        "terminated": {
+          "containerID": "containerd://9c75214fdd8f0e1bb3fafaab68e3d7d8ba74ee9ebbd08e219b41a6f9c8da513f",
+          "exitCode": 0,
+          "finishedAt": "2026-09-16T08:23:11Z",
+          "reason": "Completed",
+          "startedAt": "2026-09-16T08:23:11Z"
+        }
+      },
+      "user": {
+        "linux": {
+          "gid": 10001,
+          "supplementalGroups": [
+            10001
+          ],
+          "uid": 10001
+        }
+      },
+      "volumeMounts": [
+        {
+          "mountPath": "/assets",
+          "name": "assets"
+        }
+      ]
+    }
+  ],
+  "name": "antigen-foldx-registry-r01",
+  "phase": "Succeeded"
+}

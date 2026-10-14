@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/alphafold3_venv/bin/python",
+    "/app/alphafold/run_alphafold.py",
+    "--json_path=/runtime/inference-r01/input.json",
+    "--model_dir=/weights/alphafold3-official-r01",
+    "--output_dir=/runtime/inference-r01/output",
+    "--run_data_pipeline=false",
+    "--run_inference=true",
+    "--num_diffusion_samples=5",
+    "--gpu_device=0"
+  ],
+  "gpu": {
+    "memory_MiB": 65536.0,
+    "name": "NVIDIA A100-SXM-64GB",
+    "uuid": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31"
+  },
+  "input_sha256": "0ecf9876339e02590b6708f8e6a4fdc8bba1b1af51106690b7e7f94638f60bcd",
+  "model_sha256": "df8bbf2621f17dd3ee21c2a921e84a50bc2b80cdc0c7971cb915c2826fee1f9b",
+  "network_policy": "DENY_ALL",
+  "source_manifest_sha256": "72c5fb24d43dc1c3c6be13ad8c4e8ead1625d4944fdd48b5d73fb4741894baac"
+}

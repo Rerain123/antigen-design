@@ -1,0 +1,1534 @@
+{
+  "scope": "B1_FREESASA_CONSUMER_DEVELOPMENT",
+  "network_interfaces": [
+    "lo"
+  ],
+  "freesasa_version": "2.2.1",
+  "observed_runtime": {
+    "python": "3.11.16",
+    "freesasa": "2.2.1",
+    "biopython": "1.88",
+    "numpy": "2.4.6"
+  },
+  "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04",
+  "plan_sha256": "972f66d8141f0cb10bf8538ee47465530069215e0e0cc440158ae2dfd303835a",
+  "cases": [
+    {
+      "id": "F-integer-pdb",
+      "status": "SUCCESS_RAW_ONLY",
+      "error_code": null,
+      "error": null,
+      "tool_invoked": true,
+      "calculation_started": true,
+      "usable_for_pipeline": false,
+      "scientific_approval": null,
+      "normal_rsa_result": null,
+      "buried_fraction": null,
+      "production_status": "NOT_DEPLOYED",
+      "route": "pdb_file",
+      "binding": {
+        "b1_binding": {
+          "run_id": "t01p1r-run-b1-sasa-F-integer-pdb",
+          "request_id": "b1-sasa-F-integer-pdb",
+          "job_id": "t01p1r-job-b1-facts-782500cc92b947789af7f312685adf64",
+          "attempt_id": "t01p1r-attempt-b1-facts-782500cc92b947789af7f312685adf64",
+          "request_sha256": "e7bb74af8453dc793b434a83b41d88d7fc0f645e04ad480fb0af6d4da2d2f9f9",
+          "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+          "structure_sha256": "4ccb9c032bbda4e4d24239dfe5c0af88fcd2ec93edda45aece70ed75e57633a1"
+        },
+        "b1_result_sha256": "c326c1f9b46ebabb8df0d3950e0a08fe93d34bea4c9fe419e055579593d2215a",
+        "b1_structure_artifact": {
+          "artifact_id": "t01p1r-artifact-b1-sasa-F-integer-pdb",
+          "run_id": "t01p1r-run-b1-sasa-F-integer-pdb",
+          "job_id": null,
+          "attempt_id": null,
+          "role": "input",
+          "media_type": "chemical/x-cif",
+          "sha256": "4ccb9c032bbda4e4d24239dfe5c0af88fcd2ec93edda45aece70ed75e57633a1",
+          "size_bytes": 1181,
+          "evidence_kind": "ENGINEERING_FIXTURE"
+        },
+        "b1_fact_artifacts": {
+          "preflight": {
+            "artifact_id": "t01p1r-artifact-b1-preflight-782500cc92b947789af7f312685adf64",
+            "run_id": "t01p1r-run-b1-sasa-F-integer-pdb",
+            "job_id": "t01p1r-job-b1-facts-782500cc92b947789af7f312685adf64",
+            "attempt_id": "t01p1r-attempt-b1-facts-782500cc92b947789af7f312685adf64",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "418fedb02ee692866a87496e9bd9a9c658bc39b3ad7245f65f660efd1c0a567c",
+            "size_bytes": 1713,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_metadata": {
+            "artifact_id": "t01p1r-artifact-b1-raw-metadata-782500cc92b947789af7f312685adf64",
+            "run_id": "t01p1r-run-b1-sasa-F-integer-pdb",
+            "job_id": "t01p1r-job-b1-facts-782500cc92b947789af7f312685adf64",
+            "attempt_id": "t01p1r-attempt-b1-facts-782500cc92b947789af7f312685adf64",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "e3d6544afeb820e3aac96a92d0a470ef0d017ee686774f29e4751211c547f0cf",
+            "size_bytes": 1635,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_addresses": {
+            "artifact_id": "t01p1r-artifact-b1-raw-addresses-782500cc92b947789af7f312685adf64",
+            "run_id": "t01p1r-run-b1-sasa-F-integer-pdb",
+            "job_id": "t01p1r-job-b1-facts-782500cc92b947789af7f312685adf64",
+            "attempt_id": "t01p1r-attempt-b1-facts-782500cc92b947789af7f312685adf64",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "6d81250cc2c7d536c6df5a962dfd629e80b7743596d0797df61a87bdaf16adc6",
+            "size_bytes": 100531,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          }
+        },
+        "consumer_selection_sha256": "feb81eb928a903a9447fad547d4860685e035dfbed6b6d5864ce3a012882d075",
+        "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+      },
+      "preparation_sha256": "76382a8375eb9c5bb83b259d69640f50a7e51a72dfeff87b3ff8207fb123ff35",
+      "atom_count": 10,
+      "residue_count": 2,
+      "total_sasa_a2": 337.53495331289275,
+      "identity_check": "PASS",
+      "radius_check": "PASS"
+    },
+    {
+      "id": "F-icode-pdb",
+      "status": "SUCCESS_RAW_ONLY",
+      "error_code": null,
+      "error": null,
+      "tool_invoked": true,
+      "calculation_started": true,
+      "usable_for_pipeline": false,
+      "scientific_approval": null,
+      "normal_rsa_result": null,
+      "buried_fraction": null,
+      "production_status": "NOT_DEPLOYED",
+      "route": "pdb_file",
+      "binding": {
+        "b1_binding": {
+          "run_id": "t01p1r-run-b1-sasa-F-icode-pdb",
+          "request_id": "b1-sasa-F-icode-pdb",
+          "job_id": "t01p1r-job-b1-facts-5c3c4ed02ed94bdf951b57ca6c2fadbc",
+          "attempt_id": "t01p1r-attempt-b1-facts-5c3c4ed02ed94bdf951b57ca6c2fadbc",
+          "request_sha256": "3ad4ea530bb309d6c314dd0bc4f38d11080ffa4de4d017e8f0ae101382ea8727",
+          "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+          "structure_sha256": "dea68ad0e4f02684729a20c1b820b171c1eb59b0e500b4a1f74422ab8f10480c"
+        },
+        "b1_result_sha256": "5d1817818146fa5bdc2042b4f5b471c9a227dd9b5704ffe3decba58ac3737d5e",
+        "b1_structure_artifact": {
+          "artifact_id": "t01p1r-artifact-b1-sasa-F-icode-pdb",
+          "run_id": "t01p1r-run-b1-sasa-F-icode-pdb",
+          "job_id": null,
+          "attempt_id": null,
+          "role": "input",
+          "media_type": "chemical/x-cif",
+          "sha256": "dea68ad0e4f02684729a20c1b820b171c1eb59b0e500b4a1f74422ab8f10480c",
+          "size_bytes": 1181,
+          "evidence_kind": "ENGINEERING_FIXTURE"
+        },
+        "b1_fact_artifacts": {
+          "preflight": {
+            "artifact_id": "t01p1r-artifact-b1-preflight-5c3c4ed02ed94bdf951b57ca6c2fadbc",
+            "run_id": "t01p1r-run-b1-sasa-F-icode-pdb",
+            "job_id": "t01p1r-job-b1-facts-5c3c4ed02ed94bdf951b57ca6c2fadbc",
+            "attempt_id": "t01p1r-attempt-b1-facts-5c3c4ed02ed94bdf951b57ca6c2fadbc",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "2143d5f3e57ec34dd0d1e12f4097075fd33fbfe33070eab845c063bb896d7ef0",
+            "size_bytes": 1709,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_metadata": {
+            "artifact_id": "t01p1r-artifact-b1-raw-metadata-5c3c4ed02ed94bdf951b57ca6c2fadbc",
+            "run_id": "t01p1r-run-b1-sasa-F-icode-pdb",
+            "job_id": "t01p1r-job-b1-facts-5c3c4ed02ed94bdf951b57ca6c2fadbc",
+            "attempt_id": "t01p1r-attempt-b1-facts-5c3c4ed02ed94bdf951b57ca6c2fadbc",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "4772bed0764eac78568306de2fb5765e280b85fc95816f9608d454626c6a749a",
+            "size_bytes": 1631,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_addresses": {
+            "artifact_id": "t01p1r-artifact-b1-raw-addresses-5c3c4ed02ed94bdf951b57ca6c2fadbc",
+            "run_id": "t01p1r-run-b1-sasa-F-icode-pdb",
+            "job_id": "t01p1r-job-b1-facts-5c3c4ed02ed94bdf951b57ca6c2fadbc",
+            "attempt_id": "t01p1r-attempt-b1-facts-5c3c4ed02ed94bdf951b57ca6c2fadbc",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "35472762ecad59e9f81de136bba35bc8edd4773b75655480123b12d35b97ea2d",
+            "size_bytes": 100408,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          }
+        },
+        "consumer_selection_sha256": "feb81eb928a903a9447fad547d4860685e035dfbed6b6d5864ce3a012882d075",
+        "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+      },
+      "preparation_sha256": "87b969744899fb5616e5dcef9c7d025d3bbc7750d9a3d84f7831a9723d926efb",
+      "atom_count": 10,
+      "residue_count": 2,
+      "total_sasa_a2": 337.53495331289275,
+      "identity_check": "PASS",
+      "radius_check": "PASS"
+    },
+    {
+      "id": "F-negative-pdb",
+      "status": "SUCCESS_RAW_ONLY",
+      "error_code": null,
+      "error": null,
+      "tool_invoked": true,
+      "calculation_started": true,
+      "usable_for_pipeline": false,
+      "scientific_approval": null,
+      "normal_rsa_result": null,
+      "buried_fraction": null,
+      "production_status": "NOT_DEPLOYED",
+      "route": "pdb_file",
+      "binding": {
+        "b1_binding": {
+          "run_id": "t01p1r-run-b1-sasa-F-negative-pdb",
+          "request_id": "b1-sasa-F-negative-pdb",
+          "job_id": "t01p1r-job-b1-facts-3db994f45a974dac9622d6c151d25785",
+          "attempt_id": "t01p1r-attempt-b1-facts-3db994f45a974dac9622d6c151d25785",
+          "request_sha256": "143a096249596105014e83bd166210de924002ae391194e7ddd3b841c8bd6849",
+          "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+          "structure_sha256": "defc3b884badef389a6238a8442b25ac6f2a6ea50e864c1a6ee269fc19b9617d"
+        },
+        "b1_result_sha256": "c017404479c921379f0013cf61aa1bba7b67158ca32d9481f18b41bf7897eaee",
+        "b1_structure_artifact": {
+          "artifact_id": "t01p1r-artifact-b1-sasa-F-negative-pdb",
+          "run_id": "t01p1r-run-b1-sasa-F-negative-pdb",
+          "job_id": null,
+          "attempt_id": null,
+          "role": "input",
+          "media_type": "chemical/x-cif",
+          "sha256": "defc3b884badef389a6238a8442b25ac6f2a6ea50e864c1a6ee269fc19b9617d",
+          "size_bytes": 1181,
+          "evidence_kind": "ENGINEERING_FIXTURE"
+        },
+        "b1_fact_artifacts": {
+          "preflight": {
+            "artifact_id": "t01p1r-artifact-b1-preflight-3db994f45a974dac9622d6c151d25785",
+            "run_id": "t01p1r-run-b1-sasa-F-negative-pdb",
+            "job_id": "t01p1r-job-b1-facts-3db994f45a974dac9622d6c151d25785",
+            "attempt_id": "t01p1r-attempt-b1-facts-3db994f45a974dac9622d6c151d25785",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "34ba2a3e49911fcf1d74c98c3694d72798ba720af125103b850edec07137030c",
+            "size_bytes": 1715,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_metadata": {
+            "artifact_id": "t01p1r-artifact-b1-raw-metadata-3db994f45a974dac9622d6c151d25785",
+            "run_id": "t01p1r-run-b1-sasa-F-negative-pdb",
+            "job_id": "t01p1r-job-b1-facts-3db994f45a974dac9622d6c151d25785",
+            "attempt_id": "t01p1r-attempt-b1-facts-3db994f45a974dac9622d6c151d25785",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "b5a2d7f12dd182a76dc074823c3d25b7e8c3dc6b96a57f777fa5f8ba6aa9bcf8",
+            "size_bytes": 1637,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_addresses": {
+            "artifact_id": "t01p1r-artifact-b1-raw-addresses-3db994f45a974dac9622d6c151d25785",
+            "run_id": "t01p1r-run-b1-sasa-F-negative-pdb",
+            "job_id": "t01p1r-job-b1-facts-3db994f45a974dac9622d6c151d25785",
+            "attempt_id": "t01p1r-attempt-b1-facts-3db994f45a974dac9622d6c151d25785",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "be685faedb7cbe8d52c89f5736968f3583af7e9f9c7a186ec3bd8d4f714618a0",
+            "size_bytes": 100533,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          }
+        },
+        "consumer_selection_sha256": "feb81eb928a903a9447fad547d4860685e035dfbed6b6d5864ce3a012882d075",
+        "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+      },
+      "preparation_sha256": "135e504d0a2e9d8305effd0d9e848e314cd90e0a6a37078c6db254e155a9295b",
+      "atom_count": 10,
+      "residue_count": 2,
+      "total_sasa_a2": 337.53495331289275,
+      "identity_check": "PASS",
+      "radius_check": "PASS"
+    },
+    {
+      "id": "F-context-ab-pdb",
+      "status": "SUCCESS_RAW_ONLY",
+      "error_code": null,
+      "error": null,
+      "tool_invoked": true,
+      "calculation_started": true,
+      "usable_for_pipeline": false,
+      "scientific_approval": null,
+      "normal_rsa_result": null,
+      "buried_fraction": null,
+      "production_status": "NOT_DEPLOYED",
+      "route": "pdb_file",
+      "binding": {
+        "b1_binding": {
+          "run_id": "t01p1r-run-b1-sasa-F-context-ab-pdb",
+          "request_id": "b1-sasa-F-context-ab-pdb",
+          "job_id": "t01p1r-job-b1-facts-e94156c753c945c98ba2bb3fa6464a8f",
+          "attempt_id": "t01p1r-attempt-b1-facts-e94156c753c945c98ba2bb3fa6464a8f",
+          "request_sha256": "af784847ec214651d346a48464bf2943e31e7b1bdcb83c7f58053778fc4e9c0b",
+          "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+          "structure_sha256": "21f58aec3a5f233dfd110c4c68b14f302ca6a7a0cc45f5b17219287608761b22"
+        },
+        "b1_result_sha256": "412ad11932e09c1a0ea3be9d9aa69949e9a9e770d9c5b527f4ee333e3f05bf88",
+        "b1_structure_artifact": {
+          "artifact_id": "t01p1r-artifact-b1-sasa-F-context-ab-pdb",
+          "run_id": "t01p1r-run-b1-sasa-F-context-ab-pdb",
+          "job_id": null,
+          "attempt_id": null,
+          "role": "input",
+          "media_type": "chemical/x-cif",
+          "sha256": "21f58aec3a5f233dfd110c4c68b14f302ca6a7a0cc45f5b17219287608761b22",
+          "size_bytes": 1181,
+          "evidence_kind": "ENGINEERING_FIXTURE"
+        },
+        "b1_fact_artifacts": {
+          "preflight": {
+            "artifact_id": "t01p1r-artifact-b1-preflight-e94156c753c945c98ba2bb3fa6464a8f",
+            "run_id": "t01p1r-run-b1-sasa-F-context-ab-pdb",
+            "job_id": "t01p1r-job-b1-facts-e94156c753c945c98ba2bb3fa6464a8f",
+            "attempt_id": "t01p1r-attempt-b1-facts-e94156c753c945c98ba2bb3fa6464a8f",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "ab8b7e61861483c330f37b19c8fc0790d5e3fc1530e23ec44d6106f251f16a0d",
+            "size_bytes": 2080,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_metadata": {
+            "artifact_id": "t01p1r-artifact-b1-raw-metadata-e94156c753c945c98ba2bb3fa6464a8f",
+            "run_id": "t01p1r-run-b1-sasa-F-context-ab-pdb",
+            "job_id": "t01p1r-job-b1-facts-e94156c753c945c98ba2bb3fa6464a8f",
+            "attempt_id": "t01p1r-attempt-b1-facts-e94156c753c945c98ba2bb3fa6464a8f",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "b3379bf3691260cf71c99a73bbb23902b3ec0762e14167f3219416aab1fcb5d3",
+            "size_bytes": 1641,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_addresses": {
+            "artifact_id": "t01p1r-artifact-b1-raw-addresses-e94156c753c945c98ba2bb3fa6464a8f",
+            "run_id": "t01p1r-run-b1-sasa-F-context-ab-pdb",
+            "job_id": "t01p1r-job-b1-facts-e94156c753c945c98ba2bb3fa6464a8f",
+            "attempt_id": "t01p1r-attempt-b1-facts-e94156c753c945c98ba2bb3fa6464a8f",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "80df62e227ba4c34625aa56491edbe9f9070a878ec7fbadf3dac184f14dceed6",
+            "size_bytes": 100889,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          }
+        },
+        "consumer_selection_sha256": "1e283eeb1fae7b4c4437ec4ee1265113dfb1d1ff563a981fefdb1b666293eac2",
+        "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+      },
+      "preparation_sha256": "c91d4583ed34835d09c1019be7b33d4bd1401634a9af76445f7f0ce70f0b164d",
+      "atom_count": 10,
+      "residue_count": 2,
+      "total_sasa_a2": 337.53495331289275,
+      "identity_check": "PASS",
+      "radius_check": "PASS"
+    },
+    {
+      "id": "F-integer-native",
+      "status": "SUCCESS_RAW_ONLY",
+      "error_code": null,
+      "error": null,
+      "tool_invoked": true,
+      "calculation_started": true,
+      "usable_for_pipeline": false,
+      "scientific_approval": null,
+      "normal_rsa_result": null,
+      "buried_fraction": null,
+      "production_status": "NOT_DEPLOYED",
+      "route": "native_atoms",
+      "binding": {
+        "b1_binding": {
+          "run_id": "t01p1r-run-b1-sasa-F-integer-native",
+          "request_id": "b1-sasa-F-integer-native",
+          "job_id": "t01p1r-job-b1-facts-d8198b56ce4b4ffdb1160bfba688fc52",
+          "attempt_id": "t01p1r-attempt-b1-facts-d8198b56ce4b4ffdb1160bfba688fc52",
+          "request_sha256": "c16b1494b63ee84998d5c44c07439d9f1ec304ec493d4c46270cedac6afbca3b",
+          "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+          "structure_sha256": "4ccb9c032bbda4e4d24239dfe5c0af88fcd2ec93edda45aece70ed75e57633a1"
+        },
+        "b1_result_sha256": "f514cd5cc44adb6c963df1a3b5d42018fdd187393229a1dd6ee46ab6d2a419b1",
+        "b1_structure_artifact": {
+          "artifact_id": "t01p1r-artifact-b1-sasa-F-integer-native",
+          "run_id": "t01p1r-run-b1-sasa-F-integer-native",
+          "job_id": null,
+          "attempt_id": null,
+          "role": "input",
+          "media_type": "chemical/x-cif",
+          "sha256": "4ccb9c032bbda4e4d24239dfe5c0af88fcd2ec93edda45aece70ed75e57633a1",
+          "size_bytes": 1181,
+          "evidence_kind": "ENGINEERING_FIXTURE"
+        },
+        "b1_fact_artifacts": {
+          "preflight": {
+            "artifact_id": "t01p1r-artifact-b1-preflight-d8198b56ce4b4ffdb1160bfba688fc52",
+            "run_id": "t01p1r-run-b1-sasa-F-integer-native",
+            "job_id": "t01p1r-job-b1-facts-d8198b56ce4b4ffdb1160bfba688fc52",
+            "attempt_id": "t01p1r-attempt-b1-facts-d8198b56ce4b4ffdb1160bfba688fc52",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "c2cba75ef36a2c44e66bad2c8b007f85e3966a397cccae974b1acdd5d1a213eb",
+            "size_bytes": 1719,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_metadata": {
+            "artifact_id": "t01p1r-artifact-b1-raw-metadata-d8198b56ce4b4ffdb1160bfba688fc52",
+            "run_id": "t01p1r-run-b1-sasa-F-integer-native",
+            "job_id": "t01p1r-job-b1-facts-d8198b56ce4b4ffdb1160bfba688fc52",
+            "attempt_id": "t01p1r-attempt-b1-facts-d8198b56ce4b4ffdb1160bfba688fc52",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "5fc6352e947feac99ba105966d86cdd2c3c0bda32ca76ade924d80a74fe73ccb",
+            "size_bytes": 1641,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_addresses": {
+            "artifact_id": "t01p1r-artifact-b1-raw-addresses-d8198b56ce4b4ffdb1160bfba688fc52",
+            "run_id": "t01p1r-run-b1-sasa-F-integer-native",
+            "job_id": "t01p1r-job-b1-facts-d8198b56ce4b4ffdb1160bfba688fc52",
+            "attempt_id": "t01p1r-attempt-b1-facts-d8198b56ce4b4ffdb1160bfba688fc52",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "6bbaa8275cc851fb5a3321de9218a018140e07cfd9c2afbed0a767ce654d3972",
+            "size_bytes": 100537,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          }
+        },
+        "consumer_selection_sha256": "5d71d87695e9cd7a952677d7657013a0f9090d951f61eb3099d4df8ebd9fca90",
+        "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+      },
+      "preparation_sha256": "1bace76f594e2aa2de90ac5dd0c7cebbb2e5327536002bb1665fe5087ab4b6ca",
+      "atom_count": 10,
+      "residue_count": 2,
+      "total_sasa_a2": 337.53495331289275,
+      "identity_check": "PASS",
+      "radius_check": "PASS"
+    },
+    {
+      "id": "F-icode-native",
+      "status": "SUCCESS_RAW_ONLY",
+      "error_code": null,
+      "error": null,
+      "tool_invoked": true,
+      "calculation_started": true,
+      "usable_for_pipeline": false,
+      "scientific_approval": null,
+      "normal_rsa_result": null,
+      "buried_fraction": null,
+      "production_status": "NOT_DEPLOYED",
+      "route": "native_atoms",
+      "binding": {
+        "b1_binding": {
+          "run_id": "t01p1r-run-b1-sasa-F-icode-native",
+          "request_id": "b1-sasa-F-icode-native",
+          "job_id": "t01p1r-job-b1-facts-1fe6f68a6e74403592b9292eb1676fa3",
+          "attempt_id": "t01p1r-attempt-b1-facts-1fe6f68a6e74403592b9292eb1676fa3",
+          "request_sha256": "d5e317c0eac577dcb5aba510014720fde466bc7e9c3c2a73267bb60f463db147",
+          "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+          "structure_sha256": "dea68ad0e4f02684729a20c1b820b171c1eb59b0e500b4a1f74422ab8f10480c"
+        },
+        "b1_result_sha256": "6cab70815807ef3343c67f5346e1e3a57c128377265ea1327bb7d44588560b8c",
+        "b1_structure_artifact": {
+          "artifact_id": "t01p1r-artifact-b1-sasa-F-icode-native",
+          "run_id": "t01p1r-run-b1-sasa-F-icode-native",
+          "job_id": null,
+          "attempt_id": null,
+          "role": "input",
+          "media_type": "chemical/x-cif",
+          "sha256": "dea68ad0e4f02684729a20c1b820b171c1eb59b0e500b4a1f74422ab8f10480c",
+          "size_bytes": 1181,
+          "evidence_kind": "ENGINEERING_FIXTURE"
+        },
+        "b1_fact_artifacts": {
+          "preflight": {
+            "artifact_id": "t01p1r-artifact-b1-preflight-1fe6f68a6e74403592b9292eb1676fa3",
+            "run_id": "t01p1r-run-b1-sasa-F-icode-native",
+            "job_id": "t01p1r-job-b1-facts-1fe6f68a6e74403592b9292eb1676fa3",
+            "attempt_id": "t01p1r-attempt-b1-facts-1fe6f68a6e74403592b9292eb1676fa3",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "f834703aeaebc5843d633d192b62a88cad81d400abb2478cb0d9895d2591255a",
+            "size_bytes": 1715,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_metadata": {
+            "artifact_id": "t01p1r-artifact-b1-raw-metadata-1fe6f68a6e74403592b9292eb1676fa3",
+            "run_id": "t01p1r-run-b1-sasa-F-icode-native",
+            "job_id": "t01p1r-job-b1-facts-1fe6f68a6e74403592b9292eb1676fa3",
+            "attempt_id": "t01p1r-attempt-b1-facts-1fe6f68a6e74403592b9292eb1676fa3",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "4bf2fe9977737f7f4dac6264315854da561d0e75b0eb119909212256ef723275",
+            "size_bytes": 1637,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_addresses": {
+            "artifact_id": "t01p1r-artifact-b1-raw-addresses-1fe6f68a6e74403592b9292eb1676fa3",
+            "run_id": "t01p1r-run-b1-sasa-F-icode-native",
+            "job_id": "t01p1r-job-b1-facts-1fe6f68a6e74403592b9292eb1676fa3",
+            "attempt_id": "t01p1r-attempt-b1-facts-1fe6f68a6e74403592b9292eb1676fa3",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "35c6971908cd745b32a4d5607b4e10ee01fd2b21c22335f319da1e5b37634c3d",
+            "size_bytes": 100414,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          }
+        },
+        "consumer_selection_sha256": "5d71d87695e9cd7a952677d7657013a0f9090d951f61eb3099d4df8ebd9fca90",
+        "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+      },
+      "preparation_sha256": "7a94cfa5c9510133afcb74733b454c8c8975a046a329c56af58e6554637670b7",
+      "atom_count": 10,
+      "residue_count": 2,
+      "total_sasa_a2": 337.53495331289275,
+      "identity_check": "PASS",
+      "radius_check": "PASS"
+    },
+    {
+      "id": "F-negative-native",
+      "status": "SUCCESS_RAW_ONLY",
+      "error_code": null,
+      "error": null,
+      "tool_invoked": true,
+      "calculation_started": true,
+      "usable_for_pipeline": false,
+      "scientific_approval": null,
+      "normal_rsa_result": null,
+      "buried_fraction": null,
+      "production_status": "NOT_DEPLOYED",
+      "route": "native_atoms",
+      "binding": {
+        "b1_binding": {
+          "run_id": "t01p1r-run-b1-sasa-F-negative-native",
+          "request_id": "b1-sasa-F-negative-native",
+          "job_id": "t01p1r-job-b1-facts-83551e252edc4c8b81b9632bbd1f3a45",
+          "attempt_id": "t01p1r-attempt-b1-facts-83551e252edc4c8b81b9632bbd1f3a45",
+          "request_sha256": "c3499ca5738b81f12e8ca3429edf926ade557442b01509bb4c1a39a105163991",
+          "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+          "structure_sha256": "defc3b884badef389a6238a8442b25ac6f2a6ea50e864c1a6ee269fc19b9617d"
+        },
+        "b1_result_sha256": "c929e21cd2bafb7eba214a01664b4c7ccad9de08531264f302cca356111493a8",
+        "b1_structure_artifact": {
+          "artifact_id": "t01p1r-artifact-b1-sasa-F-negative-native",
+          "run_id": "t01p1r-run-b1-sasa-F-negative-native",
+          "job_id": null,
+          "attempt_id": null,
+          "role": "input",
+          "media_type": "chemical/x-cif",
+          "sha256": "defc3b884badef389a6238a8442b25ac6f2a6ea50e864c1a6ee269fc19b9617d",
+          "size_bytes": 1181,
+          "evidence_kind": "ENGINEERING_FIXTURE"
+        },
+        "b1_fact_artifacts": {
+          "preflight": {
+            "artifact_id": "t01p1r-artifact-b1-preflight-83551e252edc4c8b81b9632bbd1f3a45",
+            "run_id": "t01p1r-run-b1-sasa-F-negative-native",
+            "job_id": "t01p1r-job-b1-facts-83551e252edc4c8b81b9632bbd1f3a45",
+            "attempt_id": "t01p1r-attempt-b1-facts-83551e252edc4c8b81b9632bbd1f3a45",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "4397428d5ef16b5a6a0926e3787e3acc323110ce81d6e8e779e45bd36981eea8",
+            "size_bytes": 1721,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_metadata": {
+            "artifact_id": "t01p1r-artifact-b1-raw-metadata-83551e252edc4c8b81b9632bbd1f3a45",
+            "run_id": "t01p1r-run-b1-sasa-F-negative-native",
+            "job_id": "t01p1r-job-b1-facts-83551e252edc4c8b81b9632bbd1f3a45",
+            "attempt_id": "t01p1r-attempt-b1-facts-83551e252edc4c8b81b9632bbd1f3a45",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "3ab749e97de884dd55ab977cfa7a9efd5044bbb31409a3c004240d6b5c714653",
+            "size_bytes": 1643,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_addresses": {
+            "artifact_id": "t01p1r-artifact-b1-raw-addresses-83551e252edc4c8b81b9632bbd1f3a45",
+            "run_id": "t01p1r-run-b1-sasa-F-negative-native",
+            "job_id": "t01p1r-job-b1-facts-83551e252edc4c8b81b9632bbd1f3a45",
+            "attempt_id": "t01p1r-attempt-b1-facts-83551e252edc4c8b81b9632bbd1f3a45",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "54d61746dd1359cdc9b4013f3099d6a328ada47f9dcd95b89ac6c95d8231afc4",
+            "size_bytes": 100539,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          }
+        },
+        "consumer_selection_sha256": "5d71d87695e9cd7a952677d7657013a0f9090d951f61eb3099d4df8ebd9fca90",
+        "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+      },
+      "preparation_sha256": "5d8d9197b3039683fc65fd05f4d50f5a7b6f504d971ee3ad91b0c4afa690f946",
+      "atom_count": 10,
+      "residue_count": 2,
+      "total_sasa_a2": 337.53495331289275,
+      "identity_check": "PASS",
+      "radius_check": "PASS"
+    },
+    {
+      "id": "F-char-native",
+      "status": "SUCCESS_RAW_ONLY",
+      "error_code": null,
+      "error": null,
+      "tool_invoked": true,
+      "calculation_started": true,
+      "usable_for_pipeline": false,
+      "scientific_approval": null,
+      "normal_rsa_result": null,
+      "buried_fraction": null,
+      "production_status": "NOT_DEPLOYED",
+      "route": "native_atoms",
+      "binding": {
+        "b1_binding": {
+          "run_id": "t01p1r-run-b1-sasa-F-char-native",
+          "request_id": "b1-sasa-F-char-native",
+          "job_id": "t01p1r-job-b1-facts-4a8c99d2b74d4c799a962f4f8d671de3",
+          "attempt_id": "t01p1r-attempt-b1-facts-4a8c99d2b74d4c799a962f4f8d671de3",
+          "request_sha256": "4e3c43f9f19944923b772a739bca079de30c003d6d8a1b455fba7fec55c272b6",
+          "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+          "structure_sha256": "938ccd50f3715807be76489322d2ee6089355960b6cb85e556c17ecce38451a5"
+        },
+        "b1_result_sha256": "3b61bf860c78636fc0ef6a2854d554b4464f42ed650a013aa6bbd22aa09a383e",
+        "b1_structure_artifact": {
+          "artifact_id": "t01p1r-artifact-b1-sasa-F-char-native",
+          "run_id": "t01p1r-run-b1-sasa-F-char-native",
+          "job_id": null,
+          "attempt_id": null,
+          "role": "input",
+          "media_type": "chemical/x-cif",
+          "sha256": "938ccd50f3715807be76489322d2ee6089355960b6cb85e556c17ecce38451a5",
+          "size_bytes": 1191,
+          "evidence_kind": "ENGINEERING_FIXTURE"
+        },
+        "b1_fact_artifacts": {
+          "preflight": {
+            "artifact_id": "t01p1r-artifact-b1-preflight-4a8c99d2b74d4c799a962f4f8d671de3",
+            "run_id": "t01p1r-run-b1-sasa-F-char-native",
+            "job_id": "t01p1r-job-b1-facts-4a8c99d2b74d4c799a962f4f8d671de3",
+            "attempt_id": "t01p1r-attempt-b1-facts-4a8c99d2b74d4c799a962f4f8d671de3",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "b2c9ef17dbe99f94c1eb71d8d7008831ca9f23b9365309dda295789c6f042b91",
+            "size_bytes": 1713,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_metadata": {
+            "artifact_id": "t01p1r-artifact-b1-raw-metadata-4a8c99d2b74d4c799a962f4f8d671de3",
+            "run_id": "t01p1r-run-b1-sasa-F-char-native",
+            "job_id": "t01p1r-job-b1-facts-4a8c99d2b74d4c799a962f4f8d671de3",
+            "attempt_id": "t01p1r-attempt-b1-facts-4a8c99d2b74d4c799a962f4f8d671de3",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "23c16db12f7a4362da01b413f1f235c46065804c7cf52dc7edca7fe897303759",
+            "size_bytes": 1635,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_addresses": {
+            "artifact_id": "t01p1r-artifact-b1-raw-addresses-4a8c99d2b74d4c799a962f4f8d671de3",
+            "run_id": "t01p1r-run-b1-sasa-F-char-native",
+            "job_id": "t01p1r-job-b1-facts-4a8c99d2b74d4c799a962f4f8d671de3",
+            "attempt_id": "t01p1r-attempt-b1-facts-4a8c99d2b74d4c799a962f4f8d671de3",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "53dc1df8d12e639fcf328998b9907b39c0b145cb7039c06bcb67f144adb6e5c8",
+            "size_bytes": 100303,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          }
+        },
+        "consumer_selection_sha256": "5d71d87695e9cd7a952677d7657013a0f9090d951f61eb3099d4df8ebd9fca90",
+        "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+      },
+      "preparation_sha256": "1d8af56a2b042bbaeb4d33e528e55bc7cf091fafd396f54612aaa9c377e8308a",
+      "atom_count": 10,
+      "residue_count": 2,
+      "total_sasa_a2": 337.53495331289275,
+      "identity_check": "PASS",
+      "radius_check": "PASS"
+    },
+    {
+      "id": "F-leading-zero-native",
+      "status": "SUCCESS_RAW_ONLY",
+      "error_code": null,
+      "error": null,
+      "tool_invoked": true,
+      "calculation_started": true,
+      "usable_for_pipeline": false,
+      "scientific_approval": null,
+      "normal_rsa_result": null,
+      "buried_fraction": null,
+      "production_status": "NOT_DEPLOYED",
+      "route": "native_atoms",
+      "binding": {
+        "b1_binding": {
+          "run_id": "t01p1r-run-b1-sasa-F-leading-zero-native",
+          "request_id": "b1-sasa-F-leading-zero-native",
+          "job_id": "t01p1r-job-b1-facts-108e021c3c10413982432662e254db21",
+          "attempt_id": "t01p1r-attempt-b1-facts-108e021c3c10413982432662e254db21",
+          "request_sha256": "93c0e3b832f7f5587c5a5e814bb73c75dfe4bb24ccc16542c7d544711b09cb06",
+          "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+          "structure_sha256": "45b4da2244d4ab424e810ea1071961ff8f428980599cdbdcbcfe94c05a7332c1"
+        },
+        "b1_result_sha256": "3091316f7c4a74dd8f3a96e7455e6eca66bfe8cb38e35ea75ea4b08098342e05",
+        "b1_structure_artifact": {
+          "artifact_id": "t01p1r-artifact-b1-sasa-F-leading-zero-native",
+          "run_id": "t01p1r-run-b1-sasa-F-leading-zero-native",
+          "job_id": null,
+          "attempt_id": null,
+          "role": "input",
+          "media_type": "chemical/x-cif",
+          "sha256": "45b4da2244d4ab424e810ea1071961ff8f428980599cdbdcbcfe94c05a7332c1",
+          "size_bytes": 1186,
+          "evidence_kind": "ENGINEERING_FIXTURE"
+        },
+        "b1_fact_artifacts": {
+          "preflight": {
+            "artifact_id": "t01p1r-artifact-b1-preflight-108e021c3c10413982432662e254db21",
+            "run_id": "t01p1r-run-b1-sasa-F-leading-zero-native",
+            "job_id": "t01p1r-job-b1-facts-108e021c3c10413982432662e254db21",
+            "attempt_id": "t01p1r-attempt-b1-facts-108e021c3c10413982432662e254db21",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "353b3425e8235a3dbf8b7863c69b4f202b4db70c94f8c97704cf86b76e89e7e4",
+            "size_bytes": 1729,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_metadata": {
+            "artifact_id": "t01p1r-artifact-b1-raw-metadata-108e021c3c10413982432662e254db21",
+            "run_id": "t01p1r-run-b1-sasa-F-leading-zero-native",
+            "job_id": "t01p1r-job-b1-facts-108e021c3c10413982432662e254db21",
+            "attempt_id": "t01p1r-attempt-b1-facts-108e021c3c10413982432662e254db21",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "83eb1b5a3d9d6872425f1c021f7477b50ef86faebec3cb0cf62de698ddfe09cf",
+            "size_bytes": 1651,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_addresses": {
+            "artifact_id": "t01p1r-artifact-b1-raw-addresses-108e021c3c10413982432662e254db21",
+            "run_id": "t01p1r-run-b1-sasa-F-leading-zero-native",
+            "job_id": "t01p1r-job-b1-facts-108e021c3c10413982432662e254db21",
+            "attempt_id": "t01p1r-attempt-b1-facts-108e021c3c10413982432662e254db21",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "281c8e44c7d372786b8c6b7cf8ea388482256be5dfd179336a0362f8054fe28a",
+            "size_bytes": 100434,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          }
+        },
+        "consumer_selection_sha256": "5d71d87695e9cd7a952677d7657013a0f9090d951f61eb3099d4df8ebd9fca90",
+        "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+      },
+      "preparation_sha256": "feaa40684fa1786c0b47d1c3962aa7c88f9cf7daea617d99ecdd3b4f7be88a1d",
+      "atom_count": 10,
+      "residue_count": 2,
+      "total_sasa_a2": 337.53495331289275,
+      "identity_check": "PASS",
+      "radius_check": "PASS"
+    },
+    {
+      "id": "F-context-ab-native",
+      "status": "SUCCESS_RAW_ONLY",
+      "error_code": null,
+      "error": null,
+      "tool_invoked": true,
+      "calculation_started": true,
+      "usable_for_pipeline": false,
+      "scientific_approval": null,
+      "normal_rsa_result": null,
+      "buried_fraction": null,
+      "production_status": "NOT_DEPLOYED",
+      "route": "native_atoms",
+      "binding": {
+        "b1_binding": {
+          "run_id": "t01p1r-run-b1-sasa-F-context-ab-native",
+          "request_id": "b1-sasa-F-context-ab-native",
+          "job_id": "t01p1r-job-b1-facts-0423f54f708646f9906404101e7b31ff",
+          "attempt_id": "t01p1r-attempt-b1-facts-0423f54f708646f9906404101e7b31ff",
+          "request_sha256": "45c712c718455dce5f45b5644da70e13af4b2f6c44f690b279cf91bedbf115fb",
+          "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+          "structure_sha256": "21f58aec3a5f233dfd110c4c68b14f302ca6a7a0cc45f5b17219287608761b22"
+        },
+        "b1_result_sha256": "924b49de09862ee3b355d1b0eba218633b93d0becdfad723816a0657ea9b9b91",
+        "b1_structure_artifact": {
+          "artifact_id": "t01p1r-artifact-b1-sasa-F-context-ab-native",
+          "run_id": "t01p1r-run-b1-sasa-F-context-ab-native",
+          "job_id": null,
+          "attempt_id": null,
+          "role": "input",
+          "media_type": "chemical/x-cif",
+          "sha256": "21f58aec3a5f233dfd110c4c68b14f302ca6a7a0cc45f5b17219287608761b22",
+          "size_bytes": 1181,
+          "evidence_kind": "ENGINEERING_FIXTURE"
+        },
+        "b1_fact_artifacts": {
+          "preflight": {
+            "artifact_id": "t01p1r-artifact-b1-preflight-0423f54f708646f9906404101e7b31ff",
+            "run_id": "t01p1r-run-b1-sasa-F-context-ab-native",
+            "job_id": "t01p1r-job-b1-facts-0423f54f708646f9906404101e7b31ff",
+            "attempt_id": "t01p1r-attempt-b1-facts-0423f54f708646f9906404101e7b31ff",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "9f8572226df4aa0d1538becda115bfdc00ee8272da35eb049393d5ad5d188108",
+            "size_bytes": 2086,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_metadata": {
+            "artifact_id": "t01p1r-artifact-b1-raw-metadata-0423f54f708646f9906404101e7b31ff",
+            "run_id": "t01p1r-run-b1-sasa-F-context-ab-native",
+            "job_id": "t01p1r-job-b1-facts-0423f54f708646f9906404101e7b31ff",
+            "attempt_id": "t01p1r-attempt-b1-facts-0423f54f708646f9906404101e7b31ff",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "803f99a34947a4af5aac847dca3312b94c5a3a71cf1057fc7bb55d37f5549b3e",
+            "size_bytes": 1647,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_addresses": {
+            "artifact_id": "t01p1r-artifact-b1-raw-addresses-0423f54f708646f9906404101e7b31ff",
+            "run_id": "t01p1r-run-b1-sasa-F-context-ab-native",
+            "job_id": "t01p1r-job-b1-facts-0423f54f708646f9906404101e7b31ff",
+            "attempt_id": "t01p1r-attempt-b1-facts-0423f54f708646f9906404101e7b31ff",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "a708cc8fda51f23281dd7fd31f0694bd6a028487fb8d6a975f7827e45277a172",
+            "size_bytes": 100895,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          }
+        },
+        "consumer_selection_sha256": "f8d8c8dea631086dacac92c2416f582a54ecfc0673aaaa443fedc3db9d5089f1",
+        "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+      },
+      "preparation_sha256": "9ff5e73ed538da324f1a4bf4a5fa3bf4060b701cedcff55be261ffa56b500a82",
+      "atom_count": 10,
+      "residue_count": 2,
+      "total_sasa_a2": 337.53495331289275,
+      "identity_check": "PASS",
+      "radius_check": "PASS"
+    },
+    {
+      "id": "F-long-author-native",
+      "status": "SUCCESS_RAW_ONLY",
+      "error_code": null,
+      "error": null,
+      "tool_invoked": true,
+      "calculation_started": true,
+      "usable_for_pipeline": false,
+      "scientific_approval": null,
+      "normal_rsa_result": null,
+      "buried_fraction": null,
+      "production_status": "NOT_DEPLOYED",
+      "route": "native_atoms",
+      "binding": {
+        "b1_binding": {
+          "run_id": "t01p1r-run-b1-sasa-F-long-author-native",
+          "request_id": "b1-sasa-F-long-author-native",
+          "job_id": "t01p1r-job-b1-facts-804e76acb73342e89f406216811c2635",
+          "attempt_id": "t01p1r-attempt-b1-facts-804e76acb73342e89f406216811c2635",
+          "request_sha256": "32b8bb5bd0e035604224d22a3ffd97fc23562df77840b6367785f393a7e29c34",
+          "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+          "structure_sha256": "aad3127da5127a8d53eed6fe22d0bbb45a358b4a7edaa79ea1bb5d39f668b28a"
+        },
+        "b1_result_sha256": "2e4cd6bb30c885b903a0f4e7bd7dad0961cf9a6d2cd5d0c01094732967220670",
+        "b1_structure_artifact": {
+          "artifact_id": "t01p1r-artifact-b1-sasa-F-long-author-native",
+          "run_id": "t01p1r-run-b1-sasa-F-long-author-native",
+          "job_id": null,
+          "attempt_id": null,
+          "role": "input",
+          "media_type": "chemical/x-cif",
+          "sha256": "aad3127da5127a8d53eed6fe22d0bbb45a358b4a7edaa79ea1bb5d39f668b28a",
+          "size_bytes": 1276,
+          "evidence_kind": "ENGINEERING_FIXTURE"
+        },
+        "b1_fact_artifacts": {
+          "preflight": {
+            "artifact_id": "t01p1r-artifact-b1-preflight-804e76acb73342e89f406216811c2635",
+            "run_id": "t01p1r-run-b1-sasa-F-long-author-native",
+            "job_id": "t01p1r-job-b1-facts-804e76acb73342e89f406216811c2635",
+            "attempt_id": "t01p1r-attempt-b1-facts-804e76acb73342e89f406216811c2635",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "60193d3fff629daa5ab48c23d55ae5c0a0d92a7deb8ebd528010e68d7d0991f3",
+            "size_bytes": 1727,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_metadata": {
+            "artifact_id": "t01p1r-artifact-b1-raw-metadata-804e76acb73342e89f406216811c2635",
+            "run_id": "t01p1r-run-b1-sasa-F-long-author-native",
+            "job_id": "t01p1r-job-b1-facts-804e76acb73342e89f406216811c2635",
+            "attempt_id": "t01p1r-attempt-b1-facts-804e76acb73342e89f406216811c2635",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "57be7b9c1e96555542d4638abe668d172268aa322db86852261372d27bb5aa17",
+            "size_bytes": 1649,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_addresses": {
+            "artifact_id": "t01p1r-artifact-b1-raw-addresses-804e76acb73342e89f406216811c2635",
+            "run_id": "t01p1r-run-b1-sasa-F-long-author-native",
+            "job_id": "t01p1r-job-b1-facts-804e76acb73342e89f406216811c2635",
+            "attempt_id": "t01p1r-attempt-b1-facts-804e76acb73342e89f406216811c2635",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "e660fa4063a973d8ac60c3e288ccee51025f1a686c1f328a338473a45bca77b4",
+            "size_bytes": 100594,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          }
+        },
+        "consumer_selection_sha256": "5d71d87695e9cd7a952677d7657013a0f9090d951f61eb3099d4df8ebd9fca90",
+        "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+      },
+      "preparation_sha256": "8368745e5013e01a0cb70f29c0ec8d5d2653e6e5827c3dc4969d2c036f71aae9",
+      "atom_count": 10,
+      "residue_count": 2,
+      "total_sasa_a2": 337.53495331289275,
+      "identity_check": "PASS",
+      "radius_check": "PASS"
+    },
+    {
+      "id": "F-context-a",
+      "status": "SUCCESS_RAW_ONLY",
+      "error_code": null,
+      "error": null,
+      "tool_invoked": true,
+      "calculation_started": true,
+      "usable_for_pipeline": false,
+      "scientific_approval": null,
+      "normal_rsa_result": null,
+      "buried_fraction": null,
+      "production_status": "NOT_DEPLOYED",
+      "route": "native_atoms",
+      "binding": {
+        "b1_binding": {
+          "run_id": "t01p1r-run-b1-sasa-F-context-a",
+          "request_id": "b1-sasa-F-context-a",
+          "job_id": "t01p1r-job-b1-facts-cfdc341df4d04ab9aec18a68472b7a99",
+          "attempt_id": "t01p1r-attempt-b1-facts-cfdc341df4d04ab9aec18a68472b7a99",
+          "request_sha256": "1f4dde3cdb3bf45e6e53e87715b73ae2a9383737c4cfebab5f609b5ca0ec3fcf",
+          "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+          "structure_sha256": "21f58aec3a5f233dfd110c4c68b14f302ca6a7a0cc45f5b17219287608761b22"
+        },
+        "b1_result_sha256": "0361cf6f7f960bbd3b3aba063604bd2fd8db95b0b8f718f685adde6d0c32d0b4",
+        "b1_structure_artifact": {
+          "artifact_id": "t01p1r-artifact-b1-sasa-F-context-a",
+          "run_id": "t01p1r-run-b1-sasa-F-context-a",
+          "job_id": null,
+          "attempt_id": null,
+          "role": "input",
+          "media_type": "chemical/x-cif",
+          "sha256": "21f58aec3a5f233dfd110c4c68b14f302ca6a7a0cc45f5b17219287608761b22",
+          "size_bytes": 1181,
+          "evidence_kind": "ENGINEERING_FIXTURE"
+        },
+        "b1_fact_artifacts": {
+          "preflight": {
+            "artifact_id": "t01p1r-artifact-b1-preflight-cfdc341df4d04ab9aec18a68472b7a99",
+            "run_id": "t01p1r-run-b1-sasa-F-context-a",
+            "job_id": "t01p1r-job-b1-facts-cfdc341df4d04ab9aec18a68472b7a99",
+            "attempt_id": "t01p1r-attempt-b1-facts-cfdc341df4d04ab9aec18a68472b7a99",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "e99eb1f5e93082623eb00f8e91c1a97134a1decee458505cab95138f9377863a",
+            "size_bytes": 2070,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_metadata": {
+            "artifact_id": "t01p1r-artifact-b1-raw-metadata-cfdc341df4d04ab9aec18a68472b7a99",
+            "run_id": "t01p1r-run-b1-sasa-F-context-a",
+            "job_id": "t01p1r-job-b1-facts-cfdc341df4d04ab9aec18a68472b7a99",
+            "attempt_id": "t01p1r-attempt-b1-facts-cfdc341df4d04ab9aec18a68472b7a99",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "091b53c3af2e69c477d30cc5b552db23fbce4361bbf339fa4d2c88ffc2911c08",
+            "size_bytes": 1631,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_addresses": {
+            "artifact_id": "t01p1r-artifact-b1-raw-addresses-cfdc341df4d04ab9aec18a68472b7a99",
+            "run_id": "t01p1r-run-b1-sasa-F-context-a",
+            "job_id": "t01p1r-job-b1-facts-cfdc341df4d04ab9aec18a68472b7a99",
+            "attempt_id": "t01p1r-attempt-b1-facts-cfdc341df4d04ab9aec18a68472b7a99",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "1c5ad7d78f7835d521b44c38be60791e75a8a2e7c72140b52a1d56b6ca56187b",
+            "size_bytes": 100879,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          }
+        },
+        "consumer_selection_sha256": "5d71d87695e9cd7a952677d7657013a0f9090d951f61eb3099d4df8ebd9fca90",
+        "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+      },
+      "preparation_sha256": "d4afc669ccef95634cd581856a548c325d8c43fcaa26a87e8462fc8f2dbaad88",
+      "atom_count": 5,
+      "residue_count": 1,
+      "total_sasa_a2": 214.67802886314507,
+      "identity_check": "PASS",
+      "radius_check": "PASS"
+    },
+    {
+      "id": "F-selected-second-model",
+      "status": "SUCCESS_RAW_ONLY",
+      "error_code": null,
+      "error": null,
+      "tool_invoked": true,
+      "calculation_started": true,
+      "usable_for_pipeline": false,
+      "scientific_approval": null,
+      "normal_rsa_result": null,
+      "buried_fraction": null,
+      "production_status": "NOT_DEPLOYED",
+      "route": "native_atoms",
+      "binding": {
+        "b1_binding": {
+          "run_id": "t01p1r-run-b1-sasa-F-selected-second-model",
+          "request_id": "b1-sasa-F-selected-second-model",
+          "job_id": "t01p1r-job-b1-facts-419df8b15038448faff9f8a2a1e1c56d",
+          "attempt_id": "t01p1r-attempt-b1-facts-419df8b15038448faff9f8a2a1e1c56d",
+          "request_sha256": "6a9964e4d867e7350e715ad87178b798eb346cf64618b2881466aa9d2f11d44a",
+          "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+          "structure_sha256": "363780adf5b1eda7bf3314e39b3adea29058028ac16902bab4d6975b1fb12cd5"
+        },
+        "b1_result_sha256": "ba7dcde6fd3638bfafe9dd7d2d8558bafa37b7c44e104cb1ad1ef82ebb45e7ad",
+        "b1_structure_artifact": {
+          "artifact_id": "t01p1r-artifact-b1-sasa-F-selected-second-model",
+          "run_id": "t01p1r-run-b1-sasa-F-selected-second-model",
+          "job_id": null,
+          "attempt_id": null,
+          "role": "input",
+          "media_type": "chemical/x-cif",
+          "sha256": "363780adf5b1eda7bf3314e39b3adea29058028ac16902bab4d6975b1fb12cd5",
+          "size_bytes": 1181,
+          "evidence_kind": "ENGINEERING_FIXTURE"
+        },
+        "b1_fact_artifacts": {
+          "preflight": {
+            "artifact_id": "t01p1r-artifact-b1-preflight-419df8b15038448faff9f8a2a1e1c56d",
+            "run_id": "t01p1r-run-b1-sasa-F-selected-second-model",
+            "job_id": "t01p1r-job-b1-facts-419df8b15038448faff9f8a2a1e1c56d",
+            "attempt_id": "t01p1r-attempt-b1-facts-419df8b15038448faff9f8a2a1e1c56d",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "86f266c0bad1766eec205a637668873b8560df86dec3ec45627d8f19af36697b",
+            "size_bytes": 2179,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_metadata": {
+            "artifact_id": "t01p1r-artifact-b1-raw-metadata-419df8b15038448faff9f8a2a1e1c56d",
+            "run_id": "t01p1r-run-b1-sasa-F-selected-second-model",
+            "job_id": "t01p1r-job-b1-facts-419df8b15038448faff9f8a2a1e1c56d",
+            "attempt_id": "t01p1r-attempt-b1-facts-419df8b15038448faff9f8a2a1e1c56d",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "0262eaf42afd9d61ed2fd46ba0889d97902d3d508229eca51dababd8508f9be1",
+            "size_bytes": 1655,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_addresses": {
+            "artifact_id": "t01p1r-artifact-b1-raw-addresses-419df8b15038448faff9f8a2a1e1c56d",
+            "run_id": "t01p1r-run-b1-sasa-F-selected-second-model",
+            "job_id": "t01p1r-job-b1-facts-419df8b15038448faff9f8a2a1e1c56d",
+            "attempt_id": "t01p1r-attempt-b1-facts-419df8b15038448faff9f8a2a1e1c56d",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "62a964fe5f451baaf68452b464b5cdbc1a0266431629ce24c177bd8a4f0b06e9",
+            "size_bytes": 100998,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          }
+        },
+        "consumer_selection_sha256": "0d64730cfc3e336a033808e2c3a869ae3a5c3ac1ddcdae0a4a630e7cde604590",
+        "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+      },
+      "preparation_sha256": "e0f2a935558c6ddb8617b57a009ddb8995f047d5b9b5bdef6b83de255f3c8095",
+      "atom_count": 5,
+      "residue_count": 1,
+      "total_sasa_a2": 214.67802886314507,
+      "identity_check": "PASS",
+      "radius_check": "PASS"
+    },
+    {
+      "id": "F-label-gap",
+      "status": "SUCCESS_RAW_ONLY",
+      "error_code": null,
+      "error": null,
+      "tool_invoked": true,
+      "calculation_started": true,
+      "usable_for_pipeline": false,
+      "scientific_approval": null,
+      "normal_rsa_result": null,
+      "buried_fraction": null,
+      "production_status": "NOT_DEPLOYED",
+      "route": "native_atoms",
+      "binding": {
+        "b1_binding": {
+          "run_id": "t01p1r-run-b1-sasa-F-label-gap",
+          "request_id": "b1-sasa-F-label-gap",
+          "job_id": "t01p1r-job-b1-facts-7ef956277ecd4403b628189ac5aec03c",
+          "attempt_id": "t01p1r-attempt-b1-facts-7ef956277ecd4403b628189ac5aec03c",
+          "request_sha256": "309e4493e95d6d9028bf58454a27a00630122c13de17d2faaad76b28f610bb53",
+          "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+          "structure_sha256": "6531fe7919f73106217e6bbc6ae57a65cb20dfadf3d8f44b97c1b35587bce5d0"
+        },
+        "b1_result_sha256": "487ce04dd33a7fbbf74bd67d294f85869f8e2c1aecf7de9c1cc4eeb184201102",
+        "b1_structure_artifact": {
+          "artifact_id": "t01p1r-artifact-b1-sasa-F-label-gap",
+          "run_id": "t01p1r-run-b1-sasa-F-label-gap",
+          "job_id": null,
+          "attempt_id": null,
+          "role": "input",
+          "media_type": "chemical/x-cif",
+          "sha256": "6531fe7919f73106217e6bbc6ae57a65cb20dfadf3d8f44b97c1b35587bce5d0",
+          "size_bytes": 1181,
+          "evidence_kind": "ENGINEERING_FIXTURE"
+        },
+        "b1_fact_artifacts": {
+          "preflight": {
+            "artifact_id": "t01p1r-artifact-b1-preflight-7ef956277ecd4403b628189ac5aec03c",
+            "run_id": "t01p1r-run-b1-sasa-F-label-gap",
+            "job_id": "t01p1r-job-b1-facts-7ef956277ecd4403b628189ac5aec03c",
+            "attempt_id": "t01p1r-attempt-b1-facts-7ef956277ecd4403b628189ac5aec03c",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "3fe9940f5d1f83f178a133ea5742abfe31a604bdf920b3b62ea9f2272b6afcf1",
+            "size_bytes": 1709,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_metadata": {
+            "artifact_id": "t01p1r-artifact-b1-raw-metadata-7ef956277ecd4403b628189ac5aec03c",
+            "run_id": "t01p1r-run-b1-sasa-F-label-gap",
+            "job_id": "t01p1r-job-b1-facts-7ef956277ecd4403b628189ac5aec03c",
+            "attempt_id": "t01p1r-attempt-b1-facts-7ef956277ecd4403b628189ac5aec03c",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "d2a52d16a4818d55c68256cb47af9f3c3dd7975bef41faf779df7e46fecacc9f",
+            "size_bytes": 1631,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_addresses": {
+            "artifact_id": "t01p1r-artifact-b1-raw-addresses-7ef956277ecd4403b628189ac5aec03c",
+            "run_id": "t01p1r-run-b1-sasa-F-label-gap",
+            "job_id": "t01p1r-job-b1-facts-7ef956277ecd4403b628189ac5aec03c",
+            "attempt_id": "t01p1r-attempt-b1-facts-7ef956277ecd4403b628189ac5aec03c",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "76a8ab6656b4ea33e84e0a7478bfaa89fec4eff6a4151e432ad56df1eb4c5941",
+            "size_bytes": 100527,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          }
+        },
+        "consumer_selection_sha256": "5d71d87695e9cd7a952677d7657013a0f9090d951f61eb3099d4df8ebd9fca90",
+        "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+      },
+      "preparation_sha256": "e195db0fdca9e05a35a90643cc52f095ca30cca90e61637042f82e3ea511fb24",
+      "atom_count": 10,
+      "residue_count": 2,
+      "total_sasa_a2": 337.53495331289275,
+      "identity_check": "PASS",
+      "radius_check": "PASS"
+    },
+    {
+      "id": "F-unknown-protor-radius",
+      "status": "REJECTED",
+      "error_code": "UNKNOWN_PROTOR_RADIUS",
+      "error": "Classifier returned an unknown radius; guessing is forbidden",
+      "tool_invoked": true,
+      "calculation_started": false,
+      "usable_for_pipeline": false,
+      "scientific_approval": null,
+      "normal_rsa_result": null,
+      "buried_fraction": null,
+      "production_status": "NOT_DEPLOYED",
+      "route": "native_atoms",
+      "binding": {
+        "b1_binding": {
+          "run_id": "t01p1r-run-b1-sasa-F-unknown-protor-radius",
+          "request_id": "b1-sasa-F-unknown-protor-radius",
+          "job_id": "t01p1r-job-b1-facts-50499d6fb4134c5ca9511f216a8b5838",
+          "attempt_id": "t01p1r-attempt-b1-facts-50499d6fb4134c5ca9511f216a8b5838",
+          "request_sha256": "dddb90a517a3c8672d41e597e3e07fe0647660481d4b6dcd95c31dcd2d198251",
+          "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+          "structure_sha256": "8129a704be75eb6af91a6184436cf8a220b5152477f2472a9bf2de8511571dee"
+        },
+        "b1_result_sha256": "47b2c27fd8c6d86e76cd24abea27b2431788038911f1b4756106e55dc67b14f5",
+        "b1_structure_artifact": {
+          "artifact_id": "t01p1r-artifact-b1-sasa-F-unknown-protor-radius",
+          "run_id": "t01p1r-run-b1-sasa-F-unknown-protor-radius",
+          "job_id": null,
+          "attempt_id": null,
+          "role": "input",
+          "media_type": "chemical/x-cif",
+          "sha256": "8129a704be75eb6af91a6184436cf8a220b5152477f2472a9bf2de8511571dee",
+          "size_bytes": 1183,
+          "evidence_kind": "ENGINEERING_FIXTURE"
+        },
+        "b1_fact_artifacts": {
+          "preflight": {
+            "artifact_id": "t01p1r-artifact-b1-preflight-50499d6fb4134c5ca9511f216a8b5838",
+            "run_id": "t01p1r-run-b1-sasa-F-unknown-protor-radius",
+            "job_id": "t01p1r-job-b1-facts-50499d6fb4134c5ca9511f216a8b5838",
+            "attempt_id": "t01p1r-attempt-b1-facts-50499d6fb4134c5ca9511f216a8b5838",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "9bd1af4ca3aa4e4163a31bdb92e61f024a94914f08e1b31f2696f94f06daf5ed",
+            "size_bytes": 1733,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_metadata": {
+            "artifact_id": "t01p1r-artifact-b1-raw-metadata-50499d6fb4134c5ca9511f216a8b5838",
+            "run_id": "t01p1r-run-b1-sasa-F-unknown-protor-radius",
+            "job_id": "t01p1r-job-b1-facts-50499d6fb4134c5ca9511f216a8b5838",
+            "attempt_id": "t01p1r-attempt-b1-facts-50499d6fb4134c5ca9511f216a8b5838",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "9e4731a93172e76cf6821cef38a243267f7ad9ba24958a5da69793aa1a2e18d7",
+            "size_bytes": 1655,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_addresses": {
+            "artifact_id": "t01p1r-artifact-b1-raw-addresses-50499d6fb4134c5ca9511f216a8b5838",
+            "run_id": "t01p1r-run-b1-sasa-F-unknown-protor-radius",
+            "job_id": "t01p1r-job-b1-facts-50499d6fb4134c5ca9511f216a8b5838",
+            "attempt_id": "t01p1r-attempt-b1-facts-50499d6fb4134c5ca9511f216a8b5838",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "5d195986870f095ea278c126368476d83ce21657e2560966086c8f35d95e0ba2",
+            "size_bytes": 100557,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          }
+        },
+        "consumer_selection_sha256": "5d71d87695e9cd7a952677d7657013a0f9090d951f61eb3099d4df8ebd9fca90",
+        "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+      },
+      "preparation_sha256": "6657f4cfc510c2c8b3a56cce7963c3b9440fc09115d885c322b189cf0308ac62"
+    },
+    {
+      "id": "F-water-hydrogen-ledger",
+      "status": "SUCCESS_RAW_ONLY",
+      "error_code": null,
+      "error": null,
+      "tool_invoked": true,
+      "calculation_started": true,
+      "usable_for_pipeline": false,
+      "scientific_approval": null,
+      "normal_rsa_result": null,
+      "buried_fraction": null,
+      "production_status": "NOT_DEPLOYED",
+      "route": "native_atoms",
+      "binding": {
+        "b1_binding": {
+          "run_id": "t01p1r-run-b1-sasa-F-water-hydrogen-ledger",
+          "request_id": "b1-sasa-F-water-hydrogen-ledger",
+          "job_id": "t01p1r-job-b1-facts-5dd1b4cd492a4f77b1322d6b42f5cc76",
+          "attempt_id": "t01p1r-attempt-b1-facts-5dd1b4cd492a4f77b1322d6b42f5cc76",
+          "request_sha256": "e77e92220fb5f758ca9d165e9a0182fd2b2fb6d49222de41f1b2f693d1968823",
+          "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+          "structure_sha256": "b5b9e93f1ea914a69cbc2b04e2c09621d2c2cc4d711592a768d9a36e42a88a6e"
+        },
+        "b1_result_sha256": "491abf3ee7a5eda6bf670a6f3a3d239a811f51bb92c9c46c902e8f35d13497e3",
+        "b1_structure_artifact": {
+          "artifact_id": "t01p1r-artifact-b1-sasa-F-water-hydrogen-ledger",
+          "run_id": "t01p1r-run-b1-sasa-F-water-hydrogen-ledger",
+          "job_id": null,
+          "attempt_id": null,
+          "role": "input",
+          "media_type": "chemical/x-cif",
+          "sha256": "b5b9e93f1ea914a69cbc2b04e2c09621d2c2cc4d711592a768d9a36e42a88a6e",
+          "size_bytes": 1294,
+          "evidence_kind": "ENGINEERING_FIXTURE"
+        },
+        "b1_fact_artifacts": {
+          "preflight": {
+            "artifact_id": "t01p1r-artifact-b1-preflight-5dd1b4cd492a4f77b1322d6b42f5cc76",
+            "run_id": "t01p1r-run-b1-sasa-F-water-hydrogen-ledger",
+            "job_id": "t01p1r-job-b1-facts-5dd1b4cd492a4f77b1322d6b42f5cc76",
+            "attempt_id": "t01p1r-attempt-b1-facts-5dd1b4cd492a4f77b1322d6b42f5cc76",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "81a07a9687595d811a6ff13784812e58528d2153f911bb124beb47a57fb32170",
+            "size_bytes": 1785,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_metadata": {
+            "artifact_id": "t01p1r-artifact-b1-raw-metadata-5dd1b4cd492a4f77b1322d6b42f5cc76",
+            "run_id": "t01p1r-run-b1-sasa-F-water-hydrogen-ledger",
+            "job_id": "t01p1r-job-b1-facts-5dd1b4cd492a4f77b1322d6b42f5cc76",
+            "attempt_id": "t01p1r-attempt-b1-facts-5dd1b4cd492a4f77b1322d6b42f5cc76",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "bdf9449909759a8ec8ae6dd85855bd509c8b6951e4553d5a7a3df80391729c66",
+            "size_bytes": 1655,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_addresses": {
+            "artifact_id": "t01p1r-artifact-b1-raw-addresses-5dd1b4cd492a4f77b1322d6b42f5cc76",
+            "run_id": "t01p1r-run-b1-sasa-F-water-hydrogen-ledger",
+            "job_id": "t01p1r-job-b1-facts-5dd1b4cd492a4f77b1322d6b42f5cc76",
+            "attempt_id": "t01p1r-attempt-b1-facts-5dd1b4cd492a4f77b1322d6b42f5cc76",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "90f0644e8d6d8291cc388aa262e3f19d0034c9dfa98aa79cb8eb8c27d5d0b2a8",
+            "size_bytes": 121475,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          }
+        },
+        "consumer_selection_sha256": "5d71d87695e9cd7a952677d7657013a0f9090d951f61eb3099d4df8ebd9fca90",
+        "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+      },
+      "preparation_sha256": "3fba085130322c2d30ab317aad79280f8b9a968d454ffa56c559777fb4291705",
+      "atom_count": 10,
+      "residue_count": 2,
+      "total_sasa_a2": 337.53495331289275,
+      "identity_check": "PASS",
+      "radius_check": "PASS"
+    },
+    {
+      "id": "F-precision-native_atoms",
+      "status": "SUCCESS_RAW_ONLY",
+      "error_code": null,
+      "error": null,
+      "tool_invoked": true,
+      "calculation_started": true,
+      "usable_for_pipeline": false,
+      "scientific_approval": null,
+      "normal_rsa_result": null,
+      "buried_fraction": null,
+      "production_status": "NOT_DEPLOYED",
+      "route": "native_atoms",
+      "binding": {
+        "b1_binding": {
+          "run_id": "t01p1r-run-b1-sasa-F-precision-native_atoms",
+          "request_id": "b1-sasa-F-precision-native_atoms",
+          "job_id": "t01p1r-job-b1-facts-b94f4ff2b9b540a384d36119ffdb37b2",
+          "attempt_id": "t01p1r-attempt-b1-facts-b94f4ff2b9b540a384d36119ffdb37b2",
+          "request_sha256": "4506ea32f09bc0d3a4c083173e9ff3c09a07bb78cbca757aa4b1f5d283934504",
+          "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+          "structure_sha256": "683c8c79d5d53a3c190153372aad7f3856185047027908904c2c3e1f7c30cf93"
+        },
+        "b1_result_sha256": "c1856a200e7f9087cb067abeabe9d7a3c188ec47a5c021f28db869ffa826b6ee",
+        "b1_structure_artifact": {
+          "artifact_id": "t01p1r-artifact-b1-sasa-F-precision-native_atoms",
+          "run_id": "t01p1r-run-b1-sasa-F-precision-native_atoms",
+          "job_id": null,
+          "attempt_id": null,
+          "role": "input",
+          "media_type": "chemical/x-cif",
+          "sha256": "683c8c79d5d53a3c190153372aad7f3856185047027908904c2c3e1f7c30cf93",
+          "size_bytes": 1187,
+          "evidence_kind": "ENGINEERING_FIXTURE"
+        },
+        "b1_fact_artifacts": {
+          "preflight": {
+            "artifact_id": "t01p1r-artifact-b1-preflight-b94f4ff2b9b540a384d36119ffdb37b2",
+            "run_id": "t01p1r-run-b1-sasa-F-precision-native_atoms",
+            "job_id": "t01p1r-job-b1-facts-b94f4ff2b9b540a384d36119ffdb37b2",
+            "attempt_id": "t01p1r-attempt-b1-facts-b94f4ff2b9b540a384d36119ffdb37b2",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "3a93a8e0bce0e19e90405220018458bbadffbe2e345c86aa6b4b3fb85263c32f",
+            "size_bytes": 1735,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_metadata": {
+            "artifact_id": "t01p1r-artifact-b1-raw-metadata-b94f4ff2b9b540a384d36119ffdb37b2",
+            "run_id": "t01p1r-run-b1-sasa-F-precision-native_atoms",
+            "job_id": "t01p1r-job-b1-facts-b94f4ff2b9b540a384d36119ffdb37b2",
+            "attempt_id": "t01p1r-attempt-b1-facts-b94f4ff2b9b540a384d36119ffdb37b2",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "d48a6a1cecae66318ecbe89763b299fa1ba398cc5c43ae12fc2b20f909c4fa2b",
+            "size_bytes": 1657,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_addresses": {
+            "artifact_id": "t01p1r-artifact-b1-raw-addresses-b94f4ff2b9b540a384d36119ffdb37b2",
+            "run_id": "t01p1r-run-b1-sasa-F-precision-native_atoms",
+            "job_id": "t01p1r-job-b1-facts-b94f4ff2b9b540a384d36119ffdb37b2",
+            "attempt_id": "t01p1r-attempt-b1-facts-b94f4ff2b9b540a384d36119ffdb37b2",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "a45adb1e83206a2e5789dec8db45e91c21d3526dacdd8fe0e0ab5e6999ef60f8",
+            "size_bytes": 100567,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          }
+        },
+        "consumer_selection_sha256": "5d71d87695e9cd7a952677d7657013a0f9090d951f61eb3099d4df8ebd9fca90",
+        "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+      },
+      "preparation_sha256": "d345eed232910a619e9afd36506419006c6c2d235fb5dd4e60385b9ca20abd6a",
+      "atom_count": 10,
+      "residue_count": 2,
+      "total_sasa_a2": 335.54634737207584,
+      "identity_check": "PASS",
+      "radius_check": "PASS"
+    },
+    {
+      "id": "F-precision-pdb_file",
+      "status": "SUCCESS_RAW_ONLY",
+      "error_code": null,
+      "error": null,
+      "tool_invoked": true,
+      "calculation_started": true,
+      "usable_for_pipeline": false,
+      "scientific_approval": null,
+      "normal_rsa_result": null,
+      "buried_fraction": null,
+      "production_status": "NOT_DEPLOYED",
+      "route": "pdb_file",
+      "binding": {
+        "b1_binding": {
+          "run_id": "t01p1r-run-b1-sasa-F-precision-pdb_file",
+          "request_id": "b1-sasa-F-precision-pdb_file",
+          "job_id": "t01p1r-job-b1-facts-6d8d60023236480db4197b18814d116f",
+          "attempt_id": "t01p1r-attempt-b1-facts-6d8d60023236480db4197b18814d116f",
+          "request_sha256": "319591e697b182fc4a772071aa6dc06f5e79e53d14dfdffe1d919e2241439c6f",
+          "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+          "structure_sha256": "683c8c79d5d53a3c190153372aad7f3856185047027908904c2c3e1f7c30cf93"
+        },
+        "b1_result_sha256": "57a833fd69df1745b11e7be7937a9c09a4fd29cfd3b0c40a3479f770d36d79c7",
+        "b1_structure_artifact": {
+          "artifact_id": "t01p1r-artifact-b1-sasa-F-precision-pdb_file",
+          "run_id": "t01p1r-run-b1-sasa-F-precision-pdb_file",
+          "job_id": null,
+          "attempt_id": null,
+          "role": "input",
+          "media_type": "chemical/x-cif",
+          "sha256": "683c8c79d5d53a3c190153372aad7f3856185047027908904c2c3e1f7c30cf93",
+          "size_bytes": 1187,
+          "evidence_kind": "ENGINEERING_FIXTURE"
+        },
+        "b1_fact_artifacts": {
+          "preflight": {
+            "artifact_id": "t01p1r-artifact-b1-preflight-6d8d60023236480db4197b18814d116f",
+            "run_id": "t01p1r-run-b1-sasa-F-precision-pdb_file",
+            "job_id": "t01p1r-job-b1-facts-6d8d60023236480db4197b18814d116f",
+            "attempt_id": "t01p1r-attempt-b1-facts-6d8d60023236480db4197b18814d116f",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "59d7579e95fd2ebb825235d0b5a8b2e9a424ee29c799a50dec53a2a560624323",
+            "size_bytes": 1727,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_metadata": {
+            "artifact_id": "t01p1r-artifact-b1-raw-metadata-6d8d60023236480db4197b18814d116f",
+            "run_id": "t01p1r-run-b1-sasa-F-precision-pdb_file",
+            "job_id": "t01p1r-job-b1-facts-6d8d60023236480db4197b18814d116f",
+            "attempt_id": "t01p1r-attempt-b1-facts-6d8d60023236480db4197b18814d116f",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "61078426eed1266f05d8f135b20bd5d95cd7744d28ffae4ba257dc32d2311b7b",
+            "size_bytes": 1649,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_addresses": {
+            "artifact_id": "t01p1r-artifact-b1-raw-addresses-6d8d60023236480db4197b18814d116f",
+            "run_id": "t01p1r-run-b1-sasa-F-precision-pdb_file",
+            "job_id": "t01p1r-job-b1-facts-6d8d60023236480db4197b18814d116f",
+            "attempt_id": "t01p1r-attempt-b1-facts-6d8d60023236480db4197b18814d116f",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "99ce774398d8c6790476399f7529aa323d4cfb688716d2ed1d0215e1e67ea7e2",
+            "size_bytes": 100559,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          }
+        },
+        "consumer_selection_sha256": "feb81eb928a903a9447fad547d4860685e035dfbed6b6d5864ce3a012882d075",
+        "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+      },
+      "preparation_sha256": "a9f6dc2c312f3cab1bb7082a2b30673c6b4add0952af4bc6e1ec83fa7633008d",
+      "atom_count": 10,
+      "residue_count": 2,
+      "total_sasa_a2": 335.55408176953677,
+      "identity_check": "PASS",
+      "radius_check": "PASS"
+    },
+    {
+      "id": "F-metadata",
+      "status": "SUCCESS_RAW_ONLY",
+      "error_code": null,
+      "error": null,
+      "tool_invoked": true,
+      "calculation_started": true,
+      "usable_for_pipeline": false,
+      "scientific_approval": null,
+      "normal_rsa_result": null,
+      "buried_fraction": null,
+      "production_status": "NOT_DEPLOYED",
+      "route": "native_atoms",
+      "binding": {
+        "b1_binding": {
+          "run_id": "t01p1r-run-b1-sasa-F-metadata",
+          "request_id": "b1-sasa-F-metadata",
+          "job_id": "t01p1r-job-b1-facts-b3952131846c41228dbc06161a9e51ff",
+          "attempt_id": "t01p1r-attempt-b1-facts-b3952131846c41228dbc06161a9e51ff",
+          "request_sha256": "bf7d76064508c78b1a8da4effd2690a5e8cdb8d0c3a12314aed230a870212d68",
+          "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+          "structure_sha256": "3367b1c6fb8d4f1de76effbef530d38a10c68102b9dd013e033c1efa470ab82e"
+        },
+        "b1_result_sha256": "792bfdeeef0ac2f4c8c4fd72a34c00c9148ade91131cece16a37b9f698872d03",
+        "b1_structure_artifact": {
+          "artifact_id": "t01p1r-artifact-b1-sasa-F-metadata",
+          "run_id": "t01p1r-run-b1-sasa-F-metadata",
+          "job_id": null,
+          "attempt_id": null,
+          "role": "input",
+          "media_type": "chemical/x-cif",
+          "sha256": "3367b1c6fb8d4f1de76effbef530d38a10c68102b9dd013e033c1efa470ab82e",
+          "size_bytes": 1272,
+          "evidence_kind": "ENGINEERING_FIXTURE"
+        },
+        "b1_fact_artifacts": {
+          "preflight": {
+            "artifact_id": "t01p1r-artifact-b1-preflight-b3952131846c41228dbc06161a9e51ff",
+            "run_id": "t01p1r-run-b1-sasa-F-metadata",
+            "job_id": "t01p1r-job-b1-facts-b3952131846c41228dbc06161a9e51ff",
+            "attempt_id": "t01p1r-attempt-b1-facts-b3952131846c41228dbc06161a9e51ff",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "ea4a5749e0ae35b4169e6471f6dfae1ae13a334ad923fe2fcad784c32cc9822e",
+            "size_bytes": 1707,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_metadata": {
+            "artifact_id": "t01p1r-artifact-b1-raw-metadata-b3952131846c41228dbc06161a9e51ff",
+            "run_id": "t01p1r-run-b1-sasa-F-metadata",
+            "job_id": "t01p1r-job-b1-facts-b3952131846c41228dbc06161a9e51ff",
+            "attempt_id": "t01p1r-attempt-b1-facts-b3952131846c41228dbc06161a9e51ff",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "627522003ec7421b6a235cc54e152b2cda6cfc2b11b5b7864ac1c09008aaebed",
+            "size_bytes": 2332,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          },
+          "raw_addresses": {
+            "artifact_id": "t01p1r-artifact-b1-raw-addresses-b3952131846c41228dbc06161a9e51ff",
+            "run_id": "t01p1r-run-b1-sasa-F-metadata",
+            "job_id": "t01p1r-job-b1-facts-b3952131846c41228dbc06161a9e51ff",
+            "attempt_id": "t01p1r-attempt-b1-facts-b3952131846c41228dbc06161a9e51ff",
+            "role": "result",
+            "media_type": "application/json",
+            "sha256": "b6b94e4cdc93e30b7caf0412464685f0d88e9b7a0b10363c1c95c90ece606e9e",
+            "size_bytes": 100635,
+            "evidence_kind": "ENGINEERING_FIXTURE"
+          }
+        },
+        "consumer_selection_sha256": "5d71d87695e9cd7a952677d7657013a0f9090d951f61eb3099d4df8ebd9fca90",
+        "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+      },
+      "preparation_sha256": "0309d130630be9ee4b4ad78eec921ac2b8ad3d70e8a5529ce5f31d1c4fa3f8f3",
+      "atom_count": 10,
+      "residue_count": 2,
+      "total_sasa_a2": 337.53495331289275,
+      "identity_check": "PASS",
+      "radius_check": "PASS"
+    }
+  ],
+  "production_status": "NOT_DEPLOYED",
+  "scientific_approval": null
+}

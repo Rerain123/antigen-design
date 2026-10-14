@@ -1,0 +1,65 @@
+{
+  "status": "LOCAL_CODE_VERIFIED_NOT_DEPLOYED",
+  "verified_at": "2026-10-09T00:35:10.594580+00:00",
+  "scope": [
+    "expert v2 section 10.2 prestructure existing sequence metrics",
+    "expert v2 section 10.5 evidence-backed NOT_APPLICABLE FoldX eligibility"
+  ],
+  "qualification": "ENGINEERING_VERIFICATION_ONLY",
+  "source_hashes": "changed-source-hashes.json",
+  "authority_and_frozen_assets": "source-and-preservation.json",
+  "tests": {
+    "initial_targeted": {
+      "passed": 91,
+      "failed": 1,
+      "skipped": 0
+    },
+    "final_targeted": {
+      "passed": 230,
+      "failed": 0,
+      "skipped": 0
+    },
+    "full_initial": {
+      "passed": 3117,
+      "failed": 4,
+      "skipped": 15
+    },
+    "full_initial_failures": [
+      "tests.test_expert_revision_v2_runtime::test_confirmed_empty_targets_survive_incomplete_predictors_and_recovery",
+      "tests.test_same_run_submission::test_same_run_proteinmpnn_keeps_source_provenance_checks",
+      "tests.test_same_run_submission::test_same_run_proteinmpnn_still_rejects_corrupt_local_source[sequence]",
+      "tests.test_same_run_submission::test_same_run_proteinmpnn_still_rejects_corrupt_local_source[hash]"
+    ],
+    "failed_modules_recheck": {
+      "passed": 16,
+      "failed": 0,
+      "skipped": 0
+    },
+    "combined_original_full_set": {
+      "passed": 3121,
+      "failed": 0,
+      "skipped": 15
+    },
+    "single_run_full_all_green": false
+  },
+  "preserved": {
+    "new_online_scientific_jobs": 0,
+    "online_deployment_changed": false,
+    "cancelled_run_resumed": false,
+    "scientific_release": false,
+    "new_thresholds": false,
+    "new_ranking_weights": false,
+    "legacy_v1_regressions": "PASS",
+    "frozen_assets": 457,
+    "legacy_full_mock_and_S07_business_runs": "NOT_RERUN"
+  },
+  "remaining": [
+    "Online deployment not performed by this task",
+    "Missing scientific inputs, calibration and signoff remain unchanged"
+  ],
+  "status_document": "docs\\project\\STATUS.md",
+  "documentation": {
+    "current_issues": [],
+    "historical_reference_count": 31
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "T01-PHASE1-MOCK-M3-PROVIDER-BINDING-SCHEMA-v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "document_type",
+    "binding_version",
+    "binding_profile",
+    "target_profile_ref",
+    "dify_version",
+    "dsl_version",
+    "provider_display_name",
+    "mcp_provider_id",
+    "target_provider_record_id",
+    "registry_version",
+    "registry_sha256",
+    "template_sha256",
+    "tool_ids",
+    "scientific_compute"
+  ],
+  "properties": {
+    "$schema": {"type": "string"},
+    "document_type": {"const": "T01_PHASE1_MOCK_PROVIDER_BINDING"},
+    "binding_version": {"const": "T01-PHASE1-MOCK-M3-PROVIDER-BINDING-v0.1"},
+    "binding_profile": {"type": "string", "pattern": "^[a-z][a-z0-9_-]{0,31}$", "not": {"const": "legacy"}},
+    "target_profile_ref": {"type": "string", "pattern": "^dify/t01-phase1-mock-v0\\.1/evidence/m3/[a-z][a-z0-9_-]{0,31}/target-preflight\\.json$"},
+    "dify_version": {"type": "string", "minLength": 1},
+    "dsl_version": {"const": "0.7.0"},
+    "provider_display_name": {"const": "t01-phase1-mock-mcp-v01"},
+    "mcp_provider_id": {"type": "string", "minLength": 1},
+    "target_provider_record_id": {"type": "string", "format": "uuid"},
+    "registry_version": {"type": "string", "minLength": 1},
+    "registry_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "template_sha256": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["PRIMARY", "DEBUG"],
+      "properties": {
+        "PRIMARY": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "DEBUG": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "tool_ids": {"type": "array", "minItems": 26, "maxItems": 26, "uniqueItems": true, "items": {"type": "string"}},
+    "scientific_compute": {"const": false}
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "profile_id": "t01.freesasa.protor.lr200.tien2013",
+  "version": "0.1.0",
+  "status": "CANDIDATE_REQUIRES_SCIENTIFIC_REVIEW",
+  "scientific_approval": null,
+  "production_approved": false,
+  "tool_interface_version": "0.1.0",
+  "runtime": {
+    "freesasa": "2.2.1",
+    "biopython": "1.88",
+    "numpy": "2.4.6",
+    "python": "3.11.16",
+    "image_id": "sha256:bb6c6b5ce1add12dc9bda3538a218568a9e80c048c12525fc130eaa970dbb9e5",
+    "platform": "linux/amd64",
+    "network": "none",
+    "image_portability": "Local image ID; target registry/archive receipt and validation still required"
+  },
+  "calculation": {
+    "entry": "freesasa.Structure + freesasa.calc",
+    "classifier": "protor",
+    "parameters": {"algorithm":"LeeRichards", "probe-radius":1.4, "n-slices":200, "n-threads":1},
+    "inactive_parameter": "n-points does not control LeeRichards; do not include it as a tunable production parameter",
+    "structure_options": {"hetatm":false, "hydrogen":false, "join-models":false, "skip-unknown":false, "halt-at-unknown":true},
+    "area": "Absolute per-residue SASA in square angstroms, main chain plus side chain",
+    "record_actual_atomic_radii": true
+  },
+  "structure_context": {
+    "status": "PROPOSED_POLICY_NOT_YET_SCIENTIFICALLY_APPROVED",
+    "model": "Require explicit selected model if multiple; record original model serial and zero-based index; never silently select first or join models",
+    "chains": "Use all declared protein chains of the selected model for occlusion; report mapped design-chain residues; keep other chains fixed. Context must be explicitly accepted for each input; do not infer biological assembly",
+    "water": "Exclude water from the proposed protein context, retain inventory and counts",
+    "nonprotein": "Ligand, metal, nucleic-acid or modified-residue context requires an explicit reviewed profile; do not silently discard by ATOM/HETATM flag",
+    "hydrogen": "Use ProtOr heavy-atom model; exclude H/D by element and retain counts; full atom wording includes all heavy main-chain and side-chain atoms",
+    "altloc": "Require declared conformer selection if disordered; preserve original IDs, do not silently accept parser's default selection",
+    "occupancy": "Retain and report occupancy; no area weighting. Zero/unknown/partial occupancy requires input-context review; do not delete by implicit cutoff",
+    "unknown_atom": "Halt classifier guessing; preserve diagnostics. Affected residue RSA is null and WARNING in a reviewed degradation path; if surrounding occlusion is unvalidated the tool result is unusable, never skip unknown atoms to obtain a successful result",
+    "missing_atoms": "No automatic repair or hydrogen/side-chain generation. Missing coordinate positions use null plus WARNING. CA-only input is not an accepted area reference. Heavy-atom completeness templates/denominator remain OI-023",
+    "mapping": "Only reviewed unique R-58 mappings may feed pipeline; preserve chain_id + auth_resSeq + insertion_code; no positional zip without address verification",
+    "format": "Keep original mmCIF/PDB and hash; any derived PDB needs atom/address/count/coordinate roundtrip. Unrepresentable chain IDs, numbers, MODEL or coordinate fields require explicit mapping/review, never truncation"
+  },
+  "normalization": {
+    "authority": "ToolSpec_C34_FreeSASA_v10.5.md sections 2/2b/3/4",
+    "table": "Tien et al. 2013 Table 1 Theoretical, Gly-X-Gly",
+    "max_asa_a2": {"A":129.0,"R":274.0,"N":195.0,"D":193.0,"C":167.0,"E":223.0,"Q":225.0,"G":104.0,"H":224.0,"I":197.0,"L":201.0,"K":236.0,"M":224.0,"F":240.0,"P":159.0,"S":155.0,"T":172.0,"W":285.0,"Y":263.0,"V":174.0},
+    "formula": "residue absolute SASA / type-specific max ASA",
+    "native_relative_area": "Diagnostic only; never used as project RSA",
+    "buried_fraction": "count(non-null RSA < 0.20) / full input sequence length",
+    "rounding": "No pre-classification rounding; store unrounded values",
+    "missing_or_unknown_residue": "null + WARNING; no zero or Gly substitution",
+    "out_of_domain": "Finite raw RSA outside [0,1] is a diagnostic, not an accepted result; OUTPUT_INVALID, result=null, usable=false, requires_review=true; preserve raw area and ratio, do not clamp, epsilon-expand domain or change the Tien table",
+    "out_of_domain_open_item": "OI-027",
+    "scope": "Internal S-11 data only; do not add RSA to final Candidate schema"
+  },
+  "numerical_acceptance_proposal": {
+    "status": "PREDECLARED_ENGINEERING_SCREENING_TARGETS_PENDING_SCIENTIFIC_ACCEPTANCE",
+    "scope": "Same selected atoms, coordinates, radii, probe and residue identity only; excludes model/context/experimental uncertainty",
+    "total_relative_error_max": 0.005,
+    "per_residue_absolute_rsa_error_max": 0.01,
+    "equivalent_per_residue_absolute_sasa_error_a2": "0.01 * Tien maximum for that residue; not a fixed area or a relative-RSA tolerance",
+    "reference_convergence_max_absolute_rsa_delta": 0.002,
+    "independent_reference": "Biopython 1.88 ShrakeRupley with shared exact coordinates/ProtOr radii; 61440 points for the recorded sample, check convergence on each new reference sample",
+    "reference_uncertainty": "Convergence difference is empirical, not a rigorous error bound",
+    "decision_consistency": "No classification discrepancy at any consumed boundary, including RSA<0.20 and S-39 terminal means at 0.20/0.40; crossing requires review even if numerical budgets pass",
+    "must_also_pass": ["finite areas", "unique complete address mapping for compared positions", "same null mask", "allowed RSA domain", "approved structure context", "accepted sample coverage"],
+    "cannot_release": ["unverified mapping", "out-of-domain RSA", "unapproved science decisions", "unvalidated target environment"],
+    "source": "reference_spec.json targets were written before the first study run; these are a proposed engineering error budget, not tolerances published by the paper or expert package"
+  }
+}

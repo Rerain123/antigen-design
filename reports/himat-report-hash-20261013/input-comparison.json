@@ -1,0 +1,39 @@
+{
+  "job_id": "t01p1r-job-7ff412a6d443473bae22b1be05429206",
+  "run_id": "t01p1r-run-da49f67bfc624e84bbbd99806d866a74",
+  "state": "succeeded",
+  "revision": 385,
+  "esm_comparisons": [
+    {
+      "node": "cheap0",
+      "job_id": "t01p1r-job-690a0a1d9a764c61bd297a024dcb0ae6",
+      "stored_profile": {
+        "id": "w5-n12-esm-if1-gpu-local-development",
+        "sha256": "2f2a46125989c01e250c569ee6d7fd5afc746e74f9c28c642073292c087f4127",
+        "version": "0.1.0"
+      },
+      "current_profile": {
+        "id": "w5-n12-esm-if1-gpu-local-development",
+        "version": "0.1.0",
+        "sha256": "71990d3deb3cfd36154d6e824f84e5c6d6d1f6e82358a78385cbe1fc9e3f39f6"
+      },
+      "differences": [
+        {
+          "path": "native/payload.json",
+          "stored_sha256": "62ad95a09e1533b494dc7109729fc4d7149de73d3c84f48b1d57272e13f35d4c",
+          "current_sha256": "d3290c308bb603869d52ad085e11fd6384aa362c78046474c58fbe385b81929e",
+          "fields": [
+            {
+              "path": "/signature/execution_profile/sha256",
+              "stored": "2f2a46125989c01e250c569ee6d7fd5afc746e74f9c28c642073292c087f4127",
+              "current": "71990d3deb3cfd36154d6e824f84e5c6d6d1f6e82358a78385cbe1fc9e3f39f6"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "source_mismatches": [],
+  "python": "3.11.16 (main, Sep  1 2026, 00:14:22) [GCC 12.2.0]",
+  "executable_sha256": "22e747b1e8a04719d4af2094133a0479b33728d2e4d03ab01539064dc6f45cfb"
+}

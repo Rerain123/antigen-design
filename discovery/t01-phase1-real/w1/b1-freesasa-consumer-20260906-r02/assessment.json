@@ -1,0 +1,303 @@
+{
+  "status": "PASS_ENGINEERING_ONLY",
+  "plan_sha256": "972f66d8141f0cb10bf8538ee47465530069215e0e0cc440158ae2dfd303835a",
+  "cases": [
+    {
+      "id": "F-integer-pdb",
+      "status": "SUCCESS_RAW_ONLY",
+      "atom_count": 10,
+      "residue_count": 2,
+      "unordered_join": "PASS"
+    },
+    {
+      "id": "F-icode-pdb",
+      "status": "SUCCESS_RAW_ONLY",
+      "atom_count": 10,
+      "residue_count": 2,
+      "unordered_join": "PASS"
+    },
+    {
+      "id": "F-negative-pdb",
+      "status": "SUCCESS_RAW_ONLY",
+      "atom_count": 10,
+      "residue_count": 2,
+      "unordered_join": "PASS"
+    },
+    {
+      "id": "F-char-pdb",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "PDB_ADDRESS_UNREPRESENTABLE"
+    },
+    {
+      "id": "F-leading-zero-pdb",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "PDB_ADDRESS_UNREPRESENTABLE"
+    },
+    {
+      "id": "F-char-icode-collision-pdb",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "PDB_ADDRESS_UNREPRESENTABLE"
+    },
+    {
+      "id": "F-numeric-icode-collision-pdb",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "FREE_RESIDUE_TOKEN_COLLISION"
+    },
+    {
+      "id": "F-context-ab-pdb",
+      "status": "SUCCESS_RAW_ONLY",
+      "atom_count": 10,
+      "residue_count": 2,
+      "unordered_join": "PASS"
+    },
+    {
+      "id": "F-integer-native",
+      "status": "SUCCESS_RAW_ONLY",
+      "atom_count": 10,
+      "residue_count": 2,
+      "unordered_join": "PASS"
+    },
+    {
+      "id": "F-icode-native",
+      "status": "SUCCESS_RAW_ONLY",
+      "atom_count": 10,
+      "residue_count": 2,
+      "unordered_join": "PASS"
+    },
+    {
+      "id": "F-negative-native",
+      "status": "SUCCESS_RAW_ONLY",
+      "atom_count": 10,
+      "residue_count": 2,
+      "unordered_join": "PASS"
+    },
+    {
+      "id": "F-char-native",
+      "status": "SUCCESS_RAW_ONLY",
+      "atom_count": 10,
+      "residue_count": 2,
+      "unordered_join": "PASS"
+    },
+    {
+      "id": "F-leading-zero-native",
+      "status": "SUCCESS_RAW_ONLY",
+      "atom_count": 10,
+      "residue_count": 2,
+      "unordered_join": "PASS"
+    },
+    {
+      "id": "F-char-icode-collision-native",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "FREE_RESIDUE_TOKEN_COLLISION"
+    },
+    {
+      "id": "F-numeric-icode-collision-native",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "FREE_RESIDUE_TOKEN_COLLISION"
+    },
+    {
+      "id": "F-context-ab-native",
+      "status": "SUCCESS_RAW_ONLY",
+      "atom_count": 10,
+      "residue_count": 2,
+      "unordered_join": "PASS"
+    },
+    {
+      "id": "F-long-author-native",
+      "status": "SUCCESS_RAW_ONLY",
+      "atom_count": 10,
+      "residue_count": 2,
+      "unordered_join": "PASS"
+    },
+    {
+      "id": "F-long-chain",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "CHAIN_UNREPRESENTABLE"
+    },
+    {
+      "id": "F-unknown-icode",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "ICODE_UNKNOWN"
+    },
+    {
+      "id": "F-literal-question-icode",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "ICODE_UNREPRESENTABLE"
+    },
+    {
+      "id": "F-wrong-model",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "MODEL_SELECTION_MISMATCH"
+    },
+    {
+      "id": "F-empty-context",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "CONTEXT_SELECTION_INVALID"
+    },
+    {
+      "id": "F-duplicate-context",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "CONTEXT_SELECTION_INVALID"
+    },
+    {
+      "id": "F-missing-context-chain",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "CONTEXT_CHAIN_NOT_FOUND"
+    },
+    {
+      "id": "F-excluded-ingestion-chain",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "INGESTION_CHAIN_EXCLUDED"
+    },
+    {
+      "id": "F-context-a",
+      "status": "SUCCESS_RAW_ONLY",
+      "atom_count": 5,
+      "residue_count": 1,
+      "unordered_join": "PASS"
+    },
+    {
+      "id": "F-selected-second-model",
+      "status": "SUCCESS_RAW_ONLY",
+      "atom_count": 5,
+      "residue_count": 1,
+      "unordered_join": "PASS"
+    },
+    {
+      "id": "F-label-gap",
+      "status": "SUCCESS_RAW_ONLY",
+      "atom_count": 10,
+      "residue_count": 2,
+      "unordered_join": "PASS"
+    },
+    {
+      "id": "F-label-namespace-collision",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "FREE_RESIDUE_TOKEN_COLLISION"
+    },
+    {
+      "id": "F-altloc",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "ALTLOC_REVIEW_REQUIRED"
+    },
+    {
+      "id": "F-partial-occupancy",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "OCCUPANCY_REVIEW_REQUIRED"
+    },
+    {
+      "id": "F-zero-occupancy",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "OCCUPANCY_REVIEW_REQUIRED"
+    },
+    {
+      "id": "F-unknown-element",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "ELEMENT_UNAVAILABLE"
+    },
+    {
+      "id": "F-conflicting-element",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "ATOM_ELEMENT_CONFLICT"
+    },
+    {
+      "id": "F-atom-namespace",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "ATOM_NAMESPACE_CONFLICT"
+    },
+    {
+      "id": "F-residue-namespace",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "RESIDUE_NAMESPACE_CONFLICT"
+    },
+    {
+      "id": "F-nonprotein",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "CONTEXT_REVIEW_REQUIRED"
+    },
+    {
+      "id": "F-unknown-protor-radius",
+      "status": "EXPECTED_CLASSIFIER_REJECTION",
+      "error_code": "UNKNOWN_PROTOR_RADIUS"
+    },
+    {
+      "id": "F-water-hydrogen-ledger",
+      "status": "SUCCESS_RAW_ONLY",
+      "atom_count": 10,
+      "residue_count": 2,
+      "unordered_join": "PASS"
+    },
+    {
+      "id": "F-precision-native_atoms",
+      "status": "SUCCESS_RAW_ONLY",
+      "atom_count": 10,
+      "residue_count": 2,
+      "unordered_join": "PASS"
+    },
+    {
+      "id": "F-precision-pdb_file",
+      "status": "SUCCESS_RAW_ONLY",
+      "atom_count": 10,
+      "residue_count": 2,
+      "unordered_join": "PASS"
+    },
+    {
+      "id": "F-metadata",
+      "status": "SUCCESS_RAW_ONLY",
+      "atom_count": 10,
+      "residue_count": 2,
+      "unordered_join": "PASS"
+    },
+    {
+      "id": "F-rejected-b1",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "B1_PREFLIGHT_REJECTED"
+    },
+    {
+      "id": "F-original-1ubq",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "ICODE_UNKNOWN"
+    },
+    {
+      "id": "F-historical-derived-1ubq",
+      "status": "EXPECTED_PREPARATION_REJECTION",
+      "error_code": "OCCUPANCY_REVIEW_REQUIRED"
+    }
+  ],
+  "counts": {
+    "SUCCESS_RAW_ONLY": 18,
+    "EXPECTED_PREPARATION_REJECTION": 26,
+    "EXPECTED_CLASSIFIER_REJECTION": 1
+  },
+  "route_parity": [
+    {
+      "group": "integer",
+      "status": "EXACT_EQUAL",
+      "compared": "tool identities/radii, atom and raw residue areas"
+    },
+    {
+      "group": "icode",
+      "status": "EXACT_EQUAL",
+      "compared": "tool identities/radii, atom and raw residue areas"
+    },
+    {
+      "group": "negative",
+      "status": "EXACT_EQUAL",
+      "compared": "tool identities/radii, atom and raw residue areas"
+    },
+    {
+      "group": "context-ab",
+      "status": "EXACT_EQUAL",
+      "compared": "tool identities/radii, atom and raw residue areas"
+    }
+  ],
+  "context_check": {
+    "status": "PASS",
+    "chain_a_only_sasa_a2": 214.67802886314507,
+    "chain_a_in_ab_sasa_a2": 172.7752558998045
+  },
+  "scientific_acceptance": "NOT_RUN",
+  "mapping_approval": "NOT_GRANTED",
+  "production_status": "NOT_DEPLOYED",
+  "production_workers_enabled": false
+}

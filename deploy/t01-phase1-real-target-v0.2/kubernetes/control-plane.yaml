@@ -1,0 +1,237 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: t01-phase1-real
+  labels:
+    pod-security.kubernetes.io/enforce: restricted
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: t01-control-plane
+  namespace: t01-phase1-real
+automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: t01-service-credentials
+  namespace: t01-phase1-real
+type: Opaque
+stringData:
+  credentials.json: '{"replace_at_site":true}'
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: t01-control-plane-config
+  namespace: t01-phase1-real
+data:
+  release.yaml: 'completion_boundary: LOCAL_RELEASE_CANDIDATE_ONLY
+
+    production_status: NOT_DEPLOYED
+
+    scientific_gate: CLOSED
+
+    gpu_count_estimate: 1
+
+    gpu_memory_gib_estimate: 64
+
+    project_cpu_estimate: 32
+
+    project_memory_gib_estimate: 192
+
+    '
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: t01-phase1-real-runtime
+  namespace: t01-phase1-real
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Ti
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: t01-scientific-job-controller
+  namespace: t01-phase1-real
+rules:
+- apiGroups:
+  - batch
+  resources:
+  - jobs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ''
+  resources:
+  - pods
+  - pods/log
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - networking.k8s.io
+  resources:
+  - networkpolicies
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: t01-control-plane-jobs
+  namespace: t01-phase1-real
+subjects:
+- kind: ServiceAccount
+  name: t01-control-plane
+  namespace: t01-phase1-real
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: t01-scientific-job-controller
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: t01-control-plane
+  namespace: t01-phase1-real
+  labels: &id001
+    app.kubernetes.io/name: t01-phase1-real
+    app.kubernetes.io/component: control-plane
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels: *id001
+  template:
+    metadata:
+      labels: *id001
+    spec:
+      serviceAccountName: t01-control-plane
+      automountServiceAccountToken: true
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: service
+        image: t01-phase1-real-control@sha256:cc131ca0e8a965d3f1b06f96963a7d3c320d70632e9b015d6cb4e0197a835b70
+        imagePullPolicy: IfNotPresent
+        args:
+        - --host
+        - 0.0.0.0
+        - --port
+        - '18083'
+        - --runtime-root
+        - /var/lib/t01/runtime
+        env:
+        - name: T01_REAL_SERVICE_CREDENTIALS_FILE
+          value: /run/secrets/t01/credentials.json
+        ports:
+        - name: http
+          containerPort: 18083
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: http
+          periodSeconds: 5
+          timeoutSeconds: 2
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: http
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 2
+        resources:
+          requests:
+            cpu: '2'
+            memory: 8Gi
+          limits:
+            cpu: '4'
+            memory: 16Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+        volumeMounts:
+        - name: runtime
+          mountPath: /var/lib/t01
+        - name: credentials
+          mountPath: /run/secrets/t01
+          readOnly: true
+        - name: config
+          mountPath: /etc/t01
+          readOnly: true
+        - name: tmp
+          mountPath: /tmp
+      volumes:
+      - name: runtime
+        persistentVolumeClaim:
+          claimName: t01-phase1-real-runtime
+      - name: credentials
+        secret:
+          secretName: t01-service-credentials
+          defaultMode: 256
+      - name: config
+        configMap:
+          name: t01-control-plane-config
+          defaultMode: 292
+      - name: tmp
+        emptyDir:
+          sizeLimit: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: t01-control-plane
+  namespace: t01-phase1-real
+  labels: &id001
+    app.kubernetes.io/name: t01-phase1-real
+    app.kubernetes.io/component: control-plane
+spec:
+  type: ClusterIP
+  selector: *id001
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+    protocol: TCP
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: t01-scientific-offline
+  namespace: t01-phase1-real
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/component: scientific-job
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress: []
+  egress: []

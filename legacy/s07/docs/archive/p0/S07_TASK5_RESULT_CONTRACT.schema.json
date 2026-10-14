@@ -1,0 +1,1047 @@
+{
+  "$defs": {
+    "Alignment": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_artifact_id": {
+          "title": "Evidence Artifact Id",
+          "type": "string"
+        },
+        "exact_full_length": {
+          "title": "Exact Full Length",
+          "type": "boolean"
+        },
+        "identity_pct": {
+          "anyOf": [
+            {
+              "maximum": 100,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Identity Pct"
+        },
+        "query_coverage": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Query Coverage"
+        },
+        "query_length": {
+          "exclusiveMinimum": 0,
+          "title": "Query Length",
+          "type": "integer"
+        },
+        "query_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Query Sha256",
+          "type": "string"
+        },
+        "reference_length": {
+          "exclusiveMinimum": 0,
+          "title": "Reference Length",
+          "type": "integer"
+        },
+        "reference_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Reference Sha256",
+          "type": "string"
+        },
+        "target_coverage": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Target Coverage"
+        }
+      },
+      "required": [
+        "query_length",
+        "reference_length",
+        "query_sha256",
+        "reference_sha256",
+        "exact_full_length",
+        "evidence_artifact_id"
+      ],
+      "title": "Alignment",
+      "type": "object"
+    },
+    "ArtifactRef": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "minLength": 1,
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "artifact_type": {
+          "minLength": 1,
+          "title": "Artifact Type",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "logical_name": {
+          "minLength": 1,
+          "title": "Logical Name",
+          "type": "string"
+        },
+        "media_type": {
+          "minLength": 1,
+          "title": "Media Type",
+          "type": "string"
+        },
+        "producer_step_id": {
+          "minLength": 1,
+          "title": "Producer Step Id",
+          "type": "string"
+        },
+        "resource_uri": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Resource Uri"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size_bytes": {
+          "minimum": 0,
+          "title": "Size Bytes",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "logical_name",
+        "artifact_type",
+        "media_type",
+        "sha256",
+        "size_bytes",
+        "producer_step_id",
+        "created_at",
+        "resource_uri"
+      ],
+      "title": "ArtifactRef",
+      "type": "object"
+    },
+    "Candidate": {
+      "additionalProperties": false,
+      "properties": {
+        "accession": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Accession"
+        },
+        "alignment": {
+          "$ref": "#/$defs/Alignment"
+        },
+        "assembly_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Assembly Id"
+        },
+        "auth_asym_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Auth Asym Id"
+        },
+        "candidate_id": {
+          "title": "Candidate Id",
+          "type": "string"
+        },
+        "confidence_artifact_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Confidence Artifact Ids",
+          "type": "array"
+        },
+        "coordinate_mapping": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CoordinateMapping"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "eligibility": {
+          "enum": [
+            "ELIGIBLE_PROVISIONAL",
+            "INELIGIBLE",
+            "REVIEW_REQUIRED"
+          ],
+          "title": "Eligibility",
+          "type": "string"
+        },
+        "entity_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Entity Id"
+        },
+        "entry_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Entry Id"
+        },
+        "label_asym_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Label Asym Id"
+        },
+        "method": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Method"
+        },
+        "model_number": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model Number"
+        },
+        "model_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Model Version"
+        },
+        "organism_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Organism Name"
+        },
+        "quality_assessment": {
+          "const": "PENDING_S09",
+          "title": "Quality Assessment",
+          "type": "string"
+        },
+        "raw_confidence_summary": {
+          "additionalProperties": true,
+          "title": "Raw Confidence Summary",
+          "type": "object"
+        },
+        "reason_codes": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Reason Codes",
+          "type": "array"
+        },
+        "resolution_angstrom": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Resolution Angstrom"
+        },
+        "source": {
+          "enum": [
+            "experimental",
+            "alphafolddb"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "source_object_id": {
+          "title": "Source Object Id",
+          "type": "string"
+        },
+        "structure_artifact_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Structure Artifact Id"
+        }
+      },
+      "required": [
+        "candidate_id",
+        "source",
+        "source_object_id",
+        "entry_id",
+        "entity_id",
+        "label_asym_id",
+        "auth_asym_id",
+        "assembly_id",
+        "accession",
+        "model_version",
+        "organism_name",
+        "method",
+        "alignment",
+        "coordinate_mapping",
+        "eligibility",
+        "reason_codes",
+        "structure_artifact_id",
+        "confidence_artifact_ids",
+        "raw_confidence_summary",
+        "quality_assessment"
+      ],
+      "title": "Candidate",
+      "type": "object"
+    },
+    "CoordinateMapping": {
+      "additionalProperties": false,
+      "properties": {
+        "mapped_count": {
+          "exclusiveMinimum": 0,
+          "title": "Mapped Count",
+          "type": "integer"
+        },
+        "missing_ranges": {
+          "items": {
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "type": "array"
+          },
+          "title": "Missing Ranges",
+          "type": "array"
+        },
+        "per_residue_artifact_id": {
+          "title": "Per Residue Artifact Id",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "FULL",
+            "PARTIAL"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "target_length": {
+          "exclusiveMinimum": 0,
+          "title": "Target Length",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "status",
+        "target_length",
+        "mapped_count",
+        "missing_ranges",
+        "per_residue_artifact_id"
+      ],
+      "title": "CoordinateMapping",
+      "type": "object"
+    },
+    "ErrorCategory": {
+      "enum": [
+        "INPUT_VALIDATION",
+        "TOOL_UNAVAILABLE",
+        "TIMEOUT",
+        "EXECUTION",
+        "OUTPUT_MISSING",
+        "OUTPUT_INVALID",
+        "SCIENTIFIC_GATE",
+        "CANCELLED",
+        "INTERNAL"
+      ],
+      "title": "ErrorCategory",
+      "type": "string"
+    },
+    "InputBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "accession_hint": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Accession Hint"
+        },
+        "input_artifact_id": {
+          "title": "Input Artifact Id",
+          "type": "string"
+        },
+        "organism_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Organism Name"
+        },
+        "sequence_length": {
+          "exclusiveMinimum": 0,
+          "title": "Sequence Length",
+          "type": "integer"
+        },
+        "sequence_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sequence Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "input_artifact_id",
+        "sequence_sha256",
+        "sequence_length",
+        "organism_name",
+        "accession_hint"
+      ],
+      "title": "InputBinding",
+      "type": "object"
+    },
+    "Profile": {
+      "additionalProperties": false,
+      "properties": {
+        "expert_confirmation_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Expert Confirmation Ids",
+          "type": "array"
+        },
+        "intended_access_mode": {
+          "const": "API",
+          "title": "Intended Access Mode",
+          "type": "string"
+        },
+        "profile_artifact_id": {
+          "title": "Profile Artifact Id",
+          "type": "string"
+        },
+        "profile_id": {
+          "const": "s07-api-review-20260903",
+          "title": "Profile Id",
+          "type": "string"
+        },
+        "rule_status": {
+          "const": "PROVISIONAL_USER_APPROVED_EXPERT_PENDING",
+          "title": "Rule Status",
+          "type": "string"
+        },
+        "uniprot_search_scope": {
+          "const": "uniprotkb_swissprot",
+          "title": "Uniprot Search Scope",
+          "type": "string"
+        }
+      },
+      "required": [
+        "profile_id",
+        "profile_artifact_id",
+        "intended_access_mode",
+        "uniprot_search_scope",
+        "rule_status",
+        "expert_confirmation_ids"
+      ],
+      "title": "Profile",
+      "type": "object"
+    },
+    "SourceRun": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Artifact Ids",
+          "type": "array"
+        },
+        "bound_sequence_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Bound Sequence Sha256",
+          "type": "string"
+        },
+        "capped": {
+          "title": "Capped",
+          "type": "boolean"
+        },
+        "complete": {
+          "title": "Complete",
+          "type": "boolean"
+        },
+        "data_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Data Version"
+        },
+        "endpoint_or_release": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Endpoint Or Release"
+        },
+        "evaluated_at": {
+          "format": "date-time",
+          "title": "Evaluated At",
+          "type": "string"
+        },
+        "evidence_kind": {
+          "enum": [
+            "FROZEN_REPLAY",
+            "CONTROLLED",
+            "NOT_RUN"
+          ],
+          "title": "Evidence Kind",
+          "type": "string"
+        },
+        "failures": {
+          "items": {
+            "$ref": "#/$defs/ToolError"
+          },
+          "title": "Failures",
+          "type": "array"
+        },
+        "operation": {
+          "enum": [
+            "PDB_SEARCH",
+            "PDB_METADATA",
+            "PDB_STRUCTURE",
+            "BLAST_UNIPROT",
+            "UNIPROT_RECORD",
+            "AFDB_LOOKUP",
+            "AFDB_STRUCTURE"
+          ],
+          "title": "Operation",
+          "type": "string"
+        },
+        "original_access_mode": {
+          "anyOf": [
+            {
+              "enum": [
+                "API",
+                "LOCAL",
+                "OFFLINE"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Original Access Mode"
+        },
+        "original_time": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "title": "Original Time",
+          "type": "object"
+        },
+        "parameters": {
+          "additionalProperties": true,
+          "title": "Parameters",
+          "type": "object"
+        },
+        "reason_code": {
+          "minLength": 1,
+          "title": "Reason Code",
+          "type": "string"
+        },
+        "returned_count": {
+          "minimum": 0,
+          "title": "Returned Count",
+          "type": "integer"
+        },
+        "status": {
+          "enum": [
+            "SUCCEEDED_WITH_RESULTS",
+            "SUCCEEDED_EMPTY",
+            "FAILED",
+            "CANCELLED",
+            "NOT_RUN"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tool_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Tool Name"
+        },
+        "tool_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Tool Version"
+        },
+        "version_note": {
+          "title": "Version Note",
+          "type": "string"
+        }
+      },
+      "required": [
+        "operation",
+        "status",
+        "reason_code",
+        "bound_sequence_sha256",
+        "returned_count",
+        "complete",
+        "capped",
+        "evidence_kind",
+        "original_access_mode",
+        "endpoint_or_release",
+        "tool_name",
+        "tool_version",
+        "data_version",
+        "version_note",
+        "original_time",
+        "evaluated_at",
+        "parameters",
+        "artifact_ids"
+      ],
+      "title": "SourceRun",
+      "type": "object"
+    },
+    "ToolError": {
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "$ref": "#/$defs/ErrorCategory"
+        },
+        "code": {
+          "minLength": 1,
+          "title": "Code",
+          "type": "string"
+        },
+        "details": {
+          "additionalProperties": true,
+          "title": "Details",
+          "type": "object"
+        },
+        "message": {
+          "minLength": 1,
+          "title": "Message",
+          "type": "string"
+        },
+        "retryable": {
+          "title": "Retryable",
+          "type": "boolean"
+        },
+        "user_message": {
+          "minLength": 1,
+          "title": "User Message",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "category",
+        "retryable",
+        "message",
+        "user_message"
+      ],
+      "title": "ToolError",
+      "type": "object"
+    },
+    "WarningItem": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "minLength": 1,
+          "title": "Code",
+          "type": "string"
+        },
+        "details": {
+          "additionalProperties": true,
+          "title": "Details",
+          "type": "object"
+        },
+        "message": {
+          "minLength": 1,
+          "title": "Message",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "title": "WarningItem",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "artifacts": {
+      "items": {
+        "$ref": "#/$defs/ArtifactRef"
+      },
+      "title": "Artifacts",
+      "type": "array"
+    },
+    "attempt": {
+      "minimum": 1,
+      "title": "Attempt",
+      "type": "integer"
+    },
+    "candidate_manifest_artifact_id": {
+      "title": "Candidate Manifest Artifact Id",
+      "type": "string"
+    },
+    "candidate_summary_complete": {
+      "title": "Candidate Summary Complete",
+      "type": "boolean"
+    },
+    "candidate_total": {
+      "minimum": 0,
+      "title": "Candidate Total",
+      "type": "integer"
+    },
+    "candidates": {
+      "items": {
+        "$ref": "#/$defs/Candidate"
+      },
+      "title": "Candidates",
+      "type": "array"
+    },
+    "case_scope": {
+      "enum": [
+        "CONTROLLED_COMPOSITION",
+        "COMPONENT_PROBE"
+      ],
+      "title": "Case Scope",
+      "type": "string"
+    },
+    "contract_version": {
+      "const": "s07.task5.v1-review",
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "deployment_status": {
+      "const": "NOT_DEPLOYED",
+      "title": "Deployment Status",
+      "type": "string"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ToolError"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "execution_kind": {
+      "const": "OFFLINE_CONTRACT_CHECK",
+      "title": "Execution Kind",
+      "type": "string"
+    },
+    "generated_at": {
+      "format": "date-time",
+      "title": "Generated At",
+      "type": "string"
+    },
+    "input": {
+      "$ref": "#/$defs/InputBinding"
+    },
+    "method_summary_artifact_id": {
+      "title": "Method Summary Artifact Id",
+      "type": "string"
+    },
+    "next_step": {
+      "anyOf": [
+        {
+          "enum": [
+            "S-08",
+            "S-09"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Next Step"
+    },
+    "prior_attempt_result_artifact_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Prior Attempt Result Artifact Id"
+    },
+    "profile": {
+      "$ref": "#/$defs/Profile"
+    },
+    "record_kind": {
+      "const": "S07_INTERNAL_RESULT",
+      "title": "Record Kind",
+      "type": "string"
+    },
+    "reliability": {
+      "enum": [
+        "RELIABLE",
+        "UNRELIABLE"
+      ],
+      "title": "Reliability",
+      "type": "string"
+    },
+    "requires_review": {
+      "title": "Requires Review",
+      "type": "boolean"
+    },
+    "retrieval_outcome": {
+      "anyOf": [
+        {
+          "enum": [
+            "EXISTING_STRUCTURE_SELECTED",
+            "NO_ELIGIBLE_EXISTING_STRUCTURE"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Retrieval Outcome"
+    },
+    "review_reasons": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Review Reasons",
+      "type": "array"
+    },
+    "run_id": {
+      "pattern": "^[a-zA-Z0-9_-]+$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "scientific_acceptance": {
+      "const": "NOT_RUN",
+      "title": "Scientific Acceptance",
+      "type": "string"
+    },
+    "selected_candidate_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Selected Candidate Id"
+    },
+    "selection_reason_codes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Selection Reason Codes",
+      "type": "array"
+    },
+    "source_manifest_artifact_id": {
+      "title": "Source Manifest Artifact Id",
+      "type": "string"
+    },
+    "source_runs": {
+      "items": {
+        "$ref": "#/$defs/SourceRun"
+      },
+      "title": "Source Runs",
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "SUCCEEDED",
+        "DEGRADED",
+        "WAITING_USER",
+        "FAILED",
+        "CANCELLED"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "step_id": {
+      "const": "S-07",
+      "title": "Step Id",
+      "type": "string"
+    },
+    "warnings": {
+      "items": {
+        "$ref": "#/$defs/WarningItem"
+      },
+      "title": "Warnings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "contract_version",
+    "record_kind",
+    "execution_kind",
+    "deployment_status",
+    "scientific_acceptance",
+    "case_scope",
+    "run_id",
+    "step_id",
+    "attempt",
+    "generated_at",
+    "status",
+    "input",
+    "profile",
+    "retrieval_outcome",
+    "selected_candidate_id",
+    "selection_reason_codes",
+    "next_step",
+    "reliability",
+    "requires_review",
+    "review_reasons",
+    "source_runs",
+    "candidates",
+    "candidate_total",
+    "candidate_summary_complete",
+    "candidate_manifest_artifact_id",
+    "source_manifest_artifact_id",
+    "method_summary_artifact_id",
+    "prior_attempt_result_artifact_id",
+    "artifacts",
+    "warnings",
+    "error"
+  ],
+  "title": "S07Result",
+  "type": "object"
+}

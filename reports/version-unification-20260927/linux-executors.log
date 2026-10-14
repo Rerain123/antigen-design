@@ -1,0 +1,41 @@
+.........................................FF                              [100%]
+=================================== FAILURES ===================================
+____________ test_build_has_no_gpu_or_existing_deployment_mutation _____________
+
+>   ???
+
+D:\work\antigen.design\tests\test_unified_gpu_worker.py:113: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    """Server-side zero-GPU assembly from already-qualified immutable environments."""
+    from pathlib import Path
+>   import yaml
+E   ModuleNotFoundError: No module named 'yaml'
+
+/project/scripts/prepare_unified_gpu_build.py:3: ModuleNotFoundError
+________ test_deployment_replaces_one_holder_with_one_full_64gb_worker _________
+
+>   ???
+
+D:\work\antigen.design\tests\test_unified_gpu_worker.py:125: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    """Prepare immutable config and a CAS patch for one resident 64GB GPU Worker."""
+    from __future__ import annotations
+    
+    import argparse
+    import copy
+    import json
+    from pathlib import Path
+    import re
+    import subprocess
+    
+>   import yaml
+E   ModuleNotFoundError: No module named 'yaml'
+
+/project/scripts/prepare_unified_gpu_deploy.py:11: ModuleNotFoundError
+----------- generated xml file: /evidence/linux-executors.junit.xml ------------
+=========================== short test summary info ============================
+FAILED ../../project/tests/test_unified_gpu_worker.py::test_build_has_no_gpu_or_existing_deployment_mutation
+FAILED ../../project/tests/test_unified_gpu_worker.py::test_deployment_replaces_one_holder_with_one_full_64gb_worker
+2 failed, 41 passed in 8.37s

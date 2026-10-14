@@ -1,0 +1,55 @@
+{
+  "contract_version": "0.1.0",
+  "tool_id": "t01.real.freesasa",
+  "request_id": "freesasa-mapping-pending",
+  "run_mode": "engineering_example",
+  "attempt_id": "freesasa-mapping-pending-attempt-001",
+  "execution_status": "succeeded",
+  "usable_for_pipeline": false,
+  "review_required": true,
+  "result": null,
+  "issues": [
+    {
+      "code": "MAPPING_UNVERIFIED",
+      "severity": "warning",
+      "message": "人工演示：映射尚未核验。"
+    },
+    {
+      "code": "RULES_PENDING",
+      "severity": "warning",
+      "message": "规则配置尚未提供。"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "raw-example",
+      "role": "raw",
+      "path": "raw/fixture.txt",
+      "media_type": "text/plain",
+      "sha256": "fa0a1cd19255c1f3f0df67566e8ab7b7dc3a0ea7b596e8c47d4fc0a0599c7a06",
+      "size_bytes": 59
+    },
+    {
+      "artifact_id": "environment-example",
+      "role": "environment",
+      "path": "environment.json",
+      "media_type": "application/json",
+      "sha256": "475a4ff0cb79ea9623ac915bf46e2e0d72a371c37c27549d7ef210266ceefd54",
+      "size_bytes": 41
+    }
+  ],
+  "provenance": {
+    "adapter_version": "SYNTHETIC-NOT-IMPLEMENTED",
+    "tool_version": "SYNTHETIC-NOT-RUN",
+    "request_sha256": "6588ca0c346c045ffa86eb2e536156d6af6365eac6c1e0d73a17bcd4960c25b0",
+    "parameters_sha256": "ed4b2c7aaf7cf967a78d06d9cb24cb386e97bc2d54ca6dd3c1a2dd747fde57df",
+    "rule_profile": null,
+    "started_at": "2026-09-05T00:00:00Z",
+    "finished_at": "2026-09-05T00:00:00Z",
+    "command": [
+      "SYNTHETIC-NOT-EXECUTED"
+    ],
+    "tool_exit_code": 0,
+    "environment_artifact_id": "environment-example"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "observed_date": "2026-09-26",
+  "read_only_cluster_inspection": true,
+  "active_jobs_at_inspection": [],
+  "latest_existing_workflow": {
+    "job_id": "t01p1r-job-c308ede7d6c843b180c82f91b3d44dec",
+    "run_id": "t01p1r-run-dadd677316724b41aab643248c2c704f",
+    "state": "succeeded",
+    "design_state": "skipped",
+    "design_reason": "N11_MASK_EXPORT_BLOCKED",
+    "execution_date": "2026-09-24",
+    "limitation": "Predates generation 92; T4 repair already deployed and not reclassified as new development."
+  },
+  "current_code_findings": [
+    "Operational variant prediction failure aborts workflow before S-28 warning-only continuation.",
+    "N15 request requires successful N13 and N14, preventing partial candidate fact assembly.",
+    "Variant N10 dereferences a missing structure instead of consuming an explicit missing source."
+  ],
+  "initial_test_attempt": "Targeted tests reached 100% without displayed case failures; JUnit publication failed because evidence directory creation was denied. Subsequent sandbox full runs also could not save JUnit. The 04 placeholder records zero results and is not a passing report; the completed approved-environment rerun must be used.",
+  "sandbox_failure_diagnosis": {
+    "test_file": "tests/test_same_run_submission.py",
+    "failed_cases": 3,
+    "separate_reproduction": "3 failed, 3 passed",
+    "structure_probe_error": "ASSET_MISSING",
+    "structure_probe_diagnostic": "Pinned image not available locally",
+    "interpretation": "Sandbox test execution cannot access the required pinned local image; these failures precede the workflow continuation code. Approved-environment full regression must independently pass."
+  },
+  "scientific_signoff": null,
+  "production_status": "NOT_DEPLOYED"
+}

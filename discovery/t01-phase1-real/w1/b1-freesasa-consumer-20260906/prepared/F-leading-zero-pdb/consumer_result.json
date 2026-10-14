@@ -1,0 +1,76 @@
+{
+  "scope": "B1_FREESASA_CONSUMER_PREPARATION",
+  "binding": {
+    "b1_binding": {
+      "run_id": "t01p1r-run-b1-sasa-F-leading-zero-pdb",
+      "request_id": "b1-sasa-F-leading-zero-pdb",
+      "job_id": "t01p1r-job-b1-facts-25bf2fef68054a49bc98f9f792a29c7b",
+      "attempt_id": "t01p1r-attempt-b1-facts-25bf2fef68054a49bc98f9f792a29c7b",
+      "request_sha256": "e989b83a8d32ea26cda573ea1512ec780ad5bfbaabcdfd4aa65cbb32e2476edd",
+      "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+      "structure_sha256": "0f707f6997a36652f33621ffc3e44bda02144e7c8a3b696ca8e22e8d408ffcfc"
+    },
+    "b1_result_sha256": "6316b26cf20af63a03c89222951a483b708a7211d43ba430a9941654c9c02fb5",
+    "b1_structure_artifact": {
+      "artifact_id": "t01p1r-artifact-b1-sasa-F-leading-zero-pdb",
+      "run_id": "t01p1r-run-b1-sasa-F-leading-zero-pdb",
+      "job_id": null,
+      "attempt_id": null,
+      "role": "input",
+      "media_type": "chemical/x-cif",
+      "sha256": "0f707f6997a36652f33621ffc3e44bda02144e7c8a3b696ca8e22e8d408ffcfc",
+      "size_bytes": 1140,
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    "b1_fact_artifacts": {
+      "preflight": {
+        "artifact_id": "t01p1r-artifact-b1-preflight-25bf2fef68054a49bc98f9f792a29c7b",
+        "run_id": "t01p1r-run-b1-sasa-F-leading-zero-pdb",
+        "job_id": "t01p1r-job-b1-facts-25bf2fef68054a49bc98f9f792a29c7b",
+        "attempt_id": "t01p1r-attempt-b1-facts-25bf2fef68054a49bc98f9f792a29c7b",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "add944e5ff2ef8d1ead98da5ee0eeb14953a5ff0e7f60cacfe1794ada242d8e1",
+        "size_bytes": 1723,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      },
+      "raw_metadata": {
+        "artifact_id": "t01p1r-artifact-b1-raw-metadata-25bf2fef68054a49bc98f9f792a29c7b",
+        "run_id": "t01p1r-run-b1-sasa-F-leading-zero-pdb",
+        "job_id": "t01p1r-job-b1-facts-25bf2fef68054a49bc98f9f792a29c7b",
+        "attempt_id": "t01p1r-attempt-b1-facts-25bf2fef68054a49bc98f9f792a29c7b",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "735c9e78592569eeb4da1e820d97c1e8274abb34c8760b2f903aff7e8859fa20",
+        "size_bytes": 1645,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      },
+      "raw_addresses": {
+        "artifact_id": "t01p1r-artifact-b1-raw-addresses-25bf2fef68054a49bc98f9f792a29c7b",
+        "run_id": "t01p1r-run-b1-sasa-F-leading-zero-pdb",
+        "job_id": "t01p1r-job-b1-facts-25bf2fef68054a49bc98f9f792a29c7b",
+        "attempt_id": "t01p1r-attempt-b1-facts-25bf2fef68054a49bc98f9f792a29c7b",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "dc59faba0f37c79aa2dc4964a8af6522721d2a681e17822b5fc6b4c725dacc4d",
+        "size_bytes": 100307,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      }
+    },
+    "consumer_selection_sha256": "feb81eb928a903a9447fad547d4860685e035dfbed6b6d5864ce3a012882d075",
+    "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+  },
+  "route": "pdb_file",
+  "status": "REJECTED_BEFORE_TOOL",
+  "error_code": "PDB_ADDRESS_UNREPRESENTABLE",
+  "error": "B1 PDB field projection is blocked",
+  "error_details": [
+    "AUTHOR_ID_NOT_CANONICAL_INTEGER"
+  ],
+  "preparation_sha256": null,
+  "scientific_approval": null,
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED",
+  "tool_invoked": false,
+  "calculation_started": false
+}

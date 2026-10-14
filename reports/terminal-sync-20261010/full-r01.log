@@ -1,0 +1,274 @@
+........................................................................ [  2%]
+........................................................................ [  4%]
+........................................................................ [  6%]
+........................................................................ [  8%]
+........................................................................ [ 10%]
+........................................................................ [ 12%]
+........................................................................ [ 15%]
+........................................................................ [ 17%]
+........................................................................ [ 19%]
+........................................................................ [ 21%]
+........................................................................ [ 23%]
+........................................................................ [ 25%]
+........................................................................ [ 28%]
+........................................................................ [ 30%]
+........................................................................ [ 32%]
+..F..................................................................... [ 34%]
+.....................................F.................................. [ 36%]
+........................................................................ [ 38%]
+......................................................................ss [ 41%]
+........................................................................ [ 43%]
+........................................................................ [ 45%]
+........................................................................ [ 47%]
+........................................................................ [ 49%]
+........................................................................ [ 51%]
+........................................................................ [ 54%]
+........................................................................ [ 56%]
+........................................................................ [ 58%]
+........................................................................ [ 60%]
+........................................................................ [ 62%]
+........................................................................ [ 64%]
+.....................ssss...........ssssssssss.......................... [ 67%]
+........................................................................ [ 69%]
+....................FFF................................................. [ 71%]
+........................................................................ [ 73%]
+........................................................................ [ 75%]
+........................................................................ [ 77%]
+...............................................s........................ [ 80%]
+........................................................................ [ 82%]
+........................................................................ [ 84%]
+........................................................................ [ 86%]
+........................................................................ [ 88%]
+........................................................................ [ 90%]
+........................................................................ [ 92%]
+........................................................................ [ 95%]
+........................................................................ [ 97%]
+........................................................................ [ 99%]
+..................                                                       [100%]
+================================== FAILURES ===================================
+___________ test_main_revision_controller_reaches_native_consumers ____________
+
+tmp_path = WindowsPath('C:/Users/wing/AppData/Local/Temp/pytest-of-wing/pytest-2841/test_main_revision_controller_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000027D45774A90>
+resident_admission = None
+
+    def test_main_revision_controller_reaches_native_consumers(tmp_path,monkeypatch,resident_admission):
+        rt,jid,b,data,records,calls=setup(tmp_path,monkeypatch)
+        monkeypatch.setattr(rc,'inputs',lambda *a:(data,None))
+        original_child=rc.child
+        def child(rt,jid,body,name,req):
+            if name in wiring.CHILDREN:return original_child(rt,jid,body,name,req)
+            service._record(rt,jid,name,dict(job_id='fixture-formal' if name=='formal0' else None,
+                state='succeeded',origin='ENGINEERING_FIXTURE',reason_code=None))
+            return True
+        monkeypatch.setattr(rc,'child',child)
+        def assembly(rt,jid,b,data):
+            wiring.enrich(rt,jid,b,data,records)
+            return dict(proposal_summary=dict(nomination_positions=[1],quarantine_receipts=[],valid_count=24),
+                formal_records=copy.deepcopy(records),design_outcomes=[])
+        monkeypatch.setattr(rc,'assemble',assembly)
+        for _ in range(8):
+>           if rc.tick(rt,jid,b):break
+               ^^^^^^^^^^^^^^^^^
+
+tests\test_expert_revision_runtime.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\t01_phase1_real\development\workflow\revision_controller.py:353: in tick
+    if outcome!='all_rejected' or i==2:return finish(outcome)
+                                              ^^^^^^^^^^^^^^^
+src\t01_phase1_real\development\workflow\revision_controller.py:312: in finish
+    terminal_children(rt,jid)
+src\t01_phase1_real\development\workflow\revision_controller.py:173: in terminal_children
+    job=rt.get(row['job_id'])
+        ^^^^^^^^^^^^^^^^^^^^^
+src\t01_phase1_real\runtime.py:87: in get
+    with self._db() as db: return self._job(db,job_id)
+                                  ^^^^^^^^^^^^^^^^^^^^
+src\t01_phase1_real\runtime.py:81: in _job
+    identifier(job_id,'job')
+src\t01_phase1_real\common.py:73: in identifier
+    ensure(value.startswith('t01p1r-'+prefix+'-'),'INVALID_REQUEST','Foreign identity namespace')
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = False, code = 'INVALID_REQUEST', message = 'Foreign identity namespace'
+
+    def ensure(value, code, message):
+        if not value:
+>           raise RuntimeFault(code,message)
+E           t01_phase1_real.common.RuntimeFault: Foreign identity namespace
+
+src\t01_phase1_real\common.py:30: RuntimeFault
+________________ test_main_controller_freeze_and_dispatches_v2 ________________
+
+tmp_path = WindowsPath('C:/Users/wing/AppData/Local/Temp/pytest-of-wing/pytest-2841/test_main_controller_freeze_an0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000027D43F1F990>
+resident_admission = None
+
+    def test_main_controller_freeze_and_dispatches_v2(tmp_path,monkeypatch,resident_admission):
+        rt,jid,b,data,records,calls=setup(tmp_path,monkeypatch)
+        monkeypatch.setattr(rc,'inputs',lambda *a:(data,None))
+        original_child=rc.child
+        def child(rt,jid,body,name,req):
+            if name in wiring.CHILDREN:return original_child(rt,jid,body,name,req)
+            service._record(rt,jid,name,dict(job_id='fixture-formal' if name=='formal0' else None,state='succeeded',origin='ENGINEERING_FIXTURE',reason_code=None))
+            return True
+        monkeypatch.setattr(rc,'child',child)
+        def assembly(rt,jid,b,data):
+            from t01_phase1_real.development.workflow.revision_sequence import attach
+            attach(records)
+            wiring.enrich(rt,jid,b,data,records)
+            return dict(proposal_summary=dict(nomination_positions=[1],quarantine_receipts=[],valid_count=24),formal_records=copy.deepcopy(records),design_outcomes=[])
+        monkeypatch.setattr(rc,'assemble',assembly)
+        for _ in range(18):
+>           if rc.tick(rt,jid,b):break
+               ^^^^^^^^^^^^^^^^^
+
+tests\test_expert_revision_v2_runtime.py:160: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\t01_phase1_real\development\workflow\revision_controller.py:353: in tick
+    if outcome!='all_rejected' or i==2:return finish(outcome)
+                                              ^^^^^^^^^^^^^^^
+src\t01_phase1_real\development\workflow\revision_controller.py:312: in finish
+    terminal_children(rt,jid)
+src\t01_phase1_real\development\workflow\revision_controller.py:173: in terminal_children
+    job=rt.get(row['job_id'])
+        ^^^^^^^^^^^^^^^^^^^^^
+src\t01_phase1_real\runtime.py:87: in get
+    with self._db() as db: return self._job(db,job_id)
+                                  ^^^^^^^^^^^^^^^^^^^^
+src\t01_phase1_real\runtime.py:81: in _job
+    identifier(job_id,'job')
+src\t01_phase1_real\common.py:73: in identifier
+    ensure(value.startswith('t01p1r-'+prefix+'-'),'INVALID_REQUEST','Foreign identity namespace')
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = False, code = 'INVALID_REQUEST', message = 'Foreign identity namespace'
+
+    def ensure(value, code, message):
+        if not value:
+>           raise RuntimeFault(code,message)
+E           t01_phase1_real.common.RuntimeFault: Foreign identity namespace
+
+src\t01_phase1_real\common.py:30: RuntimeFault
+__________ test_same_run_proteinmpnn_keeps_source_provenance_checks ___________
+
+tmp_path = WindowsPath('C:/Users/wing/AppData/Local/Temp/pytest-of-wing/pytest-2841/test_same_run_proteinmpnn_keep0')
+
+    def test_same_run_proteinmpnn_keeps_source_provenance_checks(tmp_path):
+        rt=Runtime(tmp_path)
+        target=rt.create_run('target-run')
+        foreign=rt.create_run('foreign-run')
+>       _, foreign_ref=structure_result(rt, foreign['run_id'], 'foreign-structure')
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_same_run_submission.py:83: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = <t01_phase1_real.development.runtime.Runtime object at 0x0000027D43E2F9D0>
+run_id = 't01p1r-run-d64cfc5788cc44b892faeadb55ddcb8c'
+key = 'foreign-structure'
+
+    def structure_result(rt, run_id, key):
+        if os.name == 'nt':
+            # pytest's private temp-directory ACL uses OWNER RIGHTS. Docker Desktop
+            # writes as a different owner; grant only this fixture root to this user.
+            account = subprocess.check_output(['whoami'], text=True).strip()
+            subprocess.run(['icacls', str(rt.root), '/grant', account + ':(OI)(CI)F', '/T'],
+                check=True, capture_output=True)
+        fixture=next(row for row in cases() if row['name']=='normal-pdb')
+        job=rt.submit_structure_in_run(run_id, encode(fixture['request']), key, fixture['data'])
+        rt.dispatch(job['job_id'])
+        # Docker cold starts can exceed Runtime.wait's 15-second polling default.
+        # Keep the request's 60-second worker budget and wait through reconciliation.
+        final=rt.wait(job['job_id'], timeout=90)
+>       assert final['state']=='succeeded' and final['run_id']==run_id
+E       AssertionError: assert ('failed' == 'succeeded'
+E         
+E         - succeeded
+E         + failed)
+
+tests\test_same_run_submission.py:41: AssertionError
+___ test_same_run_proteinmpnn_still_rejects_corrupt_local_source[sequence] ____
+
+tmp_path = WindowsPath('C:/Users/wing/AppData/Local/Temp/pytest-of-wing/pytest-2841/test_same_run_proteinmpnn_stil0')
+damage = 'sequence'
+
+    @pytest.mark.parametrize('damage',['sequence','hash'])
+    def test_same_run_proteinmpnn_still_rejects_corrupt_local_source(tmp_path,damage):
+        rt=Runtime(tmp_path);run=rt.create_run('target')
+>       structure,ref=structure_result(rt,run['run_id'],'structure');body=n11_body(ref)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_same_run_submission.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = <t01_phase1_real.development.runtime.Runtime object at 0x0000027D4F040A90>
+run_id = 't01p1r-run-f00b788c2e2d42188cd265e0616162fc', key = 'structure'
+
+    def structure_result(rt, run_id, key):
+        if os.name == 'nt':
+            # pytest's private temp-directory ACL uses OWNER RIGHTS. Docker Desktop
+            # writes as a different owner; grant only this fixture root to this user.
+            account = subprocess.check_output(['whoami'], text=True).strip()
+            subprocess.run(['icacls', str(rt.root), '/grant', account + ':(OI)(CI)F', '/T'],
+                check=True, capture_output=True)
+        fixture=next(row for row in cases() if row['name']=='normal-pdb')
+        job=rt.submit_structure_in_run(run_id, encode(fixture['request']), key, fixture['data'])
+        rt.dispatch(job['job_id'])
+        # Docker cold starts can exceed Runtime.wait's 15-second polling default.
+        # Keep the request's 60-second worker budget and wait through reconciliation.
+        final=rt.wait(job['job_id'], timeout=90)
+>       assert final['state']=='succeeded' and final['run_id']==run_id
+E       AssertionError: assert ('failed' == 'succeeded'
+E         
+E         - succeeded
+E         + failed)
+
+tests\test_same_run_submission.py:41: AssertionError
+_____ test_same_run_proteinmpnn_still_rejects_corrupt_local_source[hash] ______
+
+tmp_path = WindowsPath('C:/Users/wing/AppData/Local/Temp/pytest-of-wing/pytest-2841/test_same_run_proteinmpnn_stil1')
+damage = 'hash'
+
+    @pytest.mark.parametrize('damage',['sequence','hash'])
+    def test_same_run_proteinmpnn_still_rejects_corrupt_local_source(tmp_path,damage):
+        rt=Runtime(tmp_path);run=rt.create_run('target')
+>       structure,ref=structure_result(rt,run['run_id'],'structure');body=n11_body(ref)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_same_run_submission.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = <t01_phase1_real.development.runtime.Runtime object at 0x0000027D4F6FCB50>
+run_id = 't01p1r-run-b6b3cafafd204823ba000b46e73025f2', key = 'structure'
+
+    def structure_result(rt, run_id, key):
+        if os.name == 'nt':
+            # pytest's private temp-directory ACL uses OWNER RIGHTS. Docker Desktop
+            # writes as a different owner; grant only this fixture root to this user.
+            account = subprocess.check_output(['whoami'], text=True).strip()
+            subprocess.run(['icacls', str(rt.root), '/grant', account + ':(OI)(CI)F', '/T'],
+                check=True, capture_output=True)
+        fixture=next(row for row in cases() if row['name']=='normal-pdb')
+        job=rt.submit_structure_in_run(run_id, encode(fixture['request']), key, fixture['data'])
+        rt.dispatch(job['job_id'])
+        # Docker cold starts can exceed Runtime.wait's 15-second polling default.
+        # Keep the request's 60-second worker budget and wait through reconciliation.
+        final=rt.wait(job['job_id'], timeout=90)
+>       assert final['state']=='succeeded' and final['run_id']==run_id
+E       AssertionError: assert ('failed' == 'succeeded'
+E         
+E         - succeeded
+E         + failed)
+
+tests\test_same_run_submission.py:41: AssertionError
+- generated xml file: D:\work\antigen.design\reports\terminal-sync-20261010\full-r01.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_expert_revision_runtime.py::test_main_revision_controller_reaches_native_consumers
+FAILED tests/test_expert_revision_v2_runtime.py::test_main_controller_freeze_and_dispatches_v2
+FAILED tests/test_same_run_submission.py::test_same_run_proteinmpnn_keeps_source_provenance_checks
+FAILED tests/test_same_run_submission.py::test_same_run_proteinmpnn_still_rejects_corrupt_local_source[sequence]
+FAILED tests/test_same_run_submission.py::test_same_run_proteinmpnn_still_rejects_corrupt_local_source[hash]
+D:\work\antigen.design\.venv/Lib/site-packages\_pytest\pathlib.py:103: PytestWarning: (rm_rf) unknown function <built-in function scandir> when removing \\?\C:\Users\wing\AppData\Local\Temp\pytest-of-wing\garbage-3e620840-00f0-4248-80c5-108d6e8ad202\test_same_run_proteinmpnn_keep0\runs\t01p1r-run-d5b94e318e60448fa8bc6cba9d9ab784\jobs\t01p1r-job-3fd992431cd746449a4d36b4426e20f3\attempts\t01p1r-attempt-6d026f77d32f40d682007725830afb23\output\result:
+<class 'PermissionError'>: [WinError 5] 拒绝访问。: '\\\\?\\C:\\Users\\wing\\AppData\\Local\\Temp\\pytest-of-wing\\garbage-3e620840-00f0-4248-80c5-108d6e8ad202\\test_same_run_proteinmpnn_keep0\\runs\\t01p1r-run-d5b94e318e60448fa8bc6cba9d9ab784\\jobs\\t01p1r-job-3fd992431cd746449a4d36b4426e20f3\\attempts\\t01p1r-attempt-6d026f77d32f40d682007725830afb23\\output\\result'
+  warnings.warn(

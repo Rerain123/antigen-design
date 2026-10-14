@@ -1,0 +1,70 @@
+{
+  "asset_manifest_sha256": "77ec2cdd4003e59a5c328ce99858be7e2ce42b8b2d7902971e74426f26a39a8f",
+  "asset_profile_id": "esmfold2-standard-a100-engineering-r01",
+  "attempt_id": "25620762-2d48-4a79-abb0-ae721b3158ec",
+  "automatic_handoff": false,
+  "contract_version": "t01.structure-worker/0.1",
+  "engine": "esmfold2",
+  "engine_version": {
+    "biohub_esm_commit": "b6b0e8815dc3174a9fe9afd36b222aea57d536c5",
+    "biohub_transformers_commit": "ef32577f55da19a4989cd7b22e004dc43a4998cb"
+  },
+  "environment_manifest_sha256": "c719aade5db1dacf747cf1f882061a132558ae359bc5a5dd58fc1f5c955bab39",
+  "errors": [],
+  "host_species": "Homo sapiens",
+  "models": [
+    {
+      "chain_id": "A",
+      "confidence_path": "confidence/esmfold2-seed-1-sample-0.json",
+      "confidence_sha256": "eeeb1295f379871bb3f88d17be82a42744bfe78c09f978c43326d691388c45f4",
+      "format": "mmcif",
+      "iptm": null,
+      "iptm_not_applicable_reason": "single_chain",
+      "mean_plddt": 0.7986140883596322,
+      "model_id": "esmfold2-seed-1-sample-0",
+      "ptm": 0.7356354594230652,
+      "raw_scores": {
+        "iptm": 0.0,
+        "max_plddt": 0.8796935677528381,
+        "mean_plddt": 0.7986140847206116,
+        "min_plddt": 0.4770510494709015,
+        "ptm": 0.7356354594230652
+      },
+      "sample_index": 0,
+      "seed": 1,
+      "source": "esmfold2_predicted",
+      "structure_path": "raw/structure.cif",
+      "structure_sha256": "e0a96e4cf8bcbfa3245fb6f6cf05a1201eeb17f7512e737c615b485a9992ff15"
+    }
+  ],
+  "parameters_path": "parameters.json",
+  "parameters_sha256": "18556daa2b0ee1b880c417cbee9d9102599b004152cc78c9041bdc24f32b9b6a",
+  "profile_sha256": "8623c5aebb7484f51bcd58f1d2643f3e6cbe38a5396f0dbc9751f8f2e7e90423",
+  "provenance_path": "provenance.json",
+  "provenance_sha256": "c0fbd175af8a8b65b7f92d370db652c1b680a68f4b4c21048333cfd019f5bf23",
+  "request_id": "esmfold2-engineering-003",
+  "scientific_gate": "CLOSED",
+  "sequence": "MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG",
+  "sequence_id": "ubiquitin-demo",
+  "sequence_sha256": "233b4b0b8c4616095bc3249f9375fc345d32af7deaef07117d0383c51d6f19aa",
+  "status": "succeeded",
+  "usable_for_pipeline": false,
+  "warnings": [
+    {
+      "code": "ENGINEERING_ONLY",
+      "message": "Scientific qualification and automatic handoff remain closed."
+    },
+    {
+      "code": "SINGLE_CHAIN_IPTM_NOT_APPLICABLE",
+      "message": "Native ipTM=0 preserved in raw_scores; normalized ipTM=null."
+    },
+    {
+      "code": "ARCHIVED_EXECUTION_LIMITS",
+      "message": "Combined logs only; driver, Pod exit record and separate stage timings unavailable in archived bundle."
+    },
+    {
+      "code": "OFFLINE_PACKAGING_ONLY",
+      "message": "Existing r03 inference was packaged; no new execution or backend integration is claimed."
+    }
+  ]
+}

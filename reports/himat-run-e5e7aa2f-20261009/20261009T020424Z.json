@@ -1,0 +1,322 @@
+{
+  "observed_at": "2026-10-09T02:04:22.797551+00:00",
+  "job": {
+    "job_id": "t01p1r-job-e5e7aa2fec7340e2bb646d21fd0a822f",
+    "run_id": "t01p1r-run-8253fb89ae8949b5b02aea0440a6eaf1",
+    "state": "running",
+    "created_at": "2026-10-09T01:59:17.316789Z",
+    "started_at": "2026-10-09T01:59:17.383627Z",
+    "finished_at": null,
+    "error_code": null
+  },
+  "sequence_length": 233,
+  "host": "猪",
+  "selection": "v2-stage-complete-dimension-group-dev-roundrobin-id-v2",
+  "interaction_policy": "PREAUTHORIZED_T4_CONTINUE_WITH_WARNING_V1",
+  "controller_fault": null,
+  "fatal_error": null,
+  "fatal_detail": null,
+  "pending_confirmation": null,
+  "nodes": [
+    {
+      "node": "bepipred",
+      "state": "succeeded",
+      "reason_code": null,
+      "job_id": "t01p1r-job-068ac5e2e2804440ae0578a1ec30e26d",
+      "tool_id": "t01.real.bepipred",
+      "created_at": "2026-10-09T02:03:56.153278Z",
+      "started_at": "2026-10-09T02:03:56.311859Z",
+      "finished_at": "2026-10-09T02:04:16.752423Z",
+      "error_code": null,
+      "execution": {
+        "phase": "finished",
+        "state": "succeeded"
+      },
+      "tree_stopped": true
+    },
+    {
+      "node": "blast",
+      "state": "succeeded",
+      "reason_code": null,
+      "job_id": "t01p1r-job-3bab7011abff44c2969a2a78ec0b9b3e",
+      "tool_id": "t01.real.blast",
+      "created_at": "2026-10-09T02:03:49.397298Z",
+      "started_at": "2026-10-09T02:03:49.444078Z",
+      "finished_at": "2026-10-09T02:03:55.629885Z",
+      "error_code": null,
+      "execution": {
+        "phase": "finished",
+        "state": "succeeded"
+      },
+      "tree_stopped": true
+    },
+    {
+      "node": "netmhc",
+      "state": "running",
+      "reason_code": null,
+      "job_id": "t01p1r-job-dc528abd71514cd489125627154d3447",
+      "tool_id": "t01.real.netmhc",
+      "created_at": "2026-10-09T02:04:17.658882Z",
+      "started_at": "2026-10-09T02:04:17.803261Z",
+      "finished_at": null,
+      "error_code": null,
+      "execution": {
+        "phase": "controller_active"
+      },
+      "tree_stopped": false,
+      "batches": [
+        {
+          "job_id": "t01p1r-job-53352bbd2ca045ac91a262702a7cd1bf",
+          "state": "reconciling",
+          "started_at": "2026-10-09T02:04:18.180380Z",
+          "finished_at": null,
+          "error_code": null
+        }
+      ]
+    },
+    {
+      "node": "prediction",
+      "state": "succeeded",
+      "reason_code": null,
+      "job_id": "t01p1r-job-e0c14984183e4c7cb3ec07d53cbe8aaf",
+      "tool_id": "t01.real.esmfold2",
+      "created_at": "2026-10-09T01:59:17.660669Z",
+      "started_at": "2026-10-09T01:59:17.712961Z",
+      "finished_at": "2026-10-09T02:03:16.782901Z",
+      "error_code": null,
+      "execution": {
+        "phase": "finished",
+        "state": "succeeded"
+      },
+      "tree_stopped": true
+    },
+    {
+      "node": "structure",
+      "state": "succeeded",
+      "reason_code": null,
+      "job_id": "t01p1r-job-d2066eb1311b495f8a2897c69e86eb7d",
+      "tool_id": "t01.real.ingest_structure",
+      "created_at": "2026-10-09T02:03:17.685434Z",
+      "started_at": "2026-10-09T02:03:17.895377Z",
+      "finished_at": "2026-10-09T02:03:21.035535Z",
+      "error_code": null,
+      "execution": {
+        "phase": "finished",
+        "state": "succeeded"
+      },
+      "tree_stopped": true
+    },
+    {
+      "node": "topology",
+      "state": "succeeded",
+      "reason_code": null,
+      "job_id": "t01p1r-job-6be661c90392496f8e16dc8badfe1bb3",
+      "tool_id": "t01.real.deeptmhmm",
+      "created_at": "2026-10-09T02:03:21.519819Z",
+      "started_at": "2026-10-09T02:03:21.542330Z",
+      "finished_at": "2026-10-09T02:03:48.963544Z",
+      "error_code": null,
+      "execution": {
+        "phase": "finished",
+        "state": "succeeded"
+      },
+      "tree_stopped": true
+    }
+  ],
+  "http": {
+    "controller": null,
+    "design_execution": {
+      "confirmation": null,
+      "detail": "修订配置：预采样与正式候选分别记录",
+      "job_id": null,
+      "reason_code": "PENDING_DEPENDENCIES",
+      "state": "not_executed",
+      "status": "NOT_EXECUTED"
+    },
+    "error_code": null,
+    "job_id": "t01p1r-job-e5e7aa2fec7340e2bb646d21fd0a822f",
+    "nodes": {
+      "bepipred": {
+        "detail": null,
+        "job_id": "t01p1r-job-068ac5e2e2804440ae0578a1ec30e26d",
+        "node_id": "N04",
+        "origin": "NEW_EXECUTION",
+        "reason_code": null,
+        "state": "succeeded"
+      },
+      "blast": {
+        "detail": null,
+        "job_id": "t01p1r-job-3bab7011abff44c2969a2a78ec0b9b3e",
+        "node_id": "N03",
+        "origin": "NEW_EXECUTION",
+        "reason_code": null,
+        "state": "succeeded"
+      },
+      "codon": {
+        "detail": null,
+        "job_id": null,
+        "node_id": "N16",
+        "origin": null,
+        "reason_code": "PENDING_DEPENDENCIES",
+        "state": "not_executed"
+      },
+      "design_inputs": {
+        "detail": null,
+        "job_id": null,
+        "node_id": "N11",
+        "origin": null,
+        "reason_code": "PENDING_DEPENDENCIES",
+        "state": "not_executed"
+      },
+      "developability": {
+        "detail": null,
+        "job_id": null,
+        "node_id": "N10",
+        "origin": null,
+        "reason_code": "PENDING_DEPENDENCIES",
+        "state": "not_executed"
+      },
+      "domains": {
+        "detail": null,
+        "job_id": null,
+        "node_id": "N09",
+        "origin": null,
+        "reason_code": "PENDING_DEPENDENCIES",
+        "state": "not_executed"
+      },
+      "epitope_map": {
+        "detail": null,
+        "job_id": null,
+        "node_id": "N06",
+        "origin": null,
+        "reason_code": "PENDING_DEPENDENCIES",
+        "state": "not_executed"
+      },
+      "glycosylation": {
+        "detail": null,
+        "job_id": null,
+        "node_id": "N07",
+        "origin": null,
+        "reason_code": "PENDING_DEPENDENCIES",
+        "state": "not_executed"
+      },
+      "homology": {
+        "detail": null,
+        "job_id": null,
+        "node_id": "N08",
+        "origin": null,
+        "reason_code": "PENDING_DEPENDENCIES",
+        "state": "not_executed"
+      },
+      "local_delivery": {
+        "detail": null,
+        "job_id": null,
+        "node_id": "N18",
+        "origin": null,
+        "reason_code": "PENDING_DEPENDENCIES",
+        "state": "not_executed"
+      },
+      "netmhc": {
+        "detail": null,
+        "execution": {
+          "phase": "controller_active"
+        },
+        "job_id": "t01p1r-job-dc528abd71514cd489125627154d3447",
+        "node_id": "N05",
+        "origin": "NEW_EXECUTION",
+        "reason_code": null,
+        "state": "running"
+      },
+      "prediction": {
+        "detail": null,
+        "job_id": "t01p1r-job-e0c14984183e4c7cb3ec07d53cbe8aaf",
+        "node_id": "N01",
+        "origin": "NEW_EXECUTION",
+        "reason_code": null,
+        "state": "succeeded"
+      },
+      "revision_design": {
+        "detail": null,
+        "job_id": null,
+        "node_id": "N12",
+        "origin": null,
+        "reason_code": "PENDING_DEPENDENCIES",
+        "state": "not_executed"
+      },
+      "structure": {
+        "detail": null,
+        "job_id": "t01p1r-job-d2066eb1311b495f8a2897c69e86eb7d",
+        "node_id": "N01",
+        "origin": "NEW_EXECUTION",
+        "reason_code": null,
+        "state": "succeeded"
+      },
+      "topology": {
+        "detail": null,
+        "job_id": "t01p1r-job-6be661c90392496f8e16dc8badfe1bb3",
+        "node_id": "N02",
+        "origin": "NEW_EXECUTION",
+        "reason_code": null,
+        "state": "succeeded"
+      },
+      "wt_draft": {
+        "detail": null,
+        "job_id": null,
+        "node_id": "N18",
+        "origin": null,
+        "reason_code": "PENDING_DEPENDENCIES",
+        "state": "not_executed"
+      },
+      "wt_foldx": {
+        "detail": null,
+        "job_id": null,
+        "node_id": "N17",
+        "origin": null,
+        "reason_code": "PENDING_DEPENDENCIES",
+        "state": "not_executed"
+      },
+      "wt_reference": {
+        "detail": null,
+        "job_id": null,
+        "node_id": "N17",
+        "origin": null,
+        "reason_code": "PENDING_DEPENDENCIES",
+        "state": "not_executed"
+      },
+      "wt_thermompnn": {
+        "detail": null,
+        "job_id": null,
+        "node_id": "N17",
+        "origin": null,
+        "reason_code": "PENDING_DEPENDENCIES",
+        "state": "not_executed"
+      }
+    },
+    "pending_confirmation": null,
+    "production_status": "NOT_DEPLOYED",
+    "report_ready": false,
+    "revision": 18,
+    "run_id": "t01p1r-run-8253fb89ae8949b5b02aea0440a6eaf1",
+    "scientific_gate": "CLOSED",
+    "state": "running",
+    "terminal": false,
+    "usable_for_pipeline": false
+  },
+  "gpu_state": {
+    "last_execution": {
+      "order": 1791511157773119791,
+      "sha256": "9b3377af1ae3e3f7134702bd445810becd7005ef58b5c0c0350b9bc2509ee45e",
+      "target": "/var/lib/t01/resident/esmfold2/e81b09989b257395aeb0a7955f42dfb5",
+      "tool": "esmfold2",
+      "uncertain": false
+    },
+    "last_state": "succeeded",
+    "phase": "idle"
+  },
+  "new_jobs": 0,
+  "deployment": {
+    "generation": 146,
+    "ready": 1,
+    "source": "06f01c313e11fc3ed93406c00b26e047799f37a71d73976ecb203f331f03f3e2"
+  }
+}

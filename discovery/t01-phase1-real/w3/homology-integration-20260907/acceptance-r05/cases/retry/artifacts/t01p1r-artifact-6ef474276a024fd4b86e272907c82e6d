@@ -1,0 +1,61 @@
+outputhat23=16
+treein = 0
+compacttree = 0
+stacksize: 8192 kb
+rescale = 1
+All-to-all alignment.
+    0 / 25 (by thread   0)    10 / 25 (by thread   1)    20 / 25 (by thread   0) tbfast-pair (aa) Version 7.505
+alg=L, model=BLOSUM62, 2.00, -0.10, +0.10, noshift, amax=0.0
+2 thread(s)
+
+outputhat23=16
+Loading 'hat3.seed' ... 
+done.
+Writing hat3 for iterative refinement
+rescale = 1
+Gap Penalty = -1.53, +0.00, +0.00
+tbutree = 1, compacttree = 0
+Constructing a UPGMA tree ... 
+    0 / 25   10 / 25   20 / 25
+done.
+
+Progressive alignment ... 
+STEP     1 /24 (thread    0) STEP     2 /24 (thread    1) STEP     3 /24 (thread    0) STEP     4 /24 (thread    1) STEP     5 /24 (thread    0) STEP     6 /24 (thread    1) STEP     7 /24 (thread    0) STEP     8 /24 (thread    1) STEP    10 /24 (thread    1) STEP     9 /24 (thread    0) STEP    11 /24 (thread    0) STEP    12 /24 (thread    1) STEP    13 /24 (thread    0) STEP    14 /24 (thread    1) STEP    15 /24 (thread    0) STEP    16 /24 (thread    1) STEP    17 /24 (thread    0) STEP    18 /24 (thread    1) STEP    19 /24 (thread    0) STEP    20 /24 (thread    1) STEP    21 /24 (thread    0) STEP    22 /24 (thread    1) STEP    23 /24 (thread    0) STEP    24 /24 (thread    1) 
+done.
+tbfast (aa) Version 7.505
+alg=A, model=BLOSUM62, 1.53, -0.00, -0.00, noshift, amax=0.0
+2 thread(s)
+
+minimumweight = 0.000010
+autosubalignment = 0.000000
+nthread = 2
+randomseed = 0
+blosum 62 / kimura 200
+poffset = 0
+niter = 16
+sueff_global = 0.100000
+nadd = 16
+Loading 'hat3' ... done.
+rescale = 1
+
+    0 / 25   10 / 25   20 / 25
+Segment   1/  1    1- 121
+001-0000-0 (thread    2) identical     001-0001-0 (thread    2) identical     001-0002-1 (thread    2) identical     001-0003-1 (thread    1) identical     001-0004-0 (thread    2) identical     001-0005-1 (thread    1) identical     001-0006-0 (thread    2) identical     001-0007-1 (thread    1) identical     001-0008-0 (thread    2) identical     001-0009-1 (thread    1) identical     001-0010-0 (thread    2) identical     001-0011-1 (thread    1) identical     001-0012-0 (thread    2) identical     001-0013-0 (thread    2) identical     001-0014-1 (thread    1) identical     001-0014-1 (thread    2) identical     001-0016-0 (thread    1) identical     001-0016-1 (thread    2) identical     001-0018-0 (thread    1) identical     001-0019-1 (thread    2) identical     001-0020-1 (thread    2) identical     001-0021-0 (thread    1) identical     001-0022-0 (thread    2) identical     001-0023-1 (thread    1) identical     001-0024-0 (thread    2) identical     001-0025-1 (thread    1) identical     001-0026-1 (thread    1) identical     001-0027-0 (thread    2) identical     001-0028-1 (thread    2) identical     001-0029-0 (thread    2) identical     001-0030-0 (thread    1) identical     001-0031-1 (thread    2) identical     001-0032-0 (thread    1) identical     001-0033-0 (thread    1) identical     001-0034-1 (thread    2) identical     001-0035-1 (thread    1) identical     001-0036-1 (thread    1) identical     001-0037-0 (thread    2) identical     001-0038-0 (thread    1) identical     001-0039-1 (thread    2) identical     001-0040-0 (thread    1) identical     001-0041-1 (thread    2) identical     001-0042-1 (thread    2) identical     001-0043-0 (thread    1) identical     001-0044-1 (thread    1) identical     001-0045-0 (thread    2) identical     001-0046-1 (thread    1) identical     
+Converged.
+done
+dvtditr (aa) Version 7.505
+alg=A, model=BLOSUM62, 1.53, -0.00, -0.00, noshift, amax=0.0
+2 thread(s)
+
+
+Strategy:
+ L-INS-i (Probably most accurate, very slow)
+ Iterative refinement method (<16) with LOCAL pairwise alignment information
+
+If unsure which option to use, try 'mafft --auto input > output'.
+For more information, see 'mafft --help', 'mafft --man' and the mafft page.
+
+The default gap scoring scheme has been changed in version 7.110 (2013 Oct).
+It tends to insert more gaps into gap-rich regions than previous versions.
+To disable this change, add the --leavegappyregion option.
+

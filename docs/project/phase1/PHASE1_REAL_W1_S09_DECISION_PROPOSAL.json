@@ -1,0 +1,280 @@
+{
+  "document_type": "S09_CONCRETE_DECISION_PROPOSAL",
+  "version": "0.1.0",
+  "prepared_on": "2026-09-05",
+  "open_item": "OI-024",
+  "approval_status": "AWAITING_NAMED_DECISION",
+  "scientific_approval": null,
+  "production_approved": false,
+  "source_catalog": {
+    "path": "docs/project/phase1/PHASE1_REAL_W1_S09_CASES.json",
+    "sha256": "c1c99a1ac44f3e45440a49a931376460e1b81c179c4dc66ddd76dc54ceb5ac70"
+  },
+  "sources": {
+    "SKILL": {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/AgentA_SKILL_v10.5_20260902.md",
+      "sha256": "b9bf71d60046acc32422a16aecbb3d1f4376824a6512d867ebdbb23588ee1833",
+      "section": "R-01/R-02/R-48"
+    },
+    "SOP": {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/AgentA_SOP_v10.5_20260902.md",
+      "sha256": "856019022796f13413208f844d53aa82f10278215676fcf5177daa98f645160c",
+      "section": "S-09; T-01 step2"
+    },
+    "STRUCTURE": {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_结构预测获取链_v10.5.md",
+      "sha256": "b44f9e3662c751b637702531215faa96e0a3b0c450be9f8dd725d7bac55b6721",
+      "section": "2c/3/5/6"
+    },
+    "SCHEMA": {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/AgentA_Schema_v10.5_20260902.md",
+      "sha256": "8121bbe5078badb63d0c53aa7ac08e7da693de81918bef540d3f60e4fa58135e",
+      "section": "structure"
+    },
+    "ENV": {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/一期实施环境清单_v10.5.md",
+      "sha256": "89e8d2a2fb20b0dfe5a0cf200f403cde9c91444756c60ba62b621d1c98c22f3a",
+      "section": "参数台账"
+    }
+  },
+  "decisions": [
+    {
+      "case_id": "S09-D01",
+      "input": {
+        "source": "user_experimental",
+        "method": "X-ray",
+        "resolution": 4.0
+      },
+      "source_refs": [
+        "SOP",
+        "STRUCTURE"
+      ],
+      "source_sections": [
+        "SOP S-09 experimental branches and general null-resolution rule",
+        "STRUCTURE sections 2c and 5",
+        "SKILL R-48"
+      ],
+      "proposed_resolution": "USE_MEDIUM",
+      "proposed_expected": {
+        "quality_result": {
+          "confidence": "medium",
+          "topology_reliable": true,
+          "low_confidence_regions": null
+        },
+        "s11_quality_condition": true,
+        "requires_review": false,
+        "automatic_handoff_allowed": "subject_to_all_other_gates",
+        "warning": null,
+        "unreliable": false
+      },
+      "topology_formula_diagnostic_only": null,
+      "reason": "Prefer inclusive medium interval in SOP body; conflicting topology comment does not define confidence",
+      "boundary_expectations": [
+        "X-ray 3.0 and 4.0 medium; 4.0001 low"
+      ],
+      "effect": "Quality condition for S-11 is true; R-58, atom context and remaining gates still apply",
+      "decision_status": "PROPOSED_NOT_ADOPTED",
+      "decided_by": null,
+      "decided_at": null,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "case_id": "S09-D02a",
+      "input": {
+        "source": "user_experimental",
+        "method": "X-ray",
+        "resolution": null
+      },
+      "source_refs": [
+        "SOP",
+        "STRUCTURE"
+      ],
+      "source_sections": [
+        "SOP S-09 experimental branches and general null-resolution rule",
+        "STRUCTURE sections 2c and 5",
+        "SKILL R-48"
+      ],
+      "proposed_resolution": "USE_MEDIUM",
+      "proposed_expected": {
+        "quality_result": {
+          "confidence": "medium",
+          "topology_reliable": false,
+          "low_confidence_regions": null
+        },
+        "s11_quality_condition": true,
+        "requires_review": false,
+        "automatic_handoff_allowed": "subject_to_all_other_gates",
+        "warning": "RESOLUTION_UNAVAILABLE_DEFAULT_MEDIUM_RECOMMEND_REVIEW",
+        "unreliable": false
+      },
+      "topology_formula_diagnostic_only": null,
+      "reason": "Apply general null-resolution clause with STRUCTURE section 5 support; explicitly supersede method-local null -> low",
+      "boundary_expectations": [
+        "Only resolution=null is overridden; all non-null valid bins remain unchanged"
+      ],
+      "effect": "Quality condition for S-11 is true; R-58, atom context and remaining gates still apply",
+      "decision_status": "PROPOSED_NOT_ADOPTED",
+      "decided_by": null,
+      "decided_at": null,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "case_id": "S09-D02b",
+      "input": {
+        "source": "user_experimental",
+        "method": "cryo-EM",
+        "resolution": null
+      },
+      "source_refs": [
+        "SOP",
+        "STRUCTURE"
+      ],
+      "source_sections": [
+        "SOP S-09 experimental branches and general null-resolution rule",
+        "STRUCTURE sections 2c and 5",
+        "SKILL R-48"
+      ],
+      "proposed_resolution": "USE_MEDIUM",
+      "proposed_expected": {
+        "quality_result": {
+          "confidence": "medium",
+          "topology_reliable": false,
+          "low_confidence_regions": null
+        },
+        "s11_quality_condition": true,
+        "requires_review": false,
+        "automatic_handoff_allowed": "subject_to_all_other_gates",
+        "warning": "RESOLUTION_UNAVAILABLE_DEFAULT_MEDIUM_RECOMMEND_REVIEW",
+        "unreliable": false
+      },
+      "topology_formula_diagnostic_only": null,
+      "reason": "Apply general null-resolution clause with STRUCTURE section 5 support; explicitly supersede method-local null -> low",
+      "boundary_expectations": [
+        "Only resolution=null is overridden; all non-null valid bins remain unchanged"
+      ],
+      "effect": "Quality condition for S-11 is true; R-58, atom context and remaining gates still apply",
+      "decision_status": "PROPOSED_NOT_ADOPTED",
+      "decided_by": null,
+      "decided_at": null,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "case_id": "S09-D03a",
+      "input": {
+        "source": "user_experimental",
+        "method": "NMR",
+        "resolution": 3.0
+      },
+      "source_refs": [
+        "SOP",
+        "STRUCTURE"
+      ],
+      "source_sections": [
+        "SOP S-09 experimental branches and general null-resolution rule",
+        "STRUCTURE sections 2c and 5",
+        "SKILL R-48"
+      ],
+      "proposed_resolution": "REQUIRE_REVIEW_WITHOUT_QUALITY_RESULT",
+      "proposed_expected": {
+        "quality_result": null,
+        "s11_quality_condition": null,
+        "requires_review": true,
+        "automatic_handoff_allowed": false,
+        "warning": "FAILURE_LEVEL_UNCOVERED_EXPERIMENTAL_BRANCH",
+        "unreliable": true
+      },
+      "topology_formula_diagnostic_only": true,
+      "reason": "No supported confidence branch; preserve experimental source, do not borrow X-ray thresholds or invent a fourth confidence enum",
+      "boundary_expectations": [
+        "NMR 2.9999 stays high; null stays medium; >=3.0 requires review"
+      ],
+      "effect": "Hold the affected request for review without a quality result; not a quality=low S-11 skip",
+      "decision_status": "PROPOSED_NOT_ADOPTED",
+      "decided_by": null,
+      "decided_at": null,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "case_id": "S09-D03b",
+      "input": {
+        "source": "user_experimental",
+        "method": "NMR",
+        "resolution": 4.1
+      },
+      "source_refs": [
+        "SOP",
+        "STRUCTURE"
+      ],
+      "source_sections": [
+        "SOP S-09 experimental branches and general null-resolution rule",
+        "STRUCTURE sections 2c and 5",
+        "SKILL R-48"
+      ],
+      "proposed_resolution": "REQUIRE_REVIEW_WITHOUT_QUALITY_RESULT",
+      "proposed_expected": {
+        "quality_result": null,
+        "s11_quality_condition": null,
+        "requires_review": true,
+        "automatic_handoff_allowed": false,
+        "warning": "FAILURE_LEVEL_UNCOVERED_EXPERIMENTAL_BRANCH",
+        "unreliable": true
+      },
+      "topology_formula_diagnostic_only": false,
+      "reason": "No supported confidence branch; preserve experimental source, do not borrow X-ray thresholds or invent a fourth confidence enum",
+      "boundary_expectations": [
+        "NMR 2.9999 stays high; null stays medium; >=3.0 requires review"
+      ],
+      "effect": "Hold the affected request for review without a quality result; not a quality=low S-11 skip",
+      "decision_status": "PROPOSED_NOT_ADOPTED",
+      "decided_by": null,
+      "decided_at": null,
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "case_id": "S09-D03c",
+      "input": {
+        "source": "user_experimental",
+        "method": "unrecognized-experimental-method",
+        "resolution": 2.0
+      },
+      "source_refs": [
+        "SOP",
+        "STRUCTURE"
+      ],
+      "source_sections": [
+        "SOP S-09 experimental branches and general null-resolution rule",
+        "STRUCTURE sections 2c and 5",
+        "SKILL R-48"
+      ],
+      "proposed_resolution": "REQUIRE_REVIEW_WITHOUT_QUALITY_RESULT",
+      "proposed_expected": {
+        "quality_result": null,
+        "s11_quality_condition": null,
+        "requires_review": true,
+        "automatic_handoff_allowed": false,
+        "warning": "FAILURE_LEVEL_UNCOVERED_EXPERIMENTAL_BRANCH",
+        "unreliable": true
+      },
+      "topology_formula_diagnostic_only": true,
+      "reason": "No supported confidence branch; preserve experimental source, do not borrow X-ray thresholds or invent a fourth confidence enum",
+      "boundary_expectations": [
+        "Unrecognized method remains experimental and requires review; do not rename it unknown source"
+      ],
+      "effect": "Hold the affected request for review without a quality result; not a quality=low S-11 skip",
+      "decision_status": "PROPOSED_NOT_ADOPTED",
+      "decided_by": null,
+      "decided_at": null,
+      "execution_status": "NOT_RUN"
+    }
+  ],
+  "adoption_requirements": [
+    "Named algorithm owner decision or explicit subsequent user override with scope/date/source",
+    "Record all six accepted/rejected outcomes separately",
+    "Then publish a derived approved rule profile and rerun boundary/null/failure tests; do not modify frozen historical evidence"
+  ],
+  "unchanged_rules": [
+    "Prediction pLDDT, pTM and mask rules",
+    "No AFDB/RCSB/S-07 lookup",
+    "Experimental unknown method is distinct from unknown source"
+  ]
+}

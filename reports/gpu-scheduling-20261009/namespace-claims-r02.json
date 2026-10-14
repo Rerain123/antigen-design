@@ -1,0 +1,80 @@
+{
+  "pods": {
+    "namespace_total_pods": 11,
+    "gpu_claims": [
+      {
+        "name": "antigen-design-545bf87f-4m4t5",
+        "phase": "Pending",
+        "node": null,
+        "annotations": {
+          "nvidia.com/use-gputype": "A100-SXM-64GB",
+          "nvidia.com/use-gpuuuid": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31"
+        },
+        "gpu_resources": [
+          {
+            "name": "worker-unified-gpu",
+            "resources": {
+              "limits": {
+                "cpu": "16",
+                "ephemeral-storage": "8Gi",
+                "memory": "128Gi",
+                "nvidia.com/gpu": "1",
+                "nvidia.com/gpucores": "100",
+                "nvidia.com/gpumem-percentage": "100"
+              },
+              "requests": {
+                "cpu": "8",
+                "ephemeral-storage": "2Gi",
+                "memory": "96Gi",
+                "nvidia.com/gpu": "1",
+                "nvidia.com/gpucores": "100",
+                "nvidia.com/gpumem-percentage": "100"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "antigen-design-5475446db6-jt4c9",
+        "phase": "Failed",
+        "node": "k8s-a100-02",
+        "annotations": {
+          "hami.io/bind-phase": "success",
+          "hami.io/bind-time": "1790689880",
+          "hami.io/vgpu-devices-allocated": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31,NVIDIA,65536,100:;",
+          "hami.io/vgpu-devices-to-allocate": ";;",
+          "hami.io/vgpu-node": "k8s-a100-02",
+          "hami.io/vgpu-time": "1790689880",
+          "nvidia.com/use-gputype": "A100-SXM-64GB",
+          "nvidia.com/use-gpuuuid": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31"
+        },
+        "gpu_resources": [
+          {
+            "name": "worker-unified-gpu",
+            "resources": {
+              "limits": {
+                "cpu": "16",
+                "ephemeral-storage": "8Gi",
+                "memory": "128Gi",
+                "nvidia.com/gpu": "1",
+                "nvidia.com/gpucores": "100",
+                "nvidia.com/gpumem-percentage": "100"
+              },
+              "requests": {
+                "cpu": "8",
+                "ephemeral-storage": "2Gi",
+                "memory": "96Gi",
+                "nvidia.com/gpu": "1",
+                "nvidia.com/gpucores": "100",
+                "nvidia.com/gpumem-percentage": "100"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "quotas": [],
+  "replicasets": [],
+  "checked_at": "2026-10-09T07:43:26.794832+00:00"
+}

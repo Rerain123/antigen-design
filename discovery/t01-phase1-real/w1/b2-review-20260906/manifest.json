@@ -1,0 +1,698 @@
+{
+  "sources": [
+    {
+      "path": "scripts/b2_review_contract.py",
+      "sha256": "8f6ae95f451a940b630c898ce0a4b274b214a690baefb11fc10967a72de66f50",
+      "size_bytes": 11558
+    },
+    {
+      "path": "scripts/prepare_w1_b2_review.py",
+      "sha256": "6aaef781eeab33e46f2dc5b3537f974f1a134637aef01a0e7608cb0dbe917eb8",
+      "size_bytes": 17104
+    },
+    {
+      "path": "scripts/check_w1_b2_review.py",
+      "sha256": "0c58c4434133755c7db85960290b08e406f58d831839d0c22cfec62abf36626e",
+      "size_bytes": 12500
+    },
+    {
+      "path": "tests/test_w1_b2_review.py",
+      "sha256": "675481ba0e3d73403d019399ff92c6b4a37c1788a85e770f5d502641f082df78",
+      "size_bytes": 10167
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/acceptance.json",
+      "sha256": "91c502a372cb69d409c776231cd510af26c5632cb4e7448962acb2f6253ff6a2",
+      "size_bytes": 3770
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/example_pairs.json",
+      "sha256": "8518e488b68b867a38eff85edc3f36d9ff84ce462b86111aabffb5eb45804ba3",
+      "size_bytes": 11154
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/profile.json",
+      "sha256": "8e657200b64c0c6f1a59c771130c4452135a9b05633e1712fad8e583d8e766cd",
+      "size_bytes": 3686
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/README.md",
+      "sha256": "f6d56e7f65f5fff9daef529e708825f938ba84e0debf3e193d2e03c281d30272",
+      "size_bytes": 4740
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/reference_receipt.template.json",
+      "sha256": "605bc11da363d1d5e18674206ad5e382d32aa7b8809c05c95568cb8fe22d8904",
+      "size_bytes": 397
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/request.schema.json",
+      "sha256": "f4854d8e80481400862760112a37ca4a052441920ae2c1a5b74e6010689f77bf",
+      "size_bytes": 1326
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/result.schema.json",
+      "sha256": "f83c31aeec9a98c6f8e8a63357ac0e23981f03e3d1e9495dc1c65ea138c5874e",
+      "size_bytes": 9288
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/source_manifest.json",
+      "sha256": "f2f38765e138ecf0dad523e81510061a9a2285fb6f3be1b00568f7300e5de752",
+      "size_bytes": 9684
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/above-observed-range-request.json",
+      "sha256": "03e0353520504e950644315e1e45471feec7c0a7b2981bbb42af5bfb02439427",
+      "size_bytes": 1632
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/above-observed-range-result.json",
+      "sha256": "2c13bc29955cac8ce82793e18eabcef147b6b29514f157b25a351520023b24f0",
+      "size_bytes": 1419
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/all-inside-request.json",
+      "sha256": "f758048b0cf91f26d25dad48f906ca6f49ca7fed8fe403d443bf5d06d970326e",
+      "size_bytes": 629
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/all-inside-result.json",
+      "sha256": "671587ec4a08202a99fae08ca00791e64da9a9ea2ad8b3ad39c42b48023bc9d4",
+      "size_bytes": 1856
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/b-only-request.json",
+      "sha256": "2f80ab53277a9c52ee80dbde279cbb478756cd16ab05fd05bcb5d8cec8a8bacf",
+      "size_bytes": 621
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/b-only-result.json",
+      "sha256": "67516c872c706f9d45187ece3cea294d52db7da85e93fa32e11c0d71ec80c9c2",
+      "size_bytes": 1781
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/cancelled-request.json",
+      "sha256": "4ff48153ec1b24825d0b5d11caf90b262715182c607354c857e163375da02582",
+      "size_bytes": 627
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/cancelled-result.json",
+      "sha256": "bd259e77bec7e14a2f697b590b02a196e58f31eadd89c8438e43721f28b4ad34",
+      "size_bytes": 1314
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/empty-request.json",
+      "sha256": "a7f0e4bdd885a86f2aa12395de802f1c3e7ccffe3edbf36c17ad5c1febd1e6fb",
+      "size_bytes": 610
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/empty-result.json",
+      "sha256": "3d1d962877bb48f730e37f9be53daa942281c743e6dcabc451dd41464d6c6b1e",
+      "size_bytes": 1327
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/invalid_output-request.json",
+      "sha256": "b9aad09075d2e625eea41f83c34d9d131ed8deb1978f3fece0a13776cfe00091",
+      "size_bytes": 637
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/invalid_output-result.json",
+      "sha256": "4b0689438875b9517c3a933a249c1924b712b32964fbc4ef69c73682417c0d2b",
+      "size_bytes": 1346
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/lowercase-request.json",
+      "sha256": "cf361c5173421b7e2cc5314d460045d730a87385f0bd3d3c06649a9ebb16ed10",
+      "size_bytes": 627
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/lowercase-result.json",
+      "sha256": "719d7b98bceb3cf04dc37dd84f6bb6b985c14c72481a7008c27d9006bf9b086f",
+      "size_bytes": 1352
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/multiple-m-segments-request.json",
+      "sha256": "24e9cac0eca60f61761d68c84c9f17ca707a5799de1c796dc921ec99cfbe4d88",
+      "size_bytes": 650
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/multiple-m-segments-result.json",
+      "sha256": "0bd2fa3380676b822949a64b4be251ecd4733e0edc56132750718188c8752be1",
+      "size_bytes": 2735
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/non-aa20-request.json",
+      "sha256": "db7acd0727e18daac52196bb61e7adf30bdd4dbde0289e3fd79e696fadfe7ec0",
+      "size_bytes": 625
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/non-aa20-result.json",
+      "sha256": "6b29b97adb70e9cdc06b959d098c8708361a4f7ef7111ce863faa47ee81b1436",
+      "size_bytes": 1365
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/normal-four-labels-request.json",
+      "sha256": "0a870708b52b2f72cda11085a798945aa0b1dac845449ca95d507f6280e1d9fd",
+      "size_bytes": 648
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/normal-four-labels-result.json",
+      "sha256": "9c646a483346e8d739f9dc1012a4667a589b0a653990892a823e163e3475e32f",
+      "size_bytes": 2538
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/p-only-glob-request.json",
+      "sha256": "03e42d0061d342de2fb2e87255ca6894bf33a9eb233576027194660f05560a85",
+      "size_bytes": 631
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/p-only-glob-result.json",
+      "sha256": "df4330b450b5b2bce2a512b7f78b6be3a2e2c55d9beb70a15edecc78bc48dfd7",
+      "size_bytes": 1800
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/pb-full-request.json",
+      "sha256": "27c1d67816c580db7a7b461e8104dde977350b4602e023ece430a1015e85c7b4",
+      "size_bytes": 626
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/pb-full-result.json",
+      "sha256": "84958431e2977589899c61d4fe708df0b29c7fa214f1751358526f2c2a4ac92f",
+      "size_bytes": 2123
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/signal-request.json",
+      "sha256": "8bbda124a4934887e100e6559ffc3026298e0977f1f04f7badf44c57ee7b7d54",
+      "size_bytes": 621
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/signal-result.json",
+      "sha256": "8a8bb940406d25e7824521a46368229a38493a9513954bd6d676c6f3ece0460b",
+      "size_bytes": 2038
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/stop-request.json",
+      "sha256": "1492b84bb159ce2183be4063b5185777809ef45dc50cb8c7feb64bff1078f2c2",
+      "size_bytes": 617
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/stop-result.json",
+      "sha256": "7874c2cef9a1afc946f7d8449bb7e44e5db26b48f4a4e88dc7321cc5f48958e1",
+      "size_bytes": 1332
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/timed_out-request.json",
+      "sha256": "197ec7f913183166bbfc9a53c12cebe6e1a3c380224fe49e5fc54f006d912021",
+      "size_bytes": 627
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/timed_out-result.json",
+      "sha256": "257f1c413f9b9af26a6d102e3d412d452501726a2f84340bb89c1cf85b20d603",
+      "size_bytes": 1314
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/tool_failed-request.json",
+      "sha256": "d06d3f24399d9656bd29877293106a8c71926dbf123f7a8700a771e6f919a0f6",
+      "size_bytes": 631
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/tool_failed-result.json",
+      "sha256": "cb36d3a2bcef75e7a0504f0317055f8c5f7e2d2bb5076f8c33a65abfbcd1e41f",
+      "size_bytes": 1325
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/tool_unavailable-request.json",
+      "sha256": "6d4ff6d299bcb8c9269ea27baffc9a8d9b62546e54f2292fff08db970201b6a3",
+      "size_bytes": 641
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/tool_unavailable-result.json",
+      "sha256": "563ddf46b714aaa4feed74e8e7219866ecff9595395b29e785b99c2abdac587d",
+      "size_bytes": 1335
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/unicode-request.json",
+      "sha256": "e077aa7a006e5df3b5caea171e40885b39ac7f60662132e7e74c6fec9ff37753",
+      "size_bytes": 625
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/unicode-result.json",
+      "sha256": "95cf6e10d3c9fd6c3b8b17dbcc73cc778743d93d3a766d24967130f563922ba2",
+      "size_bytes": 1344
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/upstream-eight-request.json",
+      "sha256": "2bb4d372d316c760840dd8ada50a42f5bbba8f218298a0146a961f17d509775d",
+      "size_bytes": 636
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/upstream-eight-result.json",
+      "sha256": "5b4e84cc65bd0124dcb0c98f1c68159a9e357ee081e21d3b4d9e232d25e7f7e9",
+      "size_bytes": 1378
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/whitespace-request.json",
+      "sha256": "d99074154b7f65713d730ae2d9e64c009048ebc9cc2f8b87d79deda1f2644bed",
+      "size_bytes": 630
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/whitespace-result.json",
+      "sha256": "81546a70c5dd23c2e7cd8e1a836167fa4585168cc46782387d33d85c66b269f3",
+      "size_bytes": 1356
+    }
+  ],
+  "files": [
+    {
+      "path": "after/scripts/b2_review_contract.py",
+      "sha256": "8f6ae95f451a940b630c898ce0a4b274b214a690baefb11fc10967a72de66f50",
+      "size_bytes": 11558
+    },
+    {
+      "path": "after/scripts/check_w1_b2_review.py",
+      "sha256": "0c58c4434133755c7db85960290b08e406f58d831839d0c22cfec62abf36626e",
+      "size_bytes": 12500
+    },
+    {
+      "path": "after/scripts/prepare_w1_b2_review.py",
+      "sha256": "6aaef781eeab33e46f2dc5b3537f974f1a134637aef01a0e7608cb0dbe917eb8",
+      "size_bytes": 17104
+    },
+    {
+      "path": "after/tests/test_w1_b2_review.py",
+      "sha256": "675481ba0e3d73403d019399ff92c6b4a37c1788a85e770f5d502641f082df78",
+      "size_bytes": 10167
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/acceptance.json",
+      "sha256": "91c502a372cb69d409c776231cd510af26c5632cb4e7448962acb2f6253ff6a2",
+      "size_bytes": 3770
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/example_pairs.json",
+      "sha256": "8518e488b68b867a38eff85edc3f36d9ff84ce462b86111aabffb5eb45804ba3",
+      "size_bytes": 11154
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/above-observed-range-request.json",
+      "sha256": "03e0353520504e950644315e1e45471feec7c0a7b2981bbb42af5bfb02439427",
+      "size_bytes": 1632
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/above-observed-range-result.json",
+      "sha256": "2c13bc29955cac8ce82793e18eabcef147b6b29514f157b25a351520023b24f0",
+      "size_bytes": 1419
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/all-inside-request.json",
+      "sha256": "f758048b0cf91f26d25dad48f906ca6f49ca7fed8fe403d443bf5d06d970326e",
+      "size_bytes": 629
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/all-inside-result.json",
+      "sha256": "671587ec4a08202a99fae08ca00791e64da9a9ea2ad8b3ad39c42b48023bc9d4",
+      "size_bytes": 1856
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/b-only-request.json",
+      "sha256": "2f80ab53277a9c52ee80dbde279cbb478756cd16ab05fd05bcb5d8cec8a8bacf",
+      "size_bytes": 621
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/b-only-result.json",
+      "sha256": "67516c872c706f9d45187ece3cea294d52db7da85e93fa32e11c0d71ec80c9c2",
+      "size_bytes": 1781
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/cancelled-request.json",
+      "sha256": "4ff48153ec1b24825d0b5d11caf90b262715182c607354c857e163375da02582",
+      "size_bytes": 627
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/cancelled-result.json",
+      "sha256": "bd259e77bec7e14a2f697b590b02a196e58f31eadd89c8438e43721f28b4ad34",
+      "size_bytes": 1314
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/empty-request.json",
+      "sha256": "a7f0e4bdd885a86f2aa12395de802f1c3e7ccffe3edbf36c17ad5c1febd1e6fb",
+      "size_bytes": 610
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/empty-result.json",
+      "sha256": "3d1d962877bb48f730e37f9be53daa942281c743e6dcabc451dd41464d6c6b1e",
+      "size_bytes": 1327
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/invalid_output-request.json",
+      "sha256": "b9aad09075d2e625eea41f83c34d9d131ed8deb1978f3fece0a13776cfe00091",
+      "size_bytes": 637
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/invalid_output-result.json",
+      "sha256": "4b0689438875b9517c3a933a249c1924b712b32964fbc4ef69c73682417c0d2b",
+      "size_bytes": 1346
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/lowercase-request.json",
+      "sha256": "cf361c5173421b7e2cc5314d460045d730a87385f0bd3d3c06649a9ebb16ed10",
+      "size_bytes": 627
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/lowercase-result.json",
+      "sha256": "719d7b98bceb3cf04dc37dd84f6bb6b985c14c72481a7008c27d9006bf9b086f",
+      "size_bytes": 1352
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/multiple-m-segments-request.json",
+      "sha256": "24e9cac0eca60f61761d68c84c9f17ca707a5799de1c796dc921ec99cfbe4d88",
+      "size_bytes": 650
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/multiple-m-segments-result.json",
+      "sha256": "0bd2fa3380676b822949a64b4be251ecd4733e0edc56132750718188c8752be1",
+      "size_bytes": 2735
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/non-aa20-request.json",
+      "sha256": "db7acd0727e18daac52196bb61e7adf30bdd4dbde0289e3fd79e696fadfe7ec0",
+      "size_bytes": 625
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/non-aa20-result.json",
+      "sha256": "6b29b97adb70e9cdc06b959d098c8708361a4f7ef7111ce863faa47ee81b1436",
+      "size_bytes": 1365
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/normal-four-labels-request.json",
+      "sha256": "0a870708b52b2f72cda11085a798945aa0b1dac845449ca95d507f6280e1d9fd",
+      "size_bytes": 648
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/normal-four-labels-result.json",
+      "sha256": "9c646a483346e8d739f9dc1012a4667a589b0a653990892a823e163e3475e32f",
+      "size_bytes": 2538
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/p-only-glob-request.json",
+      "sha256": "03e42d0061d342de2fb2e87255ca6894bf33a9eb233576027194660f05560a85",
+      "size_bytes": 631
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/p-only-glob-result.json",
+      "sha256": "df4330b450b5b2bce2a512b7f78b6be3a2e2c55d9beb70a15edecc78bc48dfd7",
+      "size_bytes": 1800
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/pb-full-request.json",
+      "sha256": "27c1d67816c580db7a7b461e8104dde977350b4602e023ece430a1015e85c7b4",
+      "size_bytes": 626
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/pb-full-result.json",
+      "sha256": "84958431e2977589899c61d4fe708df0b29c7fa214f1751358526f2c2a4ac92f",
+      "size_bytes": 2123
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/signal-request.json",
+      "sha256": "8bbda124a4934887e100e6559ffc3026298e0977f1f04f7badf44c57ee7b7d54",
+      "size_bytes": 621
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/signal-result.json",
+      "sha256": "8a8bb940406d25e7824521a46368229a38493a9513954bd6d676c6f3ece0460b",
+      "size_bytes": 2038
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/stop-request.json",
+      "sha256": "1492b84bb159ce2183be4063b5185777809ef45dc50cb8c7feb64bff1078f2c2",
+      "size_bytes": 617
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/stop-result.json",
+      "sha256": "7874c2cef9a1afc946f7d8449bb7e44e5db26b48f4a4e88dc7321cc5f48958e1",
+      "size_bytes": 1332
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/timed_out-request.json",
+      "sha256": "197ec7f913183166bbfc9a53c12cebe6e1a3c380224fe49e5fc54f006d912021",
+      "size_bytes": 627
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/timed_out-result.json",
+      "sha256": "257f1c413f9b9af26a6d102e3d412d452501726a2f84340bb89c1cf85b20d603",
+      "size_bytes": 1314
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/tool_failed-request.json",
+      "sha256": "d06d3f24399d9656bd29877293106a8c71926dbf123f7a8700a771e6f919a0f6",
+      "size_bytes": 631
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/tool_failed-result.json",
+      "sha256": "cb36d3a2bcef75e7a0504f0317055f8c5f7e2d2bb5076f8c33a65abfbcd1e41f",
+      "size_bytes": 1325
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/tool_unavailable-request.json",
+      "sha256": "6d4ff6d299bcb8c9269ea27baffc9a8d9b62546e54f2292fff08db970201b6a3",
+      "size_bytes": 641
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/tool_unavailable-result.json",
+      "sha256": "563ddf46b714aaa4feed74e8e7219866ecff9595395b29e785b99c2abdac587d",
+      "size_bytes": 1335
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/unicode-request.json",
+      "sha256": "e077aa7a006e5df3b5caea171e40885b39ac7f60662132e7e74c6fec9ff37753",
+      "size_bytes": 625
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/unicode-result.json",
+      "sha256": "95cf6e10d3c9fd6c3b8b17dbcc73cc778743d93d3a766d24967130f563922ba2",
+      "size_bytes": 1344
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/upstream-eight-request.json",
+      "sha256": "2bb4d372d316c760840dd8ada50a42f5bbba8f218298a0146a961f17d509775d",
+      "size_bytes": 636
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/upstream-eight-result.json",
+      "sha256": "5b4e84cc65bd0124dcb0c98f1c68159a9e357ee081e21d3b4d9e232d25e7f7e9",
+      "size_bytes": 1378
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/whitespace-request.json",
+      "sha256": "d99074154b7f65713d730ae2d9e64c009048ebc9cc2f8b87d79deda1f2644bed",
+      "size_bytes": 630
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/examples/whitespace-result.json",
+      "sha256": "81546a70c5dd23c2e7cd8e1a836167fa4585168cc46782387d33d85c66b269f3",
+      "size_bytes": 1356
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/profile.json",
+      "sha256": "8e657200b64c0c6f1a59c771130c4452135a9b05633e1712fad8e583d8e766cd",
+      "size_bytes": 3686
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/README.md",
+      "sha256": "f6d56e7f65f5fff9daef529e708825f938ba84e0debf3e193d2e03c281d30272",
+      "size_bytes": 4740
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/reference_receipt.template.json",
+      "sha256": "605bc11da363d1d5e18674206ad5e382d32aa7b8809c05c95568cb8fe22d8904",
+      "size_bytes": 397
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/request.schema.json",
+      "sha256": "f4854d8e80481400862760112a37ca4a052441920ae2c1a5b74e6010689f77bf",
+      "size_bytes": 1326
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/result.schema.json",
+      "sha256": "f83c31aeec9a98c6f8e8a63357ac0e23981f03e3d1e9495dc1c65ea138c5874e",
+      "size_bytes": 9288
+    },
+    {
+      "path": "after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/source_manifest.json",
+      "sha256": "f2f38765e138ecf0dad523e81510061a9a2285fb6f3be1b00568f7300e5de752",
+      "size_bytes": 9684
+    },
+    {
+      "path": "execution/assessment.json",
+      "sha256": "8add728aaf9a330a4bfc1e769b3fc746fd49558026dc80bc20e20b83a39dd946",
+      "size_bytes": 12838
+    },
+    {
+      "path": "execution/coverage-1-request.json",
+      "sha256": "602e5188cf95f7e8ff93bd3b7e5527655b343947d3021487e5e3a8afafea40d2",
+      "size_bytes": 1075
+    },
+    {
+      "path": "execution/coverage-1-result.json",
+      "sha256": "219a1d351873aa5db67eb790ccfa4f223ea99b53c301ececa21f27c2c6994a33",
+      "size_bytes": 15016
+    },
+    {
+      "path": "execution/coverage-2-request.json",
+      "sha256": "90ea2c4f5686d12b0e2f6cf630c7e37006bb4e98df2a325c3716fad561f79119",
+      "size_bytes": 1595
+    },
+    {
+      "path": "execution/coverage-2-result.json",
+      "sha256": "48a7c08e6370218de6d1479e5debbfce6c7d720d62a6df04fd47b1255c46d3c1",
+      "size_bytes": 24004
+    },
+    {
+      "path": "execution/coverage-3-request.json",
+      "sha256": "ea31a26d67c433a57a960f63ffcebcc3b44630a4ef99fb327888032ad606805d",
+      "size_bytes": 700
+    },
+    {
+      "path": "execution/coverage-3-result.json",
+      "sha256": "45db24f2cc61988cb0ec76872b27a11f2b568ac99639c8b313a3e8e4d44d6b1d",
+      "size_bytes": 5032
+    },
+    {
+      "path": "execution/coverage-4-request.json",
+      "sha256": "8a35398723accc1dc4a0a6b3293f420e7f19ddd1c03f37a0b776e5021e2d560a",
+      "size_bytes": 911
+    },
+    {
+      "path": "execution/coverage-4-result.json",
+      "sha256": "6109d397a9f28e6ec6f76fbe93385d76e2dc879eeebb8f563193193dcb175271",
+      "size_bytes": 8779
+    },
+    {
+      "path": "execution/coverage-5-request.json",
+      "sha256": "f15f7f3ecac2ea5c4e64768edfb3575d34d20bfec00e3b966cd7b6a6b54d610a",
+      "size_bytes": 981
+    },
+    {
+      "path": "execution/coverage-5-result.json",
+      "sha256": "7f40f274016935da3f925513f83b9ae607aed83dea7fe3b311e3f08b395d6369",
+      "size_bytes": 7457
+    },
+    {
+      "path": "execution/coverage-6-request.json",
+      "sha256": "243be5eb3d1ee00771298a3188201d75136708493bf65a6a9d2057fb828a8e11",
+      "size_bytes": 660
+    },
+    {
+      "path": "execution/coverage-6-result.json",
+      "sha256": "f8b95478dea8b257de321f69aee7977cab1d86aa3e904b7652ee4fbef8bc9d55",
+      "size_bytes": 3918
+    },
+    {
+      "path": "execution/coverage-7-request.json",
+      "sha256": "c3f7c45ab684169c8b7e5b2fc787a6b936f56dd79867957533cc81842b61b02c",
+      "size_bytes": 657
+    },
+    {
+      "path": "execution/coverage-7-result.json",
+      "sha256": "eca55db2eb92d5c2f49a150d0d69f8b1500d698d708e6862336179b04097e5ea",
+      "size_bytes": 4117
+    },
+    {
+      "path": "execution/coverage-8-request.json",
+      "sha256": "78a0854bee2b62847c3bc368ba49df468092fe102c285448a83353066ab2de91",
+      "size_bytes": 700
+    },
+    {
+      "path": "execution/coverage-8-result.json",
+      "sha256": "c04d5ca0879afd29dd95f9e2f86347e5f8f069fa188c5c131f7ddcd5742e055d",
+      "size_bytes": 5264
+    },
+    {
+      "path": "execution/coverage-9-request.json",
+      "sha256": "06c97d99d4e2d47ce4b0eb9266bc62fd047b18f96ac13ab85d9939d3aa50282e",
+      "size_bytes": 778
+    },
+    {
+      "path": "execution/coverage-9-result.json",
+      "sha256": "db9a7092c9cea2dbfba101de85e69df68512731599d8e1f69c7bbecf8916632a",
+      "size_bytes": 5209
+    },
+    {
+      "path": "execution/invocation.json",
+      "sha256": "28791370152dd0ed2b2dc857d11ddafc339a3c246a0ed6a4916df6d0cf04c260",
+      "size_bytes": 295
+    },
+    {
+      "path": "execution/short-1-request.json",
+      "sha256": "bc5d8b31fb431a1dbc95b2238b7ce085d69cbd2844f541825f26097651390aec",
+      "size_bytes": 654
+    },
+    {
+      "path": "execution/short-1-result.json",
+      "sha256": "6bf7f9ed3a32c883274a4db3373c3ac3ca500e904302eeae702647055458d623",
+      "size_bytes": 3890
+    },
+    {
+      "path": "execution/x-residue-1-request.json",
+      "sha256": "eab2615ff73547e77c4215383ce209a416208a322a17da9a6aa62fc95860ecf7",
+      "size_bytes": 665
+    },
+    {
+      "path": "execution/x-residue-1-result.json",
+      "sha256": "9865bd2c0aaeaf853300d5fdf1c156ad03f065e5ecb2738d942b2618aeb0fdcb",
+      "size_bytes": 3084
+    },
+    {
+      "path": "expected_cases.json",
+      "sha256": "f13b592eae5bb126f99efa648f743f755cca23b159e0c44ae335ba757d7bfa03",
+      "size_bytes": 6858
+    },
+    {
+      "path": "planned_additional_evidence.json",
+      "sha256": "76a1510036f94fd6950871e51c4a187a1e8146f30d5d056c21e39b0619af34b7",
+      "size_bytes": 1939
+    },
+    {
+      "path": "protected_before.json",
+      "sha256": "47e701a390387314f639d08ad231c3364f30e03e551e00d9afa06b7fc87d4ad7",
+      "size_bytes": 78840
+    },
+    {
+      "path": "README.md",
+      "sha256": "a3f64c2f615f5c286fe1c271ec6511ec4ce3aeed9af517df564410a6b31c8259",
+      "size_bytes": 1105
+    },
+    {
+      "path": "reference_inventory.json",
+      "sha256": "e1dbe29ed859e6c693016acdb30e30afc77020de38f74b537626dfeb71bda58d",
+      "size_bytes": 9735
+    },
+    {
+      "path": "references/P01499.3line",
+      "sha256": "fc2ba659a4d702cad52e83dc8e9118c1d4be5670bef894c5d5cd37fcbfe5e50f",
+      "size_bytes": 117
+    },
+    {
+      "path": "references/P07471.3line",
+      "sha256": "1de9aa4edaa770d3dbd95b26a28d29fb997da5637eef31918083bd7490a48faf",
+      "size_bytes": 207
+    },
+    {
+      "path": "references/Q8K459.3line",
+      "sha256": "491a00b7644624436032e83a9fadeb4877ad5dd158df0926d043f934148ea3b9",
+      "size_bytes": 121
+    },
+    {
+      "path": "references/Q9HVD1.3line",
+      "sha256": "b0445a5d94e68cef6166b3521d32447e7a238ca2b0c9c7d65956c3ab6972b59a",
+      "size_bytes": 361
+    },
+    {
+      "path": "source_review.json",
+      "sha256": "75d252852da4c207a1b9a62d80d7c200fc46bd6afb1a810de8479165373dd6bd",
+      "size_bytes": 2986
+    }
+  ],
+  "scientific_signoff": "NOT_GRANTED",
+  "production_enabled": false
+}

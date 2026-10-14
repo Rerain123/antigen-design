@@ -1,0 +1,30 @@
+{
+  "input": {
+    "path": "/input/invalid.pdb",
+    "size_bytes": 55,
+    "sha256": "cef678c1df3f68e1dfdf0d66d690de33f1caf909d3fce7c56ffe57404b23416a"
+  },
+  "command": [
+    "/usr/local/bin/python",
+    "/probe_raw.py",
+    "--input",
+    "/input/invalid.pdb",
+    "--mode",
+    "native",
+    "--output-dir",
+    "/out/result"
+  ],
+  "started_at": "2026-09-05T06:44:42.036946+00:00",
+  "mode": "native",
+  "production_result": null,
+  "usable_for_pipeline": false,
+  "review_required": true,
+  "mapping_approval": "NOT_GRANTED",
+  "scientific_acceptance": "NOT_RUN",
+  "execution_status": "failed",
+  "error_type": "Exception",
+  "error": "Error reading '/input/invalid.pdb'.",
+  "tool_probe_exit_code": 1,
+  "elapsed_seconds": 0.009867235000001529,
+  "finished_at": "2026-09-05T06:44:42.046827+00:00"
+}

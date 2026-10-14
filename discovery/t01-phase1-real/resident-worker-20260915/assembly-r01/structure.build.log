@@ -1,0 +1,63 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from structure.Dockerfile
+#1 transferring dockerfile: 738B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/t01-freesasa-g0:2.2.1-20260905
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/python:3.11-slim-bookworm
+#3 DONE 0.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [stage-1 1/8] FROM docker.io/library/t01-freesasa-g0:2.2.1-20260905@sha256:bb6c6b5ce1add12dc9bda3538a218568a9e80c048c12525fc130eaa970dbb9e5
+#6 resolve docker.io/library/t01-freesasa-g0:2.2.1-20260905@sha256:bb6c6b5ce1add12dc9bda3538a218568a9e80c048c12525fc130eaa970dbb9e5 0.1s done
+#6 DONE 0.1s
+
+#7 [supervisor 1/1] FROM docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84
+#7 resolve docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84
+#7 resolve docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84 0.1s done
+#7 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 27.81kB 0.0s done
+#5 DONE 0.0s
+
+#8 [stage-1 2/8] COPY --from=supervisor /usr/local /opt/t01/supervisor
+#8 CACHED
+
+#9 [stage-1 3/8] COPY src /opt/t01/src
+#9 DONE 0.2s
+
+#10 [stage-1 4/8] COPY profile.json /profile.json
+#10 DONE 0.1s
+
+#11 [stage-1 5/8] COPY setup.py /opt/t01/setup.py
+#11 DONE 0.1s
+
+#12 [stage-1 6/8] COPY structure.worker.json /opt/t01/worker.json
+#12 DONE 0.1s
+
+#13 [stage-1 7/8] RUN /opt/t01/supervisor/bin/python3.11 -B /opt/t01/setup.py structure
+#13 DONE 0.4s
+
+#14 exporting to image
+#14 exporting layers
+#14 exporting layers 0.6s done
+#14 exporting manifest sha256:aa6608b1788c98eec7cf92d0ee814807bdfc3d7d4174251a51ddd53f5056a69c 0.0s done
+#14 exporting config sha256:c8c95dd501cea1827a1bc51aced85dbdb3aac41d8ad15047f932e7c18aeb5dce 0.0s done
+#14 exporting attestation manifest sha256:1d8af4e651cfd0c4122ec6b14914863be6448feb1b73021695035b52ef932535
+#14 exporting attestation manifest sha256:1d8af4e651cfd0c4122ec6b14914863be6448feb1b73021695035b52ef932535 0.1s done
+#14 exporting manifest list sha256:a9834c433f8f209991f30acfe5a0cc488a2e07ff9272e4a941a682de6f06bca1 0.0s done
+#14 naming to docker.io/library/antigen-design-resident-structure:assembly-r01
+#14 naming to docker.io/library/antigen-design-resident-structure:assembly-r01 done
+#14 unpacking to docker.io/library/antigen-design-resident-structure:assembly-r01
+#14 unpacking to docker.io/library/antigen-design-resident-structure:assembly-r01 0.3s done
+#14 DONE 1.2s

@@ -1,0 +1,31 @@
+{
+  "profile_id": "p0-s07-blast-discovery-v0.1",
+  "classification": "PROVISIONAL_DISCOVERY_PROFILE",
+  "production_approved": false,
+  "program": "blastp",
+  "program_version": "2.17.0+",
+  "database": {
+    "title": "wwpdb-pdb-seqres-protein-20260822",
+    "source_url": "https://files.wwpdb.org/pub/pdb/derived_data/pdb_seqres.txt.gz",
+    "source_last_modified": "2026-08-22T07:14:18Z",
+    "source_sha256": "e58353521f49336892fa583f0b0efb598e5b1cb482e5b6f33a9cb1f3e373c294",
+    "protein_records": 1090949,
+    "protein_residues": 318599298,
+    "blastdb_version": 5,
+    "taxdb_source_last_modified": "2026-08-31T15:26:19Z",
+    "taxdb_archive_sha256": "1ec18441f502859e073ed955c42c7cc5a56ebda67be035fda9a467c5d0d58eb4"
+  },
+  "search_parameters": {
+    "task": "blastp",
+    "evalue": 10.0,
+    "max_target_seqs": 100,
+    "num_threads": 8,
+    "archive_outfmt": 11
+  },
+  "derived_formats": {
+    "tabular_outfmt": "7 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qcovhsp qcovs qseq sseq stitle",
+    "json_outfmt": 15
+  },
+  "decision_boundary": "Parameters are selected only to observe real BLAST output shapes. They are not S-07 production thresholds or ranking policy."
+}
+

@@ -1,0 +1,80 @@
+{
+  "schema": "t01-local-deployment-review-index-v1",
+  "review_date": "2026-09-12",
+  "status": "TARGET_EXECUTION_NOT_READY",
+  "production_status": "NOT_DEPLOYED",
+  "cluster_contacted": false,
+  "root_test_result": {
+    "passed": 1730,
+    "failed": 1,
+    "skipped": 1
+  },
+  "file_count": 9,
+  "files": [
+    {
+      "path": "candidate-verify.txt",
+      "bytes": 101,
+      "sha256": "112705ff0f61db5e9f45a3c9c4b260f5639cdcdfd7669b0bfb9356942e7e81e5"
+    },
+    {
+      "path": "dify-check.txt",
+      "bytes": 225,
+      "sha256": "c802ea952b8f4574927cde7ca1e068f3bff8379b6f18adcde05836a0c6a8e963"
+    },
+    {
+      "path": "docs-after.txt",
+      "bytes": 36360,
+      "sha256": "76c2baf632158c657469a50f4ebce82382446af6d427380854e04e0d60d9c745"
+    },
+    {
+      "path": "docs-before.txt",
+      "bytes": 36360,
+      "sha256": "76c2baf632158c657469a50f4ebce82382446af6d427380854e04e0d60d9c745"
+    },
+    {
+      "path": "mock-freeze.txt",
+      "bytes": 134,
+      "sha256": "0a5032b48a5af42a1e31b1655dc2861a2991b2131115da100333fb7840556d6d"
+    },
+    {
+      "path": "probes.json",
+      "bytes": 36538,
+      "sha256": "c6ea6167d1bd59460e337531bb890a177d17bb11b3a7f8806a68f0f94fdad511"
+    },
+    {
+      "path": "review_probes.py",
+      "bytes": 7161,
+      "sha256": "2a976397c72c382273622c6e3955439ab788b1f37d92ffcb1fc0086401357878"
+    },
+    {
+      "path": "root-tests.txt",
+      "bytes": 2976,
+      "sha256": "154e21a445796c9d178aa605920537f6f84b4bcff2d1f1e634687acdcbd0dd6f"
+    },
+    {
+      "path": "verification.json",
+      "bytes": 458,
+      "sha256": "c518c4612a5a6eba82bf738509e6f5631e28abb550453016066cbd4340c4fb46"
+    }
+  ],
+  "review_document_versions": {
+    "docs/project/STATUS.md": {
+      "bytes": 53344,
+      "sha256": "f2749d950e3855f0f4cd769bbb2ca8fb41f6010b8e3d9b21940e3700c5cf16e8"
+    },
+    "docs/project/PHASE1_DELIVERY_PLAN.md": {
+      "bytes": 59318,
+      "sha256": "22f723dcb6a21760af2c456c578802acc64aaf7717e5dddbfcf7f74ba2fa23ca"
+    },
+    "docs/project/OPEN_ITEMS.md": {
+      "bytes": 37448,
+      "sha256": "4f680a79b1520b4a425ba21400dde4ec53d709f25324f1f590a957a79ab9fa74"
+    }
+  },
+  "limits": [
+    "Read-only source and original-document audit; no new scientific engine run",
+    "API fixtures and mathematical probes are not cluster or scientific validation",
+    "Independent root project 工具部署 excluded; historical full Mock/S07 tests not rerun",
+    "No new target image vulnerability scan or target resource qualification performed"
+  ]
+}

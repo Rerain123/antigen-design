@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: antigen-esmfold2-results-r03
+  namespace: him-ws
+  labels:
+    app: antigen-esmfold2-validation
+spec:
+  restartPolicy: Never
+  activeDeadlineSeconds: 7200
+  automountServiceAccountToken: false
+  imagePullSecrets:
+    - name: harbor
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 10001
+    runAsGroup: 10001
+    fsGroup: 10001
+    fsGroupChangePolicy: OnRootMismatch
+  containers:
+    - name: reader
+      image: harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:fba5a32c0550e56a5310160e2fc49d647fcd27d76851073a2d82cc935fb4c2fc
+      command: ["python", "-B", "-c", "import time; time.sleep(7200)"]
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          cpu: "1"
+          memory: 512Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+        capabilities:
+          drop: ["ALL"]
+      volumeMounts:
+        - name: runtime
+          mountPath: /runs
+          readOnly: true
+  volumes:
+    - name: runtime
+      persistentVolumeClaim:
+        claimName: antigen-esmfold2-runtime
+        readOnly: true

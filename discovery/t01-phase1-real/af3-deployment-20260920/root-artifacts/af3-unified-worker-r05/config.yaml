@@ -1,0 +1,998 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-unified-gpu-config-r05
+  namespace: him-ws
+immutable: true
+data:
+  resident.json: '{"runtime_volume_root":"/var/lib/t01","tools":{"af3":{"command":{"argv":["/usr/local/bin/python","-B","-m","t01_phase1_real.development.af3.worker","--input-dir","{input}","--output-dir","{output}/native"],"environment":{"PYTHONPATH":"/opt/t01/src","PYTHONUNBUFFERED":"1","T01_NATIVE_CWD":"/opt/t01/af3-app/alphafold","T01_NATIVE_PACKAGE":"/opt/t01/af3-app","T01_PRECREATE_NATIVE":"0","T01_PRIVATE_TMP":"1","T01_RESIDENT_OFFLINE":"1","T01_RESIDENT_SLOT":"/run/t01-slot","T01_SHARED_GPU_LOCK":"/var/lib/t01/.gpu-execution.lock","T01_SOURCE_IMAGE_ID":"sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373"},"memory_bytes":274877906944,"tool":"af3"},"root":"/var/lib/t01/resident/af3","source_image_id":"sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373"},"aggrescan3d":{"command":{"argv":["/opt/conda/bin/python","-B","/opt/t01/src/t01_phase1_real/development/developability/a3d_worker.py"],"environment":{"LD_LIBRARY_PATH":"/opt/conda/lib","MKL_NUM_THREADS":"2","MPLCONFIGDIR":"/tmp/matplotlib","OMP_NUM_THREADS":"2","OPENBLAS_NUM_THREADS":"1","PATH":"/usr/local/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin","PYTHONUNBUFFERED":"1","T01_PRIVATE_TMP":"1","T01_RESIDENT_OFFLINE":"1","T01_RESIDENT_SLOT":"/run/t01-slot","T01_SOURCE_IMAGE_ID":"sha256:c9e5a38b7d7f22c0b76678c5135ec4bf1af47cf77e8c9547a3bb4b9f7f2e938b"},"memory_bytes":8589934592,"tool":"aggrescan3d"},"root":"/var/lib/t01/resident/aggrescan3d","source_image_id":"sha256:c9e5a38b7d7f22c0b76678c5135ec4bf1af47cf77e8c9547a3bb4b9f7f2e938b"},"bepipred":{"command":{"argv":["/usr/local/bin/python","-B","/opt/t01/src/t01_phase1_real/development/bepipred/worker.py"],"environment":{"CUDA_VISIBLE_DEVICES":"-1","MKL_NUM_THREADS":"2","MPLCONFIGDIR":"/tmp/matplotlib","OMP_NUM_THREADS":"2","OPENBLAS_NUM_THREADS":"1","PATH":"/usr/local/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin","PYTHONPATH":"","PYTHONUNBUFFERED":"1","T01_NATIVE_CWD":"/","T01_NATIVE_PACKAGE":"/t01/assets/bepipred-3.0-98bedf2471e0","T01_PRIVATE_TMP":"1","T01_RESIDENT_OFFLINE":"1","T01_RESIDENT_SLOT":"/run/t01-slot","T01_SOURCE_IMAGE_ID":"sha256:e1aff495e254ca4da513286f4ada0e1e0a071a2ffd9e0bc8ae3d2e6c91384149","TORCH_HOME":"/torch"},"memory_bytes":25769803776,"tool":"bepipred"},"root":"/var/lib/t01/resident/bepipred","source_image_id":"sha256:e1aff495e254ca4da513286f4ada0e1e0a071a2ffd9e0bc8ae3d2e6c91384149"},"blast":{"command":{"argv":["/usr/bin/python3","-B","/opt/t01/src/t01_phase1_real/development/blast/worker.py"],"environment":{"MKL_NUM_THREADS":"2","MPLCONFIGDIR":"/tmp/matplotlib","OMP_NUM_THREADS":"2","OPENBLAS_NUM_THREADS":"1","PATH":"/usr/local/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin","PYTHONUNBUFFERED":"1","T01_DATABASE_ROOT":"/t01/databases/blast","T01_PRIVATE_TMP":"1","T01_RESIDENT_OFFLINE":"1","T01_RESIDENT_SLOT":"/run/t01-slot","T01_SOURCE_IMAGE_ID":"sha256:81f118d2e4f7e11494d27fdbb99c9430423105afff50c4ae158db41d58a3fc57"},"memory_bytes":8589934592,"tool":"blast"},"root":"/var/lib/t01/resident/blast","source_image_id":"sha256:81f118d2e4f7e11494d27fdbb99c9430423105afff50c4ae158db41d58a3fc57"},"deeptmhmm":{"command":{"argv":["/usr/local/bin/python","-B","/opt/t01/src/t01_phase1_real/development/container_probe.py"],"environment":{"CUDA_VISIBLE_DEVICES":"-1","MKL_NUM_THREADS":"2","MPLCONFIGDIR":"/tmp/matplotlib","OMP_NUM_THREADS":"2","OPENBLAS_NUM_THREADS":"1","PATH":"/usr/local/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin","PYTHONPATH":"/app","PYTHONUNBUFFERED":"1","T01_NATIVE_CWD":"/app","T01_NATIVE_PACKAGE":"/t01/assets/deeptmhmm-academic-1.0-0a7a6c5d009e","T01_PRIVATE_TMP":"1","T01_RESIDENT_OFFLINE":"1","T01_RESIDENT_SLOT":"/run/t01-slot","T01_SOURCE_IMAGE_ID":"sha256:7f85781fadf8c89ddbafced691d05006caf6881b06aa5b9bae4bd531393bcd72"},"memory_bytes":25769803776,"tool":"deeptmhmm"},"root":"/var/lib/t01/resident/deeptmhmm","source_image_id":"sha256:7f85781fadf8c89ddbafced691d05006caf6881b06aa5b9bae4bd531393bcd72"},"esm-if1":{"command":{"argv":["/opt/t01/env/proteinmpnn/bin/python","-B","/opt/t01/src/t01_phase1_real/development/esm_if1/worker.py"],"environment":{"CUDA_CACHE_PATH":"/tmp/cuda","LD_LIBRARY_PATH":"/opt/t01/env/esm-if1/lib","MKL_NUM_THREADS":"2","MPLCONFIGDIR":"/tmp/matplotlib","OMP_NUM_THREADS":"2","OPENBLAS_NUM_THREADS":"1","PATH":"/opt/t01/env/esm-if1/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin","PYTHONHOME":"/opt/t01/env/esm-if1","PYTHONPATH":"/app","PYTHONUNBUFFERED":"1","T01_JOB_ID":"{job_id}","T01_NATIVE_CWD":"/app","T01_NATIVE_PACKAGE":"/t01/assets/esm-if1-2b369911bb5b","T01_PRIVATE_TMP":"1","T01_RESIDENT_OFFLINE":"1","T01_RESIDENT_SLOT":"/run/t01-slot","T01_SHARED_GPU_LOCK":"/var/lib/t01/.gpu-execution.lock","T01_SOURCE_IMAGE_ID":"sha256:926d4619df9759cd2417dcc9056b7bd648dca1d2adf15631aaad2e84a88d39cc"},"memory_bytes":274877906944,"tool":"esm-if1"},"root":"/var/lib/t01/resident/gpu","source_image_id":"sha256:926d4619df9759cd2417dcc9056b7bd648dca1d2adf15631aaad2e84a88d39cc"},"esmfold2":{"command":{"argv":["/opt/t01/env/esmfold2/bin/python","-B","-m","t01_phase1_real.development.esmfold2.worker","--input-dir","{input}","--output-dir","{output}/native"],"environment":{"HF_HUB_DISABLE_TELEMETRY":"1","HF_HUB_OFFLINE":"1","LD_LIBRARY_PATH":"/opt/t01/env/esmfold2/lib","OMP_NUM_THREADS":"2","OPENBLAS_NUM_THREADS":"1","PATH":"/opt/t01/env/esmfold2/bin:/usr/bin:/bin","PYTHONHOME":"/opt/t01/env/esmfold2","PYTHONPATH":"/backend:/models/esmfold2-environment-20260916-r01/site-packages","T01_PRECREATE_NATIVE":"0","T01_PRIVATE_TMP":"1","T01_RESIDENT_OFFLINE":"1","T01_RESIDENT_SLOT":"/run/t01-slot","T01_SHARED_GPU_LOCK":"/var/lib/t01/.gpu-execution.lock","T01_SOURCE_IMAGE_ID":"sha256:372545ebe3469a3d32269c27033d19624d713d75ca162dbe6fff5dafed44f77f","TRANSFORMERS_OFFLINE":"1","TRITON_CACHE_DIR":"/tmp/triton","XDG_CACHE_HOME":"/tmp/cache"},"memory_bytes":274877906944,"tool":"esmfold2"},"root":"/var/lib/t01/resident/esmfold2","source_image_id":"sha256:372545ebe3469a3d32269c27033d19624d713d75ca162dbe6fff5dafed44f77f"},"foldx":{"command":{"argv":["/usr/local/bin/python","-B","/opt/t01/src/t01_phase1_real/development/foldx/worker.py"],"environment":{"MKL_NUM_THREADS":"2","MPLCONFIGDIR":"/tmp/matplotlib","OMP_NUM_THREADS":"2","OPENBLAS_NUM_THREADS":"1","PATH":"/usr/local/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin","PYTHONPATH":"/app","PYTHONUNBUFFERED":"1","T01_NATIVE_CWD":"/app","T01_NATIVE_PACKAGE":"/t01/assets/foldx-20270131","T01_PRIVATE_TMP":"1","T01_RESIDENT_OFFLINE":"1","T01_RESIDENT_SLOT":"/run/t01-slot","T01_SOURCE_IMAGE_ID":"sha256:66539e081922ce4c4fb504c9906feb64044ce668033e63fdc9299d020af8c851"},"memory_bytes":8589934592,"tool":"foldx"},"root":"/var/lib/t01/resident/foldx","source_image_id":"sha256:66539e081922ce4c4fb504c9906feb64044ce668033e63fdc9299d020af8c851"},"homology":{"command":{"argv":["/usr/local/bin/python","-B","/opt/t01/src/t01_phase1_real/development/homology/worker.py"],"environment":{"LD_LIBRARY_PATH":"/blast/lib","MKL_NUM_THREADS":"2","MPLCONFIGDIR":"/tmp/matplotlib","OMP_NUM_THREADS":"2","OPENBLAS_NUM_THREADS":"1","PATH":"/opt/blast/bin:/usr/local/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin","PYTHONUNBUFFERED":"1","T01_DATABASE_ROOT":"/t01/databases/homology","T01_PRIVATE_TMP":"1","T01_RESIDENT_OFFLINE":"1","T01_RESIDENT_SLOT":"/run/t01-slot","T01_SOURCE_IMAGE_ID":"sha256:3679b2d22c59629380e47db3af59c7b4c3741e6330ab6962aa51ce526c67d32d"},"memory_bytes":8589934592,"tool":"homology"},"root":"/var/lib/t01/resident/homology","source_image_id":"sha256:3679b2d22c59629380e47db3af59c7b4c3741e6330ab6962aa51ce526c67d32d"},"netmhc":{"command":{"argv":["/usr/local/bin/python","-B","/opt/t01/src/t01_phase1_real/development/netmhc/worker.py"],"environment":{"MKL_NUM_THREADS":"2","MPLCONFIGDIR":"/tmp/matplotlib","OMP_NUM_THREADS":"2","OPENBLAS_NUM_THREADS":"1","PATH":"/usr/local/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin","PYTHONUNBUFFERED":"1","T01_PRIVATE_TMP":"1","T01_RESIDENT_OFFLINE":"1","T01_RESIDENT_SLOT":"/run/t01-slot","T01_SOURCE_IMAGE_ID":"sha256:c0a7239d4005484c1248b78de91bf7a76acffe0ed41f52614a54b6c20b3cf094"},"memory_bytes":8589934592,"tool":"netmhc"},"root":"/var/lib/t01/resident/netmhc","source_image_id":"sha256:c0a7239d4005484c1248b78de91bf7a76acffe0ed41f52614a54b6c20b3cf094"},"proteinmpnn":{"command":{"argv":["/opt/t01/env/proteinmpnn/bin/python","-B","/opt/t01/src/t01_phase1_real/development/proteinmpnn/worker.py"],"environment":{"CUDA_CACHE_PATH":"/tmp/cuda","LD_LIBRARY_PATH":"/opt/t01/env/proteinmpnn/lib","MKL_NUM_THREADS":"2","MPLCONFIGDIR":"/tmp/matplotlib","OMP_NUM_THREADS":"2","OPENBLAS_NUM_THREADS":"1","PATH":"/opt/t01/env/proteinmpnn/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin","PYTHONHOME":"/opt/t01/env/proteinmpnn","PYTHONPATH":"/app","PYTHONUNBUFFERED":"1","T01_JOB_ID":"{job_id}","T01_NATIVE_CWD":"/app","T01_NATIVE_PACKAGE":"/t01/assets/proteinmpnn-8907e6671bfb","T01_PRIVATE_TMP":"1","T01_RESIDENT_OFFLINE":"1","T01_RESIDENT_SLOT":"/run/t01-slot","T01_SHARED_GPU_LOCK":"/var/lib/t01/.gpu-execution.lock","T01_SOURCE_IMAGE_ID":"sha256:5b6baa8ebc5660bd3de9cf8b6d1694c7de35fadd23fea6cd7a8352a536e3f3af"},"memory_bytes":274877906944,"tool":"proteinmpnn"},"root":"/var/lib/t01/resident/gpu","source_image_id":"sha256:5b6baa8ebc5660bd3de9cf8b6d1694c7de35fadd23fea6cd7a8352a536e3f3af"},"structure":{"command":{"argv":["/usr/local/bin/python","-B","/opt/t01/src/t01_phase1_real/development/structure/worker.py"],"environment":{"MKL_NUM_THREADS":"2","MPLCONFIGDIR":"/tmp/matplotlib","OMP_NUM_THREADS":"2","OPENBLAS_NUM_THREADS":"1","PATH":"/usr/local/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin","PYTHONUNBUFFERED":"1","T01_PRIVATE_TMP":"1","T01_RESIDENT_OFFLINE":"1","T01_RESIDENT_SLOT":"/run/t01-slot","T01_SOURCE_IMAGE_ID":"sha256:bb6c6b5ce1add12dc9bda3538a218568a9e80c048c12525fc130eaa970dbb9e5"},"memory_bytes":8589934592,"tool":"structure"},"root":"/var/lib/t01/resident/structure","source_image_id":"sha256:bb6c6b5ce1add12dc9bda3538a218568a9e80c048c12525fc130eaa970dbb9e5"},"thermompnn":{"command":{"argv":["/opt/t01/env/proteinmpnn/bin/python","-B","/opt/t01/src/t01_phase1_real/development/thermompnn/worker.py"],"environment":{"CUDA_CACHE_PATH":"/tmp/cuda","LD_LIBRARY_PATH":"/opt/t01/env/thermompnn/lib","MKL_NUM_THREADS":"2","MPLCONFIGDIR":"/tmp/matplotlib","OMP_NUM_THREADS":"2","OPENBLAS_NUM_THREADS":"1","PATH":"/opt/t01/env/thermompnn/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin","PYTHONHOME":"/opt/t01/env/thermompnn","PYTHONPATH":"/app","PYTHONUNBUFFERED":"1","T01_JOB_ID":"{job_id}","T01_NATIVE_CWD":"/app","T01_NATIVE_PACKAGE":"/t01/assets/thermompnn-2b04fd370e39","T01_PRIVATE_TMP":"1","T01_RESIDENT_OFFLINE":"1","T01_RESIDENT_SLOT":"/run/t01-slot","T01_SHARED_GPU_LOCK":"/var/lib/t01/.gpu-execution.lock","T01_SOURCE_IMAGE_ID":"sha256:3cbd3c12b792a8b344347e6e9171d03deb7c5a115a6c4b8af27b84847dfdd847","T01_THERMOMPNN_LAYOUT":"1","TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD":"1","WANDB_MODE":"disabled"},"memory_bytes":274877906944,"tool":"thermompnn"},"root":"/var/lib/t01/resident/gpu","source_image_id":"sha256:3cbd3c12b792a8b344347e6e9171d03deb7c5a115a6c4b8af27b84847dfdd847"}},"version":"0.1.0"}'
+  gpu.worker.json: '{"commands":[{"argv":["/opt/t01/env/proteinmpnn/bin/python","-B","/opt/t01/src/t01_phase1_real/development/proteinmpnn/worker.py"],"environment":{"CUDA_CACHE_PATH":"/tmp/cuda","LD_LIBRARY_PATH":"/opt/t01/env/proteinmpnn/lib","MKL_NUM_THREADS":"2","MPLCONFIGDIR":"/tmp/matplotlib","OMP_NUM_THREADS":"2","OPENBLAS_NUM_THREADS":"1","PATH":"/opt/t01/env/proteinmpnn/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin","PYTHONHOME":"/opt/t01/env/proteinmpnn","PYTHONPATH":"/app","PYTHONUNBUFFERED":"1","T01_JOB_ID":"{job_id}","T01_NATIVE_CWD":"/app","T01_NATIVE_PACKAGE":"/t01/assets/proteinmpnn-8907e6671bfb","T01_PRIVATE_TMP":"1","T01_RESIDENT_OFFLINE":"1","T01_RESIDENT_SLOT":"/run/t01-slot","T01_SHARED_GPU_LOCK":"/var/lib/t01/.gpu-execution.lock","T01_SOURCE_IMAGE_ID":"sha256:5b6baa8ebc5660bd3de9cf8b6d1694c7de35fadd23fea6cd7a8352a536e3f3af"},"memory_bytes":274877906944,"tool":"proteinmpnn"},{"argv":["/opt/t01/env/proteinmpnn/bin/python","-B","/opt/t01/src/t01_phase1_real/development/esm_if1/worker.py"],"environment":{"CUDA_CACHE_PATH":"/tmp/cuda","LD_LIBRARY_PATH":"/opt/t01/env/esm-if1/lib","MKL_NUM_THREADS":"2","MPLCONFIGDIR":"/tmp/matplotlib","OMP_NUM_THREADS":"2","OPENBLAS_NUM_THREADS":"1","PATH":"/opt/t01/env/esm-if1/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin","PYTHONHOME":"/opt/t01/env/esm-if1","PYTHONPATH":"/app","PYTHONUNBUFFERED":"1","T01_JOB_ID":"{job_id}","T01_NATIVE_CWD":"/app","T01_NATIVE_PACKAGE":"/t01/assets/esm-if1-2b369911bb5b","T01_PRIVATE_TMP":"1","T01_RESIDENT_OFFLINE":"1","T01_RESIDENT_SLOT":"/run/t01-slot","T01_SHARED_GPU_LOCK":"/var/lib/t01/.gpu-execution.lock","T01_SOURCE_IMAGE_ID":"sha256:926d4619df9759cd2417dcc9056b7bd648dca1d2adf15631aaad2e84a88d39cc"},"memory_bytes":274877906944,"tool":"esm-if1"},{"argv":["/opt/t01/env/proteinmpnn/bin/python","-B","/opt/t01/src/t01_phase1_real/development/thermompnn/worker.py"],"environment":{"CUDA_CACHE_PATH":"/tmp/cuda","LD_LIBRARY_PATH":"/opt/t01/env/thermompnn/lib","MKL_NUM_THREADS":"2","MPLCONFIGDIR":"/tmp/matplotlib","OMP_NUM_THREADS":"2","OPENBLAS_NUM_THREADS":"1","PATH":"/opt/t01/env/thermompnn/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin","PYTHONHOME":"/opt/t01/env/thermompnn","PYTHONPATH":"/app","PYTHONUNBUFFERED":"1","T01_JOB_ID":"{job_id}","T01_NATIVE_CWD":"/app","T01_NATIVE_PACKAGE":"/t01/assets/thermompnn-2b04fd370e39","T01_PRIVATE_TMP":"1","T01_RESIDENT_OFFLINE":"1","T01_RESIDENT_SLOT":"/run/t01-slot","T01_SHARED_GPU_LOCK":"/var/lib/t01/.gpu-execution.lock","T01_SOURCE_IMAGE_ID":"sha256:3cbd3c12b792a8b344347e6e9171d03deb7c5a115a6c4b8af27b84847dfdd847","T01_THERMOMPNN_LAYOUT":"1","TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD":"1","WANDB_MODE":"disabled"},"memory_bytes":274877906944,"tool":"thermompnn"}],"version":"0.1.0"}'
+  esmfold2.worker.json: '{"commands":[{"argv":["/opt/t01/env/esmfold2/bin/python","-B","-m","t01_phase1_real.development.esmfold2.worker","--input-dir","{input}","--output-dir","{output}/native"],"environment":{"HF_HUB_DISABLE_TELEMETRY":"1","HF_HUB_OFFLINE":"1","LD_LIBRARY_PATH":"/opt/t01/env/esmfold2/lib","OMP_NUM_THREADS":"2","OPENBLAS_NUM_THREADS":"1","PATH":"/opt/t01/env/esmfold2/bin:/usr/bin:/bin","PYTHONHOME":"/opt/t01/env/esmfold2","PYTHONPATH":"/backend:/models/esmfold2-environment-20260916-r01/site-packages","T01_PRECREATE_NATIVE":"0","T01_PRIVATE_TMP":"1","T01_RESIDENT_OFFLINE":"1","T01_RESIDENT_SLOT":"/run/t01-slot","T01_SHARED_GPU_LOCK":"/var/lib/t01/.gpu-execution.lock","T01_SOURCE_IMAGE_ID":"sha256:372545ebe3469a3d32269c27033d19624d713d75ca162dbe6fff5dafed44f77f","TRANSFORMERS_OFFLINE":"1","TRITON_CACHE_DIR":"/tmp/triton","XDG_CACHE_HOME":"/tmp/cache"},"memory_bytes":274877906944,"tool":"esmfold2"}],"version":"0.1.0"}'
+  af3.worker.json: '{"commands":[{"argv":["/usr/local/bin/python","-B","-m","t01_phase1_real.development.af3.worker","--input-dir","{input}","--output-dir","{output}/native"],"environment":{"PYTHONPATH":"/opt/t01/src","PYTHONUNBUFFERED":"1","T01_NATIVE_CWD":"/opt/t01/af3-app/alphafold","T01_NATIVE_PACKAGE":"/opt/t01/af3-app","T01_PRECREATE_NATIVE":"0","T01_PRIVATE_TMP":"1","T01_RESIDENT_OFFLINE":"1","T01_RESIDENT_SLOT":"/run/t01-slot","T01_SHARED_GPU_LOCK":"/var/lib/t01/.gpu-execution.lock","T01_SOURCE_IMAGE_ID":"sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373"},"memory_bytes":274877906944,"tool":"af3"}],"version":"0.1.0"}'
+  unified-gpu.json: '{"spools":[{"config":"/etc/t01/gpu.worker.json","root":"/var/lib/t01/resident/gpu"},{"config":"/etc/t01/esmfold2.worker.json","root":"/var/lib/t01/resident/esmfold2"},{"config":"/etc/t01/af3.worker.json","root":"/var/lib/t01/resident/af3"}],"state_root":"/var/lib/t01/resident/unified-gpu","uuid":"GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31","version":"0.1.0"}'
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-unified-gpu-code-r05
+  namespace: him-ws
+immutable: true
+data:
+  unified_gpu_worker.py: "\"\"\"One permanently allocated GPU, one serial process\
+    \ owner, no cluster API.\n\nScientific commands remain isolated executables. A\
+    \ durable cross-spool intent\nprevents an uncertain execution in one environment\
+    \ being bypassed by another.\n\"\"\"\nfrom __future__ import annotations\n\nimport\
+    \ argparse\nimport hashlib\nimport json\nimport math\nimport os\nfrom pathlib\
+    \ import Path\nimport re\nimport signal\nimport subprocess\nimport time\n\nfrom\
+    \ .resident_process import atomic, run\nfrom .resident_worker import commands_from_file\n\
+    \nTERMINAL = {'succeeded', 'failed', 'cancelled', 'timed_out', 'interrupted'}\n\
+    \n\ndef read_json(path):\n    if path.is_symlink() or path.stat().st_size > 1024\
+    \ ** 2:\n        raise ValueError('Unsafe worker record')\n    raw = path.read_bytes()\n\
+    \    return json.loads(raw), hashlib.sha256(raw).hexdigest()\n\n\ndef configured(path):\n\
+    \    config, _ = read_json(Path(path))\n    if set(config) != {'version', 'uuid',\
+    \ 'state_root', 'spools'} or config['version'] != '0.1.0':\n        raise ValueError('Expected\
+    \ unified GPU worker configuration v0.1.0')\n    if not re.fullmatch(r'GPU-[0-9a-f-]{36}',\
+    \ config['uuid']):\n        raise ValueError('Exact physical GPU UUID required')\n\
+    \    state_root = Path(config['state_root'])\n    if not state_root.is_absolute()\
+    \ or state_root.is_symlink():\n        raise ValueError('Absolute non-symlink\
+    \ state directory required')\n    spools = {}\n    all_tools = set()\n    for\
+    \ row in config['spools']:\n        if set(row) != {'root', 'config'}:\n     \
+    \       raise ValueError('Unexpected spool fields')\n        root, registry =\
+    \ Path(row['root']), Path(row['config'])\n        if not root.is_absolute() or\
+    \ root.is_symlink() or not registry.is_absolute() or registry.is_symlink():\n\
+    \            raise ValueError('Unsafe operator spool/config path')\n        commands\
+    \ = commands_from_file(registry)\n        if root in spools or all_tools.intersection(commands):\n\
+    \            raise ValueError('Duplicate spool/tool registration')\n        spools[root]\
+    \ = commands\n        all_tools.update(commands)\n    if not spools or len(spools)\
+    \ > 8:\n        raise ValueError('Bounded nonempty spool registry required')\n\
+    \    return config, spools\n\n\ndef request_identity(target, commands, *, allow_completed=False):\n\
+    \    if target.is_symlink() or not re.fullmatch('[a-f0-9]{32}', target.name):\n\
+    \        raise ValueError('Unsafe execution directory')\n    request, fingerprint\
+    \ = read_json(target / 'request.json')\n    if request['execution_id'] != target.name:\n\
+    \        raise ValueError('Execution ID mismatch')\n    receipt_path = target\
+    \ / 'execution.json'\n    uncertain = False\n    if receipt_path.exists() or receipt_path.is_symlink():\n\
+    \        receipt, _ = read_json(receipt_path)\n        if receipt.get('request_sha256')\
+    \ != fingerprint or receipt.get('binding') != request['binding']:\n          \
+    \  raise ValueError('Receipt identity mismatch')\n        completed = receipt.get('stopped_confirmed')\
+    \ is True and receipt.get('state') in TERMINAL\n        # Completed requests from\
+    \ a prior environment are immutable history.\n        # Only new/pending requests\
+    \ must match this deployment's command registry.\n        if completed and not\
+    \ allow_completed:\n            return None\n        uncertain = not completed\n\
+    \    tool = request['command']['tool']\n    if tool not in commands or commands[tool].document()\
+    \ != request['command']:\n        raise ValueError('Request differs from registered\
+    \ command')\n    return dict(target=str(target), sha256=fingerprint, tool=tool,\
+    \ uncertain=uncertain,\n                order=(target / 'request.json').stat().st_mtime_ns)\n\
+    \n\ndef pending(spools):\n    result = []\n    for root, commands in spools.items():\n\
+    \        for target in root.iterdir():\n            if not re.fullmatch('[a-f0-9]{32}',\
+    \ target.name):\n                continue\n            if target.is_symlink():\n\
+    \                raise ValueError('Execution symlink')\n            if not target.is_dir()\
+    \ or not (target / 'request.json').exists():\n                continue\n     \
+    \       row = request_identity(target, commands)\n            if row is not None:\n\
+    \                result.append(row)\n    return result\n\n\ndef tick(spools, state_path,\
+    \ stopping=lambda: False, execute=run):\n    \"\"\"Run at most one request; never\
+    \ clear ownership on an ambiguous exit.\"\"\"\n    state = read_json(state_path)[0]\
+    \ if state_path.exists() else {'phase': 'idle'}\n    if state.get('phase') not\
+    \ in {'idle', 'active'}:\n        raise ValueError('Unknown unified worker state')\n\
+    \    rows = pending(spools)\n    if state['phase'] == 'active':\n        active\
+    \ = state['execution']\n        target = Path(active['target'])\n        if target.parent\
+    \ not in spools:\n            raise ValueError('Active execution outside registered\
+    \ spools')\n        selected = request_identity(target, spools[target.parent],\
+    \ allow_completed=True)\n        if selected['sha256'] != active['sha256'] or\
+    \ selected['tool'] != active['tool']:\n            raise ValueError('Active execution\
+    \ identity changed')\n        if any(row['uncertain'] and row['target'] != str(target)\
+    \ for row in rows):\n            raise RuntimeError('Another unconfirmed owner\
+    \ blocks all GPU tools')\n    else:\n        if any(row['uncertain'] for row in\
+    \ rows):\n            raise RuntimeError('Unowned unconfirmed execution blocks\
+    \ all GPU tools')\n        if not rows or stopping():\n            return None\n\
+    \        selected = min(rows, key=lambda row: (row['order'], row['target']))\n\
+    \        target = Path(selected['target'])\n        atomic(state_path, dict(phase='active',\
+    \ execution=selected))\n    receipt = execute(target, spools[target.parent][selected['tool']],\
+    \ stopping)\n    request, _ = read_json(target / 'request.json')\n    if (receipt.get('stopped_confirmed')\
+    \ is not True or receipt.get('state') not in TERMINAL\n            or receipt.get('request_sha256')\
+    \ != selected['sha256'] or receipt.get('binding') != request['binding']):\n  \
+    \      raise RuntimeError('GPU process stop/receipt binding is unconfirmed')\n\
+    \    atomic(state_path, dict(phase='idle', last_execution=selected, last_state=receipt['state']))\n\
+    \    return dict(event='unified_gpu_execution_complete', tool=selected['tool'],\n\
+    \                execution_id=target.name, state=receipt['state'], stopped_confirmed=True)\n\
+    \n\ndef gpu_guard(uuid):\n    raw = subprocess.check_output(['nvidia-smi', '--query-gpu=name,uuid,memory.total',\n\
+    \                                  '--format=csv,noheader,nounits'], text=True,\
+    \ timeout=20)\n    rows = [row.split(',') for row in raw.strip().splitlines()]\n\
+    \    if len(rows) != 1 or len(rows[0]) != 3:\n        raise RuntimeError('Exactly\
+    \ one GPU required')\n    name, observed_uuid, memory = [v.strip() for v in rows[0]]\n\
+    \    capacity = float(memory)\n    if name != 'NVIDIA A100-SXM-64GB' or observed_uuid\
+    \ != uuid or not math.isfinite(capacity) or capacity < 65536:\n        raise RuntimeError('Approved\
+    \ 64GB GPU identity mismatch')\n    return dict(event='UNIFIED_SINGLE_GPU_GUARD_PASS',\
+    \ name=name, uuid=uuid, memory_mib=capacity)\n\n\ndef main():\n    import fcntl\n\
+    \    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument('--config',\
+    \ required=True, type=Path)\n    args = parser.parse_args()\n    config, spools\
+    \ = configured(args.config)\n    state_root = Path(config['state_root'])\n   \
+    \ state_root.mkdir(parents=True, exist_ok=True)\n    for root in spools:\n   \
+    \     root.mkdir(parents=True, exist_ok=True)\n    # All spools now share one\
+    \ process ownership registry. Never migrate a live\n    # request from the former\
+    \ per-environment registry into this deployment.\n    os.environ['T01_PROCESS_REGISTRY']\
+    \ = str(state_root / '.processes')\n    descriptor = os.open(state_root / 'owner.lock',\
+    \ os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW, 0o600)\n    try:\n        fcntl.flock(descriptor,\
+    \ fcntl.LOCK_EX | fcntl.LOCK_NB)\n        print(json.dumps(gpu_guard(config['uuid'])),\
+    \ flush=True)\n        stopping = [False]\n        signal.signal(signal.SIGTERM,\
+    \ lambda *args: stopping.__setitem__(0, True))\n        signal.signal(signal.SIGINT,\
+    \ lambda *args: stopping.__setitem__(0, True))\n        print(json.dumps(dict(event='unified_gpu_worker_ready',\
+    \ tools=sorted(t for c in spools.values() for t in c))), flush=True)\n       \
+    \ prior_error = None\n        while not stopping[0]:\n            try:\n     \
+    \           result = tick(spools, state_root / 'state.json', lambda: stopping[0])\n\
+    \                if result: print(json.dumps(result), flush=True)\n          \
+    \      prior_error = None\n            except (OSError, ValueError, KeyError,\
+    \ TypeError, RuntimeError) as exc:\n                if str(exc) != prior_error:\n\
+    \                    print(json.dumps(dict(event='unified_gpu_blocked', diagnostic=str(exc))),\
+    \ flush=True)\n                    prior_error = str(exc)\n            time.sleep(.25)\n\
+    \    finally:\n        os.close(descriptor)\n\n\nif __name__ == '__main__':\n\
+    \    main()\n"
+  resident_process.py: "\"\"\"Owned Linux processes for a resident worker; no Kubernetes\
+    \ or Docker API.\n\nThis execution primitive is not a science adapter or another\
+    \ business task store.\nThe caller supplies a server-owned Command and the original\
+    \ task binding. Receipts\nrecord processes and bytes only; the existing tool parsers\
+    \ decide result validity.\nRun this supervisor with Python 3.11; Command.argv\
+    \ may select another interpreter.\n\"\"\"\nfrom __future__ import annotations\n\
+    \nimport argparse\nimport hashlib\nimport json\nimport os\nfrom pathlib import\
+    \ Path, PurePosixPath\nimport re\nimport sys\nimport time\nfrom dataclasses import\
+    \ dataclass\n\n\ndef encoded(value):\n    return json.dumps(value, sort_keys=True,\
+    \ separators=(',', ':'), allow_nan=False).encode()\n\n\ndef digest(raw):\n   \
+    \ return hashlib.sha256(raw).hexdigest()\n\n\ndef atomic(path, value):\n    temporary\
+    \ = path.with_name(path.name + '.pending')\n    with temporary.open('wb') as stream:\n\
+    \        stream.write(encoded(value)); stream.flush(); os.fsync(stream.fileno())\n\
+    \    os.replace(temporary, path)\n    if os.name == 'posix':\n        fd = os.open(str(path.parent),\
+    \ os.O_RDONLY)\n        try: os.fsync(fd)\n        finally: os.close(fd)\n\n\n\
+    def safe_path(root, relative):\n    if not isinstance(relative, str) or not re.fullmatch(r'[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*',\
+    \ relative):\n        raise ValueError('Expected a relative artifact name')\n\
+    \    parts = relative.split('/')\n    if any(p in ('.', '..') for p in parts):\
+    \ raise ValueError('Artifact traversal')\n    path = root\n    for part in parts:\n\
+    \        path = path / part\n        if path.is_symlink(): raise ValueError('Artifact\
+    \ symlink')\n    return path\n\n\n@dataclass(frozen=True)\nclass Command:\n  \
+    \  \"\"\"Trusted startup configuration, never constructed from an MCP request.\"\
+    \"\"\n    tool: str\n    argv: tuple[str, ...]\n    environment: tuple[tuple[str,\
+    \ str], ...] = ()\n    memory_bytes: int = 1024 ** 3\n\n    def document(self):\n\
+    \        if not re.fullmatch(r'[a-z0-9][a-z0-9_-]{0,63}', self.tool): raise ValueError('Invalid\
+    \ tool')\n        if not self.argv or not (Path(self.argv[0]).is_absolute() or\
+    \ PurePosixPath(self.argv[0]).is_absolute()): raise ValueError('Absolute executable\
+    \ required')\n        if not all(isinstance(a, str) and '\\0' not in a for a in\
+    \ self.argv): raise ValueError('Invalid argv')\n        if type(self.memory_bytes)\
+    \ is not int or self.memory_bytes < 64 * 1024 ** 2: raise ValueError('Invalid\
+    \ memory bound')\n        env = dict(self.environment)\n        if len(env) !=\
+    \ len(self.environment) or any(not re.fullmatch(r'[A-Z_][A-Z0-9_]*', k) or not\
+    \ isinstance(v, str) or '\\0' in v for k, v in env.items()):\n            raise\
+    \ ValueError('Invalid fixed environment')\n        return dict(tool=self.tool,\
+    \ argv=list(self.argv), environment=env, memory_bytes=self.memory_bytes)\n\n\n\
+    def prepare(root, execution_id, binding, command, inputs, timeout_seconds, *,\
+    \ cancel_requested=False):\n    \"\"\"Create one immutable execution input. Existing\
+    \ IDs can only replay bytes.\"\"\"\n    if not re.fullmatch(r'[a-f0-9]{32}', execution_id):\
+    \ raise ValueError('Expected opaque execution ID')\n    if type(timeout_seconds)\
+    \ is not int or not 1 <= timeout_seconds <= 7200: raise ValueError('Invalid deadline')\n\
+    \    if not isinstance(binding, dict) or set(binding) != {'job_id', 'attempt_id',\
+    \ 'execution_identity'} or not all(isinstance(v, str) and v for v in binding.values()):\n\
+    \        raise ValueError('Original task/attempt binding required')\n    if not\
+    \ isinstance(inputs, dict) or not inputs or len(inputs) > 128 or not all(isinstance(v,\
+    \ bytes) for v in inputs.values()):\n        raise ValueError('Bounded input bytes\
+    \ required')\n    if sum(map(len, inputs.values())) > 128 * 1024 ** 2: raise ValueError('Input\
+    \ too large')\n    root = Path(root).absolute()\n    if root.is_symlink(): raise\
+    \ ValueError('Worker root symlink')\n    root.mkdir(parents=True, exist_ok=True)\n\
+    \    target = safe_path(root, execution_id)\n    manifest = dict(version='0.1.0',\
+    \ execution_id=execution_id, binding=binding,\n                    command=command.document(),\
+    \ timeout_seconds=timeout_seconds,\n                    inputs={name: dict(sha256=digest(raw),\
+    \ size_bytes=len(raw)) for name, raw in sorted(inputs.items())})\n    for name\
+    \ in inputs: safe_path(target / 'input', name)\n    if target.exists():\n    \
+    \    if (target / 'request.json').exists():\n            if (target / 'request.json').read_bytes()\
+    \ != encoded(manifest): raise ValueError('Execution ID conflict')\n          \
+    \  verify_inputs(target, manifest)\n            if cancel_requested: cancel(target)\n\
+    \            return target\n        if (target / 'execution.json').exists(): raise\
+    \ ValueError('Uncommitted input already executing')\n    else:\n        target.mkdir()\n\
+    \    (target / 'input').mkdir(exist_ok=True); (target / 'output').mkdir(exist_ok=True)\n\
+    \    for path in (target / 'input').rglob('*'):\n        if path.is_symlink():\
+    \ raise ValueError('Partial input symlink')\n        if path.is_file() and path.relative_to(target\
+    \ / 'input').as_posix() not in inputs:\n            raise ValueError('Unexpected\
+    \ partial input')\n    for name, raw in inputs.items():\n        path = safe_path(target\
+    \ / 'input', name); path.parent.mkdir(parents=True, exist_ok=True)\n        if\
+    \ path.exists():\n            if path.read_bytes() != raw: raise ValueError('Partial\
+    \ input differs')\n            continue\n        with path.open('xb') as stream:\n\
+    \            stream.write(raw); stream.flush(); os.fsync(stream.fileno())\n  \
+    \      path.chmod(0o400)\n    if cancel_requested: cancel(target)\n    atomic(target\
+    \ / 'request.json', manifest)\n    return target\n\n\ndef verify_inputs(target,\
+    \ request):\n    for name, info in request['inputs'].items():\n        path =\
+    \ safe_path(target / 'input', name)\n        if path.stat().st_size != info['size_bytes']\
+    \ or digest(path.read_bytes()) != info['sha256']:\n            raise ValueError('Input\
+    \ changed: ' + name)\n\n\ndef cancel(target):\n    \"\"\"The owning controller\
+    \ signals cancellation without selecting any PID.\"\"\"\n    target = Path(target)\n\
+    \    with (target / 'cancel').open('ab'): pass\n\n\ndef inventory(target):\n \
+    \   result = {}; total = 0\n    for path in sorted((target / 'output').rglob('*')):\n\
+    \        if path.is_symlink(): raise ValueError('Output symlink')\n        if\
+    \ not path.is_file(): continue\n        size = path.stat().st_size; total += size\n\
+    \        if total > 128 * 1024 ** 2 or len(result) >= 128: raise ValueError('Output\
+    \ exceeds worker bound')\n        result[path.relative_to(target).as_posix()]\
+    \ = dict(size_bytes=size, sha256=digest(path.read_bytes()))\n    return result\n\
+    \n\ndef stop_recorded(posix, target, process_name):\n    \"\"\"A missing registry\
+    \ is lost evidence, not evidence of stopped processes.\"\"\"\n    state = json.loads((target\
+    \ / 'execution.json').read_bytes())\n    if state['stopped_confirmed']: return\
+    \ True\n    try:\n        owned = posix.Job(process_name, create=False)\n    \
+    \    record = owned._record()\n        owned.close()\n    except (OSError, ValueError):\n\
+    \        return False\n    if state.get('process_identity') and record['leader']\
+    \ != state['process_identity']: return False\n    return posix.inspect_job(process_name,\
+    \ stop=True) == 0\n\n\ndef run(target, command, stopping=lambda: False):\n   \
+    \ \"\"\"Execute once under a shared worker slot; replay receipts, never tool work.\n\
+    \n    A separate server/dispatcher must call this from its dedicated process worker.\n\
+    \    The same root serializes all tools (including GPU work). An uncertain old\n\
+    \    process blocks this slot instead of allowing overlapping executions.\n  \
+    \  \"\"\"\n    if sys.platform != 'linux': raise RuntimeError('Resident supervisor\
+    \ requires Linux')\n    from .process_control import posix\n    target = Path(target).absolute();\
+    \ root = target.parent\n    if target.is_symlink(): raise ValueError('Execution\
+    \ symlink')\n    raw = (target / 'request.json').read_bytes(); request = json.loads(raw)\n\
+    \    if command.document() != request['command']: raise ValueError('Registered\
+    \ command changed')\n    if request['execution_id'] != target.name: raise ValueError('Execution\
+    \ directory mismatch')\n    fingerprint = digest(raw)\n    slot = 'resident:'\
+    \ + digest(str(root).encode())\n    process_name = slot + ':' + target.name\n\
+    \    state_path = target / 'execution.json'\n    active_path = root / '.active.json'\n\
+    \    with posix.initialization_lock(slot):\n        verify_inputs(target, request)\n\
+    \        if active_path.exists():\n            active = json.loads(active_path.read_bytes())\n\
+    \            if active['execution_id'] != target.name:\n                previous_target\
+    \ = safe_path(root, active['execution_id'])\n                expected = slot +\
+    \ ':' + previous_target.name\n                if active['process_name'] != expected\
+    \ or not stop_recorded(posix, previous_target, expected):\n                  \
+    \  raise RuntimeError('Previous worker process stop is unconfirmed')\n       \
+    \ if state_path.exists():\n            previous = json.loads(state_path.read_bytes())\n\
+    \            if previous['request_sha256'] != fingerprint: raise ValueError('Execution\
+    \ receipt binding changed')\n            if previous['stopped_confirmed']:\n \
+    \               if previous['outputs'] != inventory(target): raise ValueError('Published\
+    \ outputs changed')\n                return previous\n            if not stop_recorded(posix,\
+    \ target, process_name):\n                raise RuntimeError('Interrupted execution\
+    \ stop is unconfirmed')\n            previous.update(state='interrupted', stopped_confirmed=True,\
+    \ outputs=inventory(target))\n            atomic(state_path, previous)\n     \
+    \       return previous\n        state = dict(version='0.1.0', backend='resident-process',\
+    \ binding=request['binding'],\n                     execution_id=target.name,\
+    \ request_sha256=fingerprint, process_name=process_name,\n                   \
+    \  state='starting', stopped_confirmed=False, exit_code=None, outputs={},\n  \
+    \                   scientific_signoff=None, usable_for_pipeline=False)\n    \
+    \    if (target / 'cancel').exists() or stopping():\n            state.update(state='cancelled',\
+    \ stopped_confirmed=True)\n            atomic(state_path, state)\n           \
+    \ return state\n        atomic(active_path, dict(execution_id=target.name, process_name=process_name))\n\
+    \        atomic(state_path, state)\n        owned = posix.Job(process_name, memory_bytes=command.memory_bytes)\n\
+    \        child = None\n        try:\n            argv = [sys.executable, '-B',\
+    \ str(Path(__file__).absolute()), '--child', str(target), '--expected-sha256',\
+    \ fingerprint]\n            child = posix.Process(argv, root, job=owned)\n   \
+    \         state.update(state='running', process_identity=child.identity)\n   \
+    \         atomic(state_path, state)\n            child.resume()\n            start\
+    \ = time.monotonic(); reason = None\n            while child.poll() is None:\n\
+    \                if (target / 'cancel').exists() or stopping(): reason = 'cancelled'\n\
+    \                elif time.monotonic() - start >= request['timeout_seconds']:\
+    \ reason = 'timed_out'\n                if reason:\n                    owned.stop();\
+    \ break\n                time.sleep(0.02)\n            # A completed leader alone\
+    \ does not prove all its children stopped.\n            deadline = time.monotonic()\
+    \ + 5\n            while owned.active() and time.monotonic() < deadline: time.sleep(0.02)\n\
+    \            if owned.active(): raise RuntimeError('Tool descendants have not\
+    \ stopped')\n            code = child.poll()\n            verify_inputs(target,\
+    \ request)\n            state.update(state=reason or ('succeeded' if code == 0\
+    \ else 'failed'), exit_code=code,\n                         stopped_confirmed=True,\
+    \ outputs=inventory(target))\n            atomic(state_path, state)\n        \
+    \    return state\n        except BaseException:\n            # Receipt stays\
+    \ nonterminal if process ownership cannot be resolved.\n            if child is\
+    \ not None:\n                posix.inspect_job(process_name, stop=True)\n    \
+    \            child.poll()\n            raise\n        finally:\n            owned.close()\n\
+    \            if child is not None: child.close()\n\n\ndef child_main(target, expected_sha256):\n\
+    \    \"\"\"Runs inside the already registered process group, before exec.\"\"\"\
+    \n    import resource\n    target = Path(target); raw = (target / 'request.json').read_bytes()\n\
+    \    if digest(raw) != expected_sha256: raise ValueError('Execution request changed\
+    \ before launch')\n    request = json.loads(raw)\n    verify_inputs(target, request)\n\
+    \    command = request['command']\n    resource.setrlimit(resource.RLIMIT_FSIZE,\
+    \ (32 * 1024 ** 2, 32 * 1024 ** 2))\n    resource.setrlimit(resource.RLIMIT_CORE,\
+    \ (0, 0))\n    environment = {'PATH': '/usr/local/bin:/usr/bin:/bin', 'LANG':\
+    \ 'C.UTF-8',\n                   'HOME': '/tmp', 'TMPDIR': '/tmp', 'PYTHONDONTWRITEBYTECODE':\
+    \ '1'}\n    environment.update(command['environment'])\n    def expand(value):\n\
+    \        return (value.replace('{input}', str(target / 'input')).replace('{output}',\
+    \ str(target / 'output'))\n                .replace('{job_id}', request['binding']['job_id']))\n\
+    \    argv = [expand(a) for a in command['argv']]\n    environment = {k: expand(v)\
+    \ for k, v in environment.items()}\n    # One shared-volume advisory lock across\
+    \ GPU worker containers. The child\n    # waits under the existing supervisor\
+    \ deadline/cancellation process group.\n    # Keep the descriptor across exec;\
+    \ process death releases the kernel lock.\n    if environment.get('T01_SHARED_GPU_LOCK'):\n\
+    \        import fcntl\n        lock_path = Path(environment['T01_SHARED_GPU_LOCK'])\n\
+    \        if not lock_path.is_absolute(): raise ValueError('Absolute shared GPU\
+    \ lock required')\n        lock_fd = os.open(lock_path, os.O_CREAT | os.O_RDWR\
+    \ | os.O_NOFOLLOW, 0o600)\n        fcntl.flock(lock_fd, fcntl.LOCK_EX)\n     \
+    \   os.set_inheritable(lock_fd, True)\n    for number, name in ((1, 'stdout.txt'),\
+    \ (2, 'stderr.txt')):\n        fd = os.open(str(target / 'output' / name), os.O_WRONLY\
+    \ | os.O_CREAT | os.O_EXCL, 0o600)\n        os.dup2(fd, number); os.close(fd)\n\
+    \    if 'T01_RESIDENT_SLOT' in environment:\n        slot = Path(environment['T01_RESIDENT_SLOT'])\n\
+    \        if not slot.is_absolute() or slot.is_symlink(): raise ValueError('Invalid\
+    \ fixed native slot')\n        slot.mkdir(parents=True, exist_ok=True)\n     \
+    \   # The root lock already excludes another execution in this worker.\n     \
+    \   # Image-owned aliases (/out, /input.json, /native) point into current.\n \
+    \       # Most resident tools expect the native output directory to exist.  A\n\
+    \        # few native CLIs (notably ESMFold2) deliberately create it with\n  \
+    \      # exist_ok=False, so the fixed command may opt out and retain that\n  \
+    \      # tool-level invariant.\n        if environment.get('T01_PRECREATE_NATIVE',\
+    \ '1') == '1':\n            (target / 'output' / 'native').mkdir()\n        (target\
+    \ / 'work').mkdir()\n        if environment.get('T01_PRIVATE_TMP') == '1':\n \
+    \           temporary_root = target / 'work/tmp'\n            temporary_root.mkdir()\n\
+    \            temporary_link = slot / 'tmp.pending'\n            temporary_link.symlink_to(temporary_root,\
+    \ target_is_directory=True)\n            os.replace(temporary_link, slot / 'tmp')\n\
+    \        pending = slot / 'current.pending'\n        pending.symlink_to(target,\
+    \ target_is_directory=True)\n        os.replace(pending, slot / 'current')\n \
+    \       package = environment.get('T01_NATIVE_PACKAGE')\n        if package:\n\
+    \            original = Path(package)\n            if not original.is_absolute()\
+    \ or not original.is_dir(): raise ValueError('Native package missing')\n     \
+    \       selected = original\n            if environment.get('T01_THERMOMPNN_LAYOUT')\
+    \ == '1':\n                selected = target / 'work' / 'app'\n              \
+    \  selected.mkdir()\n                # The official CLI resolves __file__ before\
+    \ locating local.yaml.\n                # Copy Python sources byte-for-byte so\
+    \ realpath stays inside the\n                # private task view; large immutable\
+    \ weights remain linked.\n                import shutil\n                for item\
+    \ in sorted(original.rglob('*')):\n                    relative=item.relative_to(original)\n\
+    \                    if relative.as_posix()=='local.yaml':continue\n         \
+    \           destination=selected/relative\n                    if item.is_dir():destination.mkdir()\n\
+    \                    elif item.suffix=='.py':shutil.copyfile(item,destination)\n\
+    \                    else:destination.symlink_to(item)\n                (selected\
+    \ / 'local.yaml').symlink_to(target / 'input/native/runtime-local.yaml')\n   \
+    \         for name, destination in (('package', selected), ('upstream', original)):\n\
+    \                temporary = slot / (name + '.pending')\n                temporary.symlink_to(destination,\
+    \ target_is_directory=True)\n                os.replace(temporary, slot / name)\n\
+    \        if environment.get('T01_DATABASE_ROOT'):\n            body = json.loads((target\
+    \ / 'input/input.json').read_bytes())\n            database_id = body.get('database_id')\n\
+    \            if not isinstance(database_id, str) or not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]{0,127}',\
+    \ database_id):\n                raise ValueError('Registered database ID required')\n\
+    \            database = safe_path(Path(environment['T01_DATABASE_ROOT']), database_id)\n\
+    \            if not database.is_dir(): raise ValueError('Registered database missing')\n\
+    \            temporary = slot / 'database.pending'\n            temporary.symlink_to(database,\
+    \ target_is_directory=True)\n            os.replace(temporary, slot / 'database')\n\
+    \    # Take the actual namespace/CPU observation before restricting sockets;\n\
+    \    # interface enumeration can itself use a non-INET socket on some libc builds.\n\
+    \    import socket\n    import platform\n    observation = dict(network_interfaces=socket.if_nameindex(),\
+    \ cpu_affinity=sorted(os.sched_getaffinity(0)),\n                       machine=platform.machine(),\
+    \ source_image_id=environment.get('T01_SOURCE_IMAGE_ID'))\n    if environment.get('T01_RESIDENT_OFFLINE')\
+    \ == '1':\n        sys.path.insert(0, str(Path(__file__).parent))\n        from\
+    \ resident_offline import restrict_sockets\n        observation['network_restriction']\
+    \ = restrict_sockets()\n    else:\n        observation['network_restriction']\
+    \ = None\n    atomic(target / 'output' / 'executor-observation.json', observation)\n\
+    \    os.chdir(environment.get('T01_NATIVE_CWD', str(target / 'output')))\n   \
+    \ os.execve(argv[0], argv, environment)\n\n\nif __name__ == '__main__':\n    parser\
+    \ = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument('--child',\
+    \ type=Path, required=True)\n    parser.add_argument('--expected-sha256', required=True)\n\
+    \    args = parser.parse_args()\n    child_main(args.child, args.expected_sha256)\n"
+  resident_worker.py: "\"\"\"Static resident worker polling a shared execution spool,\
+    \ without network APIs.\n\nThe control plane stages executions using resident_process.prepare.\
+    \ This process\nalone launches commands registered in its operator-owned configuration.\
+    \ It does\nnot create business jobs, infer scientific results, or access Kubernetes/Docker.\n\
+    \"\"\"\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport\
+    \ os\nfrom pathlib import Path\nimport re\nimport signal\nimport sys\nimport time\n\
+    \nfrom .resident_process import Command, encoded, run\n\n\ndef commands_from_file(path):\n\
+    \    document = json.loads(Path(path).read_bytes())\n    if not isinstance(document,\
+    \ dict) or set(document) != {'version', 'commands'} or document['version'] !=\
+    \ '0.1.0':\n        raise ValueError('Expected resident worker configuration v0.1.0')\n\
+    \    rows = document['commands']\n    if not isinstance(rows, list) or not 1 <=\
+    \ len(rows) <= 32: raise ValueError('Bounded command registry required')\n   \
+    \ registry = {}\n    for row in rows:\n        if not isinstance(row, dict) or\
+    \ set(row) != {'tool', 'argv', 'environment', 'memory_bytes'}:\n            raise\
+    \ ValueError('Exact registered command fields required')\n        if not isinstance(row['argv'],\
+    \ list) or not isinstance(row['environment'], dict): raise ValueError('Invalid\
+    \ command')\n        command = Command(row['tool'], tuple(row['argv']), tuple(sorted(row['environment'].items())),\
+    \ row['memory_bytes'])\n        command.document()\n        if command.tool in\
+    \ registry: raise ValueError('Duplicate tool registration')\n        registry[command.tool]\
+    \ = command\n    return registry\n\n\ndef cycle(root, commands, stopping=lambda:\
+    \ False):\n    \"\"\"One serialized scan. Diagnostic failures never become successful\
+    \ receipts.\"\"\"\n    results = []\n    for target in sorted(Path(root).iterdir()):\n\
+    \        if stopping(): break\n        if not re.fullmatch(r'[a-f0-9]{32}', target.name):\
+    \ continue\n        if target.is_symlink() or not target.is_dir(): continue\n\
+    \        request_path = target / 'request.json'\n        if not request_path.exists():\
+    \ continue  # input staging has not been committed\n        try:\n           \
+    \ if request_path.is_symlink() or request_path.stat().st_size > 1024 ** 2: raise\
+    \ ValueError('Invalid execution request')\n            state_path = target / 'execution.json'\n\
+    \            if state_path.is_symlink(): raise ValueError('Execution receipt symlink')\n\
+    \            if state_path.exists() and json.loads(state_path.read_bytes()).get('stopped_confirmed')\
+    \ is True: continue\n            request = json.loads(request_path.read_bytes())\n\
+    \            tool = request['command']['tool']\n            if tool not in commands:\
+    \ raise ValueError('Tool is not registered in this worker')\n            result\
+    \ = run(target, commands[tool], stopping)\n            results.append(dict(execution_id=target.name,\
+    \ state=result['state'], stopped_confirmed=result['stopped_confirmed']))\n   \
+    \     except (OSError, ValueError, KeyError, TypeError, RuntimeError) as exc:\n\
+    \            results.append(dict(execution_id=target.name, state='unconfirmed',\
+    \ diagnostic=str(exc)))\n    return results\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n\
+    \    parser.add_argument('--root', type=Path, required=True)\n    parser.add_argument('--config',\
+    \ type=Path, required=True)\n    parser.add_argument('--once', action='store_true')\n\
+    \    args = parser.parse_args()\n    if sys.platform != 'linux': raise RuntimeError('Resident\
+    \ worker requires Linux')\n    if not args.root.is_absolute() or not args.config.is_absolute():\
+    \ raise ValueError('Absolute operator paths required')\n    if args.root.is_symlink()\
+    \ or args.config.is_symlink(): raise ValueError('Worker configuration/root symlink')\n\
+    \    args.root.mkdir(parents=True, exist_ok=True)\n    # Keep stop ownership evidence\
+    \ beside the execution spool across restarts.\n    os.environ['T01_PROCESS_REGISTRY']\
+    \ = str(args.root / '.processes')\n    commands = commands_from_file(args.config)\n\
+    \    stopping = [False]\n    def stop(signum, frame): stopping[0] = True\n   \
+    \ signal.signal(signal.SIGTERM, stop); signal.signal(signal.SIGINT, stop)\n  \
+    \  print(encoded(dict(event='resident_worker_ready', tools=sorted(commands))).decode(),\
+    \ flush=True)\n    prior = {}\n    while not stopping[0]:\n        for row in\
+    \ cycle(args.root, commands, lambda: stopping[0]):\n            if prior.get(row['execution_id'])\
+    \ != row:\n                print(encoded(row).decode(), flush=True)\n        \
+    \        prior[row['execution_id']] = row\n        if args.once: break\n     \
+    \   time.sleep(.25)\n    return 0\n\n\nif __name__ == '__main__':\n    raise SystemExit(main())\n"
+  resident_offline.py: "\"\"\"Inherited socket restriction for the registered Linux/amd64\
+    \ native tools.\n\nUses the Linux seccomp ABI (kernel.org/doc/html/latest/userspace-api/seccomp_filter.html).\n\
+    This is an offline execution guard, not a sandbox for untrusted executable code.\n\
+    \"\"\"\nimport ctypes\nimport errno\nimport platform\n\n\ndef restrict_sockets():\n\
+    \    if platform.machine() != 'x86_64':\n        raise RuntimeError('Resident\
+    \ scientific profile requires Linux amd64')\n    class Filter(ctypes.Structure):\n\
+    \        _fields_ = [('code', ctypes.c_ushort), ('jt', ctypes.c_ubyte),\n    \
+    \                ('jf', ctypes.c_ubyte), ('k', ctypes.c_uint)]\n    class Program(ctypes.Structure):\n\
+    \        _fields_ = [('len', ctypes.c_ushort), ('filter', ctypes.POINTER(Filter))]\n\
+    \    allow = 0x7fff0000\n    deny = 0x00050000 | errno.EPERM\n    # seccomp_data:\
+    \ nr at 0, arch at 4, args[0] at 16. AF_UNIX is for\n    # local IPC, AF_NETLINK\
+    \ for interface enumeration. Reject alternate ABIs and io_uring,\n    # which\
+    \ could otherwise issue socket operations outside this filter.\n    rows = [(0x20,0,0,4),\
+    \ (0x15,1,0,0xc000003e), (0x06,0,0,deny),\n            (0x20,0,0,0), (0x35,0,1,0x40000000),\
+    \ (0x06,0,0,deny),\n            (0x15,0,1,425), (0x06,0,0,deny),\n           \
+    \ (0x15,1,0,41), (0x06,0,0,allow),\n            (0x20,0,0,16), (0x15,2,0,1), (0x15,1,0,16),\n\
+    \            (0x06,0,0,deny), (0x06,0,0,allow)]\n    filters = (Filter * len(rows))(*(Filter(*row)\
+    \ for row in rows))\n    program = Program(len(rows), filters)\n    libc = ctypes.CDLL(None,\
+    \ use_errno=True)\n    if libc.prctl(38, 1, 0, 0, 0) or libc.prctl(22, 2, ctypes.byref(program),\
+    \ 0, 0):\n        raise OSError(ctypes.get_errno(), 'Cannot install resident offline\
+    \ socket restriction')\n    return 'seccomp-local-sockets-only-v1'\n"
+  process_control--__init__.py: "\"\"\"Cross-platform owned-process primitives used\
+    \ by the durable runtime.\"\"\"\n\nimport os\n\nif os.name == \"nt\":\n    from\
+    \ .windows import *  # noqa: F401,F403\nelif os.name == \"posix\":\n    from .posix\
+    \ import *  # noqa: F401,F403\nelse:  # pragma: no cover\n    raise RuntimeError(f\"\
+    Unsupported process-control platform: {os.name}\")\n\n"
+  process_control--posix.py: "\"\"\"Linux/POSIX implementation using owned process\
+    \ groups and PID birth tokens.\"\"\"\n\nfrom __future__ import annotations\n\n\
+    import errno\nimport fcntl\nimport hashlib\nimport json\nimport os\nfrom contextlib\
+    \ import contextmanager\nfrom pathlib import Path\nimport resource\nimport signal\n\
+    import time\n\nREGISTRY = Path(os.environ.get(\"T01_PROCESS_REGISTRY\", \"/tmp/t01-process-control\"\
+    ))\n\n\ndef _record_path(name):\n    REGISTRY.mkdir(mode=0o700, parents=True,\
+    \ exist_ok=True)\n    return REGISTRY / (hashlib.sha256(name.encode(\"utf-8\"\
+    )).hexdigest() + \".json\")\n\n\ndef _stat(pid):\n    raw = Path(f\"/proc/{int(pid)}/stat\"\
+    ).read_text(encoding=\"ascii\")\n    fields = raw[raw.rfind(\")\") + 2:].split()\n\
+    \    return {\"state\": fields[0], \"pgrp\": int(fields[2]), \"birth\": fields[19]}\n\
+    \n\ndef current_identity():\n    return {\"pid\": os.getpid(), \"birth\": _stat(os.getpid())[\"\
+    birth\"], \"platform\": \"linux\"}\n\n\ndef alive(identity):\n    if not identity:\
+    \ return None\n    try:\n        observed = _stat(identity[\"pid\"])\n       \
+    \ return observed[\"birth\"] == str(identity[\"birth\"]) and observed[\"state\"\
+    ] != \"Z\"\n    except FileNotFoundError: return False\n    except (KeyError,\
+    \ OSError, ValueError): return None\n\n\n@contextmanager\ndef initialization_lock(name):\n\
+    \    path = _record_path(\"lock:\" + name)\n    descriptor = os.open(path, os.O_RDWR\
+    \ | os.O_CREAT | os.O_NOFOLLOW, 0o600)\n    acquired = False; deadline = time.monotonic()\
+    \ + 15\n    try:\n        while not acquired:\n            try:\n            \
+    \    fcntl.flock(descriptor, fcntl.LOCK_EX | fcntl.LOCK_NB); acquired = True\n\
+    \            except BlockingIOError:\n                if time.monotonic() >= deadline:\
+    \ raise OSError(\"Runtime initialization lock unavailable\")\n               \
+    \ time.sleep(0.02)\n        yield\n    finally:\n        if acquired: fcntl.flock(descriptor,\
+    \ fcntl.LOCK_UN)\n        os.close(descriptor)\n\n\n@contextmanager\ndef locked_file(path):\n\
+    \    descriptor = os.open(path, os.O_RDONLY | os.O_NOFOLLOW)\n    stream = os.fdopen(descriptor,\
+    \ \"rb\")\n    try:\n        fcntl.flock(stream.fileno(), fcntl.LOCK_SH); yield\
+    \ stream\n    finally:\n        fcntl.flock(stream.fileno(), fcntl.LOCK_UN); stream.close()\n\
+    \n\ndef _members(pgid):\n    result = []\n    for entry in Path(\"/proc\").iterdir():\n\
+    \        if not entry.name.isdigit(): continue\n        try:\n            observed\
+    \ = _stat(int(entry.name))\n            if observed[\"pgrp\"] == pgid and observed[\"\
+    state\"] != \"Z\": result.append(int(entry.name))\n        except (FileNotFoundError,\
+    \ PermissionError, ValueError): continue\n    return result\n\n\nclass Process:\n\
+    \    \"\"\"Create a stopped process group; resume only after durable registration.\"\
+    \"\"\n\n    def __init__(self, argv, cwd, job=None):\n        self.pid = os.fork();\
+    \ self._status = None\n        if self.pid == 0:  # pragma: no cover - child path\n\
+    \            try:\n                os.chdir(cwd); os.setsid()\n              \
+    \  if job is not None:\n                    if job.memory_bytes: resource.setrlimit(resource.RLIMIT_AS,\
+    \ (job.memory_bytes, job.memory_bytes))\n                    # RLIMIT_NPROC is\
+    \ per UID rather than per owned process\n                    # group, so using\
+    \ it here would let one concurrent job\n                    # starve unrelated\
+    \ jobs. The group is still observed and\n                    # the Pod/container\
+    \ pids limit is the platform boundary.\n                os.kill(os.getpid(), signal.SIGSTOP)\n\
+    \                os.execv(str(argv[0]), [str(item) for item in argv])\n      \
+    \      except BaseException: os._exit(127)\n        waited, status = os.waitpid(self.pid,\
+    \ os.WUNTRACED)\n        if waited != self.pid or not os.WIFSTOPPED(status): raise\
+    \ OSError(\"Child did not enter registration barrier\")\n        self.identity\
+    \ = {\"pid\": self.pid, \"birth\": _stat(self.pid)[\"birth\"], \"platform\": \"\
+    linux\"}\n        if job is not None: job._register(self.identity)\n\n    def\
+    \ resume(self): os.kill(self.pid, signal.SIGCONT)\n\n    def poll(self):\n   \
+    \     if self._status is not None: return self._status\n        try: waited, status\
+    \ = os.waitpid(self.pid, os.WNOHANG)\n        except ChildProcessError: return\
+    \ 0 if alive(self.identity) is False else None\n        if waited == 0: return\
+    \ None\n        if os.WIFEXITED(status): self._status = os.WEXITSTATUS(status)\n\
+    \        elif os.WIFSIGNALED(status): self._status = 128 + os.WTERMSIG(status)\n\
+    \        return self._status\n\n    def close(self): return\n\n\nclass Job:\n\
+    \    def __init__(self, name, create=True, memory_bytes=1024 * 1024**2, active_limit=4):\n\
+    \        self.name = name; self.handle = True; self.memory_bytes = memory_bytes;\
+    \ self.active_limit = active_limit\n        self.path = _record_path(\"job:\"\
+    \ + name)\n        if create:\n            descriptor = os.open(self.path, os.O_WRONLY\
+    \ | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)\n            os.close(descriptor)\n\
+    \        elif not self.path.is_file():\n            raise FileNotFoundError(errno.ENOENT,\
+    \ \"Execution process group is absent\", self.path)\n\n    def _register(self,\
+    \ identity):\n        payload = {\"name\": self.name, \"pgid\": identity[\"pid\"\
+    ], \"leader\": identity,\n                   \"memory_bytes\": self.memory_bytes,\
+    \ \"active_limit\": self.active_limit}\n        descriptor = os.open(self.path,\
+    \ os.O_WRONLY | os.O_TRUNC | os.O_NOFOLLOW)\n        with os.fdopen(descriptor,\
+    \ \"w\", encoding=\"utf-8\") as stream:\n            json.dump(payload, stream,\
+    \ sort_keys=True, separators=(\",\", \":\")); stream.flush(); os.fsync(stream.fileno())\n\
+    \n    def _record(self):\n        raw = json.loads(self.path.read_text(encoding=\"\
+    utf-8\"))\n        if raw.get(\"name\") != self.name or not isinstance(raw.get(\"\
+    pgid\"), int): raise OSError(\"Process group ownership record differs\")\n   \
+    \     return raw\n\n    def active(self):\n        record = self._record()\n \
+    \       leader = record.get(\"leader\")\n        if not isinstance(leader, dict)\
+    \ or record[\"pgid\"] != leader.get(\"pid\"):\n            raise OSError(\"Process\
+    \ group leader identity is missing\")\n        if alive(leader) is True:\n   \
+    \         if _stat(leader[\"pid\"])[\"pgrp\"] != record[\"pgid\"]:\n         \
+    \       raise OSError(\"Process group ownership changed\")\n            return\
+    \ len(_members(record[\"pgid\"]))\n        # A vanished leader does not prove\
+    \ its descendants have exited. Never\n        # claim stop confirmation while\
+    \ a group with that ID is still present.\n        if _members(record[\"pgid\"\
+    ]):\n            raise OSError(\"Leader identity expired; process group ownership\
+    \ is unconfirmed\")\n        return 0\n\n    def limits(self):\n        return\
+    \ {\"flags\": \"kill-process-group\", \"active_limit\": self.active_limit,\n \
+    \               \"job_memory\": self.memory_bytes, \"platform\": \"linux-process-group-rlimit\"\
+    ,\n                \"active_limit_enforcement\": \"container-or-pod-pids-limit\"\
+    }\n\n    def stop(self):\n        record = self._record(); leader = record.get(\"\
+    leader\")\n        if not isinstance(leader, dict) or record[\"pgid\"] != leader.get(\"\
+    pid\"):\n            raise OSError(\"Process group leader identity is missing\"\
+    )\n        if alive(leader) is not True:\n            if _members(record[\"pgid\"\
+    ]):\n                raise OSError(\"Expired leader; refusing to signal an unowned\
+    \ process group\")\n            return\n        if not hasattr(os, 'pidfd_open')\
+    \ or not hasattr(signal, 'pidfd_send_signal'):\n            raise OSError(\"Race-safe\
+    \ Linux process stopping requires pidfd support\")\n        handles = {}\n   \
+    \     try:\n            # Holding pidfds and checking birth AFTER opening them\
+    \ prevents PID\n            # reuse between identity verification and signalling.\
+    \ Never killpg.\n            def freeze(pid, expected_birth=None):\n         \
+    \       fd = os.pidfd_open(pid)\n                try:\n                    observed\
+    \ = _stat(pid)\n                    if observed['pgrp'] != record['pgid'] or (expected_birth\
+    \ is not None and observed['birth'] != str(expected_birth)):\n               \
+    \         raise OSError('Process identity changed before stop')\n            \
+    \        signal.pidfd_send_signal(fd, signal.SIGSTOP)\n                    handles[pid]\
+    \ = fd\n                except BaseException:\n                    os.close(fd);\
+    \ raise\n            freeze(leader['pid'], leader['birth'])\n            # Stop\
+    \ newly observed children before taking another membership\n            # snapshot.\
+    \ A bounded failure leaves ownership unconfirmed.\n            for _ in range(64):\n\
+    \                pending = [pid for pid in _members(record['pgid']) if pid not\
+    \ in handles]\n                if not pending: break\n                for pid\
+    \ in pending:\n                    try: freeze(pid)\n                    except\
+    \ ProcessLookupError: pass\n            else: raise OSError('Process group did\
+    \ not quiesce')\n            for fd in handles.values():\n                try:\
+    \ signal.pidfd_send_signal(fd, signal.SIGKILL)\n                except ProcessLookupError:\
+    \ pass\n        finally:\n            for fd in handles.values(): os.close(fd)\n\
+    \n    def close(self): self.handle = None\n\n\ndef inspect_job(name, stop=False):\n\
+    \    try: job = Job(name, create=False)\n    except FileNotFoundError: return\
+    \ 0\n    try:\n        if stop:\n            job.stop(); deadline = time.monotonic()\
+    \ + 5\n            while job.active() and time.monotonic() < deadline: time.sleep(0.02)\n\
+    \        return job.active()\n    except (OSError, ValueError, json.JSONDecodeError):\
+    \ return None\n    finally: job.close()\n"
+  development--af3--__init__.py: '"""Explicit offline AlphaFold 3 engineering tasks;
+    no scientific qualification."""
+
+    '
+  development--af3--native_worker.py: "\"\"\"Run the pinned AF3 data pipeline and\
+    \ five-sample inference in one owned slot.\"\"\"\nfrom __future__ import annotations\n\
+    \nimport hashlib\nimport importlib.metadata\nimport math\nimport os\nfrom pathlib\
+    \ import Path\nimport subprocess\nimport sys\n\nfrom .primitives import decode,\
+    \ encode, ensure, sha\n\n\ndef file_sha(path):\n    digest = hashlib.sha256()\n\
+    \    with path.open('rb') as stream:\n        while chunk := stream.read(8 * 1024\
+    \ * 1024):\n            digest.update(chunk)\n    return digest.hexdigest()\n\n\
+    \ndef write(path, value):\n    path.write_bytes(encode(value))\n\n\ndef gpu_identity(expected):\n\
+    \    text = subprocess.check_output(\n        ['nvidia-smi', '--query-gpu=name,uuid,memory.total',\
+    \ '--format=csv,noheader,nounits'], text=True)\n    rows = [line.split(',') for\
+    \ line in text.strip().splitlines()]\n    ensure(len(rows) == 1 and len(rows[0])\
+    \ == 3, 'PROFILE_NOT_APPROVED', 'Exactly one visible GPU required')\n    name,\
+    \ uuid, memory = [part.strip() for part in rows[0]]\n    try:\n        memory_mib\
+    \ = float(memory)\n    except ValueError as exc:\n        raise ValueError('GPU\
+    \ memory is not numeric') from exc\n    ensure(name == expected['name'] and uuid\
+    \ == expected['uuid'] and math.isfinite(memory_mib)\n           and memory_mib\
+    \ == expected['memory_mib'],\n           'PROFILE_NOT_APPROVED', 'Approved A100\
+    \ 64GB identity required')\n    return dict(name=name, uuid=uuid, memory_mib=memory_mib)\n\
+    \n\ndef database_identity(profile):\n    value = profile['database']; root = Path(value['root'])\n\
+    \    receipt = decode(Path(value['receipt']).read_bytes())\n    ensure(receipt.get('decompressed')\
+    \ is True and receipt.get('output_root') == root.name\n           and receipt.get('file_count')\
+    \ == value['file_count']\n           and receipt.get('total_bytes') == value['total_bytes']\n\
+    \           and receipt.get('status') == 'AF3_DATABASES_EXTRACTED_VERIFIED_NOT_DEPLOYED',\n\
+    \           'ASSET_MISSING', 'AF3 extraction receipt differs')\n    ensure(all((root\
+    \ / relative).exists() for relative in value['required_paths']),\n           'ASSET_MISSING',\
+    \ 'AF3 required database path missing')\n    return receipt\n\n\ndef run(request_path,\
+    \ output, profile_path):\n    output.mkdir(exist_ok=False)\n    request = decode(request_path.read_bytes());\
+    \ profile = decode(profile_path.read_bytes())\n    ensure(request['engine'] ==\
+    \ 'alphafold3' and request['asset_profile_id'] == profile['id'],\n           'PROFILE_NOT_APPROVED',\
+    \ 'AF3 request/profile differs')\n    sequence = request['inputs']['sequence']\n\
+    \    ensure(request['parameters']['seed'] == 1 and request['parameters']['num_samples']\
+    \ == 5,\n           'PROFILE_NOT_APPROVED', 'AF3 seed/sample profile differs')\n\
+    \    model = Path(profile['model']['path'])\n    ensure(model.is_file() and file_sha(model)\
+    \ == profile['model']['sha256'],\n           'ASSET_MISSING', 'AF3 decompressed\
+    \ weight identity differs')\n    database_receipt = database_identity(profile)\n\
+    \    gpu = gpu_identity(profile['device'])\n    write(output / 'request.json',\
+    \ request)\n    (output / 'profile.json').write_bytes(profile_path.read_bytes())\n\
+    \    write(output / 'gpu.json', gpu)\n    internal_name = 't01-af3-' + sha(sequence.encode())[:16]\n\
+    \    folding_input = dict(name=internal_name, modelSeeds=[request['parameters']['seed']],\n\
+    \                         sequences=[dict(protein=dict(id='A', sequence=sequence))],\n\
+    \                         dialect='alphafold3', version=1)\n    write(output /\
+    \ 'fold-input.json', folding_input)\n    app_root = Path('/opt/t01/af3-app')\n\
+    \    app_output = output / 'app-output'\n    command = ['/alphafold3_venv/bin/python',\
+    \ str(app_root / 'alphafold/run_alphafold.py'),\n               '--json_path='\
+    \ + str(output / 'fold-input.json'),\n               '--model_dir=' + str(model.parent),\
+    \ '--db_dir=' + profile['database']['root'],\n               '--output_dir=' +\
+    \ str(app_output), '--run_data_pipeline=true', '--run_inference=true',\n     \
+    \          '--num_diffusion_samples=5', '--gpu_device=0',\n               '--jackhmmer_n_cpu='\
+    \ + str(profile['inference']['jackhmmer_n_cpu']),\n               '--nhmmer_n_cpu='\
+    \ + str(profile['inference']['nhmmer_n_cpu']),\n               '--max_template_date='\
+    \ + profile['inference']['max_template_date']]\n    write(output / 'command.json',\
+    \ dict(argv=command, cwd=str(app_root / 'alphafold'),\n          network='INHERITED_SECCOMP_AND_POD_DENY_ALL',\
+    \ input_sha256=sha(encode(folding_input))))\n    environment = {**os.environ,\
+    \ 'HOME':'/tmp', 'TMPDIR':'/tmp', 'XDG_CACHE_HOME':'/tmp/cache',\n           \
+    \        'PYTHONDONTWRITEBYTECODE':'1', 'PYTHONUNBUFFERED':'1', 'JAX_PLATFORMS':'cuda',\n\
+    \                   'XLA_PYTHON_CLIENT_PREALLOCATE':'false'}\n    with (output\
+    \ / 'inference.log').open('w', encoding='utf-8') as log:\n        process = subprocess.Popen(command,\
+    \ cwd=app_root / 'alphafold', env=environment,\n                             \
+    \      stdout=subprocess.PIPE, stderr=subprocess.STDOUT,\n                   \
+    \                text=True, bufsize=1)\n        assert process.stdout is not None\n\
+    \        for line in process.stdout:\n            sys.stdout.write(line); sys.stdout.flush();\
+    \ log.write(line); log.flush()\n        code = process.wait()\n    ensure(code\
+    \ == 0, 'TOOL_FAILED', 'AF3 native command failed')\n    samples = []\n    for\
+    \ directory in sorted(app_output.glob('*/seed-*_sample-*')):\n        parts =\
+    \ directory.name.replace('seed-', '').replace('sample-', '').split('_')\n    \
+    \    ensure(len(parts) == 2 and all(part.isdigit() for part in parts),\n     \
+    \          'OUTPUT_INVALID', 'Unexpected AF3 sample directory')\n        seed,\
+    \ sample_index = map(int, parts)\n        prefix = directory.parent.name + '_'\
+    \ + directory.name + '_'\n        paths = {kind:(directory / (prefix + suffix)).relative_to(output).as_posix()\
+    \ for kind,suffix in {\n            'structure':'model.cif', 'confidence':'confidences.json',\n\
+    \            'summary':'summary_confidences.json'}.items()}\n        ensure(all((output\
+    \ / path).is_file() and (output / path).stat().st_size for path in paths.values()),\n\
+    \               'OUTPUT_INVALID', 'AF3 native sample artifact missing')\n    \
+    \    samples.append(dict(seed=seed, sample_index=sample_index, **paths))\n   \
+    \ ensure([(row['seed'], row['sample_index']) for row in samples] == [(1, i) for\
+    \ i in range(5)],\n           'OUTPUT_INVALID', 'Expected exactly five seed-1\
+    \ AF3 samples')\n    execution = dict(source_image_id=profile['source_image_id'],\
+    \ model_sha256=file_sha(model),\n        database_receipt=database_receipt, gpu=gpu,\
+    \ samples=samples,\n        packages=dict(alphafold3=importlib.metadata.version('alphafold3'),\n\
+    \                      jax=importlib.metadata.version('jax')),\n        scientific_gate='CLOSED',\
+    \ usable_for_pipeline=False, production_status='NOT_DEPLOYED')\n    write(output\
+    \ / 'execution.json', execution)\n    files = [path for path in sorted(output.rglob('*'))\
+    \ if path.is_file() and path.name != 'manifest.json']\n    write(output / 'manifest.json',\
+    \ dict(schema='t01.af3-native-files/1', files=[\n        dict(path=path.relative_to(output).as_posix(),\
+    \ size_bytes=path.stat().st_size, sha256=file_sha(path))\n        for path in\
+    \ files]))\n\n\nif __name__ == '__main__':\n    raise SystemExit('Use t01_phase1_real.development.af3.worker')\n"
+  development--af3--policy.py: "from pathlib import Path\nimport re\n\nfrom ..esmfold2.primitives\
+    \ import decode, encode, ensure, sha\n\n\nTOOL = 't01.real.af3'\nNODE = 'N01'\n\
+    HERE = Path(__file__).parent\nIMAGE = 'sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373'\n\
+    SLOT = 't01p1r-af3-development-slot'\nMAX_AA = 76\n\n\ndef profile():\n    return\
+    \ decode((HERE / 'profile.json').read_bytes())\n\n\ndef request(raw):\n    body\
+    \ = decode(raw)\n    ensure(isinstance(body, dict) and set(body) == {\n      \
+    \  'protein_sequence', 'user_sequence_id', 'host_species', 'seed', 'timeout_seconds'},\n\
+    \        'INVALID_REQUEST', 'Exact AF3 request fields required')\n    ensure(isinstance(body['protein_sequence'],\
+    \ str)\n           and re.fullmatch('[ACDEFGHIKLMNPQRSTVWY]{9,76}', body['protein_sequence']),\n\
+    \           'INVALID_REQUEST', 'AF3 engineering support is bounded to 9..76 AA20\
+    \ residues')\n    for key in ('user_sequence_id', 'host_species'):\n        ensure(isinstance(body[key],\
+    \ str) and 0 < len(body[key].strip()) <= 128,\n               'INVALID_REQUEST',\
+    \ 'Explicit bounded sequence label and host required')\n    ensure(type(body['seed'])\
+    \ is int and body['seed'] == 1,\n           'INVALID_REQUEST', 'Current verified\
+    \ AF3 profile requires seed 1')\n    ensure(type(body['timeout_seconds']) is int\
+    \ and 1 <= body['timeout_seconds'] <= 7200,\n           'INVALID_REQUEST', 'Deadline\
+    \ must be 1..7200 seconds')\n    return body\n\n\ndef registered_profile():\n\
+    \    paths = list(HERE.glob('*.py')) + list(HERE.glob('*.json'))\n    return dict(id='af3-v3.0.2-resident-r01',\
+    \ version='0.1.0', sha256=sha(encode({\n        path.name: sha(path.read_bytes())\
+    \ for path in sorted(paths)})))\n\n\ndef verify_assets():\n    value = profile()\n\
+    \    ensure(value['scientific_gate'] == 'CLOSED' and value['source_image_id']\
+    \ == IMAGE,\n           'PROFILE_NOT_APPROVED', 'AF3 source identity or science\
+    \ gate differs')\n    return {'model_and_database_verification': 'REQUIRED_IN_WORKER',\n\
+    \            'profile_sha256': sha((HERE / 'profile.json').read_bytes())}\n\n\n\
+    def native_request(body, binding):\n    value = profile()\n    return dict(contract_version='t01.structure-worker/0.1',\
+    \ request_id=binding['job_id'],\n                engine='alphafold3', asset_profile_id=value['id'],\n\
+    \                inputs=dict(sequence_id='seq-' + sha(body['protein_sequence'].encode())[:16],\n\
+    \                            sequence=body['protein_sequence'], host_species=body['host_species'],\
+    \ chain_id='A'),\n                parameters=dict(seed=body['seed'], num_samples=value['inference']['num_diffusion_samples'],\n\
+    \                                msa_mode='local', max_template_date=value['inference']['max_template_date'],\n\
+    \                                timeout_seconds=body['timeout_seconds']))\n"
+  development--af3--primitives.py: 'from ..esmfold2.primitives import RuntimeFault,
+    decode, encode, ensure, sha
+
+
+    __all__ = [''RuntimeFault'', ''decode'', ''encode'', ''ensure'', ''sha'']
+
+    '
+  development--af3--profile.json: "{\n  \"id\": \"af3-v3.0.2-resident-r01\",\n  \"\
+    engine\": \"alphafold3\",\n  \"version\": \"3.0.2\",\n  \"commit\": \"f6a5aecf6eea2b5de4f846df86921630c5036b0b\"\
+    ,\n  \"source_image_id\": \"sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373\"\
+    ,\n  \"model\": {\n    \"path\": \"/af3-weights/alphafold3-official-r01/af3.bin\"\
+    ,\n    \"sha256\": \"df8bbf2621f17dd3ee21c2a921e84a50bc2b80cdc0c7971cb915c2826fee1f9b\"\
+    \n  },\n  \"database\": {\n    \"root\": \"/af3-databases/alphafold3-v3.0/unpacked-r03\"\
+    ,\n    \"receipt\": \"/af3-databases/alphafold3-v3.0/extraction-receipt.json\"\
+    ,\n    \"file_count\": 195867,\n    \"total_bytes\": 672435030513,\n    \"required_paths\"\
+    : [\n      \"pdb_seqres_2022_09_28.fasta\",\n      \"rfam_14_9_clust_seq_id_90_cov_80_rep_seq.fasta\"\
+    ,\n      \"rnacentral_active_seq_id_90_cov_80_linclust.fasta\",\n      \"bfd-first_non_consensus_sequences.fasta\"\
+    ,\n      \"nt_rna_2023_02_23_clust_seq_id_90_cov_80_rep_seq.fasta\",\n      \"\
+    uniref90_2022_05.fa\",\n      \"uniprot_all_2021_04.fa\",\n      \"mgy_clusters_2022_05.fa\"\
+    ,\n      \"mmcif_files\"\n    ]\n  },\n  \"inference\": {\n    \"num_diffusion_samples\"\
+    : 5,\n    \"max_template_date\": \"2021-09-30\",\n    \"jackhmmer_n_cpu\": 8,\n\
+    \    \"nhmmer_n_cpu\": 8,\n    \"selection_primary\": \"highest_ptm_single_chain\"\
+    ,\n    \"tie_break\": \"lowest_seed_then_sample_index_reproducibility_only\"\n\
+    \  },\n  \"device\": {\n    \"name\": \"NVIDIA A100-SXM-64GB\",\n    \"uuid\"\
+    : \"GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31\",\n    \"memory_mib\": 65536\n \
+    \ },\n  \"scientific_gate\": \"CLOSED\",\n  \"usable_for_pipeline\": false,\n\
+    \  \"production_status\": \"NOT_DEPLOYED\"\n}\n"
+  development--af3--result.py: "from ...common import RuntimeFault, decode, ensure,\
+    \ sha\nfrom ...resident_result import image_matches, isolation_matches\nfrom .\
+    \ import policy\nfrom .standard import normalize\n\n\ndef result(job,body,files,execution,fault=None):\n\
+    \    binding={key:job[key] for key in ('run_id','request_id','job_id','attempt_id','execution_identity','execution_profile')}\n\
+    \    binding.update(input_sha256=job['request_artifact']['sha256'],sequence_sha256=sha(body['protein_sequence'].encode()))\n\
+    \    value=dict(contract_version='0.1.0',tool_id=policy.TOOL,binding=binding,execution=execution,\n\
+    \        qualification='DEVELOPMENT_UNREVIEWED',evidence_kind='G0_REAL_OUTPUT',scientific_signoff=None,\n\
+    \        production_status='NOT_DEPLOYED',usable_for_pipeline=False,automatic_handoff=False,requires_review=True,\n\
+    \        scientific_gate='CLOSED',status='unreliable',null_reason=execution.get('error_code'),warnings=[],prediction=None)\n\
+    \    try:\n        if execution.get('error_code'):raise RuntimeFault(execution['error_code'],'AF3\
+    \ execution did not finish')\n        ensure(execution.get('backend')=='resident-process'\
+    \ and image_matches(execution,policy.IMAGE),\n               'OUTPUT_INVALID','Clean\
+    \ registered resident AF3 execution required')\n        runtime=decode(files['output/runtime.json'])\n\
+    \        ensure(runtime['binding']==binding and runtime['input_sha256']==sha(files['input.json'])\n\
+    \               and runtime['python_exit_code']==0 and runtime['socket_probe']=='INET_INET6_DENIED'\n\
+    \               and isolation_matches(runtime,files,policy.IMAGE),'OUTPUT_INVALID','AF3\
+    \ execution isolation differs')\n        ensure(runtime['source_sha256']=={path.name:sha(path.read_bytes())\
+    \ for path in sorted(policy.HERE.iterdir())\n               if path.suffix in\
+    \ ('.py','.json')},'OUTPUT_INVALID','AF3 worker source changed')\n        native={name[len('output/raw/'):]:raw\
+    \ for name,raw in files.items() if name.startswith('output/raw/')}\n        standard=normalize(native,body,binding)\n\
+    \        ensure(all(files['output/'+name]==raw for name,raw in standard.items()),\n\
+    \               'OUTPUT_INVALID','AF3 standard result differs from native output')\n\
+    \        value.update(status='predicted_engineering_unreviewed',null_reason=None,prediction=decode(standard['result.json']))\n\
+    \    except (RuntimeFault,KeyError,ValueError,TypeError,OSError) as exc:\n   \
+    \     value['null_reason']=getattr(exc,'code','OUTPUT_INVALID')\n        execution.update(error_code=value['null_reason'],diagnostic=str(exc));value['warnings']=[str(exc)]\n\
+    \    return value\n"
+  development--af3--source.py: "\"\"\"Resolve a verified selected AF3 sample without\
+    \ relabelling its native outputs.\"\"\"\nfrom ...common import decode, encode,\
+    \ ensure\nfrom ...files import read_verified\nfrom . import policy\nfrom .result\
+    \ import result as rebuild\n\n\ndef verified(rt,db,job_id,sequence,host,run_id,include_quality=False):\n\
+    \    job=rt._job(db,job_id)\n    ensure(job['run_id']==run_id and job['tool_id']==policy.TOOL\
+    \ and job['state']=='succeeded',\n           'FORBIDDEN','AF3 prediction must\
+    \ be a successful task in the current run')\n    ref=next((row for row in job['artifacts']\
+    \ if row['role']=='result'),None)\n    ensure(ref is not None,'OUTPUT_INVALID','AF3\
+    \ prediction result missing')\n    _,_,value=rt._registered_result_artifact(db,ref,policy.TOOL)\n\
+    \    body=policy.request(rt._input(db,job['request_artifact'],run_id))\n    ensure(body['protein_sequence']==sequence\
+    \ and body['host_species']==host,\n           'OUTPUT_INVALID','AF3 prediction\
+    \ sequence or host differs')\n    files={};refs={}\n    for item in value['raw_artifacts']:\n\
+    \        name,artifact=item['path'],item['artifact']\n        row=db.execute('SELECT\
+    \ relative_path,data FROM artifacts WHERE id=?',(artifact['artifact_id'],)).fetchone()\n\
+    \        ensure(name not in files and artifact in job['artifacts'] and row and\
+    \ decode(row['data'])==artifact,\n               'FORBIDDEN','AF3 output registration\
+    \ differs')\n        files[name]=read_verified(rt.root,row['relative_path'],artifact['sha256'],artifact['size_bytes'],32*1024**2)\n\
+    \        refs[name]=artifact\n    fresh=rebuild(job,body,files,dict(value['execution']))\n\
+    \    ensure(fresh['prediction'] is not None and fresh['prediction']==value['prediction']\n\
+    \           and fresh['binding']==value['binding'] and value['qualification']=='DEVELOPMENT_UNREVIEWED'\n\
+    \           and value['scientific_signoff'] is None,'OUTPUT_INVALID','AF3 source\
+    \ validation failed')\n    if include_quality:\n        selected=next(model for\
+    \ model in value['prediction']['models'] if model['selected'])\n        return\
+    \ dict(prediction_job_id=job_id,prediction_attempt_id=job['attempt_id'],\n   \
+    \         structure_artifact=refs['output/tool-structure.cif'],\n            native_structure_artifact=refs['output/'+selected['structure_path']],\n\
+    \            quality_artifact=refs['output/prediction-quality.json'],\n      \
+    \      quality=decode(files['output/prediction-quality.json']),\n            conversion=decode(files['output/structure-conversion.json']))\n\
+    \    return refs['output/tool-structure.cif'],files['output/tool-structure.cif']\n\
+    \n\ndef structure_bytes(rt,db,body,run_id):\n    ref=body['structure_artifact']\n\
+    \    expected,raw=verified(rt,db,ref['job_id'],body['protein_sequence'],body['host_species'],run_id)\n\
+    \    ensure(ref==expected and body['source_declaration']['kind']=='predicted'\n\
+    \           and body['declared_format']=='MMCIF' and body['selection']=={'model_index':0,'chain_selector':'A'}\n\
+    \           and body['context_chain_ids']==['A'],'FORBIDDEN','AF3 structure identity/selection\
+    \ differs')\n    return raw\n"
+  development--af3--standard.py: "\"\"\"Validate all native AF3 samples and derive\
+    \ the project structure contract.\"\"\"\nfrom __future__ import annotations\n\n\
+    import io\nimport math\nfrom pathlib import PurePosixPath\n\nfrom Bio.Data.PDBData\
+    \ import protein_letters_3to1\nfrom Bio.PDB.MMCIF2Dict import MMCIF2Dict\n\nfrom\
+    \ ..esmfold2.quality import assess\nfrom .primitives import decode, encode, ensure,\
+    \ sha\nfrom . import policy\n\n\ndef safe_name(value):\n    path = PurePosixPath(value)\n\
+    \    ensure(isinstance(value, str) and value and not path.is_absolute() and '\\\
+    \\' not in value\n           and '..' not in path.parts and path.as_posix() ==\
+    \ value,\n           'OUTPUT_INVALID', 'Unsafe AF3 native artifact path')\n  \
+    \  return value\n\n\ndef inventory(native):\n    ensure('manifest.json' in native,\
+    \ 'OUTPUT_INVALID', 'AF3 native manifest missing')\n    manifest = decode(native['manifest.json'])\n\
+    \    ensure(isinstance(manifest, dict) and manifest.get('schema') == 't01.af3-native-files/1'\n\
+    \           and isinstance(manifest.get('files'), list) and manifest['files'],\n\
+    \           'OUTPUT_INVALID', 'AF3 native manifest schema differs')\n    seen\
+    \ = set()\n    for row in manifest['files']:\n        ensure(isinstance(row, dict)\
+    \ and set(row) == {'path','size_bytes','sha256'},\n               'OUTPUT_INVALID',\
+    \ 'AF3 native manifest row differs')\n        name = safe_name(row['path'])\n\
+    \        ensure(name not in seen and name in native and type(row['size_bytes'])\
+    \ is int\n               and row['size_bytes'] == len(native[name]) and row['sha256']\
+    \ == sha(native[name]),\n               'OUTPUT_INVALID', 'AF3 native artifact\
+    \ identity differs')\n        seen.add(name)\n    ensure(set(native) == seen |\
+    \ {'manifest.json'}, 'OUTPUT_INVALID', 'Unlisted AF3 native artifact')\n    return\
+    \ manifest\n\n\ndef columns(raw):\n    value = MMCIF2Dict(io.StringIO(raw.decode('utf-8')))\n\
+    \    names = ('id','group_PDB','label_asym_id','auth_asym_id','pdbx_PDB_model_num',\n\
+    \             'label_alt_id','label_seq_id','auth_seq_id','label_comp_id',\n \
+    \            'pdbx_PDB_ins_code','label_atom_id','Cartn_x','Cartn_y','Cartn_z',\n\
+    \             'B_iso_or_equiv','occupancy')\n    result = {}\n    for name in\
+    \ names:\n        row = value.get('_atom_site.' + name)\n        ensure(isinstance(row,\
+    \ list) and row, 'OUTPUT_INVALID', 'AF3 atom column missing: ' + name)\n     \
+    \   result[name] = row\n    count = len(result['id'])\n    ensure(all(len(row)\
+    \ == count for row in result.values()) and len(set(result['id'])) == count,\n\
+    \           'OUTPUT_INVALID', 'AF3 atom table is malformed')\n    return result,\
+    \ count\n\n\ndef model(native, row, sequence):\n    for key in ('structure','confidence','summary'):\n\
+    \        safe_name(row[key]); ensure(row[key] in native, 'OUTPUT_INVALID', 'AF3\
+    \ sample artifact missing')\n    atom, count = columns(native[row['structure']])\n\
+    \    confidence_raw = decode(native[row['confidence']])\n    atom_scores = confidence_raw.get('atom_plddts')\n\
+    \    ensure(isinstance(atom_scores, list) and len(atom_scores) == count,\n   \
+    \        'OUTPUT_INVALID', 'AF3 atom confidence count differs')\n    ensure(set(atom['label_asym_id'])\
+    \ == set(atom['auth_asym_id']) == {'A'}\n           and set(atom['pdbx_PDB_model_num'])\
+    \ == {'1'} and set(atom['group_PDB']) == {'ATOM'}\n           and set(atom['label_alt_id'])\
+    \ <= {'.','?'},\n           'OUTPUT_INVALID', 'AF3 model/chain/alternate identity\
+    \ differs')\n    residues = {}; ca = {}\n    for index, raw_score in enumerate(atom_scores):\n\
+    \        ensure(type(raw_score) in (int,float) and math.isfinite(raw_score) and\
+    \ 0 <= raw_score <= 100,\n               'OUTPUT_INVALID', 'AF3 atom confidence\
+    \ is invalid')\n        score = float(atom['B_iso_or_equiv'][index])\n       \
+    \ ensure(math.isfinite(score) and abs(score - raw_score) <= 0.011\n          \
+    \     and all(math.isfinite(float(atom['Cartn_' + axis][index])) for axis in 'xyz'),\n\
+    \               'OUTPUT_INVALID', 'AF3 CIF/confidence coordinate record differs')\n\
+    \        occupancy = float(atom['occupancy'][index])\n        ensure(math.isfinite(occupancy)\
+    \ and 0 <= occupancy <= 1,\n               'OUTPUT_INVALID', 'AF3 occupancy is\
+    \ missing or out of range')\n        position = int(atom['label_seq_id'][index]);\
+    \ residue_name = atom['label_comp_id'][index]\n        auth_residue_name = atom.get('auth_comp_id',\
+    \ atom['label_comp_id'])[index]\n        ensure(residue_name in protein_letters_3to1\
+    \ and int(atom['auth_seq_id'][index]) == position\n               and auth_residue_name\
+    \ == residue_name\n               and atom['pdbx_PDB_ins_code'][index] in ('.','?'),\n\
+    \               'OUTPUT_INVALID', 'AF3 residue identity is ambiguous')\n     \
+    \   record = residues.setdefault(position, dict(aa=protein_letters_3to1[residue_name],\
+    \ atoms=set()))\n        name = atom['label_atom_id'][index]\n        ensure(record['aa']\
+    \ == protein_letters_3to1[residue_name] and name not in record['atoms'],\n   \
+    \            'OUTPUT_INVALID', 'AF3 duplicate/inconsistent residue atom')\n  \
+    \      record['atoms'].add(name)\n        if name == 'CA':\n            ensure(position\
+    \ not in ca, 'OUTPUT_INVALID', 'AF3 residue has duplicate C-alpha')\n        \
+    \    ca[position] = score / 100\n    positions = list(range(1, len(sequence) +\
+    \ 1))\n    ensure(sorted(residues) == positions and sorted(ca) == positions\n\
+    \           and ''.join(residues[pos]['aa'] for pos in positions) == sequence\n\
+    \           and all({'N','CA','C','O'} <= residues[pos]['atoms'] for pos in positions),\n\
+    \           'OUTPUT_INVALID', 'AF3 sequence, C-alpha set or backbone differs')\n\
+    \    summary = decode(native[row['summary']])\n    ptm = summary.get('ptm'); ranking\
+    \ = summary.get('ranking_score')\n    fraction = summary.get('fraction_disordered');\
+    \ clash = summary.get('has_clash')\n    clash_valid = (type(clash) is bool or\n\
+    \                   (type(clash) in (int,float) and math.isfinite(clash) and clash\
+    \ in (0, 1)))\n    ensure(type(ptm) in (int,float) and math.isfinite(ptm) and\
+    \ 0 <= ptm <= 1\n           and summary.get('iptm') is None and type(ranking)\
+    \ in (int,float) and math.isfinite(ranking)\n           and type(fraction) in\
+    \ (int,float) and math.isfinite(fraction) and 0 <= fraction <= 1\n           and\
+    \ clash_valid,\n           'OUTPUT_INVALID', 'AF3 single-chain summary confidence\
+    \ differs')\n    scores = [ca[pos] for pos in positions]\n    model_id = f\"af3-seed-{row['seed']}-sample-{row['sample_index']}\"\
+    \n    normalized = dict(model_id=model_id, sequence_sha256=sha(sequence.encode()),\
+    \ raw_scale='0_100',\n        normalization='AF3 mmCIF C-alpha B_iso_or_equiv\
+    \ divided by 100 once',\n        definition_source='ToolSpec_\u7ED3\u6784\u9884\
+    \u6D4B\u83B7\u53D6\u94FE_v10.5 \xA72c and AgentA_SOP_v10.5 S-08',\n        mean_plddt=math.fsum(scores)/len(scores),\
+    \ residues=[dict(sequence_position=pos,\n        amino_acid=sequence[pos-1], chain_id='A',\
+    \ label_seq_id=pos, auth_seq_id=pos,\n        insertion_code='', plddt_raw=scores[pos-1]*100,\
+    \ plddt=scores[pos-1], missing_reason=None)\n        for pos in positions])\n\
+    \    return dict(model_id=model_id, seed=row['seed'], sample_index=row['sample_index'],\n\
+    \                structure=row['structure'], confidence=row['confidence'], summary_path=row['summary'],\n\
+    \                structure_sha256=sha(native[row['structure']]), confidence_native_sha256=sha(native[row['confidence']]),\n\
+    \                ptm=float(ptm), iptm=None, raw_scores=summary, scores=scores,\n\
+    \                normalized=normalized, atom_count=count)\n\n\ndef select(models):\n\
+    \    highest = max(row['ptm'] for row in models)\n    tied = sorted((row for row\
+    \ in models if row['ptm'] == highest),\n                  key=lambda row:(row['seed'],\
+    \ row['sample_index']))\n    selected = tied[0]\n    ensure(not bool(selected['raw_scores']['has_clash']),\n\
+    \           'OUTPUT_INVALID', 'Highest-pTM deterministic AF3 selection has a native\
+    \ clash')\n    return selected, dict(primary='highest_ptm_single_chain', highest_ptm=highest,\n\
+    \        tied_model_ids=[row['model_id'] for row in tied], selected_model_id=selected['model_id'],\n\
+    \        tie_break='lowest_seed_then_sample_index_reproducibility_only',\n   \
+    \     tie_break_scientific_preference=False, official_ranking_score_used=False,\n\
+    \        basis='AgentA_SOP_v10.5 S-08 and ToolSpec_\u7ED3\u6784\u9884\u6D4B\u83B7\
+    \u53D6\u94FE_v10.5 \xA72c; tie is an engineering reproducibility rule')\n\n\n\
+    def normalize(native, body, binding):\n    inventory(native)\n    expected = policy.native_request(body,\
+    \ binding)\n    ensure(decode(native['request.json']) == expected and decode(native['profile.json'])\
+    \ == policy.profile(),\n           'OUTPUT_INVALID', 'AF3 executed request/profile\
+    \ differs')\n    folding = decode(native['fold-input.json'])\n    ensure(folding\
+    \ == dict(name='t01-af3-' + sha(body['protein_sequence'].encode())[:16],\n   \
+    \     modelSeeds=[1], sequences=[dict(protein=dict(id='A',sequence=body['protein_sequence']))],\n\
+    \        dialect='alphafold3', version=1), 'OUTPUT_INVALID', 'AF3 folding input\
+    \ differs')\n    command = decode(native['command.json'])\n    flags = command['argv']\n\
+    \    ensure(flags[:2] == ['/alphafold3_venv/bin/python','/opt/t01/af3-app/alphafold/run_alphafold.py']\n\
+    \           and '--run_data_pipeline=true' in flags and '--run_inference=true'\
+    \ in flags\n           and '--num_diffusion_samples=5' in flags and '--gpu_device=0'\
+    \ in flags\n           and command['network'] == 'INHERITED_SECCOMP_AND_POD_DENY_ALL'\n\
+    \           and command['input_sha256'] == sha(encode(folding)),\n           'OUTPUT_INVALID',\
+    \ 'AF3 native command differs')\n    execution = decode(native['execution.json']);\
+    \ profile = policy.profile()\n    ensure(execution['source_image_id'] == policy.IMAGE\
+    \ and execution['model_sha256'] == profile['model']['sha256']\n           and\
+    \ execution['packages'] == {'alphafold3':'3.0.2','jax':'0.9.1'}\n           and\
+    \ execution['gpu'] == profile['device']\n           and execution['scientific_gate']\
+    \ == 'CLOSED' and execution['usable_for_pipeline'] is False\n           and execution['production_status']\
+    \ == 'NOT_DEPLOYED',\n           'OUTPUT_INVALID', 'AF3 execution environment\
+    \ differs')\n    receipt = execution['database_receipt']\n    ensure(receipt.get('decompressed')\
+    \ is True and receipt.get('output_root') == 'unpacked-r03'\n           and receipt.get('file_count')\
+    \ == profile['database']['file_count']\n           and receipt.get('total_bytes')\
+    \ == profile['database']['total_bytes'],\n           'OUTPUT_INVALID', 'AF3 database\
+    \ execution receipt differs')\n    samples = execution['samples']\n    ensure(isinstance(samples,list)\
+    \ and [(row.get('seed'),row.get('sample_index')) for row in samples]\n       \
+    \    == [(1,index) for index in range(5)]\n           and all(set(row) == {'seed','sample_index','structure','confidence','summary'}\
+    \ for row in samples),\n           'OUTPUT_INVALID', 'AF3 sample inventory differs')\n\
+    \    sequence = body['protein_sequence']; sequence_sha = sha(sequence.encode())\n\
+    \    models = [model(native,row,sequence) for row in samples]\n    selected, selection\
+    \ = select(models)\n    outputs = {}; standard_models = []\n    for row in models:\n\
+    \        confidence_path = 'confidence/' + row['model_id'] + '.json'\n       \
+    \ raw = encode(row['normalized']); outputs[confidence_path] = raw\n        standard_models.append(dict(model_id=row['model_id'],\
+    \ seed=row['seed'], sample_index=row['sample_index'],\n            selected=row\
+    \ is selected, tied_for_highest_ptm=row['model_id'] in selection['tied_model_ids'],\n\
+    \            source='af3_predicted', structure_path='raw/' + row['structure'],\n\
+    \            structure_sha256=row['structure_sha256'], format='mmcif', confidence_path=confidence_path,\n\
+    \            confidence_sha256=sha(raw), ptm=row['ptm'], iptm=None, raw_scores=row['raw_scores']))\n\
+    \    selected_confidence = encode(selected['normalized'])\n    quality = assess(selected['scores'],\
+    \ selected['ptm'], source='af3_predicted')\n    parameters = dict(request=expected['parameters'],\
+    \ inference=profile['inference'], selection=selection)\n    provenance = dict(binding=binding,\
+    \ input_sha256=sha(encode(body)),\n        native_sha256={name:sha(raw) for name,raw\
+    \ in sorted(native.items())},\n        profile_sha256=sha(native['profile.json']),\
+    \ source_image_id=policy.IMAGE,\n        model_sha256=profile['model']['sha256'],\
+    \ database_receipt=receipt, selection=selection)\n    conversion = dict(operation='native_mmcif_reuse',\
+    \ source_path='raw/' + selected['structure'],\n        source_sha256=selected['structure_sha256'],\
+    \ derived_path='tool-structure.cif',\n        derived_sha256=selected['structure_sha256'],\
+    \ occupancy='native_verified_0_to_1',\n        scientific_gate='CLOSED')\n   \
+    \ warnings = [dict(code='ENGINEERING_ONLY',message='Scientific qualification closed'),\n\
+    \                dict(code='SINGLE_CHAIN_IPTM_NOT_APPLICABLE',message='Native\
+    \ ipTM is null for all samples')]\n    if len(selection['tied_model_ids']) > 1:\n\
+    \        warnings.append(dict(code='PTM_TIE_REPRODUCIBILITY_SELECTION',\n    \
+    \        message='All highest-pTM models are retained; deterministic seed/sample\
+    \ order is not a scientific preference'))\n    standard = dict(contract_version='t01.structure-worker/0.1',\
+    \ request_id=binding['job_id'],\n        attempt_id=binding['attempt_id'], status='succeeded',\
+    \ engine='alphafold3',\n        engine_version=dict(alphafold3=profile['version'],\
+    \ commit=profile['commit']),\n        asset_profile_id=profile['id'], sequence_id=body['user_sequence_id'],\
+    \ sequence=sequence,\n        sequence_sha256=sequence_sha, host_species=body['host_species'],\n\
+    \        profile_sha256=provenance['profile_sha256'], model_sha256=profile['model']['sha256'],\n\
+    \        database_receipt=receipt, models=standard_models, selection=selection,\n\
+    \        parameters_path='parameters.json', parameters_sha256=sha(encode(parameters)),\n\
+    \        provenance_path='provenance.json', provenance_sha256=sha(encode(provenance)),\n\
+    \        quality=dict(path='prediction-quality.json',sha256=sha(encode(quality))),\n\
+    \        tool_structure=dict(path='tool-structure.cif',sha256=selected['structure_sha256'],\n\
+    \                            conversion_path='structure-conversion.json',conversion_sha256=sha(encode(conversion))),\n\
+    \        errors=[],warnings=warnings,scientific_gate='CLOSED',usable_for_pipeline=False,automatic_handoff=False)\n\
+    \    outputs.update({'result.json':encode(standard), 'confidence.json':selected_confidence,\n\
+    \        'parameters.json':encode(parameters), 'provenance.json':encode(provenance),\n\
+    \        'tool-structure.cif':native[selected['structure']], 'structure-conversion.json':encode(conversion),\n\
+    \        'prediction-quality.json':encode(quality)})\n    return outputs\n"
+  development--af3--worker.py: "\"\"\"Resident AF3 command supervised by the shared\
+    \ process cancellation layer.\"\"\"\nimport argparse\nimport os\nfrom pathlib\
+    \ import Path\nimport socket\n\nfrom .primitives import decode, encode, ensure,\
+    \ sha\nfrom . import policy\nfrom .native_worker import run\nfrom .standard import\
+    \ normalize\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument('--input-dir',\
+    \ type=Path, required=True)\n    parser.add_argument('--output-dir', type=Path,\
+    \ required=True)\n    args = parser.parse_args()\n    body_raw = (args.input_dir\
+    \ / 'input.json').read_bytes(); body = policy.request(body_raw)\n    binding =\
+    \ decode((args.input_dir / 'binding.json').read_bytes())\n    ensure(binding['input_sha256']\
+    \ == sha(body_raw) and binding['execution_profile'] == policy.registered_profile(),\n\
+    \           'PROFILE_NOT_APPROVED', 'Bound AF3 input or implementation changed')\n\
+    \    for family in (socket.AF_INET, socket.AF_INET6):\n        try:\n        \
+    \    handle = socket.socket(family, socket.SOCK_STREAM)\n        except PermissionError:\n\
+    \            continue\n        else:\n            handle.close(); raise RuntimeError('Resident\
+    \ INET socket restriction is not active')\n    args.output_dir.mkdir(exist_ok=True)\n\
+    \    request_path = args.output_dir / 'native-request.json'\n    request_path.write_bytes(encode(policy.native_request(body,binding)))\n\
+    \    native_root = args.output_dir / 'raw'\n    run(request_path,native_root,policy.HERE/'profile.json')\n\
+    \    native = {path.relative_to(native_root).as_posix():path.read_bytes()\n  \
+    \            for path in sorted(native_root.rglob('*')) if path.is_file()}\n \
+    \   for name,raw in normalize(native,body,binding).items():\n        path = args.output_dir\
+    \ / name; path.parent.mkdir(parents=True,exist_ok=True); path.write_bytes(raw)\n\
+    \    observation = decode((args.output_dir.parent/'executor-observation.json').read_bytes())\n\
+    \    runtime = dict(input_sha256=sha(body_raw),binding=binding,\n        source_sha256={path.name:sha(path.read_bytes())\
+    \ for path in sorted(policy.HERE.iterdir())\n                       if path.suffix\
+    \ in ('.py','.json')},\n        network_interfaces=observation['network_interfaces'],cpu_affinity=observation['cpu_affinity'],\n\
+    \        socket_probe='INET_INET6_DENIED',python_exit_code=0)\n    (args.output_dir/'runtime.json').write_bytes(encode(runtime))\n\
+    \n\nif __name__ == '__main__':\n    main()\n"
+  development--esmfold2--primitives.py: "\"\"\"Small worker JSON helpers; backend\
+    \ uses the existing RuntimeFault class.\"\"\"\nimport hashlib\nimport json\nimport\
+    \ math\n\ntry:\n    from ...common import RuntimeFault\nexcept ModuleNotFoundError\
+    \ as exc:\n    if exc.name != 'jsonschema': raise\n    class RuntimeFault(Exception):\n\
+    \        def __init__(self, code, message):\n            self.code = code\n  \
+    \          super().__init__(message)\n\n\ndef ensure(value, code, message):\n\
+    \    if not value: raise RuntimeFault(code, message)\n\n\ndef sha(raw): return\
+    \ hashlib.sha256(raw).hexdigest()\n\n\ndef encode(value):\n    return json.dumps(value,\
+    \ ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False).encode('utf-8')\n\
+    \n\ndef decode(raw):\n    def pairs(items):\n        result = {}\n        for\
+    \ key,value in items:\n            ensure(key not in result, 'INVALID_REQUEST',\
+    \ 'Duplicate JSON key')\n            result[key]=value\n        return result\n\
+    \    def invalid(value): raise RuntimeFault('INVALID_REQUEST','Nonfinite JSON\
+    \ number')\n    def number(value):\n        result=float(value)\n        ensure(math.isfinite(result),'INVALID_REQUEST','Nonfinite\
+    \ JSON number')\n        return result\n    try: return json.loads(raw,object_pairs_hook=pairs,parse_constant=invalid,parse_float=number)\n\
+    \    except (ValueError,UnicodeError,TypeError) as exc:\n        raise RuntimeFault('INVALID_REQUEST','Malformed\
+    \ JSON') from exc\n"
+  development--esmfold2--quality.py: "\"\"\"SOP v10.5 S-09 for already verified normalized\
+    \ ESMFold2 confidence.\"\"\"\nimport math\n\nDEFAULTS = dict(high_plddt=0.70,\
+    \ medium_plddt=0.50, topology_ptm=0.50,\n                low_plddt=0.50, min_region_length=5,\
+    \ merge_gap=3)\n\n\ndef assess(scores, ptm, parameters=None, source='esmfold2_predicted'):\n\
+    \    p = dict(DEFAULTS if parameters is None else parameters)\n    if (set(p)\
+    \ != set(DEFAULTS) or source not in ('esmfold2_predicted','af3_predicted')\n \
+    \           or not scores or any(not math.isfinite(s) or not 0 <= s <= 1 for s\
+    \ in scores)):\n        raise ValueError('Invalid verified confidence or S09 parameters')\n\
+    \    mean = math.fsum(scores)/len(scores)\n    regions = []; start = None\n  \
+    \  for pos, score in enumerate([*scores, 1.0], 1):\n        if score < p['low_plddt']\
+    \ and start is None: start = pos\n        if score >= p['low_plddt'] and start\
+    \ is not None:\n            if pos-start >= p['min_region_length']: regions.append(dict(start=start,\
+    \ end=pos-1))\n            start = None\n    merged = []\n    for r in regions:\n\
+    \        if merged and r['start']-merged[-1]['end']-1 <= p['merge_gap']: merged[-1]['end']\
+    \ = r['end']\n        else: merged.append(dict(r))\n    quality = dict(confidence='high'\
+    \ if mean >= p['high_plddt'] else 'medium' if mean >= p['medium_plddt'] else 'low',\n\
+    \                   topology_reliable=ptm is not None and ptm >= p['topology_ptm'],\
+    \ low_confidence_regions=merged)\n    return dict(structure=dict(source=source,\
+    \ mean_plddt=mean, plddt_per_residue=scores,\n                               ptm=ptm,\
+    \ **quality), quality=quality, parameters=p,\n                rule_basis='AgentA_SOP_v10.5_20260902\
+    \ S-09; ToolSpec_\u7ED3\u6784\u9884\u6D4B\u83B7\u53D6\u94FE_v10.5 \xA72c/3',\n\
+    \                calibration='E-06 defaults; not scientifically signed off',\n\
+    \                scientific_gate='CLOSED', usable_for_pipeline=False, automatic_handoff=False)\n"

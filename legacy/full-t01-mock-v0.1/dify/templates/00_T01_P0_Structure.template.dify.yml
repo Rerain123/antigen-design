@@ -1,0 +1,1257 @@
+app:
+  description: T-01 v10 阶段0调试流程：结构获取、预测、质量、拓扑、RSA与细菌定位。仅编排，不做科学计算。
+  icon: 🧬
+  icon_background: '#E8F5E9'
+  mode: workflow
+  name: T01_P0_Structure
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types: []
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: start
+        targetType: tool
+      id: edge_P0_START_source_P0_S07_FETCH
+      source: P0_START
+      sourceHandle: source
+      target: P0_S07_FETCH
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_P0_S07_FETCH_source_P0_G_FETCH_FAILED
+      source: P0_S07_FETCH
+      sourceHandle: source
+      target: P0_G_FETCH_FAILED
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: variable-aggregator
+      id: edge_P0_G_FETCH_FAILED_true_P0_RESULT_JOIN
+      source: P0_G_FETCH_FAILED
+      sourceHandle: 'true'
+      target: P0_RESULT_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_P0_G_FETCH_FAILED_false_P0_G_EXISTING
+      source: P0_G_FETCH_FAILED
+      sourceHandle: 'false'
+      target: P0_G_EXISTING
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_P0_G_EXISTING_source_P0_IF_PREDICT
+      source: P0_G_EXISTING
+      sourceHandle: source
+      target: P0_IF_PREDICT
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_P0_IF_PREDICT_true_P0_S08_PREDICT
+      source: P0_IF_PREDICT
+      sourceHandle: 'true'
+      target: P0_S08_PREDICT
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P0_S08_PREDICT_source_P0_S09_QUALITY_PRED
+      source: P0_S08_PREDICT
+      sourceHandle: source
+      target: P0_S09_QUALITY_PRED
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: variable-aggregator
+      id: edge_P0_S09_QUALITY_PRED_source_P0_QUALITY_JOIN
+      source: P0_S09_QUALITY_PRED
+      sourceHandle: source
+      target: P0_QUALITY_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_P0_IF_PREDICT_false_P0_S09_QUALITY_EXIST
+      source: P0_IF_PREDICT
+      sourceHandle: 'false'
+      target: P0_S09_QUALITY_EXIST
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: variable-aggregator
+      id: edge_P0_S09_QUALITY_EXIST_source_P0_QUALITY_JOIN
+      source: P0_S09_QUALITY_EXIST
+      sourceHandle: source
+      target: P0_QUALITY_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: variable-aggregator
+        targetType: tool
+      id: edge_P0_QUALITY_JOIN_source_P0_S04_TOPOLOGY
+      source: P0_QUALITY_JOIN
+      sourceHandle: source
+      target: P0_S04_TOPOLOGY
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P0_S04_TOPOLOGY_source_P0_G_RSA
+      source: P0_S04_TOPOLOGY
+      sourceHandle: source
+      target: P0_G_RSA
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_P0_G_RSA_source_P0_IF_RSA
+      source: P0_G_RSA
+      sourceHandle: source
+      target: P0_IF_RSA
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_P0_IF_RSA_true_P0_S11_RSA
+      source: P0_IF_RSA
+      sourceHandle: 'true'
+      target: P0_S11_RSA
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: variable-aggregator
+      id: edge_P0_S11_RSA_source_P0_RSA_JOIN
+      source: P0_S11_RSA
+      sourceHandle: source
+      target: P0_RSA_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: variable-aggregator
+      id: edge_P0_IF_RSA_false_P0_RSA_JOIN
+      source: P0_IF_RSA
+      sourceHandle: 'false'
+      target: P0_RSA_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: variable-aggregator
+        targetType: tool
+      id: edge_P0_RSA_JOIN_source_P0_G_BACTERIA
+      source: P0_RSA_JOIN
+      sourceHandle: source
+      target: P0_G_BACTERIA
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_P0_G_BACTERIA_source_P0_IF_BACTERIA
+      source: P0_G_BACTERIA
+      sourceHandle: source
+      target: P0_IF_BACTERIA
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_P0_IF_BACTERIA_true_P0_S06_LOCALIZE
+      source: P0_IF_BACTERIA
+      sourceHandle: 'true'
+      target: P0_S06_LOCALIZE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: variable-aggregator
+      id: edge_P0_S06_LOCALIZE_source_P0_RESULT_JOIN
+      source: P0_S06_LOCALIZE
+      sourceHandle: source
+      target: P0_RESULT_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: variable-aggregator
+      id: edge_P0_IF_BACTERIA_false_P0_RESULT_JOIN
+      source: P0_IF_BACTERIA
+      sourceHandle: 'false'
+      target: P0_RESULT_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: variable-aggregator
+        targetType: variable-aggregator
+      id: edge_P0_RESULT_JOIN_source_P0_STATUS_JOIN
+      source: P0_RESULT_JOIN
+      sourceHandle: source
+      target: P0_STATUS_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: variable-aggregator
+        targetType: end
+      id: edge_P0_STATUS_JOIN_source_P0_END
+      source: P0_STATUS_JOIN
+      sourceHandle: source
+      target: P0_END
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - variable: run_id
+          label: 运行 ID
+          type: text-input
+          required: true
+          max_length: 128
+          options: []
+        - variable: execution_mode
+          label: 执行模式
+          type: select
+          required: true
+          max_length: 128
+          options:
+          - mock
+      height: 154
+      id: P0_START
+      position:
+        x: 0
+        y: 220
+      positionAbsolute:
+        x: 0
+        y: 220
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: structure.fetch · Fetch an existing structure or return no_structure.
+        selected: false
+        title: S-07 结构获取
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-07 结构获取
+        tool_name: structure.fetch
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P0_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-07
+          node_id:
+            type: constant
+            value: P0_S07_FETCH
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P0_START.run_id#}}:P0_S07_FETCH:attempt-1'
+      height: 98
+      id: P0_S07_FETCH
+      position:
+        x: 320
+        y: 220
+      positionAbsolute:
+        x: 320
+        y: 220
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 结构获取失败?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: P0_G_FETCH_FAILED_condition
+            variable_selector:
+            - P0_S07_FETCH
+            - status
+            comparison_operator: is
+            value: FAILED
+            varType: string
+      height: 150
+      id: P0_G_FETCH_FAILED
+      position:
+        x: 640
+        y: 220
+      positionAbsolute:
+        x: 640
+        y: 220
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01.route_existing_structure · Route existing structure versus prediction.
+        selected: false
+        title: 已有结构路由
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 已有结构路由
+        tool_name: t01.route_existing_structure
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P0_START
+            - run_id
+          step_id:
+            type: constant
+            value: EX
+          node_id:
+            type: constant
+            value: P0_G_EXISTING
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P0_S07_FETCH
+            - data
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P0_START.run_id#}}:P0_G_EXISTING:attempt-1'
+      height: 98
+      id: P0_G_EXISTING
+      position:
+        x: 960
+        y: 340
+      positionAbsolute:
+        x: 960
+        y: 340
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 需要结构预测?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: P0_IF_PREDICT_condition
+            variable_selector:
+            - P0_G_EXISTING
+            - data
+            - route
+            comparison_operator: is
+            value: S-08
+            varType: string
+      height: 150
+      id: P0_IF_PREDICT
+      position:
+        x: 1280
+        y: 340
+      positionAbsolute:
+        x: 1280
+        y: 340
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: structure.predict · Predict a structure (mock only in this service).
+        selected: false
+        title: S-08 结构预测
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-08 结构预测
+        tool_name: structure.predict
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P0_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-08
+          node_id:
+            type: constant
+            value: P0_S08_PREDICT
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P0_START.run_id#}}:P0_S08_PREDICT:attempt-1'
+      height: 98
+      id: P0_S08_PREDICT
+      position:
+        x: 1600
+        y: 180
+      positionAbsolute:
+        x: 1600
+        y: 180
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: structure.assess_quality · Classify structure confidence as high, medium, or low.
+        selected: false
+        title: S-09 预测结构质量
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-09 预测结构质量
+        tool_name: structure.assess_quality
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P0_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-09
+          node_id:
+            type: constant
+            value: P0_S09_QUALITY_PRED
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P0_START.run_id#}}:P0_S09_QUALITY_PRED:attempt-1'
+      height: 98
+      id: P0_S09_QUALITY_PRED
+      position:
+        x: 1920
+        y: 180
+      positionAbsolute:
+        x: 1920
+        y: 180
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: structure.assess_quality · Classify structure confidence as high, medium, or low.
+        selected: false
+        title: S-09 已有结构质量
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-09 已有结构质量
+        tool_name: structure.assess_quality
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P0_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-09
+          node_id:
+            type: constant
+            value: P0_S09_QUALITY_EXIST
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P0_START.run_id#}}:P0_S09_QUALITY_EXIST:attempt-1'
+      height: 98
+      id: P0_S09_QUALITY_EXIST
+      position:
+        x: 1600
+        y: 500
+      positionAbsolute:
+        x: 1600
+        y: 500
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 结构质量汇合
+        type: variable-aggregator
+        advanced_settings:
+          group_enabled: false
+          groups: []
+        output_type: object
+        variables:
+        - - P0_S09_QUALITY_PRED
+          - data
+        - - P0_S09_QUALITY_EXIST
+          - data
+      height: 108
+      id: P0_QUALITY_JOIN
+      position:
+        x: 2240
+        y: 340
+      positionAbsolute:
+        x: 2240
+        y: 340
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: topology.predict · Predict membrane topology (mock only).
+        selected: false
+        title: S-04 拓扑预测
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-04 拓扑预测
+        tool_name: topology.predict
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P0_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-04
+          node_id:
+            type: constant
+            value: P0_S04_TOPOLOGY
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P0_START.run_id#}}:P0_S04_TOPOLOGY:attempt-1'
+      height: 98
+      id: P0_S04_TOPOLOGY
+      position:
+        x: 2560
+        y: 340
+      positionAbsolute:
+        x: 2560
+        y: 340
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01.route_rsa · Skip RSA when structure confidence is low.
+        selected: false
+        title: 结构低置信 RSA 门控
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 结构低置信 RSA 门控
+        tool_name: t01.route_rsa
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P0_START
+            - run_id
+          step_id:
+            type: constant
+            value: G-RSA
+          node_id:
+            type: constant
+            value: P0_G_RSA
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P0_QUALITY_JOIN
+            - output
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P0_START.run_id#}}:P0_G_RSA:attempt-1'
+      height: 98
+      id: P0_G_RSA
+      position:
+        x: 2880
+        y: 340
+      positionAbsolute:
+        x: 2880
+        y: 340
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 执行 S-11?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: P0_IF_RSA_condition
+            variable_selector:
+            - P0_G_RSA
+            - data
+            - route
+            comparison_operator: is
+            value: RUN_S11
+            varType: string
+      height: 150
+      id: P0_IF_RSA
+      position:
+        x: 3200
+        y: 340
+      positionAbsolute:
+        x: 3200
+        y: 340
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: structure.compute_rsa · Compute RSA with sequence-alignment validation (mock only).
+        selected: false
+        title: S-11 RSA
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-11 RSA
+        tool_name: structure.compute_rsa
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P0_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-11
+          node_id:
+            type: constant
+            value: P0_S11_RSA
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P0_START.run_id#}}:P0_S11_RSA:attempt-1'
+      height: 98
+      id: P0_S11_RSA
+      position:
+        x: 3520
+        y: 180
+      positionAbsolute:
+        x: 3520
+        y: 180
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: RSA 路径汇合
+        type: variable-aggregator
+        advanced_settings:
+          group_enabled: false
+          groups: []
+        output_type: object
+        variables:
+        - - P0_S11_RSA
+          - json
+        - - P0_G_RSA
+          - json
+      height: 108
+      id: P0_RSA_JOIN
+      position:
+        x: 3840
+        y: 340
+      positionAbsolute:
+        x: 3840
+        y: 340
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01.route_pathogen_type · Run S-06 only when pathogen_type equals bacteria.
+        selected: false
+        title: 细菌分支门控
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 细菌分支门控
+        tool_name: t01.route_pathogen_type
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P0_START
+            - run_id
+          step_id:
+            type: constant
+            value: G-BACTERIA
+          node_id:
+            type: constant
+            value: P0_G_BACTERIA
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P0_START.run_id#}}:P0_G_BACTERIA:attempt-1'
+      height: 98
+      id: P0_G_BACTERIA
+      position:
+        x: 4160
+        y: 340
+      positionAbsolute:
+        x: 4160
+        y: 340
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 执行 S-06?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: P0_IF_BACTERIA_condition
+            variable_selector:
+            - P0_G_BACTERIA
+            - data
+            - route
+            comparison_operator: is
+            value: RUN_S06
+            varType: string
+      height: 150
+      id: P0_IF_BACTERIA
+      position:
+        x: 4480
+        y: 340
+      positionAbsolute:
+        x: 4480
+        y: 340
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: localization.predict_bacteria · Predict bacterial localization (mock only).
+        selected: false
+        title: S-06 细菌定位
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-06 细菌定位
+        tool_name: localization.predict_bacteria
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P0_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-06
+          node_id:
+            type: constant
+            value: P0_S06_LOCALIZE
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P0_START.run_id#}}:P0_S06_LOCALIZE:attempt-1'
+      height: 98
+      id: P0_S06_LOCALIZE
+      position:
+        x: 4800
+        y: 180
+      positionAbsolute:
+        x: 4800
+        y: 180
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 阶段0结果汇合
+        type: variable-aggregator
+        advanced_settings:
+          group_enabled: false
+          groups: []
+        output_type: object
+        variables:
+        - - P0_S06_LOCALIZE
+          - json
+        - - P0_G_BACTERIA
+          - json
+        - - P0_S07_FETCH
+          - json
+      height: 108
+      id: P0_RESULT_JOIN
+      position:
+        x: 5120
+        y: 340
+      positionAbsolute:
+        x: 5120
+        y: 340
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 阶段0状态汇合
+        type: variable-aggregator
+        advanced_settings:
+          group_enabled: false
+          groups: []
+        output_type: string
+        variables:
+        - - P0_S06_LOCALIZE
+          - status
+        - - P0_G_BACTERIA
+          - status
+        - - P0_S07_FETCH
+          - status
+      height: 108
+      id: P0_STATUS_JOIN
+      position:
+        x: 5440
+        y: 340
+      positionAbsolute:
+        x: 5440
+        y: 340
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 结束
+        type: end
+        outputs:
+        - variable: run_id
+          value_selector:
+          - P0_START
+          - run_id
+        - variable: stage_status
+          value_selector:
+          - P0_STATUS_JOIN
+          - output
+        - variable: stage_result
+          value_selector:
+          - P0_RESULT_JOIN
+          - output
+        - variable: structure_quality
+          value_selector:
+          - P0_QUALITY_JOIN
+          - output
+        - variable: topology
+          value_selector:
+          - P0_S04_TOPOLOGY
+          - json
+      height: 250
+      id: P0_END
+      position:
+        x: 5760
+        y: 340
+      positionAbsolute:
+        x: 5760
+        y: 340
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    viewport:
+      x: 0
+      y: 0
+      zoom: 0.55
+  rag_pipeline_variables: []

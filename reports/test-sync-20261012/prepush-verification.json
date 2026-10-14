@@ -1,0 +1,32 @@
+{
+  "status": "PREPUSH_VERIFIED",
+  "branch": "test",
+  "remote": "origin",
+  "base_commit": "69c80ff4f3594a0b97f65db0c36bf54cab059a3d",
+  "source_files": 272,
+  "source_manifest_sha256": "ee3fe3070a371d84f50d05ab2a32a397685100b82686679b35f3967ded3e2d00",
+  "working_index_image_source_match": true,
+  "offline_docker_build": "PASS",
+  "restricted_container_imports": "PASS",
+  "test_result": {
+    "passed": 156,
+    "failed": 0,
+    "report": "reports/test-sync-20261012/clean-targeted-r03.xml"
+  },
+  "frozen_assets": {
+    "status": "PASS",
+    "count": 457
+  },
+  "limitations": {
+    "full_root_suite_rerun": false,
+    "full_document_links": "357 missing local historical/runtime paths in clean checkout; local working directory also contains old test fixture trees",
+    "jenkins": "existing shared pipeline updates API image only; fixed source mounts and nine worker deployments are not automatically updated"
+  },
+  "credentials_review": {
+    "pattern_hits": "only fixed user:password and name:password negative-test URLs",
+    "deployment_literal_secret_fields": 0,
+    "seven_fixture_files_known_token_patterns": 0
+  },
+  "new_scientific_jobs": 0,
+  "push_result": "Recorded separately after remote confirmation"
+}

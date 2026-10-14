@@ -1,0 +1,152 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: antigen-esmfold2-validation-no-egress
+  namespace: him-ws
+spec:
+  podSelector:
+    matchLabels:
+      app: antigen-esmfold2-validation
+  policyTypes:
+  - Egress
+  egress: []
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-esmfold2-validation-r02
+  namespace: him-ws
+immutable: true
+data:
+  profile.json: |
+    {
+      "id": "esmfold2-standard-a100-engineering-r01",
+      "contract_version": "t01.structure-worker/0.1",
+      "engine": "esmfold2",
+      "variant": "standard",
+      "asset_root": "/models/esmfold2-standard-20260916-r01",
+      "asset_manifest_sha256": "77ec2cdd4003e59a5c328ce99858be7e2ce42b8b2d7902971e74426f26a39a8f",
+      "environment_root": "/models/esmfold2-environment-20260916-r01",
+      "environment_manifest_sha256": "c719aade5db1dacf747cf1f882061a132558ae359bc5a5dd58fc1f5c955bab39",
+      "esmfold2_relative_path": "models/ESMFold2",
+      "esmc_relative_path": "models/ESMC-6B",
+      "ccd_relative_path": "models/ESMFold2/ccd.pkl",
+      "max_sequence_length": 76,
+      "max_timeout_seconds": 7200,
+      "inference": {
+        "num_loops": 3,
+        "num_sampling_steps": 50,
+        "num_diffusion_samples": 1,
+        "esmc_precision": "bf16"
+      },
+      "network": "disabled",
+      "scientific_gate": "CLOSED"
+    }
+  request.json: |
+    {
+      "contract_version": "t01.structure-worker/0.1",
+      "request_id": "esmfold2-engineering-002",
+      "engine": "esmfold2",
+      "asset_profile_id": "esmfold2-standard-a100-engineering-r01",
+      "inputs": {
+        "sequence_id": "ubiquitin-demo",
+        "sequence": "MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG",
+        "host_species": "Homo sapiens",
+        "chain_id": "A"
+      },
+      "parameters": {
+        "seed": 1,
+        "num_samples": 1,
+        "msa_mode": "none",
+        "prepared_input": null,
+        "timeout_seconds": 7200
+      }
+    }
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-esmfold2-validation-r02
+  namespace: him-ws
+  labels:
+    app: antigen-esmfold2-validation
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 7200
+  template:
+    metadata:
+      labels:
+        app: antigen-esmfold2-validation
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      runtimeClassName: nvidia
+      schedulerName: hami-scheduler
+      imagePullSecrets:
+      - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+      - name: worker
+        image: harbor-core.base.svc.cluster.local/qcyz/antigen-esmfold2@sha256:372545ebe3469a3d32269c27033d19624d713d75ca162dbe6fff5dafed44f77f
+        args:
+        - --input
+        - /config/request.json
+        - --output-dir
+        - /runs/engineering-r02
+        - --profile
+        - /config/profile.json
+        resources:
+          requests:
+            cpu: '2'
+            memory: 32Gi
+            ephemeral-storage: 2Gi
+          limits:
+            cpu: '8'
+            memory: 64Gi
+            ephemeral-storage: 8Gi
+            nvidia.com/gpu: 1
+            nvidia.com/gpumem: 32768
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: models
+          mountPath: /models
+          readOnly: true
+        - name: runtime
+          mountPath: /runs
+        - name: config
+          mountPath: /config
+          readOnly: true
+        - name: tmp
+          mountPath: /tmp
+        command:
+        - python
+        - -u
+        - -B
+        - -c
+        - import runpy; print("ESMFOLD2_VALIDATION_START asset_verification_then_model_loading",
+          flush=True); runpy.run_path("/opt/t01/run_structure.py", run_name="__main__");
+          print("ESMFOLD2_VALIDATION_COMPLETED engineering_result_requires_review",
+          flush=True)
+      volumes:
+      - name: models
+        persistentVolumeClaim:
+          claimName: antigen-esmfold2-models
+      - name: runtime
+        persistentVolumeClaim:
+          claimName: antigen-esmfold2-runtime
+      - name: config
+        configMap:
+          name: antigen-esmfold2-validation-r02
+      - name: tmp
+        emptyDir:
+          sizeLimit: 8Gi

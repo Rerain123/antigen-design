@@ -1,0 +1,927 @@
+{
+  "$schema": "T01_PHASE1_MOCK_M2_ACCEPTANCE_RESULT_SCHEMA_v0.1.json",
+  "document_type": "T01_PHASE1_MOCK_M2_ACCEPTANCE_RESULT",
+  "result_version": "T01-PHASE1-MOCK-M2-ACCEPTANCE-RESULT-v0.1",
+  "source_acceptance_catalog_version": "T01-PHASE1-MOCK-ACCEPTANCE-CATALOG-v0.1",
+  "source_fixture_manifest_version": "T01-PHASE1-MOCK-FIXTURE-MANIFEST-v0.1",
+  "source_scenario_catalog_version": "T01-PHASE1-MOCK-SCENARIO-CATALOG-v0.1",
+  "source_sha256": {
+    "docs/project/phase1/PHASE1_MOCK_M1_01_SOURCE_NODE_STEP_TOOL_PRIORITY_MATRIX.md": "dd9f792f16f52771120787302248c9e52765fd61c4ac43a5f74f41e32ab5bd1d",
+    "docs/project/phase1/PHASE1_MOCK_M1_02_NODE_REGISTRY.md": "205160543f321d910ba167c6d974a8ab76d28d31e4e607600aff578c236e4401",
+    "docs/project/phase1/PHASE1_MOCK_M1_03_CONTROL_FLOW_STATE_GRAPH.md": "c57d980dd0876b80b7eda5c4aff86044d6a6fd7b58762f9513414320715b76ac",
+    "docs/project/phase1/PHASE1_MOCK_M1_04_ENVELOPE_CONTRACT.md": "6caa2e120dbf1fee891f70d6b1b9bcccb91042c2d15498229fc8665f4379671c",
+    "docs/project/phase1/PHASE1_MOCK_M1_05_DETERMINISTIC_SCENARIO_MODEL.md": "0de8021b0e3390458f71613ca59795e48314defa35f5e821808d8274cbeb1d79",
+    "docs/project/phase1/PHASE1_MOCK_M1_06_NAMESPACE_DIRECTORY_GENERATION_BINDING_ISOLATION.md": "45b493d0a492b00f3d6342243b7f6722c22488fe19be032ce191e0b5ba887802",
+    "docs/project/phase1/PHASE1_MOCK_M1_07_ACCEPTANCE_ASSERTIONS_FIXTURE_MANIFEST.md": "08364ab316b19e4429ab42eb41bcfa45e39f6694f3d3815e28a5ddf9480a5d37",
+    "docs/project/phase1/PHASE1_MOCK_M1_08_CONSISTENCY_REVIEW.md": "1b1d128a16d1f19ab3e2bcb943bff1c70e5408cc9dff7850476df971aeae1f86",
+    "工作流设计/02-数据契约/T01_PHASE1_MOCK_ENVELOPE_SCHEMA_v0.1.json": "4154c66a01489d48ea184a96686a0f23144bf20f0e5c615a74620e629ad7dc5d",
+    "工作流设计/02-数据契约/examples/T01_PHASE1_MOCK_REQUEST_EXAMPLE_v0.1.json": "c539bd615692fedce4ad9195af50e2f33951f54e572adf7e0694d31cce943400",
+    "工作流设计/02-数据契约/examples/T01_PHASE1_MOCK_RUN_CANDIDATE_EXAMPLE_v0.1.json": "a8c6dd6158d753f018dcc1e02b4ec4958fa7bbc31f4ce87f8fce4b2e7685094f",
+    "工作流设计/02-数据契约/examples/T01_PHASE1_MOCK_RUN_WT_EXAMPLE_v0.1.json": "b1bfc744b91514804bd7860f0c7825b51f6be54caec268bbf453137681ba6810",
+    "工作流设计/02-数据契约/examples/T01_PHASE1_MOCK_RUN_FAILURE_EXAMPLE_v0.1.json": "8288a8546b0a6ca166f10fb63add1898a0620deaf4b42720cffca92800ef17a7",
+    "工作流设计/02-数据契约/T01_PHASE1_MOCK_SCENARIO_CATALOG_SCHEMA_v0.1.json": "7df691d3ee0470396f6b26600af99ab37239fc71bc089e780c57742b79601464",
+    "工作流设计/02-数据契约/T01_PHASE1_MOCK_SCENARIO_CATALOG_v0.1.json": "ddb20853d026b08059eeec77917692b12f04540e04a9e7505b331217b97a69db",
+    "工作流设计/03-Dify实现/T01_PHASE1_MOCK_ASSET_REGISTRY_SCHEMA_v0.1.json": "e97953f9b4ce479b4213b70ca7464049aa3e077b43d92bf65eeb9be4f6e68491",
+    "工作流设计/03-Dify实现/T01_PHASE1_MOCK_ASSET_REGISTRY_v0.1.json": "ea851f97cacb304a2927d45ef85363d7c44b49f792b10172bfe7792f960672a2",
+    "dify/t01-phase1-mock-v0.1/fixtures/T01_PHASE1_MOCK_FIXTURE_MANIFEST_SCHEMA_v0.1.json": "2e3917f9473698d30549522058086298414b0642707a1cc2deab2bbe1f821fae",
+    "dify/t01-phase1-mock-v0.1/fixtures/T01_PHASE1_MOCK_FIXTURE_MANIFEST_v0.1.json": "b044a1c4c1d44e8c734c4c4df3bace48bdace2c87d9fe1dd77f6eede41e72c9a",
+    "dify/t01-phase1-mock-v0.1/regression/T01_PHASE1_MOCK_ACCEPTANCE_CATALOG_SCHEMA_v0.1.json": "6963d711f9a58a04703b8635f2cc4ee929fd07510367e5582960da7aca5abbcf",
+    "dify/t01-phase1-mock-v0.1/regression/T01_PHASE1_MOCK_ACCEPTANCE_CATALOG_v0.1.json": "b99dcbb53f8cc4d5b077c8973139c4ddd5c89c1a4e81a7f8310f1519a7d87932"
+  },
+  "stage": "M2_BACKEND",
+  "implementation_state": "M2_BACKEND_EXECUTED",
+  "status": "PASS",
+  "execution_environment": {
+    "python_constraint": ">=3.11,<3.12",
+    "transport": "IN_PROCESS_LOCAL",
+    "network_mode": "OFFLINE",
+    "clock_driven_branching": false
+  },
+  "case_count": 21,
+  "submission_count": 23,
+  "unique_submission_request_id_count": 23,
+  "request_variant_count": 22,
+  "attempt_fixture_count": 326,
+  "null_attempt_fixture_count": 8,
+  "fixture_payload_file_count": 350,
+  "node_terminal_directive_count": 378,
+  "attempt_count": 334,
+  "checkpoint_plan_count": 4,
+  "checkpoint_count": 16,
+  "tool_count": 26,
+  "operator_count": 28,
+  "global_assertion_count": 9,
+  "focus_assertion_count": 44,
+  "blocker_assertion_count": 53,
+  "blocker_failure_count": 0,
+  "coverage_gate_count": 10,
+  "coverage_gate_failure_count": 0,
+  "scientific_execution_count": 0,
+  "network_request_count": 0,
+  "legacy_implementation_reuse_count": 0,
+  "dify_dsl_count": 0,
+  "case_results": [
+    {
+      "ordinal": 1,
+      "scenario_key": "happy_provided_structure",
+      "submission_count": 1,
+      "submission_actions": [
+        "CREATE_RUN"
+      ],
+      "checkpoint_count": 0,
+      "final_run_id": "t01-phase1-mock-v01-run-ace7c503-a2c4-41df-b246-ffbbf0b5e5fb",
+      "recovery_of_run_id": null,
+      "run_status": "COMPLETED",
+      "result_kind": "CANDIDATE",
+      "focus_assertion_count": 2,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 2,
+      "scenario_key": "happy_no_structure_local_af3",
+      "submission_count": 1,
+      "submission_actions": [
+        "CREATE_RUN"
+      ],
+      "checkpoint_count": 0,
+      "final_run_id": "t01-phase1-mock-v01-run-0f327d3a-b3b8-448c-88dc-8646b6e7d431",
+      "recovery_of_run_id": null,
+      "run_status": "COMPLETED",
+      "result_kind": "CANDIDATE",
+      "focus_assertion_count": 2,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 3,
+      "scenario_key": "happy_no_structure_local_esmfold2",
+      "submission_count": 1,
+      "submission_actions": [
+        "CREATE_RUN"
+      ],
+      "checkpoint_count": 0,
+      "final_run_id": "t01-phase1-mock-v01-run-70915e70-d127-45fd-9758-22ab7491967b",
+      "recovery_of_run_id": null,
+      "run_status": "COMPLETED",
+      "result_kind": "CANDIDATE",
+      "focus_assertion_count": 2,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 4,
+      "scenario_key": "gate_wt_direct",
+      "submission_count": 1,
+      "submission_actions": [
+        "CREATE_RUN"
+      ],
+      "checkpoint_count": 0,
+      "final_run_id": "t01-phase1-mock-v01-run-9788e96f-130b-4583-ab20-b3a6acb5add4",
+      "recovery_of_run_id": null,
+      "run_status": "COMPLETED",
+      "result_kind": "WT",
+      "focus_assertion_count": 2,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 5,
+      "scenario_key": "n12_pass_cycle_2",
+      "submission_count": 1,
+      "submission_actions": [
+        "CREATE_RUN"
+      ],
+      "checkpoint_count": 0,
+      "final_run_id": "t01-phase1-mock-v01-run-876b5830-d131-4b0a-810e-5b6c7821cd1d",
+      "recovery_of_run_id": null,
+      "run_status": "COMPLETED",
+      "result_kind": "CANDIDATE",
+      "focus_assertion_count": 2,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 6,
+      "scenario_key": "n12_pass_cycle_3",
+      "submission_count": 1,
+      "submission_actions": [
+        "CREATE_RUN"
+      ],
+      "checkpoint_count": 0,
+      "final_run_id": "t01-phase1-mock-v01-run-a6388379-1dcd-420e-bd58-c28a1d350ecb",
+      "recovery_of_run_id": null,
+      "run_status": "COMPLETED",
+      "result_kind": "CANDIDATE",
+      "focus_assertion_count": 2,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 7,
+      "scenario_key": "n12_recalc_exhausted",
+      "submission_count": 1,
+      "submission_actions": [
+        "CREATE_RUN"
+      ],
+      "checkpoint_count": 0,
+      "final_run_id": "t01-phase1-mock-v01-run-355c5eb4-e567-4381-91ae-140817b1016d",
+      "recovery_of_run_id": null,
+      "run_status": "FAILED",
+      "result_kind": "FAILURE",
+      "focus_assertion_count": 2,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 8,
+      "scenario_key": "n15_wt_fallback",
+      "submission_count": 1,
+      "submission_actions": [
+        "CREATE_RUN"
+      ],
+      "checkpoint_count": 0,
+      "final_run_id": "t01-phase1-mock-v01-run-a7ec2cfc-7e57-4d17-aeb1-7409e1d9884e",
+      "recovery_of_run_id": null,
+      "run_status": "COMPLETED",
+      "result_kind": "WT",
+      "focus_assertion_count": 2,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 9,
+      "scenario_key": "n16_missing_expression_host",
+      "submission_count": 1,
+      "submission_actions": [
+        "CREATE_RUN"
+      ],
+      "checkpoint_count": 0,
+      "final_run_id": "t01-phase1-mock-v01-run-61fe312e-e2c1-4c32-b4a3-35da7f9c1bed",
+      "recovery_of_run_id": null,
+      "run_status": "COMPLETED",
+      "result_kind": "CANDIDATE",
+      "focus_assertion_count": 2,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 10,
+      "scenario_key": "n17_not_applicable",
+      "submission_count": 1,
+      "submission_actions": [
+        "CREATE_RUN"
+      ],
+      "checkpoint_count": 0,
+      "final_run_id": "t01-phase1-mock-v01-run-bf3d5e98-9624-4856-9fa3-4a7b0320de60",
+      "recovery_of_run_id": null,
+      "run_status": "COMPLETED",
+      "result_kind": "CANDIDATE",
+      "focus_assertion_count": 2,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 11,
+      "scenario_key": "n16_unsupported_expression_host",
+      "submission_count": 1,
+      "submission_actions": [
+        "CREATE_RUN"
+      ],
+      "checkpoint_count": 0,
+      "final_run_id": "t01-phase1-mock-v01-run-1e40d79d-b338-4f30-9854-d15d90149717",
+      "recovery_of_run_id": null,
+      "run_status": "COMPLETED_WITH_GAPS",
+      "result_kind": "CANDIDATE",
+      "focus_assertion_count": 2,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 12,
+      "scenario_key": "n17_branch_failed",
+      "submission_count": 1,
+      "submission_actions": [
+        "CREATE_RUN"
+      ],
+      "checkpoint_count": 0,
+      "final_run_id": "t01-phase1-mock-v01-run-2601f36e-b276-4ca6-88ff-da5a861b7f50",
+      "recovery_of_run_id": null,
+      "run_status": "COMPLETED_WITH_GAPS",
+      "result_kind": "CANDIDATE",
+      "focus_assertion_count": 2,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 13,
+      "scenario_key": "n16_branch_timeout_partial",
+      "submission_count": 1,
+      "submission_actions": [
+        "CREATE_RUN"
+      ],
+      "checkpoint_count": 4,
+      "final_run_id": "t01-phase1-mock-v01-run-322f0852-9f8a-48c1-9d53-bab8f1fa7d70",
+      "recovery_of_run_id": null,
+      "run_status": "COMPLETED_WITH_GAPS",
+      "result_kind": "CANDIDATE",
+      "focus_assertion_count": 2,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 14,
+      "scenario_key": "n08_upstream_tool_failed",
+      "submission_count": 1,
+      "submission_actions": [
+        "CREATE_RUN"
+      ],
+      "checkpoint_count": 0,
+      "final_run_id": "t01-phase1-mock-v01-run-b968b58c-3438-416e-9ca9-cd3ff632d0c8",
+      "recovery_of_run_id": null,
+      "run_status": "FAILED",
+      "result_kind": "FAILURE",
+      "focus_assertion_count": 2,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 15,
+      "scenario_key": "n01_local_prediction_failed_no_remote_fallback",
+      "submission_count": 1,
+      "submission_actions": [
+        "CREATE_RUN"
+      ],
+      "checkpoint_count": 0,
+      "final_run_id": "t01-phase1-mock-v01-run-6e3cea25-5ce1-46de-bcac-08ccfde04cf7",
+      "recovery_of_run_id": null,
+      "run_status": "FAILED",
+      "result_kind": "FAILURE",
+      "focus_assertion_count": 2,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 16,
+      "scenario_key": "run_cancelled_before_join",
+      "submission_count": 1,
+      "submission_actions": [
+        "CREATE_RUN"
+      ],
+      "checkpoint_count": 4,
+      "final_run_id": "t01-phase1-mock-v01-run-73c45698-2b66-4d8e-86d8-43d415daf7ef",
+      "recovery_of_run_id": null,
+      "run_status": "CANCELLED",
+      "result_kind": "FAILURE",
+      "focus_assertion_count": 2,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 17,
+      "scenario_key": "n08_retryable_recovery",
+      "submission_count": 1,
+      "submission_actions": [
+        "CREATE_RUN"
+      ],
+      "checkpoint_count": 4,
+      "final_run_id": "t01-phase1-mock-v01-run-cfb74a4c-1622-4e2f-ae9e-12d27b3c748d",
+      "recovery_of_run_id": "t01-phase1-mock-v01-run-c92aa4c0-c252-4ab5-9075-bddd33b85952",
+      "run_status": "COMPLETED",
+      "result_kind": "CANDIDATE",
+      "focus_assertion_count": 3,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 18,
+      "scenario_key": "idempotent_replay",
+      "submission_count": 2,
+      "submission_actions": [
+        "CREATE_RUN",
+        "RETURN_EXISTING_RUN"
+      ],
+      "checkpoint_count": 0,
+      "final_run_id": "t01-phase1-mock-v01-run-636bdc30-e652-49b7-af57-930188339578",
+      "recovery_of_run_id": null,
+      "run_status": "COMPLETED",
+      "result_kind": "CANDIDATE",
+      "focus_assertion_count": 2,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 19,
+      "scenario_key": "idempotency_conflict",
+      "submission_count": 2,
+      "submission_actions": [
+        "CREATE_RUN",
+        "REJECT_REQUEST"
+      ],
+      "checkpoint_count": 0,
+      "final_run_id": "t01-phase1-mock-v01-run-91c533a6-4d71-4526-9570-813efa8cc137",
+      "recovery_of_run_id": null,
+      "run_status": "COMPLETED",
+      "result_kind": "CANDIDATE",
+      "focus_assertion_count": 2,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 20,
+      "scenario_key": "n18_assembly_failed",
+      "submission_count": 1,
+      "submission_actions": [
+        "CREATE_RUN"
+      ],
+      "checkpoint_count": 0,
+      "final_run_id": "t01-phase1-mock-v01-run-a7dd686e-3df3-4e76-a7d4-cace8c03c995",
+      "recovery_of_run_id": null,
+      "run_status": "FAILED",
+      "result_kind": "FAILURE",
+      "focus_assertion_count": 2,
+      "status": "PASS"
+    },
+    {
+      "ordinal": 21,
+      "scenario_key": "n08_upstream_timed_out",
+      "submission_count": 1,
+      "submission_actions": [
+        "CREATE_RUN"
+      ],
+      "checkpoint_count": 4,
+      "final_run_id": "t01-phase1-mock-v01-run-c8c39eac-c4a6-4808-8fd8-2347bbbb95ef",
+      "recovery_of_run_id": null,
+      "run_status": "TIMED_OUT",
+      "result_kind": "FAILURE",
+      "focus_assertion_count": 3,
+      "status": "PASS"
+    }
+  ],
+  "coverage_gates": [
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.happy_and_local_entry",
+      "category": "NORMAL_AND_LOCAL_ENTRY",
+      "required_scenario_keys": [
+        "happy_provided_structure",
+        "happy_no_structure_local_af3",
+        "happy_no_structure_local_esmfold2"
+      ],
+      "minimum_case_count": 3,
+      "executed_case_count": 3,
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.gate_wt",
+      "category": "GATE_AND_WT_DIRECT",
+      "required_scenario_keys": [
+        "gate_wt_direct"
+      ],
+      "minimum_case_count": 1,
+      "executed_case_count": 1,
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.n12_recalc",
+      "category": "N12_CONTROLLED_RECALC",
+      "required_scenario_keys": [
+        "n12_pass_cycle_2",
+        "n12_pass_cycle_3",
+        "n12_recalc_exhausted"
+      ],
+      "minimum_case_count": 3,
+      "executed_case_count": 3,
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.n15_fallback",
+      "category": "N15_WT_FALLBACK",
+      "required_scenario_keys": [
+        "n15_wt_fallback"
+      ],
+      "minimum_case_count": 1,
+      "executed_case_count": 1,
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.n16_n17_join",
+      "category": "CONDITION_AND_TOLERANT_JOIN",
+      "required_scenario_keys": [
+        "n16_missing_expression_host",
+        "n17_not_applicable",
+        "n16_unsupported_expression_host",
+        "n17_branch_failed",
+        "n16_branch_timeout_partial"
+      ],
+      "minimum_case_count": 5,
+      "executed_case_count": 5,
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.upstream_terminal",
+      "category": "UPSTREAM_FAILURE_AND_TIMEOUT",
+      "required_scenario_keys": [
+        "n08_upstream_tool_failed",
+        "n01_local_prediction_failed_no_remote_fallback",
+        "n08_upstream_timed_out"
+      ],
+      "minimum_case_count": 3,
+      "executed_case_count": 3,
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.cancel_recovery",
+      "category": "CANCEL_AND_RECOVERY",
+      "required_scenario_keys": [
+        "run_cancelled_before_join",
+        "n08_retryable_recovery"
+      ],
+      "minimum_case_count": 2,
+      "executed_case_count": 2,
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.idempotency",
+      "category": "IDEMPOTENT_REPLAY_AND_CONFLICT",
+      "required_scenario_keys": [
+        "idempotent_replay",
+        "idempotency_conflict"
+      ],
+      "minimum_case_count": 2,
+      "executed_case_count": 2,
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.n18_failure",
+      "category": "N18_ASSEMBLY_FAILURE",
+      "required_scenario_keys": [
+        "n18_assembly_failed"
+      ],
+      "minimum_case_count": 1,
+      "executed_case_count": 1,
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.exclusion_and_isolation",
+      "category": "OFFLINE_EXCLUSIONS_AND_LEGACY_ISOLATION",
+      "required_scenario_keys": [
+        "happy_no_structure_local_af3",
+        "happy_no_structure_local_esmfold2",
+        "n01_local_prediction_failed_no_remote_fallback"
+      ],
+      "minimum_case_count": 3,
+      "executed_case_count": 3,
+      "status": "PASS",
+      "detail": null
+    }
+  ],
+  "global_assertions": [
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.004",
+      "operator": "JSON_SCHEMA_VALID",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.008",
+      "operator": "REFERENCES_RESOLVE",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.009",
+      "operator": "EXACT_CATALOG_PROJECTION",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.010",
+      "operator": "FIELD_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.011",
+      "operator": "SET_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.012",
+      "operator": "NO_SCIENTIFIC_VALUES",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.013",
+      "operator": "REFERENCES_RESOLVE",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.014",
+      "operator": "MATCHES_REGEX",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.017",
+      "operator": "CONTAINS_NONE",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    }
+  ],
+  "focus_assertions": [
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.001.focus.01",
+      "scenario_key": "happy_provided_structure",
+      "operator": "FIELD_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.001.focus.02",
+      "scenario_key": "happy_provided_structure",
+      "operator": "JOIN_PRECONDITION",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.002.focus.01",
+      "scenario_key": "happy_no_structure_local_af3",
+      "operator": "CONTAINS_NONE",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.002.focus.02",
+      "scenario_key": "happy_no_structure_local_af3",
+      "operator": "FIELD_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.003.focus.01",
+      "scenario_key": "happy_no_structure_local_esmfold2",
+      "operator": "CONTAINS_NONE",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.003.focus.02",
+      "scenario_key": "happy_no_structure_local_esmfold2",
+      "operator": "FIELD_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.004.focus.01",
+      "scenario_key": "gate_wt_direct",
+      "operator": "NODE_STATUS_ALL",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.004.focus.02",
+      "scenario_key": "gate_wt_direct",
+      "operator": "FIELD_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.005.focus.01",
+      "scenario_key": "n12_pass_cycle_2",
+      "operator": "CONTROL_DECISION_SEQUENCE_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.005.focus.02",
+      "scenario_key": "n12_pass_cycle_2",
+      "operator": "NODE_ATTEMPT_FIELD_SEQUENCE_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.006.focus.01",
+      "scenario_key": "n12_pass_cycle_3",
+      "operator": "CONTROL_DECISION_SEQUENCE_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.006.focus.02",
+      "scenario_key": "n12_pass_cycle_3",
+      "operator": "NODE_ATTEMPT_FIELD_SEQUENCE_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.007.focus.01",
+      "scenario_key": "n12_recalc_exhausted",
+      "operator": "NODE_ATTEMPT_COUNT_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.007.focus.02",
+      "scenario_key": "n12_recalc_exhausted",
+      "operator": "CONTAINS_NONE",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.008.focus.01",
+      "scenario_key": "n15_wt_fallback",
+      "operator": "EDGE_PRESENT",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.008.focus.02",
+      "scenario_key": "n15_wt_fallback",
+      "operator": "FIELD_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.009.focus.01",
+      "scenario_key": "n16_missing_expression_host",
+      "operator": "FIELD_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.009.focus.02",
+      "scenario_key": "n16_missing_expression_host",
+      "operator": "FIELD_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.010.focus.01",
+      "scenario_key": "n17_not_applicable",
+      "operator": "CONTAINS_NONE",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.010.focus.02",
+      "scenario_key": "n17_not_applicable",
+      "operator": "FIELD_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.011.focus.01",
+      "scenario_key": "n16_unsupported_expression_host",
+      "operator": "FIELD_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.011.focus.02",
+      "scenario_key": "n16_unsupported_expression_host",
+      "operator": "FIELD_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.012.focus.01",
+      "scenario_key": "n17_branch_failed",
+      "operator": "FIELD_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.012.focus.02",
+      "scenario_key": "n17_branch_failed",
+      "operator": "EDGE_ORDERED_SUBSEQUENCE",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.013.focus.01",
+      "scenario_key": "n16_branch_timeout_partial",
+      "operator": "CONTAINS_NONE",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.013.focus.02",
+      "scenario_key": "n16_branch_timeout_partial",
+      "operator": "FIELD_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.014.focus.01",
+      "scenario_key": "n08_upstream_tool_failed",
+      "operator": "EDGE_ABSENT",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.014.focus.02",
+      "scenario_key": "n08_upstream_tool_failed",
+      "operator": "NO_CONTROL_AFTER_NODE",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.015.focus.01",
+      "scenario_key": "n01_local_prediction_failed_no_remote_fallback",
+      "operator": "EDGE_ABSENT",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.015.focus.02",
+      "scenario_key": "n01_local_prediction_failed_no_remote_fallback",
+      "operator": "CONTAINS_NONE",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.016.focus.01",
+      "scenario_key": "run_cancelled_before_join",
+      "operator": "FIELD_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.016.focus.02",
+      "scenario_key": "run_cancelled_before_join",
+      "operator": "EDGE_ABSENT",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.017.focus.01",
+      "scenario_key": "n08_retryable_recovery",
+      "operator": "NODE_ATTEMPT_FIELD_SEQUENCE_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.017.focus.02",
+      "scenario_key": "n08_retryable_recovery",
+      "operator": "NODE_ATTEMPT_FIELD_SEQUENCE_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.017.focus.03",
+      "scenario_key": "n08_retryable_recovery",
+      "operator": "COUNT_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.018.focus.01",
+      "scenario_key": "idempotent_replay",
+      "operator": "SUBMISSION_ACTION_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.018.focus.02",
+      "scenario_key": "idempotent_replay",
+      "operator": "EMISSION_COUNT_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.019.focus.01",
+      "scenario_key": "idempotency_conflict",
+      "operator": "SUBMISSION_ACTION_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.019.focus.02",
+      "scenario_key": "idempotency_conflict",
+      "operator": "ORIGINAL_RUN_UNCHANGED",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.020.focus.01",
+      "scenario_key": "n18_assembly_failed",
+      "operator": "FIELD_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.020.focus.02",
+      "scenario_key": "n18_assembly_failed",
+      "operator": "NO_STUB_PROMOTION",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.021.focus.01",
+      "scenario_key": "n08_upstream_timed_out",
+      "operator": "EDGE_ABSENT",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.021.focus.02",
+      "scenario_key": "n08_upstream_timed_out",
+      "operator": "FIELD_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.case.021.focus.03",
+      "scenario_key": "n08_upstream_timed_out",
+      "operator": "NO_CONTROL_AFTER_NODE",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    }
+  ]
+}

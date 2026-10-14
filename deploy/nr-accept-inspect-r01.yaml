@@ -1,0 +1,85 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-nr-accept-inspect-r01
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 300
+  template:
+    spec:
+      nodeName: k8s-a100-01
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+        - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+      containers:
+        - name: inspect
+          image: harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:fba5a32c0550e56a5310160e2fc49d647fcd27d76851073a2d82cc935fb4c2fc
+          command:
+            - python
+            - -u
+            - -B
+            - -c
+            - |
+              import json
+              import os
+              from pathlib import Path
+              root = Path('/data/nr-20250624')
+              raw = root / 'raw'
+              meta = json.loads((root / 'nr-prot-metadata.json').read_bytes())
+              receipt = json.loads((root / 'download-receipt.json').read_bytes())
+              rows = receipt['files']
+              names = [row['path'] for row in rows]
+              assert len(names) == len(set(names)) == 1113
+              declared = {Path(item).name for item in meta['files']}
+              assert set(names) == declared | {'nr.pal'}
+              sizes_match = all((raw / row['path']).stat().st_size == row['bytes'] for row in rows)
+              sums = (root / 'SHA256SUMS').read_text().splitlines()
+              expected_sums = [row['sha256'] + '  raw/' + row['path'] for row in rows]
+              assert sums == expected_sums
+              complete = {p.name for p in raw.iterdir() if p.is_file() and not p.name.endswith('.source.json')}
+              assert complete == set(names)
+              source_records = {p.name for p in raw.iterdir() if p.is_file() and p.name.endswith('.source.json')}
+              assert source_records == {name + '.source.json' for name in names}
+              total = sum(row['bytes'] for row in rows)
+              stat = os.statvfs(root)
+              print(json.dumps({
+                  'receipt_status': receipt['status'],
+                  'metadata_bytes_total': meta['bytes-total'],
+                  'downloaded_bytes': receipt['downloaded_bytes'],
+                  'actual_file_bytes': total,
+                  'metadata_file_count': len(meta['files']),
+                  'receipt_file_count': len(rows),
+                  'size_checks_pass': sizes_match,
+                  'sha256sums_matches_receipt': True,
+                  'source_record_count': len(source_records),
+                  'free_bytes': stat.f_bavail * stat.f_frsize,
+                  'upstream_checksum_verified': False,
+              }, sort_keys=True), flush=True)
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: '1'
+              memory: 256Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: [ALL]
+          volumeMounts:
+            - name: database
+              mountPath: /data
+              readOnly: true
+      volumes:
+        - name: database
+          persistentVolumeClaim:
+            claimName: antigen-n03-nr
+            readOnly: true

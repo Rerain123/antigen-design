@@ -1,0 +1,338 @@
+{
+  "checked_at": "2026-10-10T09:38:47.243339+08:00",
+  "deployment": {
+    "generation": 148,
+    "replicas": 1,
+    "ready": 0,
+    "source": "06f01c313e11fc3ed93406c00b26e047799f37a71d73976ecb203f331f03f3e2",
+    "conditions": [
+      {
+        "lastTransitionTime": "2026-10-09T07:22:28Z",
+        "lastUpdateTime": "2026-10-09T07:22:28Z",
+        "message": "Deployment does not have minimum availability.",
+        "reason": "MinimumReplicasUnavailable",
+        "status": "False",
+        "type": "Available"
+      },
+      {
+        "lastTransitionTime": "2026-10-09T07:41:17Z",
+        "lastUpdateTime": "2026-10-09T07:41:17Z",
+        "message": "ReplicaSet \"antigen-design-545bf87f\" has timed out progressing.",
+        "reason": "ProgressDeadlineExceeded",
+        "status": "False",
+        "type": "Progressing"
+      }
+    ]
+  },
+  "pods": [
+    {
+      "name": "antigen-design-545bf87f-4m4t5",
+      "phase": "Pending",
+      "node": null,
+      "created": "2026-10-09T07:31:16Z",
+      "gpu_resources": [
+        {
+          "name": "worker-unified-gpu",
+          "resources": {
+            "limits": {
+              "cpu": "16",
+              "ephemeral-storage": "8Gi",
+              "memory": "128Gi",
+              "nvidia.com/gpu": "1",
+              "nvidia.com/gpucores": "100",
+              "nvidia.com/gpumem-percentage": "100"
+            },
+            "requests": {
+              "cpu": "8",
+              "ephemeral-storage": "2Gi",
+              "memory": "96Gi",
+              "nvidia.com/gpu": "1",
+              "nvidia.com/gpucores": "100",
+              "nvidia.com/gpumem-percentage": "100"
+            }
+          }
+        }
+      ],
+      "annotations": {
+        "antigen-design/gpu-mode": "unified-resident-single64",
+        "antigen-design/gpu-worker-config": "antigen-unified-gpu-config-r11",
+        "antigen-design/gpu-worker-host-profile": "af3-combined-96-128gi-8-16cpu-r02",
+        "nvidia.com/use-gputype": "A100-SXM-64GB",
+        "nvidia.com/use-gpuuuid": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31"
+      },
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-09T07:31:16Z",
+          "message": "0/3 nodes are available: 1 1/8 CardInsufficientMemory, 7/8 CardUuidMismatch, 2 8/8 CardTypeMismatch. no new claims to deallocate, preemption: 0/3 nodes are available: 3 No preemption victims found for incoming pod.",
+          "observedGeneration": 1,
+          "reason": "Unschedulable",
+          "status": "False",
+          "type": "PodScheduled"
+        }
+      ],
+      "containers": []
+    },
+    {
+      "name": "antigen-design-5475446db6-jt4c9",
+      "phase": "Failed",
+      "node": "k8s-a100-02",
+      "created": "2026-09-29T13:00:30Z",
+      "gpu_resources": [
+        {
+          "name": "worker-unified-gpu",
+          "resources": {
+            "limits": {
+              "cpu": "16",
+              "ephemeral-storage": "8Gi",
+              "memory": "128Gi",
+              "nvidia.com/gpu": "1",
+              "nvidia.com/gpucores": "100",
+              "nvidia.com/gpumem-percentage": "100"
+            },
+            "requests": {
+              "cpu": "8",
+              "ephemeral-storage": "2Gi",
+              "memory": "96Gi",
+              "nvidia.com/gpu": "1",
+              "nvidia.com/gpucores": "100",
+              "nvidia.com/gpumem-percentage": "100"
+            }
+          }
+        }
+      ],
+      "annotations": {
+        "antigen-design/gpu-mode": "unified-resident-single64",
+        "antigen-design/gpu-worker-config": "antigen-unified-gpu-config-r11",
+        "antigen-design/gpu-worker-host-profile": "af3-combined-96-128gi-8-16cpu-r02",
+        "hami.io/bind-phase": "success",
+        "hami.io/bind-time": "1790689880",
+        "hami.io/vgpu-devices-allocated": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31,NVIDIA,65536,100:;",
+        "hami.io/vgpu-devices-to-allocate": ";;",
+        "hami.io/vgpu-node": "k8s-a100-02",
+        "hami.io/vgpu-time": "1790689880",
+        "nvidia.com/use-gputype": "A100-SXM-64GB",
+        "nvidia.com/use-gpuuuid": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31"
+      },
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-30T03:18:52Z",
+          "observedGeneration": 3,
+          "status": "False",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-30T03:18:52Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-30T03:18:52Z",
+          "observedGeneration": 3,
+          "reason": "PodFailed",
+          "status": "False",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-30T03:18:52Z",
+          "observedGeneration": 3,
+          "reason": "PodFailed",
+          "status": "False",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-30T03:18:52Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "containers": [
+        {
+          "name": "service",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://5a312f3ad77062aa659a57ac233b966b3e4242027be2ac0b244940e85181a2b9",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:51:56Z"
+            }
+          }
+        },
+        {
+          "name": "worker-aggrescan3d",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://1287aa253ec8d72d92d8869b154ad8440b134b20d7b80683c41df021e3c9083b",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:52:02Z"
+            }
+          }
+        },
+        {
+          "name": "worker-bepipred",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://9635c52338433d6b7cab588b871d822576bfdcd20d66030fcdf7e116b0021780",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:51:58Z"
+            }
+          }
+        },
+        {
+          "name": "worker-blast",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://62957cbfc2d8f605edf1487847f92fe2324a8d2aa02e388cf242471d4f445854",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:52:00Z"
+            }
+          }
+        },
+        {
+          "name": "worker-deeptmhmm",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://5f1714aeaf6adf4cb7af1263ca7a8de20cf183852f942f980bbc49648df87f27",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:51:58Z"
+            }
+          }
+        },
+        {
+          "name": "worker-foldx",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://a640ef169b95da797bf6993c7b1a161e9149cfb0ebb778e1fd8ce25f07efb038",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:52:01Z"
+            }
+          }
+        },
+        {
+          "name": "worker-homology",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://3bff5d4f202892d13ed64169b407eeada3736128bfcc17e501d2613547e5b2c3",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:52:00Z"
+            }
+          }
+        },
+        {
+          "name": "worker-netmhc",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://ad42e5080a9ab8eb96007d1e2630c9ee37e5e6d2b9ee5fecd0e114a7623d9623",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:51:59Z"
+            }
+          }
+        },
+        {
+          "name": "worker-structure",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://062a57e837370ff12fabcc423024bbd13a154491a407577071306c367b8a8fa5",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:51:57Z"
+            }
+          }
+        },
+        {
+          "name": "worker-unified-gpu",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://8de16e05aa27368fd1d9b660b9ad705fdef73ddad1b5a16a3c00dc8b55dcea6c",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:52:05Z"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "running_gpu_pods_in_namespace": [],
+  "events": [
+    {
+      "pod": "antigen-design-545bf87f-4m4t5",
+      "reason": "FilteringFailed",
+      "message": "2 nodes CardTypeMismatch(k8s-a100-01,k8s-a4090)",
+      "last": "2026-10-10T01:16:17Z",
+      "count": 10566,
+      "series": null
+    },
+    {
+      "pod": "antigen-design-545bf87f-4m4t5",
+      "reason": "FilteringFailed",
+      "message": "1 nodes CardInsufficientMemory(k8s-a100-02)",
+      "last": "2026-10-10T01:36:32Z",
+      "count": 10756,
+      "series": null
+    },
+    {
+      "pod": "antigen-design-545bf87f-4m4t5",
+      "reason": "FilteringFailed",
+      "message": "1 nodes CardUuidMismatch(k8s-a100-02)",
+      "last": "2026-10-10T01:21:29Z",
+      "count": 10610,
+      "series": null
+    },
+    {
+      "pod": "antigen-design-545bf87f-4m4t5",
+      "reason": "FailedScheduling",
+      "message": "0/3 nodes are available: 1 1/8 CardInsufficientMemory, 7/8 CardUuidMismatch, 2 8/8 CardTypeMismatch. no new claims to deallocate, preemption: 0/3 nodes are available: 3 No preemption victims found for incoming pod.",
+      "last": "2026-10-09T07:31:16.322008Z",
+      "count": null,
+      "series": {
+        "count": 10688,
+        "lastObservedTime": "2026-10-10T01:29:39.551125Z"
+      }
+    }
+  ]
+}

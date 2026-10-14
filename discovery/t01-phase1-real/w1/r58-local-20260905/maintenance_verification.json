@@ -1,0 +1,23 @@
+{
+  "recorded_on": "2026-09-05",
+  "scope": "R58_ENGINEERING_CHANGE_AND_LOCAL_SAMPLE_REUSE",
+  "status": "PASS_WITH_ENVIRONMENT_SKIP",
+  "checks": {
+    "documentation": {"status": "PASS", "markdown_files": 142, "command": ".venv/Scripts/python.exe scripts/check_docs.py"},
+    "current_root": {"passed": 307, "skipped": 1, "command": ".venv/Scripts/python.exe -m pytest -o addopts='' -q -ra", "skip_reason": "Windows account cannot create symbolic links; tests/test_tool_interface.py symlink escape fixture"},
+    "r58_tests": {"passed": 36, "command": ".venv/Scripts/python.exe -m pytest -o addopts='' -q tests/test_structure_mapping.py"},
+    "legacy_full_mock": {"passed": 74, "working_directory": "legacy/full-t01-mock-v0.1", "command": "../../.venv/Scripts/python.exe -m pytest -o addopts='' -q -ra"},
+    "legacy_s07": {"passed": 41, "working_directory": "legacy/s07", "command": "../../.venv/Scripts/python.exe -m pytest -o addopts='' -q -ra"},
+    "mock_freeze": {"status": "PASS", "assets": 457, "command": ".venv/Scripts/python.exe scripts/t01_phase1_mock/run_m4_campaign.py verify"},
+    "expert_originals": {"unchanged_files": 22},
+    "referenced_historical_sources": {"unchanged_files": 7},
+    "local_campaign": {"cases": 4, "source_hashes_verified": 9, "evidence_hashes_verified": 16},
+    "handoff_packages": {"status": "PASS", "version": "0.1", "command": ".venv/Scripts/python.exe scripts/package_tool_handoffs.py --check"},
+    "freesasa_example_input_binding": {"status": "PASS", "command": ".venv/Scripts/python.exe scripts/check_tool_interface.py --request docs/project/phase1/handoffs/PH1-TOOL-FREESASA/examples/request.example.json --check-files"}
+  },
+  "customer_samples": "NONE_PROVIDED",
+  "target_environment_acceptance": "NOT_RUN",
+  "scientific_acceptance": "NOT_RUN",
+  "verified_mappings_issued": 0,
+  "production_status": "NOT_DEPLOYED"
+}

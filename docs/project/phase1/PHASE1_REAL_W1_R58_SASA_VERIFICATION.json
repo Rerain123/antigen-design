@@ -1,0 +1,61 @@
+{
+  "date": "2026-09-05",
+  "scope": "R-58 entity-position mapping, development PDB preparation and raw FreeSASA boundary validation",
+  "checks": [
+    {
+      "command": ".venv/Scripts/python.exe -m pytest -o addopts='' -q",
+      "exit_code": 0,
+      "passed": 381,
+      "skipped": 1,
+      "elapsed_seconds": 92.82,
+      "new_boundary_tests": 43,
+      "note": "Final recorded run; the earlier asynchronous test handle was unavailable after the user continuation, so its completion was not assumed."
+    },
+    {
+      "command": ".venv/Scripts/python.exe scripts/check_docs.py",
+      "exit_code": 0,
+      "result": "PASS",
+      "markdown_files": 154
+    },
+    {
+      "command": ".venv/Scripts/python.exe discovery/t01-phase1-real/w1/r58-freesasa-boundaries-20260905/verify_evidence.py",
+      "exit_code": 0,
+      "result": "PASS",
+      "batch_files": 212,
+      "expert_sources_unchanged": 22,
+      "prior_r58_evidence_files_unchanged": 16,
+      "actual_freesasa_calculations": 6,
+      "tool_boundary_rejections": 2
+    },
+    {
+      "command": ".venv/Scripts/python.exe scripts/package_tool_handoffs.py --check",
+      "exit_code": 0,
+      "result": "PASS",
+      "packages": [
+        {
+          "id": "PH1-TOOL-FREESASA",
+          "version": "0.1",
+          "archive_sha256": "6cdb87a80d3b18064f3cbbd529ab58f21e182d593a5d043ff5d90358015c13ba"
+        },
+        {
+          "id": "PH1-TOOL-BEPIPRED",
+          "version": "0.1",
+          "archive_sha256": "215ad2849c1a2ee1f7f007d140a1bb7808728ba43372686490070df9bd79cfab"
+        }
+      ],
+      "delivery_status": "PACKAGED_NOT_SENT"
+    },
+    {
+      "command": ".venv/Scripts/python.exe scripts/t01_phase1_mock/run_m4_campaign.py verify",
+      "exit_code": 0,
+      "result": "PASS",
+      "frozen_asset_count": 457
+    }
+  ],
+  "not_run": [
+    "Scientific mapping approval, independent biological hold-out acceptance and customer target environment G0",
+    "Production S-09/RSA decisions, W1 G1 release and production workflow integration",
+    "Legacy full Mock and S07 regressions: no cross-partition implementation changes"
+  ],
+  "production_status": "NOT_DEPLOYED"
+}

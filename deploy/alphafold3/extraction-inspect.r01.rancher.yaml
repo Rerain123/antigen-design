@@ -1,0 +1,185 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-af3-extraction-inspect-r01
+  namespace: him-ws
+immutable: true
+data:
+  inspect_af3_extraction.py: "\"\"\"Independently verify the published AF3 database\
+    \ extraction, read-only.\n\nThe extraction Job already checked each compressed\
+    \ source while creating the\noutput.  This verifier remounts the database PVC\
+    \ read-only and checks the\npublished receipt, the complete extracted manifest,\
+    \ the AF3 v3.0 directory\nlayout, filesystem metadata, and (by default) every\
+    \ output SHA-256.  It never\nwrites to the PVC and never requests a GPU.\n\"\"\
+    \"\nfrom __future__ import annotations\n\nimport argparse\nimport hashlib\nimport\
+    \ json\nimport os\nfrom pathlib import Path, PurePosixPath\nimport shutil\nimport\
+    \ stat\nimport time\n\n\nREQUIRED_RECEIPT_STATUS = \"AF3_DATABASES_EXTRACTED_VERIFIED_NOT_DEPLOYED\"\
+    \nREQUIRED_MANIFEST_SCHEMA = \"t01.af3-database-extraction/1\"\nEXPECTED_OUTPUT_ROOT\
+    \ = \"unpacked-r03\"\nEXPECTED_FILE_COUNT = 195867\nEXPECTED_TOTAL_BYTES = 672435030513\n\
+    REQUIRED_ROOT_FILES = (\n    \"pdb_seqres_2022_09_28.fasta\",\n    \"rfam_14_9_clust_seq_id_90_cov_80_rep_seq.fasta\"\
+    ,\n    \"rnacentral_active_seq_id_90_cov_80_linclust.fasta\",\n    \"bfd-first_non_consensus_sequences.fasta\"\
+    ,\n    \"nt_rna_2023_02_23_clust_seq_id_90_cov_80_rep_seq.fasta\",\n    \"uniref90_2022_05.fa\"\
+    ,\n    \"uniprot_all_2021_04.fa\",\n    \"mgy_clusters_2022_05.fa\",\n)\nREQUIRED_PDB_PREFIX\
+    \ = \"mmcif_files/\"\nHASH_CHUNK_BYTES = 8 * 1024 * 1024\n\n\ndef read_json(path:\
+    \ Path) -> dict:\n    value = json.loads(path.read_bytes())\n    if not isinstance(value,\
+    \ dict):\n        raise ValueError(f\"Expected JSON object: {path}\")\n    return\
+    \ value\n\n\ndef filesystem(path: Path) -> dict:\n    value = shutil.disk_usage(path)\n\
+    \    return {\n        \"total_bytes\": value.total,\n        \"free_bytes\":\
+    \ value.free,\n        \"used_bytes\": value.used,\n    }\n\n\ndef safe_relative(value:\
+    \ str) -> PurePosixPath:\n    path = PurePosixPath(value)\n    if (not value or\
+    \ path.is_absolute() or \"\\\\\" in value or \"..\" in path.parts\n          \
+    \  or path.as_posix() != value or any(part in (\"\", \".\") for part in path.parts)):\n\
+    \        raise ValueError(f\"Unsafe extracted path: {value!r}\")\n    return path\n\
+    \n\ndef regular_file(path: Path) -> None:\n    info = path.lstat()\n    if not\
+    \ stat.S_ISREG(info.st_mode) or path.is_symlink():\n        raise ValueError(f\"\
+    Expected regular extracted file: {path}\")\n\n\ndef sha256_file(path: Path) ->\
+    \ str:\n    digest = hashlib.sha256()\n    with path.open(\"rb\") as stream:\n\
+    \        for chunk in iter(lambda: stream.read(HASH_CHUNK_BYTES), b\"\"):\n  \
+    \          digest.update(chunk)\n    return digest.hexdigest()\n\n\ndef inspect(root:\
+    \ Path, *, full_hash: bool = True, progress_every: int = 10000) -> dict:\n   \
+    \ root = root.resolve()\n    if not root.is_dir() or root.is_symlink():\n    \
+    \    raise ValueError(f\"Database root is not a real directory: {root}\")\n  \
+    \  output = root / EXPECTED_OUTPUT_ROOT\n    if not output.is_dir() or output.is_symlink():\n\
+    \        raise ValueError(f\"Published extraction directory is missing: {output}\"\
+    )\n    if (root / f\"{EXPECTED_OUTPUT_ROOT}.partial\").exists():\n        raise\
+    \ ValueError(\"A partial directory remains beside the published output\")\n\n\
+    \    receipt = read_json(root / \"extraction-receipt.json\")\n    expected_receipt\
+    \ = {\n        \"status\": REQUIRED_RECEIPT_STATUS,\n        \"scientific_gate\"\
+    : \"CLOSED\",\n        \"decompressed\": True,\n        \"source_manifest\": \"\
+    database-manifest.json\",\n        \"output_root\": EXPECTED_OUTPUT_ROOT,\n  \
+    \      \"file_count\": EXPECTED_FILE_COUNT,\n        \"total_bytes\": EXPECTED_TOTAL_BYTES,\n\
+    \        \"files_manifest\": \"extracted-manifest.json\",\n    }\n    for key,\
+    \ expected in expected_receipt.items():\n        if receipt.get(key) != expected:\n\
+    \            raise ValueError(f\"Extraction receipt mismatch for {key}: {receipt.get(key)!r}\"\
+    )\n\n    manifest = read_json(output / \"extracted-manifest.json\")\n    if manifest.get(\"\
+    schema\") != REQUIRED_MANIFEST_SCHEMA:\n        raise ValueError(\"Unexpected\
+    \ extracted manifest schema\")\n    files = manifest.get(\"files\")\n    if not\
+    \ isinstance(files, list) or len(files) != EXPECTED_FILE_COUNT:\n        raise\
+    \ ValueError(\"Extracted manifest file count differs from the pinned receipt\"\
+    )\n\n    paths: set[str] = set()\n    actual_total = 0\n    root_files: set[str]\
+    \ = set()\n    mmcif_files = 0\n    hashed_files = 0\n    started = time.monotonic()\n\
+    \    for index, row in enumerate(files, 1):\n        if not isinstance(row, dict):\n\
+    \            raise ValueError(f\"Manifest row {index} is not an object\")\n  \
+    \      relative = safe_relative(row.get(\"path\", \"\"))\n        name = relative.as_posix()\n\
+    \        if name in paths:\n            raise ValueError(f\"Duplicate extracted\
+    \ path: {name}\")\n        paths.add(name)\n        target = output.joinpath(*relative.parts)\n\
+    \        regular_file(target)\n        expected_size = row.get(\"size_bytes\"\
+    )\n        if not isinstance(expected_size, int) or expected_size < 0:\n     \
+    \       raise ValueError(f\"Invalid size in extracted manifest: {name}\")\n  \
+    \      actual_size = target.stat().st_size\n        if actual_size != expected_size:\n\
+    \            raise ValueError(f\"Extracted size mismatch: {name}\")\n        expected_hash\
+    \ = row.get(\"sha256\")\n        if not isinstance(expected_hash, str) or len(expected_hash)\
+    \ != 64:\n            raise ValueError(f\"Missing SHA-256 in extracted manifest:\
+    \ {name}\")\n        if any(char not in \"0123456789abcdef\" for char in expected_hash):\n\
+    \            raise ValueError(f\"Invalid SHA-256 in extracted manifest: {name}\"\
+    )\n        if full_hash and sha256_file(target) != expected_hash:\n          \
+    \  raise ValueError(f\"Extracted SHA-256 mismatch: {name}\")\n        actual_total\
+    \ += actual_size\n        if \"/\" not in name:\n            root_files.add(name)\n\
+    \        if name.startswith(REQUIRED_PDB_PREFIX):\n            mmcif_files +=\
+    \ 1\n        hashed_files += 1 if full_hash else 0\n        if progress_every\
+    \ and index % progress_every == 0:\n            print(\"AF3_EXTRACTION_INSPECTION_PROGRESS\"\
+    , index, len(files), actual_total, flush=True)\n\n    missing = sorted(set(REQUIRED_ROOT_FILES)\
+    \ - root_files)\n    if missing:\n        raise ValueError(\"Missing AF3 root\
+    \ database files: \" + \", \".join(missing))\n    if mmcif_files == 0:\n     \
+    \   raise ValueError(\"No extracted mmcif_files/ members were found\")\n    if\
+    \ actual_total != EXPECTED_TOTAL_BYTES:\n        raise ValueError(f\"Extracted\
+    \ byte total differs: {actual_total}\")\n    if len(paths) != EXPECTED_FILE_COUNT:\n\
+    \        raise ValueError(\"Extracted path inventory is not unique\")\n\n    disk\
+    \ = filesystem(root)\n    elapsed = time.monotonic() - started\n    result = {\n\
+    \        \"status\": \"AF3_DATABASES_EXTRACTION_INDEPENDENTLY_VERIFIED_NOT_DEPLOYED\"\
+    ,\n        \"scientific_gate\": \"CLOSED\",\n        \"usable_for_pipeline\":\
+    \ False,\n        \"production_status\": \"NOT_DEPLOYED\",\n        \"output_root\"\
+    : EXPECTED_OUTPUT_ROOT,\n        \"file_count\": len(files),\n        \"total_bytes\"\
+    : actual_total,\n        \"required_root_files\": list(REQUIRED_ROOT_FILES),\n\
+    \        \"mmcif_file_count\": mmcif_files,\n        \"hash_mode\": \"full\" if\
+    \ full_hash else \"metadata_only\",\n        \"hashed_file_count\": hashed_files,\n\
+    \        \"elapsed_seconds\": round(elapsed, 3),\n        \"database_filesystem\"\
+    : disk,\n    }\n    print(\"AF3_EXTRACTION_INSPECTION_VERIFIED \" + json.dumps(result,\
+    \ sort_keys=True), flush=True)\n    return result\n\n\ndef main() -> None:\n \
+    \   parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"\
+    root\", type=Path, help=\"PVC root containing alphafold3-v3.0\")\n    parser.add_argument(\"\
+    --metadata-only\", action=\"store_true\",\n                        help=\"Skip\
+    \ re-hashing file contents; not used by the acceptance Job\")\n    parser.add_argument(\"\
+    --progress-every\", type=int, default=10000)\n    args = parser.parse_args()\n\
+    \    if args.progress_every < 0:\n        parser.error(\"--progress-every must\
+    \ be non-negative\")\n    inspect(args.root, full_hash=not args.metadata_only,\
+    \ progress_every=args.progress_every)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: antigen-af3-extraction-inspect-r01
+  namespace: him-ws
+spec:
+  podSelector:
+    matchLabels:
+      app: antigen-af3-extraction-inspect-r01
+  policyTypes:
+  - Ingress
+  - Egress
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-af3-extraction-inspect-r01
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 172800
+  template:
+    metadata:
+      labels:
+        app: antigen-af3-extraction-inspect-r01
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+      - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+      - name: inspect
+        image: harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:fba5a32c0550e56a5310160e2fc49d647fcd27d76851073a2d82cc935fb4c2fc
+        command:
+        - python
+        - -u
+        - -B
+        - /inspect/inspect_af3_extraction.py
+        - /databases/alphafold3-v3.0
+        - --progress-every
+        - '10000'
+        resources:
+          requests:
+            cpu: 500m
+            memory: 256Mi
+            ephemeral-storage: 64Mi
+          limits:
+            cpu: '2'
+            memory: 1Gi
+            ephemeral-storage: 256Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: databases
+          mountPath: /databases
+          readOnly: true
+        - name: inspect
+          mountPath: /inspect
+          readOnly: true
+      volumes:
+      - name: databases
+        persistentVolumeClaim:
+          claimName: antigen-af3-databases
+          readOnly: true
+      - name: inspect
+        configMap:
+          name: antigen-af3-extraction-inspect-r01
+

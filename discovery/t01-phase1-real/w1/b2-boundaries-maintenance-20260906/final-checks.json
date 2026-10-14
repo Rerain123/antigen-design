@@ -1,0 +1,33 @@
+{
+  "date": "2026-09-06",
+  "scope": "W1-08B2 supplemental boundary executions final checks",
+  "checks": [
+    {
+      "name": "boundary",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/check_b2_boundaries.py verify",
+      "chunk_id": "a30f08",
+      "wall_time_seconds": 6.5926007,
+      "exit_code": 0,
+      "original_token_count": 81,
+      "output": "{\"status\": \"PASS_DEVELOPMENT_EVIDENCE_WITH_ORIGINAL_TOOL_FINDING\", \"real_invocations\": 13, \"original_tool_expectations_not_met\": [\"invalid-symbol\"], \"complete_raw_outputs\": 10, \"original_process_failures\": 2, \"artifact_faults_rejected\": 17, \"artifacts\": 517, \"protected_files\": 481, \"production_status\": \"NOT_DEPLOYED\"}\r\n"
+    },
+    {
+      "name": "documentation",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/check_docs.py",
+      "chunk_id": "e9d9aa",
+      "wall_time_seconds": 1.4804792,
+      "exit_code": 0,
+      "original_token_count": 12,
+      "output": "documentation_status=PASS markdown_files=183\r\n"
+    },
+    {
+      "name": "root",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 -m pytest -o addopts='' -q --junitxml=discovery/t01-phase1-real/w1/b2-boundaries-maintenance-20260906/root-tests.xml",
+      "chunk_id": "1272a9",
+      "wall_time_seconds": 0.000003,
+      "exit_code": 0,
+      "original_token_count": 286,
+      "output": "........................................................................ [  8%]\r\n........................................................................ [ 17%]\r\n........................................................................ [ 25%]\r\n........................................................................ [ 34%]\r\n........................................................................ [ 42%]\r\n........................................................................ [ 51%]\r\n........................................................................ [ 59%]\r\n.............................................s.......................... [ 68%]\r\n........................................................................ [ 76%]\r\n........................................................................ [ 85%]\r\n........................................................................ [ 93%]\r\n....................................................                     [100%]\r\n- generated xml file: D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b2-boundaries-maintenance-20260906\\root-tests.xml -\r\n843 passed, 1 skipped in 103.16s (0:01:43)\r\n"
+    }
+  ]
+}

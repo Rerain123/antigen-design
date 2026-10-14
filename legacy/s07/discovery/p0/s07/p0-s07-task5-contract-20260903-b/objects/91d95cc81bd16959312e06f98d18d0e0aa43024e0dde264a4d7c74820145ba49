@@ -1,0 +1,37 @@
+{
+  "fixture_only": true,
+  "network_calls": 0,
+  "state": {
+    "artifact_ids": [],
+    "bound_sequence_sha256": "6e5a64a8db281d81dec0785dd0e179ea549855e6f10dbdb924db26eba47f4a51",
+    "capped": false,
+    "complete": false,
+    "data_version": null,
+    "endpoint_or_release": null,
+    "evaluated_at": "2026-09-03T01:45:04.050470+00:00",
+    "evidence_kind": "CONTROLLED",
+    "failures": [
+      {
+        "category": "OUTPUT_INVALID",
+        "code": "STRUCTURE_PARSE_FAILED",
+        "details": {},
+        "message": "STRUCTURE_PARSE_FAILED",
+        "retryable": true,
+        "user_message": "保存的文件未通过完整性或格式检查。"
+      }
+    ],
+    "operation": "AFDB_STRUCTURE",
+    "original_access_mode": "OFFLINE",
+    "original_time": {},
+    "parameters": {
+      "corrupt_artifact_id": "sha256-b56e8494fed67f950bdab4120ba5ff1e84e039dfa25fd70b747618edacb9bfe5",
+      "expected_model": "AF-O15116-F1"
+    },
+    "reason_code": "CONTROLLED_CORRUPT_FILE",
+    "returned_count": 0,
+    "status": "FAILED",
+    "tool_name": null,
+    "tool_version": null,
+    "version_note": "Offline controlled state; no remote invocation."
+  }
+}

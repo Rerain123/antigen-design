@@ -1,0 +1,270 @@
+抗原设计分析报告
+ANTIGEN / 抗原设计
+用户分析报告 · V1.2
+SEQUENCE · EVIDENCE · DESIGN
+抗原设计分析报告
+本次未形成正式设计候选
+正式生成 0 条记录，去重后 0 条。下文展示已有工具数值及未执行项目；完整验收：NOT_ASSESSED。
+233 aa输入蛋白
+猪免疫宿主
+0唯一候选
+待复核结果使用状态01 分析对象02 表位与糖基化03 可开发性04 候选对比05 结果说明06 方法与来源
+01
+分析对象与结构概况
+分析对象 | 原始蛋白（WT） |
+氨基酸长度 | 233 aa |
+免疫宿主 | 猪 |
+表达宿主 | 未提供 |
+结构来源 | ESMFold2 预测结构 |
+结构置信分档 | 高 |
+平均 pLDDT | 0.78 |
+跨膜区数量 | 0 |
+查看输入氨基酸序列
+1MTYPRRRYRRRRHRPRSHLGQILRRRPWLVHPRHRYRWRRKNGIFNTRLS51RTFGYTVKATTVRTPSWAVDMMRFNIDDFVPPGGGTNKISIPFEYYRIRK101VKVEFWPCSPITQGDRGVGSTAVILDDNFVTKATALTYDPYVNYSSRHTI151PQPFSYHSRYFTPKPVLDSTIDYFQPNNKRTQLWLRLQTSRNVDHVGLGT201AFENSIYDQDYNIRVTMYVQFREFNLKDPPLKP
+DeepTMHMM 拓扑分段
+类别 | 起点 | 终点 |
+inside | 1 | 233 |
+功能注释检索
+Swiss-Prot 精确序列命中：1；以下序列模式观察不等同于验证功能域。
+区域 | 起点 | 终点 | 来源 | 置信度 |
+mature_chain | 1 | 233 | uniprot | high |
+functional_region | 1 | 47 | uniprot | high |
+functional_region | 5 | 41 | uniprot | high |
+WT pLDDT（0–1）
+左右滑动查看完整曲线
+FreeSASA / RSA 原始输出
+RSA 状态：output_invalid。原始归一化比值保留越界值，不截断为合格；SASA 单位 Å²。
+越界位置 | 残基 | 绝对 SASA（Å²） | 原始 RSA |
+1 | M | 240.278691 | 1.072673 |
+233 | P | 173.415848 | 1.090666 |
+完整逐残基 SASA、原始 RSA 及越界记录
+02
+表位与糖基化观察
+预测分数用于观察序列中的相对变化，不能直接等同于实验免疫效果。
+BepiPred-3.0 scoreLinear epitope score
+左右滑动查看完整曲线
+保留两列工具原始分数；本报告不据曲线自行选峰、设阈值或补算热点。断点表示缺失值。
+T 细胞预测通道 | 当前状态 | 强结合肽条目（SB） |
+MHC I | 已有预测，待复核 | 776 |
+MHC II | 暂无完整结果 | 未汇总 |
+本次使用第一版临时宿主面板：pig-tool-supported-v1。来源为本地工具支持清单，尚不是项目方 Spec 附表，未验证猪群覆盖。 MHC-II 未评估：尚无经过验证、可返回所需分数的猪 SLA-II 配置。
+SB 为工具给出的强结合分类，条目数不等于实验表位数量。面板覆盖以实际运行配置为准，不将通用面板解释为宿主专用验证。
+综合抗原热点热点尚未形成可用结论。
+糖基化检测到 1 个序列位点。 遮蔽风险未完成判定。
+IEDB 本地 BLAST 命中
+原始 HSP：46；按本次检索阈值保留：22。序列相似命中不冒充实验保护验证。
+全部检索命中、表位映射与证据来源
+WT MHC 原生批次汇总
+通道 | 原生预测行数 | 强结合 SB | 弱结合 WB | NB | 状态 |
+MHC I | 118636 | 776 | 1861 | 115999 | 已有原生预测，待科学复核 |
+MHC II | 未执行 | 未汇总 | 未汇总 | 未汇总 | 无完整预测 |
+SB/WB/NB 保留工具原生 BindLevel；条目数包括不同肽长和等位基因，不能解释成实验表位数量。
+MHC_I 全部等位基因的预测分类计数
+等位基因 | SB | WB | NB |
+SLA-1-CHANGDA | 2 | 18 | 1541 |
+SLA-1-HB01 | 7 | 24 | 1530 |
+SLA-1-HB02 | 7 | 24 | 1530 |
+SLA-1-HB03 | 7 | 24 | 1530 |
+SLA-1-HB04 | 7 | 24 | 1530 |
+SLA-1-LWH | 11 | 26 | 1524 |
+SLA-1-TPK | 1 | 13 | 1547 |
+SLA-1-YC | 12 | 34 | 1515 |
+SLA-1-YDL01 | 9 | 21 | 1531 |
+SLA-1-YTH | 6 | 12 | 1543 |
+SLA-1:0101 | 5 | 11 | 1545 |
+SLA-1:0201 | 11 | 31 | 1519 |
+SLA-1:0202 | 11 | 31 | 1519 |
+SLA-1:0401 | 9 | 21 | 1531 |
+SLA-1:0501 | 8 | 31 | 1522 |
+SLA-1:0601 | 9 | 17 | 1535 |
+SLA-1:0701 | 13 | 41 | 1507 |
+SLA-1:0702 | 13 | 41 | 1507 |
+SLA-1:0801 | 9 | 20 | 1532 |
+SLA-1:1101 | 2 | 15 | 1544 |
+SLA-1:1201 | 10 | 31 | 1520 |
+SLA-1:1301 | 8 | 25 | 1528 |
+SLA-1:es11 | 2 | 15 | 1544 |
+SLA-2-YDL02 | 9 | 21 | 1531 |
+SLA-2:0101 | 13 | 32 | 1516 |
+SLA-2:0102 | 18 | 30 | 1513 |
+SLA-2:0201 | 1 | 13 | 1547 |
+SLA-2:0202 | 1 | 13 | 1547 |
+SLA-2:0301 | 3 | 11 | 1547 |
+SLA-2:0302 | 8 | 29 | 1524 |
+SLA-2:0401 | 19 | 34 | 1508 |
+SLA-2:0402 | 17 | 39 | 1505 |
+SLA-2:0501 | 3 | 15 | 1543 |
+SLA-2:0502 | 3 | 13 | 1545 |
+SLA-2:0601 | 2 | 6 | 1553 |
+SLA-2:0701 | 2 | 18 | 1541 |
+SLA-2:1001 | 9 | 13 | 1539 |
+SLA-2:1002 | 8 | 21 | 1532 |
+SLA-2:1101 | 4 | 20 | 1537 |
+SLA-2:1201 | 5 | 15 | 1541 |
+SLA-2:CDY.AA | 4 | 8 | 1549 |
+SLA-2:HB01 | 10 | 24 | 1527 |
+SLA-2:LWH.AA | 8 | 19 | 1534 |
+SLA-2:TPK.AA | 8 | 23 | 1530 |
+SLA-2:YC.AA | 2 | 14 | 1545 |
+SLA-2:YDL.AA | 9 | 21 | 1531 |
+SLA-2:YDY.AA | 24 | 40 | 1497 |
+SLA-2:YTH.AA | 18 | 30 | 1513 |
+SLA-2:es22 | 4 | 8 | 1549 |
+SLA-3-CDY | 24 | 40 | 1497 |
+SLA-3-HB01 | 6 | 26 | 1529 |
+SLA-3-LWH | 7 | 24 | 1530 |
+SLA-3-TPK | 7 | 23 | 1531 |
+SLA-3-YC | 20 | 40 | 1501 |
+SLA-3-YDL | 7 | 23 | 1531 |
+SLA-3-YDY01 | 24 | 40 | 1497 |
+SLA-3-YDY02 | 24 | 40 | 1497 |
+SLA-3-YTH | 20 | 44 | 1497 |
+SLA-3:0101 | 13 | 28 | 1520 |
+SLA-3:0301 | 20 | 41 | 1500 |
+SLA-3:0302 | 16 | 23 | 1522 |
+SLA-3:0303 | 20 | 41 | 1500 |
+SLA-3:0304 | 22 | 41 | 1498 |
+SLA-3:0401 | 21 | 33 | 1507 |
+SLA-3:0402 | 22 | 35 | 1504 |
+SLA-3:0501 | 6 | 26 | 1529 |
+SLA-3:0502 | 6 | 26 | 1529 |
+SLA-3:0503 | 6 | 26 | 1529 |
+SLA-3:0601 | 24 | 40 | 1497 |
+SLA-3:0602 | 20 | 32 | 1509 |
+SLA-3:0701 | 20 | 44 | 1497 |
+SLA-6:0101 | 6 | 9 | 1546 |
+SLA-6:0102 | 6 | 9 | 1546 |
+SLA-6:0103 | 6 | 9 | 1546 |
+SLA-6:0104 | 6 | 9 | 1546 |
+SLA-6:0105 | 6 | 9 | 1546 |
+查看原生强结合肽示例（%Rank 最小的前 20 行）
+肽序列 | 起点–终点 | 等位基因 | %Rank | Score_EL | 原生分类 |
+HTIPQPFSY | 148–156 | SLA-2:0101 | 0.005 | 0.792004 | SB |
+HTIPQPFSY | 148–156 | SLA-2:0102 | 0.005 | 0.841242 | SB |
+HTIPQPFSY | 148–156 | SLA-1-LWH | 0.006 | 0.894735 | SB |
+HTIPQPFSY | 148–156 | SLA-2:0402 | 0.006 | 0.798474 | SB |
+QPFSYHSRY | 152–160 | SLA-1:0701 | 0.007 | 0.917682 | SB |
+QPFSYHSRY | 152–160 | SLA-1:0702 | 0.007 | 0.917682 | SB |
+VLDSTIDYF | 166–174 | SLA-1:1301 | 0.007 | 0.897436 | SB |
+LTYDPYVNY | 136–144 | SLA-2:0102 | 0.007 | 0.752734 | SB |
+HTIPQPFSY | 148–156 | SLA-2:0401 | 0.007 | 0.826306 | SB |
+TYDPYVNY | 137–144 | SLA-1-YC | 0.008 | 0.780637 | SB |
+HTIPQPFSY | 148–156 | SLA-1:0201 | 0.008 | 0.854481 | SB |
+HTIPQPFSY | 148–156 | SLA-1:0202 | 0.008 | 0.854481 | SB |
+HTIPQPFSY | 148–156 | SLA-1:0701 | 0.008 | 0.900295 | SB |
+HTIPQPFSY | 148–156 | SLA-1:0702 | 0.008 | 0.900295 | SB |
+LTYDPYVNY | 136–144 | SLA-1:1201 | 0.008 | 0.816111 | SB |
+LTYDPYVNY | 136–144 | SLA-2:0101 | 0.008 | 0.674464 | SB |
+LTYDPYVNY | 136–144 | SLA-1:0201 | 0.009 | 0.832679 | SB |
+LTYDPYVNY | 136–144 | SLA-1:0202 | 0.009 | 0.832679 | SB |
+LTYDPYVNY | 136–144 | SLA-2:0401 | 0.009 | 0.757811 | SB |
+NKISIPFEY | 87–95 | SLA-2:0402 | 0.009 | 0.710038 | SB |
+糖基化序列位点
+位点（1-based）：143。序列模式不等同于实际糖基化，也不代表遮蔽风险已通过验证。
+03
+可开发性评估
+综合可开发性分数：未评估。缺失值不按零分处理；局部结果不代表完整评估。
+维度 | 归一化分数 | 可用性 |
+溶解性 | 未评估 | 尚未得到可用结果 |
+聚集倾向 | 未评估 | 有局部观察，未纳入综合计算 |
+pH 稳定性 | 未评估 | 有局部观察，未纳入综合计算 |
+表达倾向 | 0.36 | 有局部观察，未纳入综合计算 |
+标签暴露 | 未评估 | 尚未得到可用结果 |
+结构稳定性 | 未评估 | 尚未得到可用结果 |
+原始蛋白稳定性扫描
+仅扫描结构覆盖且权限允许的位点，排除固定和受限位置。长序列按适用区域选择；完整性只针对本次请求范围，不表示全蛋白或科学验证通过。失败、超时不会被计作扫描完成。
+工具 | 请求位点 | 已得到结果的位点 | 覆盖状态 | 执行状态与原因 |
+foldx | 未执行 | 0 | 未完成或覆盖未核验 | 按条件跳过：结构覆盖范围内没有允许扫描的位点 |
+thermompnn | 未执行 | 0 | 未完成或覆盖未核验 | 按条件跳过：结构覆盖范围内没有允许扫描的位点 |
+WT 可开发性工具原始值
+维度 | 工具原始值 | 已有归一化分数 | 工具／来源 | 资格或缺项原因 |
+aggregation | 平均聚集分数：-0.574500聚集区域：5 | 未评估 | C45 AGGRESCAN3D/AGGRESCAN | 已有聚集计算值，聚集区资格未签收 |
+expressibility | 分子量（kDa）：27.896500pI：10.673466GRAVY：-0.796996不稳定指数：56.736052脂肪族指数：64.334764 | 0.362569 | S-36a / C1 ProtParam | computed_unreviewed |
+ph_stability | 最适 pH：8.000000稳定 pH 区间：[6.1, 8.0] | 未评估 | C24 PROPKA 3.5.1 | 已有结构计算值，映射资格未签收 |
+solubility | 没有可用原始值 | 未评估 | C44 CamSol-reimpl | CamSol 参数和校准依据未齐备 |
+stability_ddg | 没有可用原始值 | 未评估 | S-31/FoldX | FoldX 未取得 ΔΔG |
+tag_exposure | 没有可用原始值 | 未评估 | S-39 | 结果未通过校验，保留原始值及错误依据 |
+AGGRESCAN3D 逐残基分数、聚集簇与原始状态
+PROPKA pH 能量曲线
+已有后端计算曲线，映射资格尚未签收；不等同于完整稳定性验收。
+PROPKA 全部 pH 数值、pKa 和计算方法
+原蛋白稳定性扫描共识
+比较两个引擎各自比较集中的排名，不平均能量值。WT 自身替换不列作突变建议；规则未定义或覆盖不足时保持未评估。
+共识 | 突变数 |
+高共识 | 0 |
+中共识 | 0 |
+低共识 | 0 |
+单引擎 | 0 |
+无共识 | 0 |
+待复核 | 0 |
+查看逐突变排名与范围
+04
+候选对比
+唯一候选的真实结果
+正式生成 0 条记录，去重后 0 条。下面显示实际工具数值；“未评估”表示没有完成对应判定，不会抹去已经取得的预测值。pLDDT 使用后端的 0–1 标度。
+候选 | 突变数 | ESM-IF1 原始分数 | 相对 WT 变化（%） | AF3 pLDDT | ESMFold2 pLDDT | S28 | FoldX | 暂定验收 |
+WT ESM-IF1 基线：未评估。S28 通过是当前待校准规则下的初步验证，完整验收仍为 未评估；预采样用于位点提名。
+v2 参数待校准。比较分只用于相同维度、模式和证据组，暂定验收与正式验收分别保留，没有跨组总排名。
+全部正式抽样及重复关系
+样本 | 候选标识 | 处置 | 重复来源 |
+设计权限与实际执行
+固定 FIXED | 受限 RESTRICTED | 开放 OPEN |
+233 | 0 | 0 |
+固定约束来源 | 区间 | 置信度 | 涉及固定位置数（可重叠） | 规则 |
+mature_chain | 1–233 | high | 233 | S27_VALIDATED_FUNCTIONAL |
+functional_region | 1–47 | high | 47 | S27_VALIDATED_FUNCTIONAL |
+functional_region | 5–41 | high | 37 | S27_VALIDATED_FUNCTIONAL |
+成熟链注释参与了当前固定规则。最新专家 v2 保留原权限来源，未明确豁免 mature_chain；成熟链保留是否等同于逐残基禁止突变仍需澄清。此处说明实际执行原因，不据此断言整条蛋白科学上不可设计。
+05
+如何理解和使用本次结果本报告基于计算预测，尚未经过实验验证；当前结果仍需科学复核。综合排名、完整候选复评及部分可开发性维度尚未齐备，因此不指定最佳候选。未提供表达宿主时，不以免疫宿主代替；不据此生成密码子优化结论。
+06
+方法与来源
+真实后端执行及原始文件
+以下每一项来自本次已注册任务；任务正常结束、原生工具执行和科学判定通过分别记录。原始文件包 antigen-tool-results.zip 包含结果 JSON、原生输出、4 个 MHC 批次及逐文件 SHA-256 清单；没有复制模型、工具安装包或凭据。
+步骤 | 工具 | 流程状态 | 原始文件 | 后端类型 | 未执行／缺项原因 |
+bepipred | t01.real.bepipred | 已完成计算 | 16 | resident-process | — |
+blast | t01.real.blast | 已完成计算 | 14 | resident-process | — |
+codon | N16 | 未执行 | 0 | — | EXPRESSION_HOST_NOT_PROVIDED |
+design_inputs | t01.real.design_audit | 已完成计算 | 21 | trusted-local-in-process | — |
+developability | t01.real.developability | 已完成计算 | 38 | trusted-local-hybrid | — |
+domains | t01.real.domains | 已完成计算 | 10 | trusted-local-in-process | — |
+epitope_map | t01.real.epitope_map | 已完成计算 | 7 | trusted-local-in-process | — |
+glycosylation | t01.real.glycosylation | 已完成计算 | 4 | trusted-local-in-process | — |
+homology | N08 | 未执行 | 0 | — | DATABASE_NOT_PROVIDED |
+local_delivery | t01.real.local_delivery | 已完成计算 | 17 | trusted-local-in-process | — |
+netmhc | t01.real.netmhc | 已完成计算 | 2 | netmhc-pan-controller | — |
+prediction | t01.real.esmfold2 | 已完成计算 | 25 | resident-process | — |
+revision_design | N12 | 已完成计算 | 0 | — | no_designable_positions |
+structure | t01.real.ingest_structure | 已完成计算 | 27 | resident-process | — |
+topology | t01.real.deeptmhmm | 已完成计算 | 16 | resident-process | — |
+wt_draft | t01.real.wt_draft | 已完成计算 | 23 | trusted-local-in-process | — |
+wt_foldx | N17 | 未执行 | 0 | — | NO_COVERED_EXPLICIT_OPEN_SCAN_POSITION |
+wt_reference | t01.real.wt_reference | 已完成计算 | 9 | trusted-local-in-process | — |
+wt_thermompnn | N17 | 未执行 | 0 | — | NO_COVERED_EXPLICIT_OPEN_SCAN_POSITION |
+run_id：t01p1r-run-8253fb89ae8949b5b02aea0440a6eaf1父任务：t01p1r-job-e5e7aa2fec7340e2bb646d21fd0a822f原工作流包 SHA-256：c24cc7dc70d335f13d815a1913732b49d9194454b8ba069a2a5c4676dc03722a
+本次计算规则：expert-revision-20260929-v2。报告展示版本不改变原任务的计算配置。
+本次固定的计算配置与预算
+覆盖及预算
+完整覆盖：未完成。正式与暂定验收：未评估 / 未评估。
+阶段 | 实际任务数 | 唯一对象数 | 工具执行累计秒数 | 预算状态 |
+analysis | 0 | 0 | 0.000 | NOT_APPLICABLE |
+esm_if1 | 0 | 0 | 0.000 | NOT_APPLICABLE |
+foldx | 0 | 0 | 0.000 | AVAILABLE |
+formal | 0 | 0 | 0.000 | NOT_APPLICABLE |
+l4 | 0 | 0 | 0.000 | AVAILABLE |
+proposal | 0 | 0 | 0.000 | NOT_APPLICABLE |
+structure | 0 | 0 | 0.000 | AVAILABLE |
+本页只转述已有计算结果，不修改科学规则、筛选结论或原始产物。可展开核对方法状态及来源标识。
+查看各项分析完成情况
+分析项目 | 执行情况 |
+B 细胞表位预测 | 已完成计算 |
+文献表位证据 | 已完成计算 |
+可开发性 | 已完成计算 |
+功能区域 | 已完成计算 |
+综合表位图谱 | 已完成计算 |
+糖基化位点 | 已完成计算 |
+同源保守性 | 未执行 |
+T 细胞表位预测 | 已完成计算 |
+结构质量 | 已完成计算 |
+跨膜与信号肽 | 已完成计算 |
+查看来源、缺项和排除依据抗原设计 · 用户报告 V1.2可离线阅读 · 可使用浏览器打印 / 保存为 PDF

@@ -1,0 +1,27 @@
+{
+  "status": "CHECKS_IN_PROGRESS",
+  "interrupted_attempts": [
+    {
+      "name": "full-r01",
+      "reason": "Wrong scope included historical Mock tests and sandbox-denied historical links; interrupted at 35 percent. No final JUnit receipt.",
+      "session": 50982
+    }
+  ],
+  "known_fixed_failures": [
+    {
+      "receipt": "targeted-r01.xml",
+      "reason": "ThermoMPNN fixture changed execution observation without updating owning receipt; fixture corrected."
+    },
+    {
+      "receipt": "targeted-r03.xml",
+      "reason": "Complete source archive exceeded gateway request bound; chunked packaging implemented and final targeted-r04 passed."
+    }
+  ],
+  "deployment_attempts": {
+    "mutations": 0,
+    "latest_dry_run": "server-dry-run-r03.json",
+    "passed": true,
+    "previous_patch_rejections": "Deployment resourceVersion changed while spec/template stayed identical; refreshed live version passed."
+  },
+  "new_scientific_jobs": 0
+}

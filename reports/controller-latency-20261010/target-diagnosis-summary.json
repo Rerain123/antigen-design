@@ -1,0 +1,93 @@
+{
+  "job_id": "t01p1r-job-45aea7ed7de143d08dbf0dea6597eefb",
+  "job_state": "succeeded",
+  "finished_at": "2026-10-10T10:18:41.102076Z",
+  "classification": "E4_LOCAL_ASSET_MISSING_WITH_INDEPENDENT_STRUCTURE_ADAPTER_AND_RSA_BLOCKERS",
+  "target": {
+    "hotspots": [
+      {
+        "end": 36,
+        "in_outside_region": false,
+        "start": 26,
+        "weighted_score": 0.5816073472725812
+      },
+      {
+        "end": 146,
+        "in_outside_region": false,
+        "start": 124,
+        "weighted_score": 0.5911155382091525
+      },
+      {
+        "end": 180,
+        "in_outside_region": false,
+        "start": 166,
+        "weighted_score": 0.6349048918536744
+      },
+      {
+        "end": 231,
+        "in_outside_region": false,
+        "start": 211,
+        "weighted_score": 0.5800865579903819
+      }
+    ],
+    "known_target_residues": 70,
+    "e3_regions": 61,
+    "e4_status": "unavailable",
+    "structure_references": [
+      {
+        "ab_c1_pdb_chain": "H",
+        "ab_c2_pdb_chain": "L",
+        "ant_pdb_chain": "A",
+        "complex_id": "1360746",
+        "e_pdb_chain": null,
+        "pdb_id": "6L62",
+        "reference_id": "1036650",
+        "subject_id": "iedb_410863"
+      }
+    ],
+    "contact_residues": [],
+    "iedb_database": "iedb-20260924-r01",
+    "registered_complex_coordinates": [],
+    "upstream_transport_equal": true
+  },
+  "independent_blockers": {
+    "candidate_structure_format": {
+      "count": 10,
+      "reason": "ICODE_UNKNOWN",
+      "native_sample": "target-native-format-diagnosis.json",
+      "effect": "RSA and local CA geometry unavailable"
+    },
+    "wt_rsa": {
+      "reason": "RSA_OUT_OF_DOMAIN",
+      "out_of_domain": [
+        {
+          "absolute_sasa_a2": 239.6165433709414,
+          "raw_ratio": 1.0697167114774169,
+          "raw_residue_id": "raw-residue-1",
+          "residue": "M",
+          "sequence_position": 1
+        },
+        {
+          "absolute_sasa_a2": 159.06503216995077,
+          "raw_ratio": 1.0004090073581808,
+          "raw_residue_id": "raw-residue-233",
+          "residue": "P",
+          "sequence_position": 233
+        }
+      ],
+      "policy": "OI-027 preserve original values; no silent clipping"
+    }
+  },
+  "final": {
+    "evaluated_candidates": 10,
+    "foldx_selected": 0,
+    "acceptance": "NOT_ASSESSED"
+  },
+  "evidence_sha256": {
+    "target-source-diagnosis.json": "bf46d9c1d215ce415ac6826fdd2c04d3385550d060eda83d3cfec07ad1990ae9",
+    "target-structure-diagnosis.json": "8c756cba34982a7b4622293ea628b31e5103dae079c00605d49d042a93efbf15",
+    "target-native-format-diagnosis.json": "1f5b30fbb5d7426624c1701ac50e2d7923c8a5062edcf0d026c64457268137b8"
+  },
+  "new_scientific_jobs": 0,
+  "production_mutations": 0
+}

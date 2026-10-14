@@ -1,0 +1,8 @@
+[HAMI-core Msg(448:132150211998784:libvgpu.c:832)]: Initializing.....
+[HAMI-core Warn(448:132150211998784:multiprocess_memory_limit.c:1247)]: CUDA_DEVICE_MEMORY_SHARED_CACHE not set and POD_UID/CONTAINER_NAME unavailable, using default: /tmp/cudevshr.cache
+[HAMI-core Msg(448:132150211998784:libvgpu.c:868)]: Initialized
+ESMC: transformer_engine is not installed; falling back to pure-PyTorch LayerNorm+Linear / LayerNorm+MLP. Outputs will differ numerically — measured on the unnormalized residual stream (before the final LayerNorm), ~O(10) max-diff in fp32 and ~O(100) in bf16; after the final LayerNorm these shrink to a few ULP and perplexity stays within rounding noise. Install with `pip install transformer-engine[pytorch]` to enable fused fp32-reduction LayerNorm.
+ESMC: neither xformers nor flash-attn is installed; falling back to PyTorch ``F.scaled_dot_product_attention``. The attention reduction order in bf16 differs from a fused kernel by ~1 bf16 ULP per attention block; compounded across the 80-block stack this reaches ~O(100) max-diff on the unnormalized residual stream. Install xformers (preferred) with `pip install xformers` for a fused attention kernel.
+ESMC: flash-attn rotary kernel not installed; falling back to pure-PyTorch RoPE. For faster GPU inference run `pip install flash-attn`.
+[HAMI-core Msg(448:132150211998784:multiprocess_memory_limit.c:862)]: Cleanup on exit for PID 448
+[HAMI-core Msg(448:132150211998784:multiprocess_memory_limit.c:898)]: Exit cleanup complete for PID 448

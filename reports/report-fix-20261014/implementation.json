@@ -1,0 +1,67 @@
+{
+  "checked_at": "2026-10-14T01:48:34.368086+00:00",
+  "scope": "Presentation-only repair; no scientific result or rule changes",
+  "source_files": {
+    "src\\t01_phase1_real\\service_api\\native_report.py": "e2a94e25a393d786633ef248a38099b05e711867428378a0e2276484ec70225d",
+    "src\\t01_phase1_real\\service_api\\user_report.py": "ac4a40a8707e6f82ba21885505c0ed359be34c016aeec2853315e9c4f775c445",
+    "src\\t01_phase1_real\\service_api\\himat.py": "1dae51567133eddd807c6601b098971911fc4b0ee2e98235000c3fcb0053a06f"
+  },
+  "source_packages": {
+    "old": {
+      "path": "old-results.zip",
+      "sha256": "b6d862ee29f7bdd86d5620d99970fc48b2eb1b2bba34274c4a95d17d1b82081c",
+      "native_sha256": "c8c3059eab8611abffc62b9ce37f0df703b85e4c6fcb1625fe40090064fd9c06"
+    },
+    "new": {
+      "path": "new-results.zip",
+      "sha256": "7dbb7ca55993174e30547db96a8b963fddd112893c5bbeb5152888d6f53a9541",
+      "native_sha256": "e5095e230137b706e5926b4a6662e21de550be04f692760f640c2f48db4ffa1f"
+    }
+  },
+  "fixes": [
+    "Deduplicate by sequence; retain whole primary record and original candidate numbers",
+    "Use dedicated geometry check status, never legacy combined boolean",
+    "Bind candidate native results to generation round",
+    "Show existing FoldX means, geometry values and matched positions",
+    "Identify report by Beijing submission time and short task identity",
+    "Explain pending calibration only when required evidence is complete",
+    "Keep original per-position RSA exceptions without mislabeling them as candidate failure"
+  ],
+  "scientific_jobs_submitted": 0,
+  "online_deployed": true,
+  "tests_status": "PASS",
+  "status": "DEPLOYED_AND_VERIFIED",
+  "verified_at": "2026-10-14T02:02:46.023996+00:00",
+  "test_receipts": [
+    {
+      "file": "full-tests.xml",
+      "tests": 3435,
+      "passed": 3418,
+      "skipped": 17,
+      "sha256": "6f3cb6b554e7545f9e95cad3e474d8ebd309d4d3618ee8715895b6ababf5edf3"
+    },
+    {
+      "file": "facts-tests-final.xml",
+      "tests": 7,
+      "passed": 7,
+      "skipped": 0,
+      "sha256": "d544f05eb444192bc69a99e47e05c9d7ff1d92c2c04bd802e4d5a336f125ddd1"
+    }
+  ],
+  "frozen_asset_count": 457,
+  "frozen_status": "PASS",
+  "docs_status": "PASS_WITH_HISTORICAL_LINK_ISSUES",
+  "historical_link_issues": 31,
+  "visual_verification": "NOT_PERFORMED: browser URL policy disallows local file URLs",
+  "committed": true,
+  "pushed": true,
+  "latest_presentation_change": "User requested results only: remove report-level acceptance/review labels; backend records unchanged",
+  "latest_tests": {
+    "file": "results-only-tests-final.xml",
+    "passed": 111,
+    "failed": 0
+  },
+  "test_receipts_note": "Prior full regression precedes results-only text changes; final affected regression passed.",
+  "deployed_commit": "98a24c83432bf9869884f8a32e1cc1c339e3b3b5",
+  "deployment_receipt": "deployment-r02/closeout.json"
+}

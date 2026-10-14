@@ -1,0 +1,134 @@
+{
+  "date": "2026-09-06",
+  "scope": "B2 preparation: checks recorded before final root rerun",
+  "initial_failure": {
+    "cause": "Sealed contract README copy was resolved as current navigation from its archive path.",
+    "failed_root_junit": "root-tests.xml",
+    "sealed_batch_mutated": false
+  },
+  "checks": [
+    {
+      "name": "documentation",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/check_docs.py",
+      "chunk_id": "db9bd3",
+      "wall_time_seconds": 0.0000042,
+      "exit_code": 1,
+      "original_token_count": 151,
+      "output": "documentation_status=FAIL\r\n- discovery/t01-phase1-real/w1/b2-review-20260906/after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/README.md:4 链接不存在：../../../../docs/project/phase1/PHASE1_REAL_W1_B2_REVIEW.md\r\n- discovery/t01-phase1-real/w1/b2-review-20260906/after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/README.md:4 链接不存在：../../../../docs/project/STATUS.md\r\n- discovery/t01-phase1-real/w1/b2-review-20260906/after/工作流设计/02-数据契约/phase1-real-v0.1/b2-review/README.md:58 链接不存在：../../../../docs/development/RUNBOOK.md\r\n"
+    },
+    {
+      "name": "root",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 -m pytest -o addopts='' -q --junitxml=discovery/t01-phase1-real/w1/b2-review-maintenance-20260906/root-tests.xml",
+      "exit_code": 1,
+      "output": "1 failed, 793 passed, 1 skipped in 97.96s (0:01:37). Failure: tests/test_docs.py::test_progressive_documentation_layout_and_links; three relative links in sealed after/ contract README resolved as current navigation.",
+      "output_kind": "Summary; exact assertions and durations preserved in root-tests.xml"
+    },
+    {
+      "name": "documentation_r02",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/check_docs.py",
+      "chunk_id": "cf0588",
+      "wall_time_seconds": 1.4112445,
+      "exit_code": 0,
+      "original_token_count": 12,
+      "output": "documentation_status=PASS markdown_files=181\r\n"
+    },
+    {
+      "name": "docs_fix_tests",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 -m pytest -o addopts='' -q tests/test_docs.py --junitxml=discovery/t01-phase1-real/w1/b2-review-maintenance-20260906/doc-checker-tests.xml",
+      "chunk_id": "8c12a1",
+      "wall_time_seconds": 2.0570277,
+      "exit_code": 0,
+      "original_token_count": 58,
+      "output": "................................                                         [100%]\r\n- generated xml file: D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\b2-review-maintenance-20260906\\doc-checker-tests.xml -\r\n32 passed in 1.51s\r\n"
+    },
+    {
+      "name": "old_public",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 discovery/t01-phase1-real/w1/deeptmhmm-20260905/verify_evidence.py",
+      "chunk_id": "b62dfa",
+      "wall_time_seconds": 0.0000049,
+      "exit_code": 0,
+      "original_token_count": 35,
+      "output": "{\"status\": \"PASS\", \"batch_files\": 169, \"expert_sources_unchanged\": 22, \"model_execution\": \"NOT_RUN\", \"production_status\": \"NOT_DEPLOYED\"}\r\n"
+    },
+    {
+      "name": "b1_consumer",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/check_b1_freesasa_consumer.py verify --reparse",
+      "chunk_id": "8d7d23",
+      "wall_time_seconds": 3.4022693,
+      "exit_code": 0,
+      "original_token_count": 70,
+      "output": "{\"status\": \"PASS\", \"cases\": 45, \"counts\": {\"SUCCESS_RAW_ONLY\": 18, \"EXPECTED_PREPARATION_REJECTION\": 26, \"EXPECTED_CLASSIFIER_REJECTION\": 1}, \"artifacts\": 965, \"protected_files\": 1616, \"reparsed\": true, \"scientific_acceptance\": \"NOT_RUN\", \"production_status\": \"NOT_DEPLOYED\"}\r\n"
+    },
+    {
+      "name": "b1_facts",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/check_b1_engineering.py verify --reparse",
+      "chunk_id": "75e453",
+      "wall_time_seconds": 1.4908345,
+      "exit_code": 0,
+      "original_token_count": 42,
+      "output": "{\"status\": \"PASS\", \"cases\": 40, \"artifacts\": 378, \"protected_files\": 315, \"reparsed\": true, \"scientific_acceptance\": \"NOT_RUN\", \"production_status\": \"NOT_DEPLOYED\"}\r\n"
+    },
+    {
+      "name": "b1_review",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/check_w1_b1_review.py --reparse",
+      "chunk_id": "4a4c1b",
+      "wall_time_seconds": 0.7816972,
+      "exit_code": 0,
+      "original_token_count": 50,
+      "output": "{\"status\": \"PASS_REVIEW_PREPARATION\", \"case_count\": 23, \"expert_sources\": 22, \"request_result_pairs\": 2, \"reparsed\": true, \"scientific_approval\": \"NOT_GRANTED\", \"production_status\": \"NOT_DEPLOYED\"}\r\n"
+    },
+    {
+      "name": "contract",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/check_w1_contract.py",
+      "chunk_id": "69e614",
+      "wall_time_seconds": 0.0661204,
+      "exit_code": 0,
+      "original_token_count": 82,
+      "output": "{\"status\": \"PASS\", \"scope\": \"STATIC_CONTRACT_ONLY\", \"expert_sources\": 22, \"source_files\": 32, \"job_examples\": 8, \"submit_examples\": 1, \"control_examples\": 4, \"runtime_cases_declared\": 15, \"scientific_cases_declared\": 8, \"runtime_execution\": \"NOT_RUN\", \"scientific_execution\": \"NOT_RUN\", \"production_status\": \"NOT_DEPLOYED\"}\r\n"
+    },
+    {
+      "name": "runtime",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/check_w1_runtime.py --batch discovery/t01-phase1-real/w1/runtime-file-fix-20260905",
+      "chunk_id": "4ce745",
+      "wall_time_seconds": 1.0053389,
+      "exit_code": 0,
+      "original_token_count": 55,
+      "output": "{\"status\": \"PASS_ENGINEERING_ONLY\", \"runtime_tests\": 51, \"runtime_cases\": 15, \"cli_cases\": 5, \"source_verification\": \"CURRENT_REPOSITORY\", \"source_files\": 16, \"output_files\": 62, \"production_status\": \"NOT_DEPLOYED\"}\r\n"
+    },
+    {
+      "name": "mock_freeze",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/t01_phase1_mock/run_m4_campaign.py verify",
+      "chunk_id": "b0048f",
+      "wall_time_seconds": 3.2837974,
+      "exit_code": 0,
+      "original_token_count": 34,
+      "output": "{\"status\": \"PASS\", \"release_state\": \"FROZEN\", \"campaign_id\": \"t01p1m-v01-reg-20260904-release-freeze-03\", \"frozen_asset_count\": 457}\r\n"
+    },
+    {
+      "name": "handoffs",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/package_tool_handoffs.py --check",
+      "chunk_id": "294f1b",
+      "wall_time_seconds": 0.9636753,
+      "exit_code": 0,
+      "original_token_count": 244,
+      "output": "{\r\n  \"status\": \"PASS\",\r\n  \"scope\": \"handoff_archive_and_engineering_interface\",\r\n  \"scientific_tool_execution\": \"NOT_RUN\",\r\n  \"scientific_acceptance\": \"NOT_RUN\",\r\n  \"packages\": [\r\n    {\r\n      \"package_id\": \"PH1-TOOL-FREESASA\",\r\n      \"version\": \"0.1\",\r\n      \"revision\": \"shared-interface-20260905\",\r\n      \"archive_sha256\": \"6cdb87a80d3b18064f3cbbd529ab58f21e182d593a5d043ff5d90358015c13ba\",\r\n      \"file_count\": 56,\r\n      \"source_copies_verified\": 6,\r\n      \"closed_local_links\": 42,\r\n      \"interface_files_identical\": 38,\r\n      \"synthetic_pairs_checked\": 8\r\n    },\r\n    {\r\n      \"package_id\": \"PH1-TOOL-BEPIPRED\",\r\n      \"version\": \"0.1\",\r\n      \"revision\": \"shared-interface-20260905\",\r\n      \"archive_sha256\": \"215ad2849c1a2ee1f7f007d140a1bb7808728ba43372686490070df9bd79cfab\",\r\n      \"file_count\": 56,\r\n      \"source_copies_verified\": 6,\r\n      \"closed_local_links\": 41,\r\n      \"interface_files_identical\": 38,\r\n      \"synthetic_pairs_checked\": 8\r\n    }\r\n  ]\r\n}\r\n"
+    },
+    {
+      "name": "verify_post_fix",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/check_w1_b2_review.py verify",
+      "chunk_id": "34c181",
+      "wall_time_seconds": 0.9884569,
+      "exit_code": 0,
+      "original_token_count": 77,
+      "output": "{\"status\": \"PASS_REVIEW_PREPARATION\", \"synthetic_cases\": 20, \"replayed_records\": 11, \"published_annotation_references\": 4, \"accepted_independent_holdouts\": 0, \"protected_files\": 329, \"artifacts\": 86, \"model_executions_this_task\": 0, \"scientific_signoff\": \"NOT_GRANTED\", \"production_status\": \"NOT_DEPLOYED\"}\r\n"
+    },
+    {
+      "name": "academic_assets",
+      "chunk_id": "ab833f",
+      "wall_time_seconds": 2.47812,
+      "exit_code": 0,
+      "original_token_count": 46,
+      "output": "{\"status\": \"PASS\", \"batch_files\": 122, \"expert_sources_unchanged\": 22, \"local_assets_verified\": 41, \"model_execution\": \"EXECUTED_OFFLINE_CPU\", \"production_status\": \"NOT_DEPLOYED\"}\r\n"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "entries": [
+    {
+      "parameters": {
+        "candidate_collection_complete": true,
+        "capped": false,
+        "data_version": null,
+        "evidence_kind": "CONTROLLED",
+        "recorded_parameters": {},
+        "source_operation": "PDB_SEARCH",
+        "source_status": "SUCCEEDED_EMPTY"
+      },
+      "runtime_seconds": null,
+      "step": "fetch_structure",
+      "tool": "PDB_SEARCH: CONTROLLED_FIXTURE",
+      "version": "CONTROLLED_FIXTURE"
+    },
+    {
+      "parameters": {
+        "candidate_collection_complete": true,
+        "capped": false,
+        "data_version": "2026_03",
+        "evidence_kind": "FROZEN_REPLAY",
+        "recorded_parameters": {
+          "accession": "C0HLM8",
+          "sequence_exact": true
+        },
+        "source_operation": "UNIPROT_RECORD",
+        "source_status": "SUCCEEDED_WITH_RESULTS"
+      },
+      "runtime_seconds": null,
+      "step": "fetch_structure",
+      "tool": "UNIPROT_RECORD: UniProt REST",
+      "version": "UNREPORTED"
+    },
+    {
+      "parameters": {
+        "candidate_collection_complete": true,
+        "capped": false,
+        "data_version": null,
+        "evidence_kind": "FROZEN_REPLAY",
+        "recorded_parameters": {
+          "accession": "C0HLM8",
+          "http_status": 404
+        },
+        "source_operation": "AFDB_LOOKUP",
+        "source_status": "SUCCEEDED_EMPTY"
+      },
+      "runtime_seconds": null,
+      "step": "fetch_structure",
+      "tool": "AFDB_LOOKUP: AlphaFold DB API",
+      "version": "UNREPORTED"
+    }
+  ],
+  "pipeline_version": "s07.task5.v1-review",
+  "timestamp": "2026-09-03T01:45:02.898283+00:00"
+}

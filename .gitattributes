@@ -1,2 +1,8 @@
-# Preserve source bytes used by execution profiles.
+# Scientific provenance and deployment snapshots compare exact file bytes.
+# Preserve them across Windows staging and Linux CI checkout.
 * -text whitespace=cr-at-eol
+src/t01_phase1_real/** -text whitespace=cr-at-eol
+src/t01_structure_mapping/** -text whitespace=cr-at-eol
+deploy/** -text whitespace=cr-at-eol
+reports/** -text whitespace=cr-at-eol
+工作流设计/** -text whitespace=cr-at-eol

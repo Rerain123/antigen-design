@@ -1,0 +1,466 @@
+{
+  "run_id": "t01p1r-run-3cf72a53fd974f259db3e84daaf63ce2",
+  "job_id": "t01p1r-job-791a5fcf9e60409a96e6c0b4c64ccda6",
+  "state": "succeeded",
+  "observed_at_utc": "2026-10-08T00:47:21.163094+00:00",
+  "read_only": true,
+  "new_scientific_jobs": 0,
+  "attachment_sha256": "c319b422198e7c560f6b8e87d8811a2b5d0bcb4a46794b3fdf7e0336250c8c3d",
+  "package_sha256": "6160d7d58300390fd0a7a61d6fad4fcbe1bb2e351d7aeda69a27d4cd1aeebe5b",
+  "report_exactly_reproduced": true,
+  "revision_config": null,
+  "expert_revision": null,
+  "collector_returns_no_details": true,
+  "mhc": {
+    "mhc_i": {
+      "status": "parsed_unreviewed",
+      "counts_complete": true,
+      "observed_rows": 118636,
+      "counts": {
+        "SB": 776,
+        "WB": 1861,
+        "NB": 115999
+      },
+      "allele_count": 76
+    },
+    "mhc_ii": {
+      "status": "unavailable",
+      "counts_complete": false,
+      "observed_rows": 0,
+      "counts": {
+        "SB": null,
+        "WB": null,
+        "NB": null
+      },
+      "allele_count": 0
+    }
+  },
+  "structure": {
+    "mean_plddt": 0.7845328574119208,
+    "ptm": 0.743615984916687,
+    "confidence": "high"
+  },
+  "rsa": {
+    "status": "output_invalid",
+    "error_code": "OUTPUT_INVALID",
+    "out_of_domain": [
+      {
+        "absolute_sasa_a2": 240.29246154395267,
+        "raw_ratio": 1.0727342033212173,
+        "raw_residue_id": "raw-residue-1",
+        "residue": "M",
+        "sequence_position": 1
+      },
+      {
+        "absolute_sasa_a2": 172.25218685210478,
+        "raw_ratio": 1.0833470871201558,
+        "raw_residue_id": "raw-residue-233",
+        "residue": "P",
+        "sequence_position": 233
+      }
+    ]
+  },
+  "iedb": {
+    "raw_hsp_count": 46,
+    "qualifying_hsp_count": 22,
+    "mapped_region_records": 61,
+    "note": "Region records are not independent experimentally verified epitopes"
+  },
+  "glycosylation": {
+    "expression_hint": null,
+    "shielding_risk": false,
+    "site_count": 1,
+    "sites": [
+      143
+    ]
+  },
+  "functional_domains": [
+    {
+      "confidence": "high",
+      "end": 233,
+      "source": "uniprot",
+      "start": 1,
+      "type": "mature_chain"
+    },
+    {
+      "confidence": "high",
+      "end": 47,
+      "source": "uniprot",
+      "start": 1,
+      "type": "functional_region"
+    },
+    {
+      "confidence": "high",
+      "end": 41,
+      "source": "uniprot",
+      "start": 5,
+      "type": "functional_region"
+    }
+  ],
+  "permissions": {
+    "fixed": 233,
+    "restricted": 0,
+    "open": 0
+  },
+  "fixed_by_mature_chain_count": 233,
+  "generation": {
+    "status": "not_generated_no_designable_positions",
+    "reason_code": "NO_DESIGNABLE_POSITIONS",
+    "generated_count": 0,
+    "engine_runtime": {
+      "commands": {
+        "help": {
+          "argv": [
+            "/opt/t01/env/proteinmpnn/bin/python",
+            "-B",
+            "/app/protein_mpnn_run.py",
+            "--help"
+          ],
+          "exit_code": 0
+        },
+        "parse": {
+          "argv": [
+            "/opt/t01/env/proteinmpnn/bin/python",
+            "-B",
+            "/app/helper_scripts/parse_multiple_chains.py",
+            "--input_path",
+            "/native/",
+            "--output_path",
+            "/out/parsed.jsonl"
+          ],
+          "exit_code": 0
+        }
+      },
+      "cpu_affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191
+      ],
+      "cuda": "12.8",
+      "designable_positions": 0,
+      "elapsed_seconds": 1.9433755408972502,
+      "gpu_available": true,
+      "gpu_capability": [
+        8,
+        0
+      ],
+      "gpu_name": "NVIDIA A100-SXM-64GB",
+      "gpu_peak_allocated_bytes": 105472,
+      "gpu_peak_reserved_bytes": 2097152,
+      "gpu_total_memory": 0,
+      "input_fasta_sha256": "34009cd2555ce04d003a0f0a5889b4dfe5f3e19c5a16d663aeafb8663dda4b24",
+      "input_sha256": "50eadda6b431e0db774f7f8153f0b6433b98130b26875c87ce7e068bc69d9abc",
+      "native_input_sha256": {
+        "chain_id.jsonl": "1b7883a7dd524a839b957a2616ea1393358d3af573e07b568d56d055f9163004",
+        "conversion.json": "fc8e02f7c2fcde6b4dd47ad7bf2f985062e2bf0491b8aac8da638ad7dac5eaf8",
+        "fixed_positions.jsonl": "ef7dc17e96d280e5c3126b83fe7c0b6bf4f094c95a02b4fbd53d07dff1699ad4",
+        "omit_AA.jsonl": "8dfcf7e6ead5a48c5856907e9c6172ae6f060fec18b57bcc8897f09739c6fcbb",
+        "target.pdb": "7425b58869eb573adca7fa27ebadfb3b8d59fdb419f527085934b3a92a4d1e88"
+      },
+      "native_output_sha256": {
+        "effective-fixed.jsonl": "db27f409656bf64ba8327593dd60c01e3226711445f1d9db545db03429c67208",
+        "effective-omit.jsonl": "0c877fb66c9e24309d6f5011a91e7ebcd7180db41b2504637e0ed8fb7eb67eb9",
+        "native-help.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "native-help.txt": "40e698558e67a1992414c2d1a46380c89384e25a5050fa4fd028d5d2644c00f2",
+        "native-mask-audit.json": "b850fd9df10cedbc6981fb1fd044e35b1dde945d95d979b5397d5bc286e10f34",
+        "parsed.jsonl": "5eacc01f112c1b8b334a8f3e6a9b3908909921107fdb7393a9c0327614d6684e",
+        "parser.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "parser.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime_started.json": "4c9790277ddabbcf1ad3a7a1f24f92216c2234e2ba092d6e5fc16a56f872c54e"
+      },
+      "network_interfaces": [
+        [
+          1,
+          "lo"
+        ],
+        [
+          2,
+          "eth0"
+        ]
+      ],
+      "numpy": "1.26.4",
+      "official_source_modified": false,
+      "per_position_omit_available": true,
+      "python": "3.10.21",
+      "python_exit_code": 0,
+      "source_sha256": {
+        "LICENSE": "82009d25ce585631f452b2b24589bdb29c559ccfefa2f200ef312ed5b501a586",
+        "README.md": "772ebe52d2ba5100a28a888910c6f0c9fd4ded1d1372e3d89f6f1c48707e0365",
+        "helper_scripts/make_fixed_positions_dict.py": "31b7cea547cda162ed1ddb0e341906b6e84e0ca4061dae5c6dddeca3eb6053ef",
+        "helper_scripts/make_omit_AA.py": "a84eb412c6d916befb0aa7190915408ea43185ad0c822aff3123ad48c35a2616",
+        "helper_scripts/parse_multiple_chains.py": "3d68c7fcc37c0763c42bfaf6099b4b2f5dd30710f9870b6b38d7a9e1ac18b790",
+        "protein_mpnn_run.py": "61f2c519a7f73fa12da9eb90da97b97ec2f8d5f31d42605639c7600cbd321cbe",
+        "protein_mpnn_utils.py": "74c8f9b7553422a7a0bbd705874844ee103c8926c2c96f154a87e0b824071e1b",
+        "upstream-tree.json": "8059ad5b8fa91c372b15d0192efee065d3c9adf68bec5f6b75d4cb3579b88201",
+        "vanilla_model_weights/v_48_020.pt": "c9cb4a671d79604111231f8dbfc7c590e06f1197453b7a6854ac6661a642f5bd"
+      },
+      "tool_invoked": false,
+      "torch": "2.7.1+cu128"
+    }
+  },
+  "developability": {
+    "aggregation": {
+      "status": "computed_unreviewed",
+      "exclusion_reason": "A3D_SPATIAL_CLUSTER_SCIENTIFIC_SIGNOFF_MISSING",
+      "reliable": false
+    },
+    "expressibility": {
+      "status": "computed_unreviewed",
+      "exclusion_reason": null,
+      "reliable": true
+    },
+    "ph_stability": {
+      "status": "unreliable",
+      "exclusion_reason": "STRUCTURE_MAPPING_SCIENTIFIC_SIGNOFF_MISSING",
+      "reliable": false
+    },
+    "solubility": {
+      "status": "unavailable",
+      "exclusion_reason": "OI_025_CAMSOL_PARAMETERS_INCOMPLETE",
+      "reliable": false
+    },
+    "stability_ddg": {
+      "status": "not_computed",
+      "exclusion_reason": "STABILITY_DDG_NOT_COMPUTED",
+      "reliable": false
+    },
+    "tag_exposure": {
+      "status": "unknown",
+      "exclusion_reason": "OUTPUT_INVALID",
+      "reliable": false
+    }
+  },
+  "protparam": {
+    "aliphatic_index": 64.33476394849785,
+    "gravy": -0.7969957081545064,
+    "instability_index": 56.73605150214593,
+    "method": {
+      "aliphatic_formula": "Ikai 1980 / ExPASy ProtParam",
+      "biopython": "1.88",
+      "molecular_weight_conversion": "ProteinAnalysis Da / 1000",
+      "molecular_weight_unit": "kDa",
+      "score_formula": "SOP v10.5 S-36a"
+    },
+    "mw_kda": 27.896500300000014,
+    "pi": 10.673466300964353,
+    "score": 0.36256936554838515,
+    "status": "computed_unreviewed",
+    "tool": "C1(ProtParam)"
+  },
+  "a3d_average_score": -0.5749,
+  "a3d_cluster_count": 5,
+  "propka": {
+    "optimal_ph": 8.0,
+    "stable_range": [
+      6.1,
+      8.0
+    ]
+  },
+  "findings": [
+    {
+      "category": "REPORT_BUG",
+      "detail": "Common native results collection and detailed report rendering are gated by expert_revision; ordinary HiMat submission omits revision_config."
+    },
+    {
+      "category": "ACTUAL_NOT_EXECUTED",
+      "detail": "All 233 residues fixed. Native candidate generator not invoked; zero candidates, downstream candidate evaluation skipped."
+    },
+    {
+      "category": "SCIENTIFIC_RULE_BOUNDARY",
+      "detail": "S16 maps Chain to high-confidence mature_chain for construct retention. S27 broadly makes high/user_high domains validated_functional HARD. Current permissions applies this to residues 1-233. Exclusion requires authority clarification; not changed in this audit."
+    },
+    {
+      "category": "REAL_DATA_LIMITATION",
+      "detail": "MHC-II unavailable; RSA output invalid; several developability values missing or unreviewed. Task success is not complete scientific execution or qualification."
+    }
+  ]
+}

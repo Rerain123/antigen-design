@@ -1,0 +1,62 @@
+{
+  "scope": "READ_ONLY_ENGINEERING_EVIDENCE_CHECK",
+  "numeric_delta_checks": "PASS",
+  "reference_convergence": "PASS",
+  "analytic_geometry_cases": 4,
+  "published_reference_rounding_abs_a2": 5e-07,
+  "selected_parameters": {
+    "algorithm": "LeeRichards",
+    "probe-radius": 1.4,
+    "n-slices": 200,
+    "n-threads": 1
+  },
+  "selected_total_sasa_a2": 4804.922802318354,
+  "independent_reference_total_sasa_a2": 4804.721529837215,
+  "selected_vs_reference": {
+    "total_delta_a2": 0.20127248113931273,
+    "total_relative_error": 4.189056116767955e-05,
+    "max_abs_residue_sasa_delta_a2": 0.15080522367182425,
+    "max_abs_rsa_delta": 0.0005503840279993399,
+    "buried_classification_differences": []
+  },
+  "independent_reference_convergence": {
+    "total_delta_a2": 0.7526298793991373,
+    "total_relative_error": 0.00015664380853818943,
+    "max_abs_residue_sasa_delta_a2": 0.1987407510076764,
+    "max_abs_rsa_delta": 0.0008421218263037211,
+    "buried_classification_differences": []
+  },
+  "out_of_domain": [
+    {
+      "chain": "A",
+      "residue_number": "76",
+      "residue_name": "GLY",
+      "selected_absolute_sasa_a2": 146.97707199895044,
+      "reference_absolute_sasa_a2": 146.95232499955597,
+      "selected_raw_ratio": 1.413241076912985,
+      "reference_raw_ratio": 1.4130031249957304,
+      "normalization_denominator_a2": 104.0
+    }
+  ],
+  "terminal_diagnostics": [
+    {
+      "terminus": "N",
+      "selected_raw_mean": 0.3425783354971849,
+      "reference_raw_mean": 0.3425289836963465,
+      "diagnostic_classification": "partial",
+      "is_valid_s39_result": false
+    },
+    {
+      "terminus": "C",
+      "selected_raw_mean": 0.4864986425433992,
+      "reference_raw_mean": 0.48649693432610414,
+      "diagnostic_classification": "exposed",
+      "is_valid_s39_result": false
+    }
+  ],
+  "accepted_project_rsa": false,
+  "mapping_status": "unverified",
+  "scientific_acceptance": "NOT_APPROVED",
+  "s09_decision_status": "AWAITING_NAMED_DECISION",
+  "production_status": "NOT_DEPLOYED"
+}

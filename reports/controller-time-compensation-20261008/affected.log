@@ -1,0 +1,64 @@
+.....FF....................................................              [100%]
+================================== FAILURES ===================================
+___ test_same_run_new_parent_preserves_sources_and_budget_and_is_idempotent ___
+
+tmp_path = WindowsPath('D:/work/antigen.design/.tmp/controller-credit-tests-r01/test_same_run_new_parent_prese0')
+
+    def test_same_run_new_parent_preserves_sources_and_budget_and_is_idempotent(tmp_path):
+>       rt,source,ev,prepared=fixture(tmp_path);old=copy.deepcopy(rt.execution(source['job_id']))
+                              ^^^^^^^^^^^^^^^^^
+
+tests\test_controller_time_compensation.py:61: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_controller_time_compensation.py:45: in fixture
+    rt._store(db,source,j,'fixture')
+src\t01_phase1_real\development\runtime.py:98: in _store
+    ensure(value['state']==before['state'] or value['state'] in TRANSITIONS[before['state']],'INVALID_STATE','Illegal lifecycle transition')
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = False, code = 'INVALID_STATE', message = 'Illegal lifecycle transition'
+
+    def ensure(value, code, message):
+        if not value:
+>           raise RuntimeFault(code,message)
+E           t01_phase1_real.common.RuntimeFault: Illegal lifecycle transition
+
+src\t01_phase1_real\common.py:30: RuntimeFault
+___________________ test_changed_checkpoint_blocks_creation ___________________
+
+tmp_path = WindowsPath('D:/work/antigen.design/.tmp/controller-credit-tests-r01/test_changed_checkpoint_blocks0')
+
+    def test_changed_checkpoint_blocks_creation(tmp_path):
+>       rt,source,ev,prepared=fixture(tmp_path)
+                              ^^^^^^^^^^^^^^^^^
+
+tests\test_controller_time_compensation.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_controller_time_compensation.py:45: in fixture
+    rt._store(db,source,j,'fixture')
+src\t01_phase1_real\development\runtime.py:98: in _store
+    ensure(value['state']==before['state'] or value['state'] in TRANSITIONS[before['state']],'INVALID_STATE','Illegal lifecycle transition')
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = False, code = 'INVALID_STATE', message = 'Illegal lifecycle transition'
+
+    def ensure(value, code, message):
+        if not value:
+>           raise RuntimeFault(code,message)
+E           t01_phase1_real.common.RuntimeFault: Illegal lifecycle transition
+
+src\t01_phase1_real\common.py:30: RuntimeFault
+============================== warnings summary ===============================
+.venv\Lib\site-packages\_pytest\cacheprovider.py:475
+  D:\work\antigen.design\.venv\Lib\site-packages\_pytest\cacheprovider.py:475: PytestCacheWarning: could not create cache path D:\work\antigen.design\.pytest_cache\v\cache\nodeids: [WinError 5] ¾Ü¾ø·ÃÎÊ¡£: 'D:\\work\\antigen.design\\.pytest_cache\\v\\cache'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+.venv\Lib\site-packages\_pytest\cacheprovider.py:429
+  D:\work\antigen.design\.venv\Lib\site-packages\_pytest\cacheprovider.py:429: PytestCacheWarning: could not create cache path D:\work\antigen.design\.pytest_cache\v\cache\lastfailed: [WinError 5] ¾Ü¾ø·ÃÎÊ¡£: 'D:\\work\\antigen.design\\.pytest_cache\\v\\cache'
+    config.cache.set("cache/lastfailed", self.lastfailed)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: D:\work\antigen.design\reports\controller-time-compensation-20261008\affected.junit.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_controller_time_compensation.py::test_same_run_new_parent_preserves_sources_and_budget_and_is_idempotent
+FAILED tests/test_controller_time_compensation.py::test_changed_checkpoint_blocks_creation

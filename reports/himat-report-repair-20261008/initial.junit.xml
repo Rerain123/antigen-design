@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="56" time="53.486" timestamp="2026-10-08T09:01:34.439410+08:00" hostname="DESKTOP-8B96JVR"><testcase classname="tests.test_himat_report_repair" name="test_actual_ordinary_report_exposes_existing_values_and_zero_candidate_cause" time="0.696" /><testcase classname="tests.test_himat_report_repair" name="test_common_details_do_not_replace_legacy_candidate_records" time="0.001" /><testcase classname="tests.test_himat_report_repair" name="test_collector_exports_non_v2_with_manifest_hashes_and_no_mutations" time="0.001" /><testcase classname="tests.test_himat_report_repair" name="test_non_v2_export_still_rejects_unbound_results[run]" time="0.001" /><testcase classname="tests.test_himat_report_repair" name="test_non_v2_export_still_rejects_unbound_results[bytes]" time="0.000" /><testcase classname="tests.test_himat_report_repair" name="test_non_v2_export_still_rejects_unbound_results[binding]" time="0.000" /><testcase classname="tests.test_himat_report_repair" name="test_himat_non_v2_card_keeps_not_executed_and_offers_native_attachment" time="0.049" /><testcase classname="tests.test_native_user_report" name="test_actual_backend_numbers_are_visible_with_qualification_retained" time="0.211" /><testcase classname="tests.test_native_user_report" name="test_batch_backed_mhc_is_counted_from_native_labels_and_missing_is_not_zero" time="0.000" /><testcase classname="tests.test_native_user_report" name="test_native_export_rejects_path_escape[../secret]" time="0.000" /><testcase classname="tests.test_native_user_report" name="test_native_export_rejects_path_escape[/absolute]" time="0.000" /><testcase classname="tests.test_native_user_report" name="test_native_export_rejects_path_escape[C:/secret]" time="0.000" /><testcase classname="tests.test_native_user_report" name="test_native_export_rejects_path_escape[a\\b]" time="0.000" /><testcase classname="tests.test_native_user_report" name="test_native_export_rejects_path_escape[a/../b]" time="0.000" /><testcase classname="tests.test_native_user_report" name="test_native_export_rejects_path_escape[a//b]" time="0.000" /><testcase classname="tests.test_native_user_report" name="test_native_export_rejects_path_escape[]" time="0.000" /><testcase classname="tests.test_native_user_report" name="test_real_raw_export_contains_all_mhc_batches_and_hash_bound_files" time="0.612" /><testcase classname="tests.test_native_user_report" name="test_native_attachment_retains_owner_expiry_and_signed_bytes" time="0.181" /><testcase classname="tests.test_user_report" name="test_real_excluded_candidates_are_not_recommended_and_ddg_is_not_lost" time="0.245" /><testcase classname="tests.test_user_report" name="test_archive_render_preserves_failure_facts_and_original_bytes" time="0.014" /><testcase classname="tests.test_user_report" name="test_null_is_not_zero_and_input_text_cannot_execute_or_load_external_assets" time="0.000" /><testcase classname="tests.test_user_report" name="test_incomplete_workflow_is_not_reported_as_finished[failed]" time="0.001" /><testcase classname="tests.test_user_report" name="test_incomplete_workflow_is_not_reported_as_finished[cancelled]" time="0.000" /><testcase classname="tests.test_user_report" name="test_incomplete_workflow_is_not_reported_as_finished[timed_out]" time="0.001" /><testcase classname="tests.test_user_report" name="test_incomplete_workflow_is_not_reported_as_finished[running]" time="0.000" /><testcase classname="tests.test_user_report" name="test_plot_does_not_join_across_missing_residues" time="0.000" /><testcase classname="tests.test_user_report" name="test_html_attachment_retains_auth_expiry_and_signed_bytes" time="0.013" /><testcase classname="tests.test_user_report" name="test_old_markdown_only_packages_keep_the_existing_attachment" time="0.000" /><testcase classname="tests.test_himat_p1_fixes" name="test_original_233aa_blast_output_is_accepted_without_changing_thresholds" time="0.018" /><testcase classname="tests.test_himat_p1_fixes" name="test_native_coverage_integer_boundary_and_false_full_coverage[200-197-99]" time="0.001" /><testcase classname="tests.test_himat_p1_fixes" name="test_native_coverage_integer_boundary_and_false_full_coverage[200-198-99]" time="0.000" /><testcase classname="tests.test_himat_p1_fixes" name="test_native_coverage_integer_boundary_and_false_full_coverage[233-232-99]" time="0.000" /><testcase classname="tests.test_himat_p1_fixes" name="test_native_coverage_integer_boundary_and_false_full_coverage[233-233-100]" time="0.000" /><testcase classname="tests.test_himat_p1_fixes" name="test_generic_child_failure_stops_and_survives_controller_resume[False]" time="0.672" /><testcase classname="tests.test_himat_p1_fixes" name="test_generic_child_failure_stops_and_survives_controller_resume[True]" time="0.755" /><testcase classname="tests.test_himat_p1_fixes" name="test_missing_predictors_are_skipped_before_execution_and_n17_is_disclosed" time="5.741" /><testcase classname="tests.test_himat_p1_fixes" name="test_original_card_exposes_failures_and_primary_markdown_includes_workflow" time="0.010" /><testcase classname="tests.test_himat_p1_fixes" name="test_sequence_only_himat_uses_backend_evidence_and_stable_new_identity" time="0.020"><failure message="ValueError: tuple.index(x): x not in tuple">def test_sequence_only_himat_uses_backend_evidence_and_stable_new_identity():
+        from t01_phase1_real.development.workflow import policy, engineering
+        b=body();captured=[]
+        class Submission:
+            def submit(self,principal,value):
+                captured.append(value)
+                return {'job_id':'t01p1r-job-'+'a'*32,'state':'queued'}
+        adapter=HiMatIntegration(Submission(),'https://example.invalid',b'k'*32)
+        principal=Principal('himat-t01-test',frozenset({'submit'}),'test')
+        response=adapter.submit_sequence(principal,b['protein_sequence'],b['host_species'])
+        request=captured[-1]['request'];key=captured[-1]['idempotency_key']
+        assert response['design_input_status']=='PENDING_BACKEND_EVIDENCE'
+        assert request['engineering_design']==engineering.MODE
+        assert 'm1_test' not in request and request['expression_host'] is None
+        assert request['analysis']['domains']['organism_name'] is None
+        assert request['analysis']['domains']['database_id']=='swissprot-2026_03-r01'
+        accepted=policy.request(encode(request))
+&gt;       assert policy.order(accepted).index('design_inputs')&lt;policy.order(accepted).index('design')
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ValueError: tuple.index(x): x not in tuple
+
+tests\test_himat_p1_fixes.py:128: ValueError</failure></testcase><testcase classname="tests.test_himat_p1_fixes" name="test_audited_inputs_control_design_without_user_masks[False]" time="0.000" /><testcase classname="tests.test_himat_p1_fixes" name="test_audited_inputs_control_design_without_user_masks[True]" time="0.000" /><testcase classname="tests.test_himat_p1_fixes" name="test_backend_evidence_missing_inputs_produce_gap_delivery" time="18.508" /><testcase classname="tests.test_himat_p1_fixes" name="test_scan_gap_uses_engine_receipts_not_assembly_invocation_count[False]" time="0.002" /><testcase classname="tests.test_himat_p1_fixes" name="test_scan_gap_uses_engine_receipts_not_assembly_invocation_count[True]" time="0.000" /><testcase classname="tests.test_himat_p1_fixes" name="test_no_open_sites_records_zero_scans_and_missing_applicable_scan_is_rejected" time="0.000" /><testcase classname="tests.test_real_service_api" name="test_service_cli_maps_queue_capacity_and_delay_by_name" time="0.010" /><testcase classname="tests.test_real_service_api" name="test_rustfs_report_publication_is_owner_authorized_and_retryable" time="9.506" /><testcase classname="tests.test_real_service_api" name="test_credentials_are_exact_constant_time_and_scoped" time="0.000" /><testcase classname="tests.test_real_service_api" name="test_credentials_support_exact_secret_file_injection" time="0.004" /><testcase classname="tests.test_real_service_api" name="test_submit_replay_owner_isolation_report_and_retry" time="6.369" /><testcase classname="tests.test_real_service_api" name="test_upload_is_registered_bounded_and_owner_scoped" time="0.083" /><testcase classname="tests.test_real_service_api" name="test_cancel_recover_and_retry_are_idempotent" time="6.654" /><testcase classname="tests.test_real_service_api" name="test_drive_waits_for_child_supervisor_registration" time="0.062" /><testcase classname="tests.test_real_service_api" name="test_authenticated_http_and_mcp_surface" time="0.581"><failure message="urllib.error.URLError: &lt;urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。&gt;">self = &lt;urllib.request.HTTPHandler object at 0x00000215B68A42D0&gt;
+http_class = &lt;class 'http.client.HTTPConnection'&gt;
+req = &lt;urllib.request.Request object at 0x00000215B64EB510&gt;, http_conn_args = {}
+host = '127.0.0.1:11802'
+h = &lt;http.client.HTTPConnection object at 0x00000215B6741490&gt;
+
+    def do_open(self, http_class, req, **http_conn_args):
+        """Return an HTTPResponse object for the request, using http_class.
+    
+        http_class must implement the HTTPConnection API from http.client.
+        """
+        host = req.host
+        if not host:
+            raise URLError('no host given')
+    
+        # will parse host:port
+        h = http_class(host, timeout=req.timeout, **http_conn_args)
+        h.set_debuglevel(self._debuglevel)
+    
+        headers = dict(req.unredirected_hdrs)
+        headers.update({k: v for k, v in req.headers.items()
+                        if k not in headers})
+    
+        # TODO(jhylton): Should this be redesigned to handle
+        # persistent connections?
+    
+        # We want to make an HTTP/1.1 request, but the addinfourl
+        # class isn't prepared to deal with a persistent connection.
+        # It will try to read all remaining data from the socket,
+        # which will block while the server waits for the next request.
+        # So make sure the connection gets closed after the (only)
+        # request.
+        headers["Connection"] = "close"
+        headers = {name.title(): val for name, val in headers.items()}
+    
+        if req._tunnel_host:
+            tunnel_headers = {}
+            proxy_auth_hdr = "Proxy-Authorization"
+            if proxy_auth_hdr in headers:
+                tunnel_headers[proxy_auth_hdr] = headers[proxy_auth_hdr]
+                # Proxy-Authorization should not be sent to origin
+                # server.
+                del headers[proxy_auth_hdr]
+            h.set_tunnel(req._tunnel_host, headers=tunnel_headers)
+    
+        try:
+            try:
+&gt;               h.request(req.get_method(), req.selector, req.data, headers,
+                          encode_chunked=req.has_header('Transfer-encoding'))
+
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\urllib\request.py:1348: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\http\client.py:1323: in request
+    self._send_request(method, url, body, headers, encode_chunked)
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\http\client.py:1369: in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\http\client.py:1318: in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\http\client.py:1078: in _send_output
+    self.send(msg)
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\http\client.py:1016: in send
+    self.connect()
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\http\client.py:982: in connect
+    self.sock = self._create_connection(
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\socket.py:863: in create_connection
+    raise exceptions[0]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+address = ('127.0.0.1', 11802), timeout = 30, source_address = None
+
+    def create_connection(address, timeout=_GLOBAL_DEFAULT_TIMEOUT,
+                          source_address=None, *, all_errors=False):
+        """Connect to *address* and return the socket object.
+    
+        Convenience function.  Connect to *address* (a 2-tuple ``(host,
+        port)``) and return the socket object.  Passing the optional
+        *timeout* parameter will set the timeout on the socket instance
+        before attempting to connect.  If no *timeout* is supplied, the
+        global default timeout setting returned by :func:`getdefaulttimeout`
+        is used.  If *source_address* is set it must be a tuple of (host, port)
+        for the socket to bind as a source address before making the connection.
+        A host of '' or port 0 tells the OS to use the default. When a connection
+        cannot be created, raises the last error if *all_errors* is False,
+        and an ExceptionGroup of all errors if *all_errors* is True.
+        """
+    
+        host, port = address
+        exceptions = []
+        for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+            af, socktype, proto, canonname, sa = res
+            sock = None
+            try:
+                sock = socket(af, socktype, proto)
+                if timeout is not _GLOBAL_DEFAULT_TIMEOUT:
+                    sock.settimeout(timeout)
+                if source_address:
+                    sock.bind(source_address)
+&gt;               sock.connect(sa)
+E               PermissionError: [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。
+
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\socket.py:848: PermissionError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = WindowsPath('D:/work/antigen.design/.tmp/report-repair-tests-r01/test_authenticated_http_and_mc0')
+
+    def test_authenticated_http_and_mcp_surface(tmp_path):
+        creds = credentials()
+        service = Service(ServiceConfig(tmp_path / "runtime"), creds)
+        server = Phase1RealServiceServer(("127.0.0.1", 0), service)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        base = f"http://127.0.0.1:{server.server_port}"
+        try:
+&gt;           status, _, raw = request(base + "/healthz")
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_real_service_api.py:275: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_real_service_api.py:260: in request
+    with urllib.request.urlopen(req, timeout=30) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\urllib\request.py:216: in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\urllib\request.py:519: in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\urllib\request.py:536: in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\urllib\request.py:496: in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\urllib\request.py:1377: in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;urllib.request.HTTPHandler object at 0x00000215B68A42D0&gt;
+http_class = &lt;class 'http.client.HTTPConnection'&gt;
+req = &lt;urllib.request.Request object at 0x00000215B64EB510&gt;, http_conn_args = {}
+host = '127.0.0.1:11802'
+h = &lt;http.client.HTTPConnection object at 0x00000215B6741490&gt;
+
+    def do_open(self, http_class, req, **http_conn_args):
+        """Return an HTTPResponse object for the request, using http_class.
+    
+        http_class must implement the HTTPConnection API from http.client.
+        """
+        host = req.host
+        if not host:
+            raise URLError('no host given')
+    
+        # will parse host:port
+        h = http_class(host, timeout=req.timeout, **http_conn_args)
+        h.set_debuglevel(self._debuglevel)
+    
+        headers = dict(req.unredirected_hdrs)
+        headers.update({k: v for k, v in req.headers.items()
+                        if k not in headers})
+    
+        # TODO(jhylton): Should this be redesigned to handle
+        # persistent connections?
+    
+        # We want to make an HTTP/1.1 request, but the addinfourl
+        # class isn't prepared to deal with a persistent connection.
+        # It will try to read all remaining data from the socket,
+        # which will block while the server waits for the next request.
+        # So make sure the connection gets closed after the (only)
+        # request.
+        headers["Connection"] = "close"
+        headers = {name.title(): val for name, val in headers.items()}
+    
+        if req._tunnel_host:
+            tunnel_headers = {}
+            proxy_auth_hdr = "Proxy-Authorization"
+            if proxy_auth_hdr in headers:
+                tunnel_headers[proxy_auth_hdr] = headers[proxy_auth_hdr]
+                # Proxy-Authorization should not be sent to origin
+                # server.
+                del headers[proxy_auth_hdr]
+            h.set_tunnel(req._tunnel_host, headers=tunnel_headers)
+    
+        try:
+            try:
+                h.request(req.get_method(), req.selector, req.data, headers,
+                          encode_chunked=req.has_header('Transfer-encoding'))
+            except OSError as err: # timeout error
+&gt;               raise URLError(err)
+E               urllib.error.URLError: &lt;urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。&gt;
+
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\urllib\request.py:1351: URLError</failure></testcase><testcase classname="tests.test_real_service_api" name="test_himat_sequence_submission_uses_new_sequence_without_sample_structure_or_masks" time="0.120" /><testcase classname="tests.test_real_service_api" name="test_himat_mcp_card_is_direct_and_download_capability_is_bounded" time="0.576"><failure message="urllib.error.URLError: &lt;urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。&gt;">self = &lt;urllib.request.HTTPHandler object at 0x00000215B68A42D0&gt;
+http_class = &lt;class 'http.client.HTTPConnection'&gt;
+req = &lt;urllib.request.Request object at 0x00000215B6604A10&gt;, http_conn_args = {}
+host = '127.0.0.1:11185'
+h = &lt;http.client.HTTPConnection object at 0x00000215B6607450&gt;
+
+    def do_open(self, http_class, req, **http_conn_args):
+        """Return an HTTPResponse object for the request, using http_class.
+    
+        http_class must implement the HTTPConnection API from http.client.
+        """
+        host = req.host
+        if not host:
+            raise URLError('no host given')
+    
+        # will parse host:port
+        h = http_class(host, timeout=req.timeout, **http_conn_args)
+        h.set_debuglevel(self._debuglevel)
+    
+        headers = dict(req.unredirected_hdrs)
+        headers.update({k: v for k, v in req.headers.items()
+                        if k not in headers})
+    
+        # TODO(jhylton): Should this be redesigned to handle
+        # persistent connections?
+    
+        # We want to make an HTTP/1.1 request, but the addinfourl
+        # class isn't prepared to deal with a persistent connection.
+        # It will try to read all remaining data from the socket,
+        # which will block while the server waits for the next request.
+        # So make sure the connection gets closed after the (only)
+        # request.
+        headers["Connection"] = "close"
+        headers = {name.title(): val for name, val in headers.items()}
+    
+        if req._tunnel_host:
+            tunnel_headers = {}
+            proxy_auth_hdr = "Proxy-Authorization"
+            if proxy_auth_hdr in headers:
+                tunnel_headers[proxy_auth_hdr] = headers[proxy_auth_hdr]
+                # Proxy-Authorization should not be sent to origin
+                # server.
+                del headers[proxy_auth_hdr]
+            h.set_tunnel(req._tunnel_host, headers=tunnel_headers)
+    
+        try:
+            try:
+&gt;               h.request(req.get_method(), req.selector, req.data, headers,
+                          encode_chunked=req.has_header('Transfer-encoding'))
+
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\urllib\request.py:1348: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\http\client.py:1323: in request
+    self._send_request(method, url, body, headers, encode_chunked)
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\http\client.py:1369: in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\http\client.py:1318: in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\http\client.py:1078: in _send_output
+    self.send(msg)
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\http\client.py:1016: in send
+    self.connect()
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\http\client.py:982: in connect
+    self.sock = self._create_connection(
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\socket.py:863: in create_connection
+    raise exceptions[0]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+address = ('127.0.0.1', 11185), timeout = 30, source_address = None
+
+    def create_connection(address, timeout=_GLOBAL_DEFAULT_TIMEOUT,
+                          source_address=None, *, all_errors=False):
+        """Connect to *address* and return the socket object.
+    
+        Convenience function.  Connect to *address* (a 2-tuple ``(host,
+        port)``) and return the socket object.  Passing the optional
+        *timeout* parameter will set the timeout on the socket instance
+        before attempting to connect.  If no *timeout* is supplied, the
+        global default timeout setting returned by :func:`getdefaulttimeout`
+        is used.  If *source_address* is set it must be a tuple of (host, port)
+        for the socket to bind as a source address before making the connection.
+        A host of '' or port 0 tells the OS to use the default. When a connection
+        cannot be created, raises the last error if *all_errors* is False,
+        and an ExceptionGroup of all errors if *all_errors* is True.
+        """
+    
+        host, port = address
+        exceptions = []
+        for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+            af, socktype, proto, canonname, sa = res
+            sock = None
+            try:
+                sock = socket(af, socktype, proto)
+                if timeout is not _GLOBAL_DEFAULT_TIMEOUT:
+                    sock.settimeout(timeout)
+                if source_address:
+                    sock.bind(source_address)
+&gt;               sock.connect(sa)
+E               PermissionError: [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。
+
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\socket.py:848: PermissionError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = WindowsPath('D:/work/antigen.design/.tmp/report-repair-tests-r01/test_himat_mcp_card_is_direct_0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000215B6606D10&gt;
+
+    def test_himat_mcp_card_is_direct_and_download_capability_is_bounded(tmp_path, monkeypatch):
+        token = "h" * 48
+        creds = Credentials.from_document({"credentials": [{
+            "token": token, "principal": "himat-t01-test", "scopes": ["submit", "query", "download"],
+        }]})
+        secret = tmp_path / "key"
+        secret.write_bytes(b"k" * 32)
+        monkeypatch.setenv("T01_HIMAT_DOWNLOAD_KEY_FILE", str(secret))
+        monkeypatch.setenv("T01_HIMAT_ATTACHMENT_BASE_URL", "https://himat.ws.scqcyz.cn")
+        service = Service(ServiceConfig(tmp_path / "runtime"), creds)
+        job_id = "t01p1r-job-" + "1" * 32
+        markdown = "# 本地工程交付报告\n\n结果：ALL_EXCLUDED\n\n## 来源与缺项\n\n- N16: NO_QUALIFIED_CANDIDATE\n"
+        nested_buffer = io.BytesIO()
+        with zipfile.ZipFile(nested_buffer, "w") as nested:
+            nested.writestr("report.md", markdown)
+        outer_buffer = io.BytesIO()
+        with zipfile.ZipFile(outer_buffer, "w") as outer:
+            outer.writestr("local-delivery.zip", nested_buffer.getvalue())
+        report_raw = outer_buffer.getvalue()
+        snapshot = {"job_id": job_id, "run_id": "t01p1r-run-" + "2" * 32,
+                    "state": "succeeded", "terminal": True, "error_code": None,
+                    "scientific_gate": "CLOSED", "usable_for_pipeline": False,
+                    "production_status": "NOT_DEPLOYED", "nodes": {}}
+        monkeypatch.setattr(service, "status", lambda principal, job, node=None: snapshot)
+        monkeypatch.setattr(service, "report", lambda principal, job: {
+            "job_id": job, "filename": job + ".zip", "content": report_raw,
+            "sha256": sha(report_raw), "report_markdown": "# workflow status only\n",
+        })
+        monkeypatch.setattr(service, "report_for_json", lambda *args: pytest.fail("HiMat called public RustFS publication"))
+        server = Phase1RealServiceServer(("127.0.0.1", 0), service)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        base = f"http://127.0.0.1:{server.server_port}"
+        try:
+            payload = {"jsonrpc": "2.0", "id": 1, "method": "tools/list", "params": {}}
+            himat_headers = {HIMAT_MCP_AUTH_HEADER: "Bearer " + token}
+&gt;           status, _, raw = request(base + "/mcp", "POST", value=payload, extra_headers=himat_headers)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_real_service_api.py:386: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_real_service_api.py:260: in request
+    with urllib.request.urlopen(req, timeout=30) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\urllib\request.py:216: in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\urllib\request.py:519: in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\urllib\request.py:536: in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\urllib\request.py:496: in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\urllib\request.py:1377: in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;urllib.request.HTTPHandler object at 0x00000215B68A42D0&gt;
+http_class = &lt;class 'http.client.HTTPConnection'&gt;
+req = &lt;urllib.request.Request object at 0x00000215B6604A10&gt;, http_conn_args = {}
+host = '127.0.0.1:11185'
+h = &lt;http.client.HTTPConnection object at 0x00000215B6607450&gt;
+
+    def do_open(self, http_class, req, **http_conn_args):
+        """Return an HTTPResponse object for the request, using http_class.
+    
+        http_class must implement the HTTPConnection API from http.client.
+        """
+        host = req.host
+        if not host:
+            raise URLError('no host given')
+    
+        # will parse host:port
+        h = http_class(host, timeout=req.timeout, **http_conn_args)
+        h.set_debuglevel(self._debuglevel)
+    
+        headers = dict(req.unredirected_hdrs)
+        headers.update({k: v for k, v in req.headers.items()
+                        if k not in headers})
+    
+        # TODO(jhylton): Should this be redesigned to handle
+        # persistent connections?
+    
+        # We want to make an HTTP/1.1 request, but the addinfourl
+        # class isn't prepared to deal with a persistent connection.
+        # It will try to read all remaining data from the socket,
+        # which will block while the server waits for the next request.
+        # So make sure the connection gets closed after the (only)
+        # request.
+        headers["Connection"] = "close"
+        headers = {name.title(): val for name, val in headers.items()}
+    
+        if req._tunnel_host:
+            tunnel_headers = {}
+            proxy_auth_hdr = "Proxy-Authorization"
+            if proxy_auth_hdr in headers:
+                tunnel_headers[proxy_auth_hdr] = headers[proxy_auth_hdr]
+                # Proxy-Authorization should not be sent to origin
+                # server.
+                del headers[proxy_auth_hdr]
+            h.set_tunnel(req._tunnel_host, headers=tunnel_headers)
+    
+        try:
+            try:
+                h.request(req.get_method(), req.selector, req.data, headers,
+                          encode_chunked=req.has_header('Transfer-encoding'))
+            except OSError as err: # timeout error
+&gt;               raise URLError(err)
+E               urllib.error.URLError: &lt;urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。&gt;
+
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\urllib\request.py:1351: URLError</failure></testcase><testcase classname="tests.test_real_service_api" name="test_real_dify_is_generated_bound_and_isolated_from_mock" time="0.044" /></testsuite></testsuites>

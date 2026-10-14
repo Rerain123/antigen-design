@@ -1,0 +1,94 @@
+{
+  "date": "2026-09-05",
+  "scope": "Academic 1.0 original offline CPU execution, expert version requirements, raw evidence and navigation checker exclusion for unmodified upstream reports",
+  "maintenance_verification": "PASS",
+  "checks": [
+    {
+      "command": ".venv/Scripts/python.exe -X utf8 -m pytest -o addopts= -q",
+      "cwd": ".",
+      "exit_code": 0,
+      "passed": 410,
+      "skipped": 1,
+      "elapsed_seconds": 65.11,
+      "added_academic_tests": 28,
+      "added_document_checker_tests": 1
+    },
+    {
+      "command": "../../.venv/Scripts/python.exe -X utf8 -m pytest -o addopts= -q",
+      "cwd": "legacy/full-t01-mock-v0.1",
+      "exit_code": 0,
+      "passed": 74,
+      "elapsed_seconds": 11.63
+    },
+    {
+      "command": "../../.venv/Scripts/python.exe -X utf8 -m pytest -o addopts= -q",
+      "cwd": "legacy/s07",
+      "exit_code": 0,
+      "passed": 41,
+      "elapsed_seconds": 2.23
+    },
+    {
+      "command": ".venv/Scripts/python.exe -X utf8 scripts/check_docs.py",
+      "exit_code": 0,
+      "result": "PASS",
+      "markdown_files": 156
+    },
+    {
+      "command": ".venv/Scripts/python.exe -X utf8 discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/verify_evidence.py --assets",
+      "exit_code": 0,
+      "result": "PASS",
+      "batch_files": 122,
+      "expert_sources_unchanged": 22,
+      "package_assets_verified": 41
+    },
+    {
+      "command": ".venv/Scripts/python.exe -X utf8 scripts/t01_phase1_mock/run_m4_campaign.py verify",
+      "exit_code": 0,
+      "result": "PASS",
+      "frozen_asset_count": 457
+    },
+    {
+      "command": ".venv/Scripts/python.exe -X utf8 scripts/t01_phase1_mock/materialize_fixtures.py --check",
+      "exit_code": 0,
+      "result": "CHECK_PASS",
+      "payload_files": 350
+    },
+    {
+      "command": ".venv/Scripts/python.exe -X utf8 scripts/t01_phase1_mock/build_dify_workflows.py --check",
+      "exit_code": 0,
+      "result": "PASS",
+      "workflows": 2
+    },
+    {
+      "command": ".venv/Scripts/python.exe -X utf8 scripts/t01_phase1_mock/bind_dify_workflows.py --check dify/t01-phase1-mock-v0.1/config/provider-bindings.local_dify_1_17.json",
+      "exit_code": 0,
+      "result": "PASS",
+      "workflows": 2
+    },
+    {
+      "command": ".venv/Scripts/python.exe -X utf8 scripts/package_tool_handoffs.py --check",
+      "exit_code": 0,
+      "result": "PASS",
+      "archives_unchanged": 2,
+      "delivery_status": "PACKAGED_NOT_SENT"
+    }
+  ],
+  "scientific_runs": {
+    "tool": "DeepTMHMM 1.0 - Academic Version",
+    "successful_offline_cpu_calls": 3,
+    "output_records": 11,
+    "coverage_input_records": 9,
+    "coverage_residues": 2611,
+    "coverage_pb_records": 2,
+    "empty_input_rejections_before_model_loading": 1,
+    "unmodified_package_assets_verified_before_after_each_run": 41
+  },
+  "not_run": [
+    "Independent scientific accuracy/hold-out acceptance and named G1 signoff",
+    "Customer target environment deployment and clean offline install",
+    "GPU compatibility, input beyond 1022 tokens, production concurrency",
+    "Production adapter and S-16/S-19/S-27/membrane-gate integration"
+  ],
+  "model_execution": "EXECUTED_OFFLINE_CPU",
+  "production_status": "NOT_DEPLOYED"
+}

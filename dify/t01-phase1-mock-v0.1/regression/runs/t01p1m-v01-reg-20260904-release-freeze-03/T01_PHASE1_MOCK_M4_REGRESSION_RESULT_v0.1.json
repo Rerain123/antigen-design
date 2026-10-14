@@ -1,0 +1,2420 @@
+{
+  "$schema": "T01_PHASE1_MOCK_M4_REGRESSION_RESULT_SCHEMA_v0.1.json",
+  "document_type": "T01_PHASE1_MOCK_M4_REGRESSION_RESULT",
+  "result_version": "T01-PHASE1-MOCK-M4-REGRESSION-RESULT-v0.1",
+  "campaign_id": "t01p1m-v01-reg-20260904-release-freeze-03",
+  "binding_profile": "local_dify_1_17",
+  "status": "PASS",
+  "implementation_state": "M4_REGRESSION_EXECUTED",
+  "source_acceptance_catalog_version": "T01-PHASE1-MOCK-ACCEPTANCE-CATALOG-v0.1",
+  "execution_environment": {
+    "target": "LOCAL_DIFY_DOCKER",
+    "dify_version": "1.17.0",
+    "dsl_version": "0.7.0",
+    "transport": "MCP_STREAMABLE_HTTP_LOCALHOST",
+    "clock_driven_branching": false
+  },
+  "asset_chain": {
+    "path": "dify/t01-phase1-mock-v0.1/regression/runs/t01p1m-v01-reg-20260904-release-freeze-03/asset-chain.json",
+    "bytes": 8274,
+    "sha256": "1a1a027d705aef8aa4b44323128258a3542d484a84a0707109e425ff6df45fd4",
+    "status": "PASS"
+  },
+  "import_readback": {
+    "path": "dify/t01-phase1-mock-v0.1/regression/runs/t01p1m-v01-reg-20260904-release-freeze-03/import-readback-evidence.json",
+    "bytes": 7340,
+    "sha256": "a6bfa8934beb921bf2f43ff198ae14fdfd87c88f5e93543ed20d7c0f59ac5823",
+    "status": "PASS",
+    "application_count": 2,
+    "warning_count": 0
+  },
+  "main": {
+    "role": "PRIMARY",
+    "app_name": "T01_Phase1_Mock_v0.1",
+    "status": "PASS",
+    "case_count": 21,
+    "submission_count": 23,
+    "request_variant_count": 22,
+    "submitted_request_id_count": 23,
+    "dify_submission_run_count": 23,
+    "dify_finalization_run_count": 4,
+    "dify_run_count": 27,
+    "checkpoint_plan_count": 4,
+    "checkpoint_count": 16,
+    "focus_assertion_count": 44,
+    "focus_failure_count": 0,
+    "capture_sha256": {
+      "submissions_path": "1385eeabe31e6cc9a62dcdb1df04cfcabac1a6b345bb35527ac845b13200d9e5",
+      "finalizations_path": "f6c654bc9ff34f3ab52c848f40c80bdf1208351c4aae20dc24c46e1669e5c6ee",
+      "driver_path": "82d49920551bf4a39a8d3f7b3259eadfdefa24f0bdbebd6eadbcaa75d8e0857a"
+    },
+    "instance_run_mappings": [
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 1,
+        "scenario_key": "happy_provided_structure",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "74f936e0-fbf5-4564-82fd-370c12ec6421",
+        "canonical_request_id": "t01-phase1-mock-v01-req-6720b5fa-fcde-4671-ae5a-6bfe2cd64580",
+        "canonical_run_id": "t01-phase1-mock-v01-run-ace7c503-a2c4-41df-b246-ffbbf0b5e5fb",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-fb046bc1-751e-4b25-b6d3-70eba5e90c0d",
+        "submitted_request_id": "t01-phase1-mock-v01-req-6720b5fa-fcde-4671-ae5a-6bfe2cd64580"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 2,
+        "scenario_key": "happy_no_structure_local_af3",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "41b76035-6a2e-4a93-ad25-89272f660573",
+        "canonical_request_id": "t01-phase1-mock-v01-req-ef2e607f-e85a-4570-b4e9-4fcabb7cc812",
+        "canonical_run_id": "t01-phase1-mock-v01-run-0f327d3a-b3b8-448c-88dc-8646b6e7d431",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-30ad3d0d-562a-435d-85f7-c6c8bb412d8d",
+        "submitted_request_id": "t01-phase1-mock-v01-req-ef2e607f-e85a-4570-b4e9-4fcabb7cc812"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 3,
+        "scenario_key": "happy_no_structure_local_esmfold2",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "7e186393-83d5-40cf-ad97-c66e43647788",
+        "canonical_request_id": "t01-phase1-mock-v01-req-515b6402-76bf-42a0-8f0b-63a4fe4766cf",
+        "canonical_run_id": "t01-phase1-mock-v01-run-70915e70-d127-45fd-9758-22ab7491967b",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-343b9bce-4352-4e35-9170-e5ad30605018",
+        "submitted_request_id": "t01-phase1-mock-v01-req-515b6402-76bf-42a0-8f0b-63a4fe4766cf"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 4,
+        "scenario_key": "gate_wt_direct",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "9ae24b0c-7b4d-4585-859b-c9f03998b5ff",
+        "canonical_request_id": "t01-phase1-mock-v01-req-841832bc-1576-4f9f-b7de-d0f3d9b52632",
+        "canonical_run_id": "t01-phase1-mock-v01-run-9788e96f-130b-4583-ab20-b3a6acb5add4",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-cf720047-1e85-4317-aa61-f87475a120be",
+        "submitted_request_id": "t01-phase1-mock-v01-req-841832bc-1576-4f9f-b7de-d0f3d9b52632"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 5,
+        "scenario_key": "n12_pass_cycle_2",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "e3d22836-0414-44b1-973d-008079b9a8ab",
+        "canonical_request_id": "t01-phase1-mock-v01-req-b2b04046-6766-4d7d-9454-7ee51ff370cf",
+        "canonical_run_id": "t01-phase1-mock-v01-run-876b5830-d131-4b0a-810e-5b6c7821cd1d",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-ab74bac7-32be-435e-9650-7035e04475e9",
+        "submitted_request_id": "t01-phase1-mock-v01-req-b2b04046-6766-4d7d-9454-7ee51ff370cf"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 6,
+        "scenario_key": "n12_pass_cycle_3",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "98d1ffa4-3e00-48f9-96bd-96ebf5b4646b",
+        "canonical_request_id": "t01-phase1-mock-v01-req-21ade27c-3708-4fa9-9f88-f72d0c2aab57",
+        "canonical_run_id": "t01-phase1-mock-v01-run-a6388379-1dcd-420e-bd58-c28a1d350ecb",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-a9e0309e-2fa4-4a82-a542-b7ddadd5b84a",
+        "submitted_request_id": "t01-phase1-mock-v01-req-21ade27c-3708-4fa9-9f88-f72d0c2aab57"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 7,
+        "scenario_key": "n12_recalc_exhausted",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "d291e890-75bd-40ed-9e18-8d524491294b",
+        "canonical_request_id": "t01-phase1-mock-v01-req-e2407626-e14b-4900-bca6-d82c0441d836",
+        "canonical_run_id": "t01-phase1-mock-v01-run-355c5eb4-e567-4381-91ae-140817b1016d",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-2119951c-7efb-42ec-8943-f4c6e4f61888",
+        "submitted_request_id": "t01-phase1-mock-v01-req-e2407626-e14b-4900-bca6-d82c0441d836"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 8,
+        "scenario_key": "n15_wt_fallback",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "0db52236-949e-4e04-9ad3-940f1c661af5",
+        "canonical_request_id": "t01-phase1-mock-v01-req-31e3b06b-37c3-4a37-9f2f-47784210412d",
+        "canonical_run_id": "t01-phase1-mock-v01-run-a7ec2cfc-7e57-4d17-aeb1-7409e1d9884e",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-c8043a4a-771b-4085-85c3-001b178dc3a6",
+        "submitted_request_id": "t01-phase1-mock-v01-req-31e3b06b-37c3-4a37-9f2f-47784210412d"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 9,
+        "scenario_key": "n16_missing_expression_host",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "306e1c7f-0b52-4e6b-9b03-ebb3cfbf6153",
+        "canonical_request_id": "t01-phase1-mock-v01-req-ac3305fb-8e91-483e-acfe-0e3b019e36ad",
+        "canonical_run_id": "t01-phase1-mock-v01-run-61fe312e-e2c1-4c32-b4a3-35da7f9c1bed",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-eae2de35-7ad8-4da1-ba55-9516922c686b",
+        "submitted_request_id": "t01-phase1-mock-v01-req-ac3305fb-8e91-483e-acfe-0e3b019e36ad"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 10,
+        "scenario_key": "n17_not_applicable",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "3de99d16-2423-46a7-862c-2f22db35169b",
+        "canonical_request_id": "t01-phase1-mock-v01-req-9f67cb5b-0d37-46e0-bcca-4d4173d0e626",
+        "canonical_run_id": "t01-phase1-mock-v01-run-bf3d5e98-9624-4856-9fa3-4a7b0320de60",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-0beded78-4a9a-48d9-925b-e63b858bd7a1",
+        "submitted_request_id": "t01-phase1-mock-v01-req-9f67cb5b-0d37-46e0-bcca-4d4173d0e626"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 11,
+        "scenario_key": "n16_unsupported_expression_host",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "37cc0a4a-60c4-4694-a12f-73a5807368c3",
+        "canonical_request_id": "t01-phase1-mock-v01-req-cd5d616c-96f2-41e6-940d-526a5ddf2766",
+        "canonical_run_id": "t01-phase1-mock-v01-run-1e40d79d-b338-4f30-9854-d15d90149717",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-9e431d88-5fdf-4fbe-9fcb-b7dc358e58c4",
+        "submitted_request_id": "t01-phase1-mock-v01-req-cd5d616c-96f2-41e6-940d-526a5ddf2766"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 12,
+        "scenario_key": "n17_branch_failed",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "931cd35f-079a-4df4-ba09-9747339cb9b1",
+        "canonical_request_id": "t01-phase1-mock-v01-req-37335e09-bcc7-42ec-beb6-beb9c659773c",
+        "canonical_run_id": "t01-phase1-mock-v01-run-2601f36e-b276-4ca6-88ff-da5a861b7f50",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-cb1a0d26-e375-4922-8f13-ad4debe4d0d4",
+        "submitted_request_id": "t01-phase1-mock-v01-req-37335e09-bcc7-42ec-beb6-beb9c659773c"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 13,
+        "scenario_key": "n16_branch_timeout_partial",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "863af6e7-f4aa-447f-a470-e7d4bcca219e",
+        "canonical_request_id": "t01-phase1-mock-v01-req-6b66d1da-879c-486f-87fc-c8efff6126bf",
+        "canonical_run_id": "t01-phase1-mock-v01-run-322f0852-9f8a-48c1-9d53-bab8f1fa7d70",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-11a062a9-ecd8-42a4-8e30-30d53fc19511",
+        "submitted_request_id": "t01-phase1-mock-v01-req-6b66d1da-879c-486f-87fc-c8efff6126bf"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 14,
+        "scenario_key": "n08_upstream_tool_failed",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "29f86cb0-48a1-4f2d-9668-021591acc97d",
+        "canonical_request_id": "t01-phase1-mock-v01-req-ca8c8f19-8807-47fd-bbff-4ab712361e0e",
+        "canonical_run_id": "t01-phase1-mock-v01-run-b968b58c-3438-416e-9ca9-cd3ff632d0c8",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-19909b3f-89e4-44d0-b978-967588181346",
+        "submitted_request_id": "t01-phase1-mock-v01-req-ca8c8f19-8807-47fd-bbff-4ab712361e0e"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 15,
+        "scenario_key": "n01_local_prediction_failed_no_remote_fallback",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "71db0e43-add5-461d-a17a-5df13577fc3e",
+        "canonical_request_id": "t01-phase1-mock-v01-req-c0c4f64b-4a38-4b84-a055-ab6ac3208c03",
+        "canonical_run_id": "t01-phase1-mock-v01-run-6e3cea25-5ce1-46de-bcac-08ccfde04cf7",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-9e5b35bc-4d3c-41ec-9156-7fa0615b3d2a",
+        "submitted_request_id": "t01-phase1-mock-v01-req-c0c4f64b-4a38-4b84-a055-ab6ac3208c03"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 16,
+        "scenario_key": "run_cancelled_before_join",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "98ed534b-9354-4bc1-ae88-89abab9004d7",
+        "canonical_request_id": "t01-phase1-mock-v01-req-0d0f6f1e-cf9a-47fa-be40-f3a57d7c2a39",
+        "canonical_run_id": "t01-phase1-mock-v01-run-73c45698-2b66-4d8e-86d8-43d415daf7ef",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-087ae378-d3f4-447a-a93e-7b7f035b7d1b",
+        "submitted_request_id": "t01-phase1-mock-v01-req-0d0f6f1e-cf9a-47fa-be40-f3a57d7c2a39"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 17,
+        "scenario_key": "n08_retryable_recovery",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "fa35da00-e057-459d-be12-6a54a5309222",
+        "canonical_request_id": "t01-phase1-mock-v01-req-79430e9f-4c65-479a-aa82-0269fb31a097",
+        "canonical_run_id": "t01-phase1-mock-v01-run-c92aa4c0-c252-4ab5-9075-bddd33b85952",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-798c8c30-c53d-493c-923a-6660f942e375",
+        "submitted_request_id": "t01-phase1-mock-v01-req-79430e9f-4c65-479a-aa82-0269fb31a097"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 18,
+        "scenario_key": "idempotent_replay",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "0dd8caf4-b792-4bf9-ad95-f577007818aa",
+        "canonical_request_id": "t01-phase1-mock-v01-req-45ca702b-a320-4973-9563-f90038326123",
+        "canonical_run_id": "t01-phase1-mock-v01-run-636bdc30-e652-49b7-af57-930188339578",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-40aec11b-a7b9-4e28-9231-46e04fa943c7",
+        "submitted_request_id": "t01-phase1-mock-v01-req-45ca702b-a320-4973-9563-f90038326123"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 19,
+        "scenario_key": "idempotent_replay",
+        "submission_key": "submit_2",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "7d27eab6-5750-4bd8-bed7-2bdc3df44d8d",
+        "canonical_request_id": "t01-phase1-mock-v01-req-45ca702b-a320-4973-9563-f90038326123",
+        "canonical_run_id": "t01-phase1-mock-v01-run-636bdc30-e652-49b7-af57-930188339578",
+        "submission_action": "RETURN_EXISTING_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-40aec11b-a7b9-4e28-9231-46e04fa943c7",
+        "submitted_request_id": "t01-phase1-mock-v01-req-b0103e47-4c04-4abb-acc6-ebbd56b81ca6"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 20,
+        "scenario_key": "idempotency_conflict",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "8a0b99db-cc6c-4888-b8f8-983b8d110e11",
+        "canonical_request_id": "t01-phase1-mock-v01-req-8bdb9f8c-0045-4329-b824-f8261ddc057c",
+        "canonical_run_id": "t01-phase1-mock-v01-run-91c533a6-4d71-4526-9570-813efa8cc137",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-43e3405e-67a9-493b-9d8d-400a89a7fbd2",
+        "submitted_request_id": "t01-phase1-mock-v01-req-8bdb9f8c-0045-4329-b824-f8261ddc057c"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 21,
+        "scenario_key": "idempotency_conflict",
+        "submission_key": "submit_2",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "47b474a5-40e4-4ce1-a626-cfcc2a12c560",
+        "canonical_request_id": "t01-phase1-mock-v01-req-025d4a7f-9a45-436f-8667-acb8df5b8f58",
+        "canonical_run_id": null,
+        "submission_action": "REJECT_REQUEST",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": null,
+        "submitted_request_id": "t01-phase1-mock-v01-req-025d4a7f-9a45-436f-8667-acb8df5b8f58"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 22,
+        "scenario_key": "n18_assembly_failed",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "eb8bc698-b2b5-46ce-ab0c-94af736d8c7c",
+        "canonical_request_id": "t01-phase1-mock-v01-req-d192139f-7ca1-4c0e-804f-6e1d9e7a4b69",
+        "canonical_run_id": "t01-phase1-mock-v01-run-a7dd686e-3df3-4e76-a7d4-cace8c03c995",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-9a6e6d2a-d8af-4968-bc36-7aabd45206b8",
+        "submitted_request_id": "t01-phase1-mock-v01-req-d192139f-7ca1-4c0e-804f-6e1d9e7a4b69"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 23,
+        "scenario_key": "n08_upstream_timed_out",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "9b408adf-325b-4773-a8ed-faa662e29ec0",
+        "canonical_request_id": "t01-phase1-mock-v01-req-d2946fb9-05b9-472c-86e4-40e71dd60395",
+        "canonical_run_id": "t01-phase1-mock-v01-run-c8c39eac-c4a6-4808-8fd8-2347bbbb95ef",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-a6961782-33f7-499e-b79a-68758460cb79",
+        "submitted_request_id": "t01-phase1-mock-v01-req-d2946fb9-05b9-472c-86e4-40e71dd60395"
+      },
+      {
+        "capture_kind": "FINALIZATION",
+        "ordinal": 1,
+        "scenario_key": "n16_branch_timeout_partial",
+        "submission_key": "checkpoint_finalize_observation",
+        "operation": "FINALIZE_EXISTING",
+        "dify_workflow_run_id": "57aeb45f-2c01-4a93-8285-e42fe1f01600",
+        "canonical_request_id": "t01-phase1-mock-v01-req-6b66d1da-879c-486f-87fc-c8efff6126bf",
+        "canonical_run_id": "t01-phase1-mock-v01-run-322f0852-9f8a-48c1-9d53-bab8f1fa7d70",
+        "submission_action": "FINALIZE_EXISTING",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-7c0c049a-7be1-49c4-bf84-513271617f2b",
+        "submitted_request_id": null
+      },
+      {
+        "capture_kind": "FINALIZATION",
+        "ordinal": 2,
+        "scenario_key": "run_cancelled_before_join",
+        "submission_key": "checkpoint_finalize_observation",
+        "operation": "FINALIZE_EXISTING",
+        "dify_workflow_run_id": "562819a9-ee10-4737-a6aa-7edc025951d1",
+        "canonical_request_id": "t01-phase1-mock-v01-req-0d0f6f1e-cf9a-47fa-be40-f3a57d7c2a39",
+        "canonical_run_id": "t01-phase1-mock-v01-run-73c45698-2b66-4d8e-86d8-43d415daf7ef",
+        "submission_action": "FINALIZE_EXISTING",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-e61a2778-b33a-46a9-826d-e192459568f0",
+        "submitted_request_id": null
+      },
+      {
+        "capture_kind": "FINALIZATION",
+        "ordinal": 3,
+        "scenario_key": "n08_retryable_recovery",
+        "submission_key": "checkpoint_finalize_observation",
+        "operation": "FINALIZE_EXISTING",
+        "dify_workflow_run_id": "92b1f714-0ac5-42b4-83ee-e446bcc80f2f",
+        "canonical_request_id": "t01-phase1-mock-v01-req-79430e9f-4c65-479a-aa82-0269fb31a097",
+        "canonical_run_id": "t01-phase1-mock-v01-run-cfb74a4c-1622-4e2f-ae9e-12d27b3c748d",
+        "submission_action": "FINALIZE_EXISTING",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-17b6046f-c99b-481e-80db-ca08c12a8f53",
+        "submitted_request_id": null
+      },
+      {
+        "capture_kind": "FINALIZATION",
+        "ordinal": 4,
+        "scenario_key": "n08_upstream_timed_out",
+        "submission_key": "checkpoint_finalize_observation",
+        "operation": "FINALIZE_EXISTING",
+        "dify_workflow_run_id": "f43242fc-5ab9-4877-a378-72a266839b40",
+        "canonical_request_id": "t01-phase1-mock-v01-req-d2946fb9-05b9-472c-86e4-40e71dd60395",
+        "canonical_run_id": "t01-phase1-mock-v01-run-c8c39eac-c4a6-4808-8fd8-2347bbbb95ef",
+        "submission_action": "FINALIZE_EXISTING",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-8f1ddf44-5ea1-4238-a349-90bbb390dc20",
+        "submitted_request_id": null
+      }
+    ],
+    "focus_assertions": [
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.001.focus.01",
+        "scenario_key": "happy_provided_structure",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.001.focus.02",
+        "scenario_key": "happy_provided_structure",
+        "operator": "JOIN_PRECONDITION",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.002.focus.01",
+        "scenario_key": "happy_no_structure_local_af3",
+        "operator": "CONTAINS_NONE",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.002.focus.02",
+        "scenario_key": "happy_no_structure_local_af3",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.003.focus.01",
+        "scenario_key": "happy_no_structure_local_esmfold2",
+        "operator": "CONTAINS_NONE",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.003.focus.02",
+        "scenario_key": "happy_no_structure_local_esmfold2",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.004.focus.01",
+        "scenario_key": "gate_wt_direct",
+        "operator": "NODE_STATUS_ALL",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.004.focus.02",
+        "scenario_key": "gate_wt_direct",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.005.focus.01",
+        "scenario_key": "n12_pass_cycle_2",
+        "operator": "CONTROL_DECISION_SEQUENCE_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.005.focus.02",
+        "scenario_key": "n12_pass_cycle_2",
+        "operator": "NODE_ATTEMPT_FIELD_SEQUENCE_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.006.focus.01",
+        "scenario_key": "n12_pass_cycle_3",
+        "operator": "CONTROL_DECISION_SEQUENCE_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.006.focus.02",
+        "scenario_key": "n12_pass_cycle_3",
+        "operator": "NODE_ATTEMPT_FIELD_SEQUENCE_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.007.focus.01",
+        "scenario_key": "n12_recalc_exhausted",
+        "operator": "NODE_ATTEMPT_COUNT_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.007.focus.02",
+        "scenario_key": "n12_recalc_exhausted",
+        "operator": "CONTAINS_NONE",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.008.focus.01",
+        "scenario_key": "n15_wt_fallback",
+        "operator": "EDGE_PRESENT",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.008.focus.02",
+        "scenario_key": "n15_wt_fallback",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.009.focus.01",
+        "scenario_key": "n16_missing_expression_host",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.009.focus.02",
+        "scenario_key": "n16_missing_expression_host",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.010.focus.01",
+        "scenario_key": "n17_not_applicable",
+        "operator": "CONTAINS_NONE",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.010.focus.02",
+        "scenario_key": "n17_not_applicable",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.011.focus.01",
+        "scenario_key": "n16_unsupported_expression_host",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.011.focus.02",
+        "scenario_key": "n16_unsupported_expression_host",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.012.focus.01",
+        "scenario_key": "n17_branch_failed",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.012.focus.02",
+        "scenario_key": "n17_branch_failed",
+        "operator": "EDGE_ORDERED_SUBSEQUENCE",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.013.focus.01",
+        "scenario_key": "n16_branch_timeout_partial",
+        "operator": "CONTAINS_NONE",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.013.focus.02",
+        "scenario_key": "n16_branch_timeout_partial",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.014.focus.01",
+        "scenario_key": "n08_upstream_tool_failed",
+        "operator": "EDGE_ABSENT",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.014.focus.02",
+        "scenario_key": "n08_upstream_tool_failed",
+        "operator": "NO_CONTROL_AFTER_NODE",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.015.focus.01",
+        "scenario_key": "n01_local_prediction_failed_no_remote_fallback",
+        "operator": "EDGE_ABSENT",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.015.focus.02",
+        "scenario_key": "n01_local_prediction_failed_no_remote_fallback",
+        "operator": "CONTAINS_NONE",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.016.focus.01",
+        "scenario_key": "run_cancelled_before_join",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.016.focus.02",
+        "scenario_key": "run_cancelled_before_join",
+        "operator": "EDGE_ABSENT",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.017.focus.01",
+        "scenario_key": "n08_retryable_recovery",
+        "operator": "NODE_ATTEMPT_FIELD_SEQUENCE_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.017.focus.02",
+        "scenario_key": "n08_retryable_recovery",
+        "operator": "NODE_ATTEMPT_FIELD_SEQUENCE_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.017.focus.03",
+        "scenario_key": "n08_retryable_recovery",
+        "operator": "COUNT_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.018.focus.01",
+        "scenario_key": "idempotent_replay",
+        "operator": "SUBMISSION_ACTION_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.018.focus.02",
+        "scenario_key": "idempotent_replay",
+        "operator": "EMISSION_COUNT_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.019.focus.01",
+        "scenario_key": "idempotency_conflict",
+        "operator": "SUBMISSION_ACTION_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.019.focus.02",
+        "scenario_key": "idempotency_conflict",
+        "operator": "ORIGINAL_RUN_UNCHANGED",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.020.focus.01",
+        "scenario_key": "n18_assembly_failed",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.020.focus.02",
+        "scenario_key": "n18_assembly_failed",
+        "operator": "NO_STUB_PROMOTION",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.021.focus.01",
+        "scenario_key": "n08_upstream_timed_out",
+        "operator": "EDGE_ABSENT",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.021.focus.02",
+        "scenario_key": "n08_upstream_timed_out",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.021.focus.03",
+        "scenario_key": "n08_upstream_timed_out",
+        "operator": "NO_CONTROL_AFTER_NODE",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      }
+    ],
+    "case_results": [
+      {
+        "ordinal": 1,
+        "scenario_key": "happy_provided_structure",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-ace7c503-a2c4-41df-b246-ffbbf0b5e5fb",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "e636f4a6678fec1e663b428f75c097cb6c2d3df9c50362ac56d647216165d3b5",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 2,
+        "scenario_key": "happy_no_structure_local_af3",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-0f327d3a-b3b8-448c-88dc-8646b6e7d431",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "f0a9621bdcb7ba6c6c2c9cf8bc0c32d737a5585d71e0748efb69aee1a680c4be",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 3,
+        "scenario_key": "happy_no_structure_local_esmfold2",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-70915e70-d127-45fd-9758-22ab7491967b",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "b347a518e4290d8660f6fa61c9e1bbfb17fd3112718b6604f66a597efc6ec455",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 4,
+        "scenario_key": "gate_wt_direct",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-9788e96f-130b-4583-ab20-b3a6acb5add4",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "8aed3250abf0363492559cd10cb1b3c56eec56be55e700c3fd1aabd723a18d0b",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 5,
+        "scenario_key": "n12_pass_cycle_2",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-876b5830-d131-4b0a-810e-5b6c7821cd1d",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "780cd827146b3d04fd38d77eed526c778d871f18dbb4fb62c176ad7423369045",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 6,
+        "scenario_key": "n12_pass_cycle_3",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-a6388379-1dcd-420e-bd58-c28a1d350ecb",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "6a1eba2da11971935d72534ce8f946e09bb5434d58676e9155215372ea695168",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 7,
+        "scenario_key": "n12_recalc_exhausted",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-355c5eb4-e567-4381-91ae-140817b1016d",
+        "recovery_of_run_id": null,
+        "run_status": "FAILED",
+        "canonical_envelope_sha256": "b4a51099fcbd76bbf5c3b21407910653e115bc87b8ca597a1309e3816b04a896",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 8,
+        "scenario_key": "n15_wt_fallback",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-a7ec2cfc-7e57-4d17-aeb1-7409e1d9884e",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "476cdd28726925fb4bb44dd36550a4664e11479d9ff92ccb9258060172b9e908",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 9,
+        "scenario_key": "n16_missing_expression_host",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-61fe312e-e2c1-4c32-b4a3-35da7f9c1bed",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "6ff087febb670186a10f77822c557d14f736c37121b1e9683bfa92ef9bc0fff3",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 10,
+        "scenario_key": "n17_not_applicable",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-bf3d5e98-9624-4856-9fa3-4a7b0320de60",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "bd494bee5a6234dc8471685c60113e9303839c8a1bcc08b56dae7a1807cce2db",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 11,
+        "scenario_key": "n16_unsupported_expression_host",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-1e40d79d-b338-4f30-9854-d15d90149717",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED_WITH_GAPS",
+        "canonical_envelope_sha256": "261b02e16850386fffea18061be4571ba2df36011f58e7315c68a60420efddb7",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 12,
+        "scenario_key": "n17_branch_failed",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-2601f36e-b276-4ca6-88ff-da5a861b7f50",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED_WITH_GAPS",
+        "canonical_envelope_sha256": "6914a9550d26bf3140c901e18c5ebb35b098e6f2bc9cfe9724a26c617830c56b",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 13,
+        "scenario_key": "n16_branch_timeout_partial",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-322f0852-9f8a-48c1-9d53-bab8f1fa7d70",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED_WITH_GAPS",
+        "canonical_envelope_sha256": "85dd36c78c4b2a381c750ab68857f415d0ecfd0e982b3b82b1b3c58da9fe0a7d",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 14,
+        "scenario_key": "n08_upstream_tool_failed",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-b968b58c-3438-416e-9ca9-cd3ff632d0c8",
+        "recovery_of_run_id": null,
+        "run_status": "FAILED",
+        "canonical_envelope_sha256": "d82f409f68abd0d38f738669d44aab9b37c33b327e3e3bab509b4c45586e2e22",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 15,
+        "scenario_key": "n01_local_prediction_failed_no_remote_fallback",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-6e3cea25-5ce1-46de-bcac-08ccfde04cf7",
+        "recovery_of_run_id": null,
+        "run_status": "FAILED",
+        "canonical_envelope_sha256": "8e4b5db660c326c560e9d61ee1e90b13e69daf1362bc578cb5a62b2a98d63735",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 16,
+        "scenario_key": "run_cancelled_before_join",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-73c45698-2b66-4d8e-86d8-43d415daf7ef",
+        "recovery_of_run_id": null,
+        "run_status": "CANCELLED",
+        "canonical_envelope_sha256": "3a3e3681eb3daf1f0bb0a48e45e2ed674f81d94f612719012cc90ad3c49eca96",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 17,
+        "scenario_key": "n08_retryable_recovery",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-cfb74a4c-1622-4e2f-ae9e-12d27b3c748d",
+        "recovery_of_run_id": "t01-phase1-mock-v01-run-c92aa4c0-c252-4ab5-9075-bddd33b85952",
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "0ac5c0df08939eac147bdfa1eb0e5a1dd61ba76fae3aa19c03a6609199d65051",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 18,
+        "scenario_key": "idempotent_replay",
+        "submission_actions": [
+          "CREATE_RUN",
+          "RETURN_EXISTING_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-636bdc30-e652-49b7-af57-930188339578",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "f9809a341692f27c79b12a7f100e2dcc99926dbaa24141c620c0cef8867b6171",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 19,
+        "scenario_key": "idempotency_conflict",
+        "submission_actions": [
+          "CREATE_RUN",
+          "REJECT_REQUEST"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-91c533a6-4d71-4526-9570-813efa8cc137",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "f30271e1a585e1cca5a9403ab3cd4581f5d255a33fd4ee62040ffc922bc93b0b",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 20,
+        "scenario_key": "n18_assembly_failed",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-a7dd686e-3df3-4e76-a7d4-cace8c03c995",
+        "recovery_of_run_id": null,
+        "run_status": "FAILED",
+        "canonical_envelope_sha256": "c5e2ff38a7bf0eb7b7e93f0ce8e7ed96b4511fd390e5a3fd12f3204ed4cee88f",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 21,
+        "scenario_key": "n08_upstream_timed_out",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-c8c39eac-c4a6-4808-8fd8-2347bbbb95ef",
+        "recovery_of_run_id": null,
+        "run_status": "TIMED_OUT",
+        "canonical_envelope_sha256": "0e3099bf553f9cf9988c9d0cc2105804d899c8df49cab43c5d3d87afb61fb501",
+        "status": "PASS"
+      }
+    ]
+  },
+  "debug": {
+    "role": "DEBUG",
+    "app_name": "T01_Phase1_Mock_v0.1_Debug",
+    "status": "PASS",
+    "case_count": 21,
+    "submission_count": 23,
+    "request_variant_count": 22,
+    "submitted_request_id_count": 23,
+    "dify_submission_run_count": 23,
+    "dify_finalization_run_count": 4,
+    "dify_run_count": 27,
+    "checkpoint_plan_count": 4,
+    "checkpoint_count": 16,
+    "focus_assertion_count": 44,
+    "focus_failure_count": 0,
+    "capture_sha256": {
+      "submissions_path": "980d4a9fb56fb982a7ad341b4eba12250a1d01d848945f90b19c578498aff19e",
+      "finalizations_path": "6341341c4a35cce614ec0b45afa76b78971fb7e81cdb10d0e324c556fe7b9312",
+      "driver_path": "f769ebd1809474e846d2d39345e02a83d7eb13deae8c24995dc3c5c4aa7b34fe"
+    },
+    "instance_run_mappings": [
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 1,
+        "scenario_key": "happy_provided_structure",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "dc136061-4a9a-468e-bf78-90706b120461",
+        "canonical_request_id": "t01-phase1-mock-v01-req-6720b5fa-fcde-4671-ae5a-6bfe2cd64580",
+        "canonical_run_id": "t01-phase1-mock-v01-run-ace7c503-a2c4-41df-b246-ffbbf0b5e5fb",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-fb046bc1-751e-4b25-b6d3-70eba5e90c0d",
+        "submitted_request_id": "t01-phase1-mock-v01-req-6720b5fa-fcde-4671-ae5a-6bfe2cd64580"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 2,
+        "scenario_key": "happy_no_structure_local_af3",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "fb1b159a-cd99-48cd-9f6c-b904f541f1b3",
+        "canonical_request_id": "t01-phase1-mock-v01-req-ef2e607f-e85a-4570-b4e9-4fcabb7cc812",
+        "canonical_run_id": "t01-phase1-mock-v01-run-0f327d3a-b3b8-448c-88dc-8646b6e7d431",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-30ad3d0d-562a-435d-85f7-c6c8bb412d8d",
+        "submitted_request_id": "t01-phase1-mock-v01-req-ef2e607f-e85a-4570-b4e9-4fcabb7cc812"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 3,
+        "scenario_key": "happy_no_structure_local_esmfold2",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "e5332d64-513a-4764-b187-0f7667e701ca",
+        "canonical_request_id": "t01-phase1-mock-v01-req-515b6402-76bf-42a0-8f0b-63a4fe4766cf",
+        "canonical_run_id": "t01-phase1-mock-v01-run-70915e70-d127-45fd-9758-22ab7491967b",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-343b9bce-4352-4e35-9170-e5ad30605018",
+        "submitted_request_id": "t01-phase1-mock-v01-req-515b6402-76bf-42a0-8f0b-63a4fe4766cf"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 4,
+        "scenario_key": "gate_wt_direct",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "05a5c1d5-cd39-4bbc-9e11-92d3e6dfa42d",
+        "canonical_request_id": "t01-phase1-mock-v01-req-841832bc-1576-4f9f-b7de-d0f3d9b52632",
+        "canonical_run_id": "t01-phase1-mock-v01-run-9788e96f-130b-4583-ab20-b3a6acb5add4",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-cf720047-1e85-4317-aa61-f87475a120be",
+        "submitted_request_id": "t01-phase1-mock-v01-req-841832bc-1576-4f9f-b7de-d0f3d9b52632"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 5,
+        "scenario_key": "n12_pass_cycle_2",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "5cbfc633-8d33-482c-9245-c6af489d6829",
+        "canonical_request_id": "t01-phase1-mock-v01-req-b2b04046-6766-4d7d-9454-7ee51ff370cf",
+        "canonical_run_id": "t01-phase1-mock-v01-run-876b5830-d131-4b0a-810e-5b6c7821cd1d",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-ab74bac7-32be-435e-9650-7035e04475e9",
+        "submitted_request_id": "t01-phase1-mock-v01-req-b2b04046-6766-4d7d-9454-7ee51ff370cf"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 6,
+        "scenario_key": "n12_pass_cycle_3",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "c4f81de3-7ae5-4fd6-9f14-6778287a4f55",
+        "canonical_request_id": "t01-phase1-mock-v01-req-21ade27c-3708-4fa9-9f88-f72d0c2aab57",
+        "canonical_run_id": "t01-phase1-mock-v01-run-a6388379-1dcd-420e-bd58-c28a1d350ecb",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-a9e0309e-2fa4-4a82-a542-b7ddadd5b84a",
+        "submitted_request_id": "t01-phase1-mock-v01-req-21ade27c-3708-4fa9-9f88-f72d0c2aab57"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 7,
+        "scenario_key": "n12_recalc_exhausted",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "b4d93572-ffbd-457b-adcd-90817f102190",
+        "canonical_request_id": "t01-phase1-mock-v01-req-e2407626-e14b-4900-bca6-d82c0441d836",
+        "canonical_run_id": "t01-phase1-mock-v01-run-355c5eb4-e567-4381-91ae-140817b1016d",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-2119951c-7efb-42ec-8943-f4c6e4f61888",
+        "submitted_request_id": "t01-phase1-mock-v01-req-e2407626-e14b-4900-bca6-d82c0441d836"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 8,
+        "scenario_key": "n15_wt_fallback",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "8210f52f-5977-4d59-88d3-4f0906c2aa89",
+        "canonical_request_id": "t01-phase1-mock-v01-req-31e3b06b-37c3-4a37-9f2f-47784210412d",
+        "canonical_run_id": "t01-phase1-mock-v01-run-a7ec2cfc-7e57-4d17-aeb1-7409e1d9884e",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-c8043a4a-771b-4085-85c3-001b178dc3a6",
+        "submitted_request_id": "t01-phase1-mock-v01-req-31e3b06b-37c3-4a37-9f2f-47784210412d"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 9,
+        "scenario_key": "n16_missing_expression_host",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "d5989484-9e5e-457e-ba85-53e5747d7603",
+        "canonical_request_id": "t01-phase1-mock-v01-req-ac3305fb-8e91-483e-acfe-0e3b019e36ad",
+        "canonical_run_id": "t01-phase1-mock-v01-run-61fe312e-e2c1-4c32-b4a3-35da7f9c1bed",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-eae2de35-7ad8-4da1-ba55-9516922c686b",
+        "submitted_request_id": "t01-phase1-mock-v01-req-ac3305fb-8e91-483e-acfe-0e3b019e36ad"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 10,
+        "scenario_key": "n17_not_applicable",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "b7023149-94b3-4d6c-a6e5-03a174080200",
+        "canonical_request_id": "t01-phase1-mock-v01-req-9f67cb5b-0d37-46e0-bcca-4d4173d0e626",
+        "canonical_run_id": "t01-phase1-mock-v01-run-bf3d5e98-9624-4856-9fa3-4a7b0320de60",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-0beded78-4a9a-48d9-925b-e63b858bd7a1",
+        "submitted_request_id": "t01-phase1-mock-v01-req-9f67cb5b-0d37-46e0-bcca-4d4173d0e626"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 11,
+        "scenario_key": "n16_unsupported_expression_host",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "936a08af-e8ca-47ad-acbf-cca53716d40e",
+        "canonical_request_id": "t01-phase1-mock-v01-req-cd5d616c-96f2-41e6-940d-526a5ddf2766",
+        "canonical_run_id": "t01-phase1-mock-v01-run-1e40d79d-b338-4f30-9854-d15d90149717",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-9e431d88-5fdf-4fbe-9fcb-b7dc358e58c4",
+        "submitted_request_id": "t01-phase1-mock-v01-req-cd5d616c-96f2-41e6-940d-526a5ddf2766"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 12,
+        "scenario_key": "n17_branch_failed",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "f39fc444-6eca-49aa-a129-a9762a0041cb",
+        "canonical_request_id": "t01-phase1-mock-v01-req-37335e09-bcc7-42ec-beb6-beb9c659773c",
+        "canonical_run_id": "t01-phase1-mock-v01-run-2601f36e-b276-4ca6-88ff-da5a861b7f50",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-cb1a0d26-e375-4922-8f13-ad4debe4d0d4",
+        "submitted_request_id": "t01-phase1-mock-v01-req-37335e09-bcc7-42ec-beb6-beb9c659773c"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 13,
+        "scenario_key": "n16_branch_timeout_partial",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "9d459b7a-86e1-4f47-852e-60bb2a618cdf",
+        "canonical_request_id": "t01-phase1-mock-v01-req-6b66d1da-879c-486f-87fc-c8efff6126bf",
+        "canonical_run_id": "t01-phase1-mock-v01-run-322f0852-9f8a-48c1-9d53-bab8f1fa7d70",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-11a062a9-ecd8-42a4-8e30-30d53fc19511",
+        "submitted_request_id": "t01-phase1-mock-v01-req-6b66d1da-879c-486f-87fc-c8efff6126bf"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 14,
+        "scenario_key": "n08_upstream_tool_failed",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "f9dbf546-af59-429d-acfd-c09581e4f0e1",
+        "canonical_request_id": "t01-phase1-mock-v01-req-ca8c8f19-8807-47fd-bbff-4ab712361e0e",
+        "canonical_run_id": "t01-phase1-mock-v01-run-b968b58c-3438-416e-9ca9-cd3ff632d0c8",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-19909b3f-89e4-44d0-b978-967588181346",
+        "submitted_request_id": "t01-phase1-mock-v01-req-ca8c8f19-8807-47fd-bbff-4ab712361e0e"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 15,
+        "scenario_key": "n01_local_prediction_failed_no_remote_fallback",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "8590b30a-8721-435f-9890-435a00d0c651",
+        "canonical_request_id": "t01-phase1-mock-v01-req-c0c4f64b-4a38-4b84-a055-ab6ac3208c03",
+        "canonical_run_id": "t01-phase1-mock-v01-run-6e3cea25-5ce1-46de-bcac-08ccfde04cf7",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-9e5b35bc-4d3c-41ec-9156-7fa0615b3d2a",
+        "submitted_request_id": "t01-phase1-mock-v01-req-c0c4f64b-4a38-4b84-a055-ab6ac3208c03"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 16,
+        "scenario_key": "run_cancelled_before_join",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "99b0d57e-8a6c-4b65-8443-52dccd0c5261",
+        "canonical_request_id": "t01-phase1-mock-v01-req-0d0f6f1e-cf9a-47fa-be40-f3a57d7c2a39",
+        "canonical_run_id": "t01-phase1-mock-v01-run-73c45698-2b66-4d8e-86d8-43d415daf7ef",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-087ae378-d3f4-447a-a93e-7b7f035b7d1b",
+        "submitted_request_id": "t01-phase1-mock-v01-req-0d0f6f1e-cf9a-47fa-be40-f3a57d7c2a39"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 17,
+        "scenario_key": "n08_retryable_recovery",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "98aba9b1-3b8e-4318-9316-3a0b5178e0ec",
+        "canonical_request_id": "t01-phase1-mock-v01-req-79430e9f-4c65-479a-aa82-0269fb31a097",
+        "canonical_run_id": "t01-phase1-mock-v01-run-c92aa4c0-c252-4ab5-9075-bddd33b85952",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-798c8c30-c53d-493c-923a-6660f942e375",
+        "submitted_request_id": "t01-phase1-mock-v01-req-79430e9f-4c65-479a-aa82-0269fb31a097"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 18,
+        "scenario_key": "idempotent_replay",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "2b44ce82-7ad2-4c4d-8292-3f23550ee608",
+        "canonical_request_id": "t01-phase1-mock-v01-req-45ca702b-a320-4973-9563-f90038326123",
+        "canonical_run_id": "t01-phase1-mock-v01-run-636bdc30-e652-49b7-af57-930188339578",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-40aec11b-a7b9-4e28-9231-46e04fa943c7",
+        "submitted_request_id": "t01-phase1-mock-v01-req-45ca702b-a320-4973-9563-f90038326123"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 19,
+        "scenario_key": "idempotent_replay",
+        "submission_key": "submit_2",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "8ad550d0-5f74-46a2-8e97-f3a97ccf5cb7",
+        "canonical_request_id": "t01-phase1-mock-v01-req-45ca702b-a320-4973-9563-f90038326123",
+        "canonical_run_id": "t01-phase1-mock-v01-run-636bdc30-e652-49b7-af57-930188339578",
+        "submission_action": "RETURN_EXISTING_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-40aec11b-a7b9-4e28-9231-46e04fa943c7",
+        "submitted_request_id": "t01-phase1-mock-v01-req-b0103e47-4c04-4abb-acc6-ebbd56b81ca6"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 20,
+        "scenario_key": "idempotency_conflict",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "17d3baad-95d1-4e5f-9624-57de4a07b457",
+        "canonical_request_id": "t01-phase1-mock-v01-req-8bdb9f8c-0045-4329-b824-f8261ddc057c",
+        "canonical_run_id": "t01-phase1-mock-v01-run-91c533a6-4d71-4526-9570-813efa8cc137",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-43e3405e-67a9-493b-9d8d-400a89a7fbd2",
+        "submitted_request_id": "t01-phase1-mock-v01-req-8bdb9f8c-0045-4329-b824-f8261ddc057c"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 21,
+        "scenario_key": "idempotency_conflict",
+        "submission_key": "submit_2",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "a338c4b6-4d9e-45fa-a1fb-12950ba4ab53",
+        "canonical_request_id": "t01-phase1-mock-v01-req-025d4a7f-9a45-436f-8667-acb8df5b8f58",
+        "canonical_run_id": null,
+        "submission_action": "REJECT_REQUEST",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": null,
+        "submitted_request_id": "t01-phase1-mock-v01-req-025d4a7f-9a45-436f-8667-acb8df5b8f58"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 22,
+        "scenario_key": "n18_assembly_failed",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "44455069-7306-4eff-810f-5afeff028bef",
+        "canonical_request_id": "t01-phase1-mock-v01-req-d192139f-7ca1-4c0e-804f-6e1d9e7a4b69",
+        "canonical_run_id": "t01-phase1-mock-v01-run-a7dd686e-3df3-4e76-a7d4-cace8c03c995",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-9a6e6d2a-d8af-4968-bc36-7aabd45206b8",
+        "submitted_request_id": "t01-phase1-mock-v01-req-d192139f-7ca1-4c0e-804f-6e1d9e7a4b69"
+      },
+      {
+        "capture_kind": "SUBMISSION",
+        "ordinal": 23,
+        "scenario_key": "n08_upstream_timed_out",
+        "submission_key": "submit_1",
+        "operation": "SUBMIT",
+        "dify_workflow_run_id": "8cece47e-d9af-4cf3-85c5-9e0848fe6e4c",
+        "canonical_request_id": "t01-phase1-mock-v01-req-d2946fb9-05b9-472c-86e4-40e71dd60395",
+        "canonical_run_id": "t01-phase1-mock-v01-run-c8c39eac-c4a6-4808-8fd8-2347bbbb95ef",
+        "submission_action": "CREATE_RUN",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-a6961782-33f7-499e-b79a-68758460cb79",
+        "submitted_request_id": "t01-phase1-mock-v01-req-d2946fb9-05b9-472c-86e4-40e71dd60395"
+      },
+      {
+        "capture_kind": "FINALIZATION",
+        "ordinal": 1,
+        "scenario_key": "n16_branch_timeout_partial",
+        "submission_key": "checkpoint_finalize_observation",
+        "operation": "FINALIZE_EXISTING",
+        "dify_workflow_run_id": "c7c37767-d227-4c03-bd37-afd2ef1b48ac",
+        "canonical_request_id": "t01-phase1-mock-v01-req-6b66d1da-879c-486f-87fc-c8efff6126bf",
+        "canonical_run_id": "t01-phase1-mock-v01-run-322f0852-9f8a-48c1-9d53-bab8f1fa7d70",
+        "submission_action": "FINALIZE_EXISTING",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-7c0c049a-7be1-49c4-bf84-513271617f2b",
+        "submitted_request_id": null
+      },
+      {
+        "capture_kind": "FINALIZATION",
+        "ordinal": 2,
+        "scenario_key": "run_cancelled_before_join",
+        "submission_key": "checkpoint_finalize_observation",
+        "operation": "FINALIZE_EXISTING",
+        "dify_workflow_run_id": "a14f8820-8221-4139-8ff7-0f4f84bcef19",
+        "canonical_request_id": "t01-phase1-mock-v01-req-0d0f6f1e-cf9a-47fa-be40-f3a57d7c2a39",
+        "canonical_run_id": "t01-phase1-mock-v01-run-73c45698-2b66-4d8e-86d8-43d415daf7ef",
+        "submission_action": "FINALIZE_EXISTING",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-e61a2778-b33a-46a9-826d-e192459568f0",
+        "submitted_request_id": null
+      },
+      {
+        "capture_kind": "FINALIZATION",
+        "ordinal": 3,
+        "scenario_key": "n08_retryable_recovery",
+        "submission_key": "checkpoint_finalize_observation",
+        "operation": "FINALIZE_EXISTING",
+        "dify_workflow_run_id": "69149600-534d-46fb-bd53-7320f9ae4cfd",
+        "canonical_request_id": "t01-phase1-mock-v01-req-79430e9f-4c65-479a-aa82-0269fb31a097",
+        "canonical_run_id": "t01-phase1-mock-v01-run-cfb74a4c-1622-4e2f-ae9e-12d27b3c748d",
+        "submission_action": "FINALIZE_EXISTING",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-17b6046f-c99b-481e-80db-ca08c12a8f53",
+        "submitted_request_id": null
+      },
+      {
+        "capture_kind": "FINALIZATION",
+        "ordinal": 4,
+        "scenario_key": "n08_upstream_timed_out",
+        "submission_key": "checkpoint_finalize_observation",
+        "operation": "FINALIZE_EXISTING",
+        "dify_workflow_run_id": "d6659515-6176-4ecb-8a9c-f7aa147a0657",
+        "canonical_request_id": "t01-phase1-mock-v01-req-d2946fb9-05b9-472c-86e4-40e71dd60395",
+        "canonical_run_id": "t01-phase1-mock-v01-run-c8c39eac-c4a6-4808-8fd8-2347bbbb95ef",
+        "submission_action": "FINALIZE_EXISTING",
+        "dify_status": "succeeded",
+        "canonical_envelope_id": "t01-phase1-mock-v01-env-8f1ddf44-5ea1-4238-a349-90bbb390dc20",
+        "submitted_request_id": null
+      }
+    ],
+    "focus_assertions": [
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.001.focus.01",
+        "scenario_key": "happy_provided_structure",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.001.focus.02",
+        "scenario_key": "happy_provided_structure",
+        "operator": "JOIN_PRECONDITION",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.002.focus.01",
+        "scenario_key": "happy_no_structure_local_af3",
+        "operator": "CONTAINS_NONE",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.002.focus.02",
+        "scenario_key": "happy_no_structure_local_af3",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.003.focus.01",
+        "scenario_key": "happy_no_structure_local_esmfold2",
+        "operator": "CONTAINS_NONE",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.003.focus.02",
+        "scenario_key": "happy_no_structure_local_esmfold2",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.004.focus.01",
+        "scenario_key": "gate_wt_direct",
+        "operator": "NODE_STATUS_ALL",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.004.focus.02",
+        "scenario_key": "gate_wt_direct",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.005.focus.01",
+        "scenario_key": "n12_pass_cycle_2",
+        "operator": "CONTROL_DECISION_SEQUENCE_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.005.focus.02",
+        "scenario_key": "n12_pass_cycle_2",
+        "operator": "NODE_ATTEMPT_FIELD_SEQUENCE_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.006.focus.01",
+        "scenario_key": "n12_pass_cycle_3",
+        "operator": "CONTROL_DECISION_SEQUENCE_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.006.focus.02",
+        "scenario_key": "n12_pass_cycle_3",
+        "operator": "NODE_ATTEMPT_FIELD_SEQUENCE_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.007.focus.01",
+        "scenario_key": "n12_recalc_exhausted",
+        "operator": "NODE_ATTEMPT_COUNT_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.007.focus.02",
+        "scenario_key": "n12_recalc_exhausted",
+        "operator": "CONTAINS_NONE",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.008.focus.01",
+        "scenario_key": "n15_wt_fallback",
+        "operator": "EDGE_PRESENT",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.008.focus.02",
+        "scenario_key": "n15_wt_fallback",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.009.focus.01",
+        "scenario_key": "n16_missing_expression_host",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.009.focus.02",
+        "scenario_key": "n16_missing_expression_host",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.010.focus.01",
+        "scenario_key": "n17_not_applicable",
+        "operator": "CONTAINS_NONE",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.010.focus.02",
+        "scenario_key": "n17_not_applicable",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.011.focus.01",
+        "scenario_key": "n16_unsupported_expression_host",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.011.focus.02",
+        "scenario_key": "n16_unsupported_expression_host",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.012.focus.01",
+        "scenario_key": "n17_branch_failed",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.012.focus.02",
+        "scenario_key": "n17_branch_failed",
+        "operator": "EDGE_ORDERED_SUBSEQUENCE",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.013.focus.01",
+        "scenario_key": "n16_branch_timeout_partial",
+        "operator": "CONTAINS_NONE",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.013.focus.02",
+        "scenario_key": "n16_branch_timeout_partial",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.014.focus.01",
+        "scenario_key": "n08_upstream_tool_failed",
+        "operator": "EDGE_ABSENT",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.014.focus.02",
+        "scenario_key": "n08_upstream_tool_failed",
+        "operator": "NO_CONTROL_AFTER_NODE",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.015.focus.01",
+        "scenario_key": "n01_local_prediction_failed_no_remote_fallback",
+        "operator": "EDGE_ABSENT",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.015.focus.02",
+        "scenario_key": "n01_local_prediction_failed_no_remote_fallback",
+        "operator": "CONTAINS_NONE",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.016.focus.01",
+        "scenario_key": "run_cancelled_before_join",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.016.focus.02",
+        "scenario_key": "run_cancelled_before_join",
+        "operator": "EDGE_ABSENT",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.017.focus.01",
+        "scenario_key": "n08_retryable_recovery",
+        "operator": "NODE_ATTEMPT_FIELD_SEQUENCE_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.017.focus.02",
+        "scenario_key": "n08_retryable_recovery",
+        "operator": "NODE_ATTEMPT_FIELD_SEQUENCE_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.017.focus.03",
+        "scenario_key": "n08_retryable_recovery",
+        "operator": "COUNT_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.018.focus.01",
+        "scenario_key": "idempotent_replay",
+        "operator": "SUBMISSION_ACTION_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.018.focus.02",
+        "scenario_key": "idempotent_replay",
+        "operator": "EMISSION_COUNT_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.019.focus.01",
+        "scenario_key": "idempotency_conflict",
+        "operator": "SUBMISSION_ACTION_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.019.focus.02",
+        "scenario_key": "idempotency_conflict",
+        "operator": "ORIGINAL_RUN_UNCHANGED",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.020.focus.01",
+        "scenario_key": "n18_assembly_failed",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.020.focus.02",
+        "scenario_key": "n18_assembly_failed",
+        "operator": "NO_STUB_PROMOTION",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.021.focus.01",
+        "scenario_key": "n08_upstream_timed_out",
+        "operator": "EDGE_ABSENT",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.021.focus.02",
+        "scenario_key": "n08_upstream_timed_out",
+        "operator": "FIELD_EQUALS",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      },
+      {
+        "assertion_id": "t01_phase1_mock_v01.acceptance.case.021.focus.03",
+        "scenario_key": "n08_upstream_timed_out",
+        "operator": "NO_CONTROL_AFTER_NODE",
+        "severity": "BLOCKER",
+        "status": "PASS",
+        "detail": null
+      }
+    ],
+    "case_results": [
+      {
+        "ordinal": 1,
+        "scenario_key": "happy_provided_structure",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-ace7c503-a2c4-41df-b246-ffbbf0b5e5fb",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "e636f4a6678fec1e663b428f75c097cb6c2d3df9c50362ac56d647216165d3b5",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 2,
+        "scenario_key": "happy_no_structure_local_af3",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-0f327d3a-b3b8-448c-88dc-8646b6e7d431",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "f0a9621bdcb7ba6c6c2c9cf8bc0c32d737a5585d71e0748efb69aee1a680c4be",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 3,
+        "scenario_key": "happy_no_structure_local_esmfold2",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-70915e70-d127-45fd-9758-22ab7491967b",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "b347a518e4290d8660f6fa61c9e1bbfb17fd3112718b6604f66a597efc6ec455",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 4,
+        "scenario_key": "gate_wt_direct",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-9788e96f-130b-4583-ab20-b3a6acb5add4",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "8aed3250abf0363492559cd10cb1b3c56eec56be55e700c3fd1aabd723a18d0b",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 5,
+        "scenario_key": "n12_pass_cycle_2",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-876b5830-d131-4b0a-810e-5b6c7821cd1d",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "780cd827146b3d04fd38d77eed526c778d871f18dbb4fb62c176ad7423369045",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 6,
+        "scenario_key": "n12_pass_cycle_3",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-a6388379-1dcd-420e-bd58-c28a1d350ecb",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "6a1eba2da11971935d72534ce8f946e09bb5434d58676e9155215372ea695168",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 7,
+        "scenario_key": "n12_recalc_exhausted",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-355c5eb4-e567-4381-91ae-140817b1016d",
+        "recovery_of_run_id": null,
+        "run_status": "FAILED",
+        "canonical_envelope_sha256": "b4a51099fcbd76bbf5c3b21407910653e115bc87b8ca597a1309e3816b04a896",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 8,
+        "scenario_key": "n15_wt_fallback",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-a7ec2cfc-7e57-4d17-aeb1-7409e1d9884e",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "476cdd28726925fb4bb44dd36550a4664e11479d9ff92ccb9258060172b9e908",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 9,
+        "scenario_key": "n16_missing_expression_host",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-61fe312e-e2c1-4c32-b4a3-35da7f9c1bed",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "6ff087febb670186a10f77822c557d14f736c37121b1e9683bfa92ef9bc0fff3",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 10,
+        "scenario_key": "n17_not_applicable",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-bf3d5e98-9624-4856-9fa3-4a7b0320de60",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "bd494bee5a6234dc8471685c60113e9303839c8a1bcc08b56dae7a1807cce2db",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 11,
+        "scenario_key": "n16_unsupported_expression_host",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-1e40d79d-b338-4f30-9854-d15d90149717",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED_WITH_GAPS",
+        "canonical_envelope_sha256": "261b02e16850386fffea18061be4571ba2df36011f58e7315c68a60420efddb7",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 12,
+        "scenario_key": "n17_branch_failed",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-2601f36e-b276-4ca6-88ff-da5a861b7f50",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED_WITH_GAPS",
+        "canonical_envelope_sha256": "6914a9550d26bf3140c901e18c5ebb35b098e6f2bc9cfe9724a26c617830c56b",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 13,
+        "scenario_key": "n16_branch_timeout_partial",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-322f0852-9f8a-48c1-9d53-bab8f1fa7d70",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED_WITH_GAPS",
+        "canonical_envelope_sha256": "85dd36c78c4b2a381c750ab68857f415d0ecfd0e982b3b82b1b3c58da9fe0a7d",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 14,
+        "scenario_key": "n08_upstream_tool_failed",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-b968b58c-3438-416e-9ca9-cd3ff632d0c8",
+        "recovery_of_run_id": null,
+        "run_status": "FAILED",
+        "canonical_envelope_sha256": "d82f409f68abd0d38f738669d44aab9b37c33b327e3e3bab509b4c45586e2e22",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 15,
+        "scenario_key": "n01_local_prediction_failed_no_remote_fallback",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-6e3cea25-5ce1-46de-bcac-08ccfde04cf7",
+        "recovery_of_run_id": null,
+        "run_status": "FAILED",
+        "canonical_envelope_sha256": "8e4b5db660c326c560e9d61ee1e90b13e69daf1362bc578cb5a62b2a98d63735",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 16,
+        "scenario_key": "run_cancelled_before_join",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-73c45698-2b66-4d8e-86d8-43d415daf7ef",
+        "recovery_of_run_id": null,
+        "run_status": "CANCELLED",
+        "canonical_envelope_sha256": "3a3e3681eb3daf1f0bb0a48e45e2ed674f81d94f612719012cc90ad3c49eca96",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 17,
+        "scenario_key": "n08_retryable_recovery",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-cfb74a4c-1622-4e2f-ae9e-12d27b3c748d",
+        "recovery_of_run_id": "t01-phase1-mock-v01-run-c92aa4c0-c252-4ab5-9075-bddd33b85952",
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "0ac5c0df08939eac147bdfa1eb0e5a1dd61ba76fae3aa19c03a6609199d65051",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 18,
+        "scenario_key": "idempotent_replay",
+        "submission_actions": [
+          "CREATE_RUN",
+          "RETURN_EXISTING_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-636bdc30-e652-49b7-af57-930188339578",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "f9809a341692f27c79b12a7f100e2dcc99926dbaa24141c620c0cef8867b6171",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 19,
+        "scenario_key": "idempotency_conflict",
+        "submission_actions": [
+          "CREATE_RUN",
+          "REJECT_REQUEST"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-91c533a6-4d71-4526-9570-813efa8cc137",
+        "recovery_of_run_id": null,
+        "run_status": "COMPLETED",
+        "canonical_envelope_sha256": "f30271e1a585e1cca5a9403ab3cd4581f5d255a33fd4ee62040ffc922bc93b0b",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 20,
+        "scenario_key": "n18_assembly_failed",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-a7dd686e-3df3-4e76-a7d4-cace8c03c995",
+        "recovery_of_run_id": null,
+        "run_status": "FAILED",
+        "canonical_envelope_sha256": "c5e2ff38a7bf0eb7b7e93f0ce8e7ed96b4511fd390e5a3fd12f3204ed4cee88f",
+        "status": "PASS"
+      },
+      {
+        "ordinal": 21,
+        "scenario_key": "n08_upstream_timed_out",
+        "submission_actions": [
+          "CREATE_RUN"
+        ],
+        "final_run_id": "t01-phase1-mock-v01-run-c8c39eac-c4a6-4808-8fd8-2347bbbb95ef",
+        "recovery_of_run_id": null,
+        "run_status": "TIMED_OUT",
+        "canonical_envelope_sha256": "0e3099bf553f9cf9988c9d0cc2105804d899c8df49cab43c5d3d87afb61fb501",
+        "status": "PASS"
+      }
+    ]
+  },
+  "global_assertion_count": 12,
+  "global_assertions": [
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.004",
+      "operator": "JSON_SCHEMA_VALID",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.008",
+      "operator": "REFERENCES_RESOLVE",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.009",
+      "operator": "EXACT_CATALOG_PROJECTION",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.010",
+      "operator": "FIELD_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.011",
+      "operator": "SET_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.012",
+      "operator": "NO_SCIENTIFIC_VALUES",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.013",
+      "operator": "REFERENCES_RESOLVE",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.014",
+      "operator": "MATCHES_REGEX",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.015",
+      "operator": "SET_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.016",
+      "operator": "NORMALIZED_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.017",
+      "operator": "CONTAINS_NONE",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.018",
+      "operator": "COUNT_EQUALS",
+      "severity": "BLOCKER",
+      "status": "PASS",
+      "detail": null
+    }
+  ],
+  "coverage_gate_count": 10,
+  "coverage_gate_failure_count": 0,
+  "coverage_gates": [
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.happy_and_local_entry",
+      "category": "NORMAL_AND_LOCAL_ENTRY",
+      "required_scenario_keys": [
+        "happy_provided_structure",
+        "happy_no_structure_local_af3",
+        "happy_no_structure_local_esmfold2"
+      ],
+      "minimum_case_count": 3,
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.gate_wt",
+      "category": "GATE_AND_WT_DIRECT",
+      "required_scenario_keys": [
+        "gate_wt_direct"
+      ],
+      "minimum_case_count": 1,
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.n12_recalc",
+      "category": "N12_CONTROLLED_RECALC",
+      "required_scenario_keys": [
+        "n12_pass_cycle_2",
+        "n12_pass_cycle_3",
+        "n12_recalc_exhausted"
+      ],
+      "minimum_case_count": 3,
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.n15_fallback",
+      "category": "N15_WT_FALLBACK",
+      "required_scenario_keys": [
+        "n15_wt_fallback"
+      ],
+      "minimum_case_count": 1,
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.n16_n17_join",
+      "category": "CONDITION_AND_TOLERANT_JOIN",
+      "required_scenario_keys": [
+        "n16_missing_expression_host",
+        "n17_not_applicable",
+        "n16_unsupported_expression_host",
+        "n17_branch_failed",
+        "n16_branch_timeout_partial"
+      ],
+      "minimum_case_count": 5,
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.upstream_terminal",
+      "category": "UPSTREAM_FAILURE_AND_TIMEOUT",
+      "required_scenario_keys": [
+        "n08_upstream_tool_failed",
+        "n01_local_prediction_failed_no_remote_fallback",
+        "n08_upstream_timed_out"
+      ],
+      "minimum_case_count": 3,
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.cancel_recovery",
+      "category": "CANCEL_AND_RECOVERY",
+      "required_scenario_keys": [
+        "run_cancelled_before_join",
+        "n08_retryable_recovery"
+      ],
+      "minimum_case_count": 2,
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.idempotency",
+      "category": "IDEMPOTENT_REPLAY_AND_CONFLICT",
+      "required_scenario_keys": [
+        "idempotent_replay",
+        "idempotency_conflict"
+      ],
+      "minimum_case_count": 2,
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.n18_failure",
+      "category": "N18_ASSEMBLY_FAILURE",
+      "required_scenario_keys": [
+        "n18_assembly_failed"
+      ],
+      "minimum_case_count": 1,
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "gate_id": "t01_phase1_mock_v01.coverage.exclusion_and_isolation",
+      "category": "OFFLINE_EXCLUSIONS_AND_LEGACY_ISOLATION",
+      "required_scenario_keys": [
+        "happy_no_structure_local_af3",
+        "happy_no_structure_local_esmfold2",
+        "n01_local_prediction_failed_no_remote_fallback"
+      ],
+      "minimum_case_count": 3,
+      "status": "PASS",
+      "detail": null
+    }
+  ],
+  "parity": {
+    "stage": "M4_MAIN_DEBUG_PARITY",
+    "status": "PASS",
+    "case_count": 21,
+    "global_016_status": "PASS",
+    "failure_count": 0,
+    "results": [
+      {
+        "scenario_key": "happy_provided_structure",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "e636f4a6678fec1e663b428f75c097cb6c2d3df9c50362ac56d647216165d3b5",
+        "debug_sha256": "e636f4a6678fec1e663b428f75c097cb6c2d3df9c50362ac56d647216165d3b5"
+      },
+      {
+        "scenario_key": "happy_no_structure_local_af3",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "f0a9621bdcb7ba6c6c2c9cf8bc0c32d737a5585d71e0748efb69aee1a680c4be",
+        "debug_sha256": "f0a9621bdcb7ba6c6c2c9cf8bc0c32d737a5585d71e0748efb69aee1a680c4be"
+      },
+      {
+        "scenario_key": "happy_no_structure_local_esmfold2",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "b347a518e4290d8660f6fa61c9e1bbfb17fd3112718b6604f66a597efc6ec455",
+        "debug_sha256": "b347a518e4290d8660f6fa61c9e1bbfb17fd3112718b6604f66a597efc6ec455"
+      },
+      {
+        "scenario_key": "gate_wt_direct",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "8aed3250abf0363492559cd10cb1b3c56eec56be55e700c3fd1aabd723a18d0b",
+        "debug_sha256": "8aed3250abf0363492559cd10cb1b3c56eec56be55e700c3fd1aabd723a18d0b"
+      },
+      {
+        "scenario_key": "n12_pass_cycle_2",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "780cd827146b3d04fd38d77eed526c778d871f18dbb4fb62c176ad7423369045",
+        "debug_sha256": "780cd827146b3d04fd38d77eed526c778d871f18dbb4fb62c176ad7423369045"
+      },
+      {
+        "scenario_key": "n12_pass_cycle_3",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "6a1eba2da11971935d72534ce8f946e09bb5434d58676e9155215372ea695168",
+        "debug_sha256": "6a1eba2da11971935d72534ce8f946e09bb5434d58676e9155215372ea695168"
+      },
+      {
+        "scenario_key": "n12_recalc_exhausted",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "b4a51099fcbd76bbf5c3b21407910653e115bc87b8ca597a1309e3816b04a896",
+        "debug_sha256": "b4a51099fcbd76bbf5c3b21407910653e115bc87b8ca597a1309e3816b04a896"
+      },
+      {
+        "scenario_key": "n15_wt_fallback",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "476cdd28726925fb4bb44dd36550a4664e11479d9ff92ccb9258060172b9e908",
+        "debug_sha256": "476cdd28726925fb4bb44dd36550a4664e11479d9ff92ccb9258060172b9e908"
+      },
+      {
+        "scenario_key": "n16_missing_expression_host",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "6ff087febb670186a10f77822c557d14f736c37121b1e9683bfa92ef9bc0fff3",
+        "debug_sha256": "6ff087febb670186a10f77822c557d14f736c37121b1e9683bfa92ef9bc0fff3"
+      },
+      {
+        "scenario_key": "n17_not_applicable",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "bd494bee5a6234dc8471685c60113e9303839c8a1bcc08b56dae7a1807cce2db",
+        "debug_sha256": "bd494bee5a6234dc8471685c60113e9303839c8a1bcc08b56dae7a1807cce2db"
+      },
+      {
+        "scenario_key": "n16_unsupported_expression_host",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "261b02e16850386fffea18061be4571ba2df36011f58e7315c68a60420efddb7",
+        "debug_sha256": "261b02e16850386fffea18061be4571ba2df36011f58e7315c68a60420efddb7"
+      },
+      {
+        "scenario_key": "n17_branch_failed",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "6914a9550d26bf3140c901e18c5ebb35b098e6f2bc9cfe9724a26c617830c56b",
+        "debug_sha256": "6914a9550d26bf3140c901e18c5ebb35b098e6f2bc9cfe9724a26c617830c56b"
+      },
+      {
+        "scenario_key": "n16_branch_timeout_partial",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "85dd36c78c4b2a381c750ab68857f415d0ecfd0e982b3b82b1b3c58da9fe0a7d",
+        "debug_sha256": "85dd36c78c4b2a381c750ab68857f415d0ecfd0e982b3b82b1b3c58da9fe0a7d"
+      },
+      {
+        "scenario_key": "n08_upstream_tool_failed",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "d82f409f68abd0d38f738669d44aab9b37c33b327e3e3bab509b4c45586e2e22",
+        "debug_sha256": "d82f409f68abd0d38f738669d44aab9b37c33b327e3e3bab509b4c45586e2e22"
+      },
+      {
+        "scenario_key": "n01_local_prediction_failed_no_remote_fallback",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "8e4b5db660c326c560e9d61ee1e90b13e69daf1362bc578cb5a62b2a98d63735",
+        "debug_sha256": "8e4b5db660c326c560e9d61ee1e90b13e69daf1362bc578cb5a62b2a98d63735"
+      },
+      {
+        "scenario_key": "run_cancelled_before_join",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "3a3e3681eb3daf1f0bb0a48e45e2ed674f81d94f612719012cc90ad3c49eca96",
+        "debug_sha256": "3a3e3681eb3daf1f0bb0a48e45e2ed674f81d94f612719012cc90ad3c49eca96"
+      },
+      {
+        "scenario_key": "n08_retryable_recovery",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "0ac5c0df08939eac147bdfa1eb0e5a1dd61ba76fae3aa19c03a6609199d65051",
+        "debug_sha256": "0ac5c0df08939eac147bdfa1eb0e5a1dd61ba76fae3aa19c03a6609199d65051"
+      },
+      {
+        "scenario_key": "idempotent_replay",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "f9809a341692f27c79b12a7f100e2dcc99926dbaa24141c620c0cef8867b6171",
+        "debug_sha256": "f9809a341692f27c79b12a7f100e2dcc99926dbaa24141c620c0cef8867b6171"
+      },
+      {
+        "scenario_key": "idempotency_conflict",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "f30271e1a585e1cca5a9403ab3cd4581f5d255a33fd4ee62040ffc922bc93b0b",
+        "debug_sha256": "f30271e1a585e1cca5a9403ab3cd4581f5d255a33fd4ee62040ffc922bc93b0b"
+      },
+      {
+        "scenario_key": "n18_assembly_failed",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "c5e2ff38a7bf0eb7b7e93f0ce8e7ed96b4511fd390e5a3fd12f3204ed4cee88f",
+        "debug_sha256": "c5e2ff38a7bf0eb7b7e93f0ce8e7ed96b4511fd390e5a3fd12f3204ed4cee88f"
+      },
+      {
+        "scenario_key": "n08_upstream_timed_out",
+        "status": "PASS",
+        "first_difference": null,
+        "main_sha256": "0e3099bf553f9cf9988c9d0cc2105804d899c8df49cab43c5d3d87afb61fb501",
+        "debug_sha256": "0e3099bf553f9cf9988c9d0cc2105804d899c8df49cab43c5d3d87afb61fb501"
+      }
+    ]
+  },
+  "scientific_execution_count": 0,
+  "scientific_network_request_count": 0,
+  "legacy_implementation_reuse_count": 0,
+  "himat_backend_access_count": 0,
+  "secret_finding_count": 0,
+  "blocker_failure_count": 0
+}

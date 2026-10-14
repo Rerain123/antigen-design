@@ -1,0 +1,102 @@
+{
+  "execution.json": {
+    "state": "running",
+    "started_at": null,
+    "finished_at": null,
+    "pid": null,
+    "returncode": null,
+    "stopped_confirmed": false,
+    "error": null,
+    "diagnostic": null
+  },
+  "receipt_keys": [
+    "backend",
+    "binding",
+    "execution_id",
+    "exit_code",
+    "outputs",
+    "process_identity",
+    "process_name",
+    "request_sha256",
+    "scientific_signoff",
+    "state",
+    "stopped_confirmed",
+    "usable_for_pipeline",
+    "version"
+  ],
+  "output/stdout.txt": "ESMFOLD2_PARAMETERS_STRICTLY_LOADED missing=0 unexpected=0\n🚨 No checkpoint found for ESMCForSequenceClassification.forward. Please add a `checkpoint` arg to `auto_docstring` or add one in ESMCConfig's docstring\n🚨 No checkpoint found for ESMCForTokenClassification.forward. Please add a `checkpoint` arg to `auto_docstring` or add one in ESMCConfig's docstring\nESMC_KEY_MAPPING_VERIFIED 802 1042\n",
+  "output/stderr.txt": "[HAMI-core Msg(455:125660364965056:libvgpu.c:832)]: Initializing.....\n[HAMI-core Warn(455:125660364965056:multiprocess_memory_limit.c:1247)]: CUDA_DEVICE_MEMORY_SHARED_CACHE not set and POD_UID/CONTAINER_NAME unavailable, using default: /tmp/cudevshr.cache\n[HAMI-core Msg(455:125660364965056:libvgpu.c:868)]: Initialized\nESMC: transformer_engine is not installed; falling back to pure-PyTorch LayerNorm+Linear / LayerNorm+MLP. Outputs will differ numerically — measured on the unnormalized residual stream (before the final LayerNorm), ~O(10) max-diff in fp32 and ~O(100) in bf16; after the final LayerNorm these shrink to a few ULP and perplexity stays within rounding noise. Install with `pip install transformer-engine[pytorch]` to enable fused fp32-reduction LayerNorm.\nESMC: neither xformers nor flash-attn is installed; falling back to PyTorch ``F.scaled_dot_product_attention``. The attention reduction order in bf16 differs from a fused kernel by ~1 bf16 ULP per attention block; compounded across the 80-block stack this reaches ~O(100) max-diff on the unnormalized residual stream. Install xformers (preferred) with `pip install xformers` for a fused attention kernel.\nESMC: flash-attn rotary kernel not installed; falling back to pure-PyTorch RoPE. For faster GPU inference run `pip install flash-attn`.\n",
+  "files": [
+    {
+      "path": "request.json",
+      "size": 1535,
+      "mtime": 1791601853.642396
+    },
+    {
+      "path": "execution.json",
+      "size": 709,
+      "mtime": 1791601853.8611574
+    },
+    {
+      "path": "output/executor-observation.json",
+      "size": 884,
+      "mtime": 1791601854.056147
+    },
+    {
+      "path": "output/stdout.txt",
+      "size": 401,
+      "mtime": 1791602116.682415
+    },
+    {
+      "path": "output/stderr.txt",
+      "size": 1317,
+      "mtime": 1791602116.2684367
+    },
+    {
+      "path": "output/native/native-request.json",
+      "size": 620,
+      "mtime": 1791601854.7546163
+    },
+    {
+      "path": "work/tmp/cudevshr.cache",
+      "size": 2008953,
+      "mtime": 1791602105.5919962
+    },
+    {
+      "path": "work/tmp/triton/5DKVU5C7LWHMYC6P2MQJTHFMVQ37Y3FQL5WCV5PTML6S34B2QEQQ/cuda_utils.so",
+      "size": 26408,
+      "mtime": 1791602115.4903872
+    },
+    {
+      "path": "work/tmp/tmpn526ir3l/_remote_module_non_scriptable.py",
+      "size": 2355,
+      "mtime": 1791602113.8919666
+    },
+    {
+      "path": "input/binding.json",
+      "size": 634,
+      "mtime": 1791601853.6313307
+    },
+    {
+      "path": "input/input.fasta",
+      "size": 307,
+      "mtime": 1791601853.6352727
+    },
+    {
+      "path": "input/input.json",
+      "size": 353,
+      "mtime": 1791601853.6386316
+    }
+  ],
+  "gpu": {
+    "returncode": 0,
+    "stdout": "NVIDIA A100-SXM4-40GB, 40960 MiB, 0 MiB, 2 %\n",
+    "stderr": "[HAMI-core Msg(476:136923298639616:multiprocess_memory_limit.c:862)]: Cleanup on exit for PID 476\n[HAMI-core Msg(476:136923298639616:multiprocess_memory_limit.c:898)]: Exit cleanup complete for PID 476\n"
+  },
+  "processes": {
+    "returncode": 0,
+    "stdout": "    PID     ELAPSED %CPU %MEM COMMAND\n      1       14:06  3.7  0.0 python3.11\n    455       04:42 31.5  3.0 python\n    470       00:00 81.2  0.0 python3.11\n    478       00:00  0.0  0.0 ps\n",
+    "stderr": ""
+  },
+  "checked_at": "2026-10-10T03:15:36.129065+00:00"
+}

@@ -1,0 +1,36 @@
+{
+  "exchange_id": "p0-s07-discovery-20260901-a--blast--database-integrity-full-attempt-03",
+  "classification": "discovery_evidence",
+  "production_deployment_status": "NOT_DEPLOYED",
+  "started_at": "2026-09-01T03:34:51.679465Z",
+  "finished_at": "2026-09-01T03:34:56.741407Z",
+  "duration_ms": 5062,
+  "command": [
+    "P:\\var\\discovery-tools\\ncbi-blast-2.17.0\\ncbi-blast-2.17.0+\\bin\\blastdbcheck.exe",
+    "-db",
+    "P:\\var\\discovery-data\\wwpdb-20260822\\blastdb\\pdb_seqres_protein",
+    "-dbtype",
+    "prot",
+    "-full",
+    "-verbosity",
+    "2"
+  ],
+  "executable": {
+    "name": "blastdbcheck.exe",
+    "size_bytes": 10508288,
+    "sha256": "2c9c59248365f6348a17772639cffb193ad00ba0a8256441af1aff8a2bd1aa4c"
+  },
+  "timeout_seconds": 3600,
+  "timed_out": false,
+  "exit_code": 1,
+  "stdout": {
+    "file": "stdout.txt",
+    "size_bytes": 460,
+    "sha256": "f1b87b83650041aeb35602de0a5cf4e9c4ee67510a4b9e4dab8adc5e36dc640c"
+  },
+  "stderr": {
+    "file": "stderr.txt",
+    "size_bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

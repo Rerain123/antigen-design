@@ -1,0 +1,119 @@
+{
+  "deployment": {
+    "generation": 148,
+    "source": "06f01c313e11fc3ed93406c00b26e047799f37a71d73976ecb203f331f03f3e2"
+  },
+  "worker-config": {
+    "spools": [
+      {
+        "config": "/etc/t01/gpu.worker.json",
+        "root": "/var/lib/t01/resident/gpu"
+      },
+      {
+        "config": "/etc/t01/esmfold2.worker.json",
+        "root": "/var/lib/t01/resident/esmfold2"
+      },
+      {
+        "config": "/etc/t01/af3.worker.json",
+        "root": "/var/lib/t01/resident/af3"
+      }
+    ],
+    "state_root": "/var/lib/t01/resident/unified-gpu",
+    "uuid": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31",
+    "version": "0.1.0"
+  },
+  "pvcs": [
+    {
+      "name": "antigen-af3-build-cache-r06",
+      "access_modes": [
+        "ReadWriteOnce"
+      ],
+      "phase": "Bound",
+      "storage_class": "ceph-rbd"
+    },
+    {
+      "name": "antigen-af3-databases",
+      "access_modes": [
+        "ReadWriteOnce"
+      ],
+      "phase": "Bound",
+      "storage_class": "ceph-rbd"
+    },
+    {
+      "name": "antigen-af3-models",
+      "access_modes": [
+        "ReadWriteOnce"
+      ],
+      "phase": "Bound",
+      "storage_class": "ceph-rbd"
+    },
+    {
+      "name": "antigen-af3-runtime",
+      "access_modes": [
+        "ReadWriteOnce"
+      ],
+      "phase": "Bound",
+      "storage_class": "ceph-rbd"
+    },
+    {
+      "name": "antigen-design-assets",
+      "access_modes": [
+        "ReadWriteOnce"
+      ],
+      "phase": "Bound",
+      "storage_class": "ceph-rbd"
+    },
+    {
+      "name": "antigen-design-runtime",
+      "access_modes": [
+        "ReadWriteOnce"
+      ],
+      "phase": "Bound",
+      "storage_class": "ceph-rbd"
+    },
+    {
+      "name": "antigen-esmfold2-models",
+      "access_modes": [
+        "ReadWriteOnce"
+      ],
+      "phase": "Bound",
+      "storage_class": "ceph-rbd"
+    },
+    {
+      "name": "antigen-esmfold2-runtime",
+      "access_modes": [
+        "ReadWriteOnce"
+      ],
+      "phase": "Bound",
+      "storage_class": "ceph-rbd"
+    },
+    {
+      "name": "antigen-n03-nr",
+      "access_modes": [
+        "ReadWriteOnce"
+      ],
+      "phase": "Bound",
+      "storage_class": "ceph-rbd-retain"
+    },
+    {
+      "name": "antigen-unified-gpu-build-cache-r01",
+      "access_modes": [
+        "ReadWriteOnce"
+      ],
+      "phase": "Bound",
+      "storage_class": "ceph-rbd"
+    }
+  ],
+  "create_role": {
+    "answer": "no",
+    "error": ""
+  },
+  "create_binding": {
+    "answer": "no",
+    "error": ""
+  },
+  "create_sa": {
+    "answer": "yes",
+    "error": ""
+  }
+}

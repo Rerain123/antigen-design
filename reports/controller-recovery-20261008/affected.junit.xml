@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="87" time="62.519" timestamp="2026-10-08T16:04:26.659065+08:00" hostname="DESKTOP-8B96JVR"><testcase classname="tests.test_controller_recovery" name="test_map_replay_distinguishes_failed_diagnostic_from_success[None-False]" time="0.001" /><testcase classname="tests.test_controller_recovery" name="test_map_replay_distinguishes_failed_diagnostic_from_success[None-True]" time="0.001" /><testcase classname="tests.test_controller_recovery" name="test_map_replay_distinguishes_failed_diagnostic_from_success[receipt-False]" time="0.001" /><testcase classname="tests.test_controller_recovery" name="test_map_replay_distinguishes_failed_diagnostic_from_success[receipt-True]" time="0.000" /><testcase classname="tests.test_controller_recovery" name="test_map_replay_distinguishes_failed_diagnostic_from_success[snapshot-False]" time="0.000" /><testcase classname="tests.test_controller_recovery" name="test_map_replay_distinguishes_failed_diagnostic_from_success[snapshot-True]" time="0.001" /><testcase classname="tests.test_controller_recovery" name="test_driver_retries_existing_identity_and_persists_failure[1-2-recovered]" time="0.001" /><testcase classname="tests.test_controller_recovery" name="test_driver_retries_existing_identity_and_persists_failure[10-3-blocked]" time="0.001" /><testcase classname="tests.test_controller_recovery" name="test_native_collection_does_not_wait_for_parent_replay_or_extend_deadline" time="0.000" /><testcase classname="tests.test_controller_recovery" name="test_upgrade_receipt_cannot_cover_a_different_job_or_profile" time="0.000" /><testcase classname="tests.test_n11_confirmation" name="test_durable_confirmation_replay_decline_and_mask_binding[True]" time="0.178" /><testcase classname="tests.test_n11_confirmation" name="test_durable_confirmation_replay_decline_and_mask_binding[False]" time="0.143" /><testcase classname="tests.test_n11_confirmation" name="test_stale_tampered_cancelled_confirmation_rejected[token]" time="0.128" /><testcase classname="tests.test_n11_confirmation" name="test_stale_tampered_cancelled_confirmation_rejected[audit]" time="0.123" /><testcase classname="tests.test_n11_confirmation" name="test_stale_tampered_cancelled_confirmation_rejected[cancel]" time="0.139" /><testcase classname="tests.test_n11_confirmation" name="test_stale_tampered_cancelled_confirmation_rejected[type]" time="0.119" /><testcase classname="tests.test_n11_confirmation" name="test_pending_restart_dispatch_does_not_start_design_and_wait_excluded_from_deadline" time="0.178" /><testcase classname="tests.test_n11_confirmation" name="test_confirmation_reaches_native_request_same_run_without_repeating_front_nodes" time="0.356" /><testcase classname="tests.test_n11_confirmation" name="test_pre_authorized_policy_keeps_audit_bound_warning_without_pause" time="0.161" /><testcase classname="tests.test_n11_confirmation" name="test_report_uses_workflow_execution_not_suitability" time="0.006" /><testcase classname="tests.test_n11_confirmation" name="test_real_audit_mask_conversion_emits_pending_draft_only_when_needed[False-False]" time="0.018" /><testcase classname="tests.test_n11_confirmation" name="test_real_audit_mask_conversion_emits_pending_draft_only_when_needed[False-True]" time="0.016" /><testcase classname="tests.test_n11_confirmation" name="test_real_audit_mask_conversion_emits_pending_draft_only_when_needed[True-False]" time="0.023" /><testcase classname="tests.test_n11_confirmation" name="test_real_audit_mask_conversion_emits_pending_draft_only_when_needed[True-True]" time="0.052" /><testcase classname="tests.test_n11_confirmation" name="test_service_confirmation_owner_and_mcp_contract" time="0.201" /><testcase classname="tests.test_expert_revision_v2_runtime" name="test_actual_v2_native_admission_recovery_and_policy_gates[True-False-True]" time="4.300" /><testcase classname="tests.test_expert_revision_v2_runtime" name="test_actual_v2_native_admission_recovery_and_policy_gates[False-False-False]" time="1.975" /><testcase classname="tests.test_expert_revision_v2_runtime" name="test_actual_v2_native_admission_recovery_and_policy_gates[True-True-False]" time="3.221" /><testcase classname="tests.test_expert_revision_v2_runtime" name="test_cancellation_and_identity_tamper_stop_downstream" time="0.399" /><testcase classname="tests.test_expert_revision_v2_runtime" name="test_v2_child_bound_identity_replayed" time="3.447" /><testcase classname="tests.test_expert_revision_v2_runtime" name="test_main_controller_freeze_and_dispatches_v2" time="6.020" /><testcase classname="tests.test_expert_revision_v2_runtime" name="test_freeze_requires_pre_generation_and_detects_changed_inputs" time="0.164" /><testcase classname="tests.test_expert_revision_v2_runtime" name="test_pool_replay_and_cumulative_budget" time="3.700" /><testcase classname="tests.test_expert_revision_v2_runtime" name="test_real_assembly_schema_and_html_replay" time="4.111" /><testcase classname="tests.test_himat_report_repair" name="test_actual_ordinary_report_exposes_existing_values_and_zero_candidate_cause" time="1.035" /><testcase classname="tests.test_himat_report_repair" name="test_common_details_do_not_replace_legacy_candidate_records" time="0.001" /><testcase classname="tests.test_himat_report_repair" name="test_collector_exports_non_v2_with_manifest_hashes_and_no_mutations" time="0.001" /><testcase classname="tests.test_himat_report_repair" name="test_non_v2_export_still_rejects_unbound_results[run]" time="0.001" /><testcase classname="tests.test_himat_report_repair" name="test_non_v2_export_still_rejects_unbound_results[bytes]" time="0.001" /><testcase classname="tests.test_himat_report_repair" name="test_non_v2_export_still_rejects_unbound_results[binding]" time="0.001" /><testcase classname="tests.test_himat_report_repair" name="test_himat_non_v2_card_keeps_not_executed_and_offers_native_attachment" time="0.062" /><testcase classname="tests.test_mcp_client_guide" name="test_initialize_delivers_workflow_guide_without_executing_or_loading_prompt[2024-11-05]" time="0.000" /><testcase classname="tests.test_mcp_client_guide" name="test_initialize_delivers_workflow_guide_without_executing_or_loading_prompt[2025-03-26]" time="0.000" /><testcase classname="tests.test_mcp_client_guide" name="test_initialize_delivers_workflow_guide_without_executing_or_loading_prompt[2025-06-18]" time="0.000" /><testcase classname="tests.test_mcp_client_guide" name="test_tools_list_is_self_contained_when_client_discards_initialize_instructions" time="0.000" /><testcase classname="tests.test_mcp_client_guide" name="test_operator_discovery_keeps_its_distinct_tools_and_instructions[False]" time="0.000" /><testcase classname="tests.test_mcp_client_guide" name="test_operator_discovery_keeps_its_distinct_tools_and_instructions[True]" time="0.000" /><testcase classname="tests.test_mcp_client_guide" name="test_guide_does_not_grant_submit_scope_or_expose_operator_tools" time="0.000" /><testcase classname="tests.test_real_service_api" name="test_service_cli_maps_queue_capacity_and_delay_by_name" time="0.007" /><testcase classname="tests.test_real_service_api" name="test_rustfs_report_publication_is_owner_authorized_and_retryable" time="6.928" /><testcase classname="tests.test_real_service_api" name="test_credentials_are_exact_constant_time_and_scoped" time="0.000" /><testcase classname="tests.test_real_service_api" name="test_credentials_support_exact_secret_file_injection" time="0.002" /><testcase classname="tests.test_real_service_api" name="test_submit_replay_owner_isolation_report_and_retry" time="4.100" /><testcase classname="tests.test_real_service_api" name="test_upload_is_registered_bounded_and_owner_scoped" time="0.079" /><testcase classname="tests.test_real_service_api" name="test_cancel_recover_and_retry_are_idempotent" time="4.481" /><testcase classname="tests.test_real_service_api" name="test_drive_waits_for_child_supervisor_registration" time="0.049"><failure message="AttributeError: 'RuntimeFixture' object has no attribute '_tx'">self = &lt;t01_phase1_real.service_api.app.Service object at 0x000001874808F450&gt;
+principal = Principal(principal_id='tenant-a', scopes=frozenset({'submit', 'download', 'control', 'query', 'upload'}), token_sha256='97daac0ee9998dfcad6c9c0970da5ca411c86233a944c25b47566f6a7bc1ddd5')
+job_id = 'workflow', recovering = True
+
+    def _drive(self, principal: Principal, job_id: str, recovering: bool) -&gt; None:
+        key = (principal.principal_id, job_id)
+        waiting=False
+        failures=0
+        try:
+            if self.config.dispatch_start_delay_seconds:
+                time.sleep(self.config.dispatch_start_delay_seconds)
+            rt = self.runtime(principal)
+            while True:
+                job = rt.get(job_id)
+                if job["state"] in TERMINAL:
+                    return
+                if rt.execution(job_id).get('pending_confirmation') and not job.get('stop_reason'):
+                    waiting=True
+                    return
+                # A model child is first durably reserved and only then starts a
+                # separate supervisor. Do not interpret that short registration
+                # window as a crashed supervisor merely because the service can
+                # poll faster than the new process can publish its identity.
+                if self._child_registration_pending(rt, job_id):
+                    time.sleep(0.25)
+                    continue
+                try:
+&gt;                   if self._reconcile_active_children(rt,job_id):
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src\t01_phase1_real\service_api\app.py:438: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = &lt;test_real_service_api.test_drive_waits_for_child_supervisor_registration.&lt;locals&gt;.RuntimeFixture object at 0x0000018777E63A10&gt;
+job_id = 'workflow'
+
+    @staticmethod
+    def _reconcile_active_children(rt,job_id):
+        """Collect admitted jobs without rebuilding all scientific facts per poll.
+    
+        Parent traversal still verifies every dependency before admission. The
+        lightweight path keeps native receipts and bounded batch controllers
+        moving while a model runs; it cannot extend the parent's deadline.
+        """
+        job=rt.get(job_id);ex=rt.execution(job_id)
+        if job.get('stop_reason') or ex.get('dispatcher') or not ex.get('nodes'):return False
+        from ..development.workflow.confirmation import elapsed
+&gt;       body=json.loads(rt._request_bytes(job))
+                        ^^^^^^^^^^^^^^^^^
+E       AttributeError: 'RuntimeFixture' object has no attribute '_request_bytes'
+
+src\t01_phase1_real\service_api\app.py:497: AttributeError
+
+During handling of the above exception, another exception occurred:
+
+self = &lt;t01_phase1_real.service_api.app.Service object at 0x000001874808F450&gt;
+principal = Principal(principal_id='tenant-a', scopes=frozenset({'submit', 'download', 'control', 'query', 'upload'}), token_sha256='97daac0ee9998dfcad6c9c0970da5ca411c86233a944c25b47566f6a7bc1ddd5')
+job_id = 'workflow', recovering = True
+
+    def _drive(self, principal: Principal, job_id: str, recovering: bool) -&gt; None:
+        key = (principal.principal_id, job_id)
+        waiting=False
+        failures=0
+        try:
+            if self.config.dispatch_start_delay_seconds:
+                time.sleep(self.config.dispatch_start_delay_seconds)
+            rt = self.runtime(principal)
+            while True:
+                job = rt.get(job_id)
+                if job["state"] in TERMINAL:
+                    return
+                if rt.execution(job_id).get('pending_confirmation') and not job.get('stop_reason'):
+                    waiting=True
+                    return
+                # A model child is first durably reserved and only then starts a
+                # separate supervisor. Do not interpret that short registration
+                # window as a crashed supervisor merely because the service can
+                # poll faster than the new process can publish its identity.
+                if self._child_registration_pending(rt, job_id):
+                    time.sleep(0.25)
+                    continue
+                try:
+                    if self._reconcile_active_children(rt,job_id):
+                        time.sleep(0.25)
+                        continue
+                    job = rt.recover(job_id) if recovering or job["state"] != "queued" else rt.dispatch(job_id)
+                except Exception as exc:
+                    failures+=1
+                    # Retry reconciliation of durable identities, never retry a
+                    # failed scientific child or spend another sampling budget.
+&gt;                   self._controller_fault(rt,job_id,exc,failures)
+
+src\t01_phase1_real\service_api\app.py:446: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = &lt;test_real_service_api.test_drive_waits_for_child_supervisor_registration.&lt;locals&gt;.RuntimeFixture object at 0x0000018777E63A10&gt;
+job_id = 'workflow'
+exc = AttributeError("'RuntimeFixture' object has no attribute '_request_bytes'")
+attempt = 1
+
+    @staticmethod
+    def _controller_fault(rt,job_id,exc,attempt):
+        frames=[dict(file=Path(f.filename).name,line=f.lineno,function=f.name)
+                for f in traceback.extract_tb(exc.__traceback__)[-12:]]
+        fault=dict(code='CONTROLLER_RECONCILIATION_ERROR',exception_type=type(exc).__name__,
+                   status='blocked' if attempt&gt;=3 else 'retrying',attempt=attempt,
+                   observed_at=now(),frames=frames,scientific_jobs_retried=0)
+        logging.getLogger(__name__).error('controller reconciliation failed job=%s type=%s attempt=%s frames=%s',
+                                         job_id,type(exc).__name__,attempt,frames)
+&gt;       with rt._tx() as db:
+             ^^^^^^
+E       AttributeError: 'RuntimeFixture' object has no attribute '_tx'
+
+src\t01_phase1_real\service_api\app.py:482: AttributeError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = WindowsPath('D:/work/antigen.design/.tmp/controller-tests-r02/test_drive_waits_for_child_sup0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001870B861FD0&gt;
+
+    def test_drive_waits_for_child_supervisor_registration(tmp_path, monkeypatch):
+        creds = credentials()
+        service = Service(ServiceConfig(tmp_path / "runtime"), creds)
+        owner = principal(creds)
+    
+        class RuntimeFixture:
+            supervisor = None
+            recover_calls = 0
+    
+            def get(self, job_id):
+                if job_id == "workflow":
+                    return {"state": "running" if self.recover_calls == 0 else "succeeded"}
+                return {"state": "running", "started_at": datetime.now(UTC).isoformat()}
+    
+            def execution(self, job_id):
+                if job_id == "workflow":
+                    return {"nodes": {"bepipred": {"job_id": "child"}}}
+                return {"phase": "spawn_intent", "supervisor": self.supervisor, "container_started": False}
+    
+            def recover(self, job_id):
+                assert self.supervisor == {"pid": 1, "birth": "fixture"}
+                self.recover_calls += 1
+                return {"state": "succeeded"}
+    
+        runtime = RuntimeFixture()
+        sleeps = []
+    
+        def sleep(seconds):
+            sleeps.append(seconds)
+            runtime.supervisor = {"pid": 1, "birth": "fixture"}
+    
+        monkeypatch.setattr(service, "runtime", lambda _: runtime)
+        monkeypatch.setattr(service_app.time, "sleep", sleep)
+&gt;       service._drive(owner, "workflow", recovering=True)
+
+tests\test_real_service_api.py:242: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\t01_phase1_real\service_api\app.py:465: in _drive
+    self._controller_fault(self.runtime(principal),job_id,exc,3)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = &lt;test_real_service_api.test_drive_waits_for_child_supervisor_registration.&lt;locals&gt;.RuntimeFixture object at 0x0000018777E63A10&gt;
+job_id = 'workflow'
+exc = AttributeError("'RuntimeFixture' object has no attribute '_tx'")
+attempt = 3
+
+    @staticmethod
+    def _controller_fault(rt,job_id,exc,attempt):
+        frames=[dict(file=Path(f.filename).name,line=f.lineno,function=f.name)
+                for f in traceback.extract_tb(exc.__traceback__)[-12:]]
+        fault=dict(code='CONTROLLER_RECONCILIATION_ERROR',exception_type=type(exc).__name__,
+                   status='blocked' if attempt&gt;=3 else 'retrying',attempt=attempt,
+                   observed_at=now(),frames=frames,scientific_jobs_retried=0)
+        logging.getLogger(__name__).error('controller reconciliation failed job=%s type=%s attempt=%s frames=%s',
+                                         job_id,type(exc).__name__,attempt,frames)
+&gt;       with rt._tx() as db:
+             ^^^^^^
+E       AttributeError: 'RuntimeFixture' object has no attribute '_tx'
+
+src\t01_phase1_real\service_api\app.py:482: AttributeError</failure></testcase><testcase classname="tests.test_real_service_api" name="test_authenticated_http_and_mcp_surface" time="4.418" /><testcase classname="tests.test_real_service_api" name="test_himat_sequence_submission_uses_new_sequence_without_sample_structure_or_masks" time="0.115" /><testcase classname="tests.test_real_service_api" name="test_himat_mcp_card_is_direct_and_download_capability_is_bounded" time="0.612" /><testcase classname="tests.test_real_service_api" name="test_real_dify_is_generated_bound_and_isolated_from_mock" time="0.040" /><testcase classname="tests.test_epitope_protection_development" name="test_empty_pairs_query_and_idempotency" time="0.963" /><testcase classname="tests.test_epitope_protection_development" name="test_local_failure_and_retry[compute_failure-TOOL_FAILED]" time="1.403" /><testcase classname="tests.test_epitope_protection_development" name="test_local_failure_and_retry[corrupt_output-OUTPUT_INVALID]" time="1.611" /><testcase classname="tests.test_epitope_protection_development" name="test_local_failure_and_retry[interrupt_after_claim-INTERRUPTED]" time="1.595" /><testcase classname="tests.test_epitope_protection_development" name="test_elapsed_deadline_and_queued_cancel" time="1.255" /><testcase classname="tests.test_epitope_protection_development" name="test_publication_tamper_and_failed_n13_report_link" time="2.127" /><testcase classname="tests.test_epitope_protection_development" name="test_source_cycle_and_unknown_variant_rejected" time="0.359" /><testcase classname="tests.test_epitope_protection_development" name="test_n13_rejects_unverified_n12_or_early_n15_source[selection_hash]" time="0.517" /><testcase classname="tests.test_epitope_protection_development" name="test_n13_rejects_unverified_n12_or_early_n15_source[wt_sequence]" time="0.355" /><testcase classname="tests.test_epitope_protection_development" name="test_n13_rejects_unverified_n12_or_early_n15_source[early_n15]" time="0.515" /><testcase classname="tests.test_epitope_protection_development" name="test_l1_identity_and_union" time="0.000" /><testcase classname="tests.test_epitope_protection_development" name="test_rsa_strict_threshold[-0.149-True]" time="0.000" /><testcase classname="tests.test_epitope_protection_development" name="test_rsa_strict_threshold[-0.15-False]" time="0.000" /><testcase classname="tests.test_epitope_protection_development" name="test_rsa_strict_threshold[-0.151-False]" time="0.000" /><testcase classname="tests.test_epitope_protection_development" name="test_rsa_strict_threshold[0-True]" time="0.000" /><testcase classname="tests.test_epitope_protection_development" name="test_rsa_missing_and_outside" time="0.000" /><testcase classname="tests.test_epitope_protection_development" name="test_rigid_motion_is_not_deformation" time="0.001" /><testcase classname="tests.test_epitope_protection_development" name="test_geometry_missing_single_and_empty" time="0.000" /><testcase classname="tests.test_epitope_protection_development" name="test_prediction_strict_boundary[0.799-True]" time="0.000" /><testcase classname="tests.test_epitope_protection_development" name="test_prediction_strict_boundary[0.8-False]" time="0.000" /><testcase classname="tests.test_epitope_protection_development" name="test_prediction_strict_boundary[0.801-False]" time="0.000" /><testcase classname="tests.test_epitope_protection_development" name="test_prediction_no_shift_guess_and_missing_score" time="0.000" /><testcase classname="tests.test_epitope_protection_development" name="test_empty_or_missing_never_pass[None]" time="0.000" /><testcase classname="tests.test_epitope_protection_development" name="test_empty_or_missing_never_pass[hotspots1]" time="0.000" /><testcase classname="tests.test_epitope_protection_development" name="test_low_quality_stops_geometric_and_rsa_but_not_sequence" time="0.000" /><testcase classname="tests.test_epitope_protection_development" name="test_four_engineering_observations_do_not_sign_protection" time="0.001" /><testcase classname="tests.test_epitope_protection_development" name="test_rule_profiles_cannot_mix_and_large_geometry_not_truncated" time="0.002" /></testsuite></testsuites>

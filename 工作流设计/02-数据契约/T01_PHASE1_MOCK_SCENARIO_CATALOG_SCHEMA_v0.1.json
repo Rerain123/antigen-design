@@ -1,0 +1,1531 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:t01:phase1:mock:scenario-catalog:v0.1",
+  "title": "T-01 Phase-1 Mock Deterministic Scenario Catalog v0.1",
+  "description": "PH1-MOCK-M1-05 scenario literals and per-node Mock output responsibilities. No scientific computation or scientific payload claims.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "document_type",
+    "scenario_model_version",
+    "scenario_catalog_version",
+    "topology_version",
+    "node_registry_version",
+    "control_flow_version",
+    "envelope_contract_version",
+    "execution_mode",
+    "execution_profile",
+    "data_classification",
+    "scientific_compute",
+    "control_source_policy",
+    "node_output_policy",
+    "scenario_ref_binding",
+    "fixture_manifest_binding",
+    "implementation_state",
+    "randomness_allowed",
+    "clock_dependent_branching_allowed",
+    "prohibited_capabilities",
+    "node_output_responsibilities",
+    "scenarios"
+  ],
+  "properties": {
+    "document_type": {
+      "const": "T01_PHASE1_MOCK_SCENARIO_CATALOG"
+    },
+    "scenario_model_version": {
+      "const": "T01-PHASE1-MOCK-SCENARIO-MODEL-v0.1"
+    },
+    "scenario_catalog_version": {
+      "const": "T01-PHASE1-MOCK-SCENARIO-CATALOG-v0.1"
+    },
+    "topology_version": {
+      "const": "T01-PHASE1-18NODE-OFFLINE"
+    },
+    "node_registry_version": {
+      "const": "T01-PHASE1-NODE-REGISTRY-v0.1"
+    },
+    "control_flow_version": {
+      "const": "T01-PHASE1-CONTROL-FLOW-v0.1"
+    },
+    "envelope_contract_version": {
+      "const": "T01-PHASE1-ENVELOPE-v0.1"
+    },
+    "execution_mode": {
+      "const": "MOCK"
+    },
+    "execution_profile": {
+      "const": "PHASE1_FULL"
+    },
+    "data_classification": {
+      "const": "MOCK_DATA"
+    },
+    "scientific_compute": {
+      "const": false
+    },
+    "control_source_policy": {
+      "const": "SCENARIO_LITERAL_ONLY"
+    },
+    "node_output_policy": {
+      "const": "STUB_FACTS_ONLY"
+    },
+    "scenario_ref_binding": {
+      "const": "t01_phase1_mock_v01.scenario.{scenario_key}"
+    },
+    "fixture_manifest_binding": {
+      "const": "T01-PHASE1-MOCK-FIXTURE-MANIFEST-v0.1"
+    },
+    "implementation_state": {
+      "const": "SPEC_ONLY"
+    },
+    "randomness_allowed": {
+      "const": false
+    },
+    "clock_dependent_branching_allowed": {
+      "const": false
+    },
+    "prohibited_capabilities": {
+      "type": "array",
+      "minItems": 10,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z0-9][A-Z0-9_.-]*$"
+      }
+    },
+    "node_output_responsibilities": {
+      "type": "array",
+      "minItems": 18,
+      "maxItems": 18,
+      "items": {
+        "$ref": "#/$defs/node_output_responsibility"
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/scenario"
+      }
+    }
+  },
+  "$defs": {
+    "node_id": {
+      "type": "string",
+      "enum": [
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05",
+        "N06",
+        "N07",
+        "N08",
+        "N09",
+        "N10",
+        "N11",
+        "N12",
+        "N13",
+        "N14",
+        "N15",
+        "N16",
+        "N17",
+        "N18"
+      ]
+    },
+    "edge_id": {
+      "type": "string",
+      "enum": [
+        "E001",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016",
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021",
+        "E022",
+        "E023",
+        "E024",
+        "E025",
+        "E026",
+        "E027"
+      ]
+    },
+    "error_code": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_]{2,63}$"
+    },
+    "nullable_string": {
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "fact_set_key": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "mock_node_output_stub": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mock_only",
+        "scientific_compute",
+        "scenario_key",
+        "node_id",
+        "mock_output_key",
+        "fact_set_key",
+        "emitted_fact_kinds",
+        "entity_refs",
+        "artifact_ids",
+        "disclosures",
+        "scientific_claims"
+      ],
+      "properties": {
+        "mock_only": {
+          "const": true
+        },
+        "scientific_compute": {
+          "const": false
+        },
+        "scenario_key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "node_id": {
+          "$ref": "#/$defs/node_id"
+        },
+        "mock_output_key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "fact_set_key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "emitted_fact_kinds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_]{2,95}$"
+          }
+        },
+        "entity_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^mock://[A-Za-z0-9][A-Za-z0-9._~:/-]*$"
+          }
+        },
+        "artifact_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "disclosures": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "allOf": [
+            {
+              "contains": {
+                "const": "MOCK_DATA_ONLY"
+              }
+            },
+            {
+              "contains": {
+                "const": "NOT_SCIENTIFIC_EVIDENCE"
+              }
+            }
+          ]
+        },
+        "scientific_claims": {
+          "type": "array",
+          "maxItems": 0
+        }
+      }
+    },
+    "node_output_responsibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "node_id",
+        "node_key",
+        "mock_output_key",
+        "emitted_fact_kinds",
+        "allowed_artifact_roles",
+        "downstream_responsibility",
+        "must_disclose",
+        "must_not_emit",
+        "control_outputs_forbidden",
+        "scientific_values_forbidden"
+      ],
+      "properties": {
+        "node_id": {
+          "$ref": "#/$defs/node_id"
+        },
+        "node_key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "mock_output_key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "emitted_fact_kinds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_]{2,95}$"
+          }
+        },
+        "allowed_artifact_roles": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "NODE_OUTPUT",
+              "PARTIAL_RESULT",
+              "FINAL_RESULT",
+              "METHOD_SUMMARY",
+              "FAILURE_REPORT",
+              "LOG"
+            ]
+          }
+        },
+        "downstream_responsibility": {
+          "type": "string",
+          "minLength": 1
+        },
+        "must_disclose": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "must_not_emit": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "control_outputs_forbidden": {
+          "const": true
+        },
+        "scientific_values_forbidden": {
+          "const": true
+        }
+      }
+    },
+    "input_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_fixture_key",
+        "synthetic_input_only",
+        "structure_case",
+        "design_objective",
+        "expression_host_case",
+        "remote_lookup_allowed"
+      ],
+      "properties": {
+        "input_fixture_key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "synthetic_input_only": {
+          "const": true
+        },
+        "structure_case": {
+          "type": "string",
+          "enum": [
+            "PROVIDED_LOCAL_PDB",
+            "PROVIDED_LOCAL_CIF",
+            "PROVIDED_LOCAL_MMCIF",
+            "ABSENT_ROUTE_LOCAL_AF3",
+            "ABSENT_ROUTE_LOCAL_ESMFOLD2",
+            "ABSENT_LOCAL_PREDICTION_FAILURE"
+          ]
+        },
+        "design_objective": {
+          "type": "string",
+          "enum": [
+            "general",
+            "solubility",
+            "thermostability"
+          ]
+        },
+        "expression_host_case": {
+          "type": "string",
+          "enum": [
+            "PROVIDED_SUPPORTED_FIXTURE",
+            "OMITTED",
+            "PROVIDED_UNSUPPORTED_SENTINEL"
+          ]
+        },
+        "remote_lookup_allowed": {
+          "const": false
+        }
+      }
+    },
+    "submission_directive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "submission_key",
+        "request_variant_key",
+        "idempotency_relation",
+        "expected_action",
+        "expected_error_code"
+      ],
+      "properties": {
+        "submission_key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "request_variant_key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        },
+        "idempotency_relation": {
+          "type": "string",
+          "enum": [
+            "NEW_KEY",
+            "SAME_KEY_SAME_CANONICAL_REQUEST",
+            "SAME_KEY_DIFFERENT_CANONICAL_REQUEST"
+          ]
+        },
+        "expected_action": {
+          "type": "string",
+          "enum": [
+            "CREATE_RUN",
+            "RETURN_EXISTING_RUN",
+            "REJECT_REQUEST"
+          ]
+        },
+        "expected_error_code": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/error_code"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "expected_action": {
+                "const": "REJECT_REQUEST"
+              }
+            },
+            "required": [
+              "expected_action"
+            ]
+          },
+          "then": {
+            "properties": {
+              "expected_error_code": {
+                "$ref": "#/$defs/error_code"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "expected_error_code": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "design_suitability_control": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "source",
+        "decision",
+        "reason_code",
+        "fact_set_key"
+      ],
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": [
+            "EMIT",
+            "NOT_REACHED"
+          ]
+        },
+        "source": {
+          "const": "SCENARIO_LITERAL"
+        },
+        "decision": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "DESIGN_SUITABLE",
+                "DESIGN_NOT_SUITABLE"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason_code": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]{2,63}$"
+        },
+        "fact_set_key": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_.-]*$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "EMIT"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "decision": {
+                "type": "string",
+                "enum": [
+                  "DESIGN_SUITABLE",
+                  "DESIGN_NOT_SUITABLE"
+                ]
+              },
+              "fact_set_key": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_.-]*$"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "decision": {
+                "type": "null"
+              },
+              "fact_set_key": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "n15_control": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "source",
+        "decision",
+        "reason_code",
+        "fact_set_key"
+      ],
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": [
+            "EMIT",
+            "NOT_REACHED"
+          ]
+        },
+        "source": {
+          "const": "SCENARIO_LITERAL"
+        },
+        "decision": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "CANDIDATE_RECOMMENDED",
+                "WT_FALLBACK_RECOMMENDED"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason_code": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]{2,63}$"
+        },
+        "fact_set_key": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_.-]*$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "EMIT"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "decision": {
+                "type": "string",
+                "enum": [
+                  "CANDIDATE_RECOMMENDED",
+                  "WT_FALLBACK_RECOMMENDED"
+                ]
+              },
+              "fact_set_key": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_.-]*$"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "decision": {
+                "type": "null"
+              },
+              "fact_set_key": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "applicability_control": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "source",
+        "decision",
+        "reason_code",
+        "fact_set_key"
+      ],
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": [
+            "EMIT",
+            "NOT_REACHED"
+          ]
+        },
+        "source": {
+          "const": "SCENARIO_LITERAL"
+        },
+        "decision": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "EXECUTE",
+                "SKIP_CONDITION",
+                "NOT_EXECUTED"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason_code": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]{2,63}$"
+        },
+        "fact_set_key": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_.-]*$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "EMIT"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "decision": {
+                "type": "string",
+                "enum": [
+                  "EXECUTE",
+                  "SKIP_CONDITION",
+                  "NOT_EXECUTED"
+                ]
+              },
+              "fact_set_key": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_.-]*$"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "decision": {
+                "type": "null"
+              },
+              "fact_set_key": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "n12_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "design_cycle",
+        "source",
+        "decision",
+        "reason_code",
+        "fact_set_key"
+      ],
+      "properties": {
+        "design_cycle": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3
+        },
+        "source": {
+          "const": "SCENARIO_LITERAL"
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "VALIDATED_CANDIDATES_AVAILABLE",
+            "RECALC_REQUIRED",
+            "RECALC_EXHAUSTED"
+          ]
+        },
+        "reason_code": {
+          "$ref": "#/$defs/error_code"
+        },
+        "fact_set_key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*$"
+        }
+      }
+    },
+    "n12_control": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "source",
+        "decisions",
+        "not_reached_reason_code"
+      ],
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": [
+            "EMIT_SEQUENCE",
+            "NOT_REACHED"
+          ]
+        },
+        "source": {
+          "const": "SCENARIO_LITERAL"
+        },
+        "decisions": {
+          "type": "array",
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/$defs/n12_decision"
+          }
+        },
+        "not_reached_reason_code": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/error_code"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "EMIT_SEQUENCE"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "decisions": {
+                "minItems": 1,
+                "maxItems": 3
+              },
+              "not_reached_reason_code": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "decisions": {
+                "maxItems": 0
+              },
+              "not_reached_reason_code": {
+                "$ref": "#/$defs/error_code"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "n18_entry_control": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "mode",
+        "reason_code"
+      ],
+      "properties": {
+        "source": {
+          "const": "SCENARIO_LITERAL"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "DESIGN_JOIN_ENTER",
+            "WT_DIRECT_ENTER",
+            "NOT_REACHED"
+          ]
+        },
+        "reason_code": {
+          "$ref": "#/$defs/error_code"
+        }
+      }
+    },
+    "control_plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "design_suitability",
+        "n12_validation",
+        "n15_delivery_recommendation",
+        "n16_applicability",
+        "n17_applicability",
+        "n18_entry"
+      ],
+      "properties": {
+        "design_suitability": {
+          "$ref": "#/$defs/design_suitability_control"
+        },
+        "n12_validation": {
+          "$ref": "#/$defs/n12_control"
+        },
+        "n15_delivery_recommendation": {
+          "$ref": "#/$defs/n15_control"
+        },
+        "n16_applicability": {
+          "$ref": "#/$defs/applicability_control"
+        },
+        "n17_applicability": {
+          "$ref": "#/$defs/applicability_control"
+        },
+        "n18_entry": {
+          "$ref": "#/$defs/n18_entry_control"
+        }
+      }
+    },
+    "attempt_directive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attempt_number",
+        "attempt_kind",
+        "design_cycle",
+        "status",
+        "recovery_of_attempt_number",
+        "output_mode",
+        "fixture_result_key",
+        "error_codes",
+        "parameters"
+      ],
+      "properties": {
+        "attempt_number": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "attempt_kind": {
+          "type": "string",
+          "enum": [
+            "INITIAL",
+            "RECALC",
+            "RECOVERY"
+          ]
+        },
+        "design_cycle": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 3
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "SUCCEEDED",
+            "FAILED",
+            "TIMED_OUT",
+            "CANCELLED"
+          ]
+        },
+        "recovery_of_attempt_number": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "output_mode": {
+          "type": "string",
+          "enum": [
+            "COMPLETE_STUB",
+            "PARTIAL_STUB",
+            "NONE"
+          ]
+        },
+        "fixture_result_key": {
+          "$ref": "#/$defs/fact_set_key"
+        },
+        "error_codes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/error_code"
+          }
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "SUCCEEDED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "output_mode": {
+                "const": "COMPLETE_STUB"
+              },
+              "fixture_result_key": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_.-]*$"
+              },
+              "error_codes": {
+                "maxItems": 0
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "error_codes": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "output_mode": {
+                "const": "NONE"
+              }
+            },
+            "required": [
+              "output_mode"
+            ]
+          },
+          "then": {
+            "properties": {
+              "fixture_result_key": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "fixture_result_key": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_.-]*$"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "node_directive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "attempts",
+        "output_mode",
+        "fact_set_key",
+        "disposition_reason_code",
+        "error_codes"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "SUCCEEDED",
+            "SKIPPED_BRANCH",
+            "SKIPPED_CONDITION",
+            "FAILED",
+            "TIMED_OUT",
+            "CANCELLED",
+            "NOT_EXECUTED"
+          ]
+        },
+        "attempts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/attempt_directive"
+          }
+        },
+        "output_mode": {
+          "type": "string",
+          "enum": [
+            "COMPLETE_STUB",
+            "PARTIAL_STUB",
+            "NONE"
+          ]
+        },
+        "fact_set_key": {
+          "$ref": "#/$defs/fact_set_key"
+        },
+        "disposition_reason_code": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/error_code"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "error_codes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/error_code"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "SUCCEEDED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "attempts": {
+                "minItems": 1
+              },
+              "output_mode": {
+                "const": "COMPLETE_STUB"
+              },
+              "fact_set_key": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_.-]*$"
+              },
+              "disposition_reason_code": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "SKIPPED_BRANCH",
+                  "SKIPPED_CONDITION",
+                  "NOT_EXECUTED"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "attempts": {
+                "maxItems": 0
+              },
+              "output_mode": {
+                "const": "NONE"
+              },
+              "fact_set_key": {
+                "type": "null"
+              },
+              "disposition_reason_code": {
+                "$ref": "#/$defs/error_code"
+              },
+              "error_codes": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "FAILED",
+                  "TIMED_OUT"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "attempts": {
+                "minItems": 1
+              },
+              "output_mode": {
+                "enum": [
+                  "PARTIAL_STUB",
+                  "NONE"
+                ]
+              },
+              "disposition_reason_code": {
+                "type": "null"
+              },
+              "error_codes": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CANCELLED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "output_mode": {
+                "enum": [
+                  "PARTIAL_STUB",
+                  "NONE"
+                ]
+              },
+              "disposition_reason_code": {
+                "type": "null"
+              },
+              "error_codes": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "output_mode": {
+                "const": "NONE"
+              }
+            },
+            "required": [
+              "output_mode"
+            ]
+          },
+          "then": {
+            "properties": {
+              "fact_set_key": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "fact_set_key": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_.-]*$"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "node_plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05",
+        "N06",
+        "N07",
+        "N08",
+        "N09",
+        "N10",
+        "N11",
+        "N12",
+        "N13",
+        "N14",
+        "N15",
+        "N16",
+        "N17",
+        "N18"
+      ],
+      "properties": {
+        "N01": {
+          "$ref": "#/$defs/node_directive"
+        },
+        "N02": {
+          "$ref": "#/$defs/node_directive"
+        },
+        "N03": {
+          "$ref": "#/$defs/node_directive"
+        },
+        "N04": {
+          "$ref": "#/$defs/node_directive"
+        },
+        "N05": {
+          "$ref": "#/$defs/node_directive"
+        },
+        "N06": {
+          "$ref": "#/$defs/node_directive"
+        },
+        "N07": {
+          "$ref": "#/$defs/node_directive"
+        },
+        "N08": {
+          "$ref": "#/$defs/node_directive"
+        },
+        "N09": {
+          "$ref": "#/$defs/node_directive"
+        },
+        "N10": {
+          "$ref": "#/$defs/node_directive"
+        },
+        "N11": {
+          "$ref": "#/$defs/node_directive"
+        },
+        "N12": {
+          "$ref": "#/$defs/node_directive"
+        },
+        "N13": {
+          "$ref": "#/$defs/node_directive"
+        },
+        "N14": {
+          "$ref": "#/$defs/node_directive"
+        },
+        "N15": {
+          "$ref": "#/$defs/node_directive"
+        },
+        "N16": {
+          "$ref": "#/$defs/node_directive"
+        },
+        "N17": {
+          "$ref": "#/$defs/node_directive"
+        },
+        "N18": {
+          "$ref": "#/$defs/node_directive"
+        }
+      }
+    },
+    "expected_run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "run_status",
+        "result_kind",
+        "handoff_status",
+        "run_error_codes",
+        "disclosures"
+      ],
+      "properties": {
+        "run_status": {
+          "type": "string",
+          "enum": [
+            "COMPLETED",
+            "COMPLETED_WITH_GAPS",
+            "FAILED",
+            "TIMED_OUT",
+            "CANCELLED"
+          ]
+        },
+        "result_kind": {
+          "type": "string",
+          "enum": [
+            "CANDIDATE",
+            "WT",
+            "FAILURE"
+          ]
+        },
+        "handoff_status": {
+          "const": "NOT_DEPLOYED"
+        },
+        "run_error_codes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/error_code"
+          }
+        },
+        "disclosures": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "run_status": {
+                "enum": [
+                  "COMPLETED",
+                  "COMPLETED_WITH_GAPS"
+                ]
+              }
+            },
+            "required": [
+              "run_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "result_kind": {
+                "enum": [
+                  "CANDIDATE",
+                  "WT"
+                ]
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "result_kind": {
+                "const": "FAILURE"
+              },
+              "run_error_codes": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "scenario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scenario_key",
+        "display_name",
+        "purpose",
+        "tags",
+        "input_profile",
+        "submission_plan",
+        "control_plan",
+        "node_plan",
+        "edge_plan",
+        "expected_run",
+        "scenario_specific_assertions",
+        "scientific_assertions"
+      ],
+      "properties": {
+        "scenario_key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tags": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_]{2,63}$"
+          }
+        },
+        "input_profile": {
+          "$ref": "#/$defs/input_profile"
+        },
+        "submission_plan": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/submission_directive"
+          }
+        },
+        "control_plan": {
+          "$ref": "#/$defs/control_plan"
+        },
+        "node_plan": {
+          "$ref": "#/$defs/node_plan"
+        },
+        "edge_plan": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/edge_id"
+          }
+        },
+        "expected_run": {
+          "$ref": "#/$defs/expected_run"
+        },
+        "scenario_specific_assertions": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "scientific_assertions": {
+          "type": "array",
+          "maxItems": 0
+        }
+      }
+    }
+  }
+}

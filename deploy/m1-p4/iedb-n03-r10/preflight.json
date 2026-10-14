@@ -1,0 +1,160 @@
+{
+  "source_hashes": {
+    "service_api/himat.py": "24c6c765ee0aae1c034a261a7e2bea7aa03e6b51325ff53750d25bb5f9f6892a",
+    "development/blast/policy.py": "e35c8045a02051df81a50da57c9f8b30f965286fe26c6c77bc786915628846f7",
+    "development/blast/result.py": "317cee598e6d1c42a84dcd6865ab170030f51fa6cb4909e4d70c7bc10684b1e5",
+    "development/blast/worker.py": "e1420f86b9666a416d3490bae6f9c87cf7405723f56db8d79ee4135cea033a15",
+    "development/blast/iedb.py": "6d88ec40409f2cad7381bbd89c9bd63185f7c8e14217d4d53b90252d63e889d0",
+    "development/epitope_map/policy.py": "c2b68300d1af6b13620efcbd412f2017614953076ae1955be7fc23dee784d889",
+    "development/epitope_map/result.py": "002870b65baba628314a4aaec1de5b353e84dbe70b964fad28eb79b13b4c9511",
+    "development/design_backend/permissions.py": "0038ebbb8ca5876a0f6c507836584739d70ca9ffe187201dc3ec03c9d890c7fe",
+    "development/docker.py": "acc12ca29911b177c77499b3b87955e52455b2743e323b6dc4a241715c95c8e8",
+    "development/supervisor.py": "e2c3d0595298a3e8286d30f432f2faa8df99f11613009fd75cb362897f89e530"
+  },
+  "deployed_hashes": {
+    "service_api/himat.py": "3d946d039cb5146976b1b0804f1b193c26625b4e88437a312bff260ce9864137",
+    "development/blast/policy.py": "e35c8045a02051df81a50da57c9f8b30f965286fe26c6c77bc786915628846f7",
+    "development/blast/result.py": "317cee598e6d1c42a84dcd6865ab170030f51fa6cb4909e4d70c7bc10684b1e5",
+    "development/blast/worker.py": "e1420f86b9666a416d3490bae6f9c87cf7405723f56db8d79ee4135cea033a15",
+    "development/blast/iedb.py": "6d88ec40409f2cad7381bbd89c9bd63185f7c8e14217d4d53b90252d63e889d0",
+    "development/epitope_map/policy.py": "c2b68300d1af6b13620efcbd412f2017614953076ae1955be7fc23dee784d889",
+    "development/epitope_map/result.py": "002870b65baba628314a4aaec1de5b353e84dbe70b964fad28eb79b13b4c9511",
+    "development/design_backend/permissions.py": "0038ebbb8ca5876a0f6c507836584739d70ca9ffe187201dc3ec03c9d890c7fe",
+    "development/docker.py": "acc12ca29911b177c77499b3b87955e52455b2743e323b6dc4a241715c95c8e8",
+    "development/supervisor.py": "e2c3d0595298a3e8286d30f432f2faa8df99f11613009fd75cb362897f89e530"
+  },
+  "before_generation": 80,
+  "idle": {
+    "active_jobs": [],
+    "gpu_state": {
+      "last_execution": {
+        "order": 1790236989833880381,
+        "sha256": "788fea639c19345bb262fbebf73a3d21d8e2872ce2692b53323c4c38cb18bade",
+        "target": "/var/lib/t01/resident/esmfold2/f49e46d7c0f96a6e88748d1f221ade9d",
+        "tool": "esmfold2",
+        "uncertain": false
+      },
+      "last_state": "succeeded",
+      "phase": "idle"
+    }
+  },
+  "p2_check_preserved": true,
+  "database_verification": {
+    "receipt": {
+      "mount_path": "/var/lib/t01/m1-p1-test-data/blast/iedb-20260924-r01",
+      "database_id": "iedb-20260924-r01",
+      "manifest_sha256": "96be17e60c108013d320558817037d081edbf8e3c0ed2f9facf83a2d818b6e12",
+      "qualification": "TARGET_DATABASE_UNREVIEWED",
+      "purpose": "C20 N03 offline IEDB literature prior; positive assays with full source sequences",
+      "source": {
+        "license": "CC BY 4.0; official IEDB export terms",
+        "name": "IEDB public SQL export",
+        "reference": "https://www.iedb.org/database_export_v3.php",
+        "release_date": "upstream release not independently verified; downloaded 2026-09-24",
+        "version": "download-20260924"
+      },
+      "blast": {
+        "blastdb_version": 5,
+        "builder_identity": "sha256:47f7b258c072f1f931ca485e03e76f721dd4a621bf1bd24ece9c1c3d1107057a",
+        "db_prefix": "iedb",
+        "dbtype": "prot",
+        "makeblastdb_version": "makeblastdb: 2.17.0+",
+        "sequence_count": 202501,
+        "title": "IEDB local source proteins 20260924"
+      },
+      "files": [
+        {
+          "bytes": 632401920,
+          "path": "evidence.sqlite3",
+          "role": "iedb_metadata",
+          "sha256": "96caf3ef7880abdc3b8628f7c056ce22ee166fa3186e5d4b2d2497a7c96d495c"
+        },
+        {
+          "bytes": 10792960,
+          "path": "iedb.pdb",
+          "role": "index",
+          "sha256": "1cb8e2bbe699ea66da29c3338d9e70ee69771cdc3d9f51122c986ba5a81c4b54"
+        },
+        {
+          "bytes": 10117993,
+          "path": "iedb.phr",
+          "role": "index",
+          "sha256": "97e89ddf76a6235e8d2e6c5a4c06f2e527cd0fdde08cca0c5a80850c7619af23"
+        },
+        {
+          "bytes": 1620128,
+          "path": "iedb.pin",
+          "role": "index",
+          "sha256": "b78b29669a34e43d182f1ba2e6205ccdc2096ffe24ebce6923da6d3b7f24c7cc"
+        },
+        {
+          "bytes": 495,
+          "path": "iedb.pjs",
+          "role": "index",
+          "sha256": "70c32335194f96ac740eea0a5476bc4ac4ff1052c094173a08510f948936ee21"
+        },
+        {
+          "bytes": 810036,
+          "path": "iedb.pog",
+          "role": "index",
+          "sha256": "8de6bc374d5dd049de22d65d08032b22eb6ff78437068be2e4d6429f99d34db1"
+        },
+        {
+          "bytes": 4042971,
+          "path": "iedb.pos",
+          "role": "index",
+          "sha256": "932d112fba50caba47d65df8200fc329b0a30365f54381f053610280b9e948a6"
+        },
+        {
+          "bytes": 2430020,
+          "path": "iedb.pot",
+          "role": "index",
+          "sha256": "0d63215a0bb263908e27fceb83600645f03c311f65d8698222cea169a9e660ef"
+        },
+        {
+          "bytes": 132118338,
+          "path": "iedb.psq",
+          "role": "index",
+          "sha256": "252775c8766dcdbce5de70e65754e8f2a0c0aa04561f94fe4b83407e27228cdb"
+        },
+        {
+          "bytes": 16384,
+          "path": "iedb.ptf",
+          "role": "index",
+          "sha256": "67982e4d7b1490b09cce06e7c29175c6bd011cd542cfacb1a1c310084a50821a"
+        },
+        {
+          "bytes": 810008,
+          "path": "iedb.pto",
+          "role": "index",
+          "sha256": "1e2974905202956a3925596c936317dc67570ae44bb5267b28c7fbd2be57d1f9"
+        },
+        {
+          "bytes": 625,
+          "path": "projection.json",
+          "role": "provenance",
+          "sha256": "8c54c054ac5be772a86803482701017a613a7d63a08ef2d16ea68ff4150bb455"
+        },
+        {
+          "bytes": 134743793,
+          "path": "proteins.fasta",
+          "role": "source_fasta",
+          "sha256": "1294f21ce25cb1f2bcbcd150a3d0446574720b3970953807456e4eb1ba694dcd"
+        }
+      ],
+      "iedb": {
+        "mapping_version": "iedb-n03-v1",
+        "metadata_path": "evidence.sqlite3",
+        "source_snapshot": "iedb-public-sql-download-20260924",
+        "source_sql_sha256": "f788be3a2dcdc568bb40c572ae5a031762b5eb42b5ace8b1a6ebf3311cc1ddcb"
+      }
+    },
+    "elapsed_seconds": 0.7962022569263354
+  },
+  "prepared_sha256": {
+    "configmap.yaml": "93c3f44b8e723d0070a87dffb652fd670323f57d989fc1ad03373e315eddfcf3",
+    "deployment.patch.json": "fe60e6c816b3c0eb89ee64c8a4942bd84f72fd65b0533da91bcb2ea19b5ba873",
+    "himat-deployed.py": "3d946d039cb5146976b1b0804f1b193c26625b4e88437a312bff260ce9864137",
+    "himat-before.py": "72d663e83ab136d918cb213ae23835e92c10cc6930d759713dc155f142093206"
+  }
+}

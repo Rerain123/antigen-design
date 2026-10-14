@@ -1,0 +1,66 @@
+{
+  "schema_version": "0.1.0",
+  "status": "PASS",
+  "environment": {
+    "engine": "Docker Desktop 4.77.0",
+    "docker_engine": "29.5.3",
+    "kernel": "6.18.33.1-microsoft-standard-WSL2",
+    "platform": "linux/amd64",
+    "network": "internal-only acceptance network",
+    "server_contacted": false
+  },
+  "controls": {
+    "container_uid": 10001,
+    "read_only_root": true,
+    "capabilities_dropped": true,
+    "no_new_privileges": true,
+    "docker_socket_mounted": false,
+    "bearer_secret_file_mounted_read_only": true
+  },
+  "cases": {
+    "authentication_rejection": "PASS",
+    "valid_structure_upload": "PASS",
+    "upload_path_traversal_rejection": "PASS",
+    "workflow_submit": "PASS",
+    "queued_cancel": "PASS",
+    "runtime_timeout": "TIMEOUT",
+    "timeout_process_tree_stop_confirmed": true,
+    "restart_recovery_count": 1,
+    "duplicate_replay": "PASS",
+    "idempotency_conflict": "PASS",
+    "cross_tenant_forbidden": "PASS",
+    "report_download_and_manifest_hashes": "PASS",
+    "missing_scientific_asset": "ASSET_MISSING",
+    "retry_cancelled_job": "PASS",
+    "upgrade_rc0_to_rc1": "PASS",
+    "rollback_rc1_to_rc0": "PASS",
+    "backup_to_new_volume_restore": "PASS",
+    "posix_process_group_active_before_stop": 1,
+    "posix_process_group_active_after_stop": 0
+  },
+  "persistence_probe": {
+    "cancelled_job_id": "t01p1r-job-2dd6086e0f8546a3b63f4735a5a284e9",
+    "job_id": "t01p1r-job-b183799b78454dc09388e727b90f3798",
+    "retry_job_id": "t01p1r-job-7ad202639e4c4eb4972f13e6044a4f3c",
+    "report_files": 4,
+    "report_sha256_before_upgrade": "3cbc1360960741776231254d72b28c0fe4a1d00d1289310744159b66de0e44af",
+    "report_sha256_after_upgrade": "3cbc1360960741776231254d72b28c0fe4a1d00d1289310744159b66de0e44af",
+    "report_sha256_after_rollback": "3cbc1360960741776231254d72b28c0fe4a1d00d1289310744159b66de0e44af",
+    "report_sha256_after_restore": "3cbc1360960741776231254d72b28c0fe4a1d00d1289310744159b66de0e44af"
+  },
+  "backup_probe": {
+    "archive_size_bytes": 4505600,
+    "archive_sha256": "13b8611bec27a6baae9396e58fd5120e43ac44c772274ef084b568221ece6a5b",
+    "source_quiesced": true,
+    "restore_mode": "non-root tar --no-same-owner",
+    "restored_to_new_volume": true
+  },
+  "upgrade_fixture": {
+    "rc0_digest": "sha256:9b65b990031b0bb832eefae5b6dcfd3bd8cdcce3e4ae09aaf284e2fdaa069305",
+    "rc1_digest": "sha256:05752ccc22b543c47aeab923ec254f2d0a5006e99543503055a5d93c585e855f"
+  },
+  "completion_boundary": "LOCAL_RELEASE_CANDIDATE_ONLY",
+  "production_status": "NOT_DEPLOYED",
+  "scientific_gate": "CLOSED",
+  "usable_for_pipeline": false
+}

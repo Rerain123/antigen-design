@@ -1,0 +1,78 @@
+{
+  "status": "VERIFIED_FOR_MAIN_HANDOFF",
+  "date": "2026-10-14",
+  "repository": "https://codeup.aliyun.com/6549a8ea3aaed849b035cf92/agent/antigen-design.git",
+  "destination_branch": "main",
+  "source_commit": "98a24c83432bf9869884f8a32e1cc1c339e3b3b5",
+  "main_before": "45ce29dd20351ce1f79f311a7a9a9b0fa3c5788b",
+  "delivery_content": {
+    "project_files_excluding_this_receipt_directory": 41411,
+    "uncompressed_bytes": 3699971901,
+    "manifest": "repository-files.jsonl.gz",
+    "external_assets": "external-assets.json",
+    "external_local_files": 105800,
+    "external_local_bytes": 78831011122,
+    "external_hashed_files": 105799,
+    "external_unreadable_files": [
+      {
+        "path": "legacy/s07/var/discovery-data/wwpdb-20260822/mmseqs2-18-8cc5c/tmp-run2/2567105839063250981/createindex.sh",
+        "error": "PermissionError"
+      }
+    ],
+    "manifest_sha256": "a8dfc67a85ea6cf7235799ad0ca5320bd290e4f39780238ff8a180ea4614a825",
+    "repository_file_count_with_receipts": 41425
+  },
+  "validation": {
+    "three_way_byte_comparison": "byte-verification.json",
+    "runtime_source": "runtime-source-check.json",
+    "documentation": "clean-docs.json",
+    "current_document_errors": 0,
+    "historical_link_notices": 31,
+    "frozen_assets": 457,
+    "frozen_status": "PASS",
+    "tests": {
+      "current_targeted": {
+        "tests": 137,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "report": "clean-tests.xml"
+      },
+      "legacy_full_mock": {
+        "tests": 74,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "report": "legacy-tests.xml"
+      },
+      "legacy_s07": {
+        "tests": 41,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "report": "s07-tests.xml"
+      }
+    },
+    "secret_review": "secret-scan-summary.json",
+    "environment_secret_hits": 0
+  },
+  "change_boundaries": {
+    "runtime_source_272_files_unchanged": true,
+    "no_semantic_changes_to_existing_source_tests_scripts": true,
+    "existing_git_line_ending_only_repairs": 321,
+    "original_documents_and_frozen_working_files_modified": false,
+    "historical_or_existing_user_changes_preserved": true,
+    "scientific_jobs_submitted": 0,
+    "cluster_mutations": 0,
+    "test_branch_pushes": 0
+  },
+  "limitations": [
+    "This is a source/document/evidence handoff, not a model, database, credential or cluster-volume backup.",
+    "External access must be granted to the receiving colleague separately; local paths are not download URLs.",
+    "The complete current-root suite was not rerun for this documentation and import-only change; 137 affected checks and separate historical suites were run.",
+    "The historical 31 link notices remain unchanged.",
+    "One old S07 temporary script could not be read and has an explicit null hash.",
+    "Existing Jenkins updates the API image only; ten-workload source publication still requires its existing deployment procedure."
+  ],
+  "remote_push_verification": "The final commit is verified by reading refs/heads/main after the normal non-force push."
+}

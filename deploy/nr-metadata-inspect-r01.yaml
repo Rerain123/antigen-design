@@ -1,0 +1,59 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-nr-metadata-inspect-r01
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 180
+  template:
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+        - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+      containers:
+        - name: inspect
+          image: harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:fba5a32c0550e56a5310160e2fc49d647fcd27d76851073a2d82cc935fb4c2fc
+          command:
+            - python
+            - -u
+            - -B
+            - -c
+            - |
+              from urllib.request import urlopen
+              import json
+              base = 'http://ncbichina.iict.ac.cn:8008/blastdb/20250624/2025-06-24-01-05-02/'
+              for name in ('nr-prot-metadata.json', 'nr.pal'):
+                  print('FILE', name, flush=True)
+                  with urlopen(base + name, timeout=30) as response:
+                      raw = response.read(1024 * 1024 + 1)
+                  if len(raw) > 1024 * 1024:
+                      raise RuntimeError('Metadata exceeds 1 MiB limit')
+                  content = raw.decode('utf-8')
+                  if name.endswith('.json'):
+                      metadata = json.loads(content)
+                      files = metadata.get('files')
+                      if isinstance(files, list):
+                          metadata['files'] = {'count': len(files), 'first_three': files[:3], 'last_three': files[-3:]}
+                      print(json.dumps(metadata, indent=2, ensure_ascii=False))
+                  else:
+                      print(content)
+              print('METADATA_INSPECTION_COMPLETE; database_volumes_downloaded=0')
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: '1'
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL

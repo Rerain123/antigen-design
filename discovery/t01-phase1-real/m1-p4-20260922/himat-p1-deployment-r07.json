@@ -1,0 +1,69 @@
+{
+  "status": "HIMAT_P1_DEPLOYED_READONLY_VERIFIED",
+  "observed_at_utc": "2026-09-24T07:55:54.605390+00:00",
+  "generation": 80,
+  "service": {
+    "source_hashes": {
+      "service_api/himat.py": "72d663e83ab136d918cb213ae23835e92c10cc6930d759713dc155f142093206",
+      "development/workflow/engineering.py": "8b79532ca2ecab110ad90f89186fe77b061f406da8c473a4c3ab2064999caace",
+      "development/workflow/policy.py": "0017ceea8f1b3a3fd23bc70b27823d0763a360457452c1a4198e605f586b4293",
+      "development/local_delivery/m1.py": "085965addc8ef915a1cfbaa6b182eccf4a306a65ba3a43eac1ec6e30947523ba",
+      "development/blast/result.py": "223b4642473429c2b6138976afe9213ebe1d802cc0a0501b6018c5a410bdda91",
+      "development/workflow/service.py": "27856715451e56ea87044fd0187f0dfe27e8b22922123ccf876298ce6d6f7eeb",
+      "development/workflow/m1.py": "1ec5f7a872030e79a848c0f012b5818cea03444601d404c4f56747ec46f9d966",
+      "development/local_delivery/compute.py": "eb7b14d61ad9bcf33034419e27ae18f502087eadba50073c8201621bdc410405"
+    },
+    "blast_original_state": "failed",
+    "blast_native_contract_pass": true,
+    "blast_replay_hsps": 500,
+    "blast_replay_qualifying_hsps": 500,
+    "tool_names": [
+      "workflow_submit_sequence",
+      "workflow_check"
+    ],
+    "card_summary": "任务 t01p1r-job-120f08a88827456e83bfdf5e6ef19b92 已生成工程报告；后端结论 DESIGN_INPUTS_UNAVAILABLE。计算含 2 项失败，报告交付不表示计算成功。科学资格 CLOSED / false / NOT_DEPLOYED。",
+    "card_issues": [
+      "N03 blast: failed / OUTPUT_INVALID",
+      "N16 codon: skipped / EXPRESSION_HOST_NOT_PROVIDED",
+      "N11 design: skipped / DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "N09 domains: skipped / DATABASE_NOT_PROVIDED",
+      "N08 homology: skipped / DATABASE_NOT_PROVIDED",
+      "N05 netmhc: skipped / ALLELE_PANEL_NOT_PROVIDED",
+      "N01 prediction: failed / TOOL_FAILED",
+      "N13 protection: skipped / DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "N12 rescore: skipped / DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "N14 stability: skipped / DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "N01 structure: skipped / PREDICTION_UNAVAILABLE",
+      "variant_report: DEVELOPMENT_UNREVIEWED",
+      "wt_draft: DEVELOPMENT_UNREVIEWED",
+      "wt_reference: DEVELOPMENT_UNREVIEWED",
+      "N16: DNA_NOT_PROVIDED",
+      "delivery: OI_013_AGENT_C_INTERFACE_UNSIGNED",
+      "delivery: OI_014_CANDIDATE_RECORD_MAPPING_UNSIGNED",
+      "delivery: SCIENTIFIC_GATES_NOT_RELEASED"
+    ],
+    "downloads": [
+      {
+        "kind": "attachment_report",
+        "sha256": "7a1e10dfb39680ca19231fb091c0e014dce38d2ca41ca57196018325a92a417d",
+        "bytes": 2258
+      },
+      {
+        "kind": "attachment_zip",
+        "sha256": "7b26f959331a9c722ac964edf81a0479a18eac727ef20882ab6af9fd5fae222e",
+        "bytes": 85515
+      }
+    ],
+    "job_count_unchanged": true,
+    "design_input_mode": "BACKEND_EVIDENCE_V1"
+  },
+  "esm_evidence": "discovery/t01-phase1-real/m1-p4-20260922/himat-esmfold2-path-deployment-r06.json",
+  "active_jobs_before": [],
+  "active_jobs_after": [],
+  "new_job_submitted": false,
+  "new_233aa_inference_verified": false,
+  "generic_design_limit": "Same-run backend audit derives masks; unresolved evidence/export conditions remain explicit and cannot force N11",
+  "scientific_gate": "CLOSED",
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED"
+}

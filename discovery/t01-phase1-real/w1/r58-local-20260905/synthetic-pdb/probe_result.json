@@ -1,0 +1,44 @@
+{
+  "scope": "LOCAL_PARSING_AND_MAPPING_PROBE",
+  "production_status": "NOT_DEPLOYED",
+  "scientific_acceptance": "NOT_RUN",
+  "evidence_kind": "synthetic_fixture",
+  "python": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "command": [
+    "scripts/probe_structure_mapping.py",
+    "--structure",
+    "tests\\fixtures\\structure_mapping\\synthetic\\partial-icode.pdb",
+    "--sequence-file",
+    "tests\\fixtures\\structure_mapping\\synthetic\\input.fasta",
+    "--output-dir",
+    "discovery\\t01-phase1-real\\w1\\r58-local-20260905\\synthetic-pdb",
+    "--evidence-kind",
+    "synthetic_fixture"
+  ],
+  "started_at": "2026-09-05T03:53:57.051821+00:00",
+  "network_retrieval": "NONE_IMPLEMENTED",
+  "files": [
+    {
+      "path": "structure_inventory.json",
+      "size_bytes": 2014,
+      "sha256": "5b09032fa4c8072c44825b3370b23fec98f84ff021f7afde1c75af73d79e5f92"
+    },
+    {
+      "path": "mapping.json",
+      "size_bytes": 2242,
+      "sha256": "7861b615839be3f273c2df4a6607a3b664dcc5d1c49e4e9d78329fe1a44a5b52"
+    }
+  ],
+  "status": "PASS",
+  "parse_status": "succeeded",
+  "mapping_status": "unverified",
+  "target_chain_id": "A",
+  "mapped_positions": 2,
+  "sequence_length": 3,
+  "structure_sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+  "sequence_sha256": "204ca7e7cf7d3e9cd8905f36d40edbe3910102d8ae4dcdb9475b6d5fe959be3d",
+  "sequence_file_sha256": "0af5676693b9b49a517c04b8c112d968e9d568634114edeffdbeb8042af1ce04",
+  "biopython": "1.88",
+  "finished_at": "2026-09-05T03:53:57.158821+00:00"
+}

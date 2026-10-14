@@ -1,0 +1,94 @@
+{
+  "status": "HIMAT_REAL_SUBMISSION_RUNNING",
+  "observed_at_utc": "2026-09-24T05:44:49.478861+00:00",
+  "job_id": "t01p1r-job-120f08a88827456e83bfdf5e6ef19b92",
+  "run_id": "t01p1r-run-44199d1960334909b953022f05a43858",
+  "service": {
+    "jobs": [
+      {
+        "job_id": "t01p1r-job-120f08a88827456e83bfdf5e6ef19b92",
+        "tool_id": "t01.real.local_workflow",
+        "node_id": "N18",
+        "state": "running",
+        "error_code": null,
+        "started_at": "2026-09-24T05:17:41.378002Z",
+        "finished_at": null
+      },
+      {
+        "job_id": "t01p1r-job-8c6c68a4ee4649938ffa77fb3fef0866",
+        "tool_id": "t01.real.esmfold2",
+        "node_id": "N01",
+        "state": "failed",
+        "error_code": "TOOL_FAILED",
+        "started_at": "2026-09-24T05:17:41.497190Z",
+        "finished_at": "2026-09-24T05:17:43.582320Z"
+      },
+      {
+        "job_id": "t01p1r-job-8261915f1db84086880d51d4d6935868",
+        "tool_id": "t01.real.deeptmhmm",
+        "node_id": "N02",
+        "state": "succeeded",
+        "error_code": null,
+        "started_at": "2026-09-24T05:17:44.246477Z",
+        "finished_at": "2026-09-24T05:18:12.767386Z"
+      },
+      {
+        "job_id": "t01p1r-job-c7309e57a72f4642b7d1c805016ae9b7",
+        "tool_id": "t01.real.blast",
+        "node_id": "N03",
+        "state": "reconciling",
+        "error_code": null,
+        "started_at": "2026-09-24T05:18:13.048177Z",
+        "finished_at": null
+      }
+    ],
+    "blast_native": [
+      {
+        "job_id": "t01p1r-job-c7309e57a72f4642b7d1c805016ae9b7",
+        "phase": "resident_observing",
+        "resident_state": "running",
+        "native_started": true,
+        "native_finished": false,
+        "cancelled": false
+      }
+    ],
+    "prediction_failure": [
+      {
+        "job_id": "t01p1r-job-8c6c68a4ee4649938ffa77fb3fef0866",
+        "legacy_76_aa_rejection_in_stderr": true
+      }
+    ]
+  },
+  "gpu": {
+    "sources": {
+      "actual_import": {
+        "policy.py": "e71133b09b31cc7ca6eb7994a0c6e45fe9a0440004d4d1b3459eb0664757022f",
+        "profile.json": "26f88d49afc1ae34afd3c21dd65c81fe95638c8f39a34fd7c625bc017a71e920"
+      },
+      "previously_verified": {
+        "policy.py": "39d5d8876b1a17558f9c651a8dab51ac863e476db0a686bdd5b7d810f1535692",
+        "profile.json": "6f078c3e5c4f76187ce7c658e4423193f75093c15397499842fb3765cb2b3df9"
+      }
+    },
+    "limits": {
+      "actual_import": {
+        "policy_max_aa": 76,
+        "profile_max_aa": 76
+      },
+      "previously_verified": {
+        "policy_max_aa": 999,
+        "profile_max_aa": 999
+      }
+    },
+    "pythonpath": "/backend:/models/esmfold2-environment-20260916-r01/site-packages"
+  },
+  "blast_processes": [
+    {
+      "pid": 15,
+      "elapsed": "26:35",
+      "cpu_percent": 152.0
+    }
+  ],
+  "read_only": true,
+  "submitted_new_job": false
+}

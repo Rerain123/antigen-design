@@ -1,0 +1,610 @@
+{
+  "status": "PASS",
+  "started_at": "2026-09-03T02:08:45.852619+00:00",
+  "campaign_id": "p0-s07-task5-contract-20260903-b",
+  "purpose": "Read-only audit of existing task-5 evidence plus document-closeout validation; no new live search.",
+  "contract_version": "s07.task5.v1-review",
+  "execution_kind": "OFFLINE_CONTRACT_CHECK",
+  "scientific_acceptance": "NOT_RUN",
+  "deployment_status": "NOT_DEPLOYED",
+  "network_calls": 0,
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "pytest": "8.4.2",
+      "pydantic": "2.13.5",
+      "biopython": "1.88",
+      "jsonschema": "4.26.0"
+    }
+  },
+  "checks": [
+    {
+      "check_id": "saved_46_checks_pass",
+      "status": "PASS",
+      "counts": {
+        "route_cases": 19,
+        "rejection_checks": 20,
+        "storage_checks": 7
+      },
+      "evidence_generated_at": "2026-09-03T01:45:04.151303+00:00"
+    },
+    {
+      "check_id": "nonproduction_boundary",
+      "status": "PASS"
+    },
+    {
+      "check_id": "saved_artifact_replay",
+      "status": "PASS",
+      "result_count": 19,
+      "artifact_count": 252,
+      "network_calls": 0
+    },
+    {
+      "check_id": "source_files_match_prior_manifests",
+      "status": "PASS",
+      "source_file_count": 136,
+      "source_file_bytes": 3458076
+    },
+    {
+      "check_id": "schema_matches_current_model_and_snapshot",
+      "status": "PASS",
+      "sha256": "13089c779b6fa8d6897b8abd636722cebc63de32594801ed14ad7b051cc1dc6d"
+    },
+    {
+      "check_id": "current_expert_originals_preserved",
+      "status": "PASS",
+      "file_count": 21
+    },
+    {
+      "check_id": "five_expert_questions_remain_pending",
+      "status": "PASS",
+      "expert_confirmation_ids": [
+        "S07-EQ-01",
+        "S07-EQ-02",
+        "S07-EQ-03",
+        "S07-EQ-04",
+        "S07-EQ-05"
+      ],
+      "rule_status": "PROVISIONAL_USER_APPROVED_EXPERT_PENDING"
+    },
+    {
+      "check_id": "new_reference_style_links_resolve",
+      "status": "PASS",
+      "reference_count": 13
+    },
+    {
+      "check_id": "full_pytest_suite",
+      "status": "PASS",
+      "passed": 111,
+      "task5_passed": 25,
+      "failed_or_skipped": 0
+    },
+    {
+      "check_id": "documentation_check",
+      "status": "PASS",
+      "output": "documentation_status=PASS markdown_files=52"
+    },
+    {
+      "check_id": "preexisting_campaign_evidence_unchanged",
+      "status": "PASS",
+      "file_count": 297
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        ".venv/Scripts/python.exe",
+        "scripts/build_s07_task5_contract_evidence.py",
+        "--campaign",
+        "discovery/p0/s07/p0-s07-task5-contract-20260903-b",
+        "--verify"
+      ],
+      "started_at": "2026-09-03T02:08:45.940165+00:00",
+      "finished_at": "2026-09-03T02:08:46.485806+00:00",
+      "exit_code": 0,
+      "output": "{\n  \"status\": \"PASS\",\n  \"result_count\": 19,\n  \"artifact_count\": 252,\n  \"network_calls\": 0\n}\n"
+    },
+    {
+      "argv": [
+        ".venv/Scripts/python.exe",
+        "-m",
+        "pytest",
+        "-o",
+        "addopts=",
+        "-q",
+        "--junitxml=discovery/p0/s07/p0-s07-task5-contract-20260903-b/reports/pytest_results.xml"
+      ],
+      "started_at": "2026-09-03T02:08:46.560536+00:00",
+      "finished_at": "2026-09-03T02:09:01.954631+00:00",
+      "exit_code": 0,
+      "output_file": "discovery/p0/s07/p0-s07-task5-contract-20260903-b/reports/pytest_output.txt"
+    },
+    {
+      "argv": [
+        ".venv/Scripts/python.exe",
+        "scripts/check_docs.py"
+      ],
+      "started_at": "2026-09-03T02:09:01.956231+00:00",
+      "finished_at": "2026-09-03T02:09:02.489070+00:00",
+      "exit_code": 0,
+      "output_file": "discovery/p0/s07/p0-s07-task5-contract-20260903-b/reports/documentation_check.txt"
+    }
+  ],
+  "expert_originals": [
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/交付说明.md",
+      "size_bytes": 1611,
+      "sha256": "a7cd4b7723d81dab17494457fd273d5906394defb456e63f6fc8cc14f025d725"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/一期实施环境清单_v10.5.md",
+      "size_bytes": 15136,
+      "sha256": "89e8d2a2fb20b0dfe5a0cf200f403cde9c91444756c60ba62b621d1c98c22f3a"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/AgentA_Schema_v10.5_20260902.md",
+      "size_bytes": 47902,
+      "sha256": "8121bbe5078badb63d0c53aa7ac08e7da693de81918bef540d3f60e4fa58135e"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/AgentA_SKILL_v10.5_20260902.md",
+      "size_bytes": 24220,
+      "sha256": "b9bf71d60046acc32422a16aecbb3d1f4376824a6512d867ebdbb23588ee1833"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/AgentA_SOP_v10.5_20260902.md",
+      "size_bytes": 222446,
+      "sha256": "856019022796f13413208f844d53aa82f10278215676fcf5177daa98f645160c"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/camsol_params.json",
+      "size_bytes": 5461,
+      "sha256": "fb135655bf2bf326db5c94a3c914a6a85eb2dd0de1bf6aa909ca2f8f27f629f4"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/camsol_params.json.sha256",
+      "size_bytes": 65,
+      "sha256": "05bf151be4adb0659294254f704b05a2bed43884dcb872dd22e00d899ec184f4"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_结构预测获取链_v10.5.md",
+      "size_bytes": 12301,
+      "sha256": "b44f9e3662c751b637702531215faa96e0a3b0c450be9f8dd725d7bac55b6721"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_A1_NetMHCpan_v10.5.md",
+      "size_bytes": 10639,
+      "sha256": "be60d67d0e87bd7a9f3f8cfd08f92890cd245d036139ed939a374a0c629379e0"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_A3_BepiPred_v10.5.md",
+      "size_bytes": 4674,
+      "sha256": "162d5576f0a4f02842f06f94f93d6a3cb8dbff158429ef24a5ea72151717bd97"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_A5_DeepTMHMM_v10.5.md",
+      "size_bytes": 8822,
+      "sha256": "95b377f9a401d7bcf663fb8b85b0733d1d451c3213f3e6116217c949acde53a9"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_C15_ProteinMPNN_v10.5.md",
+      "size_bytes": 14299,
+      "sha256": "7a14dec74871a33e1a964ceda0f22b874196953cafd16f020590c8c42ae69948"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_C18_ESM-IF1_v10.5.md",
+      "size_bytes": 10522,
+      "sha256": "bb6e3245b1c071bffb2579c400b3b880fe434ca1220c93bbc214253ba24f16b8"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_C20_IEDB镜像_BLAST_v10.5.md",
+      "size_bytes": 9864,
+      "sha256": "a89fe2ccd80012a0c47519bbf5fd0549f651f0eab902b5be22ce9d60703e119b"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_C24_PROPKA_v10.5.md",
+      "size_bytes": 11965,
+      "sha256": "2a0d8a7d964e5c7449903b102f4d0d3d1f72f42b478e50926f91fe9f8fa002a7"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_C34_FreeSASA_v10.5.md",
+      "size_bytes": 7270,
+      "sha256": "36915039a7c89f9cbf3911b02b5a7bdc1c7bccc4233b0da5c35f4e3940701221"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_C35_FoldX_v10.5.md",
+      "size_bytes": 12459,
+      "sha256": "c1d6d72d70b982a01e57e528835d5cfffc85f0388e1c86cb7e9422f75b48551d"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_C43_ThermoMPNN_v10.5.md",
+      "size_bytes": 6660,
+      "sha256": "948ea6f2291f81ee5c6cc5a4da5c67cb4a1b82c3d2b2fdd90274bc7b563de8d0"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_C44_CamSol重实现_v10.5.md",
+      "size_bytes": 14203,
+      "sha256": "bd1195e86d520a10a7b2a77e715d7d73ab6d29109feed50e208fed53c68f3bb9"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_C45_AGGRESCAN3D_v10.5.md",
+      "size_bytes": 6022,
+      "sha256": "3e7bb65a06aa13ecc515a3ab40d511569a0714bf4540f366a4b362d0a74cc130"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_UniProt注释接口_v10.5.md",
+      "size_bytes": 6888,
+      "sha256": "9fbe2cc77d74f80b668e1899062a87b56ddaaf4f5346446f58a78b7bdd751e9e"
+    }
+  ],
+  "frozen_evidence_hashes": {
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/artifact_index.json": "057cce8cbd38344a0fae577247a04daaf5e5f71e9fe0df71ed9040e099a2dd53",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/bindings/task5-R01.json": "9d89a8f5f3e2a159f0636ea6870391693f2d4ce58acbba9e9f7946fceeb90ac0",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/bindings/task5-R02.json": "37568e144e1244d544d463db4e00f8cf3fe7f2413bdd6dce4da0bf5c9098eac9",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/bindings/task5-R03.json": "a6633d6c363638a7c180899e88a94005237c4a2382e6e2e5dbe5bb1e0b7a5f43",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/bindings/task5-R04.json": "c6d1fb030a45ef9591e1f1df4d6df25c41ceceac87c238f99b72b1d2049f6620",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/bindings/task5-R05.json": "e297b0bdc8ab4ccb2e2b53dba7b45a6b7539483ab7e4e93f37bb57ebc6d42398",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/bindings/task5-R06.json": "a454e6470d678ff45bf464b314fcbd653267bc8c653d0a16d46d15be07398088",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/bindings/task5-R07.json": "7a24de62af327725ec95ab766daff84288284face66ee8261c5015fcbf1f75ef",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/bindings/task5-R08.json": "23ea4f1986cf50d2890469b31eb0f120220d52b59a1db0e00470236e9f1efc2f",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/bindings/task5-R09.json": "fb19ce549da1c053ecae25a7062823ebdec09cc7bd7766e64ae39a977d9fe368",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/bindings/task5-R10.json": "1e9d92b2464ce557fd51865e45753a041d827cb5cc754f2e0232f159241d8181",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/bindings/task5-R11.json": "f1a7c753103247bfecdb7d386c0db94cfca8e656cd93e6b7f57860a460121ccd",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/bindings/task5-R12.json": "f3689d45e71ccdef551d3afb2fd5e0ed31beddd62c3ab8ac512c8fc472da6883",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/bindings/task5-R15.json": "e6afeafdb413efa63db9795e1213352e577a365c21fccc91e6cc896c9defca14",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/bindings/task5-R16.json": "03c17231a66f308c08a4d4dfbd4e327d056626c5a444cdca0f2f2d573aeaa256",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/bindings/task5-R17.json": "71c4e72b888ac080d64ab1660f2b99ef3a7f09d922e791e8e3429ca8e507e3fc",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/bindings/task5-R18.json": "07f45ca2c570fe611055cbb05b5390b76951f50bc57da68c27b70891b1addb98",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/bindings/task5-R19.json": "69b9e1a3023ce570fe1e3807d112165c6df48d2afbfd6c9246925c30323c2825",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/bindings/task5-retry.json": "c62a58af9f56111abb2257c38f8429edae1bae2301555be1dbf41e807d413712",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/campaign.json": "a8b79f8799dcd705e7be0553a7c2f77d0307bbdcacc27fe4d021e8a6abf27a24",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/controlled/partial-6Q00.cif": "072926eb5ce628a9fd576dc64d19270f0cc6f7d6e11f09fee46908c08499eae7",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/controlled/storage-probes/immutable.json": "25718360e05d3c2d0963d1381e9dd4dae5fca789244ee4b9f861adcc0cc96218",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/controlled/storage-probes/objects/ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad": "a52d159f262b2c6ddb724a61840befc36eb30c88877a4030b65cbe86298449c9",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/00a62b0162ef9b21fa168844ad03956752fa4499f9aa38a65b4a40f21faa30a2": "00a62b0162ef9b21fa168844ad03956752fa4499f9aa38a65b4a40f21faa30a2",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/00fc3865a915aef75e7b1c755a0fb5eb58114d0e80579cc2df7724b397bfbe12": "00fc3865a915aef75e7b1c755a0fb5eb58114d0e80579cc2df7724b397bfbe12",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/03b354db05f037d23732659dc4b225bda02d5c3f0bc2f34ff76af9d3ae7c97b7": "03b354db05f037d23732659dc4b225bda02d5c3f0bc2f34ff76af9d3ae7c97b7",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/05d4839f914d2a393e9e95bc4a69d7d10044e40a0adb33f72512fef0d282c565": "05d4839f914d2a393e9e95bc4a69d7d10044e40a0adb33f72512fef0d282c565",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/06ee60ad9cc1a306253eb7fbf8298b41b56969c9dff4eafd9a63fd01efce3b5b": "06ee60ad9cc1a306253eb7fbf8298b41b56969c9dff4eafd9a63fd01efce3b5b",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/072926eb5ce628a9fd576dc64d19270f0cc6f7d6e11f09fee46908c08499eae7": "072926eb5ce628a9fd576dc64d19270f0cc6f7d6e11f09fee46908c08499eae7",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/0806edd39140ab14591619121eff9a096ee28c3cf0a0243feda04bbb0b08065b": "0806edd39140ab14591619121eff9a096ee28c3cf0a0243feda04bbb0b08065b",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/086369425f6d1b2800fe3a5777abd0039155770a0c244c9c58fc65be6ab4779d": "086369425f6d1b2800fe3a5777abd0039155770a0c244c9c58fc65be6ab4779d",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/0bfda34ff3102e8043905c0d6a91aef452b60f0f112d1c1795effd202eec1eac": "0bfda34ff3102e8043905c0d6a91aef452b60f0f112d1c1795effd202eec1eac",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/0cba8d3e87f3244130016766fd8f5a88719ca77f0a748799bbd0595f73c2fa0d": "0cba8d3e87f3244130016766fd8f5a88719ca77f0a748799bbd0595f73c2fa0d",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/0e607a87ac1a15aa89fb7094f8e773f7e39a7f3bf87b5f669b94c9fb13114172": "0e607a87ac1a15aa89fb7094f8e773f7e39a7f3bf87b5f669b94c9fb13114172",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/0ed942a25763b1b0aa22fa08bcd5c5e95e403eb3124ea4488569fad77ee0a899": "0ed942a25763b1b0aa22fa08bcd5c5e95e403eb3124ea4488569fad77ee0a899",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/0f2a68f0a042e85e2a62e130e3558dfb31e79a1f7d6453ce1d4b5cd9102dad87": "0f2a68f0a042e85e2a62e130e3558dfb31e79a1f7d6453ce1d4b5cd9102dad87",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/118400a69b80d55cba2dbf6ff3fd9ea05d28e1e1b4a48c156bb81396c2bf9279": "118400a69b80d55cba2dbf6ff3fd9ea05d28e1e1b4a48c156bb81396c2bf9279",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/14b9d334cb8b7277bf452c38ac61f31618d338aa93b5feff3aba8f869b9a0d87": "14b9d334cb8b7277bf452c38ac61f31618d338aa93b5feff3aba8f869b9a0d87",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/157538636c4d566bae0d7638ce0a2622b7010ce6ef926099d722368aa323e629": "157538636c4d566bae0d7638ce0a2622b7010ce6ef926099d722368aa323e629",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/1617aba77fa55fe0fcfa19e10638fec0b10a00ca7672e1fa220a65d822818a71": "1617aba77fa55fe0fcfa19e10638fec0b10a00ca7672e1fa220a65d822818a71",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/17f197025b065d1c19db2540eea787207b0ec2874f0c127aea96e0d1633ccfd1": "17f197025b065d1c19db2540eea787207b0ec2874f0c127aea96e0d1633ccfd1",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/1815dc8de6b1a06efb57dc915126518f52f267abe5570df97e54b3657ac72399": "1815dc8de6b1a06efb57dc915126518f52f267abe5570df97e54b3657ac72399",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/195065144601ef4626186002e4034981e5245fd683934e2a1af1f66385c87963": "195065144601ef4626186002e4034981e5245fd683934e2a1af1f66385c87963",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/1acbc2cbf1db32c1c978e6235b001c2835219867b8833cdb95aa2ff2b2190f3d": "1acbc2cbf1db32c1c978e6235b001c2835219867b8833cdb95aa2ff2b2190f3d",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/1c26a1f2762a805fd52f04c5139a24f32497ba2a1852d17f148857d5dd52c1fb": "1c26a1f2762a805fd52f04c5139a24f32497ba2a1852d17f148857d5dd52c1fb",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/1d032d07d39f91a02746b84a7a14f8e5ef6d005a1ed8b99f1e29855dd00b0937": "1d032d07d39f91a02746b84a7a14f8e5ef6d005a1ed8b99f1e29855dd00b0937",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/20797ee0657b01c990353bc9862562fb29998b8b26a69d59c5db31cfc42dba26": "20797ee0657b01c990353bc9862562fb29998b8b26a69d59c5db31cfc42dba26",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/24a9b4bc29152a29bbeb973c92aa97620fd2157f6fee4f998742df797f3c76c1": "24a9b4bc29152a29bbeb973c92aa97620fd2157f6fee4f998742df797f3c76c1",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/284be554d2ccf0256abffc863ff300abacce8d283ad17917917338541ca4213a": "284be554d2ccf0256abffc863ff300abacce8d283ad17917917338541ca4213a",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/2a7ca5e2cdc3687bdb9605493ab4f0d3eb5f023b8e490289f48309f1ee7500c0": "2a7ca5e2cdc3687bdb9605493ab4f0d3eb5f023b8e490289f48309f1ee7500c0",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/2a83ee33d04cc9759be6e975e900333ef614ac518b0e1fcb5d7b445ecfedcdb7": "2a83ee33d04cc9759be6e975e900333ef614ac518b0e1fcb5d7b445ecfedcdb7",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/2ac7ef15822b3a3424e262b9a9588f74150fe09a6e8e4e2c11302a8a9099f4b1": "2ac7ef15822b3a3424e262b9a9588f74150fe09a6e8e4e2c11302a8a9099f4b1",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/2bf3fbe615c5e9e2d26cc67e359bcbc5bd255f59cbc95704aa954bde9ae53ab8": "2bf3fbe615c5e9e2d26cc67e359bcbc5bd255f59cbc95704aa954bde9ae53ab8",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/2c23ca8ff7e7db3f577da744e98886cd59c2163f29c0c48c56f40743148eddbd": "2c23ca8ff7e7db3f577da744e98886cd59c2163f29c0c48c56f40743148eddbd",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/2dd7e67854d557d8c595d5f0ebdb1d978c42814e12391c04a5a727ad91dd226b": "2dd7e67854d557d8c595d5f0ebdb1d978c42814e12391c04a5a727ad91dd226b",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/2f5eb2c43d931a87e85f0e2ae6ebc5cb682349601bf48a35b1db04350f9a3624": "2f5eb2c43d931a87e85f0e2ae6ebc5cb682349601bf48a35b1db04350f9a3624",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/2f6e45b9c6b3164d1da1d186c42e62490db12a00b89b334b12f1a57386828637": "2f6e45b9c6b3164d1da1d186c42e62490db12a00b89b334b12f1a57386828637",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/30a724e9879e096aafcb1b847d7d097ff9f7d3b3c4da3d9f1d71236e9b2ba3fa": "30a724e9879e096aafcb1b847d7d097ff9f7d3b3c4da3d9f1d71236e9b2ba3fa",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/30ca6b34a9a714b91d7871abdf85665471ca87393eddf4ae16246aab36b7e36e": "30ca6b34a9a714b91d7871abdf85665471ca87393eddf4ae16246aab36b7e36e",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/30eb8f3f77e5bf122793357403c5c19190cde2bef01f59a164688a41e90f7818": "30eb8f3f77e5bf122793357403c5c19190cde2bef01f59a164688a41e90f7818",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/314561078b1581b9424ddeb5de64539665ac5fcf0726308c47a475f174332bd5": "314561078b1581b9424ddeb5de64539665ac5fcf0726308c47a475f174332bd5",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/31ccc303f4e4c2969b82bed49812b16909aa97808304bc11990a749b34e30236": "31ccc303f4e4c2969b82bed49812b16909aa97808304bc11990a749b34e30236",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/3212126ae2dedd8c4a33d0f74a5f5bf58377e6b94b2b056db580889eff38bc41": "3212126ae2dedd8c4a33d0f74a5f5bf58377e6b94b2b056db580889eff38bc41",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/329c027bebc609140fb0ca72429a59ebcf818dc98dcd6e73c7c70356f58abfd3": "329c027bebc609140fb0ca72429a59ebcf818dc98dcd6e73c7c70356f58abfd3",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/3431d9d2056f05553a07b8b47427d6921887a98f57e25e1217a2bb2b8f7f9833": "3431d9d2056f05553a07b8b47427d6921887a98f57e25e1217a2bb2b8f7f9833",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/36058bd4cbfb61f1c7f5d55e7e9e26fc7d50f6199f774f5cbd92a45437e15438": "36058bd4cbfb61f1c7f5d55e7e9e26fc7d50f6199f774f5cbd92a45437e15438",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/368e61e297b7e615e6e25902c2d35c990bb57168315efdaf3949cc9a3f61d263": "368e61e297b7e615e6e25902c2d35c990bb57168315efdaf3949cc9a3f61d263",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/38b56eb3cef9afac64f5eccdcb5d3ac07e403b49eaa244ad60a72af0c136cc9a": "38b56eb3cef9afac64f5eccdcb5d3ac07e403b49eaa244ad60a72af0c136cc9a",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/3955460245381ec04de28edeef7a6af32839d49782ef6146d0539d3801b9cad5": "3955460245381ec04de28edeef7a6af32839d49782ef6146d0539d3801b9cad5",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/3962d93ea66bafb8ae90afa37a069a295b8f07161ec73d1a9b1775c1937f6cb6": "3962d93ea66bafb8ae90afa37a069a295b8f07161ec73d1a9b1775c1937f6cb6",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/399724b546c77b50481b8091d856f46eb510e2bd97bcbee6f3e004658bdff3c3": "399724b546c77b50481b8091d856f46eb510e2bd97bcbee6f3e004658bdff3c3",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/3a026cd72743f69afc61f5130ee22c36dc1f0bcb4e83acdc567df965e21f43ee": "3a026cd72743f69afc61f5130ee22c36dc1f0bcb4e83acdc567df965e21f43ee",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/3ab7646d12f9bdb1438f2820e6548f7a1e9e1edddfbab4a62575d587f5ff9256": "3ab7646d12f9bdb1438f2820e6548f7a1e9e1edddfbab4a62575d587f5ff9256",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/3ae7fe9176a85f8cbd671f56ccceafda01841019749623045cc352b4403ae9eb": "3ae7fe9176a85f8cbd671f56ccceafda01841019749623045cc352b4403ae9eb",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/3b37d27bbd56519d64c4a169a605b8d398120cf743cfb16c43ef692793158a57": "3b37d27bbd56519d64c4a169a605b8d398120cf743cfb16c43ef692793158a57",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/3c64ef350e073ac652fa09774c9743b8b0e305d950181fd203fba5d0ee405b97": "3c64ef350e073ac652fa09774c9743b8b0e305d950181fd203fba5d0ee405b97",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/3d4e3ce19fb75d1072f5c96257699b6145f26733b705862236d258d0c902cf84": "3d4e3ce19fb75d1072f5c96257699b6145f26733b705862236d258d0c902cf84",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/3dc023385f4595366fcf66d0aab0831607936b8db63bb183e8016ee5dc33380a": "3dc023385f4595366fcf66d0aab0831607936b8db63bb183e8016ee5dc33380a",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/3de0a6c67bff3789f30e17ece551bcc9d166462f70c9bd20d9ded0727892510a": "3de0a6c67bff3789f30e17ece551bcc9d166462f70c9bd20d9ded0727892510a",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/3de4c2af0edf34d679bbd6e59b4f2b13065e8401b6609adc8c2ba328a84244e2": "3de4c2af0edf34d679bbd6e59b4f2b13065e8401b6609adc8c2ba328a84244e2",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/3ef1b4c6cb14230c1eb50f6910fb8a82a89841ae75d09ceefa1e5dba41e0cbb8": "3ef1b4c6cb14230c1eb50f6910fb8a82a89841ae75d09ceefa1e5dba41e0cbb8",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/4003b2626fc8431e80cbefc02b54db2377d18dfcc3f782bc18b76b53508e580f": "4003b2626fc8431e80cbefc02b54db2377d18dfcc3f782bc18b76b53508e580f",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/407b8af1f146daa4e8389ce3a38e4d66db78ec8961cb1a6013748ca42908fb13": "407b8af1f146daa4e8389ce3a38e4d66db78ec8961cb1a6013748ca42908fb13",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/4102a3d3301524072249989d1348ebaadd46afc10b6084bdf197d2ba523f77c6": "4102a3d3301524072249989d1348ebaadd46afc10b6084bdf197d2ba523f77c6",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/4106b00fa105ad20d8e4532c4f79c892837fed09fd30e6f3eda9b75279940341": "4106b00fa105ad20d8e4532c4f79c892837fed09fd30e6f3eda9b75279940341",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/4136f9b728681123dc8cc08e8d8181d06a1e43bc769ce9f3b1f98a5622e0802c": "4136f9b728681123dc8cc08e8d8181d06a1e43bc769ce9f3b1f98a5622e0802c",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/41641c3bc108159dd4369b36963dc68b4828b2bf2c9ad36475bd488b88bea902": "41641c3bc108159dd4369b36963dc68b4828b2bf2c9ad36475bd488b88bea902",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/421b752787e9b850298f259a5ef49d0458ab96064b56d73e72f2861a0f14afde": "421b752787e9b850298f259a5ef49d0458ab96064b56d73e72f2861a0f14afde",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/42f8589ebf856990bb795ad802c2f23450c1a1101bfafe1315771598f018738a": "42f8589ebf856990bb795ad802c2f23450c1a1101bfafe1315771598f018738a",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/43839e61cd3d394c71a15a14a292288c19d6fda6c6bcda4fe3c425fdf3e3ef98": "43839e61cd3d394c71a15a14a292288c19d6fda6c6bcda4fe3c425fdf3e3ef98",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/45b108fc2a39b9007072d8b29521d262ddd3d206ce3eb428149bc2c69a7d21e3": "45b108fc2a39b9007072d8b29521d262ddd3d206ce3eb428149bc2c69a7d21e3",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/46a53c94827e796e7ee15d74af74fa38711f3d7f327394dc247baf6499c95cce": "46a53c94827e796e7ee15d74af74fa38711f3d7f327394dc247baf6499c95cce",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/4920aa89189d3c3b208bf5d8211eae9741bb4a1e74b86211e9e6aa18a33a0392": "4920aa89189d3c3b208bf5d8211eae9741bb4a1e74b86211e9e6aa18a33a0392",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/4ad07318e84990f77606d375d096c17eab44dfd8ae5a1e9b9f89201aed93fe60": "4ad07318e84990f77606d375d096c17eab44dfd8ae5a1e9b9f89201aed93fe60",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/4ae32cbf82a62ecfb0dcd3fc159ad156b10f0877949e1934a8e90b359094d1f8": "4ae32cbf82a62ecfb0dcd3fc159ad156b10f0877949e1934a8e90b359094d1f8",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/4c790080015499ea72851752809c097161293f1f0dbc0eb8bbdecdcfb1ca45ab": "4c790080015499ea72851752809c097161293f1f0dbc0eb8bbdecdcfb1ca45ab",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/4f1456000457e287aba8ba8bf72a34d37a1469cc7a69d3f53b6290dea3b6eeb6": "4f1456000457e287aba8ba8bf72a34d37a1469cc7a69d3f53b6290dea3b6eeb6",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/50e96d2705b356a70b0d7163da2d12271126afa5eda3fa5ddd5aead72731280f": "50e96d2705b356a70b0d7163da2d12271126afa5eda3fa5ddd5aead72731280f",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/5454563ff4b547ab457da4b5ec7ada56a195be0873f296189f3871262db1eb52": "5454563ff4b547ab457da4b5ec7ada56a195be0873f296189f3871262db1eb52",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/566aa837e854f0d0a5c5efd9c673bf4ec7722006850b83c7cb72674965a20106": "566aa837e854f0d0a5c5efd9c673bf4ec7722006850b83c7cb72674965a20106",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/5804e153ee42a412345f6e6a16faa85094da754aaec400b1de30fdb145b741ef": "5804e153ee42a412345f6e6a16faa85094da754aaec400b1de30fdb145b741ef",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/58571c5dfc2069338f660f29c4025218f8eeefb14f15b99ca36c93016ff4a50a": "58571c5dfc2069338f660f29c4025218f8eeefb14f15b99ca36c93016ff4a50a",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/58a585acd1184a2d90397ae8e6ecbf1407fecd9a35d001c2b48b1c0c9a2cf27d": "58a585acd1184a2d90397ae8e6ecbf1407fecd9a35d001c2b48b1c0c9a2cf27d",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/5b1a0640024255788e6b36363dd27169c065352ee4e54fc7a630fa6a6dc36d3f": "5b1a0640024255788e6b36363dd27169c065352ee4e54fc7a630fa6a6dc36d3f",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/5e45ca8c090c73e3a9575e8b475983f8c85c4e51a62a612acc71889c296c4f0f": "5e45ca8c090c73e3a9575e8b475983f8c85c4e51a62a612acc71889c296c4f0f",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/5fc08f86055c8999c3506934522f1613d5d077dc88074a30c2bbe7b4cc44592e": "5fc08f86055c8999c3506934522f1613d5d077dc88074a30c2bbe7b4cc44592e",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/60e206e6a6c40f2dadbc8ba34b40721013e68ad267b6f7e002938562387d980a": "60e206e6a6c40f2dadbc8ba34b40721013e68ad267b6f7e002938562387d980a",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/621286dff33ec68090d7c1e1c972faf8dcf4ba97542c487d78374087ae98b92e": "621286dff33ec68090d7c1e1c972faf8dcf4ba97542c487d78374087ae98b92e",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/621abc651bb7d137b542ff6a3f1c3708a24df43ffa9588246ffa101a59ae4acb": "621abc651bb7d137b542ff6a3f1c3708a24df43ffa9588246ffa101a59ae4acb",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/6297f043aaebc7476042609873a67359d831fd70a5f102e73d5de95bc1bcfbf5": "6297f043aaebc7476042609873a67359d831fd70a5f102e73d5de95bc1bcfbf5",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/62e7a608d99ed8068d1e7494f43baf921a4f5b1d623d8ed4706b225993601fc7": "62e7a608d99ed8068d1e7494f43baf921a4f5b1d623d8ed4706b225993601fc7",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/661cb460d3419fcbde9d5891c3e8a2dd10578612751bd619cbbfd2b25d7eacfb": "661cb460d3419fcbde9d5891c3e8a2dd10578612751bd619cbbfd2b25d7eacfb",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/66b9f09f6ea60f48dd841a8c8f0c9a09f6bdf12e75c8cb69990d90a7bc636def": "66b9f09f6ea60f48dd841a8c8f0c9a09f6bdf12e75c8cb69990d90a7bc636def",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/66f1f35818cc7cdbab49f25ef9e85992a88dd27613219e5679386c401b3bdce4": "66f1f35818cc7cdbab49f25ef9e85992a88dd27613219e5679386c401b3bdce4",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/67e87415d68cdf5dae6077ef6a2771d92221459ecab6fa499b5ef7a1e4a95d68": "67e87415d68cdf5dae6077ef6a2771d92221459ecab6fa499b5ef7a1e4a95d68",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/6a66c4fc9109ec8c73da3c8612342979a2ab3a4b209a966b1717966015ee46c0": "6a66c4fc9109ec8c73da3c8612342979a2ab3a4b209a966b1717966015ee46c0",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/6aab073af50bfedcb134e4f2f15b6b3f4daa8e86f65131b957f7c43d743c1b12": "6aab073af50bfedcb134e4f2f15b6b3f4daa8e86f65131b957f7c43d743c1b12",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/6b0ac695ebff35ca7648a20d9230bc48f003271316531f66a4fb00f7a18c6aef": "6b0ac695ebff35ca7648a20d9230bc48f003271316531f66a4fb00f7a18c6aef",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/6c92719882fd81d69ef4d8abfc5afbe7e246be9381a57797ece349fad28e95bf": "6c92719882fd81d69ef4d8abfc5afbe7e246be9381a57797ece349fad28e95bf",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/6e6cb2ad9238bbddb832227f7dc3bb8cfb463a37c3fc8774d79d48e12ea0b43d": "6e6cb2ad9238bbddb832227f7dc3bb8cfb463a37c3fc8774d79d48e12ea0b43d",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/6f1db218b7ab9dd09ceaa91796b4634d3822ee0e4089b5be344620561f129bcb": "6f1db218b7ab9dd09ceaa91796b4634d3822ee0e4089b5be344620561f129bcb",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/709a59dacc1751491289ac24fa15309db8d3ab0a63efb0d1834b14368edee73f": "709a59dacc1751491289ac24fa15309db8d3ab0a63efb0d1834b14368edee73f",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/712348156f2ba834109a9b39756d2f42456fbaf55a3f914973bda00bd12bd614": "712348156f2ba834109a9b39756d2f42456fbaf55a3f914973bda00bd12bd614",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/71d38aef1e1fcd6c7a62e6384a117da8b00c0471291af38ba26ff580dab68b58": "71d38aef1e1fcd6c7a62e6384a117da8b00c0471291af38ba26ff580dab68b58",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/724629ac561c927e17b0f5c0c7418a9d70f0b610c705cce371db18797f1c5131": "724629ac561c927e17b0f5c0c7418a9d70f0b610c705cce371db18797f1c5131",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/7297450f5c815dcf40cd7ba1836746496f75a51f7a2457ced1121633f63a0fa8": "7297450f5c815dcf40cd7ba1836746496f75a51f7a2457ced1121633f63a0fa8",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/73c28c43d26211f37095dcb849f0369bb41ed2b85cd190d6b364845d7ea713cb": "73c28c43d26211f37095dcb849f0369bb41ed2b85cd190d6b364845d7ea713cb",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/74685f3539bc7898a7c6f5c1006fbe80c326ea2044f90ab7ed0d0e4d3df06017": "74685f3539bc7898a7c6f5c1006fbe80c326ea2044f90ab7ed0d0e4d3df06017",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/754ed10740aab7e7d63afd7390b2b3df9c3299e0ac3ba69c25e2502569b48251": "754ed10740aab7e7d63afd7390b2b3df9c3299e0ac3ba69c25e2502569b48251",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/75e98d72c7ea95398a03745405ba8cb55b33ad1645832840d360cbb685fc8f91": "75e98d72c7ea95398a03745405ba8cb55b33ad1645832840d360cbb685fc8f91",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/76f9adc7413cb16dee0e88d3cade2a7c38a8f1596a8a169a0cb411abb80785a6": "76f9adc7413cb16dee0e88d3cade2a7c38a8f1596a8a169a0cb411abb80785a6",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/77445e3d51c60238b0144134220c58a1accf7eb7c5b961ef06bd72ae2d2aa0ee": "77445e3d51c60238b0144134220c58a1accf7eb7c5b961ef06bd72ae2d2aa0ee",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/78c33c698ceeb3f99fe109112fb1d707a52df1c5440054c0d9bdee4c71845185": "78c33c698ceeb3f99fe109112fb1d707a52df1c5440054c0d9bdee4c71845185",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/7c643ccbe71bb7468d88fb433e92720d2b6a28ed6ee5cb1147ef686548cebae7": "7c643ccbe71bb7468d88fb433e92720d2b6a28ed6ee5cb1147ef686548cebae7",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/7d852982aa15df11e9f49715a30540091585db875ec248414b9f79674c2196b3": "7d852982aa15df11e9f49715a30540091585db875ec248414b9f79674c2196b3",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/7dfc4aca237df69b80bff0dbed63a15926a8fd0220f4c95c252e4dc631b58161": "7dfc4aca237df69b80bff0dbed63a15926a8fd0220f4c95c252e4dc631b58161",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/7e0481d0eb95a1d63189c50aa56bee653373623b112119d17a37860feb84ebb0": "7e0481d0eb95a1d63189c50aa56bee653373623b112119d17a37860feb84ebb0",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/7e28f3aa848991934763750f7ade87069e6927cc520cbbfb347e031111021085": "7e28f3aa848991934763750f7ade87069e6927cc520cbbfb347e031111021085",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/7e7ec9828c778b2c630edc2e196191510e685a832201b68bb28c531f00f9e6c9": "7e7ec9828c778b2c630edc2e196191510e685a832201b68bb28c531f00f9e6c9",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/7f8dfbd91bfb80ad4acd51b727320f9e778a537f2f874354f40943e6fbeb7dd9": "7f8dfbd91bfb80ad4acd51b727320f9e778a537f2f874354f40943e6fbeb7dd9",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/7fe800bc83e43337a0d536ff4ccc4a025888c11515f3cd50e626c4b28a75733a": "7fe800bc83e43337a0d536ff4ccc4a025888c11515f3cd50e626c4b28a75733a",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/8079c5e7ff839e7c148d21e440e69b735408d9dae81861d0b04c1225f498f26e": "8079c5e7ff839e7c148d21e440e69b735408d9dae81861d0b04c1225f498f26e",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/8139f466419365720f9ac5144db1242a11314aeef9147acc4f4bf7b80821eaa3": "8139f466419365720f9ac5144db1242a11314aeef9147acc4f4bf7b80821eaa3",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/82e169a912b49decd4b6550719df509e77ddc0e70f76eea32c184c061d3b2f6c": "82e169a912b49decd4b6550719df509e77ddc0e70f76eea32c184c061d3b2f6c",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/868e5df92c847b2ae170732628f833ec46653e86bbf5a8cd513922e24870320d": "868e5df92c847b2ae170732628f833ec46653e86bbf5a8cd513922e24870320d",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/878637930baf89eb3716a0085d9b4b8a84b0705ee50a865fab6cd9133bb9e8e8": "878637930baf89eb3716a0085d9b4b8a84b0705ee50a865fab6cd9133bb9e8e8",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/879743d7c3424024dbe8ca90eb78db1207082c36f19381e818f9e0849393fcad": "879743d7c3424024dbe8ca90eb78db1207082c36f19381e818f9e0849393fcad",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/87be3d31172015e6d0c235b7a7b215dd5def79d6125ff7eca27c6605abcc8740": "87be3d31172015e6d0c235b7a7b215dd5def79d6125ff7eca27c6605abcc8740",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/8826b30d2fa5f9a4adf6ab2bd3b7b993ada14c2d517fdcbc1422e4a52d0bc684": "8826b30d2fa5f9a4adf6ab2bd3b7b993ada14c2d517fdcbc1422e4a52d0bc684",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/88be79653a05e758db7b9ecd00dc4032868c3ce3af2ba061798b44005f2d4ada": "88be79653a05e758db7b9ecd00dc4032868c3ce3af2ba061798b44005f2d4ada",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/89eaeeb687be0e6b1450009a7d0678ddd5681dbc4be546496fd54e4fdfda7651": "89eaeeb687be0e6b1450009a7d0678ddd5681dbc4be546496fd54e4fdfda7651",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/8b76b0bd84e601b31e91c80f4f3c5ea272767640f5fc64b00cfae680e87723ec": "8b76b0bd84e601b31e91c80f4f3c5ea272767640f5fc64b00cfae680e87723ec",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/8d41d912deac04f08409e0a96c61db093efeaa13ce1fafb7bbced8f73cab6a7f": "8d41d912deac04f08409e0a96c61db093efeaa13ce1fafb7bbced8f73cab6a7f",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/8d63c9d9d49af3d131fb0f378569dbbdfb6a2b623f91980a1164f7c330e56bea": "8d63c9d9d49af3d131fb0f378569dbbdfb6a2b623f91980a1164f7c330e56bea",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/8f284724da006a7faf50a1a87947218f29521953f6321c47a2eff054e1c7a994": "8f284724da006a7faf50a1a87947218f29521953f6321c47a2eff054e1c7a994",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/907036df96cf2d0a2488d38a1248a853a849bc375e89478f77761df804d92fe7": "907036df96cf2d0a2488d38a1248a853a849bc375e89478f77761df804d92fe7",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/91d95cc81bd16959312e06f98d18d0e0aa43024e0dde264a4d7c74820145ba49": "91d95cc81bd16959312e06f98d18d0e0aa43024e0dde264a4d7c74820145ba49",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/92081feecc5d32a96a50e7fb30ab37d3923287e9005e0a392c32c985203631fb": "92081feecc5d32a96a50e7fb30ab37d3923287e9005e0a392c32c985203631fb",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/9341aa0e05f17767290bb6779340b08643aca1b010b7e64d818498f5e2d8a273": "9341aa0e05f17767290bb6779340b08643aca1b010b7e64d818498f5e2d8a273",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/93b13e0a935820b9dc0e4ea0de559f0430a0164394d975fd9be4695e09cc6677": "93b13e0a935820b9dc0e4ea0de559f0430a0164394d975fd9be4695e09cc6677",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/94806e57aa74469d8b59a16436b609ed59c3a786e5c66f7f244c8354a08b763e": "94806e57aa74469d8b59a16436b609ed59c3a786e5c66f7f244c8354a08b763e",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/9575c4a6af0051e6746c274df12b413fae2c47e75f7a7ece555a49f7647b47f9": "9575c4a6af0051e6746c274df12b413fae2c47e75f7a7ece555a49f7647b47f9",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/9620c46e4b0b5479ed1da333ed891f9cca2fd642e7693e56a714aa6e1a23ab09": "9620c46e4b0b5479ed1da333ed891f9cca2fd642e7693e56a714aa6e1a23ab09",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/968d0d875e2aba71bd8f7e7c6e23239d37e42ff1503f3363dc7a8429ed608f86": "968d0d875e2aba71bd8f7e7c6e23239d37e42ff1503f3363dc7a8429ed608f86",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/971322ef0a05edb9fd3b5247ed4cf7b5c0a92a0fa3c10fa1700cbbd91a85c335": "971322ef0a05edb9fd3b5247ed4cf7b5c0a92a0fa3c10fa1700cbbd91a85c335",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/975ee2b38c875e71edb723bd5eba915d0a0bf210e86e7f72c6786c56d1831d01": "975ee2b38c875e71edb723bd5eba915d0a0bf210e86e7f72c6786c56d1831d01",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/9941e7b3986daaba8706171a81ca36b522c0e199b57a522f623d54bcceb9f9f2": "9941e7b3986daaba8706171a81ca36b522c0e199b57a522f623d54bcceb9f9f2",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/9b1a257850bd452cb019a59b31e3d194475a548c3703378fe916c71b0fb6e3ab": "9b1a257850bd452cb019a59b31e3d194475a548c3703378fe916c71b0fb6e3ab",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/9bd1f4c1f32877e60c21f470670f0248c54d7ebe3300276e578c5707bf358751": "9bd1f4c1f32877e60c21f470670f0248c54d7ebe3300276e578c5707bf358751",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/9e69aaf8178fdf78064bf8a3aaa01efd0defe42c1205bfcd49b4f0f740138345": "9e69aaf8178fdf78064bf8a3aaa01efd0defe42c1205bfcd49b4f0f740138345",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/9e915f81e8a18058e37630c62958d48624a2cb1c2a02fed7f3b5d235faace44f": "9e915f81e8a18058e37630c62958d48624a2cb1c2a02fed7f3b5d235faace44f",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/9fafe90f498d72db7f6cb33c134bc229d9b6d9b0e22edf570ba4afa9f01bfca3": "9fafe90f498d72db7f6cb33c134bc229d9b6d9b0e22edf570ba4afa9f01bfca3",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/a136f45609ac22b2e1a2f5331c43d366b60a403dae9e73d29feb2bbf9bc3eea8": "a136f45609ac22b2e1a2f5331c43d366b60a403dae9e73d29feb2bbf9bc3eea8",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/a1aeb5d37f1b0a9f7eaa7b813e24f70d4184f565ec5542da4eaf094e200eac06": "a1aeb5d37f1b0a9f7eaa7b813e24f70d4184f565ec5542da4eaf094e200eac06",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/a3c7289880787b19435eeb1e5749c2626334032ddba28d90ddd30d2c4171dd37": "a3c7289880787b19435eeb1e5749c2626334032ddba28d90ddd30d2c4171dd37",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/a4218a1d20d78d09c55d7679e7662bd2768677fbe822a2428fcb911310e2474f": "a4218a1d20d78d09c55d7679e7662bd2768677fbe822a2428fcb911310e2474f",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/a474f72892940561a16f5bc02e149212fb2f3d64052d1693aa95801673cb7519": "a474f72892940561a16f5bc02e149212fb2f3d64052d1693aa95801673cb7519",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/a4bcfdba278cd69d5a9ea6f5b575085ac7ff6f100d031129b6ec8d113f88d0a3": "a4bcfdba278cd69d5a9ea6f5b575085ac7ff6f100d031129b6ec8d113f88d0a3",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/a5c70cd6ea90eedac06af5c41218f472405bd4024d6041595c1a0a95b210f341": "a5c70cd6ea90eedac06af5c41218f472405bd4024d6041595c1a0a95b210f341",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/a68ce5beac34670702f989fd466c2e01f2a759a7443808f27a3c7298428fa41f": "a68ce5beac34670702f989fd466c2e01f2a759a7443808f27a3c7298428fa41f",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/a6ee7684537ec81d1b59b6f26691cf7d853cf5195393c66d11297a588112017b": "a6ee7684537ec81d1b59b6f26691cf7d853cf5195393c66d11297a588112017b",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/a806c8ba36fb9d967e973580447922a663f22063b655384fc2183251708bc68f": "a806c8ba36fb9d967e973580447922a663f22063b655384fc2183251708bc68f",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/a9c695ae55a3944b5d6c602be563f9c1a222704ec9d927681c6e58a177548eb7": "a9c695ae55a3944b5d6c602be563f9c1a222704ec9d927681c6e58a177548eb7",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/ab211f2d9e2e0cd4e4528a8592b392be835a6d3c0121972176fa6c4471bda0a4": "ab211f2d9e2e0cd4e4528a8592b392be835a6d3c0121972176fa6c4471bda0a4",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/ac8b07c49e29fcfdb9cfb42f1e76238cd5803fcc6032df99e637c20ade8a258a": "ac8b07c49e29fcfdb9cfb42f1e76238cd5803fcc6032df99e637c20ade8a258a",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/add949b2ac027581202172a5fb33bf5e6f9fa95aae21f2a0e41426485b372fbb": "add949b2ac027581202172a5fb33bf5e6f9fa95aae21f2a0e41426485b372fbb",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/b2bc29ae4d78f9d7eb498228a28d16081341d4af5670cc0c1651cd83579d5438": "b2bc29ae4d78f9d7eb498228a28d16081341d4af5670cc0c1651cd83579d5438",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/b313f0ca89745f7914ef1ad9c7bae350d697f28570de1e9ea4f9c355fc7ddb25": "b313f0ca89745f7914ef1ad9c7bae350d697f28570de1e9ea4f9c355fc7ddb25",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/b56e8494fed67f950bdab4120ba5ff1e84e039dfa25fd70b747618edacb9bfe5": "b56e8494fed67f950bdab4120ba5ff1e84e039dfa25fd70b747618edacb9bfe5",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/b6f349abf9351528dfab588a1bd08cec9411531ea039c5e47232cfb6636d788b": "b6f349abf9351528dfab588a1bd08cec9411531ea039c5e47232cfb6636d788b",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/b81da37fdec92b75d6b7abacb4f90936c67ed2ab46b5dbdd3146ad6120fd8673": "b81da37fdec92b75d6b7abacb4f90936c67ed2ab46b5dbdd3146ad6120fd8673",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/b920517f5dcff27b01ac26bd8831df507011412789a82a7c656e89f4d7a0a97c": "b920517f5dcff27b01ac26bd8831df507011412789a82a7c656e89f4d7a0a97c",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/b965bc92c973a04ab1b9281f9819c723e09e0d7c93d924b045ea8208cb2e7383": "b965bc92c973a04ab1b9281f9819c723e09e0d7c93d924b045ea8208cb2e7383",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/b9e318910c6990bcf24f794b16388991678f6422b977ad111e6f672eb5530264": "b9e318910c6990bcf24f794b16388991678f6422b977ad111e6f672eb5530264",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/b9ed96b528c153ae30352cc629830df33109d414beffdc47166dbafea05411b3": "b9ed96b528c153ae30352cc629830df33109d414beffdc47166dbafea05411b3",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/ba1a4f6fdb8a855cc3928e5934280ded2a5e11f58c5e435718affb71bd5fdb1a": "ba1a4f6fdb8a855cc3928e5934280ded2a5e11f58c5e435718affb71bd5fdb1a",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/ba87cb6df04f31651b331954932ec37c65a1c9278807b30e3d3b9edfeede7a84": "ba87cb6df04f31651b331954932ec37c65a1c9278807b30e3d3b9edfeede7a84",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/bb1da40b518c1513cbbed845863a4ef37e57c163cfeccd434103a24fda1773da": "bb1da40b518c1513cbbed845863a4ef37e57c163cfeccd434103a24fda1773da",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/bc60390c45162bccf5ad173cc595e93d6f64addc4a85915b125db7877f14ae19": "bc60390c45162bccf5ad173cc595e93d6f64addc4a85915b125db7877f14ae19",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/bde4df9f63da605be363292855f4abf5834b777fbbb590defed2ea05f2583837": "bde4df9f63da605be363292855f4abf5834b777fbbb590defed2ea05f2583837",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/bf357328bd2fa84fc7e40e48048978c0626a9e40c432a21a4c5cd35ae64bb656": "bf357328bd2fa84fc7e40e48048978c0626a9e40c432a21a4c5cd35ae64bb656",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/bf56b0e8b464194977d843ee520fa2071c9c43c7bae576d4edc8a063cb089758": "bf56b0e8b464194977d843ee520fa2071c9c43c7bae576d4edc8a063cb089758",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/bf99452c5a0a08b56999f1f6d19ef72dd2438a54e3a38770d1925413b4bc6b4f": "bf99452c5a0a08b56999f1f6d19ef72dd2438a54e3a38770d1925413b4bc6b4f",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/bfd5ad5c29823b12b84c92b546c04ecbb89505ea6d0008e58f48da7695b6fd9e": "bfd5ad5c29823b12b84c92b546c04ecbb89505ea6d0008e58f48da7695b6fd9e",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/c10ca9f81b3b774b87bbe7f6334f3d3d4f8166619f58a03b005ab1f7034ad487": "c10ca9f81b3b774b87bbe7f6334f3d3d4f8166619f58a03b005ab1f7034ad487",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/c12654a579c97b82b366e4eb1749de1cabf7609bc63154d729dea187a47251df": "c12654a579c97b82b366e4eb1749de1cabf7609bc63154d729dea187a47251df",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/c2029a49b5eb8c3ec29a2708b99d8303ec273d93b3080129cf8742cf06f129db": "c2029a49b5eb8c3ec29a2708b99d8303ec273d93b3080129cf8742cf06f129db",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/c2b27ed64cb1faf50992e249aea718c888941cb0d271704eb78b5759ac0e43b9": "c2b27ed64cb1faf50992e249aea718c888941cb0d271704eb78b5759ac0e43b9",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/c38017d6a5f1e433217e59292ff4d0dabcfd8d33fe191ad544abb179113871e2": "c38017d6a5f1e433217e59292ff4d0dabcfd8d33fe191ad544abb179113871e2",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/c3d09fedf1caeed3fa1fb5a39c77825873d204e9a15ed7982543340fa3e506d0": "c3d09fedf1caeed3fa1fb5a39c77825873d204e9a15ed7982543340fa3e506d0",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/c509fb2085229cfd3f22c359a541664d13f1e9e714ddf28e51cee0401d407460": "c509fb2085229cfd3f22c359a541664d13f1e9e714ddf28e51cee0401d407460",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/c54d723e04825934a7e276e8e634adda5cb2b27595b90ad3892f53fa62310d17": "c54d723e04825934a7e276e8e634adda5cb2b27595b90ad3892f53fa62310d17",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/c5861d3cef19037d8bb1e3e8c48b030f9eac54f0ca3bbe7809c5650c78a74c77": "c5861d3cef19037d8bb1e3e8c48b030f9eac54f0ca3bbe7809c5650c78a74c77",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/c6be57e1e3b7a475f9899430235130770ae5d0ba44705e79af2350e5604da314": "c6be57e1e3b7a475f9899430235130770ae5d0ba44705e79af2350e5604da314",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/c8fa416ecb68c465e8adf1813d5ce75c1c5e0235cbfce4ee4e8b3b19ad475fd1": "c8fa416ecb68c465e8adf1813d5ce75c1c5e0235cbfce4ee4e8b3b19ad475fd1",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/c980ad90270f4d35d47023c09cdfc6af9a40727a10789fe50985515d47d7ce69": "c980ad90270f4d35d47023c09cdfc6af9a40727a10789fe50985515d47d7ce69",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/cc43eb4e7bf2d8c14be0f424963a6e02f43a917c7461a762fc6fd35a6d954477": "cc43eb4e7bf2d8c14be0f424963a6e02f43a917c7461a762fc6fd35a6d954477",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/ccc65df02162f73fab5d55b1a2ed074fa47cefe50eea6defe0d9e1d3d1f12de6": "ccc65df02162f73fab5d55b1a2ed074fa47cefe50eea6defe0d9e1d3d1f12de6",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/cd5b4405759d2fc76cd0319f9650089be9277ad416d2c3783ebb676f737f976c": "cd5b4405759d2fc76cd0319f9650089be9277ad416d2c3783ebb676f737f976c",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/ce9e1155cb44caacc5f4be30d5a83e13a06b25f19206b23edc080b31e9c5e072": "ce9e1155cb44caacc5f4be30d5a83e13a06b25f19206b23edc080b31e9c5e072",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/cf2678da934db453e7c1c1f0b432b9c9abed2f8861accf084b03f3542a3b010d": "cf2678da934db453e7c1c1f0b432b9c9abed2f8861accf084b03f3542a3b010d",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/cfdbeaeff0786f62da5e85058382d4258c67de7b9464778e8b6417de882b35c4": "cfdbeaeff0786f62da5e85058382d4258c67de7b9464778e8b6417de882b35c4",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/d03076747042141a02f66b71efc19a989b969edfd0d1f70669bba67cd069d8ab": "d03076747042141a02f66b71efc19a989b969edfd0d1f70669bba67cd069d8ab",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/d27883dec99c89cfe9797079cf1118ee2ed7fbccbc7fc6d7ad8c67293772111e": "d27883dec99c89cfe9797079cf1118ee2ed7fbccbc7fc6d7ad8c67293772111e",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/d2a2fdc930fac72aa8fa069dce0f7493b8a1e75a2e16f61e85b992275ae53217": "d2a2fdc930fac72aa8fa069dce0f7493b8a1e75a2e16f61e85b992275ae53217",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/d2d906a2df97253ae3eb8a4cfbce89abe9cf10f9a92087f0c7c7cb452a01b853": "d2d906a2df97253ae3eb8a4cfbce89abe9cf10f9a92087f0c7c7cb452a01b853",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/d2fbd7f7d56f95773b06ad5cdf6a3fc964af14f228e718f25bf395a80d8fdc24": "d2fbd7f7d56f95773b06ad5cdf6a3fc964af14f228e718f25bf395a80d8fdc24",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/d30d76d74a9d6a5c37fabd3064743aba0bee418158e76a2898d04b1713992154": "d30d76d74a9d6a5c37fabd3064743aba0bee418158e76a2898d04b1713992154",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/d34c3bc31dcd1d3a40143fb1ca96251d636c3b007056df299c93a2338a282f56": "d34c3bc31dcd1d3a40143fb1ca96251d636c3b007056df299c93a2338a282f56",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/d37972527c798e13e39fb8202e33d9c5cb816ac211c57591218e753a357d80e1": "d37972527c798e13e39fb8202e33d9c5cb816ac211c57591218e753a357d80e1",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/d3ea20f3f9c5664ecb512e6fd9e0c7b39a17d11defc18495e709c1479fae7224": "d3ea20f3f9c5664ecb512e6fd9e0c7b39a17d11defc18495e709c1479fae7224",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/d56dcbb17234a40c01e3f1cfc545a03e57d9d39488a7fca96ce82ed7e0471097": "d56dcbb17234a40c01e3f1cfc545a03e57d9d39488a7fca96ce82ed7e0471097",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/d6bf0957e60b6e5fbb1d23a3495c22e184dffa0cdb8af2c9ab2a06cc4c0297eb": "d6bf0957e60b6e5fbb1d23a3495c22e184dffa0cdb8af2c9ab2a06cc4c0297eb",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/d74b010c8a1cb03586d824289dbd405081d3598b6c8d203354aa474bac68ec7e": "d74b010c8a1cb03586d824289dbd405081d3598b6c8d203354aa474bac68ec7e",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/d805def4ab27ab6545daf118c79ea2783102985c1a41034a4441b54a65f62257": "d805def4ab27ab6545daf118c79ea2783102985c1a41034a4441b54a65f62257",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/d80ffc8dc07953482a2f9f5fbff9a9cecea5d0022155f32af0b56e91d1bee7d3": "d80ffc8dc07953482a2f9f5fbff9a9cecea5d0022155f32af0b56e91d1bee7d3",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/d821b9af26f287a4ded7d394b8516053e276c542838c7f5b4dd2ebc89c85bc88": "d821b9af26f287a4ded7d394b8516053e276c542838c7f5b4dd2ebc89c85bc88",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/d85c718da2759009e136b42b4ade03653063517ab46dceae687acd61a6b067ad": "d85c718da2759009e136b42b4ade03653063517ab46dceae687acd61a6b067ad",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/db64bcabaa2bbbbab8247d9d4da6bfb768439df61bb45ccb3c9fccd6f3b34407": "db64bcabaa2bbbbab8247d9d4da6bfb768439df61bb45ccb3c9fccd6f3b34407",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/dc2cd56dce3856249bddd2590be5de0078568976ee86c9a21c601fbabcb995f0": "dc2cd56dce3856249bddd2590be5de0078568976ee86c9a21c601fbabcb995f0",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/dd3ad06c4b77220bf40040475dd0fbd201cec5071022f6bfcc3f41393bbb43dc": "dd3ad06c4b77220bf40040475dd0fbd201cec5071022f6bfcc3f41393bbb43dc",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/dddc0c7b04e46001c0309d12c2da771aa2350fd14154d34d1409afb5f3185b5b": "dddc0c7b04e46001c0309d12c2da771aa2350fd14154d34d1409afb5f3185b5b",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/dfa29f1d53efc16b499e3360206683b8f90d0627c1701d0fc0bccbeef8543000": "dfa29f1d53efc16b499e3360206683b8f90d0627c1701d0fc0bccbeef8543000",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/e088af4e628dfa3d6e751557d74458719510b8039e35b2c477caa7470cd717eb": "e088af4e628dfa3d6e751557d74458719510b8039e35b2c477caa7470cd717eb",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/e1a1df689cefed86a7d4a3b28ff965e1bb934d87374e7bd3e5d4afc87465b0ab": "e1a1df689cefed86a7d4a3b28ff965e1bb934d87374e7bd3e5d4afc87465b0ab",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/e2da0c4be6af8e5f271e68a7acbec2e91f2cdd10134032ddc51511e6bef813e2": "e2da0c4be6af8e5f271e68a7acbec2e91f2cdd10134032ddc51511e6bef813e2",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/e2e3bc2c38b5cfd79d95d85d0272718ccbe033f34c978dc40b9d19cf90b6704b": "e2e3bc2c38b5cfd79d95d85d0272718ccbe033f34c978dc40b9d19cf90b6704b",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/e333e14b5a0708a189308dd8fc24b75e4926032490725ea896321b090b7449fa": "e333e14b5a0708a189308dd8fc24b75e4926032490725ea896321b090b7449fa",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/e3ad80e5903743eacbe6d11e65b1dcd3d8d14ba74a991096b3ffb79a71df24a8": "e3ad80e5903743eacbe6d11e65b1dcd3d8d14ba74a991096b3ffb79a71df24a8",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/e5a61d55faea3598b4bec4830cca2573c284c2184e5933b1335f6a1b1fef3e3b": "e5a61d55faea3598b4bec4830cca2573c284c2184e5933b1335f6a1b1fef3e3b",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/e6afee922fa213c325999ec2676f9fbd0934d91f34045b10dc38bf4cc6009180": "e6afee922fa213c325999ec2676f9fbd0934d91f34045b10dc38bf4cc6009180",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/e707096a6af6ea5fe8f9de6a999dd3d472af0d374e88a7c41abc774c1b2f34c7": "e707096a6af6ea5fe8f9de6a999dd3d472af0d374e88a7c41abc774c1b2f34c7",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/e78b69089d54053f42d83a9ba1724838463b413731cea0c00b544f86ee427489": "e78b69089d54053f42d83a9ba1724838463b413731cea0c00b544f86ee427489",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/e842546ac2afc0fb4c5763e6d5d525f7ef05367a8a804707f2351a4428bc8c01": "e842546ac2afc0fb4c5763e6d5d525f7ef05367a8a804707f2351a4428bc8c01",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/e9612b8a82fd88681a81b0cffbe5135afc8371a1da65259d7c897fb33fbce8ea": "e9612b8a82fd88681a81b0cffbe5135afc8371a1da65259d7c897fb33fbce8ea",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/e9c0cb9738439cbf01cecd5f8564a2f4a3d46127443ee82ad86eb324607ba4d0": "e9c0cb9738439cbf01cecd5f8564a2f4a3d46127443ee82ad86eb324607ba4d0",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/eab061b365aea3ae2031a54966ce0820f03004a1c82c864753227cb0d241f5e1": "eab061b365aea3ae2031a54966ce0820f03004a1c82c864753227cb0d241f5e1",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/eb3f52109369ea75002ef644019026f402f78c0fe71879443f117fea01e4b212": "eb3f52109369ea75002ef644019026f402f78c0fe71879443f117fea01e4b212",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/ecdb65844845c2068cb7d849f0d3d56077274a30f751dc45eca293051de864ec": "ecdb65844845c2068cb7d849f0d3d56077274a30f751dc45eca293051de864ec",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/ee4ba019ee72a50c38fc394bb48bfe692f3625189c4ae55273efe6c8fbac07da": "ee4ba019ee72a50c38fc394bb48bfe692f3625189c4ae55273efe6c8fbac07da",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/eeab2d4d4e53de2e44f8e772a5752827a99fdd6b6ae79c12fe7fdb17fae896f4": "eeab2d4d4e53de2e44f8e772a5752827a99fdd6b6ae79c12fe7fdb17fae896f4",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/ef0bd327cc3bc64539a33e66d1ce02e4311874eefb60fb8cad9e8dbdfba42dc9": "ef0bd327cc3bc64539a33e66d1ce02e4311874eefb60fb8cad9e8dbdfba42dc9",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/f022a62d71c3b777d98202b7a9f7a516e24b12046c59bd3741d2a26d0d8f17f7": "f022a62d71c3b777d98202b7a9f7a516e24b12046c59bd3741d2a26d0d8f17f7",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/f1e5cecb0b92c80690846b6ddd4d9e7afcec18742ae1a24b9b9e2102b4f09a16": "f1e5cecb0b92c80690846b6ddd4d9e7afcec18742ae1a24b9b9e2102b4f09a16",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/f29beb313a25f4aea29ea834bba0235332e37b21eba0321415966fa759905ed4": "f29beb313a25f4aea29ea834bba0235332e37b21eba0321415966fa759905ed4",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/f2f480ef311de7bc959b2431eca75d71b07b1a8c9d94af4d5d8952900b14417e": "f2f480ef311de7bc959b2431eca75d71b07b1a8c9d94af4d5d8952900b14417e",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/f30582354555e172f7831330eb9def922b7346d5875a0b350175b027d59561de": "f30582354555e172f7831330eb9def922b7346d5875a0b350175b027d59561de",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/f568bff40fccc9034df45a4acd6af66d7643d6880a2ee506c63f73705e78e2e2": "f568bff40fccc9034df45a4acd6af66d7643d6880a2ee506c63f73705e78e2e2",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/fa3cf071259e03f1e52f820c9dce1d119dda0373fc845c55b730c777ddf1a3d3": "fa3cf071259e03f1e52f820c9dce1d119dda0373fc845c55b730c777ddf1a3d3",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/fa5476b16cad33298008b413a59cdedd1232aeb9fdfa18eb3a4c051096c8f354": "fa5476b16cad33298008b413a59cdedd1232aeb9fdfa18eb3a4c051096c8f354",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/fb9188859e9cba52b15740935b91f8aabe6b913983d9718a0d66d8e5cb49e2c2": "fb9188859e9cba52b15740935b91f8aabe6b913983d9718a0d66d8e5cb49e2c2",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/fe5c438f0b016a6889b9f81b552038dd6b5eef70a9c23d09b2c7b8f1b80a4fac": "fe5c438f0b016a6889b9f81b552038dd6b5eef70a9c23d09b2c7b8f1b80a4fac",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/fe7f3e14ea24c37052f7cda0fae8e6deaa79a111b49cd5513a83bb1f115e0f7a": "fe7f3e14ea24c37052f7cda0fae8e6deaa79a111b49cd5513a83bb1f115e0f7a",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/objects/fe960f00b15253a413f25904a4e1dd076b1b6f30ba5f839b1827cd4a5426076f": "fe960f00b15253a413f25904a4e1dd076b1b6f30ba5f839b1827cd4a5426076f",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/reports/source_evidence_index.json": "82dbd1f8e7f588d1617b52ba8ebf8aa2d7272acae5f53e486563f64d80138420",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/reports/task5_contract_evidence.json": "f3bd174ae67eda31fa9bf8d1c6621e6e1e11e5b776ecf4509fc916bff64e9be9",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/results/task5-R01/attempt-001.json": "3ab7646d12f9bdb1438f2820e6548f7a1e9e1edddfbab4a62575d587f5ff9256",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/results/task5-R02/attempt-001.json": "fa3cf071259e03f1e52f820c9dce1d119dda0373fc845c55b730c777ddf1a3d3",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/results/task5-R03/attempt-001.json": "2f5eb2c43d931a87e85f0e2ae6ebc5cb682349601bf48a35b1db04350f9a3624",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/results/task5-R04/attempt-001.json": "30ca6b34a9a714b91d7871abdf85665471ca87393eddf4ae16246aab36b7e36e",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/results/task5-R05/attempt-001.json": "42f8589ebf856990bb795ad802c2f23450c1a1101bfafe1315771598f018738a",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/results/task5-R06/attempt-001.json": "1c26a1f2762a805fd52f04c5139a24f32497ba2a1852d17f148857d5dd52c1fb",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/results/task5-R07/attempt-001.json": "ecdb65844845c2068cb7d849f0d3d56077274a30f751dc45eca293051de864ec",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/results/task5-R08/attempt-001.json": "3b37d27bbd56519d64c4a169a605b8d398120cf743cfb16c43ef692793158a57",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/results/task5-R09/attempt-001.json": "3a026cd72743f69afc61f5130ee22c36dc1f0bcb4e83acdc567df965e21f43ee",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/results/task5-R10/attempt-001.json": "ab211f2d9e2e0cd4e4528a8592b392be835a6d3c0121972176fa6c4471bda0a4",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/results/task5-R11/attempt-001.json": "e9612b8a82fd88681a81b0cffbe5135afc8371a1da65259d7c897fb33fbce8ea",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/results/task5-R12/attempt-001.json": "a136f45609ac22b2e1a2f5331c43d366b60a403dae9e73d29feb2bbf9bc3eea8",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/results/task5-R15/attempt-001.json": "157538636c4d566bae0d7638ce0a2622b7010ce6ef926099d722368aa323e629",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/results/task5-R16/attempt-001.json": "f1e5cecb0b92c80690846b6ddd4d9e7afcec18742ae1a24b9b9e2102b4f09a16",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/results/task5-R17/attempt-001.json": "c980ad90270f4d35d47023c09cdfc6af9a40727a10789fe50985515d47d7ce69",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/results/task5-R18/attempt-001.json": "eab061b365aea3ae2031a54966ce0820f03004a1c82c864753227cb0d241f5e1",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/results/task5-R19/attempt-001.json": "971322ef0a05edb9fd3b5247ed4cf7b5c0a92a0fa3c10fa1700cbbd91a85c335",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/results/task5-retry/attempt-001.json": "d2fbd7f7d56f95773b06ad5cdf6a3fc964af14f228e718f25bf395a80d8fdc24",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/results/task5-retry/attempt-002.json": "5fc08f86055c8999c3506934522f1613d5d077dc88074a30c2bbe7b4cc44592e",
+    "discovery/p0/s07/p0-s07-task5-contract-20260903-b/schema/S07_TASK5_RESULT_CONTRACT.schema.json": "13089c779b6fa8d6897b8abd636722cebc63de32594801ed14ad7b051cc1dc6d"
+  },
+  "implementation_and_schema": [
+    {
+      "path": "scripts/s07_task5_contract.py",
+      "size_bytes": 28201,
+      "sha256": "0066af220bfda5633ef9a810e0a0f63d57d9fff1d4370f5fe4330ae59681be89"
+    },
+    {
+      "path": "scripts/build_s07_task5_contract_evidence.py",
+      "size_bytes": 53515,
+      "sha256": "2e888250ede35abaf3c80ed17fa0d1d7b46dcb4d7bcdb8c07419d3ec42be05db"
+    },
+    {
+      "path": "scripts/build_s07_task4_api_evidence.py",
+      "size_bytes": 29379,
+      "sha256": "efeef1cebe745f4bd14fda06052ebc2fb166133fd0596d41857dc9d2b22e2d55"
+    },
+    {
+      "path": "tests/test_s07_task5_contract.py",
+      "size_bytes": 4711,
+      "sha256": "326e67cfd7e86b2a37987d22d78023b8c558aa93b94b36703ee55efc9e27335b"
+    },
+    {
+      "path": "src/t01_mock_mcp/contracts.py",
+      "size_bytes": 7447,
+      "sha256": "f828ab3f039f2b3a3fb82bb4cd4b46f185a8cb6c3db0cc274e16262248ad9215"
+    },
+    {
+      "path": "docs/project/stages/p0/S07_TASK5_RESULT_CONTRACT.schema.json",
+      "size_bytes": 23510,
+      "sha256": "13089c779b6fa8d6897b8abd636722cebc63de32594801ed14ad7b051cc1dc6d"
+    }
+  ],
+  "closeout_files": [
+    {
+      "path": "docs/project/stages/p0/S07_TASK5_RESULT_CONTRACT.md",
+      "size_bytes": 15718,
+      "sha256": "073b589ba8127ee66080936964968da720f3c68b3ada5877b83338a2e72e5f5a"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task5-contract-20260903-b/README.md",
+      "size_bytes": 1998,
+      "sha256": "d4bb530beb21c139817f3273a1b93185cfdba82e8283c89e6d050e78f891ac8a"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task5-contract-20260903-b/reports/TASK5_CONTRACT_VALIDATION_REPORT.md",
+      "size_bytes": 10755,
+      "sha256": "b106e2262f2a5b8f15c618d5f01bd49c9d5aed562f36fae630065fd4974e2741"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task5-contract-20260903-b/reports/pytest_results.xml",
+      "size_bytes": 14238,
+      "sha256": "f751c53370609de4c71482ac3ef314d990a4d8062abd0515861f33fa2e732e4e"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task5-contract-20260903-b/reports/pytest_output.txt",
+      "size_bytes": 310,
+      "sha256": "31de80e8369cab048224de055d0fedfcf849889b75d4cb57d1209883eb927dcf"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task5-contract-20260903-b/reports/documentation_check.txt",
+      "size_bytes": 45,
+      "sha256": "6fc5adc30b5d917ab56b4e0713475db30fa7a876d3abfc698d42f872f9fdc74f"
+    }
+  ],
+  "verification_driver": {
+    "path": ".tmp/task5-closeout-20260903/verify.py",
+    "size_bytes": 10643,
+    "sha256": "a948ae113f0674a5a69c7d84ab6fd15aa6662ff2a62fb10d5c94f886d43ff43e"
+  },
+  "finished_at": "2026-09-03T02:09:02.548953+00:00"
+}

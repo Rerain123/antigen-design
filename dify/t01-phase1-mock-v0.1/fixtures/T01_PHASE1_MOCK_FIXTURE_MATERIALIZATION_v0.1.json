@@ -1,0 +1,3546 @@
+{
+  "$schema": "T01_PHASE1_MOCK_FIXTURE_MATERIALIZATION_SCHEMA_v0.1.json",
+  "document_type": "T01_PHASE1_MOCK_FIXTURE_MATERIALIZATION",
+  "materialization_version": "T01-PHASE1-MOCK-FIXTURE-MATERIALIZATION-v0.1",
+  "source_fixture_manifest_version": "T01-PHASE1-MOCK-FIXTURE-MANIFEST-v0.1",
+  "source_scenario_catalog_version": "T01-PHASE1-MOCK-SCENARIO-CATALOG-v0.1",
+  "envelope_contract_version": "T01-PHASE1-ENVELOPE-v0.1",
+  "implementation_milestone": "PH1-MOCK-M2",
+  "materialization_state": "MATERIALIZED_AND_VERIFIED",
+  "data_classification": "MOCK_DATA",
+  "scientific_compute": false,
+  "network_access_performed": false,
+  "legacy_implementation_reused": false,
+  "dify_dsl_created": false,
+  "source_sha256": {
+    "docs/project/phase1/PHASE1_MOCK_M1_01_SOURCE_NODE_STEP_TOOL_PRIORITY_MATRIX.md": "dd9f792f16f52771120787302248c9e52765fd61c4ac43a5f74f41e32ab5bd1d",
+    "docs/project/phase1/PHASE1_MOCK_M1_02_NODE_REGISTRY.md": "205160543f321d910ba167c6d974a8ab76d28d31e4e607600aff578c236e4401",
+    "docs/project/phase1/PHASE1_MOCK_M1_03_CONTROL_FLOW_STATE_GRAPH.md": "c57d980dd0876b80b7eda5c4aff86044d6a6fd7b58762f9513414320715b76ac",
+    "docs/project/phase1/PHASE1_MOCK_M1_04_ENVELOPE_CONTRACT.md": "6caa2e120dbf1fee891f70d6b1b9bcccb91042c2d15498229fc8665f4379671c",
+    "docs/project/phase1/PHASE1_MOCK_M1_05_DETERMINISTIC_SCENARIO_MODEL.md": "0de8021b0e3390458f71613ca59795e48314defa35f5e821808d8274cbeb1d79",
+    "docs/project/phase1/PHASE1_MOCK_M1_06_NAMESPACE_DIRECTORY_GENERATION_BINDING_ISOLATION.md": "45b493d0a492b00f3d6342243b7f6722c22488fe19be032ce191e0b5ba887802",
+    "docs/project/phase1/PHASE1_MOCK_M1_07_ACCEPTANCE_ASSERTIONS_FIXTURE_MANIFEST.md": "08364ab316b19e4429ab42eb41bcfa45e39f6694f3d3815e28a5ddf9480a5d37",
+    "docs/project/phase1/PHASE1_MOCK_M1_08_CONSISTENCY_REVIEW.md": "1b1d128a16d1f19ab3e2bcb943bff1c70e5408cc9dff7850476df971aeae1f86",
+    "工作流设计/02-数据契约/T01_PHASE1_MOCK_ENVELOPE_SCHEMA_v0.1.json": "4154c66a01489d48ea184a96686a0f23144bf20f0e5c615a74620e629ad7dc5d",
+    "工作流设计/02-数据契约/examples/T01_PHASE1_MOCK_REQUEST_EXAMPLE_v0.1.json": "c539bd615692fedce4ad9195af50e2f33951f54e572adf7e0694d31cce943400",
+    "工作流设计/02-数据契约/examples/T01_PHASE1_MOCK_RUN_CANDIDATE_EXAMPLE_v0.1.json": "a8c6dd6158d753f018dcc1e02b4ec4958fa7bbc31f4ce87f8fce4b2e7685094f",
+    "工作流设计/02-数据契约/examples/T01_PHASE1_MOCK_RUN_WT_EXAMPLE_v0.1.json": "b1bfc744b91514804bd7860f0c7825b51f6be54caec268bbf453137681ba6810",
+    "工作流设计/02-数据契约/examples/T01_PHASE1_MOCK_RUN_FAILURE_EXAMPLE_v0.1.json": "8288a8546b0a6ca166f10fb63add1898a0620deaf4b42720cffca92800ef17a7",
+    "工作流设计/02-数据契约/T01_PHASE1_MOCK_SCENARIO_CATALOG_SCHEMA_v0.1.json": "7df691d3ee0470396f6b26600af99ab37239fc71bc089e780c57742b79601464",
+    "工作流设计/02-数据契约/T01_PHASE1_MOCK_SCENARIO_CATALOG_v0.1.json": "ddb20853d026b08059eeec77917692b12f04540e04a9e7505b331217b97a69db",
+    "工作流设计/03-Dify实现/T01_PHASE1_MOCK_ASSET_REGISTRY_SCHEMA_v0.1.json": "e97953f9b4ce479b4213b70ca7464049aa3e077b43d92bf65eeb9be4f6e68491",
+    "工作流设计/03-Dify实现/T01_PHASE1_MOCK_ASSET_REGISTRY_v0.1.json": "ea851f97cacb304a2927d45ef85363d7c44b49f792b10172bfe7792f960672a2",
+    "dify/t01-phase1-mock-v0.1/fixtures/T01_PHASE1_MOCK_FIXTURE_MANIFEST_SCHEMA_v0.1.json": "2e3917f9473698d30549522058086298414b0642707a1cc2deab2bbe1f821fae",
+    "dify/t01-phase1-mock-v0.1/fixtures/T01_PHASE1_MOCK_FIXTURE_MANIFEST_v0.1.json": "b044a1c4c1d44e8c734c4c4df3bace48bdace2c87d9fe1dd77f6eede41e72c9a",
+    "dify/t01-phase1-mock-v0.1/regression/T01_PHASE1_MOCK_ACCEPTANCE_CATALOG_SCHEMA_v0.1.json": "6963d711f9a58a04703b8635f2cc4ee929fd07510367e5582960da7aca5abbcf",
+    "dify/t01-phase1-mock-v0.1/regression/T01_PHASE1_MOCK_ACCEPTANCE_CATALOG_v0.1.json": "b99dcbb53f8cc4d5b077c8973139c4ddd5c89c1a4e81a7f8310f1519a7d87932"
+  },
+  "counts": {
+    "input_fixture_count": 2,
+    "request_variant_count": 22,
+    "attempt_fixture_count": 326,
+    "payload_file_count": 350
+  },
+  "files": [
+    {
+      "kind": "INPUT_FIXTURE",
+      "logical_key": "input.synthetic.standard",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/inputs/input.synthetic.standard.json",
+      "size_bytes": 1698,
+      "sha256": "8613f5cee638098df1b5a47d980165787c7a6219d4c7042b3fd37334e5eac239",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/input_fixtures/0"
+    },
+    {
+      "kind": "INPUT_FIXTURE",
+      "logical_key": "input.synthetic.no_structure",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/inputs/input.synthetic.no_structure.json",
+      "size_bytes": 626,
+      "sha256": "59e63a7d6b0b12de54e935b18ee69a401a958abe52a53843046db8acca8a3ad8",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/input_fixtures/1"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "happy_provided_structure.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/happy_provided_structure/base.request.json",
+      "size_bytes": 3223,
+      "sha256": "3b45578e04faf4f7ee86cafa1e55fb8955ee974b9c306248a6932ba59ec3cc17",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/0"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "happy_no_structure_local_af3.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/happy_no_structure_local_af3/base.request.json",
+      "size_bytes": 2105,
+      "sha256": "9f22968f978d37c554ebec6666d0292979eacaf0510019a21d99927ad58554e3",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/1"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "happy_no_structure_local_esmfold2.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/happy_no_structure_local_esmfold2/base.request.json",
+      "size_bytes": 2115,
+      "sha256": "90b6158d3aaa077d1f9be5acf21788ccec85bc580a6a408bfecff1f42303bf11",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/2"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "gate_wt_direct.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/gate_wt_direct/base.request.json",
+      "size_bytes": 3162,
+      "sha256": "be47fbcc873b13af6068e126048542d8422b62a8cfa89fce908e3e8dbf3c2881",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/3"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "n12_pass_cycle_2.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/n12_pass_cycle_2/base.request.json",
+      "size_bytes": 3207,
+      "sha256": "a2cc1bde8d06c8fca6b11a95a56a24deaaafb32035c90d6b8d124567dd16d348",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/4"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "n12_pass_cycle_3.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/n12_pass_cycle_3/base.request.json",
+      "size_bytes": 3207,
+      "sha256": "4d00e1a2ae0989ecd2cf4d3bf2c3f65d0f044c56e9d9b190e32e01d205aea6e9",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/5"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "n12_recalc_exhausted.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/n12_recalc_exhausted/base.request.json",
+      "size_bytes": 3215,
+      "sha256": "6b980bc83f652ccfca988542dadeb994d7e0b66f0cb329b42ed7675230013bf0",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/6"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "n15_wt_fallback.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/n15_wt_fallback/base.request.json",
+      "size_bytes": 3205,
+      "sha256": "9693655a849ef91e6e244e9b24528f39cf092531971e79fbf97bd47dcdbf6a35",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/7"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "n16_missing_expression_host.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/n16_missing_expression_host/base.request.json",
+      "size_bytes": 3188,
+      "sha256": "7592f32add6b2cacf3f4b96c5e81499720705bdcafcc1bcbbd49eae12412eb2c",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/8"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "n17_not_applicable.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/n17_not_applicable/base.request.json",
+      "size_bytes": 3211,
+      "sha256": "d451637e37624cfa045bbe209164fb34d6ed14cb13f23acfd5f1a8c5862b2b94",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/9"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "n16_unsupported_expression_host.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/n16_unsupported_expression_host/base.request.json",
+      "size_bytes": 3240,
+      "sha256": "46905d7986f0c00b66ee9c46ca76279b0e28cfbdcdfc0fc6eef968bb6178bace",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/10"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "n17_branch_failed.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/n17_branch_failed/base.request.json",
+      "size_bytes": 3209,
+      "sha256": "471d5cdaabc8263d8bfa8bf2d91e413a85257d28e9d583bcb55eaa88232de93d",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/11"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "n16_branch_timeout_partial.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/n16_branch_timeout_partial/base.request.json",
+      "size_bytes": 3227,
+      "sha256": "2678afe1f1a0b842f9591142853b910ec59a8ef26c373020be8e9ee209aeb802",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/12"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "n08_upstream_tool_failed.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/n08_upstream_tool_failed/base.request.json",
+      "size_bytes": 3223,
+      "sha256": "ea1c4c2339343b115a5f9d1f54bf8c2a4395da62ba7d7ee7e9c52215c25fbf4b",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/13"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "n01_local_prediction_failed_no_remote_fallback.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/n01_local_prediction_failed_no_remote_fallback/base.request.json",
+      "size_bytes": 2141,
+      "sha256": "0df8b8b4ab89780c20d1ecb8b21cd01fc0d8b84b0c9ceac13bc93bdecfb9041e",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/14"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "run_cancelled_before_join.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/run_cancelled_before_join/base.request.json",
+      "size_bytes": 3225,
+      "sha256": "08d449d87fe75b3343e249c3022bef9a6a93cd8bd1d47176f98789c7e77045b6",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/15"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "n08_retryable_recovery.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/n08_retryable_recovery/base.request.json",
+      "size_bytes": 3219,
+      "sha256": "229347e9127632d1b73de53f233a9b9e969d756df36231a167cc0e2841d725fe",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/16"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "idempotent_replay.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/idempotent_replay/base.request.json",
+      "size_bytes": 3209,
+      "sha256": "79e533715014d7968fd93798b448f935fbca74ba7c0c0b869fe46d060a8a7cdc",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/17"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "idempotency_conflict.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/idempotency_conflict/base.request.json",
+      "size_bytes": 3215,
+      "sha256": "2a0127a3ceb94471a06329a1ec6ba0856d91dd9ddf82614941e54bc6c90f4551",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/18"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "idempotency_conflict.request.changed",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/idempotency_conflict/changed.request.json",
+      "size_bytes": 3218,
+      "sha256": "fbd9516be0d547229de864226f7e16f1c20645d5a97472feb3ae43ceb570f5e0",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/19"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "n18_assembly_failed.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/n18_assembly_failed/base.request.json",
+      "size_bytes": 3213,
+      "sha256": "e169f8c8d57c9a0776ed322ee9fb48c1b63d87264e0c3eb876ee91ba8f6aa8a1",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/20"
+    },
+    {
+      "kind": "REQUEST_VARIANT",
+      "logical_key": "n08_upstream_timed_out.request.base",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/requests/n08_upstream_timed_out/base.request.json",
+      "size_bytes": 3219,
+      "sha256": "747b0898d1c1dfe4ce38541c2f53af45b55fcca83381f5844703a607a99f8bc8",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/request_variants/21"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_provided_structure.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_provided_structure/n01/attempt-1.json",
+      "size_bytes": 773,
+      "sha256": "6c311a68be3b5079e7eca3674c0f547ddb33397440a8719385f7910c18666eab",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/0/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_provided_structure.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_provided_structure/n02/attempt-1.json",
+      "size_bytes": 715,
+      "sha256": "e33ff65969d0932a2fd8b40099d1143799d8725f0738a6815644b26bd6321437",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/0/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_provided_structure.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_provided_structure/n03/attempt-1.json",
+      "size_bytes": 725,
+      "sha256": "c76f2137ab7cf349b9ba52bfd403860e0b26cd2c6e095c378379b0c48381f6d9",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/0/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_provided_structure.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_provided_structure/n04/attempt-1.json",
+      "size_bytes": 673,
+      "sha256": "21c5f70472b9fce047c8894000541ec8c22441f21483c401df8f363489a209cf",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/0/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_provided_structure.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_provided_structure/n05/attempt-1.json",
+      "size_bytes": 746,
+      "sha256": "a61083eaadbb64f1bacc0a5a08d56cb56f8e2d3200b2c08f195ea730abb7dffc",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/0/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_provided_structure.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_provided_structure/n06/attempt-1.json",
+      "size_bytes": 724,
+      "sha256": "28317ab19628cc992713b6840ff281e762b3229c2cc923f73a61621bc6d80d22",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/0/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_provided_structure.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_provided_structure/n07/attempt-1.json",
+      "size_bytes": 706,
+      "sha256": "655514cbc5adc475a6df90e3ef4f0d2de9efe7d1c159d100aba400164cc14848",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/0/node_plan/N07/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_provided_structure.n08.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_provided_structure/n08/attempt-1.json",
+      "size_bytes": 741,
+      "sha256": "c3d28c4ebed3cf1d8104cae0ad9749a1ef488f40644ae594f7523984d894766a",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/0/node_plan/N08/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_provided_structure.n09.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_provided_structure/n09/attempt-1.json",
+      "size_bytes": 683,
+      "sha256": "943478d69f1ec5717649e51856b08e305e647559c78584e55a8e0f470334db95",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/0/node_plan/N09/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_provided_structure.n10.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_provided_structure/n10/attempt-1.json",
+      "size_bytes": 762,
+      "sha256": "4eff3378df987085330b4b506d8f6c38bdc181bbb4060b18f778f82854710fa7",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/0/node_plan/N10/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_provided_structure.n11.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_provided_structure/n11/attempt-1.json",
+      "size_bytes": 752,
+      "sha256": "27f29e2559f38055d04b3986daa7fdf55edd533e575a6b8868774c6503e2732a",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/0/node_plan/N11/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_provided_structure.n12.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_provided_structure/n12/attempt-1.json",
+      "size_bytes": 807,
+      "sha256": "e7d8947759cdcd0c678781c4c9ee71517536557e136b993e6105bd61b9637e00",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/0/node_plan/N12/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_provided_structure.n13.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_provided_structure/n13/attempt-1.json",
+      "size_bytes": 778,
+      "sha256": "6aa6310e199df239b66709a8aba248dacd66291dda58a44d732b4f100d6ad1be",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/0/node_plan/N13/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_provided_structure.n14.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_provided_structure/n14/attempt-1.json",
+      "size_bytes": 715,
+      "sha256": "9916ca003b716a337fd6d19454ca1ef27c9e393271f7e993da061a9939136a99",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/0/node_plan/N14/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_provided_structure.n15.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_provided_structure/n15/attempt-1.json",
+      "size_bytes": 839,
+      "sha256": "f4c16b2a09ba7a528314fa4dd15452e39d7f259b1359cabf2350965b12348d1f",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/0/node_plan/N15/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_provided_structure.n16.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_provided_structure/n16/attempt-1.json",
+      "size_bytes": 722,
+      "sha256": "d9cfc0f0f5696ee692afa1036797b29f49a5f6ef592dd6e578076dcd92f62fd6",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/0/node_plan/N16/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_provided_structure.n17.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_provided_structure/n17/attempt-1.json",
+      "size_bytes": 725,
+      "sha256": "2384bf68b7c0fd671686503e6d918b33272500086f601c1558762eefd889e7aa",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/0/node_plan/N17/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_provided_structure.n18.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_provided_structure/n18/attempt-1.json",
+      "size_bytes": 785,
+      "sha256": "da9f2e5554d555a9717afc8795bae24d867dc306c4d2616feec7d57be97b7b6a",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/0/node_plan/N18/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_af3.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_af3/n01/attempt-1.json",
+      "size_bytes": 797,
+      "sha256": "8709b2025489cf50fc3d632409c52757fdc5d81318369ee1038195f8f2e01824",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/1/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_af3.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_af3/n02/attempt-1.json",
+      "size_bytes": 731,
+      "sha256": "15a6de656e5b6b93bcd2b577ed8866ba2d467cbba5f65f86f93795ac1fa082a9",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/1/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_af3.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_af3/n03/attempt-1.json",
+      "size_bytes": 741,
+      "sha256": "3f15dc3f9b5c468b1271fe8d4fc70cf6cd3f2a9df608699494fee81847e2a66b",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/1/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_af3.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_af3/n04/attempt-1.json",
+      "size_bytes": 689,
+      "sha256": "67c38cf1f3ed29342ac95d2a7f074c7f3a8bb2a04f54ddb42305c2db464fa333",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/1/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_af3.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_af3/n05/attempt-1.json",
+      "size_bytes": 762,
+      "sha256": "0a8eabd63442ef55d765a3dc66fb4e37e010ae45fa93e0db6941343707ec9d0a",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/1/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_af3.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_af3/n06/attempt-1.json",
+      "size_bytes": 740,
+      "sha256": "2613d2d739f6f82a0a047b6b212b4b45c3b1d595948869541b3bc90a6a6319d6",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/1/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_af3.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_af3/n07/attempt-1.json",
+      "size_bytes": 722,
+      "sha256": "2507955ddd34c7f67ebfda4c09d3b3ceaeb00187d360a77e1ba144607558909a",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/1/node_plan/N07/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_af3.n08.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_af3/n08/attempt-1.json",
+      "size_bytes": 757,
+      "sha256": "e2434861b07ba34e3f3c5564a2ddef63e6579590c233a24642cdb90cd8bae9fb",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/1/node_plan/N08/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_af3.n09.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_af3/n09/attempt-1.json",
+      "size_bytes": 699,
+      "sha256": "eafac5a295745ac695015f4f053cb959efc7e800b00d8c712fa5a5b0e39a5abc",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/1/node_plan/N09/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_af3.n10.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_af3/n10/attempt-1.json",
+      "size_bytes": 778,
+      "sha256": "9453d1ef7952a1e070012d83cf1520958fd9e59602128ce569a9bd892fc9a0f2",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/1/node_plan/N10/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_af3.n11.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_af3/n11/attempt-1.json",
+      "size_bytes": 768,
+      "sha256": "abde420397c6d096ffde138a3368855556af3514f3086d4d9597657599510b97",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/1/node_plan/N11/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_af3.n12.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_af3/n12/attempt-1.json",
+      "size_bytes": 823,
+      "sha256": "58f98ee32f962e7be2b746e411f33d074206f6b92543b2a6365720504ab55c2b",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/1/node_plan/N12/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_af3.n13.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_af3/n13/attempt-1.json",
+      "size_bytes": 794,
+      "sha256": "43996cae7a26fb8f3d69519dfcb6ad760427ce8e9a029d51564ee7ecfd8a77cb",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/1/node_plan/N13/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_af3.n14.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_af3/n14/attempt-1.json",
+      "size_bytes": 731,
+      "sha256": "b1df44159796d9b0133e9d8bfd6adda1423dff41bf14109e837e0c43d1f9d1e0",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/1/node_plan/N14/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_af3.n15.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_af3/n15/attempt-1.json",
+      "size_bytes": 855,
+      "sha256": "842916676a4a6a31e4e52d3ac7616c360d1288b4183f9bb239f5f826746e8f4e",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/1/node_plan/N15/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_af3.n16.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_af3/n16/attempt-1.json",
+      "size_bytes": 738,
+      "sha256": "4a2c775f85c2cc7f329dd21261a0f5128071cf8ec00fa7c06e4cc625b2cbf2dc",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/1/node_plan/N16/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_af3.n17.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_af3/n17/attempt-1.json",
+      "size_bytes": 741,
+      "sha256": "32e658f0af14723d9c2ff5984057ddf3747f89ef213f7401c58e9f7ee18667c1",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/1/node_plan/N17/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_af3.n18.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_af3/n18/attempt-1.json",
+      "size_bytes": 801,
+      "sha256": "b74d9892716ba65d7e2b5f3b07b08f8c704745d35793d7a715c0690aadf7a0fa",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/1/node_plan/N18/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_esmfold2.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_esmfold2/n01/attempt-1.json",
+      "size_bytes": 822,
+      "sha256": "596d83fc11706cb78ca621a43543c2f0ebd014c513345bf4b1a75e0963e0a808",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/2/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_esmfold2.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_esmfold2/n02/attempt-1.json",
+      "size_bytes": 751,
+      "sha256": "fd194fbc217eab7c68d48b906bd855ef32c09e697c824866e856d702094fa12e",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/2/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_esmfold2.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_esmfold2/n03/attempt-1.json",
+      "size_bytes": 761,
+      "sha256": "2f8fefd076c0696afc91b544469d706ffb1d9f9b07e9a63d7489e53f445d9928",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/2/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_esmfold2.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_esmfold2/n04/attempt-1.json",
+      "size_bytes": 709,
+      "sha256": "7e1e66cea524f4840909838e6b61f1746cae6370b5e9ba163f5f5db6b06950af",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/2/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_esmfold2.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_esmfold2/n05/attempt-1.json",
+      "size_bytes": 782,
+      "sha256": "982c0a862ec412c729aca4d1944b2eb3141aefa40236d113001351ebc83c19d6",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/2/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_esmfold2.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_esmfold2/n06/attempt-1.json",
+      "size_bytes": 760,
+      "sha256": "4b46ae2ed7304341eb911271f7d3f786b9313ab79969d3978e9570310a3c40c2",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/2/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_esmfold2.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_esmfold2/n07/attempt-1.json",
+      "size_bytes": 742,
+      "sha256": "724fd566d80d7c2a04f19db5234ddbcff76b64187c5035bd177099c9d076a73c",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/2/node_plan/N07/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_esmfold2.n08.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_esmfold2/n08/attempt-1.json",
+      "size_bytes": 777,
+      "sha256": "8cf7e69468bdbe5770f930126deee037b181913915737775340c1157b3e60f28",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/2/node_plan/N08/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_esmfold2.n09.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_esmfold2/n09/attempt-1.json",
+      "size_bytes": 719,
+      "sha256": "38fe7482813c5ce3ac138aedb26be363622398073cec06e84d339dfa59aa15f8",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/2/node_plan/N09/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_esmfold2.n10.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_esmfold2/n10/attempt-1.json",
+      "size_bytes": 798,
+      "sha256": "c790ed87661537fea1fec03d42061e8c6bb687c3c32fbd331e143537363dbdbb",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/2/node_plan/N10/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_esmfold2.n11.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_esmfold2/n11/attempt-1.json",
+      "size_bytes": 788,
+      "sha256": "cbb09efa5d0edf127f7e01d130d3112db60a8f31097cd20c54f16ecac6643fcc",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/2/node_plan/N11/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_esmfold2.n12.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_esmfold2/n12/attempt-1.json",
+      "size_bytes": 843,
+      "sha256": "fe35ccec41a782cbabfed7e0aa779fefa8c3abb0b0bd28130693f7037d5b7b03",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/2/node_plan/N12/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_esmfold2.n13.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_esmfold2/n13/attempt-1.json",
+      "size_bytes": 814,
+      "sha256": "7d9bba495f8788aaa7456fa80103c5b1096304c8ecb83aee623222512a7600f6",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/2/node_plan/N13/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_esmfold2.n14.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_esmfold2/n14/attempt-1.json",
+      "size_bytes": 751,
+      "sha256": "e1bfefa04fd0ef7645e5c0c3fa5fa6e8015698ffad54115283ce12a3dc3572dc",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/2/node_plan/N14/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_esmfold2.n15.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_esmfold2/n15/attempt-1.json",
+      "size_bytes": 875,
+      "sha256": "c8e3ebe5a894791e352c524b178f537ff43389612652d9f03db01fa0c5c01163",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/2/node_plan/N15/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_esmfold2.n16.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_esmfold2/n16/attempt-1.json",
+      "size_bytes": 758,
+      "sha256": "d004241cfc93a43e4bf90feb307c3603aeaa81b5900d8c9e1612af9b7127b10c",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/2/node_plan/N16/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_esmfold2.n17.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_esmfold2/n17/attempt-1.json",
+      "size_bytes": 761,
+      "sha256": "9ab966e7c9ce58b862607cd632c000e9ca13ece6dbef9dd240f8985b54e9fbec",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/2/node_plan/N17/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "happy_no_structure_local_esmfold2.n18.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/happy_no_structure_local_esmfold2/n18/attempt-1.json",
+      "size_bytes": 821,
+      "sha256": "0a83a26d41288d9826a3d86ccfb95c5c2f79895eb444577c9618670ec0b0b72d",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/2/node_plan/N18/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "gate_wt_direct.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/gate_wt_direct/n01/attempt-1.json",
+      "size_bytes": 733,
+      "sha256": "3f797747e874da74cae0f02782f8509b3a7d431fd106c8e94af9d2730bd461a1",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/3/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "gate_wt_direct.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/gate_wt_direct/n02/attempt-1.json",
+      "size_bytes": 675,
+      "sha256": "07d6122e412b597316652c57ebce7bd3bdb34030e2960d16f9bc2643e7290575",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/3/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "gate_wt_direct.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/gate_wt_direct/n03/attempt-1.json",
+      "size_bytes": 685,
+      "sha256": "bf0996acc00e141890a7a196d4f6859a50182170d8cc0ce50a1be405871f0160",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/3/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "gate_wt_direct.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/gate_wt_direct/n04/attempt-1.json",
+      "size_bytes": 633,
+      "sha256": "d1404f7e7e72cafe2215fba5bc01332599307f032726faef5ba9c9a23f2e7ea3",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/3/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "gate_wt_direct.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/gate_wt_direct/n05/attempt-1.json",
+      "size_bytes": 706,
+      "sha256": "04e03df2c43ae173199052579523fb298f5431a6067f06a7bea237ad167c5e08",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/3/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "gate_wt_direct.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/gate_wt_direct/n06/attempt-1.json",
+      "size_bytes": 684,
+      "sha256": "2358cf3de93c0c26d0e55593383efd7ac77c2f3ed7e84589d1f68009fb1e6eb2",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/3/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "gate_wt_direct.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/gate_wt_direct/n07/attempt-1.json",
+      "size_bytes": 666,
+      "sha256": "4405d443e6ea5ae0a110dfdc2770468da466627092aca2a2f348aac40d2c0a8a",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/3/node_plan/N07/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "gate_wt_direct.n08.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/gate_wt_direct/n08/attempt-1.json",
+      "size_bytes": 701,
+      "sha256": "5a915cdabede40064dee8b3735faf54f0dc15aa2efe26a236e774f1180bbd7a6",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/3/node_plan/N08/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "gate_wt_direct.n09.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/gate_wt_direct/n09/attempt-1.json",
+      "size_bytes": 643,
+      "sha256": "9a70b277ca754c2a4f63272dbb8a0134d77139659314a1cf508d908be4769236",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/3/node_plan/N09/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "gate_wt_direct.n10.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/gate_wt_direct/n10/attempt-1.json",
+      "size_bytes": 722,
+      "sha256": "dd5885520e097c14592983564c02a661ae9d153b281fe121cc7680498f3919e2",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/3/node_plan/N10/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "gate_wt_direct.n18.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/gate_wt_direct/n18/attempt-1.json",
+      "size_bytes": 747,
+      "sha256": "69e648d4b20b2af6afa3b92a13fac333cb761561b5da5d76a49c5bafe22d4eac",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/3/node_plan/N18/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n01/attempt-1.json",
+      "size_bytes": 741,
+      "sha256": "9e1452aaa4390fbfa82f7271c709c9ad6f21321fdffd8f168e6a2a2c5b787d8e",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n02/attempt-1.json",
+      "size_bytes": 683,
+      "sha256": "d192c067b7ae6484fc0b72d6d66caebffacc054de0027cb414a558cab675bc87",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n03/attempt-1.json",
+      "size_bytes": 693,
+      "sha256": "933123a288b38caadbd23461f5840144f5beccef6faa875a814689fecb3a0096",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n04/attempt-1.json",
+      "size_bytes": 641,
+      "sha256": "fb4d1565832eb2e3372cd76ea3fe421f8a6a46829df8ffca5f063d013cbf9707",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n05/attempt-1.json",
+      "size_bytes": 714,
+      "sha256": "67df977150edb7deffbe68383e6ffb219877b856bcfc96dbf593e57ab8b3e63f",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n06/attempt-1.json",
+      "size_bytes": 692,
+      "sha256": "bb7830fe9271d622b490d6d26796c30b07ae9e5bbabf586049042fe930f65893",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n07/attempt-1.json",
+      "size_bytes": 674,
+      "sha256": "7c6cd421f5541ee2e4795712dc612019a08d86af244d4a9516a00691b801eac6",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N07/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n08.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n08/attempt-1.json",
+      "size_bytes": 709,
+      "sha256": "7fa8ece894c99df0b7b507161827d7641433c4eeda54d1728a13b045d325c787",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N08/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n09.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n09/attempt-1.json",
+      "size_bytes": 651,
+      "sha256": "ad96e4b1c98cdb4eb774231e6dfe818ff0268e00020ff7ca200e745f71db5ea6",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N09/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n10.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n10/attempt-1.json",
+      "size_bytes": 730,
+      "sha256": "897f8cc58870e0dd774332f1cf9d124466499ed373b5ba209d45900ec538b64d",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N10/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n11.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n11/attempt-1.json",
+      "size_bytes": 720,
+      "sha256": "11cba477544b23837e48a8aeceebda8b3fd100225fd5048ff344048b3eb4bba1",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N11/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n11.attempt_2",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n11/attempt-2.json",
+      "size_bytes": 720,
+      "sha256": "0ebdfee39f98843d3d6d1bc6cf3d1539900f171ed877b5d7d997b676b9140a76",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N11/attempts/1"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n12.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n12/attempt-1.json",
+      "size_bytes": 775,
+      "sha256": "398e2e3c98f09ee6b0a854a2b9991f3b8c09fcddedcf156f209f282c9f770dfd",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N12/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n12.attempt_2",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n12/attempt-2.json",
+      "size_bytes": 775,
+      "sha256": "5f6c6a5cd1dc7ba5147819a0c9a26a951e450805c85c73fab578503b6c2e2b12",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N12/attempts/1"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n13.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n13/attempt-1.json",
+      "size_bytes": 746,
+      "sha256": "390e6f4456fe0d56d97e4e00c63d341610d723dc086e228a504750afb5621b17",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N13/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n14.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n14/attempt-1.json",
+      "size_bytes": 683,
+      "sha256": "cefdcd7d18450a807cf5ca72e193dea8fe4a8a65c7a8a071679420cb9cd9dd6d",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N14/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n15.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n15/attempt-1.json",
+      "size_bytes": 807,
+      "sha256": "f1e4807eb455f2fd3a0a7d85c32b1104176b11722a14cbdf3bbcf95a9fb7d592",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N15/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n16.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n16/attempt-1.json",
+      "size_bytes": 690,
+      "sha256": "18f8fb1a3bc135f2687a379bf57eaac3297fac09d0bee25b3bb7b72c95e2cd7b",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N16/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n17.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n17/attempt-1.json",
+      "size_bytes": 693,
+      "sha256": "27e3fa148c9e5370b648b099eab6512eb423fb3d30664f2b6114c54d711e448c",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N17/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_2.n18.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_2/n18/attempt-1.json",
+      "size_bytes": 753,
+      "sha256": "ce139b19f354ee5251b81270c71c9dca621d06295ef6cdaf696c301b9dbd1e4e",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/4/node_plan/N18/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n01/attempt-1.json",
+      "size_bytes": 741,
+      "sha256": "396e6d1b9ad573cb9f06c654cf89ad3d78638e9bcd9606ecbad7a038463e4bf0",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n02/attempt-1.json",
+      "size_bytes": 683,
+      "sha256": "db4993489fa368c28da4b535f4dac4c1c15c68804dd84d21a9b27ae31e32198e",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n03/attempt-1.json",
+      "size_bytes": 693,
+      "sha256": "66f56b959de52f4e0ada0562c6533c0f7a7710eaa7cec7780859291880ec9c31",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n04/attempt-1.json",
+      "size_bytes": 641,
+      "sha256": "e8ab52c49ce7fd8f37c578d4c99f39f5fafe2ff14936f0e264ea82277fbb6d31",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n05/attempt-1.json",
+      "size_bytes": 714,
+      "sha256": "8b740c46e41504589886393bf81535c744644b31b523d80105cd2ce7880bb6bd",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n06/attempt-1.json",
+      "size_bytes": 692,
+      "sha256": "322fbcdfd8da5b03db0f9507ce451c2d88e79d44f72788f1452044b9ad51211d",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n07/attempt-1.json",
+      "size_bytes": 674,
+      "sha256": "bdcbbd9c5577469da046c39d1ac1d19e2bf381ed21e8160adf4ec1f452ba057e",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N07/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n08.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n08/attempt-1.json",
+      "size_bytes": 709,
+      "sha256": "873e11cef361fdd40188b21ef53469133f00b483f374f4015a2a8199780f7c51",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N08/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n09.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n09/attempt-1.json",
+      "size_bytes": 651,
+      "sha256": "951add64b483a963ba6a359063dbbd6094d00e335fb5b7f42785746479004051",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N09/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n10.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n10/attempt-1.json",
+      "size_bytes": 730,
+      "sha256": "d7406cd6604989e31bcc2a4bceed4da52a5b7130507bd3d847c74dc58a31c53e",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N10/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n11.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n11/attempt-1.json",
+      "size_bytes": 720,
+      "sha256": "06a79419236d5039962a7eb6a59999dc7af655f3ddf928b17bbeaa650bc3d28f",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N11/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n11.attempt_2",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n11/attempt-2.json",
+      "size_bytes": 720,
+      "sha256": "48a118f68de11ca66d2c1e82b728dda61e0847390c7e2781e8b6ed4b1c698bdd",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N11/attempts/1"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n11.attempt_3",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n11/attempt-3.json",
+      "size_bytes": 720,
+      "sha256": "0b5884be54e5345df2f60787954753d352d055eea640a1a4dd05e0db3816031a",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N11/attempts/2"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n12.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n12/attempt-1.json",
+      "size_bytes": 775,
+      "sha256": "a092386f07051e40cc0b3eebf3446f59c196ddce5d1bc0965c4eaf814bf31ce9",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N12/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n12.attempt_2",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n12/attempt-2.json",
+      "size_bytes": 775,
+      "sha256": "f74b4dd86472a32f312907cd7429e7b067d5487566e1cddebca803a605ca5daf",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N12/attempts/1"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n12.attempt_3",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n12/attempt-3.json",
+      "size_bytes": 775,
+      "sha256": "bc03df20933c29bf474e521f90a4e1d7f26fff3e31ebe6be1ad06eb48aa62d15",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N12/attempts/2"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n13.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n13/attempt-1.json",
+      "size_bytes": 746,
+      "sha256": "5663dd081a990b87c632196f9939e990ca444303e841f313b94057ea57290204",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N13/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n14.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n14/attempt-1.json",
+      "size_bytes": 683,
+      "sha256": "40fb5329c34a216d8e68d4bf135eb8dc0d9832d35b7101a2ec0c0d57c7d016f0",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N14/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n15.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n15/attempt-1.json",
+      "size_bytes": 807,
+      "sha256": "7afb9bfa73453a8002fa949ceb8e1347fb2c79447e108641c0d8671f73d25cbb",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N15/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n16.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n16/attempt-1.json",
+      "size_bytes": 690,
+      "sha256": "10437d2d597ae5a38a45fe7809a2197ebb80536204f9af56217c3df4de912d54",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N16/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n17.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n17/attempt-1.json",
+      "size_bytes": 693,
+      "sha256": "70caa0901da2c2323bcfbb04f872997e13110be22f17651add545244f47e243b",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N17/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_pass_cycle_3.n18.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_pass_cycle_3/n18/attempt-1.json",
+      "size_bytes": 753,
+      "sha256": "d12c2a501b4cda38fd5d9b5f2ed15a45c591e62bf58e93031d6452ae3024050f",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/5/node_plan/N18/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_recalc_exhausted.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_recalc_exhausted/n01/attempt-1.json",
+      "size_bytes": 757,
+      "sha256": "2ba43494ca23429698f850c8006a94f4224aeb356d1b14c861cb4dbd96728141",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/6/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_recalc_exhausted.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_recalc_exhausted/n02/attempt-1.json",
+      "size_bytes": 699,
+      "sha256": "099c1ef67613f9fa51e82de83b794aed93eaa574ab868eb716a14fad23fc028d",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/6/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_recalc_exhausted.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_recalc_exhausted/n03/attempt-1.json",
+      "size_bytes": 709,
+      "sha256": "23b42e87e365615137f4033e8f46a5c3fab5fcad3ac749e76599559d231c237d",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/6/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_recalc_exhausted.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_recalc_exhausted/n04/attempt-1.json",
+      "size_bytes": 657,
+      "sha256": "0ba9a8733e33d8f47fd83f8f6809ecd00df4125899ef49c0c3295c4d20047184",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/6/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_recalc_exhausted.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_recalc_exhausted/n05/attempt-1.json",
+      "size_bytes": 730,
+      "sha256": "b4530da9f6ceb0545559a3f48d99217366b556f34bcade9e05e60dc0b349c98e",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/6/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_recalc_exhausted.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_recalc_exhausted/n06/attempt-1.json",
+      "size_bytes": 708,
+      "sha256": "c539b08176c51e08355bb39cfbcdd07f9ec7a26358c381c94a2bbffc7b02c6dd",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/6/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_recalc_exhausted.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_recalc_exhausted/n07/attempt-1.json",
+      "size_bytes": 690,
+      "sha256": "99e444abec6cd31453e5a233b728ba181f4d29c5d5a20c33c44076800a50a5e9",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/6/node_plan/N07/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_recalc_exhausted.n08.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_recalc_exhausted/n08/attempt-1.json",
+      "size_bytes": 725,
+      "sha256": "31542d9ddc3bc85073deb1d47565cb5ca4ad2bb11dc9a31bacc954f16ffdb672",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/6/node_plan/N08/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_recalc_exhausted.n09.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_recalc_exhausted/n09/attempt-1.json",
+      "size_bytes": 667,
+      "sha256": "820f5066129f299f530b3c7c98ee4e2ebe80977d01680ff5c7ebe39dd5c385d0",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/6/node_plan/N09/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_recalc_exhausted.n10.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_recalc_exhausted/n10/attempt-1.json",
+      "size_bytes": 746,
+      "sha256": "cc375cf09f538c588941798313f8cd31f3ea212588f53b0da031eee86b2c777c",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/6/node_plan/N10/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_recalc_exhausted.n11.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_recalc_exhausted/n11/attempt-1.json",
+      "size_bytes": 736,
+      "sha256": "3d86aefa4cbc4c721fab67553f2e68b74bd6314b79eb9e485009e118b7cdb353",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/6/node_plan/N11/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_recalc_exhausted.n11.attempt_2",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_recalc_exhausted/n11/attempt-2.json",
+      "size_bytes": 736,
+      "sha256": "d9e73bd296afb26a3fe91d46e2123f8f196af751f733bfbb77c157bd974ed0f2",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/6/node_plan/N11/attempts/1"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_recalc_exhausted.n11.attempt_3",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_recalc_exhausted/n11/attempt-3.json",
+      "size_bytes": 736,
+      "sha256": "874804c2c7b9460c0614715b668b3f4492793cf5cbf71184b6a43aeb716151b1",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/6/node_plan/N11/attempts/2"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_recalc_exhausted.n12.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_recalc_exhausted/n12/attempt-1.json",
+      "size_bytes": 793,
+      "sha256": "95c6934755331129dcd27d4abd27554c6651a1eb33e5db38911757e9f54825dc",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/6/node_plan/N12/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_recalc_exhausted.n12.attempt_2",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_recalc_exhausted/n12/attempt-2.json",
+      "size_bytes": 793,
+      "sha256": "3b76293d9529cafce0abd3e00af34aa7cb7a08365e3c48dab462f15b37872464",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/6/node_plan/N12/attempts/1"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n12_recalc_exhausted.n12.attempt_3",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n12_recalc_exhausted/n12/attempt-3.json",
+      "size_bytes": 793,
+      "sha256": "023ba67e673bcb8283b03fabce4098621a880e37d9cb339fa3d73334541badaa",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/6/node_plan/N12/attempts/2"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n15_wt_fallback.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n15_wt_fallback/n01/attempt-1.json",
+      "size_bytes": 737,
+      "sha256": "deb018b617d7005080fa24757e8258031b7a3faeba75bd7d9b2602baef99c2c4",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/7/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n15_wt_fallback.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n15_wt_fallback/n02/attempt-1.json",
+      "size_bytes": 679,
+      "sha256": "11a8cece5ac1ea36ac3888edecacd0269529cbe08505c1e98721d8011806f67c",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/7/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n15_wt_fallback.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n15_wt_fallback/n03/attempt-1.json",
+      "size_bytes": 689,
+      "sha256": "b8c8014dde4b1d2c1edb1d5696f7e62ff79b0fa39bce9569cd7534e0396258fb",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/7/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n15_wt_fallback.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n15_wt_fallback/n04/attempt-1.json",
+      "size_bytes": 637,
+      "sha256": "29ba75b0abab8aa42438f0ee02bfc7044d131455b0a6c6f37ae55e70b3d183df",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/7/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n15_wt_fallback.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n15_wt_fallback/n05/attempt-1.json",
+      "size_bytes": 710,
+      "sha256": "7193f7f431194e92ce0d8ce845a49fc1439730d27e283788e66132c197dbc0f3",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/7/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n15_wt_fallback.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n15_wt_fallback/n06/attempt-1.json",
+      "size_bytes": 688,
+      "sha256": "ca5831d844f4502b90b015ec8d4761f09038b4d5538e99524f53b8db01b80906",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/7/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n15_wt_fallback.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n15_wt_fallback/n07/attempt-1.json",
+      "size_bytes": 670,
+      "sha256": "a3706d799b1ae4803a83b0ff003c067e439a1b538c2e92a17fad55055c353b08",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/7/node_plan/N07/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n15_wt_fallback.n08.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n15_wt_fallback/n08/attempt-1.json",
+      "size_bytes": 705,
+      "sha256": "391b9243adbe7c40d6b4d2e8ff5adb435fa5ff8e3bfcb8631120b2733ff9792c",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/7/node_plan/N08/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n15_wt_fallback.n09.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n15_wt_fallback/n09/attempt-1.json",
+      "size_bytes": 647,
+      "sha256": "f6bd53cae64af2fc456762b65aa099f31b0cb937fe78016f5d57c54834717ea2",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/7/node_plan/N09/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n15_wt_fallback.n10.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n15_wt_fallback/n10/attempt-1.json",
+      "size_bytes": 726,
+      "sha256": "eb73a384f76cda391897a63301571d2008648755a51cda187de0202ec3b0c71a",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/7/node_plan/N10/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n15_wt_fallback.n11.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n15_wt_fallback/n11/attempt-1.json",
+      "size_bytes": 716,
+      "sha256": "a1be13ba1124197917c8ce1103ab4335ccb0911c14d97cd0530e192c50e17f89",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/7/node_plan/N11/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n15_wt_fallback.n12.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n15_wt_fallback/n12/attempt-1.json",
+      "size_bytes": 771,
+      "sha256": "3a13274580ab73181abb21f8523724d9b62433c6b9a39e03f936e36c76ed73d7",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/7/node_plan/N12/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n15_wt_fallback.n13.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n15_wt_fallback/n13/attempt-1.json",
+      "size_bytes": 742,
+      "sha256": "443a042192e3d9fb73f383b4b8acef3466283dd98ff1385969a561eafe5bd71f",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/7/node_plan/N13/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n15_wt_fallback.n14.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n15_wt_fallback/n14/attempt-1.json",
+      "size_bytes": 679,
+      "sha256": "3ccf49155c98c2f977c5d0a8b5ca2193de5932a19b610e61b5632526e95025de",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/7/node_plan/N14/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n15_wt_fallback.n15.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n15_wt_fallback/n15/attempt-1.json",
+      "size_bytes": 803,
+      "sha256": "366ede57af4c3101158a76596407a63508e72f67e5c0c146af3d61919d7e652b",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/7/node_plan/N15/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n15_wt_fallback.n17.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n15_wt_fallback/n17/attempt-1.json",
+      "size_bytes": 689,
+      "sha256": "14f3178692687a4097b9150c13c740a34e8903f40afad86afcacf7dc52e91efd",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/7/node_plan/N17/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n15_wt_fallback.n18.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n15_wt_fallback/n18/attempt-1.json",
+      "size_bytes": 751,
+      "sha256": "394d3941409e5724dc372a210daf71db74a7335d30e3b74b2dbf29651b3092c2",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/7/node_plan/N18/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_missing_expression_host.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_missing_expression_host/n01/attempt-1.json",
+      "size_bytes": 785,
+      "sha256": "2a9abce75f39b5b793d6f781f43e0c40fc666dfd746c7abc9fc326121622399a",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/8/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_missing_expression_host.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_missing_expression_host/n02/attempt-1.json",
+      "size_bytes": 727,
+      "sha256": "cce95a19acadba4b4cede334c22b4d6941418881f754e1ada70265c87a47c406",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/8/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_missing_expression_host.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_missing_expression_host/n03/attempt-1.json",
+      "size_bytes": 737,
+      "sha256": "f09979b5c481998d7978128328bfb5939a664bac1838f3993b15f1e6f743a5c4",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/8/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_missing_expression_host.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_missing_expression_host/n04/attempt-1.json",
+      "size_bytes": 685,
+      "sha256": "2cb7074d43434d379cfea4262ddb1c1955957f69dc4af82df64c08fcff7f1893",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/8/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_missing_expression_host.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_missing_expression_host/n05/attempt-1.json",
+      "size_bytes": 758,
+      "sha256": "06e587b8c70058f421eef90b3afb7d49a67f315937e47d8c5581558cd5947c4f",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/8/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_missing_expression_host.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_missing_expression_host/n06/attempt-1.json",
+      "size_bytes": 736,
+      "sha256": "1250566cedf68c9488b04a2df20f167dc5f60c56dceb0193053b6b4182f01453",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/8/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_missing_expression_host.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_missing_expression_host/n07/attempt-1.json",
+      "size_bytes": 718,
+      "sha256": "fbd8d24d5100937cd36c66469bc7585e6b899842c5bd66ad139cf109d5ca3a95",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/8/node_plan/N07/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_missing_expression_host.n08.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_missing_expression_host/n08/attempt-1.json",
+      "size_bytes": 753,
+      "sha256": "5e0db0521e5816aecc60b7626c4876c9f64375dc8d4e9513c0f4770c935ef7dc",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/8/node_plan/N08/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_missing_expression_host.n09.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_missing_expression_host/n09/attempt-1.json",
+      "size_bytes": 695,
+      "sha256": "dd5c7618d2f579574a1ae2d19048e7e16bf9b1b0c8f73f7503ec1e7f31f55a3d",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/8/node_plan/N09/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_missing_expression_host.n10.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_missing_expression_host/n10/attempt-1.json",
+      "size_bytes": 774,
+      "sha256": "bba6e864278bda72fee9dadd25c83e72ed796c67d9a5a3399905bc5944ec9bfc",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/8/node_plan/N10/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_missing_expression_host.n11.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_missing_expression_host/n11/attempt-1.json",
+      "size_bytes": 764,
+      "sha256": "c24ae60db10920329fb3bc6befea8d54abed92a001bbbb8d445f56265d4024c2",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/8/node_plan/N11/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_missing_expression_host.n12.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_missing_expression_host/n12/attempt-1.json",
+      "size_bytes": 819,
+      "sha256": "36aab7384f686bd9db906415e39fe53e2ed7ff923d60cae24e3457d5f9ca3935",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/8/node_plan/N12/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_missing_expression_host.n13.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_missing_expression_host/n13/attempt-1.json",
+      "size_bytes": 790,
+      "sha256": "31d2b7d0180f140ea5f22566591e53a6cb63a2af24c5a8f5fe5ff1f89ab038b9",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/8/node_plan/N13/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_missing_expression_host.n14.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_missing_expression_host/n14/attempt-1.json",
+      "size_bytes": 727,
+      "sha256": "84b67fa821bf0b741a7f404c6614554cbf14851ad86df21db394378c030361c5",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/8/node_plan/N14/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_missing_expression_host.n15.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_missing_expression_host/n15/attempt-1.json",
+      "size_bytes": 851,
+      "sha256": "fc56e87a62f6d9eeba9aa0c4f23616e0bbb13a5e4355b22cc2ce1f8cb4511f06",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/8/node_plan/N15/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_missing_expression_host.n17.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_missing_expression_host/n17/attempt-1.json",
+      "size_bytes": 737,
+      "sha256": "567f884c6048da5870a9399fce1eabb85303970700e3dc3520e2ed3cefc005ce",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/8/node_plan/N17/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_missing_expression_host.n18.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_missing_expression_host/n18/attempt-1.json",
+      "size_bytes": 797,
+      "sha256": "f48f7555f9f70c6cc297e69548ee07b02afaa5f3c73b21bf471078bb8ec59497",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/8/node_plan/N18/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_not_applicable.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_not_applicable/n01/attempt-1.json",
+      "size_bytes": 749,
+      "sha256": "3fcef63c477f8fe93bce9ed2221706f5e3ffb01ae7d0af12444bc7b0ede28cdc",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/9/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_not_applicable.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_not_applicable/n02/attempt-1.json",
+      "size_bytes": 691,
+      "sha256": "d52bbf41a4504a928a56cbb966bfc3f5c52c667934865e44165fd782b6da824c",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/9/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_not_applicable.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_not_applicable/n03/attempt-1.json",
+      "size_bytes": 701,
+      "sha256": "ca8754d6957fd414044abefceb2dcaffdf3db39ada79dbe68f2976731ba757b2",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/9/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_not_applicable.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_not_applicable/n04/attempt-1.json",
+      "size_bytes": 649,
+      "sha256": "536155b2449d94e66b4857f6fbde3a7a5851e4d64bc97599d3e9960a6abc305e",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/9/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_not_applicable.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_not_applicable/n05/attempt-1.json",
+      "size_bytes": 722,
+      "sha256": "7d650df963da1b2c09540359a22d906654438d65b57b05367a5bb5afcedd84b0",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/9/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_not_applicable.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_not_applicable/n06/attempt-1.json",
+      "size_bytes": 700,
+      "sha256": "2e3494490e3fd9dab99bdcff01f17b77281d51b48a4825ac0bd5f3ffcf1b3213",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/9/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_not_applicable.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_not_applicable/n07/attempt-1.json",
+      "size_bytes": 682,
+      "sha256": "77777eab77cdb71be91000618d910a5fdb0650e510969f8e7e5a2af12c9ed6d7",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/9/node_plan/N07/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_not_applicable.n08.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_not_applicable/n08/attempt-1.json",
+      "size_bytes": 717,
+      "sha256": "d1be0f11ff0baec451afb9804592c8eefb7a1738e951b22415a58212d5043e9e",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/9/node_plan/N08/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_not_applicable.n09.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_not_applicable/n09/attempt-1.json",
+      "size_bytes": 659,
+      "sha256": "b7d4015bad324e627b8a5e8ada59be5c533e09c15e342e4beaef56d13dd9ba20",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/9/node_plan/N09/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_not_applicable.n10.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_not_applicable/n10/attempt-1.json",
+      "size_bytes": 738,
+      "sha256": "8ed25dec6998980d5647617ddbe0c474887e5d3fc6ccf5f736b1cd493bf7074c",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/9/node_plan/N10/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_not_applicable.n11.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_not_applicable/n11/attempt-1.json",
+      "size_bytes": 728,
+      "sha256": "fcf1e5134d85b6371f03abf59432f80d1fc85f0f8cc08c5b5222ae4d37ec23b5",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/9/node_plan/N11/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_not_applicable.n12.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_not_applicable/n12/attempt-1.json",
+      "size_bytes": 783,
+      "sha256": "76e9ee500b002b0b847f99e34c6fac656c3b317a784dc0ab3ec7360018bf5b67",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/9/node_plan/N12/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_not_applicable.n13.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_not_applicable/n13/attempt-1.json",
+      "size_bytes": 754,
+      "sha256": "87d4f33ec2e68b180736b2f993d399d3c847c16c6a5d7906201d4354d3198e04",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/9/node_plan/N13/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_not_applicable.n14.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_not_applicable/n14/attempt-1.json",
+      "size_bytes": 691,
+      "sha256": "05a193eac9b4ee7b393ebc6c0223f297dbab5c80d6e393616337c52f36053682",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/9/node_plan/N14/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_not_applicable.n15.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_not_applicable/n15/attempt-1.json",
+      "size_bytes": 815,
+      "sha256": "46a7e3cb860096f25035b01e822fe7d51dd1520765fd6f09f2a617f2870cd034",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/9/node_plan/N15/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_not_applicable.n16.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_not_applicable/n16/attempt-1.json",
+      "size_bytes": 698,
+      "sha256": "1f522a8b5de5d7a06faa0cf9ab48d92cb2c893495df179640413dcd6389512bb",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/9/node_plan/N16/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_not_applicable.n18.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_not_applicable/n18/attempt-1.json",
+      "size_bytes": 761,
+      "sha256": "826faaa3e1148bd6d86ff353aedc2f922fcbd2920159626cc047792cccb23cc9",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/9/node_plan/N18/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_unsupported_expression_host.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_unsupported_expression_host/n01/attempt-1.json",
+      "size_bytes": 801,
+      "sha256": "dd770051ef22e5b39050344c9d83b5895c01444ecf37aefd6612c025c020be47",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/10/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_unsupported_expression_host.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_unsupported_expression_host/n02/attempt-1.json",
+      "size_bytes": 743,
+      "sha256": "69e6c04b632dc223fb50b235a91325aa10dbe97a58ed8b2ba35dd72aa674381a",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/10/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_unsupported_expression_host.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_unsupported_expression_host/n03/attempt-1.json",
+      "size_bytes": 753,
+      "sha256": "6d936d710e220bb5acfdd0cc0b0d8ee0e22d0a7b5bdd25d2d0fd4f15767b6a96",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/10/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_unsupported_expression_host.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_unsupported_expression_host/n04/attempt-1.json",
+      "size_bytes": 701,
+      "sha256": "380940d8cc029a75a73562d769743d7fba3f80e77f5e1aa60031bc4269f5c2f9",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/10/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_unsupported_expression_host.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_unsupported_expression_host/n05/attempt-1.json",
+      "size_bytes": 774,
+      "sha256": "09f93a3378aba8f1f66a294255df3a1df83c794c106306d429d74aa300832b24",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/10/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_unsupported_expression_host.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_unsupported_expression_host/n06/attempt-1.json",
+      "size_bytes": 752,
+      "sha256": "64ac09f210bc08a4c6fcc1544510a670d4df4d396f8df27e72c3b84f7e6e78f6",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/10/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_unsupported_expression_host.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_unsupported_expression_host/n07/attempt-1.json",
+      "size_bytes": 734,
+      "sha256": "cd04c7593779d7cc71d783229a14bb57c7f1f88c19f5c2d663aa6edd413bb2aa",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/10/node_plan/N07/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_unsupported_expression_host.n08.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_unsupported_expression_host/n08/attempt-1.json",
+      "size_bytes": 769,
+      "sha256": "99f8ff8c7bf3cbd29242aaa99d13d56542457c05b0ec1e812f8a847fe21e4b6c",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/10/node_plan/N08/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_unsupported_expression_host.n09.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_unsupported_expression_host/n09/attempt-1.json",
+      "size_bytes": 711,
+      "sha256": "5cf737660bd7cc33c74b0a87ba9d3ade5e77f195f2b2cdfc6c79f4b30b6bfb50",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/10/node_plan/N09/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_unsupported_expression_host.n10.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_unsupported_expression_host/n10/attempt-1.json",
+      "size_bytes": 790,
+      "sha256": "7e40e7125560f5457ebe75734bc5dd57aa6c7443c21fbc24388823434e153b85",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/10/node_plan/N10/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_unsupported_expression_host.n11.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_unsupported_expression_host/n11/attempt-1.json",
+      "size_bytes": 780,
+      "sha256": "3dfba69e99321f2e14f10978a2af900263637a90b49630fb7b91bfdb6ec5ada0",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/10/node_plan/N11/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_unsupported_expression_host.n12.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_unsupported_expression_host/n12/attempt-1.json",
+      "size_bytes": 835,
+      "sha256": "4fac2465aae1717ff70ae7ca6bf159f5eba7612b18920be407aca2d8a0597a7d",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/10/node_plan/N12/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_unsupported_expression_host.n13.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_unsupported_expression_host/n13/attempt-1.json",
+      "size_bytes": 806,
+      "sha256": "d90818f4d4b5d80b0216469acf867789fca1e1223dbf94244ab18a4abe571ceb",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/10/node_plan/N13/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_unsupported_expression_host.n14.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_unsupported_expression_host/n14/attempt-1.json",
+      "size_bytes": 743,
+      "sha256": "210756feafd73df43c6595953c2b96668db7c48a35bf15488a69328330c9753b",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/10/node_plan/N14/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_unsupported_expression_host.n15.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_unsupported_expression_host/n15/attempt-1.json",
+      "size_bytes": 867,
+      "sha256": "cb6da7d4872e220f905937b91ace48e5a56988925e6e17093b92a7fe75a50e07",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/10/node_plan/N15/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_unsupported_expression_host.n17.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_unsupported_expression_host/n17/attempt-1.json",
+      "size_bytes": 753,
+      "sha256": "f574fd149110a956cf537a961d872f7c8490f5eb394f466b5cbd5a9923746a91",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/10/node_plan/N17/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_unsupported_expression_host.n18.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_unsupported_expression_host/n18/attempt-1.json",
+      "size_bytes": 813,
+      "sha256": "c5e4ee2c67e877334dbf5d05f8817ef7641536bcaf1cc21b08158b0412abf936",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/10/node_plan/N18/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_branch_failed.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_branch_failed/n01/attempt-1.json",
+      "size_bytes": 745,
+      "sha256": "51777f7cb203c5aafc0f8e17200f466350df9b5a0a5e4c217e4b8bf6a37cf864",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/11/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_branch_failed.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_branch_failed/n02/attempt-1.json",
+      "size_bytes": 687,
+      "sha256": "b058c60e807e985f1cfac5a4b8a4de33ec458361ddab224109e058d4076a0946",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/11/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_branch_failed.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_branch_failed/n03/attempt-1.json",
+      "size_bytes": 697,
+      "sha256": "9131785332aac68d4591fbc83b163f1ea134248503a68d15f36783fe3771a65f",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/11/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_branch_failed.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_branch_failed/n04/attempt-1.json",
+      "size_bytes": 645,
+      "sha256": "7159aee3a9d6c5a9cec249241e0191df4201b103565aec135d8d93f5faf3abea",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/11/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_branch_failed.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_branch_failed/n05/attempt-1.json",
+      "size_bytes": 718,
+      "sha256": "9e18f53d6aef4fcb4e6d033aa94cc13d92ed4245b1d0bd54acc4879140646755",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/11/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_branch_failed.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_branch_failed/n06/attempt-1.json",
+      "size_bytes": 696,
+      "sha256": "239e216a98b0166d214474e9d1fa16d79aa24e7850f571af0e553418981edb6d",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/11/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_branch_failed.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_branch_failed/n07/attempt-1.json",
+      "size_bytes": 678,
+      "sha256": "4c3eaf7652a4f73e4681f702bd58b72e19c86d6764ab3e06124c430ae610e004",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/11/node_plan/N07/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_branch_failed.n08.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_branch_failed/n08/attempt-1.json",
+      "size_bytes": 713,
+      "sha256": "631c150a6f2b7392b2e44ee86b69a5be800bc8941eb85ecbfa60421442f40637",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/11/node_plan/N08/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_branch_failed.n09.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_branch_failed/n09/attempt-1.json",
+      "size_bytes": 655,
+      "sha256": "2236241cd078eddfb0beb24d7f466a9a3369c4ffaea1b05704b3e86324f20b43",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/11/node_plan/N09/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_branch_failed.n10.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_branch_failed/n10/attempt-1.json",
+      "size_bytes": 734,
+      "sha256": "c9ce53d1282855f7da0c28ba8c6b1275d5e82efd7c03775d832343b52fcfba86",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/11/node_plan/N10/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_branch_failed.n11.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_branch_failed/n11/attempt-1.json",
+      "size_bytes": 724,
+      "sha256": "053822bc556659c80815f16d16d787c0dc4958b83c0e6b515ab8aa613f931d64",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/11/node_plan/N11/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_branch_failed.n12.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_branch_failed/n12/attempt-1.json",
+      "size_bytes": 779,
+      "sha256": "ae5d344f90926b2a573427dd4abf87d318d9f92df4406060ad169e69e1598683",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/11/node_plan/N12/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_branch_failed.n13.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_branch_failed/n13/attempt-1.json",
+      "size_bytes": 750,
+      "sha256": "b13205a5d99866a7b411b9da5adb2f80f4c3522e6640513d691bfe2d7bb20e22",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/11/node_plan/N13/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_branch_failed.n14.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_branch_failed/n14/attempt-1.json",
+      "size_bytes": 687,
+      "sha256": "8c897af3506a6de87c67dc8006c15b900f3446827d88939a1ac4e0bc7e0ef347",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/11/node_plan/N14/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_branch_failed.n15.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_branch_failed/n15/attempt-1.json",
+      "size_bytes": 811,
+      "sha256": "554c8e688121ed073234c428c9f39aaba822860e8125473e72686fdcf260f9e7",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/11/node_plan/N15/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_branch_failed.n16.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_branch_failed/n16/attempt-1.json",
+      "size_bytes": 694,
+      "sha256": "a1ff7f846dba837bb8f83feb331192c11a15ec861f1cc3e1b6455cb079ebd020",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/11/node_plan/N16/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n17_branch_failed.n18.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n17_branch_failed/n18/attempt-1.json",
+      "size_bytes": 757,
+      "sha256": "e565521ac744a69181bec6446c472a3859e4f0e7051d35c8fcc4739e407692ef",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/11/node_plan/N18/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_branch_timeout_partial.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_branch_timeout_partial/n01/attempt-1.json",
+      "size_bytes": 781,
+      "sha256": "b7ff1922cdacb7a30b70a1fbabf81c5eb11bcd2cca2043cfb2b81b1207b17d90",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/12/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_branch_timeout_partial.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_branch_timeout_partial/n02/attempt-1.json",
+      "size_bytes": 723,
+      "sha256": "c2c9553d120915d1ac9f9ac6526e9c08a26f90a0d442800b6c553a0027388d43",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/12/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_branch_timeout_partial.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_branch_timeout_partial/n03/attempt-1.json",
+      "size_bytes": 733,
+      "sha256": "01f656ab50cc25b2a6d41046dfadc81093183351ba5b34fcff774f61831f29ce",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/12/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_branch_timeout_partial.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_branch_timeout_partial/n04/attempt-1.json",
+      "size_bytes": 681,
+      "sha256": "a2c094afe60cdb08aee765874525f035e1857c39c659bd74d65dbb6b15c89670",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/12/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_branch_timeout_partial.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_branch_timeout_partial/n05/attempt-1.json",
+      "size_bytes": 754,
+      "sha256": "bdf343922bad6df8dde055dc34a0a500da854de65b79a8939b87abb00659b715",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/12/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_branch_timeout_partial.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_branch_timeout_partial/n06/attempt-1.json",
+      "size_bytes": 732,
+      "sha256": "ef772c237288d7ca7b167cf3aa2511972dc4442e011d0c21ca8b1fbd85a5d1ab",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/12/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_branch_timeout_partial.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_branch_timeout_partial/n07/attempt-1.json",
+      "size_bytes": 714,
+      "sha256": "df60011f4d43a585032f5598197ab2ec02cc634a57aade0e8838c941d7f78a90",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/12/node_plan/N07/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_branch_timeout_partial.n08.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_branch_timeout_partial/n08/attempt-1.json",
+      "size_bytes": 749,
+      "sha256": "43f935410c93fca5526e631bf158259a7fadf61e3b97a1a959d3c7047bf71afa",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/12/node_plan/N08/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_branch_timeout_partial.n09.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_branch_timeout_partial/n09/attempt-1.json",
+      "size_bytes": 691,
+      "sha256": "f691121ecc18ca2fc05f6e8d44ed426238c897c9ea146941ab525de12c58e716",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/12/node_plan/N09/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_branch_timeout_partial.n10.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_branch_timeout_partial/n10/attempt-1.json",
+      "size_bytes": 770,
+      "sha256": "05cdaff8db366677e49babd9aaca94796ae88f8875418ad420c6cec8b1c9dfd4",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/12/node_plan/N10/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_branch_timeout_partial.n11.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_branch_timeout_partial/n11/attempt-1.json",
+      "size_bytes": 760,
+      "sha256": "9edc81939e347d29bab3be9e3a672b52173e6e706605693ec36b24a13bca697a",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/12/node_plan/N11/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_branch_timeout_partial.n12.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_branch_timeout_partial/n12/attempt-1.json",
+      "size_bytes": 815,
+      "sha256": "31702a16502736f424b6301b921277ac7b740f411c1557730015c23a3f5a1c6e",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/12/node_plan/N12/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_branch_timeout_partial.n13.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_branch_timeout_partial/n13/attempt-1.json",
+      "size_bytes": 786,
+      "sha256": "6c9d697583f13aa1883ab1388566fbef22feb4ff27673a44d11a299b1a989f83",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/12/node_plan/N13/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_branch_timeout_partial.n14.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_branch_timeout_partial/n14/attempt-1.json",
+      "size_bytes": 723,
+      "sha256": "855bf0419f088633db8604958362a55b68a5b72cfacc7d9f73eba6aa477f1d25",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/12/node_plan/N14/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_branch_timeout_partial.n15.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_branch_timeout_partial/n15/attempt-1.json",
+      "size_bytes": 847,
+      "sha256": "fa38db3785d3d62930b5031fb36b709190225dbfc7ed168001b31120ba4b1f26",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/12/node_plan/N15/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_branch_timeout_partial.n16.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_branch_timeout_partial/n16/attempt-1.json",
+      "size_bytes": 730,
+      "sha256": "de7bdb362a2b6031d636ee31381f0248eb953e28c037f796ced892e655d71ea7",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/12/node_plan/N16/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_branch_timeout_partial.n17.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_branch_timeout_partial/n17/attempt-1.json",
+      "size_bytes": 733,
+      "sha256": "2f8d9ed9121d5022d0fdba02f42228cc62c79d2c44bf8d6db2577c79409e96e0",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/12/node_plan/N17/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n16_branch_timeout_partial.n18.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n16_branch_timeout_partial/n18/attempt-1.json",
+      "size_bytes": 793,
+      "sha256": "4c2c4615eae876349dfdff74a802fa35cbe425fe349ba229446e98bee727a988",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/12/node_plan/N18/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_upstream_tool_failed.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_upstream_tool_failed/n01/attempt-1.json",
+      "size_bytes": 773,
+      "sha256": "6f648935b4a81faf9ad610db92d2b9453f75f445a0eb304ee82cb26182e177dd",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/13/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_upstream_tool_failed.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_upstream_tool_failed/n02/attempt-1.json",
+      "size_bytes": 715,
+      "sha256": "8649f39a3fa5d797d8334ffc0d3b0c18a034a608db050a0ac0e0edc9b5e10a2b",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/13/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_upstream_tool_failed.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_upstream_tool_failed/n03/attempt-1.json",
+      "size_bytes": 725,
+      "sha256": "9b0fd8889d0d2fa211c36cf040d3580049aacac48bddf20d72e700d1ae686e7c",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/13/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_upstream_tool_failed.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_upstream_tool_failed/n04/attempt-1.json",
+      "size_bytes": 673,
+      "sha256": "5c260d669ffcdd7190e8498020037d383e36ea67996cbc771ea612fb4cbc9e6a",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/13/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_upstream_tool_failed.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_upstream_tool_failed/n05/attempt-1.json",
+      "size_bytes": 746,
+      "sha256": "1574db599b2f031c6784822d76139088a54ebf4d7ab87405fd908b4c3b0be22b",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/13/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_upstream_tool_failed.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_upstream_tool_failed/n06/attempt-1.json",
+      "size_bytes": 724,
+      "sha256": "ef685fb7f23a6d5b4d3bf43d7f7768ed77233936caa5ae26db89fbac4032a2a4",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/13/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_upstream_tool_failed.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_upstream_tool_failed/n07/attempt-1.json",
+      "size_bytes": 706,
+      "sha256": "80d845f788cec12d160afb086d4ed4b9f24b02fc3c968af5350fb8eed26594d2",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/13/node_plan/N07/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "run_cancelled_before_join.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/run_cancelled_before_join/n01/attempt-1.json",
+      "size_bytes": 777,
+      "sha256": "a9f7f5b362defe54e7d09b66535f9326365a0bffbddf02520754201240aa8cdb",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/15/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "run_cancelled_before_join.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/run_cancelled_before_join/n02/attempt-1.json",
+      "size_bytes": 719,
+      "sha256": "2ed2478b65329925376e97260bae017a705f57736419b0dbb88da4f4a5c35601",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/15/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "run_cancelled_before_join.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/run_cancelled_before_join/n03/attempt-1.json",
+      "size_bytes": 729,
+      "sha256": "a711254e6084f16aa34f81f385d825ec4bf5ec93d6e3039093086260ff2a3d3d",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/15/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "run_cancelled_before_join.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/run_cancelled_before_join/n04/attempt-1.json",
+      "size_bytes": 677,
+      "sha256": "1aa87362e0c547bccb8274280087048256c4e6db9b213ca8529aa43102c32dba",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/15/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "run_cancelled_before_join.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/run_cancelled_before_join/n05/attempt-1.json",
+      "size_bytes": 750,
+      "sha256": "6b7737885130119e20bbf25e325cfdfccedf7330269396d50d15e5ea6ecf8cc3",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/15/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "run_cancelled_before_join.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/run_cancelled_before_join/n06/attempt-1.json",
+      "size_bytes": 728,
+      "sha256": "7995aaa55bdd9fe177f913dbf89573be8a1bdeda59fad1fedf678ca0a85644e7",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/15/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "run_cancelled_before_join.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/run_cancelled_before_join/n07/attempt-1.json",
+      "size_bytes": 710,
+      "sha256": "4c103e1c540afdda5e3bf368a44e66357fc06b15507375caa66e0729c6243318",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/15/node_plan/N07/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "run_cancelled_before_join.n08.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/run_cancelled_before_join/n08/attempt-1.json",
+      "size_bytes": 745,
+      "sha256": "76c92a56febb7354b6eee3214040c01677e4a30511c85ec42366e00fa24ce772",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/15/node_plan/N08/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "run_cancelled_before_join.n09.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/run_cancelled_before_join/n09/attempt-1.json",
+      "size_bytes": 687,
+      "sha256": "f76bd4aed4a06a4bf02c8034c02b06744dd67c6674a4a19ad8d029168949a3e9",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/15/node_plan/N09/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "run_cancelled_before_join.n10.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/run_cancelled_before_join/n10/attempt-1.json",
+      "size_bytes": 766,
+      "sha256": "ae90d7cc576bd295197eda255bf4231b11661411f8b24f170f8d6c99d41b3553",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/15/node_plan/N10/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "run_cancelled_before_join.n11.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/run_cancelled_before_join/n11/attempt-1.json",
+      "size_bytes": 756,
+      "sha256": "5a8df6d4111cd528ebccdb42eca60a64fc823bcec5c28f13b19f34664555081c",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/15/node_plan/N11/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "run_cancelled_before_join.n12.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/run_cancelled_before_join/n12/attempt-1.json",
+      "size_bytes": 811,
+      "sha256": "75e6eff137414b186d2afc5b62f83dc43808ed80ec834233d7f707c348d23448",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/15/node_plan/N12/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "run_cancelled_before_join.n13.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/run_cancelled_before_join/n13/attempt-1.json",
+      "size_bytes": 782,
+      "sha256": "f070de74172d61490582150438217482928fa68cd22fdd88179613efa2878cb7",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/15/node_plan/N13/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "run_cancelled_before_join.n14.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/run_cancelled_before_join/n14/attempt-1.json",
+      "size_bytes": 719,
+      "sha256": "a169091cbd85b207fd0eb19ec1d63d33511075ed66428f2ab7d4b046976d087f",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/15/node_plan/N14/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "run_cancelled_before_join.n15.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/run_cancelled_before_join/n15/attempt-1.json",
+      "size_bytes": 843,
+      "sha256": "9daef7151d1a3d56b8b7fbbaa139b6a66b78a1a4e02ccc1957da3fe91771fad6",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/15/node_plan/N15/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_retryable_recovery.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_retryable_recovery/n01/attempt-1.json",
+      "size_bytes": 765,
+      "sha256": "09678a2b36e7e7fd4f53148eae818de180e3a654595fb52509c7a320e823caab",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/16/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_retryable_recovery.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_retryable_recovery/n02/attempt-1.json",
+      "size_bytes": 707,
+      "sha256": "8ca0540d3778211804bfeaf9916c56e6155761c8bb99b7ccde74a7606a15b171",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/16/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_retryable_recovery.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_retryable_recovery/n03/attempt-1.json",
+      "size_bytes": 717,
+      "sha256": "bd39f6104a4ca2c2ec949e119bdf157dd6e12f5013d9d0c22af01ef39b255416",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/16/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_retryable_recovery.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_retryable_recovery/n04/attempt-1.json",
+      "size_bytes": 665,
+      "sha256": "88fcbb48343679da5a488c8740c8e7480451d95f493f9fc6b323217a4630f0b8",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/16/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_retryable_recovery.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_retryable_recovery/n05/attempt-1.json",
+      "size_bytes": 738,
+      "sha256": "ddd52c76fdc0f95d9f558bcf6eb1bd0dbb50c9b98125bfb381c1103a73e7aa53",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/16/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_retryable_recovery.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_retryable_recovery/n06/attempt-1.json",
+      "size_bytes": 716,
+      "sha256": "3b0ea9f6e63b3ea0cd92976d0db42cfe98428259fe463e8b6ba5c1a2dda179e3",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/16/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_retryable_recovery.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_retryable_recovery/n07/attempt-1.json",
+      "size_bytes": 698,
+      "sha256": "07ac579c0071e1d9a5d8682be31b67108b4da48c3053dae60a2f5b4cd136497f",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/16/node_plan/N07/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_retryable_recovery.n08.attempt_2",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_retryable_recovery/n08/attempt-2.json",
+      "size_bytes": 743,
+      "sha256": "24757566a7f5f6d2c18ccafef8e405c73ae2cbe2e2b496a78723c7c790a038ff",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/16/node_plan/N08/attempts/1"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_retryable_recovery.n09.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_retryable_recovery/n09/attempt-1.json",
+      "size_bytes": 675,
+      "sha256": "9bb9d862835114788702c6210ae8d70b0a08051f6049ffe91ed4a54118084f4a",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/16/node_plan/N09/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_retryable_recovery.n10.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_retryable_recovery/n10/attempt-1.json",
+      "size_bytes": 754,
+      "sha256": "e92edac78ed21deab96b9d9f6418358a02b9d95512139c30079b4a80df109524",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/16/node_plan/N10/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_retryable_recovery.n11.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_retryable_recovery/n11/attempt-1.json",
+      "size_bytes": 744,
+      "sha256": "c3676b09e9ef9b38c01c69e5c04fa4c5f4543053e351db27038babc475822f63",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/16/node_plan/N11/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_retryable_recovery.n12.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_retryable_recovery/n12/attempt-1.json",
+      "size_bytes": 799,
+      "sha256": "ce121b66597372e4bde4e807b69cc802b8ea54cafadb13e8affcb8a07783438c",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/16/node_plan/N12/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_retryable_recovery.n13.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_retryable_recovery/n13/attempt-1.json",
+      "size_bytes": 770,
+      "sha256": "cfdd63c108d2a4c46b162f117de1893a55fe098ed45a3f10c15d74b170fb2b47",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/16/node_plan/N13/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_retryable_recovery.n14.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_retryable_recovery/n14/attempt-1.json",
+      "size_bytes": 707,
+      "sha256": "bb7cbb62c76d47c7de0d1373936916aed8c327003c9bf63a5a59fb616f66866e",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/16/node_plan/N14/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_retryable_recovery.n15.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_retryable_recovery/n15/attempt-1.json",
+      "size_bytes": 831,
+      "sha256": "fc1483f569fa164b2f5436d07d9b0f10e191de305e6cf58d7d18c104bd512780",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/16/node_plan/N15/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_retryable_recovery.n16.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_retryable_recovery/n16/attempt-1.json",
+      "size_bytes": 714,
+      "sha256": "51347a68d4c18a5e4f39c1386dc68d893c318afbad1f744638ff87872624dd8b",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/16/node_plan/N16/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_retryable_recovery.n17.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_retryable_recovery/n17/attempt-1.json",
+      "size_bytes": 717,
+      "sha256": "c5a61fbaa41abfb4c9017ba4b3648ef92f40b711983db96987a3b7d0e20ea75f",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/16/node_plan/N17/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_retryable_recovery.n18.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_retryable_recovery/n18/attempt-1.json",
+      "size_bytes": 777,
+      "sha256": "2b20278669d7c9f7cd6537b2d2a76b152938d8a978552637cafd8b093d06153d",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/16/node_plan/N18/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotent_replay.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotent_replay/n01/attempt-1.json",
+      "size_bytes": 745,
+      "sha256": "8359cb072357d3e657e1ae46dffc1eafa9f5fddbdce6502a97d5bea6b985a374",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/17/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotent_replay.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotent_replay/n02/attempt-1.json",
+      "size_bytes": 687,
+      "sha256": "837e6ab9794ce18d10ade25ae5b5d7f3b6854645169ca926718a134e725f1f63",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/17/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotent_replay.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotent_replay/n03/attempt-1.json",
+      "size_bytes": 697,
+      "sha256": "a684c2342c1562048e222d45c649d66af10825fe71c6071e90a3117ac22f7187",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/17/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotent_replay.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotent_replay/n04/attempt-1.json",
+      "size_bytes": 645,
+      "sha256": "52b14308f75ab90f4ba5eb3dcc17f28adacf3fff10d5be64f2fd406c9f79c643",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/17/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotent_replay.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotent_replay/n05/attempt-1.json",
+      "size_bytes": 718,
+      "sha256": "35b7188b4fa8a51f134e5f455cb6dec7c3e159b129260fa330c23d4430bb4771",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/17/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotent_replay.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotent_replay/n06/attempt-1.json",
+      "size_bytes": 696,
+      "sha256": "ce2e369dfe5c80e694f91a89b2fe1537bb20f33190f209be0ef3836dd42027e3",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/17/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotent_replay.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotent_replay/n07/attempt-1.json",
+      "size_bytes": 678,
+      "sha256": "af0e96b4a034cb9eb50683cbf1b6b77344614f6e1d913f47a802f433b0acb107",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/17/node_plan/N07/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotent_replay.n08.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotent_replay/n08/attempt-1.json",
+      "size_bytes": 713,
+      "sha256": "34e6546698de48bd18b9218c8f639f83ce7c23eabefb85d12399e661344ad1eb",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/17/node_plan/N08/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotent_replay.n09.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotent_replay/n09/attempt-1.json",
+      "size_bytes": 655,
+      "sha256": "7f97b7860fd5ebd0220d249eb94cad2b16b0238b744207d79e466d351e6ef74a",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/17/node_plan/N09/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotent_replay.n10.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotent_replay/n10/attempt-1.json",
+      "size_bytes": 734,
+      "sha256": "1ecd69ff89b4edbb01e2c1fa0ff155519489644279e89fccb5a1d801fc2e5a65",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/17/node_plan/N10/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotent_replay.n11.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotent_replay/n11/attempt-1.json",
+      "size_bytes": 724,
+      "sha256": "a167131c7dfe7fa3497e25ce62344203e592a99151a4f963863b8bd8112a2b2e",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/17/node_plan/N11/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotent_replay.n12.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotent_replay/n12/attempt-1.json",
+      "size_bytes": 779,
+      "sha256": "772b34a863d6d4e3abcb5cb182f683508e3c588eb23605ca349612f1a7d96405",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/17/node_plan/N12/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotent_replay.n13.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotent_replay/n13/attempt-1.json",
+      "size_bytes": 750,
+      "sha256": "efc9f3895c448221a19d91e39839973396416733a6307aa5341e91330f0dd535",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/17/node_plan/N13/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotent_replay.n14.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotent_replay/n14/attempt-1.json",
+      "size_bytes": 687,
+      "sha256": "877ed3f5732b7d0bee9a0c862164da729be7c28e406bcf0418782382a9c30af0",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/17/node_plan/N14/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotent_replay.n15.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotent_replay/n15/attempt-1.json",
+      "size_bytes": 811,
+      "sha256": "2c6a3cacf3857291580cbfe4842233a72177bf7b139347cd0f887bb8bf53b04b",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/17/node_plan/N15/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotent_replay.n16.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotent_replay/n16/attempt-1.json",
+      "size_bytes": 694,
+      "sha256": "42a2f169c568198e1e9cf1efa7ffa87ca9662e6fb51313ec59fdcdd0c83408b6",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/17/node_plan/N16/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotent_replay.n17.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotent_replay/n17/attempt-1.json",
+      "size_bytes": 697,
+      "sha256": "2b612ceb6adf5793dea3932284d19413fb9e75298191ac737c333b6113fc3a1b",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/17/node_plan/N17/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotent_replay.n18.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotent_replay/n18/attempt-1.json",
+      "size_bytes": 757,
+      "sha256": "8e1496a0e8146a56fab67cdd80f1557b09775130bb10be3dfa9d6dd6927851f9",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/17/node_plan/N18/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotency_conflict.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotency_conflict/n01/attempt-1.json",
+      "size_bytes": 757,
+      "sha256": "23c232f25486e52b90cc55cca80f974e59b91d104b67c8de0476b2b8d5a0353c",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/18/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotency_conflict.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotency_conflict/n02/attempt-1.json",
+      "size_bytes": 699,
+      "sha256": "556f6b557b9eccee8395faa5c65782f74c40b61519a42c39d93ec1bac0397193",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/18/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotency_conflict.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotency_conflict/n03/attempt-1.json",
+      "size_bytes": 709,
+      "sha256": "696a999481300d3a3901e0ad37f2377a9e34b91bf1e90390b457b78b85c03eb0",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/18/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotency_conflict.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotency_conflict/n04/attempt-1.json",
+      "size_bytes": 657,
+      "sha256": "82be73eecd3da826ce3410d52713c89e48254d14c686e37f851703e90dc8a420",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/18/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotency_conflict.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotency_conflict/n05/attempt-1.json",
+      "size_bytes": 730,
+      "sha256": "486d93f7fb3b9cb66cb600968b644eadb47654bd267e7ed4b2c07b1f40d8fe1c",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/18/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotency_conflict.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotency_conflict/n06/attempt-1.json",
+      "size_bytes": 708,
+      "sha256": "e56fb604f968b3d3169460838487508e4b405cc568b819a95022346d7a72adae",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/18/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotency_conflict.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotency_conflict/n07/attempt-1.json",
+      "size_bytes": 690,
+      "sha256": "d957c5954098f2dfeec2cbac0a53226b1e5bd40a583e15eb503050dc1a21e31c",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/18/node_plan/N07/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotency_conflict.n08.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotency_conflict/n08/attempt-1.json",
+      "size_bytes": 725,
+      "sha256": "4b7c8b3778af004e7c76cf8db9fddcce94a5659a53873ddf472d9ca876ca2c0f",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/18/node_plan/N08/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotency_conflict.n09.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotency_conflict/n09/attempt-1.json",
+      "size_bytes": 667,
+      "sha256": "40f4bb64d1a7b6dd7302edf40fce4d75efe3ecf7f81716987f73dda11e872ac5",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/18/node_plan/N09/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotency_conflict.n10.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotency_conflict/n10/attempt-1.json",
+      "size_bytes": 746,
+      "sha256": "aa514d421b7ebe476ff7ea7f2708567f4cfa08cae2aa5a498654d23cac827091",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/18/node_plan/N10/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotency_conflict.n11.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotency_conflict/n11/attempt-1.json",
+      "size_bytes": 736,
+      "sha256": "17c4b685bbd140d89efa1afca687e5de1d30498a6fa8184e7b1610d0ed69f33d",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/18/node_plan/N11/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotency_conflict.n12.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotency_conflict/n12/attempt-1.json",
+      "size_bytes": 791,
+      "sha256": "6ab591ca7e26559420ea211a3fc65cd5b1d674f059da49bb0e3827963af32ca3",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/18/node_plan/N12/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotency_conflict.n13.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotency_conflict/n13/attempt-1.json",
+      "size_bytes": 762,
+      "sha256": "3a77db06127c789b0c4d403705585e0ab84103aace4749dfc0a671cb2c7f3ff2",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/18/node_plan/N13/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotency_conflict.n14.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotency_conflict/n14/attempt-1.json",
+      "size_bytes": 699,
+      "sha256": "a5414a1636d6564c69d633db0e87b9420dff7cc5dbc5b38f99bdd94e7904445d",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/18/node_plan/N14/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotency_conflict.n15.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotency_conflict/n15/attempt-1.json",
+      "size_bytes": 823,
+      "sha256": "55fce0fbf1f79159586f222aaf2a80e32a5da7b41322f030bf96ec91bba36e24",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/18/node_plan/N15/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotency_conflict.n16.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotency_conflict/n16/attempt-1.json",
+      "size_bytes": 706,
+      "sha256": "2b0c20649906189597155a3b1bba545647899046f19f2b59c4635496bbc49a13",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/18/node_plan/N16/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotency_conflict.n17.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotency_conflict/n17/attempt-1.json",
+      "size_bytes": 709,
+      "sha256": "803f168778cae8df14ee915c2f388001af504b026bf62e509bf7590a8b462ea7",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/18/node_plan/N17/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "idempotency_conflict.n18.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/idempotency_conflict/n18/attempt-1.json",
+      "size_bytes": 769,
+      "sha256": "863284af682ada5ff3718a375a9d9ca12b3fe91156d89080442eaa5030bb7b59",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/18/node_plan/N18/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n18_assembly_failed.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n18_assembly_failed/n01/attempt-1.json",
+      "size_bytes": 753,
+      "sha256": "2ec5442209a98199be8666063030778dbf0c5ebd55749f1353a60418c88704ac",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/19/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n18_assembly_failed.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n18_assembly_failed/n02/attempt-1.json",
+      "size_bytes": 695,
+      "sha256": "88798daa43c0bfea2c70c84134ae0fa6123e0ad5f792f92549a762349226d93b",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/19/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n18_assembly_failed.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n18_assembly_failed/n03/attempt-1.json",
+      "size_bytes": 705,
+      "sha256": "7cefebb512888404e900edc1bfb900ce4b12d2e21f87ea1c63b0a3826f3566b6",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/19/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n18_assembly_failed.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n18_assembly_failed/n04/attempt-1.json",
+      "size_bytes": 653,
+      "sha256": "77b166d99afc86bcc10bdab480c9dec6e9322a41cd09af2d2e2bf0dbf05d68b9",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/19/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n18_assembly_failed.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n18_assembly_failed/n05/attempt-1.json",
+      "size_bytes": 726,
+      "sha256": "bce3cfb2b31968a6056f3fb49ae8942970e66be45834976dd24869f02ed29037",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/19/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n18_assembly_failed.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n18_assembly_failed/n06/attempt-1.json",
+      "size_bytes": 704,
+      "sha256": "d741de692576c9faeced33e978eecc4f798d7db31141e9cc864cb31c8e56a644",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/19/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n18_assembly_failed.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n18_assembly_failed/n07/attempt-1.json",
+      "size_bytes": 686,
+      "sha256": "9e0f12f879c26bc64451009e96b91ab450f42d6f3c15a67bcab4ec037e8f37b2",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/19/node_plan/N07/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n18_assembly_failed.n08.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n18_assembly_failed/n08/attempt-1.json",
+      "size_bytes": 721,
+      "sha256": "876c87413003b4a34ecc16be167ab56b98a275f0ccd0bf310be1ca0311883981",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/19/node_plan/N08/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n18_assembly_failed.n09.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n18_assembly_failed/n09/attempt-1.json",
+      "size_bytes": 663,
+      "sha256": "031e1c73647bc0aa571c68d94f8f178510ecd367825a43b613aa29135997eb99",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/19/node_plan/N09/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n18_assembly_failed.n10.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n18_assembly_failed/n10/attempt-1.json",
+      "size_bytes": 742,
+      "sha256": "74eb337d5f96c59586d3f76128d7f1762c41d19d50c073e863179951c5040429",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/19/node_plan/N10/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n18_assembly_failed.n11.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n18_assembly_failed/n11/attempt-1.json",
+      "size_bytes": 732,
+      "sha256": "c3ba54c28b9b9aab2e3e339d601951b4f7413b20bd5f437981241b3ec0fad4a4",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/19/node_plan/N11/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n18_assembly_failed.n12.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n18_assembly_failed/n12/attempt-1.json",
+      "size_bytes": 787,
+      "sha256": "822c95d941183765ae8abffc1d70e7c7739e1f8538a98dd41ca03e1ed3094c21",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/19/node_plan/N12/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n18_assembly_failed.n13.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n18_assembly_failed/n13/attempt-1.json",
+      "size_bytes": 758,
+      "sha256": "81a9f27054437567d50a6c688876d4efec6a650d6ca06d79cc6f764d6e250fdb",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/19/node_plan/N13/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n18_assembly_failed.n14.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n18_assembly_failed/n14/attempt-1.json",
+      "size_bytes": 695,
+      "sha256": "bed5868be666c4f1e5b430f354ff5ceb029f604d5dc7d98a2264f7344cfa3cea",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/19/node_plan/N14/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n18_assembly_failed.n15.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n18_assembly_failed/n15/attempt-1.json",
+      "size_bytes": 819,
+      "sha256": "3bbccb5da07e93758726ce8ac91e411afb6659cb655e31b4fc6254aa8f83aab9",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/19/node_plan/N15/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n18_assembly_failed.n16.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n18_assembly_failed/n16/attempt-1.json",
+      "size_bytes": 702,
+      "sha256": "d4c1675852ccb66084ca280c993707e91f9a744634cb47b8dc72f6aff602e4e0",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/19/node_plan/N16/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n18_assembly_failed.n17.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n18_assembly_failed/n17/attempt-1.json",
+      "size_bytes": 705,
+      "sha256": "8b3762731b2ba90df98870f348ed8ab5eae68c13430f3a1767bce5ed175f6b72",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/19/node_plan/N17/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_upstream_timed_out.n01.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_upstream_timed_out/n01/attempt-1.json",
+      "size_bytes": 765,
+      "sha256": "a85a3efb28ade9616d96d09422c9de54c9cef40220140b5f12ff912aaa50cca2",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/20/node_plan/N01/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_upstream_timed_out.n02.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_upstream_timed_out/n02/attempt-1.json",
+      "size_bytes": 707,
+      "sha256": "1b3b4bdb354e04be4e25b2c44e6c73dfa5c1be7ec15101d1bb847c264b4f6971",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/20/node_plan/N02/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_upstream_timed_out.n03.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_upstream_timed_out/n03/attempt-1.json",
+      "size_bytes": 717,
+      "sha256": "8dd31024409cf681f64d9cc74d17f046b8c79cd75ea9e74d2ae4811894c2c1f5",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/20/node_plan/N03/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_upstream_timed_out.n04.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_upstream_timed_out/n04/attempt-1.json",
+      "size_bytes": 665,
+      "sha256": "2ca0df20ab146510f022a8392c154e329a2681cdca65453d59c25c3adc848d66",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/20/node_plan/N04/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_upstream_timed_out.n05.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_upstream_timed_out/n05/attempt-1.json",
+      "size_bytes": 738,
+      "sha256": "c47ebc6882e8f87e72dc9180d4be8aa419abcbfa5d3a1592e53bbe641132bceb",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/20/node_plan/N05/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_upstream_timed_out.n06.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_upstream_timed_out/n06/attempt-1.json",
+      "size_bytes": 716,
+      "sha256": "2ad4df6d62beef76d203a9ab35ac712f4bf7528cf193a3971f1b40af60641e47",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/20/node_plan/N06/attempts/0"
+    },
+    {
+      "kind": "ATTEMPT_RESULT",
+      "logical_key": "n08_upstream_timed_out.n07.attempt_1",
+      "path": "dify/t01-phase1-mock-v0.1/fixtures/node-results/n08_upstream_timed_out/n07/attempt-1.json",
+      "size_bytes": 698,
+      "sha256": "611cc0c9da3ee03b641fb0287e5347cdf27ed9a6c6dcd910a5b9fe803564f35a",
+      "data_classification": "MOCK_DATA",
+      "scientific_compute": false,
+      "source_pointer": "/scenarios/20/node_plan/N07/attempts/0"
+    }
+  ]
+}

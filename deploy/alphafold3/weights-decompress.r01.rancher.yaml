@@ -1,0 +1,221 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-af3-weights-decompress-r01
+  namespace: him-ws
+immutable: true
+data:
+  decompress_af3_weights.py: "\"\"\"Safely decompress the pinned official AlphaFold\
+    \ 3 weights.\n\nThe verified ``af3.bin.zst`` source is retained.  The decoded\
+    \ file is written\nto a staging name, bounded in size, hashed while it is written,\
+    \ fsynced, and\nthen atomically published as ``af3.bin``.  This step does not\
+    \ load the model,\nrequest a GPU, or open the scientific gate.\n\"\"\"\nfrom __future__\
+    \ import annotations\n\nimport argparse\nimport ctypes\nimport ctypes.util\nimport\
+    \ hashlib\nimport io\nimport json\nimport os\nfrom pathlib import Path\nimport\
+    \ shutil\nimport stat\nfrom typing import Callable, Iterable\n\n\nSOURCE_NAME\
+    \ = \"af3.bin.zst\"\nTARGET_NAME = \"af3.bin\"\nPARTIAL_NAME = \"af3.bin.partial\"\
+    \nDOWNLOAD_RECEIPT = \"download-receipt.json\"\nINSTALLATION_RECEIPT = \"installation-receipt.json\"\
+    \nEXPECTED_SOURCE_BYTES = 1_020_545_840\nEXPECTED_SOURCE_SHA256 = \"74d0258616917cd122f5eab6d076afe4a8930e96823851e65e4f777dfb1f33ff\"\
+    \nMAX_OUTPUT_BYTES = 8 * 1024**3\nRESERVE_BYTES = 2 * 1024**3\nREAD_SIZE = 1024\
+    \ * 1024\nCACHE_FLUSH_BYTES = 1024**3\n\n\nclass ZSTDInBuffer(ctypes.Structure):\n\
+    \    _fields_ = [(\"src\", ctypes.c_void_p), (\"size\", ctypes.c_size_t), (\"\
+    pos\", ctypes.c_size_t)]\n\n\nclass ZSTDOutBuffer(ctypes.Structure):\n    _fields_\
+    \ = [(\"dst\", ctypes.c_void_p), (\"size\", ctypes.c_size_t), (\"pos\", ctypes.c_size_t)]\n\
+    \n\ndef _load_zstd():\n    name = ctypes.util.find_library(\"zstd\") or \"libzstd.so.1\"\
+    \n    library = ctypes.CDLL(name)\n    library.ZSTD_createDStream.restype = ctypes.c_void_p\n\
+    \    library.ZSTD_freeDStream.argtypes = [ctypes.c_void_p]\n    library.ZSTD_freeDStream.restype\
+    \ = ctypes.c_size_t\n    library.ZSTD_initDStream.argtypes = [ctypes.c_void_p]\n\
+    \    library.ZSTD_initDStream.restype = ctypes.c_size_t\n    library.ZSTD_decompressStream.argtypes\
+    \ = [\n        ctypes.c_void_p, ctypes.POINTER(ZSTDOutBuffer), ctypes.POINTER(ZSTDInBuffer)\n\
+    \    ]\n    library.ZSTD_decompressStream.restype = ctypes.c_size_t\n    library.ZSTD_isError.argtypes\
+    \ = [ctypes.c_size_t]\n    library.ZSTD_isError.restype = ctypes.c_uint\n    library.ZSTD_getErrorName.argtypes\
+    \ = [ctypes.c_size_t]\n    library.ZSTD_getErrorName.restype = ctypes.c_char_p\n\
+    \    return library\n\n\nclass ZstdReader(io.RawIOBase):\n    def __init__(self,\
+    \ source):\n        self.source = source\n        self.library = _load_zstd()\n\
+    \        self.context = self.library.ZSTD_createDStream()\n        if not self.context:\n\
+    \            raise RuntimeError(\"libzstd could not create a decompression stream\"\
+    )\n        self._check(self.library.ZSTD_initDStream(self.context))\n        self.input\
+    \ = b\"\"\n        self.input_buffer = None\n        self.input_state = ZSTDInBuffer()\n\
+    \        self.eof = False\n        self.frame_complete = False\n\n    def readable(self)\
+    \ -> bool:\n        return True\n\n    def _check(self, result: int) -> None:\n\
+    \        if self.library.ZSTD_isError(result):\n            message = self.library.ZSTD_getErrorName(result).decode(\"\
+    utf-8\", \"replace\")\n            raise ValueError(\"zstd decompression failed:\
+    \ \" + message)\n\n    def readinto(self, target) -> int:\n        if self.eof:\n\
+    \            return 0\n        output = (ctypes.c_ubyte * len(target))()\n   \
+    \     state = ZSTDOutBuffer(ctypes.cast(output, ctypes.c_void_p), len(target),\
+    \ 0)\n        while state.pos == 0 and not self.eof:\n            if self.input_state.pos\
+    \ >= self.input_state.size:\n                self.input = self.source.read(READ_SIZE)\n\
+    \                if self.input:\n                    self.input_buffer = ctypes.create_string_buffer(self.input)\n\
+    \                    self.input_state = ZSTDInBuffer(\n                      \
+    \  ctypes.cast(self.input_buffer, ctypes.c_void_p), len(self.input), 0\n     \
+    \               )\n                    self.frame_complete = False\n         \
+    \       else:\n                    if self.frame_complete:\n                 \
+    \       self.eof = True\n                        break\n                    self.input_state\
+    \ = ZSTDInBuffer(None, 0, 0)\n            result = self.library.ZSTD_decompressStream(\n\
+    \                self.context, ctypes.byref(state), ctypes.byref(self.input_state)\n\
+    \            )\n            self._check(result)\n            if result == 0:\n\
+    \                self.frame_complete = True\n            elif not self.input and\
+    \ self.input_state.pos >= self.input_state.size and state.pos == 0:\n        \
+    \        raise ValueError(\"zstd stream ended before a complete frame\")\n   \
+    \     size = int(state.pos)\n        if size:\n            target[:size] = bytes(output[:size])\n\
+    \        return size\n\n    def close(self) -> None:\n        if getattr(self,\
+    \ \"context\", None):\n            self.library.ZSTD_freeDStream(self.context)\n\
+    \            self.context = None\n        super().close()\n\n\ndef regular_file(path:\
+    \ Path) -> None:\n    info = path.lstat()\n    if not stat.S_ISREG(info.st_mode)\
+    \ or path.is_symlink():\n        raise ValueError(f\"Expected a regular file:\
+    \ {path}\")\n\n\ndef sha256_file(path: Path) -> str:\n    digest = hashlib.sha256()\n\
+    \    with path.open(\"rb\") as stream:\n        for chunk in iter(lambda: stream.read(READ_SIZE),\
+    \ b\"\"):\n            digest.update(chunk)\n    return digest.hexdigest()\n\n\
+    \ndef read_json(path: Path) -> dict:\n    value = json.loads(path.read_bytes())\n\
+    \    if not isinstance(value, dict):\n        raise ValueError(f\"Expected a JSON\
+    \ object: {path}\")\n    return value\n\n\ndef atomic_json(path: Path, value:\
+    \ dict) -> None:\n    pending = path.with_suffix(path.suffix + \".pending\")\n\
+    \    pending.write_text(json.dumps(value, indent=2, sort_keys=True) + \"\\n\"\
+    , encoding=\"utf-8\")\n    pending.replace(path)\n\n\ndef zstd_chunks(source:\
+    \ Path) -> Iterable[bytes]:\n    buffer = bytearray(READ_SIZE)\n    with source.open(\"\
+    rb\") as raw, ZstdReader(raw) as decoded:\n        while count := decoded.readinto(buffer):\n\
+    \            yield bytes(memoryview(buffer)[:count])\n\n\ndef verify_source(root:\
+    \ Path) -> Path:\n    source = root / SOURCE_NAME\n    regular_file(source)\n\
+    \    if source.stat().st_size != EXPECTED_SOURCE_BYTES:\n        raise ValueError(\"\
+    Pinned AF3 weight archive size differs\")\n    receipt = read_json(root / DOWNLOAD_RECEIPT)\n\
+    \    expected = {\n        \"file\": SOURCE_NAME,\n        \"bytes\": EXPECTED_SOURCE_BYTES,\n\
+    \        \"sha256\": EXPECTED_SOURCE_SHA256,\n        \"status\": \"WEIGHTS_DOWNLOADED_VERIFIED_NOT_DEPLOYED\"\
+    ,\n        \"decompressed\": False,\n        \"scientific_gate\": \"CLOSED\",\n\
+    \    }\n    for key, value in expected.items():\n        if receipt.get(key) !=\
+    \ value:\n            raise ValueError(f\"AF3 weight download receipt mismatch\
+    \ for {key}\")\n    if sha256_file(source) != EXPECTED_SOURCE_SHA256:\n      \
+    \  raise ValueError(\"Pinned AF3 weight archive SHA-256 differs\")\n    return\
+    \ source\n\n\ndef verify_existing(root: Path, source: Path) -> dict:\n    target\
+    \ = root / TARGET_NAME\n    regular_file(target)\n    receipt = read_json(root\
+    \ / INSTALLATION_RECEIPT)\n    expected = {\n        \"schema\": \"t01.af3-weight-installation/1\"\
+    ,\n        \"status\": \"AF3_WEIGHTS_DECOMPRESSED_VERIFIED_NOT_LOADED\",\n   \
+    \     \"source_file\": SOURCE_NAME,\n        \"source_bytes\": EXPECTED_SOURCE_BYTES,\n\
+    \        \"source_sha256\": EXPECTED_SOURCE_SHA256,\n        \"target_file\":\
+    \ TARGET_NAME,\n        \"decompressed\": True,\n        \"model_loaded\": False,\n\
+    \        \"scientific_gate\": \"CLOSED\",\n        \"usable_for_pipeline\": False,\n\
+    \    }\n    for key, value in expected.items():\n        if receipt.get(key) !=\
+    \ value:\n            raise ValueError(f\"AF3 weight installation receipt mismatch\
+    \ for {key}\")\n    if target.stat().st_size != receipt.get(\"target_bytes\"):\n\
+    \        raise ValueError(\"Installed AF3 weight size differs from its receipt\"\
+    )\n    if sha256_file(target) != receipt.get(\"target_sha256\"):\n        raise\
+    \ ValueError(\"Installed AF3 weight SHA-256 differs from its receipt\")\n    return\
+    \ receipt\n\n\ndef _flush_output(output, written: int, last_flush: int) -> int:\n\
+    \    if written - last_flush < CACHE_FLUSH_BYTES:\n        return last_flush\n\
+    \    output.flush()\n    os.fsync(output.fileno())\n    fadvise = getattr(os,\
+    \ \"posix_fadvise\", None)\n    dontneed = getattr(os, \"POSIX_FADV_DONTNEED\"\
+    , None)\n    if fadvise is not None and dontneed is not None:\n        try:\n\
+    \            fadvise(output.fileno(), 0, written, dontneed)\n        except OSError:\n\
+    \            pass\n    return written\n\n\ndef decompress(\n    root: Path,\n\
+    \    chunk_source: Callable[[Path], Iterable[bytes]] = zstd_chunks,\n) -> dict:\n\
+    \    root = root.resolve()\n    if not root.is_dir() or root.is_symlink():\n \
+    \       raise ValueError(\"AF3 weight root must be an existing real directory\"\
+    )\n    source = verify_source(root)\n    target = root / TARGET_NAME\n    partial\
+    \ = root / PARTIAL_NAME\n    if target.exists():\n        if partial.exists():\n\
+    \            raise ValueError(\"Published and partial AF3 weights both exist\"\
+    )\n        result = verify_existing(root, source)\n        print(\"AF3_WEIGHTS_ALREADY_DECOMPRESSED_VERIFIED\
+    \ \" + json.dumps(result, sort_keys=True), flush=True)\n        return result\n\
+    \    if partial.exists():\n        raise ValueError(\"A prior AF3 weight partial\
+    \ is retained; refusing overwrite\")\n    if shutil.disk_usage(root).free < MAX_OUTPUT_BYTES\
+    \ + RESERVE_BYTES:\n        raise ValueError(\"Insufficient free space for bounded\
+    \ AF3 weight decompression\")\n\n    digest = hashlib.sha256()\n    written =\
+    \ 0\n    last_flush = 0\n    print(\"AF3_WEIGHT_DECOMPRESSION_START\", EXPECTED_SOURCE_BYTES,\
+    \ flush=True)\n    try:\n        with partial.open(\"xb\") as output:\n      \
+    \      for chunk in chunk_source(source):\n                if not isinstance(chunk,\
+    \ (bytes, bytearray, memoryview)) or not chunk:\n                    raise ValueError(\"\
+    Weight decoder yielded an invalid chunk\")\n                if written + len(chunk)\
+    \ > MAX_OUTPUT_BYTES:\n                    raise ValueError(\"Decoded AF3 weights\
+    \ exceed the fixed safety bound\")\n                output.write(chunk)\n    \
+    \            digest.update(chunk)\n                written += len(chunk)\n   \
+    \             last_flush = _flush_output(output, written, last_flush)\n      \
+    \      output.flush()\n            os.fsync(output.fileno())\n        if written\
+    \ <= 0:\n            raise ValueError(\"Decoded AF3 weight file is empty\")\n\
+    \        partial.replace(target)\n        receipt = {\n            \"schema\"\
+    : \"t01.af3-weight-installation/1\",\n            \"status\": \"AF3_WEIGHTS_DECOMPRESSED_VERIFIED_NOT_LOADED\"\
+    ,\n            \"source_file\": SOURCE_NAME,\n            \"source_bytes\": EXPECTED_SOURCE_BYTES,\n\
+    \            \"source_sha256\": EXPECTED_SOURCE_SHA256,\n            \"target_file\"\
+    : TARGET_NAME,\n            \"target_bytes\": written,\n            \"target_sha256\"\
+    : digest.hexdigest(),\n            \"decompressed\": True,\n            \"model_loaded\"\
+    : False,\n            \"scientific_gate\": \"CLOSED\",\n            \"usable_for_pipeline\"\
+    : False,\n            \"production_status\": \"NOT_DEPLOYED\",\n        }\n  \
+    \      atomic_json(root / INSTALLATION_RECEIPT, receipt)\n        print(\"AF3_WEIGHTS_DECOMPRESSED_VERIFIED\
+    \ \" + json.dumps(receipt, sort_keys=True), flush=True)\n        return receipt\n\
+    \    except Exception:\n        print(\"AF3_WEIGHT_DECOMPRESSION_FAILED_PARTIAL_RETAINED\"\
+    , partial, flush=True)\n        raise\n\n\ndef main() -> None:\n    import fcntl\n\
+    \n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"\
+    root\", type=Path)\n    args = parser.parse_args()\n    with (args.root / \".installation.lock\"\
+    ).open(\"a\") as lock:\n        fcntl.flock(lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)\n\
+    \        decompress(args.root)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: antigen-af3-weights-decompress-r01
+  namespace: him-ws
+spec:
+  podSelector:
+    matchLabels:
+      app: antigen-af3-weights-decompress-r01
+  policyTypes:
+  - Ingress
+  - Egress
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-af3-weights-decompress-r01
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 7200
+  template:
+    metadata:
+      labels:
+        app: antigen-af3-weights-decompress-r01
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+      - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+      - name: decompress
+        image: harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:fba5a32c0550e56a5310160e2fc49d647fcd27d76851073a2d82cc935fb4c2fc
+        command:
+        - python
+        - -u
+        - -B
+        - /scripts/decompress_af3_weights.py
+        - /weights/alphafold3-official-r01
+        resources:
+          requests:
+            cpu: 500m
+            memory: 256Mi
+            ephemeral-storage: 64Mi
+          limits:
+            cpu: '2'
+            memory: 1Gi
+            ephemeral-storage: 256Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: weights
+          mountPath: /weights
+        - name: scripts
+          mountPath: /scripts
+          readOnly: true
+      volumes:
+      - name: weights
+        persistentVolumeClaim:
+          claimName: antigen-af3-models
+      - name: scripts
+        configMap:
+          name: antigen-af3-weights-decompress-r01

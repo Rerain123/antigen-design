@@ -1,0 +1,27 @@
+{
+  "version": "0.1.0",
+  "commands": [
+    {
+      "tool": "aggrescan3d",
+      "argv": [
+        "/opt/conda/bin/python",
+        "-B",
+        "/opt/t01/src/t01_phase1_real/development/developability/a3d_worker.py"
+      ],
+      "environment": {
+        "LD_LIBRARY_PATH": "/opt/conda/lib",
+        "MKL_NUM_THREADS": "2",
+        "MPLCONFIGDIR": "/tmp/matplotlib",
+        "OMP_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "1",
+        "PATH": "/usr/local/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin",
+        "PYTHONUNBUFFERED": "1",
+        "T01_PRIVATE_TMP": "1",
+        "T01_RESIDENT_OFFLINE": "1",
+        "T01_RESIDENT_SLOT": "/run/t01-slot",
+        "T01_SOURCE_IMAGE_ID": "sha256:c9e5a38b7d7f22c0b76678c5135ec4bf1af47cf77e8c9547a3bb4b9f7f2e938b"
+      },
+      "memory_bytes": 8589934592
+    }
+  ]
+}

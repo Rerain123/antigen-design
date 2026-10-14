@@ -1,0 +1,72 @@
+# T-01 系统架构
+
+> 更新：2026-09-06。实际进度只见 [STATUS](STATUS.md)；本页记录组件、约束和接入方向。
+
+## 1. 当前与历史资产隔离
+
+| 路径 | 职责 |
+|---|---|
+| src/t01_phase1_mock | 冻结的一期 Mock 引擎与 Dify 生成/绑定/回归 |
+| src/t01_phase1_real | 真实阶段任务运行层：SQLite、幂等、进程生命周期和文件发布 |
+| src/t01_structure_mapping | 结构解析、候选映射、输入事实、FreeSASA 消费者 |
+| src/t01_phase1_real/development | 固定本机开发 Worker 登记、DeepTMHMM 与本地结构分析链接入、容器停止与恢复 |
+| scripts | 当前统一 CLI t01_runtime.py、验收入口，以及保留原身份的历史开发探针 |
+| 工作流设计/02-数据契约 | 独立版本化请求/结果、任务/Artifact 与科学草案 |
+| dify / discovery / var | 编排资产 / 原始执行证据 / 运行时状态，各自隔离 |
+| legacy | 旧完整 Mock 与 S07，仅作历史参考，不导入当前实现 |
+
+## 2. 新一期目标拓扑
+
+```text
+LLM 收集输入 → Dify 编排 → MCP/后端提交、查询、取消
+                             ↓
+                        受控工具 Worker
+                             ↓
+                原始产物 → 后端校验/规则 → 结果与证据
+```
+
+业务保留 N01–N18、设计 Gate/WT、N12 重算、N16 条件以及 N16/N17 汇入 N18。
+本地结构或 AF3/ESMFold2 支撑 N01，数据库能力使用批准的本地数据包；运行时不回退公网。
+
+## 3. 新旧命名与写入边界
+
+真实 Python 根为 t01_phase1_real，provider 候选为 t01-phase1-real-mcp-v01；真实 DSL 使用独立生成源。
+Mock 唯一生成源为 [generator.py](../../src/t01_phase1_mock/dify/generator.py)，不得原地改成生产调用。
+真实 run/job/attempt/artifact 使用 t01p1r 身份，Dify run ID 只作关联；输入输出绑定受控 ArtifactRef、字节和 hash。
+原科学包、专家原件、Mock 冻结文件和历史执行批次只读；新运行使用新目录，不用旧 hash 覆盖变更。
+
+## 4. 组件职责
+
+| 组件 | 责任 |
+|---|---|
+| LLM / Agent | 收集、调用、等待、解释事实；不做科学计算、门控、Hard Filter 或 Pareto |
+| Dify | 根据后端固定状态路由，汇合分支；不计算科学值或猜失败处置 |
+| MCP / 后端 | 校验、任务状态、幂等、错误/复核、数据处理、规则计算、可消费资格和追踪 |
+| 科学 Worker | 固定版本/参数/资源下禁网执行，保留输入、原始输出、退出与停止事实 |
+
+## 5. Mock 与生产边界
+
+按 [现行计划](PHASE1_DELIVERY_PLAN.md#4-每个真实波次的门禁)分别控制开发接入、科学消费与目标发布。
+工具运行成功不自动授予科学资格。未签收的开发结果保留原始事实，usable_for_pipeline=false，禁止自动交接。
+局部开发 Dify 可连接实际已实现模块，使用独立身份并披露未完成部分；不以 synthetic 输出补成真实全链。
+完整科学规则、参考与签收控制科研消费；目标复现和 G0–G6 控制发布及冻结生产依赖。
+
+## 真实阶段运行边界
+
+当前 [统一入口](../../scripts/t01_runtime.py)复用同一 SQLite 任务库，登记 engineering_probe、本机 DeepTMHMM 与本地结构分析开发 Worker。
+原运行底座的工程进程仍由 Windows Job Object 管理；开发子包由静态 registry 选择固定 Docker 镜像、只读源码/输入挂载与独立容器槽，network=none，容器内硬期限与宿主监督共同控制停止。DeepTMHMM 沿用 8 CPU/10 GiB；结构链为 2 CPU/1 GiB，无请求自定义命令或镜像。
+SQLite 保持任务/幂等、attempt/execution/lease、事件与发布记录；停止确认先于终态，恢复不得重新执行同一 attempt。
+输入和输出经受控 ArtifactRef 与 hash 验证；监督进程失联后按精确容器归属停止，完整停止收据与原始清单可恢复发布，未知状态保持 reconciling。
+开发 profile 绑定新代码、原底座及模型/镜像身份，后端固定 G0_REAL_OUTPUT / g0_probe / 不可消费资格；未开放 pipeline 或生产开关。
+
+旧 w1_runtime.py 和基础源码保留在原版本，用于封存证据复核；development.Runtime 继承相同存储与控制方法，不建立第二套任务库。
+runtime.json 中 engineering_only 是沿用的 v1 存储标记；当前 Worker 的准入资格由统一入口登记和任务 profile 强制校验。旧入口继续拒绝科学工具提交。
+Python/CLI 仍是 Windows 本地可信操作者入口；HTTP/MCP 认证、Linux/远端 Worker、真实 DSL 和目标部署另行实现与验证。
+实际请求/结果、用法与验收条件见 [W1 DeepTMHMM](phase1/PHASE1_REAL_W1_BACKLOG.md#本机调用与接口)和 [本地结构分析链](phase1/PHASE1_REAL_W1_BACKLOG.md#本地结构调用与接口)。
+
+结构 Worker 复用 input_facts/cif_facts/probe/freesasa_consumer 的原实现；新 structure 子包负责源元数据声明、S-09 先行规则、身份回连和 RSA 归一化守卫。原结构与元数据原子登记为受控输入，既有作者编号观察和映射不改写。结果包含各步状态、复核原因与原始产物；科学映射未批准时只保留开发数值，正常科学 RSA 为 null。宿主另核对运行清单、步骤身份和原始面积回连，不用容器退出 0 代替结果有效性。
+AF3/ESMFold2 的资产与目标复现独立推进，两引擎降级链仍需共同联调。远端模型接口不得按教程或人工输出冒充实测契约。
+
+查字段时进入 [运行契约设计](phase1/PHASE1_REAL_W1_CONTRACT_DESIGN.md)与 [Schema 目录](../../工作流设计/02-数据契约/phase1-real-v0.1/README.md)；
+查实现证据时进入 [主题索引](phase1/README.md)，运行条件见 [RUNBOOK](../development/RUNBOOK.md)。
+旧设计和评审中的开发停止条件由最新计划覆盖，其机器 Schema 和原执行证据仍按原版本核验。

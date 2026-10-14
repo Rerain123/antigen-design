@@ -1,0 +1,38 @@
+{
+  "checked_at": "2026-10-10T03:05:05.842065+00:00",
+  "ready_pods": 10,
+  "zero_restarts": true,
+  "api_service_selects_only_api": true,
+  "service_selector": {
+    "app.kubernetes.io/component": "control-plane",
+    "app.kubernetes.io/name": "antigen-design"
+  },
+  "gpu_pod": "antigen-design-gpu-resident-64f46cf884-kbftv",
+  "gpu_resources": {
+    "limits": {
+      "cpu": "16",
+      "ephemeral-storage": "8Gi",
+      "memory": "128Gi",
+      "nvidia.com/gpu": "1",
+      "nvidia.com/gpucores": "100",
+      "nvidia.com/gpumem-percentage": "100"
+    },
+    "requests": {
+      "cpu": "8",
+      "ephemeral-storage": "2Gi",
+      "memory": "96Gi",
+      "nvidia.com/gpu": "1",
+      "nvidia.com/gpucores": "100",
+      "nvidia.com/gpumem-percentage": "100"
+    }
+  },
+  "gpu_annotations": {
+    "hami.io/bind-phase": "success",
+    "hami.io/bind-time": "1791601278",
+    "hami.io/vgpu-devices-allocated": "GPU-60efd96d-3f20-1057-4f62-ed24561b9f1e,NVIDIA,40960,100:;",
+    "hami.io/vgpu-devices-to-allocate": ";;",
+    "hami.io/vgpu-node": "k8s-a100-01",
+    "hami.io/vgpu-time": "1791601278"
+  },
+  "deployments": 1
+}

@@ -1,0 +1,76 @@
+{
+  "scope": "B1_FREESASA_CONSUMER_PREPARATION",
+  "binding": {
+    "b1_binding": {
+      "run_id": "t01p1r-run-b1-sasa-F-char-icode-collision-pdb",
+      "request_id": "b1-sasa-F-char-icode-collision-pdb",
+      "job_id": "t01p1r-job-b1-facts-58aada5709844924a3653a71f4a1d305",
+      "attempt_id": "t01p1r-attempt-b1-facts-58aada5709844924a3653a71f4a1d305",
+      "request_sha256": "07cc10f8bb8c541adb2806fe54e2bcb5c6cc603fb85d7470d31672fa8fe79404",
+      "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+      "structure_sha256": "bae7ff9ddccce79f05e6c070d6fa3a0295314cef41989b126b98b9a276bd4912"
+    },
+    "b1_result_sha256": "ad38b394020cda485932f8b28b5064d9e99375281b8ebda9c29f912ba4221f77",
+    "b1_structure_artifact": {
+      "artifact_id": "t01p1r-artifact-b1-sasa-F-char-icode-collision-pdb",
+      "run_id": "t01p1r-run-b1-sasa-F-char-icode-collision-pdb",
+      "job_id": null,
+      "attempt_id": null,
+      "role": "input",
+      "media_type": "chemical/x-cif",
+      "sha256": "bae7ff9ddccce79f05e6c070d6fa3a0295314cef41989b126b98b9a276bd4912",
+      "size_bytes": 1140,
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    "b1_fact_artifacts": {
+      "preflight": {
+        "artifact_id": "t01p1r-artifact-b1-preflight-58aada5709844924a3653a71f4a1d305",
+        "run_id": "t01p1r-run-b1-sasa-F-char-icode-collision-pdb",
+        "job_id": "t01p1r-job-b1-facts-58aada5709844924a3653a71f4a1d305",
+        "attempt_id": "t01p1r-attempt-b1-facts-58aada5709844924a3653a71f4a1d305",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "4fdd77e61d3c19e790afcadbd763720e47fda8a5c364d77ab87d66de616c8439",
+        "size_bytes": 1739,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      },
+      "raw_metadata": {
+        "artifact_id": "t01p1r-artifact-b1-raw-metadata-58aada5709844924a3653a71f4a1d305",
+        "run_id": "t01p1r-run-b1-sasa-F-char-icode-collision-pdb",
+        "job_id": "t01p1r-job-b1-facts-58aada5709844924a3653a71f4a1d305",
+        "attempt_id": "t01p1r-attempt-b1-facts-58aada5709844924a3653a71f4a1d305",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "7490a308d733c80cc138163acec27a8282adfe563bb3b5cee9793445c113dd59",
+        "size_bytes": 1661,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      },
+      "raw_addresses": {
+        "artifact_id": "t01p1r-artifact-b1-raw-addresses-58aada5709844924a3653a71f4a1d305",
+        "run_id": "t01p1r-run-b1-sasa-F-char-icode-collision-pdb",
+        "job_id": "t01p1r-job-b1-facts-58aada5709844924a3653a71f4a1d305",
+        "attempt_id": "t01p1r-attempt-b1-facts-58aada5709844924a3653a71f4a1d305",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "7ba5b9b69b3e6d650d25d9bef874029e2df923bfc38465d45fcab1c462a47f54",
+        "size_bytes": 100204,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      }
+    },
+    "consumer_selection_sha256": "feb81eb928a903a9447fad547d4860685e035dfbed6b6d5864ce3a012882d075",
+    "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+  },
+  "route": "pdb_file",
+  "status": "REJECTED_BEFORE_TOOL",
+  "error_code": "PDB_ADDRESS_UNREPRESENTABLE",
+  "error": "B1 PDB field projection is blocked",
+  "error_details": [
+    "AUTHOR_ID_NOT_CANONICAL_INTEGER"
+  ],
+  "preparation_sha256": null,
+  "scientific_approval": null,
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED",
+  "tool_invoked": false,
+  "calculation_started": false
+}

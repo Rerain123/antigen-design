@@ -1,0 +1,128 @@
+{
+  "observed_at_utc": "2026-10-08T07:40:09.675085+00:00",
+  "parent": {
+    "job_id": "t01p1r-job-a7c8933226744c669836b11858585246",
+    "tool_id": "t01.real.local_workflow",
+    "state": "running",
+    "started_at": "2026-10-08T01:31:16.621888Z",
+    "finished_at": null,
+    "updated_at": "2026-10-08T05:33:38.790769Z",
+    "error_code": null
+  },
+  "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+  "counts": {
+    "t01.real.local_workflow": {
+      "running": 1
+    },
+    "t01.real.esmfold2": {
+      "succeeded": 19
+    },
+    "t01.real.ingest_structure": {
+      "succeeded": 19
+    },
+    "t01.real.deeptmhmm": {
+      "succeeded": 1
+    },
+    "t01.real.blast": {
+      "succeeded": 1
+    },
+    "t01.real.bepipred": {
+      "succeeded": 2,
+      "running": 1
+    },
+    "t01.real.netmhc": {
+      "succeeded": 8,
+      "timed_out": 1,
+      "cancelled": 1
+    },
+    "t01.real.epitope_map": {
+      "succeeded": 2
+    },
+    "t01.real.glycosylation": {
+      "succeeded": 1
+    },
+    "t01.real.domains": {
+      "succeeded": 1
+    },
+    "t01.real.developability": {
+      "succeeded": 19
+    },
+    "t01.real.wt_draft": {
+      "succeeded": 1
+    },
+    "t01.real.design_audit": {
+      "succeeded": 1
+    },
+    "t01.real.proteinmpnn": {
+      "succeeded": 3
+    },
+    "t01.real.esm_if1": {
+      "succeeded": 1
+    },
+    "t01.real.af3": {
+      "succeeded": 19
+    }
+  },
+  "active": [
+    {
+      "job_id": "t01p1r-job-a7c8933226744c669836b11858585246",
+      "tool_id": "t01.real.local_workflow",
+      "state": "running",
+      "started_at": "2026-10-08T01:31:16.621888Z",
+      "finished_at": null,
+      "updated_at": "2026-10-08T05:33:38.790769Z",
+      "error_code": null
+    },
+    {
+      "job_id": "t01p1r-job-89d70a56ce664c22b45e4cea1febccd9",
+      "tool_id": "t01.real.bepipred",
+      "state": "running",
+      "started_at": "2026-10-08T05:33:36.396177Z",
+      "finished_at": null,
+      "updated_at": "2026-10-08T05:33:36.409084Z",
+      "error_code": null
+    }
+  ],
+  "running_steps": [
+    {
+      "step": "z0_s23_bepipred",
+      "state": "running",
+      "job_id": "t01p1r-job-89d70a56ce664c22b45e4cea1febccd9"
+    }
+  ],
+  "failures": [
+    {
+      "step": "z0_s20_netmhc",
+      "state": "timed_out",
+      "reason": "TIMEOUT"
+    }
+  ],
+  "structures": {
+    "both_complete": 18,
+    "af3_complete": 18,
+    "esmfold_complete": 18
+  },
+  "revision_summary": {
+    "design_outcomes": null,
+    "stop_reason_codes": null,
+    "coverage_complete": null,
+    "acceptance_status": null,
+    "provisional_acceptance_status": null,
+    "run_execution_status": null
+  },
+  "formal_records": 0,
+  "dispositions": {},
+  "gpu": {
+    "last_execution": {
+      "order": 1791432287580791670,
+      "sha256": "2aed24964b0ff5f206baf24615704dad3bf922018578fb74ad64e67f2135ce60",
+      "target": "/var/lib/t01/resident/esmfold2/1188139f1f1eb5c275c184d0b0715950",
+      "tool": "esmfold2",
+      "uncertain": false
+    },
+    "last_state": "succeeded",
+    "phase": "idle"
+  },
+  "worker_receipt": null,
+  "read_only": true
+}

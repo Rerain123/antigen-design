@@ -1,0 +1,13 @@
+{
+  "marker": "N14_PARALLEL_TEMPORARY_EXPERT_REVIEW_REQUIRED",
+  "date": "2026-09-28",
+  "user_decisions": ["允许并行，接受披露数值差异", "先按并行做把，但是要留下标记，我好汇报"],
+  "scope": "N14 按候选独立进程两路并行；本次 PCV2 同一 run 从已取消的 N14 接续，上游已完成计算复用",
+  "preserved": ["全部 24 个候选", "同一 WT 设计基座及 RepairPDB 前置", "每候选同时引入其全部突变", "每候选 numberOfRuns=5", "五轮均值、标准差及原科学阈值"],
+  "authority": "ToolSpec_C35_FoldX_v10.5 §2c/§3；AgentA_SOP_v10.5 S-31：规定批量 BuildModel，未明确候选间必须串行，亦未规定拆批数值差异的验收容差",
+  "observed_difference": {"scope": "9 aa 工程样例第 2 个候选，非 PCV2 科学结论", "serial_mean": 2.3928, "parallel_mean": 2.36754, "units": "kcal/mol", "structure_difference_observed": true},
+  "serial_equivalence": false,
+  "expert_signoff": null,
+  "followup_for_expert": "确认候选拆批并行的适用性、数值重复性和验收要求；本次用户同意不替代专家签收",
+  "evidence": "parallel-native-probe-r03/comparison.json"
+}

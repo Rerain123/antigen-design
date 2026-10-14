@@ -1,0 +1,189 @@
+{
+  "job": {
+    "artifacts": [
+      {
+        "artifact_id": "t01p1r-artifact-4288d8f72f4a4f1ab4c0bff1c36b43de",
+        "attempt_id": "t01p1r-attempt-fb53e035a75b4d49a2fec429ffea3529",
+        "evidence_kind": "G0_REAL_OUTPUT",
+        "job_id": "t01p1r-job-7ca0b722446646fba9be48b4180f67db",
+        "media_type": "application/octet-stream",
+        "role": "raw",
+        "run_id": "t01p1r-run-91e10d3d6de8490d81d5878576b32eb9",
+        "sha256": "5a0f1d3b8053c386d0f8f022ad78e821be776af5df0e8bb5303aaebdc7813701",
+        "size_bytes": 571
+      },
+      {
+        "artifact_id": "t01p1r-artifact-781fb05408a649caa83dffd14eb98e63",
+        "attempt_id": "t01p1r-attempt-fb53e035a75b4d49a2fec429ffea3529",
+        "evidence_kind": "G0_REAL_OUTPUT",
+        "job_id": "t01p1r-job-7ca0b722446646fba9be48b4180f67db",
+        "media_type": "application/json",
+        "role": "diagnostic",
+        "run_id": "t01p1r-run-91e10d3d6de8490d81d5878576b32eb9",
+        "sha256": "ef0defc2cfd42391651477bba708d6e90ce18218f0825608ad09d496dce65474",
+        "size_bytes": 3033
+      }
+    ],
+    "attempt_id": "t01p1r-attempt-fb53e035a75b4d49a2fec429ffea3529",
+    "contract_version": "0.1.0",
+    "created_at": "2026-09-23T01:16:39.110739Z",
+    "error_code": "HASH_MISMATCH",
+    "evidence_kind": "G0_REAL_OUTPUT",
+    "execution_identity": "exec-t01p1r-attempt-afeb61aafc2444f7a60d06b7c045d8a2",
+    "execution_profile": {
+      "id": "w2-blastp217-local-development",
+      "sha256": "1f4a5f9c74c9e0199d2ca2c08e6d8bd5a4410c99f98287f77a1fec7f1f78f180",
+      "version": "0.1.0"
+    },
+    "exit_code": null,
+    "finished_at": "2026-09-23T01:16:40.806454Z",
+    "job_id": "t01p1r-job-7ca0b722446646fba9be48b4180f67db",
+    "lease_epoch": 1,
+    "node_id": "N03",
+    "request_artifact": {
+      "artifact_id": "t01p1r-artifact-68a6079b9a2c4f3e9d87f01f499569b5",
+      "attempt_id": null,
+      "evidence_kind": "LOCAL_INPUT",
+      "job_id": null,
+      "media_type": "application/json",
+      "role": "request",
+      "run_id": "t01p1r-run-91e10d3d6de8490d81d5878576b32eb9",
+      "sha256": "2fbdf5b24fd60b9dffd41402a119821ed2e5ee07917a354e5ebbc72a2b723f54",
+      "size_bytes": 365
+    },
+    "request_id": "t01p1r-request-d960a9e64dc643c5814416bca64fbe1e",
+    "retry_of_job_id": null,
+    "review_required": true,
+    "revision": 2,
+    "rule_profile": null,
+    "run_id": "t01p1r-run-91e10d3d6de8490d81d5878576b32eb9",
+    "run_mode": "g0_probe",
+    "scientific_disposition": "rejected",
+    "started_at": "2026-09-23T01:16:39.685960Z",
+    "state": "failed",
+    "stop_confirmed": false,
+    "stop_reason": null,
+    "submission_sha256": "c25a9ae71b8410abcc84d8b31f5f10b8fd55ff1948833e671e3eb1277923052e",
+    "tool_id": "t01.real.blast",
+    "updated_at": "2026-09-23T01:16:41.249584Z",
+    "usable_for_pipeline": false
+  },
+  "request": {
+    "database_id": "nr-20250624",
+    "database_manifest_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "protein_sequence": "MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG",
+    "thresholds": {
+      "identity_percent_min": 80,
+      "query_coverage_percent_min": 80
+    },
+    "timeout_seconds": 900,
+    "user_sequence_id": "M1 P4 fresh service failure"
+  },
+  "execution": {
+    "backend": "resident-process",
+    "container_id": null,
+    "container_name": "t01p1r-blast-development-slot",
+    "container_started": false,
+    "deadline": null,
+    "dispatcher": {
+      "birth": "46757224",
+      "pid": 1,
+      "platform": "linux"
+    },
+    "fault": null,
+    "phase": "finished",
+    "resident_diagnostic": "BLAST database manifest identity differs",
+    "supervisor": null,
+    "timeout_seconds": 900,
+    "tree_stopped": true
+  },
+  "result": {
+    "automatic_handoff": false,
+    "binding": {
+      "attempt_id": "t01p1r-attempt-fb53e035a75b4d49a2fec429ffea3529",
+      "database_id": "nr-20250624",
+      "database_manifest_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "execution_identity": "exec-t01p1r-attempt-afeb61aafc2444f7a60d06b7c045d8a2",
+      "execution_profile": {
+        "id": "w2-blastp217-local-development",
+        "sha256": "1f4a5f9c74c9e0199d2ca2c08e6d8bd5a4410c99f98287f77a1fec7f1f78f180",
+        "version": "0.1.0"
+      },
+      "input_sha256": "2fbdf5b24fd60b9dffd41402a119821ed2e5ee07917a354e5ebbc72a2b723f54",
+      "job_id": "t01p1r-job-7ca0b722446646fba9be48b4180f67db",
+      "request_id": "t01p1r-request-d960a9e64dc643c5814416bca64fbe1e",
+      "run_id": "t01p1r-run-91e10d3d6de8490d81d5878576b32eb9",
+      "sequence_sha256": "233b4b0b8c4616095bc3249f9375fc345d32af7deaef07117d0383c51d6f19aa"
+    },
+    "contract_version": "0.1.0",
+    "controlled_fault": null,
+    "database": null,
+    "evidence_kind": "G0_REAL_OUTPUT",
+    "execution": {
+      "attempt_id": "t01p1r-attempt-fb53e035a75b4d49a2fec429ffea3529",
+      "backend": "resident-process",
+      "database_receipt": null,
+      "diagnostic": "BLAST database manifest identity differs",
+      "error_code": "HASH_MISMATCH",
+      "execution_identity": "exec-t01p1r-attempt-afeb61aafc2444f7a60d06b7c045d8a2",
+      "exit_code": null,
+      "job_id": "t01p1r-job-7ca0b722446646fba9be48b4180f67db",
+      "resident_config_sha256": null,
+      "resident_observation": null,
+      "resident_receipt": null,
+      "source_image_id": "sha256:81f118d2e4f7e11494d27fdbb99c9430423105afff50c4ae158db41d58a3fc57",
+      "source_receipt": null,
+      "stopped_confirmed": true
+    },
+    "method_summary": {
+      "aggregation": "none; every validated HSP retained",
+      "coordinate_base": 1,
+      "coverage_definition": "query HSP interval / full query length",
+      "evidence_mapping": "similarity only; never IEDB literature/E3/E4",
+      "image_id": "sha256:81f118d2e4f7e11494d27fdbb99c9430423105afff50c4ae158db41d58a3fc57",
+      "input_mode": "single_full_length_protein_fasta",
+      "native_search": "blastp defaults except tabular columns, max_target_seqs=500, max_hsps=10, num_threads=2",
+      "thresholds": {
+        "identity_percent_min": 80,
+        "query_coverage_percent_min": 80
+      },
+      "tool": "NCBI BLAST+",
+      "version": "2.17.0+"
+    },
+    "null_reason": "HASH_MISMATCH",
+    "production_status": "NOT_DEPLOYED",
+    "qualification": "DEVELOPMENT_UNREVIEWED",
+    "raw_artifacts": [
+      {
+        "artifact": {
+          "artifact_id": "t01p1r-artifact-4288d8f72f4a4f1ab4c0bff1c36b43de",
+          "attempt_id": "t01p1r-attempt-fb53e035a75b4d49a2fec429ffea3529",
+          "evidence_kind": "G0_REAL_OUTPUT",
+          "job_id": "t01p1r-job-7ca0b722446646fba9be48b4180f67db",
+          "media_type": "application/octet-stream",
+          "role": "raw",
+          "run_id": "t01p1r-run-91e10d3d6de8490d81d5878576b32eb9",
+          "sha256": "5a0f1d3b8053c386d0f8f022ad78e821be776af5df0e8bb5303aaebdc7813701",
+          "size_bytes": 571
+        },
+        "path": "resident/execution.json"
+      }
+    ],
+    "requires_review": true,
+    "scientific_signoff": null,
+    "scope": "N03_LOCAL_PROTEIN_SIMILARITY",
+    "search": null,
+    "status": "unreliable",
+    "tool_id": "t01.real.blast",
+    "usable_for_pipeline": false,
+    "user_sequence_id": "M1 P4 fresh service failure",
+    "warnings": [
+      {
+        "code": "HASH_MISMATCH",
+        "level": "failure",
+        "message": "BLAST database manifest identity differs; unavailable is not a no-hit result",
+        "severity": "WARNING"
+      }
+    ]
+  }
+}

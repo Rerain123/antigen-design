@@ -1,0 +1,83 @@
+{
+  "envelope_type": "PHASE1_RUN_REQUEST",
+  "contract_version": "T01-PHASE1-ENVELOPE-v0.1",
+  "topology_version": "T01-PHASE1-18NODE-OFFLINE",
+  "node_registry_version": "T01-PHASE1-NODE-REGISTRY-v0.1",
+  "control_flow_version": "T01-PHASE1-CONTROL-FLOW-v0.1",
+  "envelope_id": "t01-phase1-mock-v01-env-de7bb976-09b3-4cf5-a2a9-1feeec2a5439",
+  "created_at": "2026-09-04T00:40:00Z",
+  "execution_mode": "MOCK",
+  "execution_profile": "PHASE1_FULL",
+  "data_classification": "MOCK_DATA",
+  "scientific_compute": false,
+  "request_id": "t01-phase1-mock-v01-req-02e35ebc-b0ad-4ede-aca1-508409764a01",
+  "idempotency_key": "t01_phase1_mock_v01.fixture.idem.n18_assembly_failed",
+  "scenario_ref": "t01_phase1_mock_v01.scenario.n18_assembly_failed",
+  "inputs": {
+    "protein_sequence": "MOCKONLYTRANSPORTFIXTURE",
+    "host_species": "Synthetic non-production host fixture",
+    "structure": {
+      "artifact": {
+        "artifact_id": "t01_phase1_mock_v01.fixture.input.synthetic_local_structure",
+        "artifact_role": "INPUT_STRUCTURE",
+        "uri": "artifact://t01-phase1-mock-v0.1/fixtures/inputs/synthetic-local-structure",
+        "media_type": "chemical/x-pdb",
+        "format": "PDB",
+        "size_bytes": 70,
+        "sha256": "556bea7608616b2f7d58306d78811cfe94099294afd9e5460a974b3472350dc7",
+        "integrity_status": "VERIFIED",
+        "created_at": "2026-09-04T00:00:00Z",
+        "producer": {
+          "actor_type": "MOCK_SCENARIO",
+          "actor_id": "t01_phase1_mock_v01.fixture_materializer",
+          "component_version": "T01-PHASE1-MOCK-FIXTURE-MATERIALIZATION-v0.1"
+        },
+        "source_node_id": null,
+        "source_attempt_id": null,
+        "metadata": {
+          "mock_only": true,
+          "synthetic_transport_fixture": true,
+          "scientific_coordinates_present": false
+        }
+      },
+      "structure_format": "PDB",
+      "chain_selector": "AUTO",
+      "preserve_original_format": true
+    }
+  },
+  "options": {
+    "design_objective": "general",
+    "expression_host": "synthetic-supported-expression-host-fixture"
+  },
+  "input_fingerprints": {
+    "protein_sequence_sha256": "915d8a0557979f2a587cd69d27f7f54ed5aa95369159e4b6af7be4887fbac345",
+    "structure_sha256": "556bea7608616b2f7d58306d78811cfe94099294afd9e5460a974b3472350dc7"
+  },
+  "audit": {
+    "trace_id": "t01_phase1_mock_v01.trace.request.f6a6be5e-abcc-45ba-9e2a-3fa3f57cfac3",
+    "correlation_id": "t01_phase1_mock_v01.correlation.f6a6be5e-abcc-45ba-9e2a-3fa3f57cfac3",
+    "events": [
+      {
+        "event_id": "t01_phase1_mock_v01.event.request.f6a6be5e-abcc-45ba-9e2a-3fa3f57cfac3",
+        "sequence": 1,
+        "event_type": "REQUEST_ACCEPTED",
+        "occurred_at": "2026-09-04T00:40:00Z",
+        "actor": {
+          "actor_type": "BACKEND",
+          "actor_id": "t01_phase1_mock_v01.request_validator",
+          "component_version": "0.1.0"
+        },
+        "node_id": null,
+        "attempt_id": null,
+        "edge_id": null,
+        "control_decision_id": null,
+        "details": {
+          "mock_only": true,
+          "remote_lookup_performed": false,
+          "source": "M1_07_FIXTURE_MANIFEST"
+        }
+      }
+    ],
+    "audit_artifacts": []
+  }
+}

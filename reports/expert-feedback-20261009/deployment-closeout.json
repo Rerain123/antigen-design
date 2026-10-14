@@ -1,0 +1,96 @@
+{
+  "status": "RELEASE_WITHDRAWN_BY_USER",
+  "updated_at": "2026-10-09T07:37:18.895247+00:00",
+  "user_decision": "先暂时等待一下 不部署",
+  "source_bundle": {
+    "archive_bytes": 780359,
+    "archive_sha256": "d90ec5c238c1d0bc9748e251ce10a87fded91bb21ab68fe97ed7f81ccf884cc9",
+    "file_count": 267,
+    "manifest_sha256": "c97176b65ec49394e5307448af762367c73759e87092e75a653f5ce1f8abe30c"
+  },
+  "calculation_config_id": "himat-expert-v2-20261009-v1",
+  "tests": {
+    "total": 3208,
+    "passed": 3193,
+    "skipped": 15,
+    "single_final_full_run": false,
+    "method": "full initial + final affected + exact environment rechecks + entry/packaging; deduplicated",
+    "source_sha256": "c97176b65ec49394e5307448af762367c73759e87092e75a653f5ce1f8abe30c",
+    "receipts": {
+      "full-r01.xml": "c2618ac50ead9861b861afc64f16c16d0e7decc55c845de20f54cda443ccfc55",
+      "final-affected-r07.xml": "a31a8f8b4fede1f903ea03755061305171df5c1455fa310054bf647a7773849a",
+      "final-report-r08.xml": "97447864fab73e32be66236262930ba660878a50b63fb7aff0e895c0ae641369",
+      "docker-recheck-r09.xml": "e184fa44383e944d1afb8617ad2845c42960fd6fe7373c5fa9a7562e3ea74c97",
+      "entry-version-r10.xml": "2c0a7a738cf02f62811505a9c0969bd2288fd3510d5dae453d263989241f6ca8",
+      "entry-version-r11-http.xml": "7436e9f28a1e84b66c6b73e370bdec5d1f94a0e59b1aa69994eb55277e2a67a4",
+      "packaging-r12.xml": "47266e8e6cc5644d967120905483bd5662d5233b579adc6a31c80aafc0a57a84"
+    },
+    "verification_sha256": "c223cd1f5bd99bec078d11ff12ef02cae73d157a8de8c2567c98b7f108dee219",
+    "entry_version_source_sha256": "22ccd1fea932d248a3cebb2728612fbb70e9c2aac32432ffa7c0ed5caec7de6e",
+    "packaging_source_sha256": "67031ce1c8564c36ad7155edd263c303c8a8ed6b44ee428b427b74316c119816"
+  },
+  "authority": {
+    "version": "expert-feedback-20261009-v1",
+    "receipt_sha256": "0b4df758934d408a919b5865a59a7919f65f9b6273da28afc6f337bfee43b622",
+    "handoff_sha256": "3228fb81dd29a4bfb7850433d4b248377a2c39cfd18e250c309aa830224dad82"
+  },
+  "predeploy_imports": {
+    "status": "PASS",
+    "containers": 10,
+    "path": "reports/expert-feedback-20261009/predeploy-imports.json",
+    "sha256": "b6316f93e55ce9e3989e41a1383a94f35cf19e718ede5baab83897e3ecc2afef"
+  },
+  "attempt": {
+    "generation": 147,
+    "new_version_started": false,
+    "status": "BLOCKED_GPU_SCHEDULING",
+    "scheduler_reason": "CardInsufficientMemory",
+    "evidence": "reports/expert-feedback-20261009/scheduling-r01.json"
+  },
+  "withdrawal": {
+    "generation": 148,
+    "prior_template_exactly_restored": true,
+    "source_sha256": "06f01c313e11fc3ed93406c00b26e047799f37a71d73976ecb203f331f03f3e2",
+    "ready_replicas": 0,
+    "status": "PRIOR_CONFIGURATION_RESTORED;SERVICE_NOT_READY",
+    "evidence": "reports/expert-feedback-20261009/withdrawal-verification.json",
+    "sha256": "8cc06debbbcf6d919e45e1f46afc90bb0b0c3e731f31e927159b21c05b888cde",
+    "checked_at": "2026-10-09T07:31:58.849083+00:00"
+  },
+  "service_readiness": "BLOCKED_GPU_SCHEDULING",
+  "new_code_automatically_deploys_when_gpu_frees": false,
+  "postdeploy_ten_container_verification": "NOT_PERFORMED;NEW_VERSION_NEVER_STARTED",
+  "postdeploy_himat_entry_verification": "NOT_PERFORMED;SERVICE_NOT_READY",
+  "new_scientific_jobs_submitted_by_this_task": 0,
+  "cancelled_jobs_resumed_by_this_task": 0,
+  "jobs": {
+    "before_count": 2086,
+    "after_count": null,
+    "after_count_status": "NOT_CHECKED;SERVICE_NOT_READY"
+  },
+  "cross_namespace_gpu_usage": "NOT_INSPECTED;SERVER_RBAC_FORBIDDEN",
+  "gpu_root_cause": "NOT_ESTABLISHED_BEYOND_SCHEDULER_RESOURCE_REJECTION",
+  "preserved": {
+    "expert_originals": true,
+    "archived_run_evidence_unchanged": true,
+    "archived_run_evidence_sha256": "f0bb4c548859e8d90549ff2613d8113032a7db6ed7a8376a8f628572a9757d76",
+    "prior_local_closeout_sha256": "a4af4b7cc938c9639ce1c2de9dcae61743c404c18b547aa66f18172968757d37",
+    "historical_attempts_and_frozen_evidence_preserved": true
+  },
+  "scientific_consumption": "CLOSED",
+  "production_qualification": "NOT_DEPLOYED",
+  "artifact_paths": {
+    "preflight": "deploy/expert-feedback/r02/preflight.json",
+    "rollback_patch": "deploy/expert-feedback/r02/rollback.patch.json",
+    "entry_source": "reports/expert-feedback-20261009/entry-version-source.json",
+    "packaging_source": "reports/expert-feedback-20261009/packaging-source.json"
+  },
+  "docs": {
+    "status": "PASS_WITH_HISTORICAL_LINK_ISSUES",
+    "errors": 0,
+    "historical_reference_count": 31,
+    "path": "reports/expert-feedback-20261009/deployment-withdrawal-docs-r13.json",
+    "sha256": "89297fbe43a6fd79c07f9db80be4ef7bcbfe42531aa52482848f11f8fdc9dbf1",
+    "status_sha256": "209014a160c846edc34c9f6b0d5724e3490337fbf3dae44bc84b7ae3fa54bfc8"
+  }
+}

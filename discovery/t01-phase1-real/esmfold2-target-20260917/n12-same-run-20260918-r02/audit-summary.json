@@ -1,0 +1,133 @@
+{
+  "schema_version": "1.0",
+  "status": "N12_ESMFOLD2_SAME_RUN_INDEPENDENT_AUDIT_PASS",
+  "run_id": "t01p1r-run-9d7e6460a37942f6a27c95bb0047e883",
+  "jobs": {
+    "structure": {
+      "job_id": "t01p1r-job-600f03f7a8f24f8da715013b38c604dc",
+      "tool_id": "t01.real.ingest_structure",
+      "attempt_id": "t01p1r-attempt-adf12b3e5ee549c5a8e554dece850ca5",
+      "state": "succeeded"
+    },
+    "n11": {
+      "job_id": "t01p1r-job-1421e0c847e243e3b36ea94fac093023",
+      "tool_id": "t01.real.proteinmpnn",
+      "attempt_id": "t01p1r-attempt-27b9b494e0e44ba1a657af35410af4cf",
+      "state": "succeeded"
+    },
+    "n12": {
+      "job_id": "t01p1r-job-2cb0e7574fdd4093ad1f52c8862b8fcc",
+      "tool_id": "t01.real.esm_if1",
+      "attempt_id": "t01p1r-attempt-958e74979837496cbe0c07b27d8ac990",
+      "state": "succeeded"
+    },
+    "prediction": {
+      "job_id": "t01p1r-job-d655c7e658224fa8b4e806cdd30e6304",
+      "tool_id": "t01.real.esmfold2",
+      "attempt_id": "t01p1r-attempt-d6f3db6e39de498dbfa3c7515485ca5d",
+      "state": "succeeded"
+    }
+  },
+  "artifacts": {
+    "reference_count": 135,
+    "unique_saved_file_count": 127,
+    "reference_bytes": 9829564,
+    "all_size_sha256_and_local_bytes_match": true
+  },
+  "source_hashes": {
+    "t01_phase1_real/development/runtime.py": "d9446ad1b3e575c2dd6f7b220af50f34a0de5e4fb43735a40645bf2df9e6ac28",
+    "t01_phase1_real/development/proteinmpnn/source.py": "aeca91247a68958fe302845eb9ad5582b56b8dec7d43958eaf4dad571c612413",
+    "t01_phase1_real/development/esm_if1/source.py": "aab2523a047581907f24b837ae66b8bbba525e0f321ef9a888633c476dd89e78",
+    "t01_phase1_real/development/thermompnn/source.py": "c46f9c9b727a2a11f1b5d572587d489ef8f0e0520dc2cdbe975238ff16b3567b",
+    "t01_phase1_real/development/foldx/source.py": "69395898376935a24d259b8e03487170713d1c997e47b71910527976dea2c474",
+    "t01_phase1_real/development/supervisor.py": "10ec8f302fa5e6c118a75e25b2f14bba0beeee66487c486363e30e004c0f4767",
+    "t01_phase1_real/development/n12_prediction_evidence.py": "09e20dd7f61c437f30f365d63c0d7ffec869ce054f2e141fe67adff68a56fe5b",
+    "t01_phase1_real/development/esmfold2/source.py": "a5a2d0ae3282bf85d85daf3e5a09585b70fc3b3046825fbc424625eb7e6830fe",
+    "t01_phase1_real/development/esmfold2/standard.py": "b5cee904ebf8224a35c19c6c804e78be3df42ff988bd53c32d518358644199e2"
+  },
+  "selection": {
+    "sample_number": 1,
+    "sequence": "MQIKVKFPDGTTLTLEVEPSDTIAELKKKIEEKTGIPPEEMKLIYKGKVLEDDKTLADYNIKEGDTIELELVPSGG",
+    "sequence_sha256": "697a7d9b44c2f75e2dd8d6cd3f98c8001415bd85d1305c1ab4019e0c50a2302c",
+    "residue_count": 76,
+    "mutation_count": 33,
+    "esm_if1_score": -2.4588590923108553,
+    "r35_passed": false,
+    "r35_reason_code": "R35_DETERIORATION_EXCEEDED",
+    "engine_selection": "EXPLICIT_ENGINEERING_ONLY_NOT_R04"
+  },
+  "prediction": {
+    "native_structure_sha256": "51aafc2194ad27ac17f98f34a8daf882bd9682eca83c0da6b1691dc66dc7ef1c",
+    "native_structure_size_bytes": 60954,
+    "tool_structure_sha256": "d557f545e843c63446628e2ca1cc4c3d2dfa07754de06e4381208e3083b82349",
+    "tool_structure_size_bytes": 64024,
+    "structure": {
+      "chain_id": "A",
+      "model_count": 1,
+      "residue_count": 76,
+      "atom_count": 592,
+      "sequence_matches": true,
+      "backbone_complete": true,
+      "coordinates_finite": true,
+      "mean_plddt_from_cif": 0.8082659821761281,
+      "min_plddt_from_cif": 0.5127766036987305,
+      "max_plddt_from_cif": 0.885166015625
+    },
+    "metrics": {
+      "iptm": 0.0,
+      "max_plddt": 0.8851659893989563,
+      "mean_plddt": 0.8082659840583801,
+      "min_plddt": 0.5127766132354736,
+      "ptm": 0.7371199727058411
+    },
+    "quality": {
+      "confidence": "high",
+      "low_confidence_regions": [],
+      "topology_reliable": true
+    },
+    "checkpoint": {
+      "esmfold2_clean": true,
+      "esmc_native_parameters_loaded": 802,
+      "esmc_source_encoder_tensors": 1042
+    },
+    "execution": {
+      "asset_file_count": 23,
+      "asset_manifest_sha256": "77ec2cdd4003e59a5c328ce99858be7e2ce42b8b2d7902971e74426f26a39a8f",
+      "cuda": "12.6",
+      "elapsed_seconds": 157.24697256088257,
+      "engine": "esmfold2",
+      "environment_file_count": 35514,
+      "environment_manifest_sha256": "c719aade5db1dacf747cf1f882061a132558ae359bc5a5dd58fc1f5c955bab39",
+      "environment_root": "/models/esmfold2-environment-20260916-r01",
+      "gpu_capability": [
+        8,
+        0
+      ],
+      "gpu_name": "NVIDIA A100-SXM4-40GB",
+      "network": "disabled",
+      "offline_asset_paths": {
+        "ccd": "models/ESMFold2/ccd.pkl",
+        "esmc": "models/ESMC-6B",
+        "esmfold2": "models/ESMFold2"
+      },
+      "peak_gpu_memory_bytes": 14027569152,
+      "peak_process_rss_kib": 31132636,
+      "python": "3.12.14",
+      "torch": "2.7.1+cu126",
+      "variant": "standard"
+    }
+  },
+  "scientific_gate": "CLOSED",
+  "usable_for_pipeline": false,
+  "automatic_handoff": false,
+  "production_status": "NOT_DEPLOYED",
+  "complete_n12_engineering_acceptance": true,
+  "complete_scientific_n12": false,
+  "limitations": [
+    "Selected sample 1 retains its original R-35 exclusion and is not a formal candidate.",
+    "The ESMFold2 route is explicit engineering verification, not automatic R-04 routing.",
+    "No scientific accuracy or candidate qualification is established.",
+    "The resident backend support limit remains 76 residues."
+  ],
+  "auditor_sha256": "f6d177736388dcb1bf4f5897c47a8416d8e74282b97f03ee9d92ff8074190b0f"
+}

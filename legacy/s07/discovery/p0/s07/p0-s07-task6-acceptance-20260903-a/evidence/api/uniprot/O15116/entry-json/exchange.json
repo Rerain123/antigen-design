@@ -1,0 +1,49 @@
+{
+  "exchange_id": "p0-s07-task6-acceptance-20260903-a--O15116-uniprot-json",
+  "classification": "discovery_evidence",
+  "production_deployment_status": "NOT_DEPLOYED",
+  "started_at": "2026-09-03T03:00:57.489925Z",
+  "finished_at": "2026-09-03T03:00:58.662105Z",
+  "request": {
+    "method": "GET",
+    "url": "https://rest.uniprot.org/uniprotkb/O15116.json",
+    "headers": {
+      "accept": "application/json",
+      "content_type": null,
+      "user_agent": "T01-S07-Discovery/0.1 (non-production evidence capture)"
+    },
+    "body_file": null,
+    "body_sha256": null,
+    "timeout_seconds": 120,
+    "connection_override": null,
+    "ssl_revoke_best_effort": true
+  },
+  "response": {
+    "body_file": "entry.json",
+    "body_size_bytes": 28944,
+    "body_sha256": "b920517f5dcff27b01ac26bd8831df507011412789a82a7c656e89f4d7a0a97c",
+    "headers_file": "response.headers.txt",
+    "headers_sha256": "08cd0d8bcb929740cd6dfd7e8b88578d4e106f3050718ea7f430e055b4b5e254"
+  },
+  "curl": {
+    "executable": "curl.exe",
+    "exit_code": 0,
+    "metrics": {
+      "http_code": 200,
+      "response_code": 200,
+      "exitcode": 0,
+      "content_type": "application/json",
+      "remote_ip": "193.62.192.81",
+      "remote_port": 443,
+      "http_version": "1.1",
+      "method": "GET",
+      "num_redirects": 0,
+      "size_download": 28944.0,
+      "size_upload": 0.0,
+      "time_total": 1.141266,
+      "ssl_verify_result": 0
+    },
+    "stderr_file": "curl.stderr.txt",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

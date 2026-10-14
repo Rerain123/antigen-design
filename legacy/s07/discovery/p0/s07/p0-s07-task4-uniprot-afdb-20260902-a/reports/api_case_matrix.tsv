@@ -1,0 +1,9 @@
+case_id	scenario	evidence_status	routing_fact	rule_status
+T4-A01	existing_valid_accession	PASS	AFDB model found; continue to S-09	EXPERT_RULE_CLEAR
+T4-A02	blast_finds_exact_uniprot_accession	PASS	UniProt and AFDB sequence/model round-trip succeeds	EXPERT_RULE_CLEAR
+T4-A03	blast_returns_no_hit	PASS	normal empty result; S-07 may return null after required sources complete	EXPERT_RULE_CLEAR
+T4-A04	valid_uniprot_accession_without_afdb_model	PASS	normal AFDB no-model result; continue fallback to S-08	EXPERT_RULE_CLEAR
+T4-A05	unsupported_identifier	PASS	invalid identifier error; must not be labelled no model	ENGINEERING_ERROR_CLASSIFICATION_CLEAR
+T4-A06	near_hit_sequence_mismatch	OBSERVED	candidate retained with explicit mismatch; no automatic scientific eligibility decision	EXPERT_CONFIRMATION_REQUIRED
+T4-A07	multiple_exact_full_length_accessions	OBSERVED	all exact candidates retained; no array-order selection	EXPERT_CONFIRMATION_REQUIRED
+T4-A08	base_accession_returns_nonmatching_isoforms	PASS	no matching model selected from four returned isoforms	SEQUENCE_RECHECK_CLEAR; FINAL_ELIGIBILITY_DEPENDS_ON_T4-Q01

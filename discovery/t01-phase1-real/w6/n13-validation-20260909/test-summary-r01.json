@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "scope": "N13_ENGINEERING_AND_VARIANT_REPORT_BACKLINK",
+  "main_acceptance": "discovery/t01-phase1-real/w6/n13-integration-20260909/acceptance-r05/index.json",
+  "supplement": "discovery/t01-phase1-real/w6/n13-integration-20260909/supplement-r01/index.json",
+  "main_audit": {"files": 1086, "published_artifacts": 992, "file": "evidence-audit-r01.json"},
+  "supplement_audit": {"files": 241, "published_artifacts": 228, "file": "supplement-audit-r01.json"},
+  "root_tests": {"passed": 1611, "skipped": 1, "log": "root-tests-r01.txt", "skip_reason": "Existing Windows symlink permission case"},
+  "targeted_tests": {"passed": 177, "log": "targeted-tests-r01.txt", "add_to_root_total": false},
+  "docs_tests": {"passed": 56, "log": "docs-tests-r01.txt"},
+  "docs": {"status": "PASS_WITH_HISTORICAL_LINK_ISSUES", "markdown_files": 218, "historical_reference_issues": 29, "log": "docs-final-r01.txt"},
+  "frozen_current_mock": {"status": "PASS", "asset_count": 457, "release_state": "FROZEN", "command": "scripts/t01_phase1_mock/run_m4_campaign.py verify"},
+  "legacy_full_mock": "NOT_RERUN_NO_CROSS_PARTITION_CHANGE",
+  "legacy_s07": "NOT_RERUN_NO_CROSS_PARTITION_CHANGE",
+  "final_execution_profile_matches": true,
+  "unchanged_main_source_snapshots": 18,
+  "actual_predictor_invocations_in_final_main_batch": 2,
+  "actual_structure_invocations_main_plus_supplement": 2,
+  "original_r35_exclusions_retained": 24,
+  "scientific_protection_pass": null,
+  "formal_delivery": false,
+  "production_status": "NOT_DEPLOYED"
+}

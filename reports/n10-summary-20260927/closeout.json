@@ -1,0 +1,73 @@
+{
+  "status": "ENGINEERING_DELIVERED",
+  "item": 4,
+  "node": "N10",
+  "authority": [
+    "AgentA_SOP_v10.5_20260902 S-40/R-55",
+    "AgentA_SOP_v10.5_20260902 T-01 step19b"
+  ],
+  "delivered": [
+    "Optional weights default to recommended equal initial weights; explicit weights retained",
+    "Reliable dimensions renormalized; required solubility missing keeps overall null",
+    "All current validated candidates collect their own N10 inputs before N14",
+    "Exact same-run representative requests reused; active retry and selected S28 structure verified",
+    "Published N10 steps envelope consumed correctly in N15",
+    "Exact candidate native FoldX ddG backfilled into S40; missing ddG excluded",
+    "N14 Top40 consumes complete verified current-candidate N10 scores",
+    "Responsive HTML discloses weights, dimensions, missing inputs and ddG"
+  ],
+  "regression": {
+    "full": {
+      "total": 2748,
+      "passed": 2732,
+      "skipped": 15,
+      "failed": 1,
+      "reason": "Old fixed internal-step-count assertion"
+    },
+    "final_affected": {
+      "total": 315,
+      "passed": 315
+    },
+    "merged": {
+      "total": 2755,
+      "passed": 2740,
+      "skipped": 15
+    }
+  },
+  "deployment": {
+    "generation": 110,
+    "pod": "antigen-design-975f79d7-z47ld",
+    "source_sha256": "307f9ea18d7411192ff0847aa1ae3d989c59a0dfc9095303e2a47d49ba03802a",
+    "files_per_snapshot": 224,
+    "job_count": 1726,
+    "new_jobs": 0,
+    "fixed_resources_images_commands_unchanged": true
+  },
+  "readonly_replay": {
+    "native_n10_pass": 3,
+    "old_n10_rejected": 3,
+    "old_rejection": "Archived steps omit solubility; historical bytes preserved",
+    "real_candidates": 24,
+    "all_rejected_by_original_R35": true,
+    "derived_retry_submitted": false
+  },
+  "remaining": [
+    "CamSol full parameters/calibration and reliable solubility incomplete (item 7)",
+    "No new 24/48/64 candidate native N10 scientific run; positive full-pool coverage uses synthetic engineering fixtures",
+    "N13 full-pool protection still incomplete; N10/FoldX do not confer candidate qualification"
+  ],
+  "new_scientific_jobs": 0,
+  "scientific_eligible": false,
+  "evidence": {
+    "full.junit.xml": "bbc7044933889fc354a44d0e74395bd1052c71f006dee182d89ee2ec1fedc276",
+    "final-affected.junit.xml": "10c9a4120cb4ba55a756764d527dd970dae524fee69590295563691f2338c48e",
+    "tested-source.json": "278b9662bbf3e1cbb5c94d40637e329f362660e8d5dcd2a04108e8a6d4a93d88",
+    "frozen.json": "0a5032b48a5af42a1e31b1655dc2861a2991b2131115da100333fb7840556d6d",
+    "predeploy-imports.json": "47bb3edd6131e0dbc740c1cfd6276325d189f6ae29b61888289a079b0433911d",
+    "deployment-verification.json": "0b0e1adef0b7b8c21ba9b1d0d9de65a71a77a48121ff4f12012319a086834a48",
+    "native-replay.json": "45476a9deccee33e41020cd4addacaba6df835aff7ac6dd4df04488c5d86b4b6",
+    "historical-source-differences.json": "6dfaa7e4af4379bd9cdf5c25c517ee3e6b2580c39a545afd33ef35ea2938184f",
+    "control-report-replay.json": "252d0dccd64a44ef2db686bf79cf8c8a7cdef69ab5df3d8a1fab74edbf87764b",
+    "layout-preview-visual-check.json": "629c0189c638dcf9cb8c527d5ca60551dd955ec8910539f33aebfbffa24bb5d7"
+  }
+}

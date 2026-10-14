@@ -1,0 +1,86 @@
+{
+  "contract_version": "0.1.0",
+  "contract_status": "DRAFT_REVIEW_ONLY",
+  "tool_id": "t01.real.deeptmhmm",
+  "identity_scope": "LOCAL_REVIEW_NOT_RUNTIME_ISSUED",
+  "evidence_kind": "G0_RAW_REPLAY",
+  "binding": {
+    "run_id": "t01p1r-run-b2-x-residue-1",
+    "request_id": "b2-x-residue-1",
+    "job_id": "t01p1r-job-b2-x-residue-1",
+    "attempt_id": "t01p1r-attempt-b2-x-residue-1",
+    "request_sha256": "eab2615ff73547e77c4215383ce209a416208a322a17da9a6aa62fc95860ecf7",
+    "sequence_sha256": "1adf8de1f1dfa2855bf4d527f28292a6aed26f5846512619e7bc68119a17ac9e",
+    "profile_sha256": "8e657200b64c0c6f1a59c771130c4452135a9b05633e1712fad8e583d8e766cd"
+  },
+  "execution_observation": "completed",
+  "failure_reason": null,
+  "raw_record": {
+    "record_id": "Q8K459_X_SYNTHETIC",
+    "sequence": "MQLRHIGDSVXHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLL",
+    "labels": "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII",
+    "type": "GLOB",
+    "segments": [
+      {
+        "label": "I",
+        "type": "inside",
+        "start": 1,
+        "end": 51
+      }
+    ],
+    "raw_tmr_count": 0,
+    "coordinate_base": 1
+  },
+  "raw_artifacts": [
+    {
+      "role": "input_fasta",
+      "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/inputs/x-residue.fasta",
+      "sha256": "54b93fc5c2fbd3c91a1dd3ba6a61fc60fca1e5a2969a96bce36d3a59ce153269",
+      "size_bytes": 74
+    },
+    {
+      "role": "prediction",
+      "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/runs/x-residue/output/result/predicted_topologies.3line",
+      "sha256": "a3fcf5ec72276c92a61181a0f621e69d4cf144aba8b9c6bafe5e1fb12cce1a0c",
+      "size_bytes": 131
+    },
+    {
+      "role": "regions",
+      "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/runs/x-residue/output/result/TMRs.gff3",
+      "sha256": "d0ffe0e9644d59843e3b0fe3c80d93eb3bebb0f8640f1748058bbf9939e37858",
+      "size_bytes": 132
+    },
+    {
+      "role": "execution",
+      "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/runs/x-residue/execution.json",
+      "sha256": "b8157eca598c99a1055e4dd5727260a667b6404ad5b13d1c9f9997ba9e500e2e",
+      "size_bytes": 3328
+    },
+    {
+      "role": "method_summary",
+      "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/method_summary.json",
+      "sha256": "71e2d510361f757ecca4b363312b9eabf18d5fe2a82fd55caf8837dc6ae6ddf4",
+      "size_bytes": 2932
+    }
+  ],
+  "id_pairing": "HISTORICAL_ORIGINAL_ID",
+  "scientific_signoff": null,
+  "production_status": "NOT_DEPLOYED",
+  "topology": null,
+  "null_reason": "INPUT_REVIEW_REQUIRED",
+  "input_findings": [
+    "NON_AA20_REQUIRES_REVIEW"
+  ],
+  "interpretation_status": "unreliable",
+  "requires_review": true,
+  "automatic_handoff": false,
+  "usable_for_pipeline": false,
+  "warnings": [
+    {
+      "level": "failure",
+      "severity": "WARNING",
+      "code": "INPUT_REVIEW_REQUIRED",
+      "message": "原始拓扑或输入需复核；不得自动交接"
+    }
+  ]
+}

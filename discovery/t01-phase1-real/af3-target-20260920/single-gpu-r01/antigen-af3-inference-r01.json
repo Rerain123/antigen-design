@@ -1,0 +1,143 @@
+{
+  "job_status": {
+    "conditions": [
+      {
+        "lastProbeTime": "2026-09-20T07:28:39Z",
+        "lastTransitionTime": "2026-09-20T07:28:39Z",
+        "message": "Job has reached the specified backoff limit",
+        "reason": "BackoffLimitExceeded",
+        "status": "True",
+        "type": "FailureTarget"
+      },
+      {
+        "lastProbeTime": "2026-09-20T07:28:39Z",
+        "lastTransitionTime": "2026-09-20T07:28:39Z",
+        "message": "Job has reached the specified backoff limit",
+        "reason": "BackoffLimitExceeded",
+        "status": "True",
+        "type": "Failed"
+      }
+    ],
+    "failed": 1,
+    "ready": 0,
+    "startTime": "2026-09-20T07:26:55Z",
+    "terminating": 0,
+    "uncountedTerminatedPods": {}
+  },
+  "pods": [
+    {
+      "annotations": {
+        "hami.io/bind-phase": "success",
+        "hami.io/bind-time": "1789889215",
+        "hami.io/vgpu-devices-allocated": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31,NVIDIA,65536,100:;",
+        "hami.io/vgpu-devices-to-allocate": ";;",
+        "hami.io/vgpu-node": "k8s-a100-02",
+        "hami.io/vgpu-time": "1789889215",
+        "nvidia.com/use-gputype": "A100-SXM-64GB",
+        "nvidia.com/use-gpuuuid": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31"
+      },
+      "container_statuses": [
+        {
+          "allocatedResources": {
+            "cpu": "4",
+            "memory": "32Gi",
+            "nvidia.com/gpu": "1",
+            "nvidia.com/gpucores": "100",
+            "nvidia.com/gpumem-percentage": "100"
+          },
+          "containerID": "containerd://0409d7fef302858d7fa2d2cc3d27f3c00e4b93ed1454eea16cfbe317eaee08db",
+          "image": "sha256:cc4e597bd95e3b78b33ee032da92e1abd51867de0b03dd88999da9b7bfb5e2d1",
+          "imageID": "harbor-core.base.svc.cluster.local/qcyz/antigen-af3@sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373",
+          "lastState": {},
+          "name": "inference",
+          "ready": false,
+          "resources": {
+            "limits": {
+              "cpu": "8",
+              "memory": "96Gi",
+              "nvidia.com/gpu": "1",
+              "nvidia.com/gpucores": "100",
+              "nvidia.com/gpumem-percentage": "100"
+            },
+            "requests": {
+              "cpu": "4",
+              "memory": "32Gi",
+              "nvidia.com/gpu": "1",
+              "nvidia.com/gpucores": "100",
+              "nvidia.com/gpumem-percentage": "100"
+            }
+          },
+          "restartCount": 0,
+          "started": false,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://0409d7fef302858d7fa2d2cc3d27f3c00e4b93ed1454eea16cfbe317eaee08db",
+              "exitCode": 1,
+              "finishedAt": "2026-09-20T07:28:36Z",
+              "reason": "Error",
+              "startedAt": "2026-09-20T07:27:05Z"
+            }
+          },
+          "user": {
+            "linux": {
+              "gid": 10001,
+              "supplementalGroups": [
+                10001,
+                44,
+                110
+              ],
+              "uid": 10001
+            }
+          },
+          "volumeMounts": [
+            {
+              "mountPath": "/runner",
+              "name": "runner",
+              "readOnly": true,
+              "recursiveReadOnly": "Disabled"
+            },
+            {
+              "mountPath": "/runtime",
+              "name": "runtime"
+            },
+            {
+              "mountPath": "/tmp",
+              "name": "tmp"
+            },
+            {
+              "mountPath": "/weights",
+              "name": "weights",
+              "readOnly": true,
+              "recursiveReadOnly": "Disabled"
+            }
+          ]
+        }
+      ],
+      "containers": [
+        {
+          "image": "harbor-core.base.svc.cluster.local/qcyz/antigen-af3@sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373",
+          "name": "inference",
+          "resources": {
+            "limits": {
+              "cpu": "8",
+              "memory": "96Gi",
+              "nvidia.com/gpu": "1",
+              "nvidia.com/gpucores": "100",
+              "nvidia.com/gpumem-percentage": "100"
+            },
+            "requests": {
+              "cpu": "4",
+              "memory": "32Gi",
+              "nvidia.com/gpu": "1",
+              "nvidia.com/gpucores": "100",
+              "nvidia.com/gpumem-percentage": "100"
+            }
+          }
+        }
+      ],
+      "name": "antigen-af3-inference-r01-4bzcn",
+      "node": "k8s-a100-02",
+      "phase": "Failed"
+    }
+  ]
+}

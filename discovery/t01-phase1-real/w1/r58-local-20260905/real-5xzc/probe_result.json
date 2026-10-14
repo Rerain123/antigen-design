@@ -1,0 +1,44 @@
+{
+  "scope": "LOCAL_PARSING_AND_MAPPING_PROBE",
+  "production_status": "NOT_DEPLOYED",
+  "scientific_acceptance": "NOT_RUN",
+  "evidence_kind": "local_input",
+  "python": "3.11.15 (main, Jul 23 2026, 14:42:43) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "command": [
+    "scripts/probe_structure_mapping.py",
+    "--structure",
+    "tests\\fixtures\\structure_mapping\\real\\5XZC.cif",
+    "--sequence-file",
+    "tests\\fixtures\\structure_mapping\\real\\5XZC.fasta",
+    "--output-dir",
+    "discovery\\t01-phase1-real\\w1\\r58-local-20260905\\real-5xzc",
+    "--evidence-kind",
+    "local_input"
+  ],
+  "started_at": "2026-09-05T03:53:56.135556+00:00",
+  "network_retrieval": "NONE_IMPLEMENTED",
+  "files": [
+    {
+      "path": "structure_inventory.json",
+      "size_bytes": 858567,
+      "sha256": "6868d258e46038212a0af0c94adb2c25731512e6265c4ef3e9939460433e9b74"
+    },
+    {
+      "path": "mapping.json",
+      "size_bytes": 63730,
+      "sha256": "94ee69f45ac29ba0b1fc43e3705ee1580a6cb62738839a9e9fc76cd4aeff14f0"
+    }
+  ],
+  "status": "PASS",
+  "parse_status": "succeeded",
+  "mapping_status": "unreliable",
+  "target_chain_id": null,
+  "mapped_positions": 0,
+  "sequence_length": 393,
+  "structure_sha256": "744ea7b74175865b1c1c3538d714a75ac10ac5cbee166c0547aa2c2a29f74b9a",
+  "sequence_sha256": "e3ca60f18e3b6e98986ad6749215ee3b7a3abc09c191675213d1f243c035c9a3",
+  "sequence_file_sha256": "a5c70cd6ea90eedac06af5c41218f472405bd4024d6041595c1a0a95b210f341",
+  "biopython": "1.88",
+  "finished_at": "2026-09-05T03:53:56.351889+00:00"
+}

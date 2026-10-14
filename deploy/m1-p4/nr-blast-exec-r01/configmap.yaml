@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-m1-p4-blast-exec-r01
+  namespace: him-ws
+immutable: true
+data:
+  blastp: '#!/bin/sh
+
+    exec /blast/bin/blastp.REAL "$@"
+
+    '

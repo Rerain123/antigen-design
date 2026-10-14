@@ -1,0 +1,39 @@
+{
+  "exchange_id": "p0-s07-discovery-20260901-a--P0-DISC-005--blast-format-tabular",
+  "classification": "discovery_evidence",
+  "production_deployment_status": "NOT_DEPLOYED",
+  "started_at": "2026-09-01T03:36:52.567139Z",
+  "finished_at": "2026-09-01T03:36:52.600047Z",
+  "duration_ms": 33,
+  "command": [
+    "P:\\var\\discovery-tools\\ncbi-blast-2.17.0\\ncbi-blast-2.17.0+\\bin\\blast_formatter.exe",
+    "-archive",
+    "P:\\discovery\\p0\\s07\\p0-s07-discovery-20260901-a\\evidence\\blast\\P0-DISC-005\\search\\result.asn",
+    "-outfmt",
+    "7 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qcovhsp qcovs qseq sseq stitle",
+    "-out",
+    "P:\\discovery\\p0\\s07\\p0-s07-discovery-20260901-a\\evidence\\blast\\P0-DISC-005\\format-tabular\\result.tsv"
+  ],
+  "executable": {
+    "name": "blast_formatter.exe",
+    "size_bytes": 19140608,
+    "sha256": "eee406032a2c0be6f97bef2e9e7f86e3957eb71d679cff2488df114230b3155e"
+  },
+  "timeout_seconds": 600,
+  "working_directory": "P:\\var\\discovery-data\\wwpdb-20260822\\blastdb",
+  "environment_overrides": {
+    "BLASTDB": "P:\\var\\discovery-data\\wwpdb-20260822\\blastdb"
+  },
+  "timed_out": false,
+  "exit_code": 0,
+  "stdout": {
+    "file": "stdout.txt",
+    "size_bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "file": "stderr.txt",
+    "size_bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

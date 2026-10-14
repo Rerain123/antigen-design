@@ -1,0 +1,94 @@
+[
+  {
+    "name": "root_tests",
+    "command": [
+      "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "-m",
+      "pytest",
+      "-o",
+      "addopts=",
+      "-q",
+      "--junitxml=D:\\work\\蛋白智能体\\.tmp\\w1-b1-final-checks-20260905\\root-tests.xml"
+    ],
+    "exit_code": 1,
+    "stdout": "........................................................................ [ 12%]\n........................................................................ [ 25%]\n........................................................................ [ 38%]\n........................................................................ [ 51%]\n.......................................................s................ [ 63%]\n........................................................................ [ 76%]\n.....................................................................F.. [ 89%]\n...................F.......................................              [100%]\n================================== FAILURES ===================================\n______________ test_rt08_restart_adopts_identity_fences_callback ______________\n\nrt = <t01_phase1_real.runtime.Runtime object at 0x000001CE83F7DFD0>\n\n    def test_rt08_restart_adopts_identity_fences_callback(rt):\n        job=start(rt, submit(rt, mode='sleep', delay=1))\n        new=Runtime(rt.root).recover(job['job_id'])\n        assert new['execution_identity']==job['execution_identity'] and new['attempt_id']==job['attempt_id']\n        assert new['lease_epoch']>job['lease_epoch']\n        with pytest.raises(RuntimeFault) as exc: rt.accept_callback(job['job_id'], job['attempt_id'], job['lease_epoch'])\n        assert exc.value.code=='STALE_LEASE'\n        final=rt.wait(job['job_id'])\n>       assert final['state']=='succeeded'\nE       AssertionError: assert 'failed' == 'succeeded'\nE         \nE         - succeeded\nE         + failed\n\ntests\\test_w1_runtime.py:228: AssertionError\n__________ test_rt14_malformed_outputs_not_published[wrong_identity] __________\n\nrt = <t01_phase1_real.runtime.Runtime object at 0x000001CE83BFDED0>\nmode = 'wrong_identity'\n\n    @pytest.mark.parametrize('mode', ['partial','wrong_identity'])\n    def test_rt14_malformed_outputs_not_published(rt, mode):\n>       job=submit(rt, mode=mode); rt.dispatch(job['job_id']); final=rt.wait(job['job_id'])\n                                                                     ^^^^^^^^^^^^^^^^^^^^^^\n\ntests\\test_w1_runtime.py:321: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\nsrc\\t01_phase1_real\\runtime.py:381: in wait\n    value=self.reconcile(job_id)\n          ^^^^^^^^^^^^^^^^^^^^^^\nsrc\\t01_phase1_real\\runtime.py:285: in reconcile\n    with self._tx() as db:\nC:\\Users\\wing\\AppData\\Local\\hermes\\hermes-agent\\.hermes-runtime\\python\\generation-1785804456-6396-644e5167\\cpython-3.11-windows-x86_64-none\\Lib\\contextlib.py:137: in __enter__\n    return next(self.gen)\n           ^^^^^^^^^^^^^^\nsrc\\t01_phase1_real\\runtime.py:63: in _tx\n    with self._db() as db:\nC:\\Users\\wing\\AppData\\Local\\hermes\\hermes-agent\\.hermes-runtime\\python\\generation-1785804456-6396-644e5167\\cpython-3.11-windows-x86_64-none\\Lib\\contextlib.py:137: in __enter__\n    return next(self.gen)\n           ^^^^^^^^^^^^^^\nsrc\\t01_phase1_real\\runtime.py:52: in _db\n    no_links(self.root/name)\nsrc\\t01_phase1_real\\files.py:19: in no_links\n    ensure(not stat.S_ISREG(info.st_mode) or info.st_nlink==1,'FORBIDDEN','Hard-linked files are not allowed')\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nvalue = False, code = 'FORBIDDEN', message = 'Hard-linked files are not allowed'\n\n    def ensure(value, code, message):\n        if not value:\n>           raise RuntimeFault(code,message)\nE           t01_phase1_real.common.RuntimeFault: Hard-linked files are not allowed\n\nsrc\\t01_phase1_real\\common.py:30: RuntimeFault\n- generated xml file: D:\\work\\蛋白智能体\\.tmp\\w1-b1-final-checks-20260905\\root-tests.xml -\n=========================== short test summary info ===========================\nFAILED tests/test_w1_runtime.py::test_rt08_restart_adopts_identity_fences_callback\nFAILED tests/test_w1_runtime.py::test_rt14_malformed_outputs_not_published[wrong_identity]\n2 failed, 560 passed, 1 skipped in 90.33s (0:01:30)\n",
+    "stderr": ""
+  },
+  {
+    "name": "documentation",
+    "command": [
+      "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "scripts/check_docs.py"
+    ],
+    "exit_code": 0,
+    "stdout": "documentation_status=PASS markdown_files=168\n",
+    "stderr": ""
+  },
+  {
+    "name": "b1_review",
+    "command": [
+      "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "scripts/check_w1_b1_review.py",
+      "--reparse"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"status\": \"PASS_REVIEW_PREPARATION\", \"case_count\": 23, \"expert_sources\": 22, \"request_result_pairs\": 2, \"reparsed\": true, \"scientific_approval\": \"NOT_GRANTED\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+    "stderr": ""
+  },
+  {
+    "name": "runtime_evidence",
+    "command": [
+      "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "scripts/check_w1_runtime.py"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"status\": \"PASS_ENGINEERING_ONLY\", \"runtime_tests\": 51, \"runtime_cases\": 15, \"cli_cases\": 5, \"source_files\": 16, \"output_files\": 62, \"production_status\": \"NOT_DEPLOYED\"}\n",
+    "stderr": ""
+  },
+  {
+    "name": "contract",
+    "command": [
+      "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "scripts/check_w1_contract.py"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"status\": \"PASS\", \"scope\": \"STATIC_CONTRACT_ONLY\", \"expert_sources\": 22, \"source_files\": 32, \"job_examples\": 8, \"submit_examples\": 1, \"control_examples\": 4, \"runtime_cases_declared\": 15, \"scientific_cases_declared\": 8, \"runtime_execution\": \"NOT_RUN\", \"scientific_execution\": \"NOT_RUN\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+    "stderr": ""
+  },
+  {
+    "name": "frozen_mock",
+    "command": [
+      "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "scripts/t01_phase1_mock/run_m4_campaign.py",
+      "verify"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"status\": \"PASS\", \"release_state\": \"FROZEN\", \"campaign_id\": \"t01p1m-v01-reg-20260904-release-freeze-03\", \"frozen_asset_count\": 457}\n",
+    "stderr": ""
+  },
+  {
+    "name": "historical_packages",
+    "command": [
+      "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "scripts/package_tool_handoffs.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "stdout": "{\n  \"status\": \"PASS\",\n  \"scope\": \"handoff_archive_and_engineering_interface\",\n  \"scientific_tool_execution\": \"NOT_RUN\",\n  \"scientific_acceptance\": \"NOT_RUN\",\n  \"packages\": [\n    {\n      \"package_id\": \"PH1-TOOL-FREESASA\",\n      \"version\": \"0.1\",\n      \"revision\": \"shared-interface-20260905\",\n      \"archive_sha256\": \"6cdb87a80d3b18064f3cbbd529ab58f21e182d593a5d043ff5d90358015c13ba\",\n      \"file_count\": 56,\n      \"source_copies_verified\": 6,\n      \"closed_local_links\": 42,\n      \"interface_files_identical\": 38,\n      \"synthetic_pairs_checked\": 8\n    },\n    {\n      \"package_id\": \"PH1-TOOL-BEPIPRED\",\n      \"version\": \"0.1\",\n      \"revision\": \"shared-interface-20260905\",\n      \"archive_sha256\": \"215ad2849c1a2ee1f7f007d140a1bb7808728ba43372686490070df9bd79cfab\",\n      \"file_count\": 56,\n      \"source_copies_verified\": 6,\n      \"closed_local_links\": 41,\n      \"interface_files_identical\": 38,\n      \"synthetic_pairs_checked\": 8\n    }\n  ]\n}\n",
+    "stderr": ""
+  }
+]

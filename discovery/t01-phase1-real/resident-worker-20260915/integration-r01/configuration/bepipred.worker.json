@@ -1,0 +1,31 @@
+{
+  "version": "0.1.0",
+  "commands": [
+    {
+      "tool": "bepipred",
+      "argv": [
+        "/usr/local/bin/python",
+        "-B",
+        "/opt/t01/src/t01_phase1_real/development/bepipred/worker.py"
+      ],
+      "environment": {
+        "CUDA_VISIBLE_DEVICES": "-1",
+        "MKL_NUM_THREADS": "2",
+        "MPLCONFIGDIR": "/tmp/matplotlib",
+        "OMP_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "1",
+        "PATH": "/usr/local/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin",
+        "PYTHONPATH": "",
+        "PYTHONUNBUFFERED": "1",
+        "T01_NATIVE_CWD": "/",
+        "T01_NATIVE_PACKAGE": "/t01/assets/bepipred-3.0-98bedf2471e0",
+        "T01_PRIVATE_TMP": "1",
+        "T01_RESIDENT_OFFLINE": "1",
+        "T01_RESIDENT_SLOT": "/run/t01-slot",
+        "T01_SOURCE_IMAGE_ID": "sha256:e1aff495e254ca4da513286f4ada0e1e0a071a2ffd9e0bc8ae3d2e6c91384149",
+        "TORCH_HOME": "/torch"
+      },
+      "memory_bytes": 25769803776
+    }
+  ]
+}

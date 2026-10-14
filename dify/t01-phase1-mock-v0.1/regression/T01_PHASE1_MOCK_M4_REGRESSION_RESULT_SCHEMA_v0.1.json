@@ -1,0 +1,286 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "T01_PHASE1_MOCK_M4_REGRESSION_RESULT_SCHEMA_v0.1.json",
+  "title": "T01-PHASE1-MOCK-M4-REGRESSION-RESULT-v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "document_type",
+    "result_version",
+    "campaign_id",
+    "binding_profile",
+    "status",
+    "implementation_state",
+    "source_acceptance_catalog_version",
+    "execution_environment",
+    "asset_chain",
+    "import_readback",
+    "main",
+    "debug",
+    "global_assertion_count",
+    "global_assertions",
+    "coverage_gate_count",
+    "coverage_gate_failure_count",
+    "coverage_gates",
+    "parity",
+    "scientific_execution_count",
+    "scientific_network_request_count",
+    "legacy_implementation_reuse_count",
+    "himat_backend_access_count",
+    "secret_finding_count",
+    "blocker_failure_count"
+  ],
+  "properties": {
+    "$schema": {"const": "T01_PHASE1_MOCK_M4_REGRESSION_RESULT_SCHEMA_v0.1.json"},
+    "document_type": {"const": "T01_PHASE1_MOCK_M4_REGRESSION_RESULT"},
+    "result_version": {"const": "T01-PHASE1-MOCK-M4-REGRESSION-RESULT-v0.1"},
+    "campaign_id": {"$ref": "#/$defs/campaignId"},
+    "binding_profile": {"const": "local_dify_1_17"},
+    "status": {"$ref": "#/$defs/status"},
+    "implementation_state": {"const": "M4_REGRESSION_EXECUTED"},
+    "source_acceptance_catalog_version": {"const": "T01-PHASE1-MOCK-ACCEPTANCE-CATALOG-v0.1"},
+    "execution_environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target", "dify_version", "dsl_version", "transport", "clock_driven_branching"],
+      "properties": {
+        "target": {"const": "LOCAL_DIFY_DOCKER"},
+        "dify_version": {"const": "1.17.0"},
+        "dsl_version": {"const": "0.7.0"},
+        "transport": {"const": "MCP_STREAMABLE_HTTP_LOCALHOST"},
+        "clock_driven_branching": {"const": false}
+      }
+    },
+    "asset_chain": {"$ref": "#/$defs/evidenceRef"},
+    "import_readback": {
+      "allOf": [
+        {"$ref": "#/$defs/evidenceRef"},
+        {
+          "type": "object",
+          "required": ["application_count", "warning_count"],
+          "properties": {
+            "application_count": {"const": 2},
+            "warning_count": {"const": 0}
+          }
+        }
+      ]
+    },
+    "main": {"$ref": "#/$defs/roleStage"},
+    "debug": {"$ref": "#/$defs/roleStage"},
+    "global_assertion_count": {"const": 12},
+    "global_assertions": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {"$ref": "#/$defs/assertion"}
+    },
+    "coverage_gate_count": {"const": 10},
+    "coverage_gate_failure_count": {"type": "integer", "minimum": 0},
+    "coverage_gates": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {"$ref": "#/$defs/coverageGate"}
+    },
+    "parity": {"$ref": "#/$defs/parity"},
+    "scientific_execution_count": {"const": 0},
+    "scientific_network_request_count": {"const": 0},
+    "legacy_implementation_reuse_count": {"const": 0},
+    "himat_backend_access_count": {"const": 0},
+    "secret_finding_count": {"const": 0},
+    "blocker_failure_count": {"type": "integer", "minimum": 0}
+  },
+  "$defs": {
+    "campaignId": {
+      "type": "string",
+      "pattern": "^t01p1m-v01-reg-[0-9]{8}-[a-z][a-z0-9-]{0,31}$"
+    },
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "status": {"enum": ["PASS", "FAIL"]},
+    "evidenceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256", "status"],
+      "properties": {
+        "path": {"$ref": "#/$defs/projectPath"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "status": {"const": "PASS"},
+        "application_count": {"const": 2},
+        "warning_count": {"const": 0}
+      }
+    },
+    "assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assertion_id", "operator", "severity", "status", "detail"],
+      "properties": {
+        "assertion_id": {"type": "string", "minLength": 1},
+        "scenario_key": {"type": "string", "minLength": 1},
+        "operator": {"type": "string", "minLength": 1},
+        "severity": {"const": "BLOCKER"},
+        "status": {"$ref": "#/$defs/status"},
+        "detail": {"type": ["string", "null"]}
+      }
+    },
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ordinal",
+        "scenario_key",
+        "submission_actions",
+        "final_run_id",
+        "recovery_of_run_id",
+        "run_status",
+        "canonical_envelope_sha256",
+        "status"
+      ],
+      "properties": {
+        "ordinal": {"type": "integer", "minimum": 1, "maximum": 21},
+        "scenario_key": {"type": "string", "minLength": 1},
+        "submission_actions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {"enum": ["CREATE_RUN", "RETURN_EXISTING_RUN", "REJECT_REQUEST"]}
+        },
+        "final_run_id": {"type": "string", "pattern": "^t01-phase1-mock-v01-run-[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"},
+        "recovery_of_run_id": {"type": ["string", "null"], "pattern": "^t01-phase1-mock-v01-run-[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"},
+        "run_status": {"enum": ["COMPLETED", "COMPLETED_WITH_GAPS", "FAILED", "TIMED_OUT", "CANCELLED"]},
+        "canonical_envelope_sha256": {"$ref": "#/$defs/sha256"},
+        "status": {"$ref": "#/$defs/status"}
+      }
+    },
+    "instanceRunMapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capture_kind",
+        "ordinal",
+        "scenario_key",
+        "submission_key",
+        "operation",
+        "dify_workflow_run_id",
+        "submitted_request_id",
+        "canonical_request_id",
+        "canonical_run_id",
+        "canonical_envelope_id",
+        "submission_action",
+        "dify_status"
+      ],
+      "properties": {
+        "capture_kind": {"enum": ["SUBMISSION", "FINALIZATION"]},
+        "ordinal": {"type": "integer", "minimum": 1, "maximum": 23},
+        "scenario_key": {"type": "string", "minLength": 1},
+        "submission_key": {"type": "string", "minLength": 1},
+        "operation": {"enum": ["SUBMIT", "FINALIZE_EXISTING"]},
+        "dify_workflow_run_id": {"type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"},
+        "submitted_request_id": {"type": ["string", "null"], "pattern": "^t01-phase1-mock-v01-req-[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"},
+        "canonical_request_id": {"type": "string", "pattern": "^t01-phase1-mock-v01-req-[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"},
+        "canonical_run_id": {"type": ["string", "null"], "pattern": "^t01-phase1-mock-v01-run-[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"},
+        "canonical_envelope_id": {"type": ["string", "null"], "pattern": "^t01-phase1-mock-v01-env-[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"},
+        "submission_action": {"type": ["string", "null"], "enum": ["CREATE_RUN", "RETURN_EXISTING_RUN", "REJECT_REQUEST", "FINALIZE_EXISTING", null]},
+        "dify_status": {"const": "succeeded"}
+      }
+    },
+    "captureHashes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["submissions_path", "finalizations_path", "driver_path"],
+      "properties": {
+        "submissions_path": {"$ref": "#/$defs/sha256"},
+        "finalizations_path": {"$ref": "#/$defs/sha256"},
+        "driver_path": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "roleStage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "app_name",
+        "status",
+        "case_count",
+        "submission_count",
+        "request_variant_count",
+        "submitted_request_id_count",
+        "dify_submission_run_count",
+        "dify_finalization_run_count",
+        "dify_run_count",
+        "checkpoint_plan_count",
+        "checkpoint_count",
+        "focus_assertion_count",
+        "focus_failure_count",
+        "capture_sha256",
+        "instance_run_mappings",
+        "focus_assertions",
+        "case_results"
+      ],
+      "properties": {
+        "role": {"enum": ["PRIMARY", "DEBUG"]},
+        "app_name": {"enum": ["T01_Phase1_Mock_v0.1", "T01_Phase1_Mock_v0.1_Debug"]},
+        "status": {"$ref": "#/$defs/status"},
+        "case_count": {"const": 21},
+        "submission_count": {"const": 23},
+        "request_variant_count": {"const": 22},
+        "submitted_request_id_count": {"const": 23},
+        "dify_submission_run_count": {"const": 23},
+        "dify_finalization_run_count": {"const": 4},
+        "dify_run_count": {"const": 27},
+        "checkpoint_plan_count": {"const": 4},
+        "checkpoint_count": {"const": 16},
+        "focus_assertion_count": {"const": 44},
+        "focus_failure_count": {"type": "integer", "minimum": 0},
+        "capture_sha256": {"$ref": "#/$defs/captureHashes"},
+        "instance_run_mappings": {"type": "array", "minItems": 27, "maxItems": 27, "items": {"$ref": "#/$defs/instanceRunMapping"}},
+        "focus_assertions": {"type": "array", "minItems": 44, "maxItems": 44, "items": {"$ref": "#/$defs/assertion"}},
+        "case_results": {"type": "array", "minItems": 21, "maxItems": 21, "items": {"$ref": "#/$defs/case"}}
+      }
+    },
+    "projectPath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?![A-Za-z]:)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\\\]+$"
+    },
+    "coverageGate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gate_id", "category", "required_scenario_keys", "minimum_case_count", "status", "detail"],
+      "properties": {
+        "gate_id": {"type": "string", "minLength": 1},
+        "category": {"type": "string", "minLength": 1},
+        "required_scenario_keys": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "minimum_case_count": {"type": "integer", "minimum": 1},
+        "status": {"$ref": "#/$defs/status"},
+        "detail": {"type": ["string", "null"]}
+      }
+    },
+    "parityResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scenario_key", "status", "first_difference", "main_sha256", "debug_sha256"],
+      "properties": {
+        "scenario_key": {"type": "string", "minLength": 1},
+        "status": {"$ref": "#/$defs/status"},
+        "first_difference": {"type": ["string", "null"]},
+        "main_sha256": {"$ref": "#/$defs/sha256"},
+        "debug_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "parity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stage", "status", "case_count", "global_016_status", "failure_count", "results"],
+      "properties": {
+        "stage": {"const": "M4_MAIN_DEBUG_PARITY"},
+        "status": {"$ref": "#/$defs/status"},
+        "case_count": {"const": 21},
+        "global_016_status": {"$ref": "#/$defs/status"},
+        "failure_count": {"type": "integer", "minimum": 0},
+        "results": {"type": "array", "minItems": 21, "maxItems": 21, "items": {"$ref": "#/$defs/parityResult"}}
+      }
+    }
+  }
+}

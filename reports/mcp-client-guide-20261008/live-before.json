@@ -1,0 +1,136 @@
+{
+  "observed_at_utc": "2026-10-08T00:37:22.856206+00:00",
+  "active_jobs": [],
+  "gpu_state": {
+    "last_execution": {
+      "order": 1791419003548377321,
+      "sha256": "ec8ea3e74ce50166ae4cb51b09621feafdef581fbf65750bebb2cabff492aea0",
+      "target": "/var/lib/t01/resident/gpu/af556797edbe5554bef82385add2d726",
+      "tool": "proteinmpnn",
+      "uncertain": false
+    },
+    "last_state": "succeeded",
+    "phase": "idle"
+  },
+  "tools": [
+    {
+      "name": "workflow_submit_sequence",
+      "title": "根据用户序列提交抗原设计任务",
+      "description": "用户给出 9–999 aa 大写标准蛋白序列和宿主物种后调用；缺少宿主时先向用户追问。工具立即返回 job_id，服务器在会话结束后继续运行。不得构造结构、位点掩码、数据库参数或科学结论。空 FIXED 掩码按 T4 规则默认暂停；只有用户明确确认后才可继续 ProteinMPNN 设计。再次查询用 workflow.check；同一序列、宿主和 run_key 幂等重放。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "protein_sequence": {
+            "type": "string",
+            "pattern": "^[ACDEFGHIKLMNPQRSTVWY]{9,999}$"
+          },
+          "host_species": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "run_key": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"
+          }
+        },
+        "required": [
+          "protein_sequence",
+          "host_species"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "job_id": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_id",
+          "state"
+        ],
+        "additionalProperties": true
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "workflow_check",
+      "title": "查询抗原设计进度或获取终态报告",
+      "description": "用户在后续消息询问进度时按 job_id 调用一次。运行中按 N01–N18 共18个业务节点报告进度；completed_nodes 是已结束节点数，包含跳过或失败，成功/失败/跳过见 node_counts。内部步骤数不作为业务节点总数，也不代表耗时百分比。current_nodes 包含 reconciling 和 stop_requested；查看 active_steps.execution.phase 区分 waiting_worker（等待Worker）、executing（执行回执记录运行中）、finalizing（原生进程已停止、收集结果）和 unknown（未能确认）。不得仅凭父任务 running 或 reconciling 声称 BLAST 正在计算；回执不是实时 CPU 采样。完成后直接展示返回的 HiMat 结果卡，按 primaryAttachmentId 展示面向用户的 HTML 主报告，并一起提供 Markdown 和 ZIP 附件；保留全部附件及缺项说明，不自行生成报告或改写下载链接。失败终态按返回卡片说明原因，不声称存在未返回的报告。无需保持聊天连接或在一个回合中反复等待。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "job_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_id"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "const": "primer_design_output"
+          },
+          "data": {
+            "type": "object"
+          },
+          "job_id": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          }
+        },
+        "required": [],
+        "additionalProperties": true
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "workflow_confirm_design",
+      "title": "确认或拒绝本次 N11 设计接续",
+      "description": "仅当 workflow_check 返回 pending_confirmation 时使用。先向用户完整说明后端 warning 和 prompt；用户明确同意后传 decision=true，明确拒绝传 false。不得把提交序列或要求修复软件视为设计确认。job_id 与 confirmation_id 必须逐字取自本次查询。确认后沿用原 run 继续，重复相同决定幂等，不重跑前段工具。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "job_id": {
+            "type": "string"
+          },
+          "confirmation_id": {
+            "type": "string"
+          },
+          "decision": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "job_id",
+          "confirmation_id",
+          "decision"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    }
+  ],
+  "read_only": true,
+  "new_jobs_submitted": 0
+}

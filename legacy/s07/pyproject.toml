@@ -1,0 +1,12 @@
+[project]
+name = "t01-s07-legacy"
+version = "0.0.0"
+description = "Archived S07 discovery and acceptance assets"
+requires-python = ">=3.11,<3.12"
+dependencies = []
+
+[tool.pytest.ini_options]
+pythonpath = [".", "src", "../full-t01-mock-v0.1/src"]
+testpaths = ["tests"]
+addopts = "-q"
+

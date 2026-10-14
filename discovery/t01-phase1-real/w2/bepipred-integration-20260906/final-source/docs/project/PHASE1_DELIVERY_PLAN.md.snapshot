@@ -1,0 +1,149 @@
+# T-01 一期 18 节点交付计划
+
+> 现行计划；更新：2026-09-06。依据：[用户认可的调整](sources/PHASE1_DELIVERY_SIMPLIFICATION_20260906.json)。
+> 实际进度与当前任务入口只见 [STATUS](STATUS.md)，交付细节见其链接的任务页或本计划适用章节。
+
+## 1. 总体策略
+
+沿完整 N01–N18 拓扑交付：冻结 Mock 提供流程基线，真实能力使用独立源码、契约、运行根与 DSL。
+以可调用的工具和可复现的局部链作为开发交付单位；设计、实现、测试和评审在同一个包内完成。
+日常不为每次准备、补证或修复再建立任务包。一个包推进到约定完成标准或具体外部阻塞。
+
+### 计划维护
+
+依据 [用户的管理授权](DECISIONS.md#计划管理授权)，由本次承接授权的管理任务统筹计划与文档维护，实施任务负责回填可核验的交付事实。
+
+| 层级 | 维护内容 | 唯一位置 |
+|---|---|---|
+| 整体实施计划 | 一期交付目标、W1–W7 依赖与放行条件 | 本页；范围以范围基线为准 |
+| 阶段与交付包计划 | 当前波次的交付包、范围、完成标准与必要接口 | 对应波次任务页；W1 见下文链接 |
+| 当前执行安排 | 已完成、正在推进、具体阻塞、下一项 | STATUS；实现细节链接到对应任务章节 |
+
+收到交付结果、阻塞变化或用户决定时，核对代码与证据后更新适用层级；定期检查三层计划与文档是否一致。阶段计划随实际交付滚动细化，不预先展开全部远期小任务。
+管理任务可直接调整既定范围内的顺序、合并过碎步骤、纠正状态与整理派生文档；范围取舍仍由用户决定，科学裁决由算法专家负责。已有开发完成证据的包不因科学签收未齐而重新列为开发待办。
+每次安排给出明确交付目标、完成标准和依赖它的具体条件；达到标准即转入下一可执行包。文档巡检规则见 [文档入口](../README.md#周期检查)，不另建管理台账或周期报告目录。
+
+## 2. 新一期 Mock 路线
+
+M1 规格、M2 后端、M3 Dify、M4 冻结的历史入口见 [基线索引](phase1/README.md)。
+冻结资产只读验证；Mock 的 MOCK_DATA、scientific_compute=false 身份不能改作科研结果。
+旧 P0–P7 属于 [历史工程资产](../../legacy/README.md)，不参与一期范围或完成度。
+
+## 3. 真实能力实施波次
+
+W1–W7 保留为业务交付分组，不要求所有独立工具开发严格串行。
+
+| 波次 | 节点 | 交付目标 |
+|---|---|---|
+| [PH1-REAL-W1](phase1/PHASE1_REAL_W1_BACKLOG.md) | N01–N02 | 输入、本地结构/AF3/ESMFold2、S-09、DeepTMHMM、条件 FreeSASA |
+| [PH1-REAL-W2](#w2-bepipred-开发接入) | N03–N06 | 本地表位检索、B/T 预测、表位地图 |
+| PH1-REAL-W3 | N07–N09 | 条件糖基化、同源保守性、功能域 |
+| PH1-REAL-W4 | N10 + Gate | WT 可开发性、设计判断及 WT 交付子路径 |
+| PH1-REAL-W5 | N11–N12 | 候选设计、验证、受控重算 |
+| PH1-REAL-W6 | N13–N15 | 表位保护、稳定性、综合排序 |
+| PH1-REAL-W7 | N16–N18 | 条件密码子、WT 稳定性参考、完整交付 |
+
+### 开发顺序与生产依赖
+
+- 各工具具备自身原始实测、必要接口和可执行守卫后，可开发适配器、独立测试和局部联调。
+- 目标服务器、无关模型或其他工具的科学签收缺失，只阻断依赖它的动作。W2 独立序列工具可提前开发与验证，成果归 W2。
+- 未定规则分支明确拒绝或标记需复核；只能实现有来源的规则，不以“开发模式”猜测科学判据。
+- 上游未批准时可做标明用途的契约夹具测试；真实工具调用、回放、故障注入与 Mock 分开记证据。
+- 后续波次的生产依赖仍须采用已完成适用门禁并冻结的真实输出；局部通过不能宣布整波或全链通过。
+- 局部离线包和独立真实 Dify 调试入口可提前验证；未完成节点不以 Mock 冒充真实能力。完整包与生产发布仍等待全部必需能力。
+
+### W1 四个交付包
+
+通用运行底座 → DeepTMHMM 接入 → 本地结构分析链；预测结构链按服务器/资产条件推进，最后汇合完整 W1 发布。
+实现范围与完成标准集中在 [W1 任务页](phase1/PHASE1_REAL_W1_BACKLOG.md#任务拆分)。
+旧 W1-00～13 与 A/B/C 编号保留用于追溯，不再作为逐项停下来另建准备任务的顺序。
+
+### 跨波次接口与外部准备
+
+许可证、权重、本地 IEDB/同源/注释数据和 CamSol 参数持续准备，按 [开放项](OPEN_ITEMS.md)落实责任与使用前条件。
+W1–W2 启动 N18 字段生产者、WT/Candidate/Failure、认证/幂等/确认核对；W4 在 N01–N10、Gate 和 N18 WT 子路径满足适用门禁后做真实 WT 联调。
+OI-021 在 Gate 科学消费前闭合；OI-022 在 W5 N12 输出契约冻结前先明确前 20 池与排序关系。
+FoldX/ProteinMPNN 的实际交付属于后续波次，不扩大 W1。全部工作仍由主开发统一推进，原同事工具包仅为历史参考。
+
+### W2 BepiPred 开发接入
+
+**交付目标**：统一入口提交序列，真实禁网执行 BepiPred 3.0，返回可追溯逐残基原始分数、产物和后处理复核原因。原包核验、实跑、封装与验收连续完成，作为 W2 的一个交付包；完整 W2 仍包含上表全部 N03–N06 能力。
+
+依据：[当前专家包 ToolSpec A3 v10.5 §1–4](../../工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_A3_BepiPred_v10.5.md)、其引用的 SOP S-17/S-19 与 [OI-026](OPEN_ITEMS.md)。一期仅线性路径，A3 不消费结构；独立开发不等待结构科学签收、AF3/ESMFold2 或 IEDB/NetMHC 全部就绪。旧同事工具包只作历史参考。
+
+1. 核验 BepiPred 3.0 原包、依赖权重、许可与可追溯输入，在本项目独立运行资产中固定版本/hash。确认本地禁网入口，先取得真实原始输出、错误及资源事实；未发现资产不写成已安装，缺项只登记其实际阻断动作。
+2. 依据实跑确认输出列、逐位身份、长度与失败语义，再复用现有运行层接入提交、执行、解析、查询和产物发布，不复制任务系统。工具原始分数与项目后处理结果分开保存。
+3. OI-026 的分数列/平滑、Top20%、桥接顺序等先检索适用原件与原包事实；能明确的规则直接实现，剩余歧义定点交算法确认。未定后处理输出保持 null/需复核，不猜科学规则；不得把缺失 A3 的失败伪装成无表位的成功结果。
+4. 验证真实正常输入、非法输入、损坏或长度不符输出、工具失败、取消/超时、恢复、幂等与产物回连；按共享代码影响补 DeepTMHMM/结构链回归。真实计算、夹具和故障注入分列，未受影响的完整检查沿用证据。
+
+**开发完成标准**：一条可复现命令取得真实原始分数及其可用性/复核状态，受影响生命周期与结果守卫通过，开发未签收和禁止自动交接标识保持；源码、用法及一份执行批次索引可回连。未定后处理的科学完成与本包工程完成分别判断，不能宣布 N04 科学验收或完整 W2 已完成。
+本节即实施入口；必要接口、用法与精确工具资产缺项先回填本节，进度只更新 STATUS，不另开原包准备、契约评审或补证任务页。预测结构资产与科学签收按既有 W1 记录独立跟进。
+
+#### BepiPred 本机调用与接口
+
+统一入口 [t01_runtime.py](../../scripts/t01_runtime.py) 的 `bepipred` 子命令登记 `t01.real.bepipred / N04`，复用现有 SQLite、run/job/attempt、幂等、事件、容器监督与 ArtifactRef。原 W1 Schema 保持原字节；[增量契约校验](../../src/t01_phase1_real/development/contracts.py) 仅增加该工具与节点组合，其他形状及状态规则不变，旧入口仍拒绝科学工具。
+
+从项目根执行一条命令，返回任务与真实原始分数。这个 51 aa 输入仅为开发运行样本，不代表独立科学验收：
+
+```powershell
+.\.venv\Scripts\python.exe -X utf8 scripts/t01_runtime.py --root D:\work\蛋白智能体\var\t01-phase1-real\bepipred-demo bepipred --sequence MQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLL --user-id development51 --key bepipred-demo-1 --run --wait 120
+```
+
+前提为 Windows、本项目 `.venv`、Docker Desktop Linux Engine 与以下本地资产。实际运行不拉取镜像、不下载权重；资源槽等待最长 900 秒，执行期限由请求控制，`--wait` 仅限制客户端等待。同 key 与原请求字节返回同一任务，字节不同报 IDEMPOTENCY_CONFLICT；新执行使用新 key。
+
+| 接口/资产 | 固定开发口径 |
+|---|---|
+| 请求 | Python `Runtime.submit_sequence(raw, key, tool_id='t01.real.bepipred')`；严格三个 JSON 字段 protein_sequence、user_sequence_id、timeout_seconds，CLI 支持 `--input` 读取原字节 |
+| 序列/别名 | 大写 AA20，9～1022 aa，不改写空白/大小写/非常规符号；1022 是本机验收上限，不宣称为模型最大长度。用户别名至多 512 字符，仅元数据；原包 ID 为 `t01seq_` + 序列 SHA-256 |
+| 执行 | timeout_seconds 整数 1～900、默认 900；CPU 8/亲和 0–7、10 GiB、512 PID、独立单容器槽、只读模型/输入、network=none、内部硬期限。无 GPU、无联网回退 |
+| 官方仓库 | [BepiPred-3.0](https://github.com/UberClifford/BepiPred-3.0/tree/98bedf2471e04766c981585180c20da7961c6804)，固定提交 `98bedf2471e04766c981585180c20da7961c6804`；[源码与哈希收据](../../discovery/t01-phase1-real/w2/bepipred-integration-20260906/source-receipt.json) |
+| 模型/环境 | bp3 0.0.12.7、fair-esm 1.0.3、ESM-2 `esm2_t33_650M_UR50D` 与 contact regression；PyTorch 2.5.1+cpu、NumPy 1.22.0、Pandas 1.4.3、Plotly 5.8.0、Python 3.10.21。[104 项固定资产](../../src/t01_phase1_real/development/bepipred/assets.json) 包含源码、许可、模型、安装报告与专家原件 |
+| 镜像 | `sha256:e1aff495e254ca4da513286f4ada0e1e0a071a2ffd9e0bc8ae3d2e6c91384149`；[构建、安装及系统报告](../../discovery/t01-phase1-real/w2/bepipred-integration-20260906/environment/build.json)。依赖准备允许下载，推理完全禁网 |
+| 原包调用 | 未修改官方 CLI；vt_pred，threshold=0.1512，top=0.2，rolling_window=9，CLI 默认 add_seq_len=false（BP3C50IDFFNN 五折）。模型选项与原包参数不是项目科学放行决定 |
+| 原始结果 | raw_scores 每位包含 sequence_position（1-based）、residue、ensemble_probability、linear_epitope_score；两列原值分别保存。raw_record 保留 CSV 列名、阈值/Top20% FASTA、原包参数、嵌入形状和五折身份 |
+| 原包行为 | 概率为五折正类概率均值；平滑为 `convolve(..., ones(9), same)/9`，两端零填充。Top20% 数量用 Python round，并列沿输入顺序；原包分类比较 ≥阈值（float32），项目峰定义为严格 >，不将原包 FASTA 直接认作项目峰 |
+| 后处理 | postprocessing.status=review_required / OI-026；linear_scores、linear_peaks、conf_scores、conf_peaks、epitope_map 均为 null。原包分数列、平滑、Top20%、桥接及模型特征分支的科学签收条件集中在 OPEN_ITEMS；不伪造 DiscoTope 或 E2 |
+| 错误/资格 | A3 执行/产物不可用时 failed/cancelled/timed_out、raw_scores=null、A3_UNAVAILABLE_HALT；不可伪装为无表位成功。有效原始结果为 raw_scores_unreviewed，DEVELOPMENT_UNREVIEWED、usable_for_pipeline=false、automatic_handoff=false、scientific_signoff=null、NOT_DEPLOYED |
+
+同一 `--root` 下使用 `get / result / events / execution --job-id …` 查询；`artifact --job-id … --artifact-id … --output …` 校验 hash 后导出到新文件；`cancel / retry --job-id … --key …` 控制任务，显式重试后用 `dispatch` 启动；`recover --job-id …` 处理监督进程中断。容器停止确认先于终态，缺失/损坏产物或收据不得恢复为有效原始分数。
+
+每次输出回连请求/序列 hash、run/request/job/attempt/execution/profile；原包输出清单、嵌入、五折观测、原 CSV、三份 FASTA 和原生 HTML 分别发布。宿主校验列、长度、逐位字母与安全 ID、有限概率、五折与平滑一致性、分类产物及环境身份。HTML 原件是引用 Plotly CDN 的片段，作为未渲染原始产物保存；命令行分数查询不依赖该网页。
+
+输入失败事实：[原包含 `*` 的输入](../../discovery/t01-phase1-real/w2/bepipred-integration-20260906/raw-runs/invalid-star/index.json)退出 1；[8 aa 原包输入](../../discovery/t01-phase1-real/w2/bepipred-integration-20260906/raw-runs/short8/index.json)退出 0，但原始概率 8 位、窗口平滑 9 位，CSV 只保留 8 行。项目仍在准入前拒绝 <9 aa，并在解析时要求原始观测/分数/输入等长；不把退出 0 等同于支持。9 aa 与 1022 aa 的整长回连仅为本机开发覆盖事实。
+
+许可按来源分别保留：仓库 README 声明学术非商业条件，bp3 wheel 携带 MIT 文本，ESM 携带 MIT 文本；不以 wheel 元数据覆盖仓库/数据条款，不据本机开发验收授予商业或目标发布资格。原包示例属于随包参考，不是独立留出测试集。
+
+[Worker/解析器](../../src/t01_phase1_real/development/bepipred/worker.py)、[针对性测试](../../tests/test_bepipred_development.py)与 [验收命令](../../scripts/run_bepipred_acceptance.py)可直接执行。全组验收使用 `--root <新的绝对目录> --batch <W2 discovery 下的新目录>`，真实原包输入、工程边界输入及受控故障分列；实际结果与统一批次索引见 STATUS。
+
+## 4. 每个真实波次的门禁
+
+G0–G6 是证据检查分类。开发、科学消费、目标发布分别判断，不要求完整科学签收和目标复现都先于编写适配器。
+
+| 决策点 | 必须具备 | 尚未具备时如何推进 |
+|---|---|---|
+| 开始工具开发/内部联调 | 本地原工具事实、固定候选资产、必要工程接口、已知输入/失败守卫、开发验收清单 | 不依赖争议规则的代码可实施；待定分支关闭，模型未实测部分只作准备 |
+| 允许科学消费 | 适用 G1 科学规则/输入域、独立参考、指标/容差、具名签收及相关实现验证 | 结果仅供开发复核，usable_for_pipeline=false，禁止自动交接 |
+| 目标部署与发布 | 目标环境实际复现、离线安装与资产、全部适用 G0–G6、受影响链验收 | 局部开发成果单独记录，生产保持 NOT_DEPLOYED |
+
+各检查分类保留以下证据，并在对应使用时点完成：
+
+| 分类 | 保留的检查内容与时点 |
+|---|---|
+| G0 事实摸底 | 原工具版本、输入输出、错误、资源、许可及禁网实测；本地与目标证据分别记录，目标复现在目标发布前完成 |
+| G1 契约就绪 | 必要工程接口在开发前明确；完整科学规则、支持域、独立参考及验收责任在科学消费前闭合 |
+| G2 后端实现 | 适配器与确定性计算由后端实现，开发过程完成单测与集成验证；科学未批准不阻止开发代码形成 |
+| G3 离线打包 | 镜像/权重/数据、hash、安装预检、smoke、金标准与回滚；逐包验证，完整发布前汇合 |
+| G4 工作流接入 | 独立真实 DSL 生成、绑定、回读及固定状态路由；可先做局部调试，完整波次另验收 |
+| G5 波次验收 | 工具/契约/Dify、断网、失败、取消/恢复/幂等及受影响真实链；科学结论需对应签收 |
+| G6 波次冻结 | 全部必需能力齐备，固定版本、证据、手册与 manifest，确认无 Mock/smoke 混用 |
+
+纯计算节点按原件完成规则、契约、实现和参考验证；科学规则不由 LLM 或 Dify 执行。
+补证只针对未满足的完成标准或实际新发现；记录影响、关闭证据、主责及阻断哪一决策点，不无限扩展前置任务。
+
+## 5. 一期最终验收
+
+完整 N01–N18、设计 Gate/WT、N12 重算、N16 条件及 N16/N17 汇合均须有真实执行和唯一机器语义。
+所有保留能力达到适用 G6；全链失败、取消、恢复、幂等、重复提交和交付回归通过。
+结果含版本、参数、输入 hash、原始产物、来源和 run_id；使用批准本地数据包，禁公网查询/预测回退。
+AF3/ESMFold2 仍必交付，完整范围与削减规则见 [范围基线](PHASE1_SCOPE_REBASELINE.md)。
+开发顺序调整不改变范围，不授予科学资格，也不把局部验收记作一期完成。

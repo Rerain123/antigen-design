@@ -1,0 +1,75 @@
+{
+  "entries": [
+    {
+      "parameters": {
+        "candidate_collection_complete": true,
+        "capped": false,
+        "data_version": null,
+        "evidence_kind": "CONTROLLED",
+        "recorded_parameters": {},
+        "source_operation": "PDB_SEARCH",
+        "source_status": "SUCCEEDED_EMPTY"
+      },
+      "runtime_seconds": null,
+      "step": "fetch_structure",
+      "tool": "PDB_SEARCH: CONTROLLED_FIXTURE",
+      "version": "CONTROLLED_FIXTURE"
+    },
+    {
+      "parameters": {
+        "candidate_collection_complete": true,
+        "capped": false,
+        "data_version": "2026_03",
+        "evidence_kind": "FROZEN_REPLAY",
+        "recorded_parameters": {
+          "accession": "O15116",
+          "sequence_exact": true
+        },
+        "source_operation": "UNIPROT_RECORD",
+        "source_status": "SUCCEEDED_WITH_RESULTS"
+      },
+      "runtime_seconds": null,
+      "step": "fetch_structure",
+      "tool": "UNIPROT_RECORD: UniProt REST",
+      "version": "UNREPORTED"
+    },
+    {
+      "parameters": {
+        "candidate_collection_complete": true,
+        "capped": false,
+        "data_version": "6",
+        "evidence_kind": "FROZEN_REPLAY",
+        "recorded_parameters": {
+          "accession": "O15116",
+          "http_status": 200
+        },
+        "source_operation": "AFDB_LOOKUP",
+        "source_status": "SUCCEEDED_WITH_RESULTS"
+      },
+      "runtime_seconds": null,
+      "step": "fetch_structure",
+      "tool": "AFDB_LOOKUP: AlphaFold DB API",
+      "version": "UNREPORTED"
+    },
+    {
+      "parameters": {
+        "candidate_collection_complete": false,
+        "capped": false,
+        "data_version": null,
+        "evidence_kind": "CONTROLLED",
+        "recorded_parameters": {
+          "corrupt_artifact_id": "sha256-b56e8494fed67f950bdab4120ba5ff1e84e039dfa25fd70b747618edacb9bfe5",
+          "expected_model": "AF-O15116-F1"
+        },
+        "source_operation": "AFDB_STRUCTURE",
+        "source_status": "FAILED"
+      },
+      "runtime_seconds": null,
+      "step": "fetch_structure",
+      "tool": "AFDB_STRUCTURE: CONTROLLED_FIXTURE",
+      "version": "CONTROLLED_FIXTURE"
+    }
+  ],
+  "pipeline_version": "s07.task5.v1-review",
+  "timestamp": "2026-09-03T01:43:38.502632+00:00"
+}

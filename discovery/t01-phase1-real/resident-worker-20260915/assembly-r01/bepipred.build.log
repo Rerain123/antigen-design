@@ -1,0 +1,62 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from bepipred.Dockerfile
+#1 transferring dockerfile: 754B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/t01-bepipred-development:3.0-bp3-0.0.12.7-20260906
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/python:3.11-slim-bookworm
+#3 DONE 0.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [stage-1 1/8] FROM docker.io/library/t01-bepipred-development:3.0-bp3-0.0.12.7-20260906@sha256:e1aff495e254ca4da513286f4ada0e1e0a071a2ffd9e0bc8ae3d2e6c91384149
+#6 resolve docker.io/library/t01-bepipred-development:3.0-bp3-0.0.12.7-20260906@sha256:e1aff495e254ca4da513286f4ada0e1e0a071a2ffd9e0bc8ae3d2e6c91384149 0.1s done
+#6 DONE 0.1s
+
+#7 [supervisor 1/1] FROM docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84
+#7 resolve docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84 0.1s done
+#7 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 14.41kB done
+#5 DONE 0.0s
+
+#8 [stage-1 2/8] COPY --from=supervisor /usr/local /opt/t01/supervisor
+#8 CACHED
+
+#9 [stage-1 3/8] COPY src /opt/t01/src
+#9 DONE 0.1s
+
+#10 [stage-1 4/8] COPY profile.json /profile.json
+#10 DONE 0.1s
+
+#11 [stage-1 5/8] COPY setup.py /opt/t01/setup.py
+#11 DONE 0.1s
+
+#12 [stage-1 6/8] COPY bepipred.worker.json /opt/t01/worker.json
+#12 DONE 0.1s
+
+#13 [stage-1 7/8] RUN /opt/t01/supervisor/bin/python3.11 -B /opt/t01/setup.py bepipred
+#13 DONE 0.4s
+
+#14 exporting to image
+#14 exporting layers
+#14 exporting layers 0.6s done
+#14 exporting manifest sha256:fc0567390c0d11af7cf49c0e28591d0ea192462699a8597f552c51aaacdcdf69 0.0s done
+#14 exporting config sha256:4c4eb70cdd747fa914086830e1eca8561f3419d84cd432a52fb2e304f814d074 0.0s done
+#14 exporting attestation manifest sha256:21ee0ab218cca0984b2936abdac9b2d37db4b3f80a88adffcf840923b5333eb1
+#14 exporting attestation manifest sha256:21ee0ab218cca0984b2936abdac9b2d37db4b3f80a88adffcf840923b5333eb1 0.1s done
+#14 exporting manifest list sha256:dcf576aeb1c225b66d3afacebfe5fa3f2956667f04710f0918b415c942408955 0.0s done
+#14 naming to docker.io/library/antigen-design-resident-bepipred:assembly-r01
+#14 naming to docker.io/library/antigen-design-resident-bepipred:assembly-r01 done
+#14 unpacking to docker.io/library/antigen-design-resident-bepipred:assembly-r01
+#14 unpacking to docker.io/library/antigen-design-resident-bepipred:assembly-r01 0.3s done
+#14 DONE 1.3s

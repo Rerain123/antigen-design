@@ -1,0 +1,82 @@
+{
+  "recorded_date": "2026-09-06",
+  "scope": "Local sealed evidence and expert originals; no new online lookup, inference or upload",
+  "expert_sections": [
+    {
+      "file": "ToolSpec_A5_DeepTMHMM_v10.5.md",
+      "sections": [
+        "1-7"
+      ]
+    },
+    {
+      "file": "AgentA_SOP_v10.5_20260902.md",
+      "sections": [
+        "S-04",
+        "S-16",
+        "S-19",
+        "S-27",
+        "T-01 default length / membrane / step22"
+      ]
+    },
+    {
+      "file": "AgentA_SKILL_v10.5_20260902.md",
+      "sections": [
+        "R-05",
+        "R-48",
+        "R-58",
+        "version clause"
+      ]
+    },
+    {
+      "file": "AgentA_Schema_v10.5_20260902.md",
+      "sections": [
+        "topology",
+        "in_outside_region"
+      ]
+    },
+    {
+      "file": "一期实施环境清单_v10.5.md",
+      "sections": [
+        "A5 row",
+        "CPU",
+        "environment matrix"
+      ]
+    }
+  ],
+  "source_code_findings": [
+    {
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/package_sources/predict.py",
+        "sha256": "c9cd6565ce201119e16c4e20e8d20db9bd1c4452ec291d92611935f5ceaa26d2",
+        "size_bytes": 18428
+      },
+      "sections": "ID dictionary, filename writing, no CLI scientific overrides, original model ensemble and outputs"
+    },
+    {
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/package_sources/utils.py",
+        "sha256": "75b1e31c27b381ffa720a74b96edf6ec8cbeafad619614b7b1bcf9df9c55beae",
+        "size_bytes": 7319
+      },
+      "sections": "gff3 and token slicing; 1022 is token constant, not measured amino-acid maximum"
+    },
+    {
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/package_sources/experiments/tmhmm3/tm_util.py",
+        "sha256": "57e3cc95e93352c20191f72af88c677d6b41d35f55def6ebb4ed4215bd0fbcfc",
+        "size_bytes": 46004
+      },
+      "sections": "get_predicted_type_from_labels: B selects BETA; P alone does not"
+    }
+  ],
+  "independent_reference_basis": "Exact published annotation blocks; independent of new parsing code, training independence NOT_ESTABLISHED",
+  "engineering_decisions": [
+    "One exact normalized sequence per future isolated attempt; safe sequence-hash ID, user ID kept as metadata",
+    "Historical raw output retains original IDs and source bindings; safe-ID model execution still untested",
+    "No B1 structure/scientific mapping dependency for B2 preparation",
+    "P/B guard uses raw labels independently of TYPE",
+    "Unknown S19 topology evidence remains null under nullable Schema; downstream implementation/validation stays in W2",
+    "No scientific performance tolerance or full length support inferred from parser or prior successful inputs"
+  ],
+  "authority_scope": "Engineering derivation only; expert originals and prior evidence unchanged"
+}

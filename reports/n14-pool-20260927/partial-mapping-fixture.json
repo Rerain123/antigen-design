@@ -1,0 +1,61 @@
+{
+  "status": "PASS",
+  "evidence_kind": "SYNTHETIC_FAULT_INJECTION_ON_ARCHIVED_NATIVE_BYTES",
+  "new_jobs": 0,
+  "rows": [
+    {
+      "variant_id": "single-A1G",
+      "ddg_foldx": 0.3223128,
+      "std": 0.010315893512439923,
+      "confidence": "high",
+      "runs": 5,
+      "native_ddg_runs": [
+        0.304046,
+        0.329721,
+        0.330868,
+        0.317647,
+        0.329282
+      ],
+      "source": "output/buildmodel/Dif_target_Repair.fxout"
+    },
+    {
+      "variant_id": "double-D3A-E4G",
+      "ddg_foldx": 2.3927959999999997,
+      "std": 0.1653548456622908,
+      "confidence": "high",
+      "runs": 5,
+      "native_ddg_runs": [
+        2.14134,
+        2.46915,
+        2.27959,
+        2.61842,
+        2.45548
+      ],
+      "source": "output/buildmodel/Dif_target_Repair.fxout"
+    },
+    {
+      "variant_id": "single-K9A",
+      "ddg_foldx": 0.9530712000000001,
+      "std": 0.006726727983202543,
+      "confidence": "high",
+      "runs": 5,
+      "native_ddg_runs": [
+        0.945722,
+        0.944225,
+        0.957616,
+        0.960548,
+        0.957245
+      ],
+      "source": "output/buildmodel/Dif_target_Repair.fxout"
+    }
+  ],
+  "skipped": [
+    {
+      "variant_id": "synthetic-unmappable",
+      "positions": [
+        1
+      ]
+    }
+  ],
+  "not_a_new_scientific_result": true
+}

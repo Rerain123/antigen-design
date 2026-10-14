@@ -1,0 +1,46 @@
+[INFO]       Logger:   Verbosity set to: 4 - [DEBUG]                                               (00:00:00)
+[DEBUG]      runJob:   Setting mutate to []                                                        (00:00:00)
+[DEBUG]      runJob:   Setting distance to 10                                                      (00:00:00)
+[DEBUG]      runJob:   Setting foldx to                                                            (00:00:00)
+[DEBUG]      runJob:   Setting tmp_dir to /out/run/tmp                                             (00:00:00)
+[DEBUG]      runJob:   Setting remote to False                                                     (00:00:00)
+[DEBUG]      runJob:   Setting verbose to 4                                                        (00:00:00)
+[DEBUG]      runJob:   Setting chain to A                                                          (00:00:00)
+[DEBUG]      runJob:   Setting work_dir to /out/run                                                (00:00:00)
+[DEBUG]      runJob:   Setting movie to                                                            (00:00:00)
+[DEBUG]      runJob:   Setting n_models to 12                                                      (00:00:00)
+[DEBUG]      runJob:   Setting dynamic to False                                                    (00:00:00)
+[DEBUG]      runJob:   Setting cabs_dir to                                                         (00:00:00)
+[DEBUG]      runJob:   Setting naccess to                                                          (00:00:00)
+[DEBUG]      runJob:   Setting cabs_config to                                                      (00:00:00)
+[DEBUG]      runJob:   Setting protein to /input.pdb                                               (00:00:00)
+[DEBUG]      runJob:   Setting overwrite to False                                                  (00:00:00)
+[INFO]       runJob:   Starting aggrescan3d job on: /input.pdb with A chain(s) selected            (00:00:00)
+[INFO]       runJob:   Creating pdb object from: /input.pdb                                        (00:00:00)
+[DEBUG]      PDB:      Reading /input.pdb                                                          (00:00:00)
+[DEBUG]      PDB:      Validating pdb file: /out/run/input.pdb                                     (00:00:00)
+[INFO]       runJob:   FoldX not utilized. Treating input pdb file as it was already optimized.    (00:00:00)
+[DEBUG]      freeSasa: Starting freeSasa with /opt/conda/lib/python2.7/site-                       
+                       packages/aggrescan/data/freesasa-2.0.1/src/freesasa --resolution 100        
+                       folded.pdb --radii naccess --format pdb --format rsa                        (00:00:00)
+[INFO]       Analysis: Starting Aggrescan3D on folded.pdb                                          (00:00:00)
+[DEBUG]      Analysis: Running Aggrescan3D program on /out/run/tmp/folded.pdb                      (00:00:00)
+[OUT FILES]  Main:     Verbosity higher than 3 - temporary files kept in /out/run/tmp              (00:00:00)
+[CRITICAL]   Main:     Unhandled Exception caught: could not convert string to float: N/A.         (00:00:00)
+[INFO]       Main:     Verbosity higher than 2 - raising the Exception to provide traceback.       (00:00:00)
+Traceback (most recent call last):
+  File "/opt/conda/bin/aggrescan", line 11, in <module>
+    sys.exit(run_program())
+  File "/opt/conda/lib/python2.7/site-packages/aggrescan/__main__.py", line 35, in run_program
+    a.runJob()
+  File "/opt/conda/lib/python2.7/site-packages/aggrescan/newRunJob.py", line 96, in runJob
+    analyze(config=self.config, target="folded.pdb", working_dir=self.tmp_dir, agg_work_dir=self.work_dir)
+  File "/opt/conda/lib/python2.7/site-packages/aggrescan/analysis.py", line 18, in aggregation_analysis
+    _run_aggrescan(target=target, working_dir=working_dir, config=config)
+  File "/opt/conda/lib/python2.7/site-packages/aggrescan/analysis.py", line 29, in _run_aggrescan
+    out = run_aggrescan_3d(target, matrix_dir, config["distance"], working_dir, naccess=config["naccess"])
+  File "/opt/conda/lib/python2.7/site-packages/aggrescan/aggrescan_3d.py", line 250, in run
+    filename="sasa.out", score_matrix=score_matrix, max_dist=max_dist)
+  File "/opt/conda/lib/python2.7/site-packages/aggrescan/aggrescan_3d.py", line 235, in parse_freesasa
+    rsa = float(line[22:28].strip())
+ValueError: could not convert string to float: N/A

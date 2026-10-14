@@ -1,0 +1,84 @@
+{
+  "entries": [
+    {
+      "parameters": {
+        "candidate_collection_complete": true,
+        "capped": false,
+        "data_version": null,
+        "evidence_kind": "CONTROLLED",
+        "recorded_parameters": {},
+        "source_operation": "PDB_SEARCH",
+        "source_status": "SUCCEEDED_EMPTY"
+      },
+      "runtime_seconds": null,
+      "step": "fetch_structure",
+      "tool": "PDB_SEARCH: CONTROLLED_FIXTURE",
+      "version": "CONTROLLED_FIXTURE"
+    },
+    {
+      "parameters": {
+        "candidate_collection_complete": false,
+        "capped": true,
+        "data_version": "2026-09-01T11:35:00+01:00",
+        "evidence_kind": "FROZEN_REPLAY",
+        "recorded_parameters": {
+          "database": "uniprotkb_swissprot",
+          "database_residue_count": 209017843,
+          "database_sequence_count": 575748,
+          "expect": 10,
+          "filter": "F",
+          "job_id": "ncbiblast-R20260903-012747-0146-79799257-p1m",
+          "matrix": "BLOSUM62",
+          "max_alignments": 100,
+          "max_scores": 100,
+          "parameter_scope": "TASK4_DISCOVERY_ONLY_NOT_SCIENTIFIC_THRESHOLDS",
+          "terminal_status": "FINISHED"
+        },
+        "source_operation": "BLAST_UNIPROT",
+        "source_status": "SUCCEEDED_WITH_RESULTS"
+      },
+      "runtime_seconds": 7.0,
+      "step": "fetch_structure",
+      "tool": "BLAST_UNIPROT: blastp",
+      "version": "BLASTP 2.16.0+"
+    },
+    {
+      "parameters": {
+        "candidate_collection_complete": true,
+        "capped": false,
+        "data_version": "2026_03",
+        "evidence_kind": "FROZEN_REPLAY",
+        "recorded_parameters": {
+          "accession": "O15116",
+          "sequence_exact": false
+        },
+        "source_operation": "UNIPROT_RECORD",
+        "source_status": "SUCCEEDED_WITH_RESULTS"
+      },
+      "runtime_seconds": null,
+      "step": "fetch_structure",
+      "tool": "UNIPROT_RECORD: UniProt REST",
+      "version": "UNREPORTED"
+    },
+    {
+      "parameters": {
+        "candidate_collection_complete": true,
+        "capped": false,
+        "data_version": "6",
+        "evidence_kind": "FROZEN_REPLAY",
+        "recorded_parameters": {
+          "accession": "O15116",
+          "http_status": 200
+        },
+        "source_operation": "AFDB_LOOKUP",
+        "source_status": "SUCCEEDED_WITH_RESULTS"
+      },
+      "runtime_seconds": null,
+      "step": "fetch_structure",
+      "tool": "AFDB_LOOKUP: AlphaFold DB API",
+      "version": "UNREPORTED"
+    }
+  ],
+  "pipeline_version": "s07.task5.v1-review",
+  "timestamp": "2026-09-03T01:45:02.949185+00:00"
+}

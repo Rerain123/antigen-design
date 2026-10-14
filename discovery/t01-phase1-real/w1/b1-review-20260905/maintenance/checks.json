@@ -1,0 +1,108 @@
+[
+  {
+    "name": "root_tests",
+    "command": [
+      "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "-m",
+      "pytest",
+      "-o",
+      "addopts=",
+      "-q",
+      "--junitxml=D:\\work\\蛋白智能体\\.tmp\\w1-b1-final-checks-after-fix-20260905\\root-tests.xml"
+    ],
+    "exit_code": 0,
+    "stdout": "........................................................................ [ 12%]\n........................................................................ [ 25%]\n........................................................................ [ 38%]\n........................................................................ [ 50%]\n.......................................................s................ [ 63%]\n........................................................................ [ 76%]\n........................................................................ [ 88%]\n...............................................................          [100%]\n- generated xml file: D:\\work\\蛋白智能体\\.tmp\\w1-b1-final-checks-after-fix-20260905\\root-tests.xml -\n566 passed, 1 skipped in 91.56s (0:01:31)\n",
+    "stderr": ""
+  },
+  {
+    "name": "documentation",
+    "command": [
+      "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "scripts/check_docs.py"
+    ],
+    "exit_code": 0,
+    "stdout": "documentation_status=PASS markdown_files=170\n",
+    "stderr": ""
+  },
+  {
+    "name": "b1_review",
+    "command": [
+      "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "scripts/check_w1_b1_review.py",
+      "--reparse"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"status\": \"PASS_REVIEW_PREPARATION\", \"case_count\": 23, \"expert_sources\": 22, \"request_result_pairs\": 2, \"reparsed\": true, \"scientific_approval\": \"NOT_GRANTED\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+    "stderr": ""
+  },
+  {
+    "name": "runtime_current",
+    "command": [
+      "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "scripts/check_w1_runtime.py",
+      "--batch",
+      "discovery/t01-phase1-real/w1/runtime-file-fix-20260905"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"status\": \"PASS_ENGINEERING_ONLY\", \"runtime_tests\": 51, \"runtime_cases\": 15, \"cli_cases\": 5, \"source_verification\": \"CURRENT_REPOSITORY\", \"source_files\": 16, \"output_files\": 62, \"production_status\": \"NOT_DEPLOYED\"}\n",
+    "stderr": ""
+  },
+  {
+    "name": "runtime_historical",
+    "command": [
+      "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "scripts/check_w1_runtime.py"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"status\": \"PASS_ENGINEERING_ONLY\", \"runtime_tests\": 51, \"runtime_cases\": 15, \"cli_cases\": 5, \"source_verification\": \"ARCHIVED_EXECUTED_SOURCES\", \"source_files\": 16, \"output_files\": 62, \"production_status\": \"NOT_DEPLOYED\"}\n",
+    "stderr": ""
+  },
+  {
+    "name": "contract",
+    "command": [
+      "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "scripts/check_w1_contract.py"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"status\": \"PASS\", \"scope\": \"STATIC_CONTRACT_ONLY\", \"expert_sources\": 22, \"source_files\": 32, \"job_examples\": 8, \"submit_examples\": 1, \"control_examples\": 4, \"runtime_cases_declared\": 15, \"scientific_cases_declared\": 8, \"runtime_execution\": \"NOT_RUN\", \"scientific_execution\": \"NOT_RUN\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+    "stderr": ""
+  },
+  {
+    "name": "frozen_mock",
+    "command": [
+      "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "scripts/t01_phase1_mock/run_m4_campaign.py",
+      "verify"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"status\": \"PASS\", \"release_state\": \"FROZEN\", \"campaign_id\": \"t01p1m-v01-reg-20260904-release-freeze-03\", \"frozen_asset_count\": 457}\n",
+    "stderr": ""
+  },
+  {
+    "name": "historical_packages",
+    "command": [
+      "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "scripts/package_tool_handoffs.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "stdout": "{\n  \"status\": \"PASS\",\n  \"scope\": \"handoff_archive_and_engineering_interface\",\n  \"scientific_tool_execution\": \"NOT_RUN\",\n  \"scientific_acceptance\": \"NOT_RUN\",\n  \"packages\": [\n    {\n      \"package_id\": \"PH1-TOOL-FREESASA\",\n      \"version\": \"0.1\",\n      \"revision\": \"shared-interface-20260905\",\n      \"archive_sha256\": \"6cdb87a80d3b18064f3cbbd529ab58f21e182d593a5d043ff5d90358015c13ba\",\n      \"file_count\": 56,\n      \"source_copies_verified\": 6,\n      \"closed_local_links\": 42,\n      \"interface_files_identical\": 38,\n      \"synthetic_pairs_checked\": 8\n    },\n    {\n      \"package_id\": \"PH1-TOOL-BEPIPRED\",\n      \"version\": \"0.1\",\n      \"revision\": \"shared-interface-20260905\",\n      \"archive_sha256\": \"215ad2849c1a2ee1f7f007d140a1bb7808728ba43372686490070df9bd79cfab\",\n      \"file_count\": 56,\n      \"source_copies_verified\": 6,\n      \"closed_local_links\": 41,\n      \"interface_files_identical\": 38,\n      \"synthetic_pairs_checked\": 8\n    }\n  ]\n}\n",
+    "stderr": ""
+  }
+]

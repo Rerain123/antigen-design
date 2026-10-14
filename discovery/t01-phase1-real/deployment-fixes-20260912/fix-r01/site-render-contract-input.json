@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.1.0",
+  "namespace": "him-ws",
+  "api_server": "https://api.contract-fixture.local",
+  "control_image": "contract-fixture/control@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "runtime_claim": "t01-phase1-real-runtime",
+  "storage_class": "ceph-rbd",
+  "storage_size": "2Ti",
+  "source_assets_claim": "t01-source-assets",
+  "credentials_secret": "t01-service-credentials",
+  "image_pull_secrets": [
+    "t01-registry-pull"
+  ],
+  "tools": {
+    "structure": {
+      "image": "contract-fixture/structure@sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "asset_claim": "t01-structure-assets",
+      "gpu_resource_key": null
+    }
+  },
+  "database_claims": {}
+}

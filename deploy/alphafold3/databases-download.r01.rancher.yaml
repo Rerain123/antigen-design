@@ -1,0 +1,491 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: antigen-af3-databases
+  namespace: him-ws
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: ceph-rbd
+  resources:
+    requests:
+      storage: 1Ti
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-af3-databases-download-r01
+  namespace: him-ws
+immutable: true
+data:
+  download_af3_databases.py: |
+    """Download pinned official AF3 v3.0 archives to a dedicated persistent volume.
+
+    Archives only: unpacking and data-pipeline acceptance are separate steps.
+    Uses official MD5 (present on every pinned object) plus local SHA-256.
+    """
+    from __future__ import annotations
+
+    import base64
+    import hashlib
+    import json
+    from pathlib import Path
+    import shutil
+    import sys
+    import time
+    import urllib.request
+
+    if __package__:
+        from .download_af3_weights import atomic_json, source_identity
+    else:
+        from download_af3_weights import atomic_json, source_identity
+
+    BASE = 'https://storage.googleapis.com/alphafold-databases/v3.0/'
+
+
+    def download_one(root, asset, opener=urllib.request.urlopen):
+        name = asset['file']
+        if Path(name).name != name or '/' in name or '\\' in name or not name.endswith('.zst'):
+            raise ValueError('Invalid archive filename')
+        url = BASE + name
+        with opener(urllib.request.Request(url, method='HEAD'), timeout=60) as reply:
+            identity = source_identity(reply.headers)
+            identity['url'] = url
+            if reply.status != 200 or identity != asset['identity']:
+                raise ValueError('Official object differs from pinned manifest: ' + name)
+        root.mkdir(parents=True, exist_ok=True)
+        target, partial = root / name, root / (name + '.partial')
+        source = root / (name + '.source.json')
+        if source.exists():
+            if json.loads(source.read_text()) != identity:
+                raise ValueError('Partial source identity changed: ' + name)
+        elif target.exists() or partial.exists():
+            raise ValueError('Existing bytes have no source identity: ' + name)
+        else:
+            atomic_json(source, identity)
+        size = identity['bytes']
+        if not target.exists():
+            offset = partial.stat().st_size if partial.exists() else 0
+            if offset > size:
+                raise ValueError('Partial exceeds official size: ' + name)
+            if shutil.disk_usage(root).free < size - offset + 1024**3:
+                raise ValueError('Insufficient PVC space: ' + name)
+            if offset < size:
+                headers = {'If-Match': identity['etag'], 'Accept-Encoding': 'identity'}
+                if offset:
+                    headers['Range'] = f'bytes={offset}-'
+                with opener(urllib.request.Request(url, headers=headers), timeout=120) as reply:
+                    if reply.status != (206 if offset else 200):
+                        raise ValueError('Server did not honor range: ' + name)
+                    if offset and reply.headers.get('Content-Range') != f'bytes {offset}-{size-1}/{size}':
+                        raise ValueError('Incorrect resume range: ' + name)
+                    if int(reply.headers['Content-Length']) != size-offset or reply.headers.get('ETag') != identity['etag']:
+                        raise ValueError('GET identity differs from HEAD: ' + name)
+                    print('DATABASE_DOWNLOAD_START', name, offset, size, flush=True)
+                    last = time.monotonic()
+                    with partial.open('ab' if partial.exists() else 'xb') as output:
+                        while chunk := reply.read(4*1024**2):
+                            if offset + len(chunk) > size:
+                                raise ValueError('Response exceeds pinned size: ' + name)
+                            output.write(chunk)
+                            offset += len(chunk)
+                            if time.monotonic()-last >= 30:
+                                print('DATABASE_DOWNLOAD_PROGRESS', name, offset, size, round(offset*100/size, 1), flush=True)
+                                last = time.monotonic()
+            checked = partial
+        else:
+            checked = target
+        if checked.stat().st_size != size:
+            raise ValueError('Incomplete archive; partial retained: ' + name)
+        print('DATABASE_VERIFY_START', name, size, flush=True)
+        md5, sha = hashlib.md5(), hashlib.sha256()
+        last, count = time.monotonic(), 0
+        with checked.open('rb') as stream:
+            while chunk := stream.read(4*1024**2):
+                md5.update(chunk)
+                sha.update(chunk)
+                count += len(chunk)
+                if time.monotonic()-last >= 30:
+                    print('DATABASE_VERIFY_PROGRESS', name, count, size, flush=True)
+                    last = time.monotonic()
+        if base64.b64encode(md5.digest()).decode() != identity['md5_base64']:
+            raise ValueError('Official MD5 mismatch; archive not accepted: ' + name)
+        if checked == partial:
+            partial.rename(target)
+        receipt = {**identity, 'file': name, 'sha256': sha.hexdigest(),
+                   'official_md5_verified': True, 'decompressed': False,
+                   'status': 'ARCHIVE_VERIFIED_NOT_DEPLOYED', 'scientific_gate': 'CLOSED'}
+        atomic_json(root / (name + '.receipt.json'), receipt)
+        print('AF3_DATABASE_ARCHIVE_VERIFIED', name, size, receipt['sha256'], flush=True)
+        return receipt
+
+
+    def main():
+        import fcntl
+        root, manifest_path = Path(sys.argv[1]), Path(sys.argv[2])
+        manifest = json.loads(manifest_path.read_text())
+        root.mkdir(parents=True, exist_ok=True)
+        with (root / '.download.lock').open('a') as lock:
+            fcntl.flock(lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+            saved = root / 'database-manifest.json'
+            if saved.exists() and json.loads(saved.read_text()) != manifest:
+                raise ValueError('Database manifest changed; use a separate directory')
+            atomic_json(saved, manifest)
+            assets = manifest['assets']
+            remaining = sum(max(0, a['identity']['bytes'] - max(
+                [(root / (a['file'] + suffix)).stat().st_size
+                 for suffix in ('', '.partial') if (root / (a['file'] + suffix)).exists()] or [0])) for a in assets)
+            if shutil.disk_usage(root).free < remaining + 1024**3:
+                raise ValueError('Insufficient PVC space for remaining archive set')
+            receipts = []
+            for asset in assets:
+                receipts.append(download_one(root, asset))
+            atomic_json(root / 'download-receipt.json', {
+                'status': 'DATABASE_ARCHIVES_VERIFIED_NOT_DEPLOYED', 'scientific_gate': 'CLOSED',
+                'decompressed': False, 'assets': receipts})
+            print('AF3_DATABASES_ARCHIVES_VERIFIED', len(receipts), sum(a['bytes'] for a in receipts), flush=True)
+
+
+    if __name__ == '__main__':
+        main()
+  download_af3_weights.py: |
+    """Download only official AF3 weights; preserve partial bytes across Pod retries.
+
+    Verifies the Google object's MD5/CRC32C and records local SHA-256. Does not decompress,
+    load model parameters, fetch databases, or establish scientific qualification.
+    """
+    from __future__ import annotations
+
+    import base64
+    import hashlib
+    import json
+    from pathlib import Path
+    import shutil
+    import sys
+    import time
+    import urllib.request
+
+    URL = 'https://storage.googleapis.com/alphafold3/af3.bin.zst'
+
+
+    def crc32c_table():
+        table = []
+        for value in range(256):
+            for _ in range(8):
+                value = (value >> 1) ^ (0x82F63B78 if value & 1 else 0)
+            table.append(value)
+        return tuple(table)
+
+
+    CRC32C_TABLE = crc32c_table()
+
+
+    def crc32c_update(state, raw):
+        for byte in raw:
+            state = CRC32C_TABLE[(state ^ byte) & 255] ^ (state >> 8)
+        return state
+
+
+    def source_identity(headers):
+        values = headers.get_all('x-goog-hash', []) if hasattr(headers, 'get_all') else [headers.get('x-goog-hash', '')]
+        hashes = {}
+        for value in values:
+            for entry in value.split(','):
+                if '=' not in entry:
+                    continue
+                name, digest = entry.strip().split('=', 1)
+                if name in hashes and hashes[name] != digest:
+                    raise ValueError('Conflicting official checksum headers')
+                hashes[name] = digest
+        size = int(headers['Content-Length'])
+        etag = headers.get('ETag')
+        if size <= 0 or not etag or not any(k in hashes for k in ('md5', 'crc32c')):
+            raise ValueError('Official size/ETag/checksum identity is incomplete')
+        identity = {'url': URL, 'bytes': size, 'etag': etag}
+        for name, length in [('md5', 16), ('crc32c', 4)]:
+            if name in hashes:
+                if len(base64.b64decode(hashes[name], validate=True)) != length:
+                    raise ValueError('Invalid official ' + name + ' checksum')
+                identity[name + '_base64'] = hashes[name]
+        return identity
+
+
+    def atomic_json(path, value):
+        temporary = path.with_suffix(path.suffix + '.pending')
+        temporary.write_text(json.dumps(value, indent=2) + '\n', encoding='utf-8')
+        temporary.replace(path)
+
+
+    def download(root: Path, opener=urllib.request.urlopen):
+        root.mkdir(parents=True, exist_ok=True)
+        target = root / 'af3.bin.zst'
+        partial = root / 'af3.bin.zst.partial'
+        identity_path = root / 'download-source.json'
+        with opener(urllib.request.Request(URL, method='HEAD'), timeout=60) as response:
+            if response.status != 200:
+                raise ValueError('Official object HEAD did not return 200')
+            identity = source_identity(response.headers)
+        size, etag = identity['bytes'], identity['etag']
+        if identity_path.exists():
+            if json.loads(identity_path.read_text()) != identity:
+                raise ValueError('Remote object changed; refusing to mix asset versions')
+        elif target.exists() or partial.exists():
+            raise ValueError('Existing bytes have no source identity; refusing overwrite/resume')
+        else:
+            atomic_json(identity_path, identity)
+        if not target.exists():
+            offset = partial.stat().st_size if partial.exists() else 0
+            if offset > size:
+                raise ValueError('Partial file exceeds official object size')
+            if shutil.disk_usage(root).free < size - offset + 128 * 1024**2:
+                raise ValueError('Insufficient persistent volume free space')
+            if offset < size:
+                headers = {'If-Match': etag, 'Accept-Encoding': 'identity'}
+                if offset:
+                    headers['Range'] = 'bytes=' + str(offset) + '-'
+                request = urllib.request.Request(URL, headers=headers)
+                with opener(request, timeout=60) as response:
+                    if response.status != (206 if offset else 200):
+                        raise ValueError('Server did not honor download/range request')
+                    if offset and response.headers.get('Content-Range') != f'bytes {offset}-{size - 1}/{size}':
+                        raise ValueError('Server returned an unexpected resume range')
+                    if int(response.headers['Content-Length']) != size - offset:
+                        raise ValueError('Download response size differs from official object')
+                    if response.headers.get('ETag', etag) != etag:
+                        raise ValueError('Download ETag differs from HEAD')
+                    print('DOWNLOAD_START', offset, size, flush=True)
+                    last_log = time.monotonic()
+                    with partial.open('ab' if partial.exists() else 'xb') as output:
+                        while True:
+                            chunk = response.read(4 * 1024**2)
+                            if not chunk:
+                                break
+                            if offset + len(chunk) > size:
+                                raise ValueError('Download response exceeded official size')
+                            output.write(chunk)
+                            offset += len(chunk)
+                            if time.monotonic() - last_log >= 30:
+                                print('DOWNLOAD_PROGRESS', offset, size, round(100 * offset / size, 1), flush=True)
+                                last_log = time.monotonic()
+            checked = partial
+        else:
+            checked = target
+        if checked.stat().st_size != size:
+            raise ValueError('Download incomplete; partial bytes retained for retry')
+        print('VERIFYING_OFFICIAL_CHECKSUMS_AND_LOCAL_SHA256', flush=True)
+        remote_hash = hashlib.md5()
+        local_hash = hashlib.sha256()
+        crc_state = 0xffffffff
+        checked_bytes = 0
+        last_log = time.monotonic()
+        with checked.open('rb') as stream:
+            for chunk in iter(lambda: stream.read(4 * 1024**2), b''):
+                remote_hash.update(chunk)
+                local_hash.update(chunk)
+                if 'crc32c_base64' in identity:
+                    crc_state = crc32c_update(crc_state, chunk)
+                checked_bytes += len(chunk)
+                if time.monotonic() - last_log >= 30:
+                    print('VERIFY_PROGRESS', checked_bytes, size, flush=True)
+                    last_log = time.monotonic()
+        if 'md5_base64' in identity and base64.b64encode(remote_hash.digest()).decode() != identity['md5_base64']:
+            raise ValueError('Official MD5 mismatch; refusing to publish completed weights')
+        if 'crc32c_base64' in identity and base64.b64encode((crc_state ^ 0xffffffff).to_bytes(4, 'big')).decode() != identity['crc32c_base64']:
+            raise ValueError('Official CRC32C mismatch; refusing to publish completed weights')
+        if checked == partial:
+            partial.rename(target)
+        receipt = {**identity, 'sha256': local_hash.hexdigest(), 'file': target.name,
+                   'status': 'WEIGHTS_DOWNLOADED_VERIFIED_NOT_DEPLOYED',
+                   'official_md5_verified': 'md5_base64' in identity,
+                   'official_crc32c_verified': 'crc32c_base64' in identity, 'decompressed': False,
+                   'databases_downloaded': False, 'scientific_gate': 'CLOSED'}
+        atomic_json(root / 'download-receipt.json', receipt)
+        print('AF3_WEIGHTS_VERIFIED', size, receipt['sha256'], flush=True)
+        return receipt
+
+
+    def main():
+        import fcntl
+        root = Path(sys.argv[1])
+        root.mkdir(parents=True, exist_ok=True)
+        with (root / '.download.lock').open('a') as lock:
+            fcntl.flock(lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+            download(root)
+
+
+    if __name__ == '__main__':
+        main()
+  database-manifest.json: |
+    {
+      "schema": "t01.af3-database-download/1",
+      "release": "alphafold-databases/v3.0",
+      "listing_source": "https://github.com/google-deepmind/alphafold3/blob/v3.0.2/fetch_databases.sh",
+      "identity_checked_date": "2026-09-17",
+      "archives_only": true,
+      "total_bytes": 238784443666,
+      "assets": [
+        {
+          "file": "pdb_seqres_2022_09_28.fasta.zst",
+          "generation": "1730832733047846",
+          "identity": {
+            "url": "https://storage.googleapis.com/alphafold-databases/v3.0/pdb_seqres_2022_09_28.fasta.zst",
+            "bytes": 26493534,
+            "etag": "\"86a1b92d3988ca499d79651d075379b2\"",
+            "md5_base64": "hqG5LTmIykmdeWUdB1N5sg==",
+            "crc32c_base64": "uZUlYQ=="
+          }
+        },
+        {
+          "file": "rfam_14_9_clust_seq_id_90_cov_80_rep_seq.fasta.zst",
+          "generation": "1730832743346741",
+          "identity": {
+            "url": "https://storage.googleapis.com/alphafold-databases/v3.0/rfam_14_9_clust_seq_id_90_cov_80_rep_seq.fasta.zst",
+            "bytes": 56604542,
+            "etag": "\"7dd833c908ae8288b320fdb363b56848\"",
+            "md5_base64": "fdgzyQiugoizIP2zY7VoSA==",
+            "crc32c_base64": "mw7VNQ=="
+          }
+        },
+        {
+          "file": "rnacentral_active_seq_id_90_cov_80_linclust.fasta.zst",
+          "generation": "1730833037254881",
+          "identity": {
+            "url": "https://storage.googleapis.com/alphafold-databases/v3.0/rnacentral_active_seq_id_90_cov_80_linclust.fasta.zst",
+            "bytes": 3519676108,
+            "etag": "\"f4db49a31a8c2576210d5fa273296117\"",
+            "md5_base64": "9NtJoxqMJXYhDV+icylhFw==",
+            "crc32c_base64": "iZSwlA=="
+          }
+        },
+        {
+          "file": "bfd-first_non_consensus_sequences.fasta.zst",
+          "generation": "1730822885415645",
+          "identity": {
+            "url": "https://storage.googleapis.com/alphafold-databases/v3.0/bfd-first_non_consensus_sequences.fasta.zst",
+            "bytes": 9880478127,
+            "etag": "\"ccde88faeb9eb62b0c83d07edcbf3459\"",
+            "md5_base64": "zN6I+uuetisMg9B+3L80WQ==",
+            "crc32c_base64": "v9fbdw=="
+          }
+        },
+        {
+          "file": "nt_rna_2023_02_23_clust_seq_id_90_cov_80_rep_seq.fasta.zst",
+          "generation": "1730828153681603",
+          "identity": {
+            "url": "https://storage.googleapis.com/alphafold-databases/v3.0/nt_rna_2023_02_23_clust_seq_id_90_cov_80_rep_seq.fasta.zst",
+            "bytes": 17028641580,
+            "etag": "\"2da99b2f9704896ce9b4f5dd9425e432\"",
+            "md5_base64": "LambL5cEiWzptPXdlCXkMg==",
+            "crc32c_base64": "0jZlYg=="
+          }
+        },
+        {
+          "file": "uniref90_2022_05.fa.zst",
+          "generation": "1730837673075080",
+          "identity": {
+            "url": "https://storage.googleapis.com/alphafold-databases/v3.0/uniref90_2022_05.fa.zst",
+            "bytes": 33271639594,
+            "etag": "\"c9136c52ca9e25c2ce8d3a569d47e912\"",
+            "md5_base64": "yRNsUsqeJcLOjTpWnUfpEg==",
+            "crc32c_base64": "OT/GbQ=="
+          }
+        },
+        {
+          "file": "uniprot_all_2021_04.fa.zst",
+          "generation": "1730835786074627",
+          "identity": {
+            "url": "https://storage.googleapis.com/alphafold-databases/v3.0/uniprot_all_2021_04.fa.zst",
+            "bytes": 48688827585,
+            "etag": "\"cabf618be6f8c85397c97f49d7da9307\"",
+            "md5_base64": "yr9hi+b4yFOXyX9J19qTBw==",
+            "crc32c_base64": "k9mSMA=="
+          }
+        },
+        {
+          "file": "pdb_2022_09_28_mmcif_files.tar.zst",
+          "generation": "1730832728463652",
+          "identity": {
+            "url": "https://storage.googleapis.com/alphafold-databases/v3.0/pdb_2022_09_28_mmcif_files.tar.zst",
+            "bytes": 56979074571,
+            "etag": "\"13447e161d081c7d5df71781b6de2427\"",
+            "md5_base64": "E0R+Fh0IHH1d9xeBtt4kJw==",
+            "crc32c_base64": "waDF1A=="
+          }
+        },
+        {
+          "file": "mgy_clusters_2022_05.fa.zst",
+          "generation": "1730826709796458",
+          "identity": {
+            "url": "https://storage.googleapis.com/alphafold-databases/v3.0/mgy_clusters_2022_05.fa.zst",
+            "bytes": 69333008025,
+            "etag": "\"d2482ea92b28ccb14e235bb4868b6d50\"",
+            "md5_base64": "0kguqSsozLFOI1u0hottUA==",
+            "crc32c_base64": "gPPw4g=="
+          }
+        }
+      ]
+    }
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-af3-databases-download-r01
+  namespace: him-ws
+spec:
+  backoffLimit: 6
+  activeDeadlineSeconds: 604800
+  template:
+    metadata:
+      labels:
+        app: antigen-af3-databases-download-r01
+      annotations:
+        antigen-design/download-bundle-sha256: 4a2ea8938eed2e4f5ca7508337d51120f5d8b6ae77e751e9b383450e6f5a706e
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+      - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+      - name: download
+        image: harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:fba5a32c0550e56a5310160e2fc49d647fcd27d76851073a2d82cc935fb4c2fc
+        command:
+        - python
+        - -u
+        - -B
+        - /download/download_af3_databases.py
+        - /databases/alphafold3-v3.0/archives
+        - /download/database-manifest.json
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+            ephemeral-storage: 128Mi
+          limits:
+            cpu: '1'
+            memory: 512Mi
+            ephemeral-storage: 512Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: databases
+          mountPath: /databases
+        - name: script
+          mountPath: /download
+          readOnly: true
+      volumes:
+      - name: databases
+        persistentVolumeClaim:
+          claimName: antigen-af3-databases
+      - name: script
+        configMap:
+          name: antigen-af3-databases-download-r01

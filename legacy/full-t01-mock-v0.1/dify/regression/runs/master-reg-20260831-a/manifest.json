@@ -1,0 +1,1834 @@
+{
+  "schema_version": "0.1.0",
+  "workflow_name": "T01_Master_v10",
+  "campaign": "master-reg-20260831-a",
+  "generated_at": "2026-08-31T10:19:39.243695+00:00",
+  "case_count": 25,
+  "cases": [
+    {
+      "index": 1,
+      "run_id": "master-reg-20260831-a-01",
+      "scenario_id": "MOCK-HAPPY-PATH",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-01",
+        "scenario_id": "MOCK-HAPPY-PATH",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_IF_CONTEXT_HIGH",
+          "T01_Master_v10::T01_IF_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_T11_PREPARE",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_BEST",
+          "T01_P0_Structure::P0_S09_QUALITY_EXIST",
+          "T01_P4_Design::P4_S29_CONSERVATIVE_A1",
+          "T01_P5_VariantEvaluation::P5_S31_VARIANT_DDG"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_0B_INJECT_HIGH",
+          "T01_Master_v10::T01_0B_INJECT_NONHIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_HIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P3_CONTEXT",
+          "T01_P7_OutputHandoff::P7_S44_SKIP",
+          "T01_P7_OutputHandoff::P7_S44_FAIL",
+          "T01_P0_Structure::P0_S08_PREDICT",
+          "T01_P4_Design::P4_S27_DESIGN_A2",
+          "T01_P6_CodonStabilityMD::P6_S32_MD"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_G01_CONTEXT",
+            "path": "outputs.json.0.data.route",
+            "equals": "NONE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P3_FULL",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P4_DESIGN",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "VARIANT_HANDOFF"
+          }
+        ],
+        "scenario_id": "MOCK-HAPPY-PATH",
+        "profile": "full_best",
+        "description": "全部通过",
+        "expected_behavior": "P0-P7完整路径，BEST候选交接。"
+      }
+    },
+    {
+      "index": 2,
+      "run_id": "master-reg-20260831-a-02",
+      "scenario_id": "MOCK-SHORT-MHC-HALT",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-02",
+        "scenario_id": "MOCK-SHORT-MHC-HALT",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P7_OUTPUT"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_G00_LENGTH",
+            "path": "outputs.json.0.status",
+            "equals": "FAILED"
+          },
+          {
+            "node": "T01_Master_v10::T01_G00_LENGTH",
+            "path": "outputs.json.0.data.route",
+            "equals": "HALT"
+          },
+          {
+            "node": "T01_Master_v10::T01_IF_LENGTH_HALT",
+            "path": "outputs.selected_case_id",
+            "equals": "true"
+          },
+          {
+            "node": "T01_Master_v10::T01_G00_LENGTH",
+            "path": "outputs.json.0.error.category",
+            "equals": "SCIENTIFIC_GATE"
+          }
+        ],
+        "scenario_id": "MOCK-SHORT-MHC-HALT",
+        "profile": "short_halt",
+        "description": "小于9aa且需MHC",
+        "expected_behavior": "长度守卫以结构化FAILED/HALT终止，不进入P0。"
+      }
+    },
+    {
+      "index": 3,
+      "run_id": "master-reg-20260831-a-03",
+      "scenario_id": "MOCK-SHORT-WARNING",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-03",
+        "scenario_id": "MOCK-SHORT-WARNING",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_IF_CONTEXT_HIGH",
+          "T01_Master_v10::T01_IF_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_T11_PREPARE",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_BEST"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_0B_INJECT_HIGH",
+          "T01_Master_v10::T01_0B_INJECT_NONHIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_HIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P3_CONTEXT",
+          "T01_P7_OutputHandoff::P7_S44_SKIP",
+          "T01_P7_OutputHandoff::P7_S44_FAIL"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_G01_CONTEXT",
+            "path": "outputs.json.0.data.route",
+            "equals": "NONE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P3_FULL",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P4_DESIGN",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "VARIANT_HANDOFF"
+          },
+          {
+            "node": "T01_Master_v10::T01_G00_LENGTH",
+            "path": "outputs.json.0.status",
+            "equals": "DEGRADED"
+          },
+          {
+            "node": "T01_Master_v10::T01_G00_LENGTH",
+            "path": "outputs.json.0.data.route",
+            "equals": "WARNING"
+          }
+        ],
+        "scenario_id": "MOCK-SHORT-WARNING",
+        "profile": "full_best",
+        "description": "9至29aa",
+        "expected_behavior": "长度守卫WARNING后继续完整路径。"
+      }
+    },
+    {
+      "index": 4,
+      "run_id": "master-reg-20260831-a-04",
+      "scenario_id": "MOCK-CONTEXT-HIGH",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-04",
+        "scenario_id": "MOCK-CONTEXT-HIGH",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_0B_INJECT_HIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_HIGH",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P2_ConservationDomain::P2_S16_DOMAINS_CONTEXT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_BEST"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_0B_INJECT_NONHIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P3_CONTEXT",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_P2_ConservationDomain::P2_S13_HOMOLOGS"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_G01_CONTEXT",
+            "path": "outputs.json.0.data.route",
+            "equals": "HIGH"
+          },
+          {
+            "node": "T01_Master_v10::T01_P4_DESIGN",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "VARIANT_HANDOFF"
+          }
+        ],
+        "scenario_id": "MOCK-CONTEXT-HIGH",
+        "profile": "context_high_best",
+        "description": "高置信注入",
+        "expected_behavior": "注入上下文，P2仅补跑S-16，随后从step15进入设计。"
+      }
+    },
+    {
+      "index": 5,
+      "run_id": "master-reg-20260831-a-05",
+      "scenario_id": "MOCK-CONTEXT-NONHIGH",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-05",
+        "scenario_id": "MOCK-CONTEXT-NONHIGH",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_0B_INJECT_NONHIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P3_CONTEXT",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P2_ConservationDomain::P2_S16_DOMAINS_CONTEXT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_BEST"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_0B_INJECT_HIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_HIGH",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_P2_ConservationDomain::P2_S13_HOMOLOGS"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_G01_CONTEXT",
+            "path": "outputs.json.0.data.route",
+            "equals": "NON_HIGH"
+          },
+          {
+            "node": "T01_Master_v10::T01_P3_CONTEXT",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "VARIANT_HANDOFF"
+          }
+        ],
+        "scenario_id": "MOCK-CONTEXT-NONHIGH",
+        "profile": "context_nonhigh_best",
+        "description": "非高置信注入",
+        "expected_behavior": "注入上下文，P2补跑S-16并经P3重算结构依赖维度。"
+      }
+    },
+    {
+      "index": 6,
+      "run_id": "master-reg-20260831-a-06",
+      "scenario_id": "MOCK-NO-STRUCTURE",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-06",
+        "scenario_id": "MOCK-NO-STRUCTURE",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_IF_CONTEXT_HIGH",
+          "T01_Master_v10::T01_IF_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_T11_PREPARE",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_BEST",
+          "T01_P0_Structure::P0_S08_PREDICT",
+          "T01_P0_Structure::P0_S09_QUALITY_PRED"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_0B_INJECT_HIGH",
+          "T01_Master_v10::T01_0B_INJECT_NONHIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_HIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P3_CONTEXT",
+          "T01_P7_OutputHandoff::P7_S44_SKIP",
+          "T01_P7_OutputHandoff::P7_S44_FAIL",
+          "T01_P0_Structure::P0_S09_QUALITY_EXIST"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_G01_CONTEXT",
+            "path": "outputs.json.0.data.route",
+            "equals": "NONE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P3_FULL",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P4_DESIGN",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "VARIANT_HANDOFF"
+          }
+        ],
+        "scenario_id": "MOCK-NO-STRUCTURE",
+        "profile": "full_best",
+        "description": "S-07无结构",
+        "expected_behavior": "P0从S-07进入S-08预测分支。"
+      }
+    },
+    {
+      "index": 7,
+      "run_id": "master-reg-20260831-a-07",
+      "scenario_id": "MOCK-LOW-STRUCTURE",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-07",
+        "scenario_id": "MOCK-LOW-STRUCTURE",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_SKIP"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_P7_OutputHandoff::P7_S44_BEST",
+          "T01_P7_OutputHandoff::P7_S44_FAIL",
+          "T01_P0_Structure::P0_S11_RSA"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_P3_FULL",
+            "path": "outputs.stage_route",
+            "equals": "DESIGN_SKIPPED"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "WT_DESIGN_SKIPPED"
+          },
+          {
+            "node": "T01_P0_Structure::P0_G_RSA",
+            "path": "outputs.json.0.data.route",
+            "equals": "SKIP_S11"
+          }
+        ],
+        "scenario_id": "MOCK-LOW-STRUCTURE",
+        "profile": "full_skip",
+        "description": "S-09 low",
+        "expected_behavior": "S-11跳过，R-57跳过设计，以WT_DESIGN_SKIPPED交接。"
+      }
+    },
+    {
+      "index": 8,
+      "run_id": "master-reg-20260831-a-08",
+      "scenario_id": "MOCK-BACTERIA",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-08",
+        "scenario_id": "MOCK-BACTERIA",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_IF_CONTEXT_HIGH",
+          "T01_Master_v10::T01_IF_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_T11_PREPARE",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_BEST",
+          "T01_P0_Structure::P0_S06_LOCALIZE"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_0B_INJECT_HIGH",
+          "T01_Master_v10::T01_0B_INJECT_NONHIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_HIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P3_CONTEXT",
+          "T01_P7_OutputHandoff::P7_S44_SKIP",
+          "T01_P7_OutputHandoff::P7_S44_FAIL"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_G01_CONTEXT",
+            "path": "outputs.json.0.data.route",
+            "equals": "NONE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P3_FULL",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P4_DESIGN",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "VARIANT_HANDOFF"
+          },
+          {
+            "node": "T01_P0_Structure::P0_G_BACTERIA",
+            "path": "outputs.json.0.data.route",
+            "equals": "RUN_S06"
+          }
+        ],
+        "scenario_id": "MOCK-BACTERIA",
+        "profile": "full_best",
+        "description": "bacteria",
+        "expected_behavior": "P0执行S-06并解析细菌定位flag。"
+      }
+    },
+    {
+      "index": 9,
+      "run_id": "master-reg-20260831-a-09",
+      "scenario_id": "MOCK-MEMBRANE-SKIP",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-09",
+        "scenario_id": "MOCK-MEMBRANE-SKIP",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_SKIP"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_P7_OutputHandoff::P7_S44_BEST",
+          "T01_P7_OutputHandoff::P7_S44_FAIL"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_P3_FULL",
+            "path": "outputs.stage_route",
+            "equals": "DESIGN_SKIPPED"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "WT_DESIGN_SKIPPED"
+          },
+          {
+            "node": "T01_P0_Structure::P0_S04_TOPOLOGY",
+            "path": "outputs.json.0.data.is_membrane",
+            "equals": true
+          }
+        ],
+        "scenario_id": "MOCK-MEMBRANE-SKIP",
+        "profile": "full_skip",
+        "description": "膜且未确认",
+        "expected_behavior": "R-57跳过设计，以WT_DESIGN_SKIPPED交接。"
+      }
+    },
+    {
+      "index": 10,
+      "run_id": "master-reg-20260831-a-10",
+      "scenario_id": "MOCK-MEMBRANE-CONFIRMED",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-10",
+        "scenario_id": "MOCK-MEMBRANE-CONFIRMED",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_IF_CONTEXT_HIGH",
+          "T01_Master_v10::T01_IF_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_T11_PREPARE",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_BEST"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_0B_INJECT_HIGH",
+          "T01_Master_v10::T01_0B_INJECT_NONHIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_HIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P3_CONTEXT",
+          "T01_P7_OutputHandoff::P7_S44_SKIP",
+          "T01_P7_OutputHandoff::P7_S44_FAIL"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_G01_CONTEXT",
+            "path": "outputs.json.0.data.route",
+            "equals": "NONE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P3_FULL",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P4_DESIGN",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "VARIANT_HANDOFF"
+          },
+          {
+            "node": "T01_P0_Structure::P0_S04_TOPOLOGY",
+            "path": "outputs.json.0.data.is_membrane",
+            "equals": true
+          }
+        ],
+        "scenario_id": "MOCK-MEMBRANE-CONFIRMED",
+        "profile": "full_best",
+        "description": "膜且确认",
+        "expected_behavior": "明确确认后继续设计，最终BEST交接。"
+      }
+    },
+    {
+      "index": 11,
+      "run_id": "master-reg-20260831-a-11",
+      "scenario_id": "MOCK-POOR-RESCUE-SUCCESS",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-11",
+        "scenario_id": "MOCK-POOR-RESCUE-SUCCESS",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_IF_CONTEXT_HIGH",
+          "T01_Master_v10::T01_IF_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_T11_PREPARE",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_BEST",
+          "T01_P3_WTDevelopability::B4_S31_SCAN",
+          "T01_P3_WTDevelopability::B4_TOP3_SCREEN",
+          "T01_P3_WTDevelopability::B4_S08_PREDICT",
+          "T01_P3_WTDevelopability::B4_S11_RSA",
+          "T01_P3_WTDevelopability::B4_S09_QUALITY"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_0B_INJECT_HIGH",
+          "T01_Master_v10::T01_0B_INJECT_NONHIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_HIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P3_CONTEXT",
+          "T01_P7_OutputHandoff::P7_S44_SKIP",
+          "T01_P7_OutputHandoff::P7_S44_FAIL"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_G01_CONTEXT",
+            "path": "outputs.json.0.data.route",
+            "equals": "NONE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P3_FULL",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P4_DESIGN",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "VARIANT_HANDOFF"
+          },
+          {
+            "node": "T01_P3_WTDevelopability::B4_TOP3_SCREEN",
+            "path": "outputs.json.0.data.rescue_success",
+            "equals": true
+          }
+        ],
+        "scenario_id": "MOCK-POOR-RESCUE-SUCCESS",
+        "profile": "full_best",
+        "description": "poor且非膜",
+        "expected_behavior": "分支4筛选成功，执行S-08/S-11/S-09后继续。"
+      }
+    },
+    {
+      "index": 12,
+      "run_id": "master-reg-20260831-a-12",
+      "scenario_id": "MOCK-POOR-RESCUE-FAIL",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-12",
+        "scenario_id": "MOCK-POOR-RESCUE-FAIL",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_IF_CONTEXT_HIGH",
+          "T01_Master_v10::T01_IF_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_T11_PREPARE",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_BEST",
+          "T01_P3_WTDevelopability::B4_S31_SCAN",
+          "T01_P3_WTDevelopability::B4_TOP3_SCREEN"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_0B_INJECT_HIGH",
+          "T01_Master_v10::T01_0B_INJECT_NONHIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_HIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P3_CONTEXT",
+          "T01_P7_OutputHandoff::P7_S44_SKIP",
+          "T01_P7_OutputHandoff::P7_S44_FAIL",
+          "T01_P3_WTDevelopability::B4_S08_PREDICT",
+          "T01_P3_WTDevelopability::B4_S11_RSA",
+          "T01_P3_WTDevelopability::B4_S09_QUALITY"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_G01_CONTEXT",
+            "path": "outputs.json.0.data.route",
+            "equals": "NONE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P3_FULL",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P4_DESIGN",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "VARIANT_HANDOFF"
+          },
+          {
+            "node": "T01_P3_WTDevelopability::B4_TOP3_SCREEN",
+            "path": "outputs.json.0.data.rescue_success",
+            "equals": false
+          }
+        ],
+        "scenario_id": "MOCK-POOR-RESCUE-FAIL",
+        "profile": "full_best",
+        "description": "poor且非膜",
+        "expected_behavior": "分支4筛选失败，不执行补救结构链，但继续到EBB。"
+      }
+    },
+    {
+      "index": 13,
+      "run_id": "master-reg-20260831-a-13",
+      "scenario_id": "MOCK-DESIGN-RETRY-48",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-13",
+        "scenario_id": "MOCK-DESIGN-RETRY-48",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_IF_CONTEXT_HIGH",
+          "T01_Master_v10::T01_IF_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_T11_PREPARE",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_BEST",
+          "T01_P4_Design::P4_S27_DESIGN_A2",
+          "T01_P4_Design::P4_S29_CONSERVATIVE_A2"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_0B_INJECT_HIGH",
+          "T01_Master_v10::T01_0B_INJECT_NONHIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_HIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P3_CONTEXT",
+          "T01_P7_OutputHandoff::P7_S44_SKIP",
+          "T01_P7_OutputHandoff::P7_S44_FAIL",
+          "T01_P4_Design::P4_S27_DESIGN_A3"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_G01_CONTEXT",
+            "path": "outputs.json.0.data.route",
+            "equals": "NONE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P3_FULL",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P4_DESIGN",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "VARIANT_HANDOFF"
+          }
+        ],
+        "scenario_id": "MOCK-DESIGN-RETRY-48",
+        "profile": "full_best",
+        "description": "首轮全淘汰、48轮通过",
+        "expected_behavior": "P4重试一次，在48设计轮通过。"
+      }
+    },
+    {
+      "index": 14,
+      "run_id": "master-reg-20260831-a-14",
+      "scenario_id": "MOCK-DESIGN-RETRY-64",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-14",
+        "scenario_id": "MOCK-DESIGN-RETRY-64",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_IF_CONTEXT_HIGH",
+          "T01_Master_v10::T01_IF_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_T11_PREPARE",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_BEST",
+          "T01_P4_Design::P4_S27_DESIGN_A2",
+          "T01_P4_Design::P4_S27_DESIGN_A3",
+          "T01_P4_Design::P4_S29_CONSERVATIVE_A3"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_0B_INJECT_HIGH",
+          "T01_Master_v10::T01_0B_INJECT_NONHIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_HIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P3_CONTEXT",
+          "T01_P7_OutputHandoff::P7_S44_SKIP",
+          "T01_P7_OutputHandoff::P7_S44_FAIL"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_G01_CONTEXT",
+            "path": "outputs.json.0.data.route",
+            "equals": "NONE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P3_FULL",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P4_DESIGN",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "VARIANT_HANDOFF"
+          }
+        ],
+        "scenario_id": "MOCK-DESIGN-RETRY-64",
+        "profile": "full_best",
+        "description": "首轮与48全淘汰、64通过",
+        "expected_behavior": "P4重试两次，在64设计轮通过。"
+      }
+    },
+    {
+      "index": 15,
+      "run_id": "master-reg-20260831-a-15",
+      "scenario_id": "MOCK-DESIGN-ALL-REJECTED",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-15",
+        "scenario_id": "MOCK-DESIGN-ALL-REJECTED",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_FAIL",
+          "T01_P4_Design::P4_S27_DESIGN_A2",
+          "T01_P4_Design::P4_S27_DESIGN_A3",
+          "T01_P4_Design::P4_IF_EXHAUSTED"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_P7_OutputHandoff::P7_S44_BEST",
+          "T01_P7_OutputHandoff::P7_S44_SKIP",
+          "T01_P4_Design::P4_S29_CONSERVATIVE_A3"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_P4_DESIGN",
+            "path": "outputs.stage_route",
+            "equals": "EXHAUSTED"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "WT_FAILURE_REPORT"
+          }
+        ],
+        "scenario_id": "MOCK-DESIGN-ALL-REJECTED",
+        "profile": "full_all_rejected",
+        "description": "三轮全淘汰",
+        "expected_behavior": "32/48/64三轮全淘汰，跳过P5/P6，以WT_FAILURE_REPORT交接。"
+      }
+    },
+    {
+      "index": 16,
+      "run_id": "master-reg-20260831-a-16",
+      "scenario_id": "MOCK-EPITOPE-STRUCTURAL-FAIL",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-16",
+        "scenario_id": "MOCK-EPITOPE-STRUCTURAL-FAIL",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_IF_CONTEXT_HIGH",
+          "T01_Master_v10::T01_IF_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_T11_PREPARE",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_BEST"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_0B_INJECT_HIGH",
+          "T01_Master_v10::T01_0B_INJECT_NONHIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_HIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P3_CONTEXT",
+          "T01_P7_OutputHandoff::P7_S44_SKIP",
+          "T01_P7_OutputHandoff::P7_S44_FAIL"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_G01_CONTEXT",
+            "path": "outputs.json.0.data.route",
+            "equals": "NONE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P3_FULL",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P4_DESIGN",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "VARIANT_HANDOFF"
+          },
+          {
+            "node": "T01_P5_VariantEvaluation::P5_EPITOPE_L1_L4",
+            "path": "outputs.json.0.data.epitope_violation",
+            "equals": true
+          }
+        ],
+        "scenario_id": "MOCK-EPITOPE-STRUCTURAL-FAIL",
+        "profile": "full_best",
+        "description": "L2/L3 structural失败",
+        "expected_behavior": "P5标记epitope_violation硬排除。"
+      }
+    },
+    {
+      "index": 17,
+      "run_id": "master-reg-20260831-a-17",
+      "scenario_id": "MOCK-EPITOPE-PREDICTION-FAIL",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-17",
+        "scenario_id": "MOCK-EPITOPE-PREDICTION-FAIL",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_IF_CONTEXT_HIGH",
+          "T01_Master_v10::T01_IF_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_T11_PREPARE",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_BEST"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_0B_INJECT_HIGH",
+          "T01_Master_v10::T01_0B_INJECT_NONHIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_HIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P3_CONTEXT",
+          "T01_P7_OutputHandoff::P7_S44_SKIP",
+          "T01_P7_OutputHandoff::P7_S44_FAIL"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_G01_CONTEXT",
+            "path": "outputs.json.0.data.route",
+            "equals": "NONE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P3_FULL",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P4_DESIGN",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "VARIANT_HANDOFF"
+          },
+          {
+            "node": "T01_P5_VariantEvaluation::P5_EPITOPE_L1_L4",
+            "path": "outputs.json.0.data.soft_penalty",
+            "equals": true
+          }
+        ],
+        "scenario_id": "MOCK-EPITOPE-PREDICTION-FAIL",
+        "profile": "full_best",
+        "description": "L4失败",
+        "expected_behavior": "P5标记soft_penalty降权。"
+      }
+    },
+    {
+      "index": 18,
+      "run_id": "master-reg-20260831-a-18",
+      "scenario_id": "MOCK-VARIANT-SAFETY-FAIL",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-18",
+        "scenario_id": "MOCK-VARIANT-SAFETY-FAIL",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_IF_CONTEXT_HIGH",
+          "T01_Master_v10::T01_IF_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_T11_PREPARE",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_BEST"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_0B_INJECT_HIGH",
+          "T01_Master_v10::T01_0B_INJECT_NONHIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_HIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P3_CONTEXT",
+          "T01_P7_OutputHandoff::P7_S44_SKIP",
+          "T01_P7_OutputHandoff::P7_S44_FAIL"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_G01_CONTEXT",
+            "path": "outputs.json.0.data.route",
+            "equals": "NONE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P3_FULL",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P4_DESIGN",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "VARIANT_HANDOFF"
+          },
+          {
+            "node": "T01_P5_VariantEvaluation::P5_S23_SAFETY",
+            "path": "outputs.json.0.data.safety_excluded",
+            "equals": true
+          }
+        ],
+        "scenario_id": "MOCK-VARIANT-SAFETY-FAIL",
+        "profile": "full_best",
+        "description": "变体安全非PASS",
+        "expected_behavior": "P5标记safety_excluded硬排除。"
+      }
+    },
+    {
+      "index": 19,
+      "run_id": "master-reg-20260831-a-19",
+      "scenario_id": "MOCK-19B-SKIPPED",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-19",
+        "scenario_id": "MOCK-19B-SKIPPED",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_IF_CONTEXT_HIGH",
+          "T01_Master_v10::T01_IF_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_T11_PREPARE",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_BEST",
+          "T01_P5_VariantEvaluation::P5_S40_FINAL_NO_DDG",
+          "T01_P5_VariantEvaluation::P5_STEP20_RANK_NO_DDG"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_0B_INJECT_HIGH",
+          "T01_Master_v10::T01_0B_INJECT_NONHIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_HIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P3_CONTEXT",
+          "T01_P7_OutputHandoff::P7_S44_SKIP",
+          "T01_P7_OutputHandoff::P7_S44_FAIL",
+          "T01_P5_VariantEvaluation::P5_S31_VARIANT_DDG",
+          "T01_P5_VariantEvaluation::P5_STEP20_RANK_DDG"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_G01_CONTEXT",
+            "path": "outputs.json.0.data.route",
+            "equals": "NONE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P3_FULL",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P4_DESIGN",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "VARIANT_HANDOFF"
+          },
+          {
+            "node": "T01_P5_VariantEvaluation::P5_SCORE_POOL",
+            "path": "outputs.json.0.data.route",
+            "equals": "SKIP_S31_VARIANT"
+          }
+        ],
+        "scenario_id": "MOCK-19B-SKIPPED",
+        "profile": "full_best",
+        "description": "low或膜或空池",
+        "expected_behavior": "P5跳过变体FoldX，执行无ddG降级排序链。"
+      }
+    },
+    {
+      "index": 20,
+      "run_id": "master-reg-20260831-a-20",
+      "scenario_id": "MOCK-SC10-WARNING",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-20",
+        "scenario_id": "MOCK-SC10-WARNING",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_IF_CONTEXT_HIGH",
+          "T01_Master_v10::T01_IF_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_T11_PREPARE",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_BEST"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_0B_INJECT_HIGH",
+          "T01_Master_v10::T01_0B_INJECT_NONHIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_HIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P3_CONTEXT",
+          "T01_P7_OutputHandoff::P7_S44_SKIP",
+          "T01_P7_OutputHandoff::P7_S44_FAIL"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_G01_CONTEXT",
+            "path": "outputs.json.0.data.route",
+            "equals": "NONE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P3_FULL",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P4_DESIGN",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "VARIANT_HANDOFF"
+          },
+          {
+            "node": "T01_P5_VariantEvaluation::P5_STEP20_RANK_DDG",
+            "path": "outputs.json.0.status",
+            "equals": "DEGRADED"
+          }
+        ],
+        "scenario_id": "MOCK-SC10-WARNING",
+        "profile": "full_best",
+        "description": "best.overall小于0.30",
+        "expected_behavior": "排序返回DEGRADED并标记SC10规则待确认。"
+      }
+    },
+    {
+      "index": 21,
+      "run_id": "master-reg-20260831-a-21",
+      "scenario_id": "MOCK-MD-RUN",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-21",
+        "scenario_id": "MOCK-MD-RUN",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_IF_CONTEXT_HIGH",
+          "T01_Master_v10::T01_IF_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_T11_PREPARE",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_BEST",
+          "T01_P6_CodonStabilityMD::P6_S32_MD"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_0B_INJECT_HIGH",
+          "T01_Master_v10::T01_0B_INJECT_NONHIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_HIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P3_CONTEXT",
+          "T01_P7_OutputHandoff::P7_S44_SKIP",
+          "T01_P7_OutputHandoff::P7_S44_FAIL"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_G01_CONTEXT",
+            "path": "outputs.json.0.data.route",
+            "equals": "NONE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P3_FULL",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P4_DESIGN",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "VARIANT_HANDOFF"
+          },
+          {
+            "node": "T01_P6_CodonStabilityMD::P6_MD_GATE",
+            "path": "outputs.json.0.data.route",
+            "equals": "RUN_S32"
+          }
+        ],
+        "scenario_id": "MOCK-MD-RUN",
+        "profile": "full_best",
+        "description": "MD门控全部满足",
+        "expected_behavior": "P6对top3执行S-32。"
+      }
+    },
+    {
+      "index": 22,
+      "run_id": "master-reg-20260831-a-22",
+      "scenario_id": "MOCK-MD-SKIP",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-22",
+        "scenario_id": "MOCK-MD-SKIP",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_IF_CONTEXT_HIGH",
+          "T01_Master_v10::T01_IF_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P2_FULL",
+          "T01_Master_v10::T01_T11_PREPARE",
+          "T01_Master_v10::T01_P3_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P5_VARIANTS",
+          "T01_Master_v10::T01_P6_FINAL_SCIENCE",
+          "T01_Master_v10::T01_P7_OUTPUT",
+          "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+          "T01_P7_OutputHandoff::P7_S44_BEST"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_0B_INJECT_HIGH",
+          "T01_Master_v10::T01_0B_INJECT_NONHIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_HIGH",
+          "T01_Master_v10::T01_P2_CONTEXT_NONHIGH",
+          "T01_Master_v10::T01_P3_CONTEXT",
+          "T01_P7_OutputHandoff::P7_S44_SKIP",
+          "T01_P7_OutputHandoff::P7_S44_FAIL",
+          "T01_P6_CodonStabilityMD::P6_S32_MD"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_G01_CONTEXT",
+            "path": "outputs.json.0.data.route",
+            "equals": "NONE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P3_FULL",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_Master_v10::T01_P4_DESIGN",
+            "path": "outputs.stage_route",
+            "equals": "CONTINUE"
+          },
+          {
+            "node": "T01_P7_OutputHandoff::P7_STEP26_HANDOFF",
+            "path": "outputs.json.0.data.outcome",
+            "equals": "VARIANT_HANDOFF"
+          },
+          {
+            "node": "T01_P6_CodonStabilityMD::P6_MD_GATE",
+            "path": "outputs.json.0.data.route",
+            "equals": "SKIP_S32"
+          }
+        ],
+        "scenario_id": "MOCK-MD-SKIP",
+        "profile": "full_best",
+        "description": "任一MD条件不满足",
+        "expected_behavior": "P6跳过S-32，直接进入阶段7。"
+      }
+    },
+    {
+      "index": 23,
+      "run_id": "master-reg-20260831-a-23",
+      "scenario_id": "MOCK-TOOL-TIMEOUT",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-23",
+        "scenario_id": "MOCK-TOOL-TIMEOUT",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_IF_P0_FAILED",
+          "T01_P0_Structure::P0_S07_FETCH",
+          "T01_P0_Structure::P0_G_FETCH_FAILED"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P7_OUTPUT"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_P0_FULL",
+            "path": "outputs.stage_status",
+            "equals": "FAILED"
+          },
+          {
+            "node": "T01_Master_v10::T01_IF_P0_FAILED",
+            "path": "outputs.selected_case_id",
+            "equals": "true"
+          },
+          {
+            "node": "T01_P0_Structure::P0_S07_FETCH",
+            "path": "outputs.json.0.status",
+            "equals": "FAILED"
+          },
+          {
+            "node": "T01_P0_Structure::P0_S07_FETCH",
+            "path": "outputs.json.0.error.category",
+            "equals": "TIMEOUT"
+          },
+          {
+            "node": "T01_P0_Structure::P0_S07_FETCH",
+            "path": "outputs.json.0.error.retryable",
+            "equals": true
+          }
+        ],
+        "scenario_id": "MOCK-TOOL-TIMEOUT",
+        "profile": "fault_terminal",
+        "description": "任一工具超时",
+        "expected_behavior": "P0结构化返回TIMEOUT并在Master终态汇合，不继续P1。"
+      }
+    },
+    {
+      "index": 24,
+      "run_id": "master-reg-20260831-a-24",
+      "scenario_id": "MOCK-OUTPUT-MISSING",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-24",
+        "scenario_id": "MOCK-OUTPUT-MISSING",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_IF_P0_FAILED",
+          "T01_P0_Structure::P0_S07_FETCH",
+          "T01_P0_Structure::P0_G_FETCH_FAILED"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P7_OUTPUT"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_P0_FULL",
+            "path": "outputs.stage_status",
+            "equals": "FAILED"
+          },
+          {
+            "node": "T01_Master_v10::T01_IF_P0_FAILED",
+            "path": "outputs.selected_case_id",
+            "equals": "true"
+          },
+          {
+            "node": "T01_P0_Structure::P0_S07_FETCH",
+            "path": "outputs.json.0.status",
+            "equals": "FAILED"
+          },
+          {
+            "node": "T01_P0_Structure::P0_S07_FETCH",
+            "path": "outputs.json.0.error.category",
+            "equals": "OUTPUT_MISSING"
+          },
+          {
+            "node": "T01_P0_Structure::P0_S07_FETCH",
+            "path": "outputs.json.0.provenance.exit_code",
+            "equals": 0
+          }
+        ],
+        "scenario_id": "MOCK-OUTPUT-MISSING",
+        "profile": "fault_terminal",
+        "description": "exit_code=0但无输出",
+        "expected_behavior": "P0结构化返回OUTPUT_MISSING，不能视为计算成功。"
+      }
+    },
+    {
+      "index": 25,
+      "run_id": "master-reg-20260831-a-25",
+      "scenario_id": "MOCK-OUTPUT-INVALID",
+      "inputs": {
+        "run_id": "master-reg-20260831-a-25",
+        "scenario_id": "MOCK-OUTPUT-INVALID",
+        "t01_input_json": "{\"protein_sequence\":\"ACDEFGHIKLMNPQRSTVWYACDEFGHIKLMNPQRSTVWY\",\"host\":\"human\",\"pathogen_type\":\"other\",\"objective\":\"solubility\",\"epitope_mode\":\"both\",\"epitope_policy\":\"SOP-approved-policy-id-or-object\",\"regions_permissions\":null,\"md_validation\":false,\"membrane_design_confirm\":false,\"low_conf_design_confirm\":false,\"context_scores\":null,\"mhc_alleles\":[\"HLA-A*02:01\"],\"expression_host\":null,\"request_visualization\":false,\"execution_mode\":\"mock\",\"client_request_id\":\"dify-master-example\"}",
+        "execution_mode": "mock"
+      },
+      "expected": {
+        "expected_workflow_status": "succeeded",
+        "required_nodes": [
+          "T01_Master_v10::T01_START",
+          "T01_Master_v10::T01_CONFIGURE_RUN",
+          "T01_Master_v10::T01_VALIDATE_REQUEST",
+          "T01_Master_v10::T01_IF_INPUT_REQUIRED",
+          "T01_Master_v10::T01_G00_LENGTH",
+          "T01_Master_v10::T01_IF_LENGTH_HALT",
+          "T01_Master_v10::T01_TERMINAL_JOIN",
+          "T01_Master_v10::T01_END",
+          "T01_Master_v10::T01_G01_CONTEXT",
+          "T01_Master_v10::T01_P0_FULL",
+          "T01_Master_v10::T01_IF_P0_FAILED",
+          "T01_P0_Structure::P0_S07_FETCH",
+          "T01_P0_Structure::P0_G_FETCH_FAILED"
+        ],
+        "forbidden_nodes": [
+          "T01_Master_v10::T01_P1_FULL",
+          "T01_Master_v10::T01_P4_DESIGN",
+          "T01_Master_v10::T01_P7_OUTPUT"
+        ],
+        "assertions": [
+          {
+            "node": "T01_Master_v10::T01_P0_FULL",
+            "path": "outputs.stage_status",
+            "equals": "FAILED"
+          },
+          {
+            "node": "T01_Master_v10::T01_IF_P0_FAILED",
+            "path": "outputs.selected_case_id",
+            "equals": "true"
+          },
+          {
+            "node": "T01_P0_Structure::P0_S07_FETCH",
+            "path": "outputs.json.0.status",
+            "equals": "FAILED"
+          },
+          {
+            "node": "T01_P0_Structure::P0_S07_FETCH",
+            "path": "outputs.json.0.error.category",
+            "equals": "OUTPUT_INVALID"
+          },
+          {
+            "node": "T01_P0_Structure::P0_S07_FETCH",
+            "path": "outputs.json.0.error.retryable",
+            "equals": false
+          }
+        ],
+        "scenario_id": "MOCK-OUTPUT-INVALID",
+        "profile": "fault_terminal",
+        "description": "文件存在但解析失败",
+        "expected_behavior": "P0结构化返回OUTPUT_INVALID并停止后续阶段。"
+      }
+    }
+  ]
+}

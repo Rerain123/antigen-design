@@ -1,22 +1,87 @@
 .venv/
+.uv-cache/
+.uv-python/
+.pytest_cache/
+.idea/
+.tmp/
+tmp/
 __pycache__/
 *.py[cod]
-.pytest_cache/
+var/
+discovery/*
+!discovery/README.md
+dify/bound/
+dify/config/provider-bindings.local.json
+dify/regression/runs/
+dify/**/bound/
+dify/**/config/provider-bindings.local*.json
+dify/**/regression/runs/
+dify/t01-phase1-mock-v0.1/bound/
+dify/t01-phase1-mock-v0.1/config/provider-bindings.local.json
+dify/t01-phase1-mock-v0.1/regression/runs/
+legacy/**/var/
+legacy/**/discovery/
+legacy/**/.tmp/
+legacy/**/.pytest_cache/
+legacy/**/dify/bound/
+legacy/**/dify/config/provider-bindings.local.json
+legacy/**/dify/regression/runs/
+legacy/_generated-cache-20260904/
+工具部署/
+deploy/*-offline.zip
+deploy/**/images/
+deploy/antigen-design-resident-*/
+deploy/antigen-design-resident-*.zip
+deploy/antigen-resident-publish-20260916-r01/
+deploy/**/wheelhouse/
+# The root CI Dockerfile consumes the verified Linux wheel set. Keep other
+# generated wheelhouses ignored while allowing this bounded release input.
+!deploy/t01-phase1-real-target-v0.2/wheelhouse/
+!deploy/t01-phase1-real-target-v0.2/wheelhouse/*.whl
+!deploy/codon-linux/wheelhouse/
+!deploy/codon-linux/wheelhouse/*.whl
+docs/project/phase1/handoffs/releases/*.zip
+*.egg-info/
+
+# Local credentials and machine-specific environment files.
 .env
 .env.*
 !.env.example
 *.kubeconfig
-*.pem
-*.key
-var/
-reports/
-discovery/
-legacy/
-工具部署/
-工作流设计/01-业务依据/
-*.sqlite3
-*.pt
-*.safetensors
-*.whl
-*.tar
-*.zip
+
+# Local verification workspaces and generated scientific download archives.
+# Reviewed historical evidence was explicitly imported for the 2026-10-14
+# handoff. Existing tracked evidence remains versioned; new runtime output
+# still requires review before an explicit git add -f.
+codex_pytest*/
+route-full-tests-*.junit.xml
+reports/**/test-work*/
+reports/**/deploy-test-work*/
+reports/**/pytest-work*/
+reports/**/docs-work/
+reports/**/installed/
+reports/**/*.sqlite3
+reports/**/*.zip
+reports/**/*.gz
+reports/**/*.bin
+reports/**/*.before
+# Fixed real-result fixtures used by report regression tests.
+!reports/scientific-report-20261011/20261011-073807-7ff412a6-results.zip
+!reports/scientific-report-20261011/20261011-073807-7ff412a6-tool-results.zip
+!reports/expert-revision-v2-native-20260930/r01/final/workflow-package.zip
+!reports/expert-revision-v2-results-20260930/r01/antigen-tool-results.zip
+
+# Handoff preparation details stay local; curated receipts are versioned.
+reports/handoff-20261014/inventory-initial.json
+reports/handoff-20261014/candidate-files.json
+reports/handoff-20261014/excluded-initial.json
+reports/handoff-20261014/external-files.jsonl.gz
+reports/handoff-20261014/config-secret-review.json
+reports/handoff-20261014/secret-scan-initial.json
+
+# Expert originals are not part of the public GitHub repository.
+**/01-业务依据/
+src/t01_phase1_real/development/assets/expert-feedback-20261009/
+**/camsol_params.json
+**/camsol_params.json.sha256
+reports/expert-feedback-20261009/original-camsol-package.zip

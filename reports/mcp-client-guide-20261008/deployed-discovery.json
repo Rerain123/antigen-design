@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "observed_at_utc": "2026-10-08T00:42:06.886158+00:00",
+  "guide_version": "t01-client-guide-20261008-v1",
+  "routes": [
+    {
+      "endpoint": "http://127.0.0.1:18083/mcp",
+      "protocol_version": "2024-11-05",
+      "instructions_match": true,
+      "tools_match": true,
+      "tool_names": [
+        "workflow_submit_sequence",
+        "workflow_check",
+        "workflow_confirm_design"
+      ]
+    },
+    {
+      "endpoint": "http://antigen-design.him-ws.svc.cluster.local/mcp",
+      "protocol_version": "2024-11-05",
+      "instructions_match": true,
+      "tools_match": true,
+      "tool_names": [
+        "workflow_submit_sequence",
+        "workflow_check",
+        "workflow_confirm_design"
+      ]
+    }
+  ],
+  "job_count": 1917,
+  "new_jobs": 0,
+  "read_only": true,
+  "himat_client_context_verified": false
+}

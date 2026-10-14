@@ -1,0 +1,59 @@
+{
+  "status": "ENGINEERING_REPAIR_VALIDATED_RSA_POLICY_STILL_BLOCKED",
+  "full": {
+    "tests": 3350,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 17
+  },
+  "docs_recheck": {
+    "tests": 83,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "affected": {
+    "tests": 351,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "combined_passed": 3333,
+  "combined_skipped": 17,
+  "single_full_green": false,
+  "remaining_failures": 0,
+  "initial_issues": [
+    "r01 interrupted; temporary parent path invalid",
+    "r04 Windows long path NotADirectoryError; short-path single test passed",
+    "r05 documentation scan included temporary tool outputs; moved those exact directories into .tmp; docs rerun passed"
+  ],
+  "frozen_assets": 457,
+  "deployed": false,
+  "online_generation": 161,
+  "new_scientific_jobs": 0,
+  "iedb_changed": false,
+  "rsa_normalization_changed": false,
+  "source": {
+    "af3_profile": {
+      "id": "af3-v3.0.2-resident-r01",
+      "sha256": "1083200c9f021b9b3dbcd212a452b1a54ed8c6294cefd9491934376a5e3b64a5",
+      "version": "0.1.0"
+    },
+    "changes": [
+      "t01_phase1_real/development/af3/result.py",
+      "t01_phase1_real/development/af3/standard.py",
+      "t01_phase1_real/development/af3/tool_structure.py",
+      "t01_phase1_real/service_api/native_report.py"
+    ],
+    "deployed": false,
+    "files": 272,
+    "new_scientific_jobs": 0,
+    "source_sha256": "be289a19bc0b040f6780218975ce65d5731396f88d3c18d82b37827ec7f06401"
+  },
+  "evidence": [
+    "native-format-verification.json",
+    "af3-replay-verification.json",
+    "rsa-arithmetic-audit.json",
+    "report-verification.json"
+  ]
+}

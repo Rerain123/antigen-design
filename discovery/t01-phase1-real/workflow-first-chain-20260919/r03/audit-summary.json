@@ -1,0 +1,69 @@
+{
+  "passed": true,
+  "scope": "FIRST_N01_N18_ENGINEERING_CHAIN_WITH_ESMFOLD2",
+  "job_id": "t01p1r-job-850250a8eeef47fc84ea534198effeca",
+  "run_id": "t01p1r-run-9fdc66d3850640e698560d5c2570b26e",
+  "sequence_sha256": "233b4b0b8c4616095bc3249f9375fc345d32af7deaef07117d0383c51d6f19aa",
+  "branch_counts": {
+    "succeeded": 12,
+    "skipped": 8,
+    "failed": 0
+  },
+  "succeeded": [
+    "bepipred",
+    "developability",
+    "epitope_map",
+    "glycosylation",
+    "local_delivery",
+    "netmhc",
+    "prediction",
+    "structure",
+    "topology",
+    "variant_report",
+    "wt_draft",
+    "wt_reference"
+  ],
+  "skipped": {
+    "blast": "DATABASE_NOT_PROVIDED",
+    "codon": "NO_ELIGIBLE_SEQUENCE",
+    "design": "SCIENTIFIC_GATE_CLOSED",
+    "domains": "DATABASE_NOT_PROVIDED",
+    "homology": "DATABASE_NOT_PROVIDED",
+    "protection": "SCIENTIFIC_GATE_CLOSED",
+    "rescore": "SCIENTIFIC_GATE_CLOSED",
+    "stability": "SCIENTIFIC_GATE_CLOSED"
+  },
+  "artifact_refs": {
+    "total": 206,
+    "unique": 206,
+    "same_run": true
+  },
+  "report": {
+    "sha256": "0fbd839ce2d211423e9810af33123dfdc63a13fe85c157afc075b96c16398e71",
+    "size_bytes": 207338,
+    "outer_members": 4,
+    "inner_members": 10
+  },
+  "prediction_to_n01": {
+    "profile": "esmfold2-standard-resident-r01",
+    "prediction_job_id": "t01p1r-job-b6a8fd8e97304211abd5467ca7e550d0",
+    "structure_job_id": "t01p1r-job-9024f11e54e2440b9075a964d45dfeef",
+    "structure_sha256": "facfa4c2f72b55efc940a22dda35e82fe4db63ab176b0eed52dd5517d2845aa9",
+    "residues": 76,
+    "mean_plddt": 0.7987835472508481,
+    "ptm": 0.7360107898712158
+  },
+  "delivery_outcome": "DESIGN_INPUTS_UNAVAILABLE",
+  "release_guards": {
+    "scientific_gate": "CLOSED",
+    "usable_for_pipeline": false,
+    "automatic_handoff": false,
+    "production_status": "NOT_DEPLOYED"
+  },
+  "public_object_observation": {
+    "authorization": "NOT_GRANTED_FOR_R03",
+    "report_zip_http_status": 200,
+    "report_markdown_http_status": 200,
+    "anonymous_access_confirmed": true
+  }
+}

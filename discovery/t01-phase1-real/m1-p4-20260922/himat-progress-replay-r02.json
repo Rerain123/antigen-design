@@ -1,0 +1,210 @@
+{
+  "status": "P2_LOCAL_REAL_SNAPSHOT_REPLAY_PASS",
+  "source_observed_at": "2026-09-24T08:37:05.266454+00:00",
+  "source_job_id": "t01p1r-job-429765bbfc954bb2af8a11570a8d0cbc",
+  "projection": {
+    "progress_unit": "business_nodes",
+    "total_nodes": 18,
+    "completed_nodes": 2,
+    "current_nodes": [
+      "N03"
+    ],
+    "node_counts": {
+      "succeeded": 2,
+      "reconciling": 1,
+      "not_executed": 15
+    },
+    "node_progress": {
+      "N01": {
+        "state": "succeeded",
+        "completed": true,
+        "internal_steps": 2,
+        "step_states": {
+          "succeeded": 2
+        },
+        "active_steps": []
+      },
+      "N02": {
+        "state": "succeeded",
+        "completed": true,
+        "internal_steps": 1,
+        "step_states": {
+          "succeeded": 1
+        },
+        "active_steps": []
+      },
+      "N03": {
+        "state": "reconciling",
+        "completed": false,
+        "internal_steps": 1,
+        "step_states": {
+          "reconciling": 1
+        },
+        "active_steps": [
+          {
+            "step": "blast",
+            "state": "reconciling"
+          }
+        ]
+      },
+      "N04": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 1,
+        "step_states": {
+          "not_executed": 1
+        },
+        "active_steps": []
+      },
+      "N05": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 1,
+        "step_states": {
+          "not_executed": 1
+        },
+        "active_steps": []
+      },
+      "N06": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 1,
+        "step_states": {
+          "not_executed": 1
+        },
+        "active_steps": []
+      },
+      "N07": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 1,
+        "step_states": {
+          "not_executed": 1
+        },
+        "active_steps": []
+      },
+      "N08": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 1,
+        "step_states": {
+          "not_executed": 1
+        },
+        "active_steps": []
+      },
+      "N09": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 1,
+        "step_states": {
+          "not_executed": 1
+        },
+        "active_steps": []
+      },
+      "N10": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 1,
+        "step_states": {
+          "not_executed": 1
+        },
+        "active_steps": []
+      },
+      "N11": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 2,
+        "step_states": {
+          "not_executed": 2
+        },
+        "active_steps": []
+      },
+      "N12": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 9,
+        "step_states": {
+          "not_executed": 9
+        },
+        "active_steps": []
+      },
+      "N13": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 21,
+        "step_states": {
+          "not_executed": 21
+        },
+        "active_steps": []
+      },
+      "N14": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 1,
+        "step_states": {
+          "not_executed": 1
+        },
+        "active_steps": []
+      },
+      "N15": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 1,
+        "step_states": {
+          "not_executed": 1
+        },
+        "active_steps": []
+      },
+      "N16": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 1,
+        "step_states": {
+          "not_executed": 1
+        },
+        "active_steps": []
+      },
+      "N17": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 3,
+        "step_states": {
+          "not_executed": 3
+        },
+        "active_steps": []
+      },
+      "N18": {
+        "state": "not_executed",
+        "completed": false,
+        "internal_steps": 2,
+        "step_states": {
+          "not_executed": 2
+        },
+        "active_steps": []
+      }
+    },
+    "internal_step_counts": {
+      "total": 51,
+      "finished": 3,
+      "states": {
+        "reconciling": 1,
+        "succeeded": 3,
+        "not_executed": 47
+      }
+    },
+    "progress_note": "按 N01–N18 统计；已结束节点包含跳过或失败，不等于成功。内部步骤单列，节点数不是耗时百分比。reconciling 是控制器状态；waiting_worker 表示请求已提交但尚无 Worker 执行回执，executing 表示绑定的 Worker 回执记录执行中，finalizing 表示原生进程已确认停止、后端正在收集结果。unknown 不推定正在计算；回执不等于实时 CPU 采样。"
+  },
+  "source_hashes": {
+    "service_api/himat.py": "24c6c765ee0aae1c034a261a7e2bea7aa03e6b51325ff53750d25bb5f9f6892a",
+    "service_api/progress.py": "515a0fcde44d3b3f26533611e79c9a7b3913e10fc9c3d366a2aaf6c2b062ac51",
+    "service_api/transport.py": "617ba3fc77bce73325c1bfb712eeef6d6ff81fa9282a1f11a624363f5032a925",
+    "service_api/app.py": "687d03c7e0b08f7e1e256827a3facfb03f125402c5289c072fa2fdd397c641a1"
+  },
+  "frozen": {
+    "status": "PASS",
+    "release_state": "FROZEN",
+    "campaign_id": "t01p1m-v01-reg-20260904-release-freeze-03",
+    "frozen_asset_count": 457
+  },
+  "new_science_task_started": false
+}

@@ -1,0 +1,321 @@
+{
+  "Id": "494bc79c3ea00f9bffd9b7a6a086c604d8584e93059e2d1d9e620727d4baf78a",
+  "Created": "2026-09-28T01:15:27.720522203Z",
+  "Path": "timeout",
+  "Args": [
+    "--signal=KILL",
+    "60",
+    "python",
+    "-B",
+    "/worker/worker.py"
+  ],
+  "State": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-09-28T01:15:28.090188354Z",
+    "FinishedAt": "2026-09-28T01:15:28.868375258Z"
+  },
+  "Image": "sha256:bb6c6b5ce1add12dc9bda3538a218568a9e80c048c12525fc130eaa970dbb9e5",
+  "ResolvConfPath": "/var/lib/docker/containers/494bc79c3ea00f9bffd9b7a6a086c604d8584e93059e2d1d9e620727d4baf78a/resolv.conf",
+  "HostnamePath": "/var/lib/docker/containers/494bc79c3ea00f9bffd9b7a6a086c604d8584e93059e2d1d9e620727d4baf78a/hostname",
+  "HostsPath": "/var/lib/docker/containers/494bc79c3ea00f9bffd9b7a6a086c604d8584e93059e2d1d9e620727d4baf78a/hosts",
+  "LogPath": "/var/lib/docker/containers/494bc79c3ea00f9bffd9b7a6a086c604d8584e93059e2d1d9e620727d4baf78a/494bc79c3ea00f9bffd9b7a6a086c604d8584e93059e2d1d9e620727d4baf78a-json.log",
+  "Name": "/t01p1r-structure-development-slot",
+  "RestartCount": 0,
+  "Driver": "overlayfs",
+  "Platform": "linux",
+  "MountLabel": "",
+  "ProcessLabel": "",
+  "AppArmorProfile": "",
+  "ExecIDs": null,
+  "HostConfig": {
+    "Binds": null,
+    "ContainerIDFile": "",
+    "LogConfig": {
+      "Type": "json-file",
+      "Config": {}
+    },
+    "NetworkMode": "none",
+    "PortBindings": {},
+    "RestartPolicy": {
+      "Name": "no",
+      "MaximumRetryCount": 0
+    },
+    "AutoRemove": false,
+    "VolumeDriver": "",
+    "VolumesFrom": null,
+    "ConsoleSize": [
+      0,
+      0
+    ],
+    "CapAdd": null,
+    "CapDrop": [
+      "ALL"
+    ],
+    "CgroupnsMode": "private",
+    "Dns": null,
+    "DnsOptions": [],
+    "DnsSearch": [],
+    "ExtraHosts": null,
+    "GroupAdd": null,
+    "IpcMode": "private",
+    "Cgroup": "",
+    "Links": null,
+    "OomScoreAdj": 0,
+    "PidMode": "",
+    "Privileged": false,
+    "PublishAllPorts": false,
+    "ReadonlyRootfs": true,
+    "SecurityOpt": [
+      "no-new-privileges"
+    ],
+    "Tmpfs": {
+      "/tmp": "rw,noexec,nosuid,size=128m"
+    },
+    "UTSMode": "",
+    "UsernsMode": "",
+    "ShmSize": 67108864,
+    "Runtime": "runc",
+    "Isolation": "",
+    "CpuShares": 0,
+    "Memory": 1073741824,
+    "NanoCpus": 2000000000,
+    "CgroupParent": "",
+    "BlkioWeight": 0,
+    "BlkioWeightDevice": [],
+    "BlkioDeviceReadBps": [],
+    "BlkioDeviceWriteBps": [],
+    "BlkioDeviceReadIOps": [],
+    "BlkioDeviceWriteIOps": [],
+    "CpuPeriod": 0,
+    "CpuQuota": 0,
+    "CpuRealtimePeriod": 0,
+    "CpuRealtimeRuntime": 0,
+    "CpusetCpus": "0-1",
+    "CpusetMems": "",
+    "Devices": [],
+    "DeviceCgroupRules": null,
+    "DeviceRequests": null,
+    "MemoryReservation": 0,
+    "MemorySwap": 1073741824,
+    "MemorySwappiness": null,
+    "OomKillDisable": null,
+    "PidsLimit": 64,
+    "Ulimits": [],
+    "CpuCount": 0,
+    "CpuPercent": 0,
+    "IOMaximumIOps": 0,
+    "IOMaximumBandwidth": 0,
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "D:\\work\\antigen.design\\src\\t01_structure_mapping",
+        "Target": "/code/t01_structure_mapping",
+        "ReadOnly": true
+      },
+      {
+        "Type": "bind",
+        "Source": "D:\\work\\antigen.design\\src\\t01_phase1_real\\development\\structure",
+        "Target": "/worker",
+        "ReadOnly": true
+      },
+      {
+        "Type": "bind",
+        "Source": "D:\\work\\antigen.design\\docs\\project\\phase1\\PHASE1_REAL_W1_FREESASA_PROFILE.json",
+        "Target": "/profile.json",
+        "ReadOnly": true
+      },
+      {
+        "Type": "bind",
+        "Source": "C:\\Users\\wing\\AppData\\Local\\Temp\\pytest-of-wing\\pytest-2784\\test_same_run_proteinmpnn_keep0\\runs\\t01p1r-run-d5b94e318e60448fa8bc6cba9d9ab784\\jobs\\t01p1r-job-3fd992431cd746449a4d36b4426e20f3\\attempts\\t01p1r-attempt-6d026f77d32f40d682007725830afb23\\input.json",
+        "Target": "/input.json",
+        "ReadOnly": true
+      },
+      {
+        "Type": "bind",
+        "Source": "C:\\Users\\wing\\AppData\\Local\\Temp\\pytest-of-wing\\pytest-2784\\test_same_run_proteinmpnn_keep0\\runs\\t01p1r-run-d5b94e318e60448fa8bc6cba9d9ab784\\jobs\\t01p1r-job-3fd992431cd746449a4d36b4426e20f3\\attempts\\t01p1r-attempt-6d026f77d32f40d682007725830afb23\\input.structure",
+        "Target": "/input.structure",
+        "ReadOnly": true
+      },
+      {
+        "Type": "bind",
+        "Source": "C:\\Users\\wing\\AppData\\Local\\Temp\\pytest-of-wing\\pytest-2784\\test_same_run_proteinmpnn_keep0\\runs\\t01p1r-run-d5b94e318e60448fa8bc6cba9d9ab784\\jobs\\t01p1r-job-3fd992431cd746449a4d36b4426e20f3\\attempts\\t01p1r-attempt-6d026f77d32f40d682007725830afb23\\binding.json",
+        "Target": "/binding.json",
+        "ReadOnly": true
+      },
+      {
+        "Type": "bind",
+        "Source": "C:\\Users\\wing\\AppData\\Local\\Temp\\pytest-of-wing\\pytest-2784\\test_same_run_proteinmpnn_keep0\\runs\\t01p1r-run-d5b94e318e60448fa8bc6cba9d9ab784\\jobs\\t01p1r-job-3fd992431cd746449a4d36b4426e20f3\\attempts\\t01p1r-attempt-6d026f77d32f40d682007725830afb23\\output",
+        "Target": "/out"
+      }
+    ],
+    "MaskedPaths": [
+      "/proc/acpi",
+      "/proc/asound",
+      "/proc/interrupts",
+      "/proc/kcore",
+      "/proc/keys",
+      "/proc/latency_stats",
+      "/proc/sched_debug",
+      "/proc/scsi",
+      "/proc/timer_list",
+      "/proc/timer_stats",
+      "/sys/devices/virtual/powercap",
+      "/sys/firmware"
+    ],
+    "ReadonlyPaths": [
+      "/proc/bus",
+      "/proc/fs",
+      "/proc/irq",
+      "/proc/sys",
+      "/proc/sysrq-trigger"
+    ]
+  },
+  "Storage": {
+    "RootFS": {
+      "Snapshot": {
+        "Name": "overlayfs"
+      }
+    }
+  },
+  "Mounts": [
+    {
+      "Type": "bind",
+      "Source": "C:\\Users\\wing\\AppData\\Local\\Temp\\pytest-of-wing\\pytest-2784\\test_same_run_proteinmpnn_keep0\\runs\\t01p1r-run-d5b94e318e60448fa8bc6cba9d9ab784\\jobs\\t01p1r-job-3fd992431cd746449a4d36b4426e20f3\\attempts\\t01p1r-attempt-6d026f77d32f40d682007725830afb23\\input.structure",
+      "Destination": "/input.structure",
+      "Mode": "",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "C:\\Users\\wing\\AppData\\Local\\Temp\\pytest-of-wing\\pytest-2784\\test_same_run_proteinmpnn_keep0\\runs\\t01p1r-run-d5b94e318e60448fa8bc6cba9d9ab784\\jobs\\t01p1r-job-3fd992431cd746449a4d36b4426e20f3\\attempts\\t01p1r-attempt-6d026f77d32f40d682007725830afb23\\binding.json",
+      "Destination": "/binding.json",
+      "Mode": "",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "C:\\Users\\wing\\AppData\\Local\\Temp\\pytest-of-wing\\pytest-2784\\test_same_run_proteinmpnn_keep0\\runs\\t01p1r-run-d5b94e318e60448fa8bc6cba9d9ab784\\jobs\\t01p1r-job-3fd992431cd746449a4d36b4426e20f3\\attempts\\t01p1r-attempt-6d026f77d32f40d682007725830afb23\\output",
+      "Destination": "/out",
+      "Mode": "",
+      "RW": true,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "D:\\work\\antigen.design\\src\\t01_structure_mapping",
+      "Destination": "/code/t01_structure_mapping",
+      "Mode": "",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "D:\\work\\antigen.design\\src\\t01_phase1_real\\development\\structure",
+      "Destination": "/worker",
+      "Mode": "",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "D:\\work\\antigen.design\\docs\\project\\phase1\\PHASE1_REAL_W1_FREESASA_PROFILE.json",
+      "Destination": "/profile.json",
+      "Mode": "",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "C:\\Users\\wing\\AppData\\Local\\Temp\\pytest-of-wing\\pytest-2784\\test_same_run_proteinmpnn_keep0\\runs\\t01p1r-run-d5b94e318e60448fa8bc6cba9d9ab784\\jobs\\t01p1r-job-3fd992431cd746449a4d36b4426e20f3\\attempts\\t01p1r-attempt-6d026f77d32f40d682007725830afb23\\input.json",
+      "Destination": "/input.json",
+      "Mode": "",
+      "RW": false,
+      "Propagation": "rprivate"
+    }
+  ],
+  "Config": {
+    "Hostname": "494bc79c3ea0",
+    "Domainname": "",
+    "User": "",
+    "AttachStdin": false,
+    "AttachStdout": true,
+    "AttachStderr": true,
+    "Tty": false,
+    "OpenStdin": false,
+    "StdinOnce": false,
+    "Env": [
+      "PYTHONUNBUFFERED=1",
+      "MPLCONFIGDIR=/tmp/matplotlib",
+      "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "LANG=C.UTF-8",
+      "GPG_KEY=A035C8C19219BA821ECEA86B64E628F8D684696D",
+      "PYTHON_VERSION=3.11.16",
+      "PYTHON_SHA256=91bcdebfdde239a003ae93738a7fce0f9230fee5c4bc2b86f6e6e8c6f98aabe8"
+    ],
+    "Cmd": [
+      "--signal=KILL",
+      "60",
+      "python",
+      "-B",
+      "/worker/worker.py"
+    ],
+    "Image": "sha256:bb6c6b5ce1add12dc9bda3538a218568a9e80c048c12525fc130eaa970dbb9e5",
+    "Volumes": null,
+    "WorkingDir": "/worker",
+    "Entrypoint": [
+      "timeout"
+    ],
+    "Labels": {
+      "t01.attempt_id": "t01p1r-attempt-6d026f77d32f40d682007725830afb23",
+      "t01.execution_identity": "exec-t01p1r-attempt-ec700418618346ffb766612c1d0beeb6",
+      "t01.job_id": "t01p1r-job-3fd992431cd746449a4d36b4426e20f3",
+      "t01.root": "aa437298c86cc804a4aee325cf2196a24a6d2b39efb335ee61390a89e9a963ce",
+      "t01.run_id": "t01p1r-run-d5b94e318e60448fa8bc6cba9d9ab784",
+      "t01.worker": "structure-development"
+    },
+    "StopTimeout": 1
+  },
+  "NetworkSettings": {
+    "SandboxID": "",
+    "SandboxKey": "",
+    "Ports": {},
+    "Networks": {
+      "none": {
+        "IPAMConfig": null,
+        "Links": null,
+        "Aliases": null,
+        "DriverOpts": null,
+        "GwPriority": 0,
+        "NetworkID": "ad8a96b0571c1d8bc4a4d14c4207399ecbd33861ae9bf53c6ecdad85a93dab3f",
+        "EndpointID": "",
+        "Gateway": "",
+        "IPAddress": "",
+        "MacAddress": "",
+        "IPPrefixLen": 0,
+        "IPv6Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "DNSNames": null
+      }
+    }
+  },
+  "ImageManifestDescriptor": {
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "digest": "sha256:9e9f2adfa5109a066d987b9d27dd97cf7fb658319155ee8a437eb66b7dd3ef7f",
+    "size": 1816,
+    "platform": {
+      "architecture": "amd64",
+      "os": "linux"
+    }
+  }
+}

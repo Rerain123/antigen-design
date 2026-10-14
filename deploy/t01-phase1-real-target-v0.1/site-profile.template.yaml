@@ -1,0 +1,41 @@
+profile_version: 0.1.0
+completion_boundary: LOCAL_RELEASE_CANDIDATE_ONLY
+target_server_status: NOT_DEPLOYED
+cluster:
+  kubernetes_version: REPLACE_AT_SITE
+  namespace: t01-phase1-real
+  ingress_class: REPLACE_AT_SITE
+  public_domain: REPLACE_AT_SITE
+  tls_secret_name: REPLACE_AT_SITE
+registry:
+  harbor_host: REPLACE_AT_SITE
+  project: REPLACE_AT_SITE
+  pull_secret_name: REPLACE_AT_SITE
+  control_plane_manifest_digest: REPLACE_AT_SITE
+storage:
+  storage_class: REPLACE_AT_SITE
+  access_mode: ReadWriteOnce
+  runtime_size: 2Ti
+  backup_class_or_target: REPLACE_AT_SITE
+gpu:
+  accelerator_estimate: NVIDIA A100
+  count_estimate: 1
+  usable_memory_gib_estimate: 64
+  resource_key: nvidia.com/gpu
+  node_selector: REPLACE_AT_SITE
+  runtime_class_name: REPLACE_AT_SITE
+project_capacity_estimate:
+  cpu: 32
+  memory_gib: 192
+  note: planning estimate only; not a ResourceQuota
+scientific_assets:
+  deeptmhmm_pvc: REPLACE_AT_SITE
+  structure_pvc: REPLACE_AT_SITE
+  bepipred_pvc: REPLACE_AT_SITE
+  netmhc_pvc: REPLACE_AT_SITE
+  blast_pvc: REPLACE_AT_SITE
+  homology_pvc: REPLACE_AT_SITE
+  proteinmpnn_pvc: REPLACE_AT_SITE
+  esm_if1_pvc: REPLACE_AT_SITE
+  thermompnn_pvc: REPLACE_AT_SITE
+  foldx_pvc: REPLACE_AT_SITE

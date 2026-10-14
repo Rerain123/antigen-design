@@ -1,0 +1,64 @@
+{
+  "record_type": "AUTHORITATIVE_SCOPE_AMENDMENT_INTAKE",
+  "baseline_id": "T01-PHASE1-18NODE-OFFLINE-20260903",
+  "decision_date": "2026-09-03",
+  "authority": "LATEST_USER_CONFIRMED_MEETING_DECISION",
+  "source": {
+    "original_filename": "codex-clipboard-1bfdfe9b-a09f-4c06-8f4f-3b723ae476ac.png",
+    "archived_relative_path": "工作流设计/01-业务依据/一期节点01内网裁剪会议截图_20260903.png",
+    "size_bytes": 22087,
+    "sha256": "C980D6CC5D1446278304AF49365850872403932CDCA9038D5B9624E72E4EBED4",
+    "intake_channel": "user_supplied_meeting_screenshot"
+  },
+  "explicit_user_decision": {
+    "deployment_network": "CLIENT_INTRANET",
+    "network_restriction_scope": "EXTERNAL_DATABASE_QUERY_ONLY",
+    "remove_from_node_01": [
+      "RCSB_PDB_SEARCH",
+      "ALPHAFOLD_DB_SEARCH"
+    ],
+    "retain_in_node_01_scientific_tools": [
+      "AlphaFold3",
+      "ESMFold2"
+    ],
+    "local_model_execution": "DEPLOY_TO_CLIENT_SERVER_AND_USE_NORMALLY",
+    "input_responsibility": "CLIENT_PROVIDED",
+    "input_baseline": {
+      "required": [
+        "protein_sequence",
+        "host_species"
+      ],
+      "optional": [
+        "structure"
+      ]
+    },
+    "contract_authority_policy": "EXTRACT_FIELDS_FORMATS_AND_RULES_FROM_EXPERT_PACKAGE_FIRST; DO_NOT_SEND_GENERIC_QUESTIONS_TO_USER"
+  },
+  "project_scope_derivation": {
+    "s07_automatic_structure_retrieval": "EXCLUDED_FROM_PHASE1",
+    "s07_helper_searches": "EXCLUDED_FROM_PHASE1_NODE01",
+    "s08_prediction": "RETAINED",
+    "s09_quality_assessment": "RETAINED",
+    "client_structure_input": "OPTIONAL_LOCAL_FILE; PARSE_WITHOUT_EXTERNAL_DATABASE_LOOKUP",
+    "note": "Node 01 is limited to AlphaFold3 and ESMFold2 as scientific tools. Intranet deployment does not restrict locally deployed AlphaFold3/ESMFold2; it only removes external database queries. Existing S-07 RCSB/BLAST/UniProt/AFDB retrieval evidence remains historical only."
+  },
+  "contract_consolidation": {
+    "open_item": "OI-023",
+    "status": "IN_REVIEW",
+    "task": "Consolidate the confirmed input baseline and dispersed expert rules into one reviewable request contract.",
+    "expert_evidence": [
+      "Phase-1 flowchart: target protein sequence + host species; design objective/expression host optional",
+      "AgentA Schema: protein_sequence and host_species fields",
+      "S-07c/structure-chain ToolSpec: optional local PDB/CIF/mmCIF input, optional chain, preserve original format, parse failure and missing-atom warning",
+      "R-58: sequence-to-structure alignment and chain/residue mapping before structure-dependent tools"
+    ],
+    "escalation_policy": "Engineering resolves naming, transport, hashing and idempotency. Escalate only a concrete conflict or true scientific gap to the appropriate expert; do not ask the user to redefine documented rules.",
+    "temporary_boundary": "Accept the confirmed required sequence and host species plus optional local structure; never resolve accession or missing data through external database queries."
+  },
+  "implementation_authorization": {
+    "production_code": false,
+    "dify_workflow_change": false,
+    "g0_execution": false,
+    "scientific_validation": false
+  }
+}

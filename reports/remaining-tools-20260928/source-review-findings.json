@@ -1,0 +1,22 @@
+{
+  "status": "FIXED_AND_VALIDATED",
+  "findings": [
+    {
+      "area": "N13/N15",
+      "finding": "Full pool request exceeds legacy 64 KiB request reader; needs bounded per-tool extension with identity/hash tests."
+    },
+    {
+      "area": "N13 L4",
+      "finding": "Unresolved Top20 L4 pool must remain unconsumed for full-pool path; preserve observed comparison separately."
+    },
+    {
+      "area": "N16 report",
+      "finding": "Propagate actual source failure code and translate DNA fallback for users."
+    }
+  ],
+  "new_scientific_jobs": 0,
+  "validation": [
+    "final-affected.junit.xml",
+    "docker-recheck.junit.xml"
+  ]
+}

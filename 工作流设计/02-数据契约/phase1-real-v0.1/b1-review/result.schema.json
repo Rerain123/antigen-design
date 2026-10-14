@@ -1,0 +1,281 @@
+{
+  "type": "object",
+  "properties": {
+    "contract_version": {
+      "const": "0.1.0"
+    },
+    "contract_status": {
+      "const": "DRAFT_REVIEW_ONLY"
+    },
+    "tool_id": {
+      "enum": [
+        "t01.real.ingest_structure",
+        "t01.real.map_structure"
+      ]
+    },
+    "binding": {
+      "type": "object",
+      "properties": {
+        "run_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+        },
+        "request_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+        },
+        "job_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+        },
+        "attempt_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+        },
+        "request_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "sequence_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "structure_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "run_id",
+        "request_id",
+        "job_id",
+        "attempt_id",
+        "request_sha256",
+        "sequence_sha256",
+        "structure_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "outcome": {
+      "enum": [
+        "parsed",
+        "candidate",
+        "rejected"
+      ]
+    },
+    "output_artifact": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "artifact_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+            },
+            "run_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+            },
+            "job_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "attempt_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "role": {
+              "enum": [
+                "request",
+                "input",
+                "result",
+                "raw",
+                "diagnostic",
+                "log",
+                "environment"
+              ]
+            },
+            "media_type": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "size_bytes": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "evidence_kind": {
+              "enum": [
+                "ENGINEERING_FIXTURE",
+                "G0_REAL_OUTPUT",
+                "PIPELINE_REAL_OUTPUT",
+                "LOCAL_INPUT"
+              ]
+            }
+          },
+          "required": [
+            "artifact_id",
+            "run_id",
+            "job_id",
+            "attempt_id",
+            "role",
+            "media_type",
+            "sha256",
+            "size_bytes",
+            "evidence_kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "ingestion_observation": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "chain_used": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "auto_selected": {
+              "type": "boolean"
+            },
+            "model_index": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "seq_extracted": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "chain_used",
+            "auto_selected",
+            "model_index",
+            "seq_extracted"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "mapping_status": {
+      "enum": [
+        null,
+        "unverified",
+        "unreliable"
+      ]
+    },
+    "unresolved_metadata": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "null"
+        },
+        "missing_atom_fraction": {
+          "type": "null"
+        },
+        "plddt": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "source",
+        "missing_atom_fraction",
+        "plddt"
+      ],
+      "additionalProperties": false
+    },
+    "issue_codes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "review_required": {
+      "const": true
+    },
+    "scientific_disposition": {
+      "const": "not_evaluated"
+    },
+    "usable_for_pipeline": {
+      "const": false
+    },
+    "error_code": {
+      "enum": [
+        null,
+        "INVALID_REQUEST",
+        "INPUT_UNSUPPORTED",
+        "FORMAT_MISMATCH",
+        "PARSE_FAILED",
+        "SELECTION_REQUIRED",
+        "SELECTION_NOT_FOUND",
+        "OUTPUT_INVALID"
+      ]
+    }
+  },
+  "required": [
+    "contract_version",
+    "contract_status",
+    "tool_id",
+    "binding",
+    "outcome",
+    "output_artifact",
+    "ingestion_observation",
+    "mapping_status",
+    "unresolved_metadata",
+    "issue_codes",
+    "review_required",
+    "scientific_disposition",
+    "usable_for_pipeline",
+    "error_code"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:t01:phase1:real:0.1.0:b1-review:result"
+}

@@ -1,0 +1,91 @@
+{
+  "job_id": "t01p1r-job-697eac581c7e456f83d677de8ec68446",
+  "run_id": "t01p1r-run-81dc256838134fc99c80d08a5a90cf79",
+  "state": "running",
+  "error_code": null,
+  "nodes": {
+    "bepipred": {
+      "node_id": "N04",
+      "job_id": "t01p1r-job-282229a89a834ba192090d78bdab2d5c",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "blast": {
+      "node_id": "N03",
+      "job_id": "t01p1r-job-a5989996b2924290b9bf963a1f9b7575",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "netmhc": {
+      "node_id": "N05",
+      "job_id": "t01p1r-job-ca205a3ec2c14cc29599abb3fe677714",
+      "state": "running",
+      "reason_code": null,
+      "detail": null
+    },
+    "prediction": {
+      "node_id": "N01",
+      "job_id": "t01p1r-job-416d102195524ddfba7ecd807bdfbf52",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "structure": {
+      "node_id": "N01",
+      "job_id": "t01p1r-job-bf80b3ec37c247329f3d08d912ac323f",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "topology": {
+      "node_id": "N02",
+      "job_id": "t01p1r-job-f41ecf07efcd44008937c997f3487beb",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    }
+  },
+  "pending_confirmation": null,
+  "facts": {},
+  "batch_progress": {
+    "netmhc": {
+      "submitted": 41,
+      "states": {
+        "succeeded": 40,
+        "reconciling": 1
+      },
+      "storage_preflight": {
+        "free_bytes": 149576945664,
+        "predicted_native_rows": 22158273,
+        "required_bytes": 31290017656
+      }
+    }
+  },
+  "active_progress": {
+    "N05": {
+      "active_steps": [
+        {
+          "execution": {
+            "phase": "controller_active"
+          },
+          "state": "running",
+          "step": "netmhc"
+        }
+      ],
+      "completed": false,
+      "internal_steps": 1,
+      "state": "running",
+      "step_states": {
+        "running": 1
+      }
+    }
+  },
+  "card_type": null,
+  "card_summary": null,
+  "controlled_downloads": [],
+  "transport": "service loopback HiMat MCP and attachment routes; not browser UI",
+  "scientific_gate": "CLOSED",
+  "public_report_api_called": false
+}

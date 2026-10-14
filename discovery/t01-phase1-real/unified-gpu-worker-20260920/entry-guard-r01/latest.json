@@ -1,0 +1,43 @@
+{
+  "status": "UNIFIED_GPU_OLD_ENTRY_GUARD_PASS",
+  "deployment_generation": 47,
+  "gpu_holder": {
+    "name": "antigen-design-f9b479fc4-djj8j",
+    "node": "k8s-a100-02",
+    "containers": [
+      "worker-unified-gpu"
+    ],
+    "phase": "Running"
+  },
+  "gpu_uuid": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31",
+  "gpu_type": "NVIDIA A100-SXM-64GB",
+  "registered_gpu_tools": [
+    "af3",
+    "esm-if1",
+    "esmfold2",
+    "proteinmpnn",
+    "thermompnn"
+  ],
+  "spool_roots": [
+    "/var/lib/t01/resident/af3",
+    "/var/lib/t01/resident/esmfold2",
+    "/var/lib/t01/resident/gpu"
+  ],
+  "worker_state": {
+    "last_execution": {
+      "order": 1789977806405176144,
+      "sha256": "eb260b632f231de9e5d160aa8f731345e572800ed68311fb7033940965033bb0",
+      "target": "/var/lib/t01/resident/gpu/f86d432416ea8938decb683963fec6bc",
+      "tool": "thermompnn",
+      "uncertain": false
+    },
+    "last_state": "succeeded",
+    "phase": "idle",
+    "pending": []
+  },
+  "legacy_deployments": {},
+  "service_account_token_mounted": false,
+  "scientific_gate": "CLOSED",
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED"
+}

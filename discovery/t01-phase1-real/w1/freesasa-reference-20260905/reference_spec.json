@@ -1,0 +1,41 @@
+{
+  "scope": "PREDECLARED_NUMERICAL_STUDY_NOT_SCIENTIFIC_APPROVAL",
+  "created_on": "2026-09-05",
+  "sources": {
+    "published_freesasa": {
+      "url": "https://freesasa.github.io/doxygen/CLI.html",
+      "section": "CIF output example, 1ubq",
+      "documentation_version": "2.1.2; example software label 2.1.0",
+      "atom_count": 602,
+      "total_sasa_a2": 4804.055641,
+      "met1_total_sasa_a2": 54.393508,
+      "display_decimals": 6,
+      "parameters": {"algorithm": "LeeRichards", "probe_radius_a": 1.4, "n_slices": 20},
+      "limitation": "Published external regression value, not an independent algorithm; page provides no input file hash"
+    },
+    "independent_algorithm": {
+      "url": "https://biopython.org/docs/latest/api/Bio.PDB.SASA.html",
+      "implementation": "Biopython 1.88 ShrakeRupley",
+      "limitation": "Independent integration code, shared input coordinates and FreeSASA ProtOr radii"
+    },
+    "analytic_geometry": {"url": "https://freesasa.github.io/doxygen/Geometry.html", "reference": "Exact exposed sphere/cap area, expanded radius = atomic radius + probe radius"},
+    "normalization": {"url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0080635", "section": "Table 1, Theoretical; project authority C34 ToolSpec section 2b"}
+  },
+  "lee_richards_slices": [20, 100, 200, 400],
+  "biopython_sphere_points": [960, 3840, 15360],
+  "screening_targets": {
+    "status": "ENGINEERING_PROPOSAL_REQUIRES_SCIENTIFIC_REVIEW",
+    "total_relative_error_max": 0.005,
+    "per_residue_absolute_rsa_error_max": 0.01,
+    "reference_convergence_max_absolute_rsa_delta": 0.002,
+    "buried_classification_difference_count_max": 0,
+    "rationale": "Proposed 0.5% total-area and 0.01 absolute-RSA budgets; require reference changes below one fifth of the RSA budget and no 0.20 classification change. These are predeclared engineering screening targets, not published scientific tolerances."
+  },
+  "tien_theoretical_by_three_letter": {"ALA":129.0,"ARG":274.0,"ASN":195.0,"ASP":193.0,"CYS":167.0,"GLU":223.0,"GLN":225.0,"GLY":104.0,"HIS":224.0,"ILE":197.0,"LEU":201.0,"LYS":236.0,"MET":224.0,"PHE":240.0,"PRO":159.0,"SER":155.0,"THR":172.0,"TRP":285.0,"TYR":263.0,"VAL":174.0},
+  "analytic_cases": [
+    {"id":"single", "atomic_radii_a":[1.5], "coordinates_a":[[0,0,0]]},
+    {"id":"separated", "atomic_radii_a":[1.5,1.8], "coordinates_a":[[0,0,0],[10,0,0]], "distance_a":10.0},
+    {"id":"unequal_overlap", "atomic_radii_a":[1.5,1.8], "coordinates_a":[[0,0,0],[3.4,0,0]], "distance_a":3.4},
+    {"id":"contained", "atomic_radii_a":[0.5,2.5], "coordinates_a":[[0,0,0],[1,0,0]], "distance_a":1.0}
+  ]
+}

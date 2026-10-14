@@ -1,0 +1,101 @@
+{
+  "case": "short",
+  "command": [
+    "docker",
+    "--host",
+    "npipe:////./pipe/dockerDesktopLinuxEngine",
+    "create",
+    "--pull",
+    "never",
+    "--name",
+    "t01-dtm-academic-20260905-short",
+    "--network",
+    "none",
+    "--read-only",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "--pids-limit",
+    "512",
+    "--memory",
+    "10g",
+    "--memory-swap",
+    "10g",
+    "--cpus",
+    "8",
+    "--cpuset-cpus",
+    "0-7",
+    "--tmpfs",
+    "/tmp:rw,noexec,nosuid,size=512m",
+    "--env",
+    "CUDA_VISIBLE_DEVICES=-1",
+    "--env",
+    "PYTHONUNBUFFERED=1",
+    "--mount",
+    "type=bind,source=D:\\work\\\u86cb\u767d\u667a\u80fd\u4f53\\var\\t01-phase1-real\\tool-assets\\deeptmhmm-academic-1.0-0a7a6c5d009e,target=/app,readonly",
+    "--mount",
+    "type=bind,source=D:\\work\\\u86cb\u767d\u667a\u80fd\u4f53\\discovery\\t01-phase1-real\\w1\\deeptmhmm-academic-20260905\\inputs\\short.fasta,target=/input.fasta,readonly",
+    "--mount",
+    "type=bind,source=D:\\work\\\u86cb\u767d\u667a\u80fd\u4f53\\discovery\\t01-phase1-real\\w1\\deeptmhmm-academic-20260905\\container_probe.py,target=/probe.py,readonly",
+    "--mount",
+    "type=bind,source=D:\\work\\\u86cb\u767d\u667a\u80fd\u4f53\\discovery\\t01-phase1-real\\w1\\deeptmhmm-academic-20260905\\runs\\short\\output,target=/out",
+    "--workdir",
+    "/app",
+    "--entrypoint",
+    "python",
+    "sha256:7f85781fadf8c89ddbafced691d05006caf6881b06aa5b9bae4bd531393bcd72",
+    "/probe.py"
+  ],
+  "assets_verified_before": 41,
+  "input_sha256": "b832c9a0d1dbba4a61424d5cfe8dd3b29208a86f9c181812d4292bdf8ede92c4",
+  "production_status": "NOT_DEPLOYED",
+  "container_id": "dd6f491c7efb10f34aa170b7f528b0d8a54b3b6dfacc49c0334d96cd004dfe93",
+  "attach_exit_code": 0,
+  "container_exit_code": 0,
+  "oom_killed": false,
+  "elapsed_seconds": 30.93699999999808,
+  "assets_verified_after": 41,
+  "artifacts": [
+    {
+      "path": "result/deeptmhmm_results.md",
+      "bytes": 568,
+      "sha256": "ed9c5ccef01d0277c320055d4184acb0466b1577fbe43f4ac6b9282bf5de6dae"
+    },
+    {
+      "path": "result/embeddings/540e78a823843e70b82efc3dd97de40a",
+      "bytes": 271709,
+      "sha256": "4f64c716b85ea2ed0f684034d978b03061400b2da44f81a579c6e86550be19d4"
+    },
+    {
+      "path": "result/plot.png",
+      "bytes": 29023,
+      "sha256": "00e3bbccb062ce7a98cc82430265fdbd6ec6c37d779acd66a994655e46171d0a"
+    },
+    {
+      "path": "result/predicted_topologies.3line",
+      "bytes": 128,
+      "sha256": "aa1242f279d0b48c4555c973b12e186feea05693991c82ab6bfcd28c6d29ded1"
+    },
+    {
+      "path": "result/probabilities/Q8K459\uf07cGLOBULAR_probs.csv",
+      "bytes": 1537,
+      "sha256": "75dd1e031d5ca1a72d59b62a9a9db4a9f7c7c343544d32fbada22ef27926077a"
+    },
+    {
+      "path": "result/TMRs.gff3",
+      "bytes": 123,
+      "sha256": "89ba854f2db2cb3cfd8d29ad353307b2cd20bd06d7c916eaa804abfc5c42c243"
+    },
+    {
+      "path": "runtime.json",
+      "bytes": 787,
+      "sha256": "4c4d60f78f7f18ca4729f6624bc871ae29971f77d6fc2afde06a0597d875b357"
+    },
+    {
+      "path": "runtime_started.json",
+      "bytes": 566,
+      "sha256": "53585794f6a60f5b2f0d456f43be2efa20f48685ba50205a1b977861244667d7"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "status": "HIMAT_P2_PROGRESS_PASS",
+  "deployment_generation": 83,
+  "tests": {
+    "himat-progress-full-r02.junit.xml": {
+      "tests": 2391,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 15
+    },
+    "himat-progress-targeted-r02.junit.xml": {
+      "tests": 54,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "himat-progress-observation-r01.junit.xml": {
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "source_hashes": {
+    "service_api/himat.py": "24c6c765ee0aae1c034a261a7e2bea7aa03e6b51325ff53750d25bb5f9f6892a",
+    "service_api/progress.py": "515a0fcde44d3b3f26533611e79c9a7b3913e10fc9c3d366a2aaf6c2b062ac51",
+    "service_api/transport.py": "617ba3fc77bce73325c1bfb712eeef6d6ff81fa9282a1f11a624363f5032a925",
+    "service_api/app.py": "687d03c7e0b08f7e1e256827a3facfb03f125402c5289c072fa2fdd397c641a1"
+  },
+  "business_node_count": 18,
+  "historical_replay": {
+    "before": "3/51 internal steps",
+    "after": "2/18 business nodes",
+    "current_nodes": [
+      "N03"
+    ]
+  },
+  "execution_phases": [
+    "preparing",
+    "waiting_worker",
+    "worker_starting",
+    "executing",
+    "finalizing",
+    "stopping",
+    "unknown"
+  ],
+  "observation_boundary": "Read-only same-job/run/attempt/execution/request-bound worker receipts, not live CPU measurement",
+  "verification_scope": "Live code/MCP/terminal report verification plus historical active snapshot and stopped-receipt replay; no new science workflow",
+  "active_jobs_after": [],
+  "iedb_preserved": true,
+  "scientific_gate": "CLOSED",
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED"
+}

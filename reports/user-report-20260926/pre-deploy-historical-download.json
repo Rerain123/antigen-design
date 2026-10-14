@@ -1,0 +1,182 @@
+{
+  "job_id": "t01p1r-job-120f08a88827456e83bfdf5e6ef19b92",
+  "run_id": "t01p1r-run-44199d1960334909b953022f05a43858",
+  "state": "succeeded",
+  "error_code": null,
+  "nodes": {
+    "bepipred": {
+      "node_id": "N04",
+      "job_id": "t01p1r-job-c6ce48cffcb44e879c5b74c62088b257",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "blast": {
+      "node_id": "N03",
+      "job_id": "t01p1r-job-c7309e57a72f4642b7d1c805016ae9b7",
+      "state": "failed",
+      "reason_code": "OUTPUT_INVALID",
+      "detail": null
+    },
+    "codon": {
+      "node_id": "N16",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "EXPRESSION_HOST_NOT_PROVIDED",
+      "detail": null
+    },
+    "design": {
+      "node_id": "N11",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "detail": null
+    },
+    "developability": {
+      "node_id": "N10",
+      "job_id": "t01p1r-job-88b7c64d6df54bd084e6fefff680a869",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "domains": {
+      "node_id": "N09",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "DATABASE_NOT_PROVIDED",
+      "detail": null
+    },
+    "epitope_map": {
+      "node_id": "N06",
+      "job_id": "t01p1r-job-75785eb9380f42548074161bad9f403e",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "glycosylation": {
+      "node_id": "N07",
+      "job_id": "t01p1r-job-abf388f1036d48709b1e6f707183ad3d",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "homology": {
+      "node_id": "N08",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "DATABASE_NOT_PROVIDED",
+      "detail": null
+    },
+    "local_delivery": {
+      "node_id": "N18",
+      "job_id": "t01p1r-job-d22d2edfaec043c7be61ebd33e287973",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "netmhc": {
+      "node_id": "N05",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "ALLELE_PANEL_NOT_PROVIDED",
+      "detail": null
+    },
+    "prediction": {
+      "node_id": "N01",
+      "job_id": "t01p1r-job-8c6c68a4ee4649938ffa77fb3fef0866",
+      "state": "failed",
+      "reason_code": "TOOL_FAILED",
+      "detail": null
+    },
+    "protection": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "detail": null
+    },
+    "rescore": {
+      "node_id": "N12",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "detail": null
+    },
+    "stability": {
+      "node_id": "N14",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "detail": null
+    },
+    "structure": {
+      "node_id": "N01",
+      "job_id": null,
+      "state": "skipped",
+      "reason_code": "PREDICTION_UNAVAILABLE",
+      "detail": null
+    },
+    "topology": {
+      "node_id": "N02",
+      "job_id": "t01p1r-job-8261915f1db84086880d51d4d6935868",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "variant_report": {
+      "node_id": "N15",
+      "job_id": "t01p1r-job-70e820aaa3e445c49a0a732590629ed5",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "wt_draft": {
+      "node_id": "N18",
+      "job_id": "t01p1r-job-1b77bd706e6f4037a2fef0f1afb6603a",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    },
+    "wt_reference": {
+      "node_id": "N17",
+      "job_id": "t01p1r-job-efad61304920404f85d6e32821f821df",
+      "state": "succeeded",
+      "reason_code": null,
+      "detail": null
+    }
+  },
+  "pending_confirmation": null,
+  "facts": {
+    "variant_report": {
+      "outcome": "INPUTS_UNAVAILABLE",
+      "summary": {
+        "excluded": 0,
+        "retained": 0,
+        "total": 0,
+        "undetermined": 0
+      },
+      "ranked_candidates": null
+    }
+  },
+  "batch_progress": {},
+  "active_progress": {},
+  "card_type": "primer_design_output",
+  "card_summary": "任务 t01p1r-job-120f08a88827456e83bfdf5e6ef19b92 已生成工程报告；后端结论 DESIGN_NOT_EXECUTED。N11 候选设计未执行；原因：DESIGN_APPLICABILITY_INPUT_INSUFFICIENT。科学资格状态单独判断。计算含 2 项失败，报告交付不表示计算成功。科学资格 CLOSED / false / NOT_DEPLOYED。",
+  "controlled_downloads": [
+    {
+      "file_name": "report.md",
+      "bytes": 2480,
+      "sha256": "78e5f3c9acd457849748cc9593871ad72d0db496b14c523c124ab732aae565ae",
+      "verified": true
+    },
+    {
+      "file_name": "t01p1r-job-120f08a88827456e83bfdf5e6ef19b92.zip",
+      "bytes": 85515,
+      "sha256": "7b26f959331a9c722ac964edf81a0479a18eac727ef20882ab6af9fd5fae222e",
+      "verified": true
+    }
+  ],
+  "transport": "service loopback HiMat MCP and attachment routes; not browser UI",
+  "scientific_gate": "CLOSED",
+  "public_report_api_called": false
+}

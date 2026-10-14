@@ -1,0 +1,43 @@
+{
+  "status": "IMPLEMENTED_TESTED_PREPARED_NOT_DEPLOYED",
+  "checks": {
+    "himat-progress-targeted-r01.junit.xml": {
+      "tests": 43,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "passed": 43
+    },
+    "himat-progress-full-r01.junit.xml": {
+      "tests": 2354,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 15,
+      "passed": 2339
+    }
+  },
+  "frozen": {
+    "status": "PASS",
+    "release_state": "FROZEN",
+    "campaign_id": "t01p1m-v01-reg-20260904-release-freeze-03",
+    "frozen_asset_count": 457
+  },
+  "live_snapshot_replay": "himat-progress-live-replay-r01.json",
+  "current_blast_diagnostic": "himat-second-blast-progress-r01.json",
+  "prepared_deployment": "deploy/m1-p4/himat-progress-r08",
+  "deployment_blocker": "Existing workflow still running N03. Singleton Recreate deployment contains the active BLAST worker; do not restart. Fresh idle and revision checks required.",
+  "live_progress": {
+    "business_completed": 2,
+    "business_total": 18,
+    "current_node": "N03",
+    "internal_finished": 3,
+    "internal_total": 51
+  },
+  "source_hashes": {
+    "himat.py": "de758a1953fe0feedb7a26def5cc8da65e32ed30ecb27556ce130934177d1a75",
+    "progress.py": "f999b99ca485a0bcc5a89ed434a003cec61d09ea9821505659eeb9d1bd3aaaf8",
+    "transport.py": "af3b30f8e7226fbf753b1fb852c963f6acbbeee949339d474ce145e5a3df6817"
+  },
+  "workflow_scheduling_changed": false,
+  "deployed": false
+}

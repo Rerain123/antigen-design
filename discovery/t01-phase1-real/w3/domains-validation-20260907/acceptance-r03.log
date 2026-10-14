@@ -1,0 +1,26 @@
+{"artifacts_verified":23,"case":"real-deeptmhmm","error_code":null,"job_id":"t01p1r-job-2a98237f6409433eae9476e49879c034","state":"succeeded"}
+{"artifacts_verified":7,"case":"annotated-real-topology","error_code":null,"job_id":"t01p1r-job-51cfe4f01e7846d181e7fc6907715277","state":"succeeded"}
+{"artifacts_verified":6,"case":"no-topology","error_code":null,"job_id":"t01p1r-job-359ab0ec3601409592f5095880c63bda","state":"succeeded"}
+{"artifacts_verified":6,"case":"empty-features","error_code":null,"job_id":"t01p1r-job-f776f83379cf4f6a990ad52d8277cffe","state":"succeeded"}
+{"artifacts_verified":6,"case":"no-hit","error_code":null,"job_id":"t01p1r-job-d466a1b940524f32b8cfeb729ea3060d","state":"succeeded"}
+{"artifacts_verified":6,"case":"independent-motifs","error_code":null,"job_id":"t01p1r-job-a290a6206eb64b56bbb6873ada5cdfdc","state":"succeeded"}
+{"artifacts_verified":6,"case":"unreviewed","error_code":null,"job_id":"t01p1r-job-e921930ab9604b2a9aa53b9a04f383da","state":"succeeded"}
+{"artifacts_verified":6,"case":"multiple","error_code":null,"job_id":"t01p1r-job-a66b1f184cbd450cad20a9f494de38e8","state":"succeeded"}
+{"artifacts_verified":6,"case":"explicit-mismatch","error_code":null,"job_id":"t01p1r-job-74c71c8c0dc44abbbb46e2cea06ea4e2","state":"succeeded"}
+{"artifacts_verified":6,"case":"parent-clipping-chain","error_code":null,"job_id":"t01p1r-job-55dc02645e954a5c8843cf6dea2e6e9c","state":"succeeded"}
+{"artifacts_verified":33,"case":"structure-normal-cif","error_code":null,"job_id":"t01p1r-job-e04f7db4836849089ce61cfdb0592a26","state":"succeeded"}
+{"artifacts_verified":8,"case":"geometry-normal-cif","error_code":null,"job_id":"t01p1r-job-bb4dd53ecedf43a085ae0967c6c72ba2","state":"succeeded"}
+{"artifacts_verified":25,"case":"structure-quality-unknown-source","error_code":null,"job_id":"t01p1r-job-69171f5fe7604ef7b2cdcfd68aeadce2","state":"succeeded"}
+{"artifacts_verified":8,"case":"geometry-quality-unknown-source","error_code":null,"job_id":"t01p1r-job-b40793eb309b42e4a7d2995731c33770","state":"succeeded"}
+{"artifacts_verified":33,"case":"structure-rsa-out-of-domain","error_code":null,"job_id":"t01p1r-job-40919e42dd6d42d0a69404e8a1df3a7e","state":"succeeded"}
+{"artifacts_verified":8,"case":"geometry-rsa-out-of-domain","error_code":null,"job_id":"t01p1r-job-e808e4703a8c4af58e6e283f0f3b732d","state":"succeeded"}
+{"artifacts_verified":25,"case":"structure-synthetic-cys-interface","error_code":null,"job_id":"t01p1r-job-7685d40cacc0426180d5112acad31162","state":"succeeded"}
+{"artifacts_verified":8,"case":"geometry-synthetic-cys-interface","error_code":null,"job_id":"t01p1r-job-9980b7a65b1e4a9c937a654ffd96f3c4","state":"succeeded"}
+Traceback (most recent call last):
+  File "D:\work\蛋白智能体\scripts\run_domains_acceptance.py", line 169, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "D:\work\蛋白智能体\scripts\run_domains_acceptance.py", line 124, in main
+    assert sv['analysis']['structure_assessment']['disulfide_pairs']
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'disulfide_pairs'

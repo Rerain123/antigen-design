@@ -1,0 +1,1745 @@
+{
+  "declared_before_campaign_execution": true,
+  "prepared_at": "2026-09-06T01:44:51.624523+00:00",
+  "expectation_source": {
+    "path": "scripts/b1_freesasa_cases.py",
+    "sha256": "6b1e4d6c44de3f6a51d00b12ed4e91671cddac6a57b06e304c056285bdb9c435",
+    "size_bytes": 8130
+  },
+  "basis": "Literal raw identities, atom/exclusion counts, source format constraints; tool results never define these expectations",
+  "scientific_reference": false,
+  "cases": [
+    {
+      "id": "F-integer-pdb",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "pdb_file",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": null,
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": 10,
+        "residue_count": 2,
+        "authors": [
+          "42",
+          "43"
+        ],
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-integer-pdb.structure",
+        "sha256": "5035fac70afd6506040d04df0159f863117a549a203f44629b0340ae10d3130c",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-integer-pdb.request.json",
+        "sha256": "9e6f5989d7c2490306b5fb7b343ac9dbe8c8de2c7c07637bf3eed345e44e300a",
+        "size_bytes": 1072
+      }
+    },
+    {
+      "id": "F-icode-pdb",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "pdb_file",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": null,
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": 10,
+        "residue_count": 2,
+        "authors": [
+          "42",
+          "42"
+        ],
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-icode-pdb.structure",
+        "sha256": "e1e70704b71440048d1a9bd0a2a85eca54b6cad4051565ad010cf22bbf184454",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-icode-pdb.request.json",
+        "sha256": "19d25dc373d8dbebc1dd1e611966c63829489d9f6fe49e6de645e6dba822b611",
+        "size_bytes": 1064
+      }
+    },
+    {
+      "id": "F-negative-pdb",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "pdb_file",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": null,
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": 10,
+        "residue_count": 2,
+        "authors": [
+          "-9",
+          "-8"
+        ],
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-negative-pdb.structure",
+        "sha256": "1bb5eb26c222037f47ecc452e37ca6ca3ff0ecc3167b8971051e41531a327797",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-negative-pdb.request.json",
+        "sha256": "5b4829ea1a01958069943c685b03da33fe47bd2ff8ad88cb983a23a357c37ba8",
+        "size_bytes": 1076
+      }
+    },
+    {
+      "id": "F-char-pdb",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "pdb_file",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "PDB_ADDRESS_UNREPRESENTABLE",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": [
+          "43A",
+          "44B"
+        ],
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-char-pdb.structure",
+        "sha256": "5efb8c70eb71cc36f51fd4ad1104085b487b6ae0af4ef497dfbb5e746d5da72d",
+        "size_bytes": 1145
+      },
+      "request": {
+        "path": "inputs/F-char-pdb.request.json",
+        "sha256": "495fa44b8ab39a796a41c8968379900be0ca3c1a6631e504e245d01de7563961",
+        "size_bytes": 1060
+      }
+    },
+    {
+      "id": "F-leading-zero-pdb",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "pdb_file",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "PDB_ADDRESS_UNREPRESENTABLE",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": [
+          "043",
+          "43"
+        ],
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-leading-zero-pdb.structure",
+        "sha256": "0f707f6997a36652f33621ffc3e44bda02144e7c8a3b696ca8e22e8d408ffcfc",
+        "size_bytes": 1140
+      },
+      "request": {
+        "path": "inputs/F-leading-zero-pdb.request.json",
+        "sha256": "e989b83a8d32ea26cda573ea1512ec780ad5bfbaabcdfd4aa65cbb32e2476edd",
+        "size_bytes": 1092
+      }
+    },
+    {
+      "id": "F-char-icode-collision-pdb",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "pdb_file",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "PDB_ADDRESS_UNREPRESENTABLE",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-char-icode-collision-pdb.structure",
+        "sha256": "bae7ff9ddccce79f05e6c070d6fa3a0295314cef41989b126b98b9a276bd4912",
+        "size_bytes": 1140
+      },
+      "request": {
+        "path": "inputs/F-char-icode-collision-pdb.request.json",
+        "sha256": "07cc10f8bb8c541adb2806fe54e2bcb5c6cc603fb85d7470d31672fa8fe79404",
+        "size_bytes": 1124
+      }
+    },
+    {
+      "id": "F-numeric-icode-collision-pdb",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "pdb_file",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "FREE_RESIDUE_TOKEN_COLLISION",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-numeric-icode-collision-pdb.structure",
+        "sha256": "a0107caeb98872809428d4942a140e16eb0702b284a0764d9e73bed39410676a",
+        "size_bytes": 1130
+      },
+      "request": {
+        "path": "inputs/F-numeric-icode-collision-pdb.request.json",
+        "sha256": "778937aec5516f1ff81939308a50bbbb75c744450b03b31df4ea2aee5f7e5715",
+        "size_bytes": 1136
+      }
+    },
+    {
+      "id": "F-context-ab-pdb",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "pdb_file",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A",
+          "B"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": null,
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": 10,
+        "residue_count": 2,
+        "authors": [
+          "42",
+          "43"
+        ],
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-context-ab-pdb.structure",
+        "sha256": "2b37ba1e367305387c0ca85b027981803d13f797c69cd14380472a6c1c69e7d9",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-context-ab-pdb.request.json",
+        "sha256": "4930a1fc6edea94ae756ccff6818ff87fae2df5b54101d1412c1effb44abd81c",
+        "size_bytes": 1084
+      }
+    },
+    {
+      "id": "F-integer-native",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": null,
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": 10,
+        "residue_count": 2,
+        "authors": [
+          "42",
+          "43"
+        ],
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-integer-native.structure",
+        "sha256": "5035fac70afd6506040d04df0159f863117a549a203f44629b0340ae10d3130c",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-integer-native.request.json",
+        "sha256": "1802e72e7c273c58ca30a2e5f23fa4e6800487697db692675d65a62e36ffb439",
+        "size_bytes": 1084
+      }
+    },
+    {
+      "id": "F-icode-native",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": null,
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": 10,
+        "residue_count": 2,
+        "authors": [
+          "42",
+          "42"
+        ],
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-icode-native.structure",
+        "sha256": "e1e70704b71440048d1a9bd0a2a85eca54b6cad4051565ad010cf22bbf184454",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-icode-native.request.json",
+        "sha256": "42cf75501fe38642702ba16f8528292bbf49184bf70f1b845596b5520482bf6d",
+        "size_bytes": 1076
+      }
+    },
+    {
+      "id": "F-negative-native",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": null,
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": 10,
+        "residue_count": 2,
+        "authors": [
+          "-9",
+          "-8"
+        ],
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-negative-native.structure",
+        "sha256": "1bb5eb26c222037f47ecc452e37ca6ca3ff0ecc3167b8971051e41531a327797",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-negative-native.request.json",
+        "sha256": "fcc7697b86f9f14e2a10aafc96aff77c854f3a27432dccf8df663871bda24c09",
+        "size_bytes": 1088
+      }
+    },
+    {
+      "id": "F-char-native",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": null,
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": 10,
+        "residue_count": 2,
+        "authors": [
+          "43A",
+          "44B"
+        ],
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-char-native.structure",
+        "sha256": "5efb8c70eb71cc36f51fd4ad1104085b487b6ae0af4ef497dfbb5e746d5da72d",
+        "size_bytes": 1145
+      },
+      "request": {
+        "path": "inputs/F-char-native.request.json",
+        "sha256": "3f76e99d49a5e1d1edbb49f8a3dfd290ff30dec611c44d5c7e3e17c382184846",
+        "size_bytes": 1072
+      }
+    },
+    {
+      "id": "F-leading-zero-native",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": null,
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": 10,
+        "residue_count": 2,
+        "authors": [
+          "043",
+          "43"
+        ],
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-leading-zero-native.structure",
+        "sha256": "0f707f6997a36652f33621ffc3e44bda02144e7c8a3b696ca8e22e8d408ffcfc",
+        "size_bytes": 1140
+      },
+      "request": {
+        "path": "inputs/F-leading-zero-native.request.json",
+        "sha256": "28db6c70724a5bf1aa4e66e9498dcef6110188da5e287ef56696978a182872f9",
+        "size_bytes": 1104
+      }
+    },
+    {
+      "id": "F-char-icode-collision-native",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "FREE_RESIDUE_TOKEN_COLLISION",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-char-icode-collision-native.structure",
+        "sha256": "bae7ff9ddccce79f05e6c070d6fa3a0295314cef41989b126b98b9a276bd4912",
+        "size_bytes": 1140
+      },
+      "request": {
+        "path": "inputs/F-char-icode-collision-native.request.json",
+        "sha256": "fa7a2b366abd9b92f585fb78d20df08de7a0b36d834292a15f794e9f97e42599",
+        "size_bytes": 1136
+      }
+    },
+    {
+      "id": "F-numeric-icode-collision-native",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "FREE_RESIDUE_TOKEN_COLLISION",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-numeric-icode-collision-native.structure",
+        "sha256": "a0107caeb98872809428d4942a140e16eb0702b284a0764d9e73bed39410676a",
+        "size_bytes": 1130
+      },
+      "request": {
+        "path": "inputs/F-numeric-icode-collision-native.request.json",
+        "sha256": "9bff79ef8c0785642bda7fa3dcf74459891fe5136e62f770d8c1771faeff54ff",
+        "size_bytes": 1148
+      }
+    },
+    {
+      "id": "F-context-ab-native",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A",
+          "B"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": null,
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": 10,
+        "residue_count": 2,
+        "authors": [
+          "42",
+          "43"
+        ],
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-context-ab-native.structure",
+        "sha256": "2b37ba1e367305387c0ca85b027981803d13f797c69cd14380472a6c1c69e7d9",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-context-ab-native.request.json",
+        "sha256": "1f929373af52216e34749e75da6b843befeb8cf60e0a1e022f89eb83ddc997aa",
+        "size_bytes": 1096
+      }
+    },
+    {
+      "id": "F-long-author-native",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": null,
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": 10,
+        "residue_count": 2,
+        "authors": [
+          "12345678901234567890",
+          "+43"
+        ],
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-long-author-native.structure",
+        "sha256": "acfa77693a6a762bdc572a8fbc7db47390662caae87b5717637adb18c50d062e",
+        "size_bytes": 1230
+      },
+      "request": {
+        "path": "inputs/F-long-author-native.request.json",
+        "sha256": "0d41fde0c7add96d320268e524bf454360c28f9aa330728d5603eb14bf4a09ca",
+        "size_bytes": 1100
+      }
+    },
+    {
+      "id": "F-long-chain",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A",
+          "AUTH_LONG"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "CHAIN_UNREPRESENTABLE",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-long-chain.structure",
+        "sha256": "906a7822a28134cbdfc4838235161037864dc0040f5097452f3af3f324f689c9",
+        "size_bytes": 1215
+      },
+      "request": {
+        "path": "inputs/F-long-chain.request.json",
+        "sha256": "5535cb376d26a61754f41d443914247b41e57b2f3c7fc785cc47aee1b6d30843",
+        "size_bytes": 1068
+      }
+    },
+    {
+      "id": "F-unknown-icode",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "ICODE_UNKNOWN",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-unknown-icode.structure",
+        "sha256": "a3a083e2f07f4a4ed8362233aed12201a2c03f5f69eb79e0c759dc36940705ad",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-unknown-icode.request.json",
+        "sha256": "4b9e735083982e36a6a471efba5f58e6dcb9abf70dc4acce9b33662fffb33def",
+        "size_bytes": 1080
+      }
+    },
+    {
+      "id": "F-literal-question-icode",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "ICODE_UNREPRESENTABLE",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-literal-question-icode.structure",
+        "sha256": "30ac902e53963a30c294b2690660115ff6eeb760e032e2b03056eb0a1ac22d25",
+        "size_bytes": 1145
+      },
+      "request": {
+        "path": "inputs/F-literal-question-icode.request.json",
+        "sha256": "5e3e70b9c34d689ef7ce63a97bc9ca0ee51257dcfcb3ddd879d0a21b3e006308",
+        "size_bytes": 1116
+      }
+    },
+    {
+      "id": "F-wrong-model",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 1,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "MODEL_SELECTION_MISMATCH",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-wrong-model.structure",
+        "sha256": "5035fac70afd6506040d04df0159f863117a549a203f44629b0340ae10d3130c",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-wrong-model.request.json",
+        "sha256": "25815f59cc740a5407398429659b209b899b9c4928465b6ccf4fd896698b46ae",
+        "size_bytes": 1072
+      }
+    },
+    {
+      "id": "F-empty-context",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": []
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "CONTEXT_SELECTION_INVALID",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-empty-context.structure",
+        "sha256": "5035fac70afd6506040d04df0159f863117a549a203f44629b0340ae10d3130c",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-empty-context.request.json",
+        "sha256": "eb11f6d4752e740536a00febced4b05b6cb7468450955b3ad922a34888f38701",
+        "size_bytes": 1080
+      }
+    },
+    {
+      "id": "F-duplicate-context",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A",
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "CONTEXT_SELECTION_INVALID",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-duplicate-context.structure",
+        "sha256": "5035fac70afd6506040d04df0159f863117a549a203f44629b0340ae10d3130c",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-duplicate-context.request.json",
+        "sha256": "0d3e6c4fd80dcf57b43764332e61c52dbcc21c61463f6346937901b1b5cc6ab9",
+        "size_bytes": 1096
+      }
+    },
+    {
+      "id": "F-missing-context-chain",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A",
+          "Z"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "CONTEXT_CHAIN_NOT_FOUND",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-missing-context-chain.structure",
+        "sha256": "5035fac70afd6506040d04df0159f863117a549a203f44629b0340ae10d3130c",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-missing-context-chain.request.json",
+        "sha256": "d15a7ec586ee66aae71603e2b9f0a45c981c071bbe30ca703117d06544462520",
+        "size_bytes": 1112
+      }
+    },
+    {
+      "id": "F-excluded-ingestion-chain",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "B"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "INGESTION_CHAIN_EXCLUDED",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-excluded-ingestion-chain.structure",
+        "sha256": "2b37ba1e367305387c0ca85b027981803d13f797c69cd14380472a6c1c69e7d9",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-excluded-ingestion-chain.request.json",
+        "sha256": "1038b536bf6cfc3f91eabd0ce537d36c057de36373361bcf09d7e1eaa159dcbd",
+        "size_bytes": 1124
+      }
+    },
+    {
+      "id": "F-context-a",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": null,
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": 5,
+        "residue_count": 1,
+        "authors": [
+          "42"
+        ],
+        "excluded_reasons": {
+          "outside_explicit_context": 5
+        }
+      },
+      "input": {
+        "path": "inputs/F-context-a.structure",
+        "sha256": "2b37ba1e367305387c0ca85b027981803d13f797c69cd14380472a6c1c69e7d9",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-context-a.request.json",
+        "sha256": "494999cfb9840c3c24291e5cb5bf9e2609f2db6dea90f3bb8f16f9df3a1ce8f8",
+        "size_bytes": 1064
+      }
+    },
+    {
+      "id": "F-selected-second-model",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 1,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 1,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": null,
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": 5,
+        "residue_count": 1,
+        "authors": [
+          "43"
+        ],
+        "excluded_reasons": {
+          "unselected_model": 5
+        }
+      },
+      "input": {
+        "path": "inputs/F-selected-second-model.structure",
+        "sha256": "ab1a444a7d4b8a57996e66e9cb17fe7da6fc57602a7a673c4d13f5db2e314042",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-selected-second-model.request.json",
+        "sha256": "a3c86e2deaf4fedc45866f68c5c9865030a9445d56b7edcda9867e91e25d781f",
+        "size_bytes": 1112
+      }
+    },
+    {
+      "id": "F-label-gap",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": null,
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": 10,
+        "residue_count": 2,
+        "authors": [
+          "42",
+          "43"
+        ],
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-label-gap.structure",
+        "sha256": "f2034a35170acdf3a1d911e6c2acb947de2dee8500ee8c789269cc199e75b62f",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-label-gap.request.json",
+        "sha256": "b86fa02137aff4ec83673beecd888853e199635e34eeab2ff3d0fdfe6abc2ea4",
+        "size_bytes": 1064
+      }
+    },
+    {
+      "id": "F-label-namespace-collision",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "FREE_RESIDUE_TOKEN_COLLISION",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-label-namespace-collision.structure",
+        "sha256": "b559c77c78e79e539f0ab30cc1779b65999e3860407f499a25c970ba441ae214",
+        "size_bytes": 1155
+      },
+      "request": {
+        "path": "inputs/F-label-namespace-collision.request.json",
+        "sha256": "b0931c1c1ac647b85015ce5aed17cbac0233df4ead82de988b72b55b54f2c6a6",
+        "size_bytes": 1128
+      }
+    },
+    {
+      "id": "F-altloc",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "ALTLOC_REVIEW_REQUIRED",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-altloc.structure",
+        "sha256": "df11bc59566d1b73e1124596ebf7028a3438f0000ee580615653325c4d9c8aca",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-altloc.request.json",
+        "sha256": "8d6c7ab8c0d2382fa33a2e12e0e3daffb9a95c0c791252c93529de60a724bbfe",
+        "size_bytes": 1052
+      }
+    },
+    {
+      "id": "F-partial-occupancy",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "OCCUPANCY_REVIEW_REQUIRED",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-partial-occupancy.structure",
+        "sha256": "b2e46f113f21bcd34853d4fdee5df14cddb531e8ca3a452a00e14ad6552e2533",
+        "size_bytes": 1138
+      },
+      "request": {
+        "path": "inputs/F-partial-occupancy.request.json",
+        "sha256": "222d1bb58d49d7086bf4a309082bb8c4043d5b5ef07e80280fa1e525b15376d9",
+        "size_bytes": 1096
+      }
+    },
+    {
+      "id": "F-zero-occupancy",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "OCCUPANCY_REVIEW_REQUIRED",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-zero-occupancy.structure",
+        "sha256": "7adc0a01b685e6e049208ba74944c4bed2f8cacfd5750f20b4107a344d8d9a65",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-zero-occupancy.request.json",
+        "sha256": "a3b9666a8667d97990df35fc3768600c9581b20bd838c32f18abb4dc6d1de287",
+        "size_bytes": 1084
+      }
+    },
+    {
+      "id": "F-unknown-element",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "ELEMENT_UNAVAILABLE",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-unknown-element.structure",
+        "sha256": "c0099c6178e2c2997985c3ba75b712a74ce4eefcf5f6497e83749fe1a6be97b6",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-unknown-element.request.json",
+        "sha256": "e346be4528c7ba6073dc46bddb52d4b35a9839bc7748789629e5f2366497aebd",
+        "size_bytes": 1088
+      }
+    },
+    {
+      "id": "F-conflicting-element",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "ATOM_ELEMENT_CONFLICT",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-conflicting-element.structure",
+        "sha256": "2d9f0e6ae74fc02ca37e8ab1d43950476a83766c9fd1e189e90cae1ea5345207",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-conflicting-element.request.json",
+        "sha256": "f96217415964328deb35cc04bc98283a9b043fcb423bc2e00ada104d6ecea16e",
+        "size_bytes": 1104
+      }
+    },
+    {
+      "id": "F-atom-namespace",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "ATOM_NAMESPACE_CONFLICT",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-atom-namespace.structure",
+        "sha256": "c72515d29199aa6fabde73f9b05ef09e6fc69236cb6d4b8c5ee09e06d4277d9c",
+        "size_bytes": 1136
+      },
+      "request": {
+        "path": "inputs/F-atom-namespace.request.json",
+        "sha256": "d40a2014ec90d57d4cc84cdd3102d2fee5cf28c02d6d47a3da3bb02265131241",
+        "size_bytes": 1084
+      }
+    },
+    {
+      "id": "F-residue-namespace",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "RESIDUE_NAMESPACE_CONFLICT",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-residue-namespace.structure",
+        "sha256": "cfdb44595b88b0602d322e7685a485e0f882e8883adc871a305142c71ca07277",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-residue-namespace.request.json",
+        "sha256": "aebb6b3cbd6b5835402dad4476a6fbdaed55e98d7cb9dfcf1abf21df12ee2d5d",
+        "size_bytes": 1096
+      }
+    },
+    {
+      "id": "F-nonprotein",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "CONTEXT_REVIEW_REQUIRED",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-nonprotein.structure",
+        "sha256": "59234152295fa44d9913e55801e26ce148bbe581686112c769b37b5e36376f23",
+        "size_bytes": 1137
+      },
+      "request": {
+        "path": "inputs/F-nonprotein.request.json",
+        "sha256": "900bad583238780d774a59c5ea25d473c174cd2da123bebe492ec3b9a22148eb",
+        "size_bytes": 1068
+      }
+    },
+    {
+      "id": "F-unknown-protor-radius",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": null,
+        "tool_error": "UNKNOWN_PROTOR_RADIUS",
+        "b1_error": null,
+        "atom_count": 10,
+        "residue_count": 2,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-unknown-protor-radius.structure",
+        "sha256": "2fc9887e4e028df7728139d9a63af8c056d07d3dee5dcc844bcc0f0e6e482cdf",
+        "size_bytes": 1137
+      },
+      "request": {
+        "path": "inputs/F-unknown-protor-radius.request.json",
+        "sha256": "482b5d15f3c12bf2e010f60a24eb2634f5099d50fc9bb58896872b3636c1cf19",
+        "size_bytes": 1112
+      }
+    },
+    {
+      "id": "F-water-hydrogen-ledger",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": null,
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": 10,
+        "residue_count": 2,
+        "authors": [
+          "42",
+          "43"
+        ],
+        "excluded_reasons": {
+          "water": 1,
+          "hydrogen_or_deuterium": 1
+        }
+      },
+      "input": {
+        "path": "inputs/F-water-hydrogen-ledger.structure",
+        "sha256": "b5a66ec39387968328f970b9d45e1fe0dca2b9038c734450b5c8efa407a1bd72",
+        "size_bytes": 1248
+      },
+      "request": {
+        "path": "inputs/F-water-hydrogen-ledger.request.json",
+        "sha256": "efe753ff91bea01a1982622cc193df35a7d1ef1e36f4cf3ebe2d8bf16b9ef57d",
+        "size_bytes": 1112
+      }
+    },
+    {
+      "id": "F-precision-native_atoms",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": null,
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": 10,
+        "residue_count": 2,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-precision-native_atoms.structure",
+        "sha256": "c635120b0556ed50f3733b83fec30a7d5787a4e13811f10936de0d4a4d868806",
+        "size_bytes": 1143
+      },
+      "request": {
+        "path": "inputs/F-precision-native_atoms.request.json",
+        "sha256": "c68ab1e977131c2cbddabc2d28a0cdb4edac34754746f0658835539572a29abb",
+        "size_bytes": 1116
+      }
+    },
+    {
+      "id": "F-precision-pdb_file",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "pdb_file",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": null,
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": 10,
+        "residue_count": 2,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-precision-pdb_file.structure",
+        "sha256": "c635120b0556ed50f3733b83fec30a7d5787a4e13811f10936de0d4a4d868806",
+        "size_bytes": 1143
+      },
+      "request": {
+        "path": "inputs/F-precision-pdb_file.request.json",
+        "sha256": "11fe9f9740535e919546902c596813fc4fa781a9e0f28703d4b142fff2c3dc73",
+        "size_bytes": 1100
+      }
+    },
+    {
+      "id": "F-metadata",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": null,
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": 10,
+        "residue_count": 2,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-metadata.structure",
+        "sha256": "253be3e5d3df3f86de78543035a7943b21354238371a4cce891333a8f9229437",
+        "size_bytes": 1226
+      },
+      "request": {
+        "path": "inputs/F-metadata.request.json",
+        "sha256": "03b149416e1217b95c11ea4bc20f6e9f3086697a369e6cd757fc6185403ba60c",
+        "size_bytes": 1060
+      }
+    },
+    {
+      "id": "F-rejected-b1",
+      "declared_format": "PDB",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_FIXTURE",
+      "expected": {
+        "preparation_error": "B1_PREFLIGHT_REJECTED",
+        "tool_error": null,
+        "b1_error": "FORMAT_MISMATCH",
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-rejected-b1.structure",
+        "sha256": "5035fac70afd6506040d04df0159f863117a549a203f44629b0340ae10d3130c",
+        "size_bytes": 1135
+      },
+      "request": {
+        "path": "inputs/F-rejected-b1.request.json",
+        "sha256": "e388fca8f93e202c859506d09d04fde93d3a56837cc5db05d081d5bbf4edefd5",
+        "size_bytes": 1070
+      }
+    },
+    {
+      "id": "F-original-1ubq",
+      "declared_format": "MMCIF",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "native_atoms",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": {
+        "path": "tests/fixtures/structure_mapping/real/1UBQ.cif",
+        "sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+        "size_bytes": 103220
+      },
+      "evidence_scope": "UNCHANGED_LOCAL_REAL_INPUT",
+      "expected": {
+        "preparation_error": "ICODE_UNKNOWN",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-original-1ubq.structure",
+        "sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+        "size_bytes": 103220
+      },
+      "request": {
+        "path": "inputs/F-original-1ubq.request.json",
+        "sha256": "f472df19c80f24a4ee3385d7616b1a7dbbe14c782cb4e43a197a4310d4b0d65d",
+        "size_bytes": 1082
+      }
+    },
+    {
+      "id": "F-historical-derived-1ubq",
+      "declared_format": "PDB",
+      "sequence": "AA",
+      "b1_selection": {
+        "model_index": 0,
+        "chain_selector": "A"
+      },
+      "consumer_selection": {
+        "route": "pdb_file",
+        "model_index": 0,
+        "context_chain_ids": [
+          "A"
+        ]
+      },
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/r58-freesasa-boundaries-20260905/prepared/inputs/original/prepared.pdb",
+        "sha256": "f1899546f581eaba2c618f012097644e1ab2aa281c47c13cbb3747147ca17fc3",
+        "size_bytes": 48851
+      },
+      "evidence_scope": "UNCHANGED_HISTORICAL_ENGINEERING_DERIVATIVE",
+      "expected": {
+        "preparation_error": "OCCUPANCY_REVIEW_REQUIRED",
+        "tool_error": null,
+        "b1_error": null,
+        "atom_count": null,
+        "residue_count": null,
+        "authors": null,
+        "excluded_reasons": null
+      },
+      "input": {
+        "path": "inputs/F-historical-derived-1ubq.structure",
+        "sha256": "f1899546f581eaba2c618f012097644e1ab2aa281c47c13cbb3747147ca17fc3",
+        "size_bytes": 48851
+      },
+      "request": {
+        "path": "inputs/F-historical-derived-1ubq.request.json",
+        "sha256": "2db6d0f28125eb63cbaf6493c6bffca2b7c2e7080073c959bc6907f84e463ea4",
+        "size_bytes": 1119
+      }
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "version": "0.1.0",
+  "commands": [
+    {
+      "tool": "proteinmpnn",
+      "argv": [
+        "/usr/local/bin/python",
+        "-B",
+        "/opt/t01/src/t01_phase1_real/development/proteinmpnn/worker.py"
+      ],
+      "environment": {
+        "CUDA_CACHE_PATH": "/tmp/cuda",
+        "LD_LIBRARY_PATH": "/usr/local/lib",
+        "MKL_NUM_THREADS": "2",
+        "MPLCONFIGDIR": "/tmp/matplotlib",
+        "OMP_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "1",
+        "PATH": "/usr/local/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin",
+        "PYTHONPATH": "/app",
+        "PYTHONUNBUFFERED": "1",
+        "T01_JOB_ID": "{job_id}",
+        "T01_NATIVE_CWD": "/app",
+        "T01_NATIVE_PACKAGE": "/t01/assets/proteinmpnn-8907e6671bfb",
+        "T01_PRIVATE_TMP": "1",
+        "T01_RESIDENT_OFFLINE": "1",
+        "T01_RESIDENT_SLOT": "/run/t01-slot",
+        "T01_SOURCE_IMAGE_ID": "sha256:5b6baa8ebc5660bd3de9cf8b6d1694c7de35fadd23fea6cd7a8352a536e3f3af"
+      },
+      "memory_bytes": 274877906944
+    },
+    {
+      "tool": "esm-if1",
+      "argv": [
+        "/usr/local/bin/python",
+        "-B",
+        "/opt/t01/src/t01_phase1_real/development/esm_if1/worker.py"
+      ],
+      "environment": {
+        "CUDA_CACHE_PATH": "/tmp/cuda",
+        "LD_LIBRARY_PATH": "/usr/local/lib",
+        "MKL_NUM_THREADS": "2",
+        "MPLCONFIGDIR": "/tmp/matplotlib",
+        "OMP_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "1",
+        "PATH": "/usr/local/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin",
+        "PYTHONHOME": "/opt/t01/env/esm-if1",
+        "PYTHONPATH": "/app",
+        "PYTHONUNBUFFERED": "1",
+        "T01_JOB_ID": "{job_id}",
+        "T01_NATIVE_CWD": "/app",
+        "T01_NATIVE_PACKAGE": "/t01/assets/esm-if1-2b369911bb5b",
+        "T01_PRIVATE_TMP": "1",
+        "T01_RESIDENT_OFFLINE": "1",
+        "T01_RESIDENT_SLOT": "/run/t01-slot",
+        "T01_SOURCE_IMAGE_ID": "sha256:926d4619df9759cd2417dcc9056b7bd648dca1d2adf15631aaad2e84a88d39cc"
+      },
+      "memory_bytes": 274877906944
+    },
+    {
+      "tool": "thermompnn",
+      "argv": [
+        "/usr/local/bin/python",
+        "-B",
+        "/opt/t01/src/t01_phase1_real/development/thermompnn/worker.py"
+      ],
+      "environment": {
+        "CUDA_CACHE_PATH": "/tmp/cuda",
+        "LD_LIBRARY_PATH": "/usr/local/lib",
+        "MKL_NUM_THREADS": "2",
+        "MPLCONFIGDIR": "/tmp/matplotlib",
+        "OMP_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "1",
+        "PATH": "/usr/local/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin",
+        "PYTHONHOME": "/opt/t01/env/thermompnn",
+        "PYTHONPATH": "/app",
+        "PYTHONUNBUFFERED": "1",
+        "T01_JOB_ID": "{job_id}",
+        "T01_NATIVE_CWD": "/app",
+        "T01_NATIVE_PACKAGE": "/t01/assets/thermompnn-2b04fd370e39",
+        "T01_PRIVATE_TMP": "1",
+        "T01_RESIDENT_OFFLINE": "1",
+        "T01_RESIDENT_SLOT": "/run/t01-slot",
+        "T01_SOURCE_IMAGE_ID": "sha256:3cbd3c12b792a8b344347e6e9171d03deb7c5a115a6c4b8af27b84847dfdd847",
+        "T01_THERMOMPNN_LAYOUT": "1",
+        "TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD": "1",
+        "WANDB_MODE": "disabled"
+      },
+      "memory_bytes": 274877906944
+    }
+  ]
+}

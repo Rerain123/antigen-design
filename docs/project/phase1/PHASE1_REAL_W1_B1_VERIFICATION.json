@@ -1,0 +1,246 @@
+{
+  "date": "2026-09-05",
+  "recorded_at": "2026-09-05T15:50:27.533565+00:00",
+  "scope": "W1-08B1 local structure and mapping review preparation, plus runtime regression repair",
+  "status": "PASS_REVIEW_PREPARATION",
+  "reviewer": "AI engineering review; no algorithm or customer signoff asserted",
+  "completed_preparation_items": [
+    "B1-01",
+    "B1-02",
+    "B1-03",
+    "B1-04"
+  ],
+  "root_tests": {
+    "total": 567,
+    "passed": 566,
+    "failed": 0,
+    "skipped": 1
+  },
+  "new_tests": {
+    "test_w1_b1_review": 37,
+    "test_w1_runtime_fix": 4
+  },
+  "skipped_reason": "One existing Windows symbolic-link creation test lacks account permission",
+  "root_junit": {
+    "path": "discovery/t01-phase1-real/w1/b1-review-20260905/maintenance/root-tests.xml",
+    "sha256": "ceb01df1ce9432f633ed96a2105ab411614a3d1abe947698e116aea4251b35fa",
+    "size_bytes": 81004
+  },
+  "execution_record": {
+    "path": "discovery/t01-phase1-real/w1/b1-review-20260905/maintenance/checks.json",
+    "sha256": "40d7881edab322c7ebf49fc25d9aa57f728b596facfc41c5ffa871ace7035e56",
+    "size_bytes": 5437
+  },
+  "checks": [
+    {
+      "name": "root_tests",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "-o",
+        "addopts=",
+        "-q",
+        "--junitxml=D:\\work\\蛋白智能体\\.tmp\\w1-b1-final-checks-after-fix-20260905\\root-tests.xml"
+      ],
+      "exit_code": 0,
+      "stdout": "........................................................................ [ 12%]\n........................................................................ [ 25%]\n........................................................................ [ 38%]\n........................................................................ [ 50%]\n.......................................................s................ [ 63%]\n........................................................................ [ 76%]\n........................................................................ [ 88%]\n...............................................................          [100%]\n- generated xml file: D:\\work\\蛋白智能体\\.tmp\\w1-b1-final-checks-after-fix-20260905\\root-tests.xml -\n566 passed, 1 skipped in 91.56s (0:01:31)\n",
+      "stderr": ""
+    },
+    {
+      "name": "documentation",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/check_docs.py"
+      ],
+      "exit_code": 0,
+      "stdout": "documentation_status=PASS markdown_files=170\n",
+      "stderr": ""
+    },
+    {
+      "name": "b1_review",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/check_w1_b1_review.py",
+        "--reparse"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"status\": \"PASS_REVIEW_PREPARATION\", \"case_count\": 23, \"expert_sources\": 22, \"request_result_pairs\": 2, \"reparsed\": true, \"scientific_approval\": \"NOT_GRANTED\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "runtime_current",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/check_w1_runtime.py",
+        "--batch",
+        "discovery/t01-phase1-real/w1/runtime-file-fix-20260905"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"status\": \"PASS_ENGINEERING_ONLY\", \"runtime_tests\": 51, \"runtime_cases\": 15, \"cli_cases\": 5, \"source_verification\": \"CURRENT_REPOSITORY\", \"source_files\": 16, \"output_files\": 62, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "runtime_historical",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/check_w1_runtime.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"status\": \"PASS_ENGINEERING_ONLY\", \"runtime_tests\": 51, \"runtime_cases\": 15, \"cli_cases\": 5, \"source_verification\": \"ARCHIVED_EXECUTED_SOURCES\", \"source_files\": 16, \"output_files\": 62, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "contract",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/check_w1_contract.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"status\": \"PASS\", \"scope\": \"STATIC_CONTRACT_ONLY\", \"expert_sources\": 22, \"source_files\": 32, \"job_examples\": 8, \"submit_examples\": 1, \"control_examples\": 4, \"runtime_cases_declared\": 15, \"scientific_cases_declared\": 8, \"runtime_execution\": \"NOT_RUN\", \"scientific_execution\": \"NOT_RUN\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "frozen_mock",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/t01_phase1_mock/run_m4_campaign.py",
+        "verify"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"status\": \"PASS\", \"release_state\": \"FROZEN\", \"campaign_id\": \"t01p1m-v01-reg-20260904-release-freeze-03\", \"frozen_asset_count\": 457}\n",
+      "stderr": ""
+    },
+    {
+      "name": "historical_packages",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/package_tool_handoffs.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"scope\": \"handoff_archive_and_engineering_interface\",\n  \"scientific_tool_execution\": \"NOT_RUN\",\n  \"scientific_acceptance\": \"NOT_RUN\",\n  \"packages\": [\n    {\n      \"package_id\": \"PH1-TOOL-FREESASA\",\n      \"version\": \"0.1\",\n      \"revision\": \"shared-interface-20260905\",\n      \"archive_sha256\": \"6cdb87a80d3b18064f3cbbd529ab58f21e182d593a5d043ff5d90358015c13ba\",\n      \"file_count\": 56,\n      \"source_copies_verified\": 6,\n      \"closed_local_links\": 42,\n      \"interface_files_identical\": 38,\n      \"synthetic_pairs_checked\": 8\n    },\n    {\n      \"package_id\": \"PH1-TOOL-BEPIPRED\",\n      \"version\": \"0.1\",\n      \"revision\": \"shared-interface-20260905\",\n      \"archive_sha256\": \"215ad2849c1a2ee1f7f007d140a1bb7808728ba43372686490070df9bd79cfab\",\n      \"file_count\": 56,\n      \"source_copies_verified\": 6,\n      \"closed_local_links\": 41,\n      \"interface_files_identical\": 38,\n      \"synthetic_pairs_checked\": 8\n    }\n  ]\n}\n",
+      "stderr": ""
+    }
+  ],
+  "b1_evidence": {
+    "manifest": {
+      "path": "discovery/t01-phase1-real/w1/b1-review-20260905/manifest.json",
+      "sha256": "e7f628d306e7e548571e9c1fb80cd2165a559df5b470f14d33f2df2bfa95d629",
+      "size_bytes": 19295
+    },
+    "assessment": {
+      "path": "discovery/t01-phase1-real/w1/b1-review-20260905/assessment.json",
+      "sha256": "212253bd2a9f9f9971aaa1459d75136c87995fe1713afb7982e13d1a18ca8bb0",
+      "size_bytes": 3500
+    },
+    "source_files": 14,
+    "output_files": 93,
+    "source_documents": 35,
+    "expert_originals": 22,
+    "executed_cases": 23,
+    "inventory_mapping_results": 20,
+    "explicit_parse_rejections": 3,
+    "actual_reparse": true,
+    "schemas": 2,
+    "request_result_pairs": 2,
+    "independently_held_out_biological_samples": 0,
+    "scientific_gold_standard": "NOT_ESTABLISHED"
+  },
+  "runtime_fix": {
+    "provenance_manifest": {
+      "path": "discovery/t01-phase1-real/w1/b1-review-20260905/runtime-fix/manifest.json",
+      "sha256": "3a9db5a2899a7ce03879e555dd740645505206a67449c1655fe6846302de5750",
+      "size_bytes": 6187
+    },
+    "initial_failures": 2,
+    "observed_zero_links": 411,
+    "current_evidence_manifest": {
+      "path": "discovery/t01-phase1-real/w1/runtime-file-fix-20260905/manifest.json",
+      "sha256": "44161aa0e93d77a1aa2eb47b594495e0997e516a878462fd864e9e5caadecd42",
+      "size_bytes": 10361
+    },
+    "current_source_verification": "CURRENT_REPOSITORY",
+    "historical_evidence_manifest": {
+      "path": "discovery/t01-phase1-real/w1/runtime-engineering-20260905/manifest.json",
+      "sha256": "e91758cb51e337af1a922a3c8df2ef92abc88f95d8fc2ffaf2907df0bbcd20f4",
+      "size_bytes": 10361
+    },
+    "historical_source_verification": "ARCHIVED_EXECUTED_SOURCES",
+    "archived_original_sources": 16,
+    "original_evidence_rewritten": false,
+    "repeated_runtime_tests": 51,
+    "case_groups": 15,
+    "cli_scenarios": 5,
+    "cli_commands": 16
+  },
+  "documentation": {
+    "status": "PASS",
+    "markdown_files": 170,
+    "final_check": {
+      "command": [
+        ".venv/Scripts/python.exe",
+        "-X",
+        "utf8",
+        "scripts/check_docs.py"
+      ],
+      "exit_code": 0,
+      "stdout": "documentation_status=PASS markdown_files=170\n",
+      "timing": "Executed after final STATUS and RUNBOOK updates",
+      "final_navigation_files": [
+        {
+          "path": "docs/project/STATUS.md",
+          "size_bytes": 37654,
+          "sha256": "917b4cb4a0fbb486864e324b4e480b131bb4dbadf8ca4f48d17d1bb167cdbb55"
+        },
+        {
+          "path": "docs/development/RUNBOOK.md",
+          "size_bytes": 21864,
+          "sha256": "1a191042dfeb2e2491cd4b75824fdb52f5e2f4cbeb57716612e8eee99f007e23"
+        }
+      ]
+    }
+  },
+  "preservation": {
+    "expert_originals": 22,
+    "frozen_mock_assets_verified": 457,
+    "historical_tool_packages_verified": 2,
+    "legacy_mock_tests": "NOT_RERUN",
+    "s07_tests": "NOT_RERUN",
+    "reason": "Only current engineering partition changed; no historical implementation change or stage freeze"
+  },
+  "next_task": "docs/project/phase1/PHASE1_REAL_W1_B1_ENGINEERING_BACKLOG.md",
+  "scientific_signoff": "NOT_GRANTED",
+  "full_w1_g1": "NOT_PASSED",
+  "production_status": "NOT_DEPLOYED",
+  "scientific_workers_enabled": false,
+  "scientific_model_execution": "NOT_RUN",
+  "remote_server_execution": "NOT_RUN",
+  "dify_execution": "NOT_RUN",
+  "mapping_approval": "UNVERIFIED_OR_UNRELIABLE_ONLY",
+  "post_write_integrity": {
+    "status": "PASS",
+    "recorded_at": "2026-09-05T15:52:30.946849+00:00",
+    "runtime_fix_files": 23,
+    "runtime_fix_external_references": 5,
+    "b1_source_files": 14,
+    "b1_output_files": 93,
+    "after_source_snapshots_match_current": true
+  }
+}

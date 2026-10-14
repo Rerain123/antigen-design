@@ -1,0 +1,26 @@
+{
+  "version": "0.1.0",
+  "commands": [
+    {
+      "tool": "netmhc",
+      "argv": [
+        "/usr/local/bin/python",
+        "-B",
+        "/opt/t01/src/t01_phase1_real/development/netmhc/worker.py"
+      ],
+      "environment": {
+        "MKL_NUM_THREADS": "2",
+        "MPLCONFIGDIR": "/tmp/matplotlib",
+        "OMP_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "1",
+        "PATH": "/usr/local/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin",
+        "PYTHONUNBUFFERED": "1",
+        "T01_PRIVATE_TMP": "1",
+        "T01_RESIDENT_OFFLINE": "1",
+        "T01_RESIDENT_SLOT": "/run/t01-slot",
+        "T01_SOURCE_IMAGE_ID": "sha256:c0a7239d4005484c1248b78de91bf7a76acffe0ed41f52614a54b6c20b3cf094"
+      },
+      "memory_bytes": 8589934592
+    }
+  ]
+}

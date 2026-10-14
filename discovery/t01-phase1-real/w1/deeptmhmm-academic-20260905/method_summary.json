@@ -1,0 +1,56 @@
+{
+  "tool_name": "DeepTMHMM",
+  "tool_version": "1.0 - Academic Version",
+  "identity_scope": "DEVELOPMENT_CANDIDATE_PIN; not production approval",
+  "archive_sha256": "0a7a6c5d009e928c2e09bd0f225ad290166c6e67ebff5fb59145639484fcbd82",
+  "image_id": "sha256:7f85781fadf8c89ddbafced691d05006caf6881b06aa5b9bae4bd531393bcd72",
+  "runtime_packages": {
+    "torch": "1.5.0+cu92",
+    "fair-esm": "0.4.0",
+    "numpy": "1.23.4",
+    "biopython": "1.79",
+    "matplotlib": "3.5.2"
+  },
+  "model_assets_sha256": {
+    "deeptmhmm_cv_2.model": "efa4b50b5ca089ed27ea57116710138da4207728f2e3dca113e811013abc6c2e",
+    "esm_model_alphabet.pt": "8690264992d8f94df23594a210e96b7ed8aa6fda51de5b1791e28f98e5ff01f1",
+    "deeptmhmm_cv_0.model": "5efa57f9bca96742f6a29a4663bb3e2ba0d362e5eecafebfb8af1ab4efe48533",
+    "deeptmhmm_cv_4.model": "9114bced9cf5f51905e4ac7e04db922801d383db4fca75523f6e144694f11725",
+    "deeptmhmm_cv_1.model": "ab6c743cf8d969d40da058ddd6c909b721d23d34cc6776e3d46bce3e27711093",
+    "deeptmhmm_cv_3.model": "a2d011962f7efcb1e3bdba92eefdfc211e93bec9a62cb60bf0bd2cb732d1f58f",
+    "esm_model_state_dict.pt": "22ceed0957e7f46b6cd7ed0394294163702a23c13edf322129e7e445578da86a",
+    "esm_model_args.pt": "bbfcf5a164c54960ba12fdd537f5edbf5b02197c119a95575c3768540f1aa59b"
+  },
+  "invocation": [
+    "python",
+    "predict.py",
+    "--fasta",
+    "/input.fasta",
+    "--output-dir",
+    "/out/result"
+  ],
+  "parameters": {
+    "cli_scientific_options": "None exposed by this package; original defaults retained",
+    "chunk_size": 1,
+    "esm_repr_layers_argument": 33,
+    "selected_representation_key": 32,
+    "long_sequence_chunk_code": "utils.py start/end code retained; 1022 token chunk and 300 token overlap logic not exercised by >1022 input here",
+    "ensemble": "5 supplied CV models; maximum topology agreement, ties by highest CRF log likelihood",
+    "max_signal_length": 60,
+    "max_alpha_membrane_length": 30,
+    "max_beta_membrane_length": 15,
+    "thread_policy": "Original os.cpu_count()=32; torch intraop32 / interop34; container quota8 CPU, affinity0-7",
+    "device": "CPU, CUDA unavailable",
+    "seed": "No new random seed override; original eval/no_grad behavior retained"
+  },
+  "source_policy": {
+    "expert_version_specified": false,
+    "required_action": "Pin actual version/commit and parameters in method_summary; expert three-document revision before later upgrade",
+    "expert_spec": "ToolSpec_A5_DeepTMHMM_v10.5.md §1/2/4",
+    "expert_skill": "AgentA_SKILL_v10.5_20260902.md §3 version clause, line223",
+    "environment_list": "一期实施环境清单_v10.5.md A5 row, line17",
+    "expert_document_version": "v10.5, not a DeepTMHMM software version",
+    "public_application_version": "1.0.57 observed in earlier SDK preparation batch; correspondence to this local package unverified"
+  },
+  "production_status": "NOT_DEPLOYED"
+}

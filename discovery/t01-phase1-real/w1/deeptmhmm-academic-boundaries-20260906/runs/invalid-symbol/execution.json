@@ -1,0 +1,132 @@
+{
+  "case": "invalid-symbol",
+  "started_at": "2026-09-06T06:37:19.543524+00:00",
+  "command": [
+    "docker",
+    "--config",
+    "D:\\work\\蛋白智能体\\.tmp\\b2-boundaries-docker-client",
+    "--host",
+    "npipe:////./pipe/dockerDesktopLinuxEngine",
+    "create",
+    "--pull",
+    "never",
+    "--name",
+    "t01-b2-boundary-d7c0c5328506",
+    "--network",
+    "none",
+    "--read-only",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "--pids-limit",
+    "512",
+    "--memory",
+    "10g",
+    "--memory-swap",
+    "10g",
+    "--cpus",
+    "8",
+    "--cpuset-cpus",
+    "0-7",
+    "--tmpfs",
+    "/tmp:rw,noexec,nosuid,size=512m",
+    "--env",
+    "CUDA_VISIBLE_DEVICES=-1",
+    "--env",
+    "PYTHONUNBUFFERED=1",
+    "--mount",
+    "type=bind,source=D:\\work\\蛋白智能体\\var\\t01-phase1-real\\tool-assets\\deeptmhmm-academic-1.0-0a7a6c5d009e,target=/app,readonly",
+    "--mount",
+    "type=bind,source=D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\deeptmhmm-academic-boundaries-20260906\\runs\\invalid-symbol\\input.fasta,target=/input.fasta,readonly",
+    "--mount",
+    "type=bind,source=D:\\work\\蛋白智能体\\scripts\\b2_boundary_probe.py,target=/probe.py,readonly",
+    "--mount",
+    "type=bind,source=D:\\work\\蛋白智能体\\discovery\\t01-phase1-real\\w1\\deeptmhmm-academic-boundaries-20260906\\runs\\invalid-symbol\\output,target=/out",
+    "--workdir",
+    "/app",
+    "--entrypoint",
+    "python",
+    "sha256:7f85781fadf8c89ddbafced691d05006caf6881b06aa5b9bae4bd531393bcd72",
+    "-B",
+    "/probe.py"
+  ],
+  "image_id": "sha256:7f85781fadf8c89ddbafced691d05006caf6881b06aa5b9bae4bd531393bcd72",
+  "plan_sha256": "64a57451c0ee0ce3b1fa7a74fafcf9458cc15544715a33969e7488c7595ff156",
+  "sources": [
+    {
+      "path": "scripts/b2_boundary_probe.py",
+      "sha256": "b3530c61a9640938be519a19e7f0f13b8765c0cf7da28f25e74bfb0f883790a9",
+      "size_bytes": 3763
+    },
+    {
+      "path": "scripts/b2_boundary_evidence.py",
+      "sha256": "c0b27b7ec6250a0e10a4c4a21d4243080adc890f22dfed517a386a400c2e7847",
+      "size_bytes": 7839
+    },
+    {
+      "path": "scripts/run_b2_boundaries.py",
+      "sha256": "5e00189271db9199e6059b620fd491871128d901464d30762e2d3a74feabe679",
+      "size_bytes": 10281
+    }
+  ],
+  "assets_verified_before": 41,
+  "input_sha256": "7e29a05a14cb878ba8cb609f7d209c1f6f33c9c975b803ae88b0fdc4b066db42",
+  "timed_out": false,
+  "stopped_confirmed": true,
+  "production_status": "NOT_DEPLOYED",
+  "container_id": "c9519d0938622632772a14cb434ca1a4bdf944a3dac45b8216d4f43018371998",
+  "attach_exit_code": 0,
+  "container_exit_code": 0,
+  "oom_killed": false,
+  "remove_exit_code": 0,
+  "elapsed_seconds": 27.156999999999243,
+  "assets_verified_after": 41,
+  "artifacts": [
+    {
+      "path": "result/deeptmhmm_results.md",
+      "sha256": "3b39a753dd10ee2cb3663939c5e899f9fc75a2a519c31413013ce503462931de",
+      "size_bytes": 766
+    },
+    {
+      "path": "result/embeddings/cb903bb7600764c7895c47272a9fb301",
+      "sha256": "ae06e2653e66133109b834b264539ad7b201f411ec9c76bd9b1e51c9404bfb9c",
+      "size_bytes": 61787
+    },
+    {
+      "path": "result/plot.png",
+      "sha256": "a592b23385577b118f9622cabfca1595e5f5b1c62e2393dbd8399b7bcacef86d",
+      "size_bytes": 28424
+    },
+    {
+      "path": "result/predicted_topologies.3line",
+      "sha256": "b61b9a3bd75faf51f0572e6ecb00215fa3745acc65272ca77838f5ef6a3dffbb",
+      "size_bytes": 102
+    },
+    {
+      "path": "result/probabilities/t01seq_feb5990bf0929febfe775675149e020f63b9f54a3c9e8372aef0321271640d2f_probs.csv",
+      "sha256": "9cf75dc65fc0139461bf54a95aa4bdad45f9cdfb74346dad7d6d446e37ff92f7",
+      "size_bytes": 484
+    },
+    {
+      "path": "result/TMRs.gff3",
+      "sha256": "bdf06cd4705c980509263a5de38b1acb6c419144a3308a277f8d47f462946516",
+      "size_bytes": 291
+    },
+    {
+      "path": "runtime.json",
+      "sha256": "bb5e2d6bb4b3907612ebcb053f7ba4ab13a1952fd9be08a7590ec76d3840631f",
+      "size_bytes": 858
+    },
+    {
+      "path": "runtime_started.json",
+      "sha256": "6c9cc02d0fdfeb0fd156fd22c60e0e8055e205f7a098a940039ca6813ee6ab06",
+      "size_bytes": 637
+    },
+    {
+      "path": "token_trace.jsonl",
+      "sha256": "ff07be92e637859ad0ef26e7211076a3698a29fcaa0f8d6714aa950236f8fbc1",
+      "size_bytes": 816
+    }
+  ]
+}

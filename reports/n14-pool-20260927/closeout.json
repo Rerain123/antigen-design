@@ -1,0 +1,239 @@
+{
+  "status": "N14_FULL_POOL_ENGINEERING_DEPLOYED_WITH_EXPLICIT_GAPS",
+  "authority": "AgentA_SOP_v10.5_20260902 T-01 step19b; S-31/C35",
+  "generation": 109,
+  "pod": "antigen-design-6568b68d4c-7ql7q",
+  "source_sha256": "6c6d56b2da3fd58ddeba302256b1540b96144013b2294e0e6f9f60dfaf64b143",
+  "source_files": 223,
+  "implemented": [
+    "All S28-passed permitted non-WT mutants up to 40, independent of N13 three-slot preselection",
+    "Above 40 requires complete verified same-candidate five-dimension scores; otherwise explicit missing-input skip",
+    "Original WT structure and exact N11 mutation/fixed-position binding; native five-run verification retained",
+    "Per-candidate ddG joins, missing results preserved, HTML pool and coverage disclosure",
+    "Workflow/run/round/source/stop-state guards",
+    "Skip only unmappable BuildModel candidates; preserve exact native numbering and five mutant/WT PDB pairs for every remaining variant; keep legacy whole-batch skip facts unchanged"
+  ],
+  "regression": {
+    "total": 2709,
+    "passed": 2694,
+    "skipped": 15,
+    "full_run": 2692,
+    "full_initial_failures": 4,
+    "final_affected_pass": 223,
+    "initial_failure_causes": [
+      "Three structure-source tests could not access pinned local Docker image in restricted execution; passed with local Docker permission",
+      "One admission profile guard during live source edits; passed against fixed final bytes"
+    ]
+  },
+  "online_replay": {
+    "records": 24,
+    "pool": {
+      "pool": {
+        "authority": "AgentA_SOP_v10.5_20260902 T-01 step19b; C35 BuildModel 5 runs",
+        "candidate_inventory_sha256": "501f383c1e948630175405b332fc3e060defeb09509b8a3bee24002b9a3417e1",
+        "deferred": [],
+        "design_audit": {
+          "artifact": {
+            "artifact_id": "t01p1r-artifact-b912396980bf48acb8a559d1c95d2ad2",
+            "attempt_id": "t01p1r-attempt-0e8a623f1e6c4ea59b61f67be587fd25",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-2d869924e8ae4e2e9f4515ea303fdbec",
+            "media_type": "application/json",
+            "role": "result",
+            "run_id": "t01p1r-run-bb1a5ef29cdb4141b46d2ec832d4547b",
+            "sha256": "1e51d353b1cfab87b31aef4982df7ec73709ac1baa4c5c1ec16e7a71ee566d18",
+            "size_bytes": 1987432
+          },
+          "job_id": "t01p1r-job-2d869924e8ae4e2e9f4515ea303fdbec"
+        },
+        "eligible_count": 0,
+        "excluded": [
+          {
+            "id": "sample-1",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 1
+          },
+          {
+            "id": "sample-2",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 2
+          },
+          {
+            "id": "sample-3",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 3
+          },
+          {
+            "id": "sample-4",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 4
+          },
+          {
+            "id": "sample-5",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 5
+          },
+          {
+            "id": "sample-6",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 6
+          },
+          {
+            "id": "sample-7",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 7
+          },
+          {
+            "id": "sample-8",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 8
+          },
+          {
+            "id": "sample-9",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 9
+          },
+          {
+            "id": "sample-10",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 10
+          },
+          {
+            "id": "sample-11",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 11
+          },
+          {
+            "id": "sample-12",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 12
+          },
+          {
+            "id": "sample-13",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 13
+          },
+          {
+            "id": "sample-14",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 14
+          },
+          {
+            "id": "sample-15",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 15
+          },
+          {
+            "id": "sample-16",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 16
+          },
+          {
+            "id": "sample-17",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 17
+          },
+          {
+            "id": "sample-18",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 18
+          },
+          {
+            "id": "sample-19",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 19
+          },
+          {
+            "id": "sample-20",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 20
+          },
+          {
+            "id": "sample-21",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 21
+          },
+          {
+            "id": "sample-22",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 22
+          },
+          {
+            "id": "sample-23",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 23
+          },
+          {
+            "id": "sample-24",
+            "reason": "N12_VALIDATION_NOT_PASSED",
+            "sample_number": 24
+          }
+        ],
+        "five_dimension_scores": {},
+        "missing_five_dimension_scores": [],
+        "n13_scope": "Existing paired subset only; unassessed candidates stay unassessed in N15",
+        "pool_sha256": "47f1d54ee2b1683a682c8b551a841da35e7c293934321b8324c296d5492cb018",
+        "reason_code": "NO_VALIDATED_MUTANT_FOR_N14",
+        "scientific_eligible": false,
+        "score_sources": {},
+        "selected": [],
+        "selection_rule": "ALL_VALIDATED_UP_TO_40",
+        "structure": {
+          "artifact": {
+            "artifact_id": "t01p1r-artifact-48e33086299a49d582cfdbc36e2d35df",
+            "attempt_id": "t01p1r-attempt-aa4b29afdb544bfea7a0cbf59567e557",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-c3bfd5c7ccc4495a831ce116a092cae2",
+            "media_type": "application/json",
+            "role": "result",
+            "run_id": "t01p1r-run-bb1a5ef29cdb4141b46d2ec832d4547b",
+            "sha256": "9c678d717080b1484b9ccd93cbb9fdeab545ecb54283be326fe2a3c67f209c93",
+            "size_bytes": 71918
+          },
+          "job_id": "t01p1r-job-c3bfd5c7ccc4495a831ce116a092cae2"
+        },
+        "tie_policy": "STABLE_ORIGINAL_N11_ORDER_FIRST_VERSION",
+        "validation_source": {
+          "node": "validation",
+          "workflow_job_id": "t01p1r-job-862131a7562d424c93705fa54aa76cfc"
+        }
+      },
+      "reason_code": "NO_VALIDATED_MUTANT_FOR_N14",
+      "source": null,
+      "state": "skipped",
+      "native_status": null,
+      "mapping_skipped_variants": [],
+      "coverage": {
+        "requested": 0,
+        "returned": 0,
+        "missing_ids": [],
+        "runs_per_returned_variant": 5
+      }
+    },
+    "new_jobs": 0
+  },
+  "native_five_run_replay": "native-five-run-replay.json",
+  "frozen_assets": 457,
+  "job_count": 1726,
+  "gpu_idle": true,
+  "remaining": [
+    "Current N10 lacks reliable CamSol/overall and only has three paired observations; real pools above 40 remain blocked, not arbitrarily truncated",
+    "N13 paired protection still has three slots, so N14 scores do not confer all-pool protection pass",
+    "No new 24/40-candidate native BuildModel execution; positive full-pool controls are engineering tests, archived native evidence contains three variants",
+    "Native tool timeout or process failure leaves missing batch scores; no fabricated partial native result is accepted"
+  ],
+  "scientific_gate": "CLOSED",
+  "usable_for_pipeline": false,
+  "new_scientific_jobs": 0,
+  "changed_project_documents": [
+    "docs/project/STATUS.md"
+  ],
+  "deployment_evidence": "r02/deployment-verification.json",
+  "partial_mapping_evidence": "partial-mapping-fixture.json",
+  "documentation": {
+    "exit_code": 0,
+    "markdown_files": 309,
+    "historical_link_issues": 31,
+    "tests_passed": 68
+  }
+}

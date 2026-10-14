@@ -1,0 +1,173 @@
+{
+  "purpose": "Observed Windows SQLite zero-link race, preserved failing evidence and before/after source snapshots",
+  "status": "FIXED_AND_RETESTED_ENGINEERING_ONLY",
+  "files": [
+    {
+      "path": "after/scripts/check_w1_runtime.py",
+      "sha256": "ce9e3ccf111efc35b9b31c2c58d5479f461de344382ab89096caf921aa0ce5a9",
+      "size_bytes": 4474
+    },
+    {
+      "path": "after/src/t01_phase1_real/files.py",
+      "sha256": "2bf12ecc5dd1af2b968b3fb4e7affabcd3e5e87546b164024f07082acb837000",
+      "size_bytes": 3962
+    },
+    {
+      "path": "after/tests/test_w1_runtime_fix.py",
+      "sha256": "e97dc1a57e739c69b7ecceb0cb6e266485d9b06e28f53f73407a16a04dab4a38",
+      "size_bytes": 2349
+    },
+    {
+      "path": "before/docs/project/sources/PHASE1_W1_SERVER_CAPACITY_20260905.json",
+      "sha256": "aab40247aa2843a9c35fdfc427c5164dcd8155f2b85fe08a8218258ba8befeb1",
+      "size_bytes": 896
+    },
+    {
+      "path": "before/scripts/check_w1_runtime.py",
+      "sha256": "f84d765da88051fdbe05c08a4656858afb5e8ba4d261cac879520dc424785c85",
+      "size_bytes": 3777
+    },
+    {
+      "path": "before/scripts/run_w1_runtime_acceptance.py",
+      "sha256": "96dfdb7621da35d671ae7894845c4c7d52d54c80d467bb7a9c9dfde9d114d80a",
+      "size_bytes": 7612
+    },
+    {
+      "path": "before/scripts/w1_runtime.py",
+      "sha256": "62a4a60464cd22139dd0f4a15e4f62d9c273706cb6f006ad2996b712a48d1c26",
+      "size_bytes": 261
+    },
+    {
+      "path": "before/scripts/w1_runtime_supervisor.py",
+      "sha256": "6c3962f114c045434dc52adb6c1ee7f185ee1d5fda0b32c2470dedcdc933428a",
+      "size_bytes": 252
+    },
+    {
+      "path": "before/scripts/w1_runtime_worker.py",
+      "sha256": "a2c698be5d23ac8a733abac8b9845b6287970dcfe677221b6a52241c85859cc0",
+      "size_bytes": 262
+    },
+    {
+      "path": "before/src/t01_phase1_real/__init__.py",
+      "sha256": "17a5cd78e1dad39f610166c75a2876f192cd21f557e4fecb85e222edd949e0fa",
+      "size_bytes": 102
+    },
+    {
+      "path": "before/src/t01_phase1_real/cli.py",
+      "sha256": "4f62db4591fd8d7f5ab573dd2b0630f066fb3c7b1b30c1f279d072beb358b018",
+      "size_bytes": 3240
+    },
+    {
+      "path": "before/src/t01_phase1_real/common.py",
+      "sha256": "d93dc411a6a06ae7281c5009ba562eb2fd2140cb8440e38b1a730c6ab2d4fbbe",
+      "size_bytes": 3891
+    },
+    {
+      "path": "before/src/t01_phase1_real/engineering_worker.py",
+      "sha256": "c464fbb99509aabaf95e3b2c8f60c25760cf78a513ed0c82958257a3e281b2b3",
+      "size_bytes": 1775
+    },
+    {
+      "path": "before/src/t01_phase1_real/files.py",
+      "sha256": "e1829b064ae8af4ef85f53fb9ab573f7de7e380669987a4d03020483bc45b1af",
+      "size_bytes": 3661
+    },
+    {
+      "path": "before/src/t01_phase1_real/runtime.py",
+      "sha256": "cf37f58baf30ca6da909e0ab11d15f11bc8559b9c557d77ef4e73d3422e61c53",
+      "size_bytes": 22608
+    },
+    {
+      "path": "before/src/t01_phase1_real/supervisor.py",
+      "sha256": "7b13b666b589d283b529ac157a10df02200f3c434e4eadbf592b55e757c5fed4",
+      "size_bytes": 5481
+    },
+    {
+      "path": "before/src/t01_phase1_real/winprocess.py",
+      "sha256": "8bda89e5583345968d582b8a553f18335adb25613df1fd01af7a244d4e92dd47",
+      "size_bytes": 7167
+    },
+    {
+      "path": "before/tests/test_w1_runtime.py",
+      "sha256": "5efb2b045c1beb3612a77321bdccdb7de0ec72ede099c22bdbd1088686af20e2",
+      "size_bytes": 18472
+    },
+    {
+      "path": "before/tests/test_w1_runtime_evidence.py",
+      "sha256": "47f125b4e098070dae9d2507dc30ccfa9a113767490a93ee194325dc5306ee65",
+      "size_bytes": 846
+    },
+    {
+      "path": "initial-root-checks.json",
+      "sha256": "e4b37b23306ea449effb17e6bd0cc48be16c3bd8c3fadae2d2cbf6c8f58b2279",
+      "size_bytes": 8044
+    },
+    {
+      "path": "initial-root-tests.xml",
+      "sha256": "1a0c41210031b4c50de689c7d077a462789490b6edd9402d0a46a1b0caa33c87",
+      "size_bytes": 83481
+    },
+    {
+      "path": "stat-observations.json",
+      "sha256": "bcacea4083a42e80b4fbd99f4e730386bd7c04ea3e37027e3e911182a74c48d3",
+      "size_bytes": 1417
+    },
+    {
+      "path": "stat-probe.py",
+      "sha256": "6a2ef5e6e73c0cf216b033fd588b9dd0ea974936cb8cfbd59e62ff19a078905e",
+      "size_bytes": 1326
+    }
+  ],
+  "external_references": [
+    {
+      "path": "discovery/t01-phase1-real/w1/runtime-engineering-20260905/manifest.json",
+      "sha256": "e91758cb51e337af1a922a3c8df2ef92abc88f95d8fc2ffaf2907df0bbcd20f4",
+      "size_bytes": 10361
+    },
+    {
+      "path": "discovery/t01-phase1-real/w1/runtime-file-fix-20260905/manifest.json",
+      "sha256": "44161aa0e93d77a1aa2eb47b594495e0997e516a878462fd864e9e5caadecd42",
+      "size_bytes": 10361
+    },
+    {
+      "path": "discovery/t01-phase1-real/w1/runtime-source-history.json",
+      "sha256": "5d55ac10ffa227f0cda5398e5b7e9ae90273380828de07f48f521e21770f01e9",
+      "size_bytes": 455
+    },
+    {
+      "path": "docs/project/phase1/PHASE1_REAL_W1_RUNTIME_FILE_FIX.md",
+      "sha256": "cf470eabbeb19f9262d2fc45b1f6479dcb0eb21f4b1d030e6e13c5fdf6df0abc",
+      "size_bytes": 2391
+    },
+    {
+      "path": "discovery/t01-phase1-real/w1/runtime-file-fix-20260905/README.md",
+      "sha256": "1ebfa9dd5d12da1ad8a626e45dc68931e329e1e3efb3d1c6686d7492b597c7a7",
+      "size_bytes": 774
+    }
+  ],
+  "archived_original_sources": 16,
+  "original_evidence_rewritten": false,
+  "observed_zero_links": 411,
+  "initial_root_tests": {
+    "total": 563,
+    "passed": 560,
+    "failed": 2,
+    "skipped": 1
+  },
+  "final_root_tests": {
+    "total": 567,
+    "passed": 566,
+    "failed": 0,
+    "skipped": 1
+  },
+  "final_execution_record": {
+    "path": "discovery/t01-phase1-real/w1/b1-review-20260905/maintenance/checks.json",
+    "sha256": "40d7881edab322c7ebf49fc25d9aa57f728b596facfc41c5ffa871ace7035e56",
+    "size_bytes": 5437
+  },
+  "final_root_junit": {
+    "path": "discovery/t01-phase1-real/w1/b1-review-20260905/maintenance/root-tests.xml",
+    "sha256": "ceb01df1ce9432f633ed96a2105ab411614a3d1abe947698e116aea4251b35fa",
+    "size_bytes": 81004
+  }
+}

@@ -1,0 +1,278 @@
+"""Development Worker registry over the existing transactional task store and lifecycle."""
+import copy
+from datetime import datetime, timezone
+import sys
+import subprocess
+
+from ..common import (REPO, TOOL as ENGINEERING, TERMINAL, RuntimeFault, decode, encode,
+    ensure, identifier, new_id, now, sha, TRANSITIONS)
+from ..files import publish, read_locked, read_verified, within
+from ..runtime import Runtime as StoreRuntime
+from . import docker
+from .policy import TOOL, request, registered_profile, sequence_id
+from .registry import TOOLS, spec
+from .structure import policy as structure
+from .bepipred import policy as bepipred
+from .contracts import validate
+
+
+class Runtime(StoreRuntime):
+    """Same SQLite/schema/IDs/transactions; fixed development Worker registrations."""
+
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        self._development_fault=None  # Internal acceptance harness only; never a request parameter.
+
+    def _store(self,db,value,before=None,event='state'):
+        if value['tool_id'] in TOOLS:
+            value.update(evidence_kind='G0_REAL_OUTPUT',usable_for_pipeline=False,review_required=True)
+            ensure(value['run_mode']=='g0_probe','PROFILE_NOT_APPROVED','Scientific pipeline consumption is closed')
+        if value['tool_id']==bepipred.TOOL:
+            # Same tables, transactions and transition rules; only the additive
+            # N04/tool schema differs from the preserved W1 store implementation.
+            validate(value,'job')
+            if before is not None:
+                ensure(before['state'] not in TERMINAL,'INVALID_STATE','Terminal job is immutable')
+                ensure(value['state']==before['state'] or value['state'] in TRANSITIONS[before['state']],'INVALID_STATE','Illegal lifecycle transition')
+                value['revision']=before['revision']+1;value['updated_at']=now()
+                db.execute('UPDATE jobs SET data=? WHERE id=?',(encode(value).decode(),value['job_id']))
+            else:db.execute('INSERT INTO jobs VALUES(?,?,?,?)',(value['job_id'],value['run_id'],self.scope,encode(value).decode()))
+            db.execute('INSERT INTO events VALUES(?,?,?)',(value['job_id'],value['revision'],encode(dict(event=event,snapshot=value)).decode()))
+            return
+        return super()._store(db,value,before,event)
+
+    def submit(self,raw):
+        ensure(isinstance(raw,bytes) and len(raw)<=65536,'INVALID_REQUEST','Bounded UTF-8 bytes required')
+        body=decode(raw)
+        if not isinstance(body,dict) or body.get('tool_id')!=bepipred.TOOL:return super().submit(raw)
+        validate(body,'submit')
+        with self._tx() as db:
+            def action():
+                self._admit(db,body)
+                return self._new_job(db,body,raw)
+            return self._idempotent(db,'submit',body['idempotency_key'],raw,action)
+
+    def _stage(self,db,run_id,raw,tool_id=TOOL):
+        self._run(db,run_id);spec(tool_id).request(raw)
+        aid=new_id('artifact'); relative=f'runs/{run_id}/inputs/{aid}.json'
+        ref=self._artifact(aid,run_id,None,None,'request',raw);ref['evidence_kind']='LOCAL_INPUT'
+        publish(self.root,relative,raw)
+        db.execute('INSERT INTO artifacts VALUES(?,?,?,?)',(aid,run_id,relative,encode(ref).decode()))
+        return ref
+
+    def stage_request(self,run_id,raw,tool_id=ENGINEERING):
+        if tool_id==ENGINEERING:return super().stage_request(run_id,raw)
+        ensure(tool_id in TOOLS,'PROFILE_NOT_APPROVED','Worker not registered')
+        ensure(isinstance(raw,bytes) and len(raw)<=65536,'INVALID_REQUEST','Bounded request bytes required')
+        with self._tx() as db: return self._stage(db,run_id,raw,tool_id)
+
+    def _structure_bytes(self,db,body,run_id):
+        ref=body['structure_artifact']
+        ensure(ref['run_id']==run_id,'FORBIDDEN','Structure belongs to another run')
+        self._run(db,run_id)
+        row=db.execute('SELECT relative_path,data FROM artifacts WHERE id=?',(ref['artifact_id'],)).fetchone()
+        ensure(row and decode(row['data'])==ref,'FORBIDDEN','Unregistered structure input')
+        return read_verified(self.root,row['relative_path'],ref['sha256'],ref['size_bytes'],structure.MAX_STRUCTURE_BYTES)
+
+    def submit_structure(self,raw,key,data):
+        ensure(isinstance(raw,bytes) and len(raw)<=32768,'INVALID_REQUEST','Bounded metadata bytes required')
+        metadata=structure.metadata(raw)
+        ensure(isinstance(data,bytes) and 0<len(data)<=structure.MAX_STRUCTURE_BYTES,'INVALID_REQUEST','Structure must be nonempty and at most 4 MiB')
+        # Both original metadata bytes and file bytes define duplicate submission.
+        fingerprint=encode(dict(metadata_sha256=sha(raw),structure_sha256=sha(data)))
+        with self._tx() as db:
+            def action():
+                run=dict(contract_version='0.1.0',run_id=new_id('run'),created_at=now())
+                db.execute('INSERT INTO runs VALUES(?,?,?)',(run['run_id'],self.scope,encode(run).decode()))
+                aid=new_id('artifact');relative=f'runs/{run["run_id"]}/inputs/{aid}.structure'
+                ref=self._artifact(aid,run['run_id'],None,None,'input',data)
+                ref.update(evidence_kind='LOCAL_INPUT',media_type='chemical/x-pdb' if metadata['declared_format']=='PDB' else 'chemical/x-cif')
+                publish(self.root,relative,data)
+                db.execute('INSERT INTO artifacts VALUES(?,?,?,?)',(aid,run['run_id'],relative,encode(ref).decode()))
+                ref=self._stage(db,run['run_id'],encode(dict(metadata,structure_artifact=ref)),structure.TOOL)
+                body=dict(contract_version='0.1.0',run_id=run['run_id'],request_id=new_id('request'),idempotency_key=key,
+                    tool_id=structure.TOOL,node_id=structure.NODE,run_mode='g0_probe',request_artifact=ref,execution_profile=structure.registered_profile(),rule_profile=None)
+                self._admit(db,body)
+                return self._new_job(db,body,encode(body))
+            return self._idempotent(db,'local_structure',key,fingerprint,action)
+
+    def _request_bytes(self,job):
+        with self._db() as db:return self._input(db,job['request_artifact'],job['run_id'])
+
+    def submit_sequence(self,raw,key,tool_id=TOOL):
+        """Atomic convenience operation; duplicates retain the exact same run/job/artifact."""
+        ensure(isinstance(raw,bytes) and len(raw)<=65536,'INVALID_REQUEST','Bounded request bytes required')
+        ensure(tool_id in (TOOL,bepipred.TOOL),'PROFILE_NOT_APPROVED','Sequence Worker not registered')
+        worker=spec(tool_id);worker.request(raw)
+        with self._tx() as db:
+            def action():
+                run=dict(contract_version='0.1.0',run_id=new_id('run'),created_at=now())
+                db.execute('INSERT INTO runs VALUES(?,?,?)',(run['run_id'],self.scope,encode(run).decode()))
+                ref=self._stage(db,run['run_id'],raw,tool_id)
+                body=dict(contract_version='0.1.0',run_id=run['run_id'],request_id=new_id('request'),idempotency_key=key,
+                    tool_id=tool_id,node_id=worker.NODE,run_mode='g0_probe',request_artifact=ref,execution_profile=worker.registered_profile(),rule_profile=None)
+                self._admit(db,body)
+                return self._new_job(db,body,encode(body))
+            return self._idempotent(db,'deeptmhmm' if tool_id==TOOL else 'bepipred',key,raw,action)
+
+    def _admit(self,db,body):
+        if body.get('tool_id') not in TOOLS:return super()._admit(db,body)
+        worker=spec(body['tool_id'])
+        validate(body,'submit')
+        ensure(body['node_id']==worker.NODE and body['run_mode']=='g0_probe' and body['rule_profile'] is None,
+            'PROFILE_NOT_APPROVED','Worker accepts its registered node in development mode only')
+        ensure(body['execution_profile']==worker.registered_profile(),'PROFILE_NOT_APPROVED','Unregistered or changed development profile')
+        identifier(body['request_id'])
+        ensure(not body['request_id'].startswith(('t01p1m-','t01-phase1-mock-','t01-mock-')),'FORBIDDEN','Foreign request namespace')
+        ref=body['request_artifact']
+        ensure(ref['evidence_kind']=='LOCAL_INPUT' and ref['role']=='request' and ref['job_id'] is None
+            and ref['attempt_id'] is None,'FORBIDDEN','Invalid development input artifact')
+        content=worker.request(self._input(db,ref,body['run_id']))
+        if worker.TOOL==structure.TOOL:self._structure_bytes(db,content,body['run_id'])
+
+    def dispatch(self,job_id):
+        if self.get(job_id)['tool_id'] not in TOOLS:return super().dispatch(job_id)
+        from ..winprocess import current_identity
+        with self._tx() as db:
+            before=self._job(db,job_id)
+            worker=spec(before['tool_id'])
+            if before['state']!='queued':return before
+            try:
+                ensure(before['execution_profile']==worker.registered_profile(),'PROFILE_NOT_APPROVED','Development code changed since admission')
+                raw=self._input(db,before['request_artifact'],before['run_id']);body=worker.request(raw)
+                data=self._structure_bytes(db,body,before['run_id']) if worker.TOOL==structure.TOOL else None
+            except RuntimeFault as exc:
+                value=copy.deepcopy(before);value.update(state='failed',finished_at=now(),error_code=exc.code,scientific_disposition='rejected')
+                self._store(db,value,before,'preflight_failed');return value
+            ensure(self._development_fault in (None,'tool_failure','corrupt_output','crash_after_start','crash_after_receipt'),
+                'INVALID_REQUEST','Unknown internal development fault')
+            value=copy.deepcopy(before)
+            value.update(state='running',attempt_id=new_id('attempt'),execution_identity='exec-'+new_id('attempt'),
+                lease_epoch=1,started_at=now())
+            path=self.attempt_path(value)
+            publish(self.root,path+'/input.json',raw)
+            publish(self.root,path+'/input.fasta',('>'+sequence_id(body['protein_sequence'])+'\n'+body['protein_sequence']+'\n').encode())
+            if data is not None:
+                publish(self.root,path+'/input.structure',data)
+                binding={k:value[k] for k in ['run_id','request_id','job_id','attempt_id','execution_identity','execution_profile']}
+                binding.update(input_sha256=sha(raw),sequence_sha256=sha(body['protein_sequence'].encode()),structure_sha256=sha(data))
+                publish(self.root,path+'/binding.json',encode(binding))
+            within(self.root,path+'/output').mkdir()
+            ex=dict(phase='reserved',dispatcher=current_identity(),supervisor=None,tree_stopped=False,
+                container_name=worker.SLOT,container_id=None,timeout_seconds=body['timeout_seconds'],fault=self._development_fault,
+                deadline=None,container_started=False)
+            self._execution_store(db,job_id,ex);self._store(db,value,before,'claimed')
+        with self._tx() as db:
+            current=self._job(db,job_id);ex=self._execution(db,job_id)
+            if current['state'] in TERMINAL or ex['phase']!='reserved':return current
+            ex['phase']='spawn_intent';self._execution_store(db,job_id,ex)
+        # The child registers under the attempt mutex before any Docker operation.
+        # No suspended process can be orphaned by a dispatcher crash.
+        try:
+            subprocess.Popen([sys.executable,'-X','utf8',str(REPO/'scripts/t01_development_supervisor.py'),
+                '--root',str(self.root),'--scope',self.scope,'--job-id',job_id],cwd=REPO,
+                stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,
+                close_fds=True,creationflags=subprocess.CREATE_NO_WINDOW)
+        except OSError as exc:return self._unknown(job_id,'Supervisor launch failed: '+str(exc))
+        return self.get(job_id)
+
+    def reconcile(self,job_id):
+        before=self.get(job_id)
+        if before['tool_id'] not in TOOLS:return super().reconcile(job_id)
+        if before['state'] in TERMINAL or before['state']=='queued':return before
+        from ..winprocess import alive, initialization_lock
+        ex=self.execution(job_id)
+        if not ex.get('supervisor') and before['state']!='reconciling' and alive(ex.get('dispatcher')) is True:
+            return before  # Registration in flight; explicit recover fences a launch gap.
+        if alive(ex.get('supervisor')) is True:
+            if before['state']=='reconciling':
+                with self._tx() as db:
+                    current=self._job(db,job_id)
+                    if current['state']=='reconciling':
+                        value=copy.deepcopy(current);value['state']='stop_requested' if value['stop_reason'] else 'running'
+                        value['lease_epoch']+=1;self._store(db,value,current,'reattached')
+            return self.get(job_id)
+        try:
+            with initialization_lock('Local\\T01-development-'+job_id):
+                current=self.get(job_id)
+                if current['state'] in TERMINAL:return current
+                ex=self.execution(job_id)
+                if ex.get('supervisor') and alive(ex.get('supervisor')) is None:
+                    return self._unknown(job_id,'Supervisor identity unavailable')
+                from .supervisor import collect_stopped
+                info=docker.inspect(self.root,ex.get('container_id') or spec(current['tool_id']).SLOT)
+                if docker.owned(self.root,current,info):
+                    info=docker.stop(self.root,current,info)
+                    # A dead supervisor never silently restarts/reuses an in-flight inference.
+                    return collect_stopped(self,current,info,recovered=True)
+                if info is not None and ex.get('container_id')==info['Id']:
+                    return self._unknown(job_id,'Container ownership changed')
+                # Name is absent or belongs to another attempt; ours cannot still occupy it.
+                return collect_stopped(self,current,None,recovered=True)
+        except (RuntimeFault,OSError) as exc:
+            return self._unknown(job_id,str(exc))
+
+    def _unknown(self,job_id,diagnostic):
+        with self._tx() as db:
+            current=self._job(db,job_id)
+            if current['state'] in TERMINAL:return current
+            ex=self._execution(db,job_id);ex['recovery_diagnostic']=diagnostic;self._execution_store(db,job_id,ex)
+            if current['state']!='reconciling':
+                value=copy.deepcopy(current);value.update(state='reconciling',lease_epoch=current['lease_epoch']+1)
+                self._store(db,value,current,'execution_unknown');return value
+            return current
+
+    def _finish_development(self,job_id,ex,files,result):
+        with self._tx() as db:
+            before=self._job(db,job_id)
+            if before['state'] in TERMINAL:return before
+            ensure(ex.get('tree_stopped'),'INVALID_STATE','Container stop must be confirmed before terminal publication')
+            value=copy.deepcopy(before)
+            error=result['execution'].get('error_code')
+            if before['stop_reason']:
+                error='CANCELLED' if before['stop_reason']=='cancel' else 'TIMEOUT'
+                value.update(state='cancelled' if error=='CANCELLED' else 'timed_out',stop_confirmed=True)
+                result.update(status='unreliable',null_reason=error)
+                if before['tool_id']==TOOL:result.update(topology=None,raw_record=None)
+                elif before['tool_id']==bepipred.TOOL:result.update(raw_scores=None,raw_record=None)
+                else:result.update(analysis=None)
+                result['execution']['error_code']=error
+                result['warnings']=[dict(level='failure',severity='WARNING',code=error,message='执行已停止，结果不供消费')]
+            else:value['state']='failed' if error else 'succeeded'
+            value.update(finished_at=now(),error_code=error,exit_code=result['execution'].get('exit_code'),
+                scientific_disposition='review_required' if value['state']=='succeeded' else 'rejected')
+            refs=[]
+            for name,raw in sorted(files.items()):
+                role='log' if name in ('stdout.txt','stderr.txt') else 'raw'
+                ref=self._publish_development(db,value,role,raw,'application/octet-stream')
+                value['artifacts'].append(ref);refs.append(dict(path=name,artifact=ref))
+            result['raw_artifacts']=refs
+            ref=self._publish_development(db,value,'result' if value['state']=='succeeded' else 'diagnostic',encode(result),'application/json')
+            value['artifacts'].append(ref)
+            ex.update(phase='finished',tree_stopped=True)
+            self._execution_store(db,job_id,ex);self._store(db,value,before,'completed')
+            return value
+
+    def _publish_development(self,db,job,role,raw,media):
+        aid=new_id('artifact');relative=self.attempt_path(job)+'/published/'+aid+'.bin'
+        publish(self.root,relative,raw)
+        ref=self._artifact(aid,job['run_id'],job['job_id'],job['attempt_id'],role,raw)
+        ref.update(evidence_kind='G0_REAL_OUTPUT',media_type=media)
+        db.execute('INSERT INTO artifacts VALUES(?,?,?,?)',(aid,job['run_id'],relative,encode(ref).decode()))
+        return ref
+
+    def artifact_bytes(self,job_id,artifact_id):
+        if self.get(job_id)['tool_id'] not in TOOLS:return super().artifact_bytes(job_id,artifact_id)
+        with self._db() as db:
+            job=self._job(db,job_id)
+            ref=next((r for r in job['artifacts'] if r['artifact_id']==artifact_id),None)
+            ensure(ref is not None,'FORBIDDEN','Artifact does not belong to job')
+            row=db.execute('SELECT relative_path,data FROM artifacts WHERE id=?',(artifact_id,)).fetchone()
+            ensure(row and decode(row['data'])==ref,'FORBIDDEN','Artifact registration mismatch')
+            return read_verified(self.root,row['relative_path'],ref['sha256'],ref['size_bytes'],32*1024**2)
+
+    def result(self,job_id):
+        job=self.get(job_id)
+        ref=next((r for r in job['artifacts'] if r['role'] in ('result','diagnostic')),None)
+        ensure(ref is not None,'INVALID_STATE','No terminal result/diagnostic artifact')
+        return decode(self.artifact_bytes(job_id,ref['artifact_id']))

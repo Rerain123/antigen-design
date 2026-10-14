@@ -1,0 +1,58 @@
+{
+  "type": "object",
+  "properties": {
+    "contract_version": {
+      "const": "0.1.0"
+    },
+    "contract_status": {
+      "const": "DRAFT_REVIEW_ONLY"
+    },
+    "tool_id": {
+      "const": "t01.real.deeptmhmm"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^t01p1r-run-[A-Za-z0-9._-]+$"
+    },
+    "request_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+    },
+    "protein_sequence": {
+      "type": "string"
+    },
+    "protein_sequence_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "user_sequence_id": {
+      "type": "string"
+    },
+    "internal_sequence_id": {
+      "type": "string",
+      "pattern": "^t01seq_[0-9a-f]{64}$"
+    },
+    "profile_id": {
+      "const": "t01.deeptmhmm.academic1.cpu.review.v0.1"
+    },
+    "profile_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "contract_version",
+    "contract_status",
+    "tool_id",
+    "run_id",
+    "request_id",
+    "protein_sequence",
+    "protein_sequence_sha256",
+    "user_sequence_id",
+    "internal_sequence_id",
+    "profile_id",
+    "profile_sha256"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

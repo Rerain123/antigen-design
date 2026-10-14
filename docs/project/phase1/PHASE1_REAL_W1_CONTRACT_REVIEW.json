@@ -1,0 +1,206 @@
+{
+  "date": "2026-09-05",
+  "scope": "W1-07 engineering design and W1-08A scoped engineering review",
+  "review_status": "PASS_ENGINEERING_SCOPE_ONLY",
+  "reviewer": "AI engineering review; no algorithm or customer signoff asserted",
+  "authorization_source": "docs/project/sources/PHASE1_W1_MODULAR_DEVELOPMENT_20260905.json",
+  "findings": [
+    {
+      "id": "RV01",
+      "result": "RESOLVED",
+      "detail": "Module A no longer waits for unrelated GPU/model assets; B/C retain own G0/G1 and full-wave acceptance remains intact"
+    },
+    {
+      "id": "RV02",
+      "result": "RESOLVED",
+      "detail": "Single-call tool protocol preserved; upper job/attempt identities bridge without rewriting original result"
+    },
+    {
+      "id": "RV03",
+      "result": "RESOLVED_IN_DESIGN",
+      "detail": "Stop confirmation, stop/result ordering, start crash window, reconcile and stale epoch specified; real process tests remain future"
+    },
+    {
+      "id": "RV04",
+      "result": "RESOLVED_IN_DESIGN",
+      "detail": "Opaque artifact identities, per-run/attempt hash binding, atomic publish and fixture isolation specified"
+    },
+    {
+      "id": "RV05",
+      "result": "SCIENTIFIC_REVIEW_RETAINED",
+      "detail": "R-58, S-09, DeepTMHMM, FreeSASA and prediction field facts traceable; no pending scientific item auto-closed"
+    }
+  ],
+  "allowed_next_task": "W1-09A",
+  "allowed_scope": [
+    "Single-host engineering runtime in independent t01_phase1_real namespace",
+    "Persistent create/submit/get/cancel/retry, immutable artifacts, controlled engineering subprocess Worker",
+    "Engineering fixtures and real harmless process lifecycle checks only"
+  ],
+  "not_approved": [
+    "Scientific adapter implementation without its own applicable module G0/G1 review",
+    "Scientific qualification of candidate mapping, quality rules, topology or RSA",
+    "AF3/ESMFold2 actual deployment and output correctness",
+    "Full W1 G0/G1, production Dify integration, G3-G6 or downstream production release"
+  ],
+  "scientific_payload_status": "DRAFT_PENDING_PER_TOOL_G1",
+  "reviewed_artifacts": [
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/acceptance.json",
+      "bytes": 6383,
+      "sha256": "b73db04216dc32be442144adec1938e68555467f440bf0b5f7d52363107e1d69"
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/contract.json",
+      "bytes": 4791,
+      "sha256": "5c8e5750b059a3f8a36e7ffc26ae518da3c7040281907aff8b98db13db98f0e5"
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/control.schema.json",
+      "bytes": 2331,
+      "sha256": "efac21fcb2d75f2f7b37750c00f16ad36186c3fc4910c90406978ba004d03892"
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/examples/input.txt",
+      "bytes": 46,
+      "sha256": "a709d76ffd8d4a52ed715e2a1134ab6cf7023981e3eaa20f4c824164a46e0aa0"
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/examples/job-cancelled.json",
+      "bytes": 1530,
+      "sha256": "2abb321fd88f2bf742ca260b930c25f5ffa8de5e0c67db80556a3288a445d023"
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/examples/job-failed.json",
+      "bytes": 1523,
+      "sha256": "b221c975dbe63a6bfe656e7348ea2567982c76bb096e22c57788a9916c29d146"
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/examples/job-queued.json",
+      "bytes": 1445,
+      "sha256": "f84e9bab64de0f89a44c02e8f7e91b23763f4998ad1666e4d9b6e52f6d7105d6"
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/examples/job-reconciling.json",
+      "bytes": 1498,
+      "sha256": "6b93558d67967ee69391fdf0e508627c56f9c11afc16096027720e184e8e1a05"
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/examples/job-running.json",
+      "bytes": 1494,
+      "sha256": "c806c9516555698b477e2faa47e0070bc1c404c7e8d0928ac2d8c7ab895dc65c"
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/examples/job-stop_requested.json",
+      "bytes": 1505,
+      "sha256": "12e17d06637bd8ae6a98f92acefb61adaade7845753f303e0b863ea50bc53b50"
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/examples/job-succeeded.json",
+      "bytes": 1928,
+      "sha256": "f70f0154ce3dd20f842bf440c5bb9e29210695ca940eb18eb83fa947bb6405c3"
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/examples/job-timed_out.json",
+      "bytes": 1529,
+      "sha256": "5af9aa7f8811557c5190bdcffd5779206b86a268c21b62b5d4c679babac6c672"
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/examples/output.txt",
+      "bytes": 23,
+      "sha256": "ffaea7d596870f0c485f2b423441b9b661583ff3e60932a1655345123717f2f3"
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/examples/submit.json",
+      "bytes": 824,
+      "sha256": "634b3ff0a888e5a06da7eefe526036f3db486d541b5f39f067e9ec99342a5930"
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/job.schema.json",
+      "bytes": 10197,
+      "sha256": "4f6f2e6beb87fc66bd4244060e3616f12f6ff0ddad569b8fbfe22207299e729a"
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/README.md",
+      "bytes": 1355,
+      "sha256": "7c54778358d8e44e76ad09238b81c80b1851e6c482771bbd2ae85e92f884de7e"
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/source_manifest.json",
+      "bytes": 10831,
+      "sha256": "d1dedc804632065df2e0c7900c674284ffa218f82e430d04d6975bc4e97d687d"
+    },
+    {
+      "path": "工作流设计/02-数据契约/phase1-real-v0.1/submit.schema.json",
+      "bytes": 4502,
+      "sha256": "0312a52ae5c74126b3dcf300b5de15d942d389cb98ae585418c20d63ad55568d"
+    },
+    {
+      "path": "docs/project/phase1/PHASE1_REAL_W1_CONTRACT_DESIGN.md",
+      "bytes": 15616,
+      "sha256": "ee62d79261674ed7a8226a172d66c5e55f744f42491f2fefa43b9ed51d20249f"
+    },
+    {
+      "path": "docs/project/phase1/PHASE1_REAL_W1_RUNTIME_BACKLOG.md",
+      "bytes": 3325,
+      "sha256": "d12514575980aebc1bb38a7ebdee50bcf272c31949c387e281e732b0355a2391"
+    },
+    {
+      "path": "scripts/check_w1_contract.py",
+      "bytes": 13315,
+      "sha256": "f93c947d4da698fdd4523333bcc0cde4ad6604c5b92c19be895db8594a1c994c"
+    },
+    {
+      "path": "tests/test_w1_contract_design.py",
+      "bytes": 7002,
+      "sha256": "a3b9e2c00f6ba5afdfec74179e72bb76352e25f5728c096192253c4154ab43a8"
+    }
+  ],
+  "maintenance_verification": "PASS",
+  "checks": [
+    {
+      "command": ".venv/Scripts/python.exe -X utf8 -m pytest -o addopts= -q",
+      "cwd": ".",
+      "exit_code": 0,
+      "passed": 472,
+      "skipped": 1,
+      "added_contract_tests": 44,
+      "elapsed_seconds": 77.03
+    },
+    {
+      "command": ".venv/Scripts/python.exe -X utf8 scripts/check_docs.py",
+      "exit_code": 0,
+      "result": "PASS",
+      "markdown_files": 161
+    },
+    {
+      "command": ".venv/Scripts/python.exe -X utf8 scripts/check_w1_contract.py",
+      "exit_code": 0,
+      "result": "PASS",
+      "scope": "STATIC_CONTRACT_ONLY",
+      "source_files": 32,
+      "expert_sources": 22,
+      "job_examples": 8,
+      "submit_examples": 1,
+      "control_examples": 4,
+      "runtime_cases_declared": 15,
+      "scientific_cases_declared": 8
+    },
+    {
+      "command": ".venv/Scripts/python.exe -X utf8 scripts/t01_phase1_mock/run_m4_campaign.py verify",
+      "exit_code": 0,
+      "result": "PASS",
+      "frozen_asset_count": 457
+    },
+    {
+      "command": ".venv/Scripts/python.exe -X utf8 scripts/package_tool_handoffs.py --check",
+      "exit_code": 0,
+      "result": "PASS",
+      "archives_unchanged": 2
+    }
+  ],
+  "historical_regressions": "NOT_RERUN: no historical implementation partition change or stage freeze; earlier results remain historical",
+  "runtime_execution": "NOT_RUN",
+  "scientific_execution": "NOT_RUN",
+  "production_status": "NOT_DEPLOYED"
+}

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="2" tests="52" time="3.976" timestamp="2026-10-09T16:29:01.255355+08:00" hostname="DESKTOP-8B96JVR"><testcase classname="tests.test_gpu_on_demand" name="test_cpu_idle_never_requests_gpu" time="0.006" /><testcase classname="tests.test_gpu_on_demand" name="test_full_lifecycle_releases_gpu_and_never_replays_tool[succeeded]" time="0.085" /><testcase classname="tests.test_gpu_on_demand" name="test_full_lifecycle_releases_gpu_and_never_replays_tool[failed]" time="0.081" /><testcase classname="tests.test_gpu_on_demand" name="test_full_lifecycle_releases_gpu_and_never_replays_tool[cancelled]" time="0.084" /><testcase classname="tests.test_gpu_on_demand" name="test_full_lifecycle_releases_gpu_and_never_replays_tool[timed_out]" time="0.078" /><testcase classname="tests.test_gpu_on_demand" name="test_full_lifecycle_releases_gpu_and_never_replays_tool[interrupted]" time="0.079" /><testcase classname="tests.test_gpu_on_demand" name="test_arrival_after_worker_quiescence_waits_for_new_session" time="0.100" /><testcase classname="tests.test_gpu_on_demand" name="test_patch_response_loss_does_not_create_another_session" time="0.034" /><testcase classname="tests.test_gpu_on_demand" name="test_release_response_loss_retries_only_scale_down" time="0.084" /><testcase classname="tests.test_gpu_on_demand" name="test_cancellation_does_not_need_a_free_gpu[idle]" time="0.022" /><testcase classname="tests.test_gpu_on_demand" name="test_cancellation_does_not_need_a_free_gpu[reserved]" time="0.036" /><testcase classname="tests.test_gpu_on_demand" name="test_cancellation_does_not_need_a_free_gpu[pending]" time="0.056" /><testcase classname="tests.test_gpu_on_demand" name="test_uncertain_session_releases_resource_without_replaying_science[restart]" time="0.047" /><testcase classname="tests.test_gpu_on_demand" name="test_uncertain_session_releases_resource_without_replaying_science[replacement]" time="0.048" /><testcase classname="tests.test_gpu_on_demand" name="test_uncertain_session_releases_resource_without_replaying_science[failed]" time="0.051" /><testcase classname="tests.test_gpu_on_demand" name="test_uncertain_session_releases_resource_without_replaying_science[multiple]" time="0.048" /><testcase classname="tests.test_gpu_on_demand" name="test_uncertain_session_releases_resource_without_replaying_science[bad_receipt]" time="0.052" /><testcase classname="tests.test_gpu_on_demand" name="test_uncertain_session_releases_resource_without_replaying_science[blocked]" time="0.053" /><testcase classname="tests.test_gpu_on_demand" name="test_unconfirmed_worker_receipt_never_announces_clean_release" time="0.064" /><testcase classname="tests.test_gpu_on_demand" name="test_container_startup_failure_releases_and_quarantines[restart-containers]" time="0.046" /><testcase classname="tests.test_gpu_on_demand" name="test_container_startup_failure_releases_and_quarantines[restart-initializers]" time="0.048" /><testcase classname="tests.test_gpu_on_demand" name="test_container_startup_failure_releases_and_quarantines[image-containers]" time="0.049" /><testcase classname="tests.test_gpu_on_demand" name="test_container_startup_failure_releases_and_quarantines[image-initializers]" time="0.047" /><testcase classname="tests.test_gpu_on_demand" name="test_container_startup_failure_releases_and_quarantines[config-containers]" time="0.047" /><testcase classname="tests.test_gpu_on_demand" name="test_container_startup_failure_releases_and_quarantines[config-initializers]" time="0.048" /><testcase classname="tests.test_gpu_on_demand" name="test_pending_gpu_or_normal_container_startup_is_not_interrupted[ContainerCreating]" time="0.035" /><testcase classname="tests.test_gpu_on_demand" name="test_pending_gpu_or_normal_container_startup_is_not_interrupted[PodInitializing]" time="0.038" /><testcase classname="tests.test_gpu_on_demand" name="test_pending_gpu_or_normal_container_startup_is_not_interrupted[None]" time="0.039" /><testcase classname="tests.test_gpu_on_demand" name="test_invalid_session_record_does_not_keep_gpu_reserved[{broken]" time="0.047" /><testcase classname="tests.test_gpu_on_demand" name="test_invalid_session_record_does_not_keep_gpu_reserved[[]]" time="0.047" /><testcase classname="tests.test_gpu_on_demand" name="test_invalid_session_record_does_not_keep_gpu_reserved[null]" time="0.046" /><testcase classname="tests.test_gpu_on_demand" name="test_invalid_session_record_does_not_keep_gpu_reserved[{}]" time="0.047" /><testcase classname="tests.test_gpu_on_demand" name="test_symlink_receipt_releases_without_writing_through_it[session]" time="0.000"><skipped type="pytest.skip" message="Real symlink protection requires Linux">D:\work\antigen.design\tests\test_gpu_on_demand.py:255: Real symlink protection requires Linux</skipped></testcase><testcase classname="tests.test_gpu_on_demand" name="test_symlink_receipt_releases_without_writing_through_it[unified]" time="0.000"><skipped type="pytest.skip" message="Real symlink protection requires Linux">D:\work\antigen.design\tests\test_gpu_on_demand.py:255: Real symlink protection requires Linux</skipped></testcase><testcase classname="tests.test_gpu_on_demand" name="test_uncertain_execution_evidence_cannot_retain_gpu_or_replay[active-active_owner]" time="0.048"><failure message="AssertionError: assert 'wait' == 'release'&#10;  &#10;  - release&#10;  + wait">setup = ({'deployment': 'slot', 'state_root': 'D:\\work\\antigen.design\\.tmp\\gpu-on-demand-test-r04a\\test_uncertain_executi...C989E50&gt;, &lt;function setup.&lt;locals&gt;.submit at 0x000002819CC7DE40&gt;, &lt;function setup.&lt;locals&gt;.tick at 0x000002819CC7DF80&gt;)
+fault = 'active_owner', receipt_phase = 'active'
+
+    @pytest.mark.parametrize('fault', ['active_owner', 'corrupt_owner', 'corrupt_request', 'uncertain_execution'])
+    @pytest.mark.parametrize('receipt_phase', ['active', 'quiescent'])
+    def test_uncertain_execution_evidence_cannot_retain_gpu_or_replay(setup, fault, receipt_phase):
+        config, roots, state, api, submit, tick = setup
+        target = start(setup)
+        atomic(demand.session_file(config['state_root'], 'b' * 32), dict(
+            session='b' * 32, pod_uid='pod-1', phase=receipt_phase, stopped_confirmed=True))
+        if fault == 'active_owner':
+            atomic(Path(config['state_root']) / 'state.json', dict(phase='active'))
+        elif fault == 'corrupt_owner':
+            (Path(config['state_root']) / 'state.json').write_bytes(b'[]')
+        elif fault == 'corrupt_request':
+            (target / 'request.json').write_bytes(b'{broken')
+        else:
+            finish(target, 'running', False)
+&gt;       assert tick() == 'release'
+E       AssertionError: assert 'wait' == 'release'
+E         
+E         - release
+E         + wait
+
+tests\test_gpu_on_demand.py:288: AssertionError</failure></testcase><testcase classname="tests.test_gpu_on_demand" name="test_uncertain_execution_evidence_cannot_retain_gpu_or_replay[active-corrupt_owner]" time="0.045"><failure message="AssertionError: assert 'wait' == 'release'&#10;  &#10;  - release&#10;  + wait">setup = ({'deployment': 'slot', 'state_root': 'D:\\work\\antigen.design\\.tmp\\gpu-on-demand-test-r04a\\test_uncertain_executi...AD24D90&gt;, &lt;function setup.&lt;locals&gt;.submit at 0x000002819CC7F560&gt;, &lt;function setup.&lt;locals&gt;.tick at 0x000002819CC7F6A0&gt;)
+fault = 'corrupt_owner', receipt_phase = 'active'
+
+    @pytest.mark.parametrize('fault', ['active_owner', 'corrupt_owner', 'corrupt_request', 'uncertain_execution'])
+    @pytest.mark.parametrize('receipt_phase', ['active', 'quiescent'])
+    def test_uncertain_execution_evidence_cannot_retain_gpu_or_replay(setup, fault, receipt_phase):
+        config, roots, state, api, submit, tick = setup
+        target = start(setup)
+        atomic(demand.session_file(config['state_root'], 'b' * 32), dict(
+            session='b' * 32, pod_uid='pod-1', phase=receipt_phase, stopped_confirmed=True))
+        if fault == 'active_owner':
+            atomic(Path(config['state_root']) / 'state.json', dict(phase='active'))
+        elif fault == 'corrupt_owner':
+            (Path(config['state_root']) / 'state.json').write_bytes(b'[]')
+        elif fault == 'corrupt_request':
+            (target / 'request.json').write_bytes(b'{broken')
+        else:
+            finish(target, 'running', False)
+&gt;       assert tick() == 'release'
+E       AssertionError: assert 'wait' == 'release'
+E         
+E         - release
+E         + wait
+
+tests\test_gpu_on_demand.py:288: AssertionError</failure></testcase><testcase classname="tests.test_gpu_on_demand" name="test_uncertain_execution_evidence_cannot_retain_gpu_or_replay[active-corrupt_request]" time="0.057" /><testcase classname="tests.test_gpu_on_demand" name="test_uncertain_execution_evidence_cannot_retain_gpu_or_replay[active-uncertain_execution]" time="0.050"><failure message="AssertionError: assert 'wait' == 'release'&#10;  &#10;  - release&#10;  + wait">setup = ({'deployment': 'slot', 'state_root': 'D:\\work\\antigen.design\\.tmp\\gpu-on-demand-test-r04a\\test_uncertain_executi...CBBB390&gt;, &lt;function setup.&lt;locals&gt;.submit at 0x000002819CC7FE20&gt;, &lt;function setup.&lt;locals&gt;.tick at 0x000002819CC7FD80&gt;)
+fault = 'uncertain_execution', receipt_phase = 'active'
+
+    @pytest.mark.parametrize('fault', ['active_owner', 'corrupt_owner', 'corrupt_request', 'uncertain_execution'])
+    @pytest.mark.parametrize('receipt_phase', ['active', 'quiescent'])
+    def test_uncertain_execution_evidence_cannot_retain_gpu_or_replay(setup, fault, receipt_phase):
+        config, roots, state, api, submit, tick = setup
+        target = start(setup)
+        atomic(demand.session_file(config['state_root'], 'b' * 32), dict(
+            session='b' * 32, pod_uid='pod-1', phase=receipt_phase, stopped_confirmed=True))
+        if fault == 'active_owner':
+            atomic(Path(config['state_root']) / 'state.json', dict(phase='active'))
+        elif fault == 'corrupt_owner':
+            (Path(config['state_root']) / 'state.json').write_bytes(b'[]')
+        elif fault == 'corrupt_request':
+            (target / 'request.json').write_bytes(b'{broken')
+        else:
+            finish(target, 'running', False)
+&gt;       assert tick() == 'release'
+E       AssertionError: assert 'wait' == 'release'
+E         
+E         - release
+E         + wait
+
+tests\test_gpu_on_demand.py:288: AssertionError</failure></testcase><testcase classname="tests.test_gpu_on_demand" name="test_uncertain_execution_evidence_cannot_retain_gpu_or_replay[quiescent-active_owner]" time="0.062" /><testcase classname="tests.test_gpu_on_demand" name="test_uncertain_execution_evidence_cannot_retain_gpu_or_replay[quiescent-corrupt_owner]" time="0.055" /><testcase classname="tests.test_gpu_on_demand" name="test_uncertain_execution_evidence_cannot_retain_gpu_or_replay[quiescent-corrupt_request]" time="0.054" /><testcase classname="tests.test_gpu_on_demand" name="test_uncertain_execution_evidence_cannot_retain_gpu_or_replay[quiescent-uncertain_execution]" time="0.064" /><testcase classname="tests.test_gpu_on_demand" name="test_queue_emptied_before_worker_start_does_not_retain_reservation" time="0.058" /><testcase classname="tests.test_gpu_on_demand" name="test_session_interrupted_before_completion_never_runs_again" time="0.048" /><testcase classname="tests.test_gpu_on_demand" name="test_three_queues_drain_in_existing_fifo" time="0.112" /><testcase classname="tests.test_gpu_on_demand" name="test_drift_is_not_overwritten[template]" time="0.039" /><testcase classname="tests.test_gpu_on_demand" name="test_drift_is_not_overwritten[deployment_uid]" time="0.040" /><testcase classname="tests.test_gpu_on_demand" name="test_drift_is_not_overwritten[session]" time="0.042" /><testcase classname="tests.test_gpu_on_demand" name="test_drift_is_not_overwritten[extra_resources]" time="0.040" /><testcase classname="tests.test_gpu_on_demand" name="test_foreign_project_holder_or_unknown_receipt_prevents_allocation" time="0.025" /><testcase classname="tests.test_gpu_on_demand" name="test_render_preserves_science_and_cpu_service_is_independent_of_gpu" time="0.284" /><testcase classname="tests.test_gpu_on_demand" name="test_preparation_separates_admin_grant_from_stopped_workloads" time="0.465" /></testsuite></testsuites>

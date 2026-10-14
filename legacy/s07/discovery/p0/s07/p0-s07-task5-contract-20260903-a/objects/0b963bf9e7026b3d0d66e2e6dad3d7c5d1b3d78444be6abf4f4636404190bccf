@@ -1,0 +1,188 @@
+[
+  {
+    "artifact_ids": [
+      "sha256-136fb724eebdf7745726e6521e35624be35e40c4be59028db46d08833b4ee0be"
+    ],
+    "bound_sequence_sha256": "6e5a64a8db281d81dec0785dd0e179ea549855e6f10dbdb924db26eba47f4a51",
+    "capped": false,
+    "complete": true,
+    "data_version": null,
+    "endpoint_or_release": null,
+    "evaluated_at": "2026-09-03T01:43:37.288637Z",
+    "evidence_kind": "CONTROLLED",
+    "failures": [],
+    "operation": "PDB_SEARCH",
+    "original_access_mode": "OFFLINE",
+    "original_time": {},
+    "parameters": {},
+    "reason_code": "CONTROLLED_NO_STRICT_PDB_CANDIDATES",
+    "returned_count": 0,
+    "status": "SUCCEEDED_EMPTY",
+    "tool_name": null,
+    "tool_version": null,
+    "version_note": "Offline controlled state; no remote invocation."
+  },
+  {
+    "artifact_ids": [],
+    "bound_sequence_sha256": "6e5a64a8db281d81dec0785dd0e179ea549855e6f10dbdb924db26eba47f4a51",
+    "capped": false,
+    "complete": false,
+    "data_version": null,
+    "endpoint_or_release": null,
+    "evaluated_at": "2026-09-03T01:43:37.291659Z",
+    "evidence_kind": "NOT_RUN",
+    "failures": [],
+    "operation": "PDB_METADATA",
+    "original_access_mode": null,
+    "original_time": {},
+    "parameters": {},
+    "reason_code": "NO_PDB_CANDIDATES",
+    "returned_count": 0,
+    "status": "NOT_RUN",
+    "tool_name": null,
+    "tool_version": null,
+    "version_note": "Not executed."
+  },
+  {
+    "artifact_ids": [],
+    "bound_sequence_sha256": "6e5a64a8db281d81dec0785dd0e179ea549855e6f10dbdb924db26eba47f4a51",
+    "capped": false,
+    "complete": false,
+    "data_version": null,
+    "endpoint_or_release": null,
+    "evaluated_at": "2026-09-03T01:43:37.291659Z",
+    "evidence_kind": "NOT_RUN",
+    "failures": [],
+    "operation": "PDB_STRUCTURE",
+    "original_access_mode": null,
+    "original_time": {},
+    "parameters": {},
+    "reason_code": "NO_PDB_CANDIDATES",
+    "returned_count": 0,
+    "status": "NOT_RUN",
+    "tool_name": null,
+    "tool_version": null,
+    "version_note": "Not executed."
+  },
+  {
+    "artifact_ids": [
+      "sha256-5be312592bfc78320e00d30f674db7ac038469e8169facf71d19da7b3d193fa8"
+    ],
+    "bound_sequence_sha256": "6e5a64a8db281d81dec0785dd0e179ea549855e6f10dbdb924db26eba47f4a51",
+    "capped": false,
+    "complete": true,
+    "data_version": null,
+    "endpoint_or_release": null,
+    "evaluated_at": "2026-09-03T01:43:37.291659Z",
+    "evidence_kind": "CONTROLLED",
+    "failures": [],
+    "operation": "BLAST_UNIPROT",
+    "original_access_mode": "OFFLINE",
+    "original_time": {},
+    "parameters": {
+      "fixture_accessions": [
+        "O15116"
+      ],
+      "note": "One-candidate controlled set; the actual top-100 response remains capped in a separate case."
+    },
+    "reason_code": "CONTROLLED_CLOSED_EXACT_ACCESSION_SET",
+    "returned_count": 1,
+    "status": "SUCCEEDED_WITH_RESULTS",
+    "tool_name": null,
+    "tool_version": null,
+    "version_note": "Offline controlled state; no remote invocation."
+  },
+  {
+    "artifact_ids": [
+      "sha256-0806edd39140ab14591619121eff9a096ee28c3cf0a0243feda04bbb0b08065b",
+      "sha256-878637930baf89eb3716a0085d9b4b8a84b0705ee50a865fab6cd9133bb9e8e8",
+      "sha256-b920517f5dcff27b01ac26bd8831df507011412789a82a7c656e89f4d7a0a97c",
+      "sha256-b965bc92c973a04ab1b9281f9819c723e09e0d7c93d924b045ea8208cb2e7383"
+    ],
+    "bound_sequence_sha256": "6e5a64a8db281d81dec0785dd0e179ea549855e6f10dbdb924db26eba47f4a51",
+    "capped": false,
+    "complete": true,
+    "data_version": "2026_03",
+    "endpoint_or_release": "https://rest.uniprot.org/uniprotkb/O15116.json",
+    "evaluated_at": "2026-09-03T01:43:37.294844Z",
+    "evidence_kind": "FROZEN_REPLAY",
+    "failures": [],
+    "operation": "UNIPROT_RECORD",
+    "original_access_mode": "API",
+    "original_time": {
+      "response_date": "Thu, 03 Sep 2026 00:30:17 GMT"
+    },
+    "parameters": {
+      "accession": "O15116",
+      "sequence_exact": true
+    },
+    "reason_code": "RECORD_RECHECKED",
+    "returned_count": 1,
+    "status": "SUCCEEDED_WITH_RESULTS",
+    "tool_name": "UniProt REST",
+    "tool_version": null,
+    "version_note": "Only versions recorded in the frozen output/headers are reported; null means unreported."
+  },
+  {
+    "artifact_ids": [
+      "sha256-4106b00fa105ad20d8e4532c4f79c892837fed09fd30e6f3eda9b75279940341",
+      "sha256-118400a69b80d55cba2dbf6ff3fd9ea05d28e1e1b4a48c156bb81396c2bf9279"
+    ],
+    "bound_sequence_sha256": "6e5a64a8db281d81dec0785dd0e179ea549855e6f10dbdb924db26eba47f4a51",
+    "capped": false,
+    "complete": true,
+    "data_version": "6",
+    "endpoint_or_release": "https://alphafold.ebi.ac.uk/api/prediction/O15116",
+    "evaluated_at": "2026-09-03T01:43:37.294844Z",
+    "evidence_kind": "FROZEN_REPLAY",
+    "failures": [],
+    "operation": "AFDB_LOOKUP",
+    "original_access_mode": "API",
+    "original_time": {
+      "response_date": "Wed, 02 Sep 2026 13:22:20 GMT"
+    },
+    "parameters": {
+      "accession": "O15116",
+      "http_status": 200
+    },
+    "reason_code": "MODELS_RETURNED",
+    "returned_count": 1,
+    "status": "SUCCEEDED_WITH_RESULTS",
+    "tool_name": "AlphaFold DB API",
+    "tool_version": null,
+    "version_note": "Only versions recorded in the frozen output/headers are reported; null means unreported."
+  },
+  {
+    "artifact_ids": [
+      "sha256-118400a69b80d55cba2dbf6ff3fd9ea05d28e1e1b4a48c156bb81396c2bf9279",
+      "sha256-4106b00fa105ad20d8e4532c4f79c892837fed09fd30e6f3eda9b75279940341",
+      "sha256-66b9f09f6ea60f48dd841a8c8f0c9a09f6bdf12e75c8cb69990d90a7bc636def",
+      "sha256-8826b30d2fa5f9a4adf6ab2bd3b7b993ada14c2d517fdcbc1422e4a52d0bc684",
+      "sha256-93b13e0a935820b9dc0e4ea0de559f0430a0164394d975fd9be4695e09cc6677",
+      "sha256-9e915f81e8a18058e37630c62958d48624a2cb1c2a02fed7f3b5d235faace44f",
+      "sha256-bde4df9f63da605be363292855f4abf5834b777fbbb590defed2ea05f2583837",
+      "sha256-d37972527c798e13e39fb8202e33d9c5cb816ac211c57591218e753a357d80e1"
+    ],
+    "bound_sequence_sha256": "6e5a64a8db281d81dec0785dd0e179ea549855e6f10dbdb924db26eba47f4a51",
+    "capped": false,
+    "complete": true,
+    "data_version": "6",
+    "endpoint_or_release": "https://alphafold.ebi.ac.uk/files/AF-O15116-F1-model_v6.cif",
+    "evaluated_at": "2026-09-03T01:43:37.297838Z",
+    "evidence_kind": "FROZEN_REPLAY",
+    "failures": [],
+    "operation": "AFDB_STRUCTURE",
+    "original_access_mode": "API",
+    "original_time": {},
+    "parameters": {
+      "confidence_scale": "0-100",
+      "model_id": "AF-O15116-F1"
+    },
+    "reason_code": "MODEL_AND_CONFIDENCE_FILES_CHECKED",
+    "returned_count": 1,
+    "status": "SUCCEEDED_WITH_RESULTS",
+    "tool_name": "AlphaFold DB model files",
+    "tool_version": null,
+    "version_note": "Only versions recorded in the frozen output/headers are reported; null means unreported."
+  }
+]

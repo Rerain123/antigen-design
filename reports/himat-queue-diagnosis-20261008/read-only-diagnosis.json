@@ -1,0 +1,508 @@
+{
+  "observed_at_utc": "2026-10-08T00:22:48.232756+00:00",
+  "job_id": "t01p1r-job-791a5fcf9e60409a96e6c0b4c64ccda6",
+  "run_id": "t01p1r-run-3cf72a53fd974f259db3e84daaf63ce2",
+  "progress_api": {
+    "completed_nodes": 4,
+    "current_nodes": [
+      "N05"
+    ],
+    "design_execution": {
+      "confirmation": null,
+      "detail": null,
+      "job_id": null,
+      "reason_code": "PENDING_DEPENDENCIES",
+      "state": "not_executed",
+      "status": "NOT_EXECUTED"
+    },
+    "internal_step_counts": {
+      "finished": 5,
+      "states": {
+        "not_executed": 692,
+        "running": 1,
+        "succeeded": 5
+      },
+      "total": 698
+    },
+    "job_id": "t01p1r-job-791a5fcf9e60409a96e6c0b4c64ccda6",
+    "node_counts": {
+      "not_executed": 13,
+      "running": 1,
+      "succeeded": 4
+    },
+    "node_progress": {
+      "N01": {
+        "active_steps": [],
+        "completed": true,
+        "internal_steps": 2,
+        "state": "succeeded",
+        "step_states": {
+          "succeeded": 2
+        }
+      },
+      "N02": {
+        "active_steps": [],
+        "completed": true,
+        "internal_steps": 1,
+        "state": "succeeded",
+        "step_states": {
+          "succeeded": 1
+        }
+      },
+      "N03": {
+        "active_steps": [],
+        "completed": true,
+        "internal_steps": 1,
+        "state": "succeeded",
+        "step_states": {
+          "succeeded": 1
+        }
+      },
+      "N04": {
+        "active_steps": [],
+        "completed": true,
+        "internal_steps": 1,
+        "state": "succeeded",
+        "step_states": {
+          "succeeded": 1
+        }
+      },
+      "N05": {
+        "active_steps": [
+          {
+            "execution": {
+              "phase": "controller_active"
+            },
+            "state": "running",
+            "step": "netmhc"
+          }
+        ],
+        "completed": false,
+        "internal_steps": 1,
+        "state": "running",
+        "step_states": {
+          "running": 1
+        }
+      },
+      "N06": {
+        "active_steps": [],
+        "completed": false,
+        "internal_steps": 1,
+        "state": "not_executed",
+        "step_states": {
+          "not_executed": 1
+        }
+      },
+      "N07": {
+        "active_steps": [],
+        "completed": false,
+        "internal_steps": 1,
+        "state": "not_executed",
+        "step_states": {
+          "not_executed": 1
+        }
+      },
+      "N08": {
+        "active_steps": [],
+        "completed": false,
+        "internal_steps": 1,
+        "state": "not_executed",
+        "step_states": {
+          "not_executed": 1
+        }
+      },
+      "N09": {
+        "active_steps": [],
+        "completed": false,
+        "internal_steps": 1,
+        "state": "not_executed",
+        "step_states": {
+          "not_executed": 1
+        }
+      },
+      "N10": {
+        "active_steps": [],
+        "completed": false,
+        "internal_steps": 129,
+        "state": "not_executed",
+        "step_states": {
+          "not_executed": 129
+        }
+      },
+      "N11": {
+        "active_steps": [],
+        "completed": false,
+        "internal_steps": 4,
+        "state": "not_executed",
+        "step_states": {
+          "not_executed": 4
+        }
+      },
+      "N12": {
+        "active_steps": [],
+        "completed": false,
+        "internal_steps": 138,
+        "state": "not_executed",
+        "step_states": {
+          "not_executed": 138
+        }
+      },
+      "N13": {
+        "active_steps": [],
+        "completed": false,
+        "internal_steps": 390,
+        "state": "not_executed",
+        "step_states": {
+          "not_executed": 390
+        }
+      },
+      "N14": {
+        "active_steps": [],
+        "completed": false,
+        "internal_steps": 1,
+        "state": "not_executed",
+        "step_states": {
+          "not_executed": 1
+        }
+      },
+      "N15": {
+        "active_steps": [],
+        "completed": false,
+        "internal_steps": 1,
+        "state": "not_executed",
+        "step_states": {
+          "not_executed": 1
+        }
+      },
+      "N16": {
+        "active_steps": [],
+        "completed": false,
+        "internal_steps": 20,
+        "state": "not_executed",
+        "step_states": {
+          "not_executed": 20
+        }
+      },
+      "N17": {
+        "active_steps": [],
+        "completed": false,
+        "internal_steps": 3,
+        "state": "not_executed",
+        "step_states": {
+          "not_executed": 3
+        }
+      },
+      "N18": {
+        "active_steps": [],
+        "completed": false,
+        "internal_steps": 2,
+        "state": "not_executed",
+        "step_states": {
+          "not_executed": 2
+        }
+      }
+    },
+    "pending_confirmation": null,
+    "production_status": "NOT_DEPLOYED",
+    "progress_note": "按 N01–N18 统计；已结束节点包含跳过或失败，不等于成功。内部步骤单列，节点数不是耗时百分比。reconciling 是控制器状态；waiting_worker 表示请求已提交但尚无 Worker 执行回执，executing 表示绑定的 Worker 回执记录执行中，finalizing 表示原生进程已确认停止、后端正在收集结果。unknown 不推定正在计算；回执不等于实时 CPU 采样。",
+    "progress_unit": "business_nodes",
+    "run_id": "t01p1r-run-3cf72a53fd974f259db3e84daaf63ce2",
+    "scientific_gate": "CLOSED",
+    "state": "running",
+    "terminal": false,
+    "total_nodes": 18,
+    "usable_for_pipeline": false
+  },
+  "run": [
+    {
+      "job_id": "t01p1r-job-791a5fcf9e60409a96e6c0b4c64ccda6",
+      "run_id": "t01p1r-run-3cf72a53fd974f259db3e84daaf63ce2",
+      "tool_id": "t01.real.local_workflow",
+      "node_id": "N18",
+      "state": "running",
+      "error_code": null,
+      "created_at": "2026-10-08T00:13:18.616887Z",
+      "started_at": "2026-10-08T00:13:18.710882Z",
+      "finished_at": null,
+      "updated_at": "2026-10-08T00:22:48.127439Z"
+    },
+    {
+      "job_id": "t01p1r-job-070f5333cb46438498527c4f96ca150e",
+      "run_id": "t01p1r-run-3cf72a53fd974f259db3e84daaf63ce2",
+      "tool_id": "t01.real.esmfold2",
+      "node_id": "N01",
+      "state": "succeeded",
+      "error_code": null,
+      "created_at": "2026-10-08T00:13:18.742714Z",
+      "started_at": "2026-10-08T00:13:18.802589Z",
+      "finished_at": "2026-10-08T00:17:39.973765Z",
+      "updated_at": "2026-10-08T00:17:40.206438Z"
+    },
+    {
+      "job_id": "t01p1r-job-5257593ad07d4c13bd1a4f7d06f03b70",
+      "run_id": "t01p1r-run-3cf72a53fd974f259db3e84daaf63ce2",
+      "tool_id": "t01.real.ingest_structure",
+      "node_id": "N01",
+      "state": "succeeded",
+      "error_code": null,
+      "created_at": "2026-10-08T00:17:40.710527Z",
+      "started_at": "2026-10-08T00:17:41.454787Z",
+      "finished_at": "2026-10-08T00:17:44.511638Z",
+      "updated_at": "2026-10-08T00:17:44.788250Z"
+    },
+    {
+      "job_id": "t01p1r-job-fe5f1f42128541049c3e0e63e142302c",
+      "run_id": "t01p1r-run-3cf72a53fd974f259db3e84daaf63ce2",
+      "tool_id": "t01.real.deeptmhmm",
+      "node_id": "N02",
+      "state": "succeeded",
+      "error_code": null,
+      "created_at": "2026-10-08T00:17:45.065714Z",
+      "started_at": "2026-10-08T00:17:45.105736Z",
+      "finished_at": "2026-10-08T00:18:11.754777Z",
+      "updated_at": "2026-10-08T00:18:11.902000Z"
+    },
+    {
+      "job_id": "t01p1r-job-729d24d724b04bceb94b0b71b93417f1",
+      "run_id": "t01p1r-run-3cf72a53fd974f259db3e84daaf63ce2",
+      "tool_id": "t01.real.blast",
+      "node_id": "N03",
+      "state": "succeeded",
+      "error_code": null,
+      "created_at": "2026-10-08T00:18:12.117417Z",
+      "started_at": "2026-10-08T00:18:12.163963Z",
+      "finished_at": "2026-10-08T00:18:18.408732Z",
+      "updated_at": "2026-10-08T00:18:18.609790Z"
+    },
+    {
+      "job_id": "t01p1r-job-55a3b2aa59f34567b1e066a15e17b2e7",
+      "run_id": "t01p1r-run-3cf72a53fd974f259db3e84daaf63ce2",
+      "tool_id": "t01.real.bepipred",
+      "node_id": "N04",
+      "state": "succeeded",
+      "error_code": null,
+      "created_at": "2026-10-08T00:18:18.881119Z",
+      "started_at": "2026-10-08T00:18:18.954393Z",
+      "finished_at": "2026-10-08T00:18:41.153804Z",
+      "updated_at": "2026-10-08T00:18:41.308674Z"
+    },
+    {
+      "job_id": "t01p1r-job-1a0b5d79525d42e78fb972baeeb7669e",
+      "run_id": "t01p1r-run-3cf72a53fd974f259db3e84daaf63ce2",
+      "tool_id": "t01.real.netmhc",
+      "node_id": "N05",
+      "state": "running",
+      "error_code": null,
+      "created_at": "2026-10-08T00:18:41.633407Z",
+      "started_at": "2026-10-08T00:18:41.713976Z",
+      "finished_at": null,
+      "updated_at": "2026-10-08T00:21:49.789419Z"
+    },
+    {
+      "job_id": "t01p1r-job-56ca00feb5714c7c8a96096592c26a16",
+      "run_id": "t01p1r-run-3cf72a53fd974f259db3e84daaf63ce2",
+      "tool_id": "t01.real.netmhc",
+      "node_id": "N05",
+      "state": "succeeded",
+      "error_code": null,
+      "created_at": "2026-10-08T00:18:41.819594Z",
+      "started_at": "2026-10-08T00:18:41.869321Z",
+      "finished_at": "2026-10-08T00:19:43.472566Z",
+      "updated_at": "2026-10-08T00:19:43.732225Z"
+    },
+    {
+      "job_id": "t01p1r-job-8e7911540e314d6facd68d08eeabe1f5",
+      "run_id": "t01p1r-run-3cf72a53fd974f259db3e84daaf63ce2",
+      "tool_id": "t01.real.netmhc",
+      "node_id": "N05",
+      "state": "succeeded",
+      "error_code": null,
+      "created_at": "2026-10-08T00:19:43.804182Z",
+      "started_at": "2026-10-08T00:19:43.875186Z",
+      "finished_at": "2026-10-08T00:20:47.375771Z",
+      "updated_at": "2026-10-08T00:20:47.588839Z"
+    },
+    {
+      "job_id": "t01p1r-job-ad495d9a4f014c41b0beb7a2e86c0bef",
+      "run_id": "t01p1r-run-3cf72a53fd974f259db3e84daaf63ce2",
+      "tool_id": "t01.real.netmhc",
+      "node_id": "N05",
+      "state": "succeeded",
+      "error_code": null,
+      "created_at": "2026-10-08T00:20:47.665772Z",
+      "started_at": "2026-10-08T00:20:47.703327Z",
+      "finished_at": "2026-10-08T00:21:49.389034Z",
+      "updated_at": "2026-10-08T00:21:49.639603Z"
+    },
+    {
+      "job_id": "t01p1r-job-c1046ccbd00847c387f22cf820b6c050",
+      "run_id": "t01p1r-run-3cf72a53fd974f259db3e84daaf63ce2",
+      "tool_id": "t01.real.netmhc",
+      "node_id": "N05",
+      "state": "reconciling",
+      "error_code": null,
+      "created_at": "2026-10-08T00:21:49.770138Z",
+      "started_at": "2026-10-08T00:21:49.840661Z",
+      "finished_at": null,
+      "updated_at": "2026-10-08T00:21:50.508112Z"
+    }
+  ],
+  "active_jobs": [
+    {
+      "job_id": "t01p1r-job-791a5fcf9e60409a96e6c0b4c64ccda6",
+      "run_id": "t01p1r-run-3cf72a53fd974f259db3e84daaf63ce2",
+      "tool_id": "t01.real.local_workflow",
+      "node_id": "N18",
+      "state": "running",
+      "error_code": null,
+      "created_at": "2026-10-08T00:13:18.616887Z",
+      "started_at": "2026-10-08T00:13:18.710882Z",
+      "finished_at": null,
+      "updated_at": "2026-10-08T00:22:48.127439Z"
+    },
+    {
+      "job_id": "t01p1r-job-1a0b5d79525d42e78fb972baeeb7669e",
+      "run_id": "t01p1r-run-3cf72a53fd974f259db3e84daaf63ce2",
+      "tool_id": "t01.real.netmhc",
+      "node_id": "N05",
+      "state": "running",
+      "error_code": null,
+      "created_at": "2026-10-08T00:18:41.633407Z",
+      "started_at": "2026-10-08T00:18:41.713976Z",
+      "finished_at": null,
+      "updated_at": "2026-10-08T00:21:49.789419Z"
+    },
+    {
+      "job_id": "t01p1r-job-c1046ccbd00847c387f22cf820b6c050",
+      "run_id": "t01p1r-run-3cf72a53fd974f259db3e84daaf63ce2",
+      "tool_id": "t01.real.netmhc",
+      "node_id": "N05",
+      "state": "reconciling",
+      "error_code": null,
+      "created_at": "2026-10-08T00:21:49.770138Z",
+      "started_at": "2026-10-08T00:21:49.840661Z",
+      "finished_at": null,
+      "updated_at": "2026-10-08T00:21:50.508112Z"
+    }
+  ],
+  "read_only": true,
+  "new_jobs_submitted": 0,
+  "deployment": {
+    "generation": 142,
+    "readyReplicas": 1,
+    "pods": [
+      {
+        "name": "antigen-design-5475446db6-jt4c9",
+        "phase": "Failed",
+        "containers": [
+          {
+            "name": "service",
+            "ready": false,
+            "restartCount": 0
+          },
+          {
+            "name": "worker-aggrescan3d",
+            "ready": false,
+            "restartCount": 0
+          },
+          {
+            "name": "worker-bepipred",
+            "ready": false,
+            "restartCount": 0
+          },
+          {
+            "name": "worker-blast",
+            "ready": false,
+            "restartCount": 0
+          },
+          {
+            "name": "worker-deeptmhmm",
+            "ready": false,
+            "restartCount": 0
+          },
+          {
+            "name": "worker-foldx",
+            "ready": false,
+            "restartCount": 0
+          },
+          {
+            "name": "worker-homology",
+            "ready": false,
+            "restartCount": 0
+          },
+          {
+            "name": "worker-netmhc",
+            "ready": false,
+            "restartCount": 0
+          },
+          {
+            "name": "worker-structure",
+            "ready": false,
+            "restartCount": 0
+          },
+          {
+            "name": "worker-unified-gpu",
+            "ready": false,
+            "restartCount": 0
+          }
+        ]
+      },
+      {
+        "name": "antigen-design-6959c77d46-v9p2q",
+        "phase": "Running",
+        "containers": [
+          {
+            "name": "service",
+            "ready": true,
+            "restartCount": 0
+          },
+          {
+            "name": "worker-aggrescan3d",
+            "ready": true,
+            "restartCount": 0
+          },
+          {
+            "name": "worker-bepipred",
+            "ready": true,
+            "restartCount": 0
+          },
+          {
+            "name": "worker-blast",
+            "ready": true,
+            "restartCount": 0
+          },
+          {
+            "name": "worker-deeptmhmm",
+            "ready": true,
+            "restartCount": 0
+          },
+          {
+            "name": "worker-foldx",
+            "ready": true,
+            "restartCount": 0
+          },
+          {
+            "name": "worker-homology",
+            "ready": true,
+            "restartCount": 0
+          },
+          {
+            "name": "worker-netmhc",
+            "ready": true,
+            "restartCount": 0
+          },
+          {
+            "name": "worker-structure",
+            "ready": true,
+            "restartCount": 0
+          },
+          {
+            "name": "worker-unified-gpu",
+            "ready": true,
+            "restartCount": 0
+          }
+        ]
+      }
+    ]
+  }
+}

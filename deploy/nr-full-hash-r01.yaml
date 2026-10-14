@@ -1,0 +1,83 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-nr-full-hash-r01
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 14400
+  template:
+    spec:
+      nodeName: k8s-a100-01
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+      - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+      containers:
+      - name: inspect
+        image: harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:fba5a32c0550e56a5310160e2fc49d647fcd27d76851073a2d82cc935fb4c2fc
+        command:
+        - python
+        - -u
+        - -B
+        - -c
+        - "\"\"\"Independently hash every registered nr file on a read-only PVC mount.\"\
+          \"\"\nimport hashlib\nimport json\nimport os\nfrom concurrent.futures import\
+          \ ThreadPoolExecutor, as_completed\nfrom pathlib import Path\nfrom time\
+          \ import monotonic\n\nROOT = Path('/data/nr-20250624/raw')\nMANIFEST_SHA256\
+          \ = 'ea46b05b6465cd97557cf0e6304cc0e7766e53d4ece4209b55bf59d64d4841cd'\n\
+          \n\ndef check(row):\n    path = ROOT / row['path']\n    assert path.is_file()\
+          \ and not path.is_symlink(), row['path']\n    before = path.stat()\n   \
+          \ assert before.st_nlink == 1, row['path']\n    digest = hashlib.sha256()\n\
+          \    size = 0\n    with path.open('rb') as stream:\n        for block in\
+          \ iter(lambda: stream.read(8 * 1024 * 1024), b''):\n            digest.update(block)\n\
+          \            size += len(block)\n    after = path.stat()\n    assert (before.st_ino,\
+          \ before.st_size, before.st_mtime_ns, before.st_ctime_ns) == (\n       \
+          \ after.st_ino, after.st_size, after.st_mtime_ns, after.st_ctime_ns), row['path']\n\
+          \    assert size == row['bytes'] and digest.hexdigest() == row['sha256'],\
+          \ row['path']\n    return size\n\n\ndef main():\n    start = monotonic()\n\
+          \    raw = (ROOT / 'manifest.json').read_bytes()\n    assert hashlib.sha256(raw).hexdigest()\
+          \ == MANIFEST_SHA256\n    manifest = json.loads(raw)\n    assert manifest['database_id']\
+          \ == 'nr-20250624'\n    rows = manifest['files']\n    names = {row['path']\
+          \ for row in rows}\n    assert len(names) == len(rows) == 2227\n    actual\
+          \ = {str(path.relative_to(ROOT)) for path in ROOT.iterdir() if path.is_file()}\n\
+          \    assert actual == names | {'manifest.json'}\n    done = 0\n    total\
+          \ = 0\n    threshold = 25 * 1024 ** 3\n    with ThreadPoolExecutor(max_workers=2)\
+          \ as pool:\n        futures = [pool.submit(check, row) for row in rows]\n\
+          \        for future in as_completed(futures):\n            total += future.result()\n\
+          \            done += 1\n            if total >= threshold:\n           \
+          \     print('PROGRESS', done, '/', len(rows), 'bytes', total,\n        \
+          \              'elapsed_s', round(monotonic() - start, 1), flush=True)\n\
+          \                threshold += 25 * 1024 ** 3\n    print(json.dumps(dict(status='VERIFIED_FULL_SHA256',\n\
+          \                          manifest_sha256=MANIFEST_SHA256, files=done,\n\
+          \                          bytes=total, elapsed_seconds=round(monotonic()-start,\
+          \ 1),\n                          read_only_mount=True, upstream_checksum_verified=False),\n\
+          \                     sort_keys=True), flush=True)\n\n\nif __name__ == '__main__':\n\
+          \    main()\n"
+        resources:
+          requests:
+            cpu: '1'
+            memory: 256Mi
+          limits:
+            cpu: '2'
+            memory: 1Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: database
+          mountPath: /data
+          readOnly: true
+      volumes:
+      - name: database
+        persistentVolumeClaim:
+          claimName: antigen-n03-nr
+          readOnly: true

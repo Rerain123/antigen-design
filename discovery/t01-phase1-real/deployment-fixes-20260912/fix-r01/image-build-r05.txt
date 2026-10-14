@@ -1,0 +1,81 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.55kB done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context:
+#3 transferring context: 2B done
+#3 DONE 0.1s
+
+#4 [internal] load build context
+#4 DONE 0.0s
+
+#5 [1/7] FROM docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84
+#5 resolve docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84 0.1s done
+#5 DONE 0.1s
+
+#4 [internal] load build context
+#4 transferring context: 29.20MB 1.1s done
+#4 DONE 1.2s
+
+#6 [2/7] COPY requirements.lock /build/requirements.lock
+#6 CACHED
+
+#7 [3/7] COPY wheelhouse /build/wheelhouse
+#7 CACHED
+
+#8 [4/7] RUN python -m pip install --disable-pip-version-check --no-cache-dir --no-compile       --no-index --find-links=/build/wheelhouse -r /build/requirements.lock     && rm -rf /build
+#8 1.414 Looking in links: /build/wheelhouse
+#8 1.422 Processing /build/wheelhouse/attrs-26.1.0-py3-none-any.whl (from -r /build/requirements.lock (line 1))
+#8 1.431 Processing /build/wheelhouse/biopython-1.88-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from -r /build/requirements.lock (line 2))
+#8 1.444 Processing /build/wheelhouse/dnachisel-3.2.16-py3-none-any.whl (from -r /build/requirements.lock (line 3))
+#8 1.451 Processing /build/wheelhouse/docopt-0.6.2-py2.py3-none-any.whl (from -r /build/requirements.lock (line 4))
+#8 1.457 Processing /build/wheelhouse/flametree-0.2.1-py3-none-any.whl (from -r /build/requirements.lock (line 5))
+#8 1.462 Processing /build/wheelhouse/jsonschema-4.26.0-py3-none-any.whl (from -r /build/requirements.lock (line 6))
+#8 1.467 Processing /build/wheelhouse/jsonschema_specifications-2025.9.1-py3-none-any.whl (from -r /build/requirements.lock (line 7))
+#8 1.472 Processing /build/wheelhouse/numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (from -r /build/requirements.lock (line 8))
+#8 1.501 Processing /build/wheelhouse/proglog-0.1.12-py3-none-any.whl (from -r /build/requirements.lock (line 9))
+#8 1.506 Processing /build/wheelhouse/propka-3.5.1-py3-none-any.whl (from -r /build/requirements.lock (line 10))
+#8 1.511 Processing /build/wheelhouse/python_codon_tables-0.1.18-py3-none-any.whl (from -r /build/requirements.lock (line 11))
+#8 1.515 Processing /build/wheelhouse/pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (from -r /build/requirements.lock (line 12))
+#8 1.522 Processing /build/wheelhouse/referencing-0.37.0-py3-none-any.whl (from -r /build/requirements.lock (line 13))
+#8 1.527 Processing /build/wheelhouse/rpds_py-2026.6.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (from -r /build/requirements.lock (line 14))
+#8 1.533 Processing /build/wheelhouse/setuptools-84.0.0-py3-none-any.whl (from -r /build/requirements.lock (line 15))
+#8 1.540 Processing /build/wheelhouse/tqdm-4.70.0-py3-none-any.whl (from -r /build/requirements.lock (line 16))
+#8 1.546 Processing /build/wheelhouse/typing_extensions-4.16.0-py3-none-any.whl (from -r /build/requirements.lock (line 17))
+#8 1.699 Installing collected packages: python-codon-tables, flametree, docopt, typing-extensions, tqdm, setuptools, rpds-py, PyYAML, propka, numpy, attrs, referencing, proglog, biopython, jsonschema-specifications, dnachisel, jsonschema
+#8 1.809   Attempting uninstall: setuptools
+#8 1.812     Found existing installation: setuptools 79.0.1
+#8 1.837     Uninstalling setuptools-79.0.1:
+#8 2.176       Successfully uninstalled setuptools-79.0.1
+#8 3.095 Successfully installed PyYAML-6.0.3 attrs-26.1.0 biopython-1.88 dnachisel-3.2.16 docopt-0.6.2 flametree-0.2.1 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 numpy-2.4.6 proglog-0.1.12 propka-3.5.1 python-codon-tables-0.1.18 referencing-0.37.0 rpds-py-2026.6.3 setuptools-84.0.0 tqdm-4.70.0 typing-extensions-4.16.0
+#8 3.095 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#8 DONE 3.4s
+
+#9 [5/7] COPY application /app
+#9 DONE 0.3s
+
+#10 [6/7] RUN groupadd --gid 10001 t01     && useradd --uid 10001 --gid 10001 --no-create-home --home-dir /nonexistent --shell /usr/sbin/nologin t01     && mkdir -p /var/lib/t01/runtime /tmp/t01-process-control     && chown -R 10001:10001 /var/lib/t01 /tmp/t01-process-control     && chmod 0700 /tmp/t01-process-control
+#10 DONE 0.4s
+
+#11 [7/7] WORKDIR /app
+#11 DONE 0.1s
+
+#12 exporting to image
+#12 exporting layers
+#12 exporting layers 2.2s done
+#12 exporting manifest sha256:bbf5137b29ce3997957d53ef2e0d7f2cb281f23725e6af35a3831ba468d50a0a 0.0s done
+#12 exporting config sha256:7a25d5f8fa0c3f355dbcb21fa0043d20dbdd20d52cf911aae4a079ec13520e43 0.0s done
+#12 exporting attestation manifest sha256:174146eb9e86ab487d4597f30ddd0204b1460263234324a7c5998ef46404afa0
+#12 exporting attestation manifest sha256:174146eb9e86ab487d4597f30ddd0204b1460263234324a7c5998ef46404afa0 0.1s done
+#12 exporting manifest list sha256:cc131ca0e8a965d3f1b06f96963a7d3c320d70632e9b015d6cb4e0197a835b70 0.0s done
+#12 naming to docker.io/library/t01-phase1-real-control:0.2.0-rc3
+#12 naming to docker.io/library/t01-phase1-real-control:0.2.0-rc3 done
+#12 unpacking to docker.io/library/t01-phase1-real-control:0.2.0-rc3
+#12 unpacking to docker.io/library/t01-phase1-real-control:0.2.0-rc3 1.3s done
+#12 DONE 3.9s

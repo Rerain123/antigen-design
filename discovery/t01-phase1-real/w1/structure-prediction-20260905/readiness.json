@@ -1,0 +1,191 @@
+{
+  "status": "PREPARATION_COMPLETE_EXECUTION_NOT_READY",
+  "model_execution": "NOT_RUN",
+  "production_status": "NOT_DEPLOYED",
+  "user_assets": "NONE_PROVIDED",
+  "local_profile": {
+    "gpu": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+    "gpu_total_bytes": 12820938752,
+    "driver": "591.74",
+    "compute_capability": "12.0",
+    "host_ram_bytes": 33483198464,
+    "docker_ram_bytes": 16332316672,
+    "disk_d_free_bytes": 643017052160,
+    "gpu_container_visible": true,
+    "framework_kernel_compatibility": "NOT_TESTED"
+  },
+  "af3": {
+    "source_commit": "c0f97eda2f1f482fd94d3a38bece18c7069b4a5c",
+    "version_policy": "EXPERT_UNPINNED; lock actual deployment commit",
+    "parameter_source": "https://storage.googleapis.com/alphafold3/af3.bin.zst",
+    "parameter_header": {
+      "url": "https://storage.googleapis.com/alphafold3/af3.bin.zst",
+      "method": "HEAD",
+      "weight_body_downloaded": false,
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/zstd",
+        "Last-Modified": "Thu, 04 Jun 2026 10:24:56 GMT",
+        "ETag": "\"-COWBlqWv7ZQDEAQ=\"",
+        "x-goog-hash": "crc32c=0h6mjg==",
+        "Content-Length": "1020545840"
+      }
+    },
+    "license": "Source Apache-2.0; separate model/output terms, organization/use applicability not confirmed",
+    "weights_downloaded": false,
+    "full_database_documented_download_bytes_approx": 252000000000,
+    "full_database_documented_unpacked_bytes_approx": 630000000000,
+    "disk_headroom_after_documented_unpacked_bytes": 13017052160,
+    "recommended_host_ram_bytes": 64000000000,
+    "disposition": "FULL_PIPELINE_NOT_READY; separate approved local data preparation and GPU inference possible",
+    "full_database_not_required_for": "Inference-only with authentic precomputed MSA/template inputs; not MSA-free substitution"
+  },
+  "esmfold2": {
+    "source_commit": "bf343ba264b650dff7a073643725f9aaa1fdbe8d",
+    "source_package_version": "3.4.1",
+    "requires_python": ">=3.12",
+    "may_source_commit": "b6b0e8815dc3174a9fe9afd36b222aea57d536c5",
+    "version_policy": "Expert May 2026 family identified; variant and deployment runtime still to freeze",
+    "models": {
+      "ESMFold2": {
+        "repository": "biohub/ESMFold2",
+        "public_gated": false,
+        "identity": {
+          "may_revision": "e1e189d0f5fb70c2693da2332eca4443c0ccccd6",
+          "current_revision": "8fc3ff471022fdce52c77030685eb775de0c00a3",
+          "checkpoint_metadata_equal": true,
+          "config_equal": true,
+          "scope": "REMOTE_METADATA_COMPARISON_ONLY; no local weight verification or runtime equivalence"
+        },
+        "checkpoint": [
+          {
+            "filename": "model.safetensors",
+            "bytes": 939505228,
+            "remote_sha256": "138fd4350d6892b81ce6be7ff9bf5a93ae9d4d3751f46a27438a3f9f0dcefa0e",
+            "local_bytes_verified": false
+          }
+        ],
+        "backbone_repository": "biohub/ESMC-6B",
+        "msa_encoder_enabled": true,
+        "memory": {
+          "esm_backbone_dtype": "bf16",
+          "fold_checkpoint_dtype": "float32",
+          "estimated_parameter_bytes": 13643302284,
+          "gpu_total_bytes": 12820938752,
+          "exceeds_total_gpu_even_before_activations": true,
+          "scope": "Checkpoint-parameter estimate; excludes activations/allocator/CCD and does not measure an actual OOM"
+        }
+      },
+      "ESMFold2-Fast": {
+        "repository": "biohub/ESMFold2-Fast",
+        "public_gated": false,
+        "identity": {
+          "may_revision": "0438ea0d932a314950665e0b4d0af4322ae88250",
+          "current_revision": "c6c7958d63f5f2f1f0fed0bb9462316f8ccceea6",
+          "checkpoint_metadata_equal": true,
+          "config_equal": true,
+          "scope": "REMOTE_METADATA_COMPARISON_ONLY; no local weight verification or runtime equivalence"
+        },
+        "checkpoint": [
+          {
+            "filename": "model.safetensors",
+            "bytes": 755416924,
+            "remote_sha256": "60ca19f2898188beba92944365f7b909efd9c99212f5018af75cc47cd9a6184a",
+            "local_bytes_verified": false
+          }
+        ],
+        "backbone_repository": "biohub/ESMC-6B",
+        "msa_encoder_enabled": false,
+        "memory": {
+          "esm_backbone_dtype": "bf16",
+          "fold_checkpoint_dtype": "float32",
+          "estimated_parameter_bytes": 13459286412,
+          "gpu_total_bytes": 12820938752,
+          "exceeds_total_gpu_even_before_activations": true,
+          "scope": "Checkpoint-parameter estimate; excludes activations/allocator/CCD and does not measure an actual OOM"
+        }
+      }
+    },
+    "backbone": {
+      "repository": "biohub/ESMC-6B",
+      "revision": "45b0fa5d7fb06faefbd5e3b89bdcef35d564e79a",
+      "files": [
+        {
+          "filename": "model-00001-of-00006.safetensors",
+          "bytes": 4864457920,
+          "remote_sha256": "bd90149ff223e6ac1a0cac6147a5ae0df20d3a21df4f65356a1f19cd14f4aa8a",
+          "local_bytes_verified": false
+        },
+        {
+          "filename": "model-00002-of-00006.safetensors",
+          "bytes": 4971211344,
+          "remote_sha256": "f75e2144d8269fe2eb4b3e0823fb089b94f176d8024153e85b8fb573a42294fa",
+          "local_bytes_verified": false
+        },
+        {
+          "filename": "model-00003-of-00006.safetensors",
+          "bytes": 4863752992,
+          "remote_sha256": "f699f01ecc9691d9c6470492765fe54b8b5d2e9f277c139e89427433ffdfe0b2",
+          "local_bytes_verified": false
+        },
+        {
+          "filename": "model-00004-of-00006.safetensors",
+          "bytes": 4971211344,
+          "remote_sha256": "46add1b7be098bbfdc3073884851ba3057f1b33ea23a158b650a37007dabd13d",
+          "local_bytes_verified": false
+        },
+        {
+          "filename": "model-00005-of-00006.safetensors",
+          "bytes": 4863752992,
+          "remote_sha256": "1e1cb62f060a34e18f54a31a76683ef888b8cec59e73315f5b31d25d45a1f88c",
+          "local_bytes_verified": false
+        },
+        {
+          "filename": "model-00006-of-00006.safetensors",
+          "bytes": 873762296,
+          "remote_sha256": "56c73e13ae96e777ce65eee99364056069ef93b646470f352f83c5f1037b1b18",
+          "local_bytes_verified": false
+        }
+      ]
+    },
+    "ccd": {
+      "repository": "biohub/ESMFold2",
+      "filename": "ccd.pkl",
+      "bytes": 417306584,
+      "remote_sha256": "9ff44b1927c6b9198e38ffe0928706827a09a350c15530beeeabebfa88038fc5",
+      "may_current_metadata_equal": true,
+      "local_bytes_verified": false
+    },
+    "essential_download_bytes_excluding_small_metadata": {
+      "ESMFold2": 26764960700,
+      "ESMFold2-Fast": 26580872396
+    },
+    "fold_wrapper_defaults": {
+      "num_loops": 20,
+      "num_sampling_steps": 200,
+      "num_diffusion_samples": 1,
+      "seed": null,
+      "noise_scale": null,
+      "step_scale": null,
+      "max_inference_sigma": null,
+      "lm_mask_pct": null,
+      "lm_dropout": 0.3,
+      "early_exit": null,
+      "msa_max_depth": 1024,
+      "msa_column_mask_rate": 0.1,
+      "msa_subsample_at_inference": null,
+      "include_embeddings": false,
+      "complex_id": "pred"
+    },
+    "plddt_source_fact": "Model raw API [0,1]; confirm per-field export scale with real outputs before production",
+    "ptm_source_fact": "Scalar supported by current processor; runtime evidence NOT_RUN",
+    "disposition": "DEFAULT_CORESIDENT_GPU_PROFILE_EXCEEDS_LAPTOP_MEMORY_ESTIMATE; needs suitable GPU or separately validated offload profile"
+  },
+  "next_actions": [
+    "Obtain a concrete target hardware/storage profile",
+    "Confirm AF3 model/output terms applicability before obtaining/using weights",
+    "Pin ESMFold2 variant, code, dependencies, backbone and CCD before scoped download",
+    "Stage local AF3 MSA/template assets or authentic precomputed data; no online query fallback",
+    "Run prepared short inputs offline, then actual output validation and scientific G1 review"
+  ]
+}

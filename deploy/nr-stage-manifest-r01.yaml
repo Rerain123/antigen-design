@@ -1,0 +1,113 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-nr-stage-manifest-r01
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 300
+  template:
+    spec:
+      nodeName: k8s-a100-01
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+      - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+      containers:
+      - name: inspect
+        image: harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:fba5a32c0550e56a5310160e2fc49d647fcd27d76851073a2d82cc935fb4c2fc
+        command:
+        - python
+        - -u
+        - -B
+        - -c
+        - "\"\"\"Register the completed nr staging bytes without moving or rewriting\
+          \ the database.\"\"\"\nimport hashlib\nimport json\nfrom datetime import\
+          \ datetime, timezone\nfrom pathlib import Path\n\nROOT = Path('/data/nr-20250624')\n\
+          RAW = ROOT / 'raw'\nMIRROR = 'http://ncbichina.iict.ac.cn:8008/blastdb/20250624/2025-06-24-01-05-02/'\n\
+          CANONICAL = 'gs://blast-db/2025-06-24-01-05-02/'\nAUXILIARY = {'pal', 'pdb',\
+          \ 'pos', 'pot', 'ptf', 'pto', 'pxm'}\n\n\ndef digest(raw):\n    return hashlib.sha256(raw).hexdigest()\n\
+          \n\ndef atomic(path, raw):\n    tmp = path.with_name(path.name + '.pending')\n\
+          \    with tmp.open('xb') as stream:\n        stream.write(raw)\n    tmp.replace(path)\n\
+          \n\ndef main():\n    metadata_raw = (ROOT / 'nr-prot-metadata.json').read_bytes()\n\
+          \    meta = json.loads(metadata_raw)\n    receipt = json.loads((ROOT / 'download-receipt.json').read_bytes())\n\
+          \    assert receipt['status'] == 'STAGED_NOT_N03_ACCEPTED'\n    assert receipt['source']\
+          \ == MIRROR\n    assert meta['dbname'] == 'nr' and meta['dbtype'] == 'Protein'\n\
+          \    assert meta['number-of-volumes'] == 123\n    rows = receipt['files']\n\
+          \    names = [row['path'] for row in rows]\n    assert len(names) == len(set(names))\
+          \ == 1113\n    assert set(names) == {Path(url).name for url in meta['files']}\
+          \ | {'nr.pal'}\n    assert all(url.startswith(CANONICAL) for url in meta['files'])\n\
+          \    assert sum(row['bytes'] for row in rows) == receipt['downloaded_bytes']\n\
+          \    core = sum(row['bytes'] for row in rows if row['path'].rsplit('.',\
+          \ 1)[-1] not in AUXILIARY)\n    assert core == meta['bytes-total'], (core,\
+          \ meta['bytes-total'])\n    checksums = (ROOT / 'SHA256SUMS').read_text().splitlines()\n\
+          \    assert checksums == [row['sha256'] + '  raw/' + row['path'] for row\
+          \ in rows]\n    existing = {p.name for p in RAW.iterdir() if p.is_file()}\n\
+          \    expected = set(names) | {name + '.source.json' for name in names}\n\
+          \    assert existing in (expected, expected | {'nr-prot-metadata.json'})\n\
+          \    entries = []\n    for row in rows:\n        name = row['path']\n  \
+          \      assert (RAW / name).stat().st_size == row['bytes']\n        entries.append(dict(path=name,\
+          \ role='alias' if name == 'nr.pal' else 'index',\n                     \
+          \       bytes=row['bytes'], sha256=row['sha256']))\n        sidecar = RAW\
+          \ / (name + '.source.json')\n        sidecar_raw = sidecar.read_bytes()\n\
+          \        source = json.loads(sidecar_raw)\n        assert source['url']\
+          \ == MIRROR + name and source['bytes'] == row['bytes']\n        assert set(source)\
+          \ == {'url', 'bytes', 'validator'}\n        entries.append(dict(path=sidecar.name,\
+          \ role='provenance',\n                            bytes=len(sidecar_raw),\
+          \ sha256=digest(sidecar_raw)))\n    metadata_copy = RAW / 'nr-prot-metadata.json'\n\
+          \    if metadata_copy.exists():\n        assert metadata_copy.read_bytes()\
+          \ == metadata_raw\n    else:\n        atomic(metadata_copy, metadata_raw)\n\
+          \    entries.append(dict(path=metadata_copy.name, role='metadata',\n   \
+          \                     bytes=len(metadata_raw), sha256=digest(metadata_raw)))\n\
+          \    manifest = dict(\n        schema_version='0.2.0', database_id='nr-20250624',\n\
+          \        qualification='TARGET_DATABASE_UNREVIEWED',\n        purpose='N03\
+          \ local blastp target for M1 internal testing; mirror ' + MIRROR,\n    \
+          \    created_at=datetime.now(timezone.utc).isoformat(),\n        source=dict(name='NCBI\
+          \ nr protein database via IICT mirror',\n                    version='2025-06-24-01-05-02',\
+          \ release_date='2025-06-22',\n                    license='UNREVIEWED: internal\
+          \ M1 engineering use only',\n                    reference=CANONICAL),\n\
+          \        blast=dict(db_prefix='nr', dbtype='prot', blastdb_version=5,\n\
+          \                   title=meta['description'], sequence_count=meta['number-of-sequences'],\n\
+          \                   makeblastdb_version='NCBI prebuilt; builder version\
+          \ not supplied',\n                   builder_identity='NCBI nr snapshot\
+          \ 2025-06-24-01-05-02'),\n        prebuilt=dict(metadata_path=metadata_copy.name,\
+          \ alias_path='nr.pal',\n                      volume_prefixes=[f'nr.{i:03d}'\
+          \ for i in range(123)],\n                      integrity='LOCAL_SHA256_NO_UPSTREAM_CHECKSUM'),\n\
+          \        files=sorted(entries, key=lambda row: row['path']))\n    manifest_raw\
+          \ = (json.dumps(manifest, ensure_ascii=False, sort_keys=True, separators=(',',\
+          \ ':')) + '\\n').encode()\n    assert len(manifest_raw) <= 1024 * 1024\n\
+          \    manifest_path = RAW / 'manifest.json'\n    assert not manifest_path.exists()\n\
+          \    atomic(manifest_path, manifest_raw)\n    print(json.dumps(dict(status='REGISTERED_NOT_VERIFIED',\n\
+          \                          manifest_sha256=digest(manifest_raw),\n     \
+          \                     manifest_bytes=len(manifest_raw), files=len(entries),\n\
+          \                          database_bytes=receipt['downloaded_bytes'],\n\
+          \                          metadata_core_bytes=core,\n                 \
+          \         upstream_checksum_verified=False), sort_keys=True))\n\n\nif __name__\
+          \ == '__main__':\n    main()\n"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: '1'
+            memory: 256Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: database
+          mountPath: /data
+          readOnly: false
+      volumes:
+      - name: database
+        persistentVolumeClaim:
+          claimName: antigen-n03-nr
+          readOnly: false

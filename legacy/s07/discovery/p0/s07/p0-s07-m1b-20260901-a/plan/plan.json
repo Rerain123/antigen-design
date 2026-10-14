@@ -1,0 +1,116 @@
+{
+  "plan_id": "p0-s07-m1b-plan-v0.1",
+  "classification": "NON_PRODUCTION_OUTPUT_AUDIT",
+  "production_deployment_status": "NOT_DEPLOYED",
+  "source_campaign": "p0-s07-discovery-20260901-a",
+  "purpose": "Observe the real files, sizes, hierarchy, duplicate relationships, pagination behavior, and traceability gaps produced by an executable S-07 candidate.",
+  "decision_boundary": "This plan captures evidence for S07-D09 only. It does not classify candidates, decide eligibility, select a structure, route the workflow, or define production defaults.",
+  "forbidden_outputs": [
+    "scientific_classification",
+    "eligibility_decision",
+    "selected_candidate",
+    "production_route",
+    "deployed_status"
+  ],
+  "audit_limits": {
+    "rcsb_rows_per_page": 100,
+    "rcsb_max_pages_per_query": 20,
+    "http_timeout_seconds": 90,
+    "blast_timeout_seconds": 3600,
+    "note": "These are safety limits for this evidence run, not approved S-07 production limits."
+  },
+  "rcsb_searches": [
+    {
+      "case_id": "P0-DISC-001",
+      "request_template": "requests/rcsb/P0-DISC-001.sequence-search.json"
+    },
+    {
+      "case_id": "P0-DISC-002",
+      "request_template": "requests/rcsb/P0-DISC-002.sequence-search.json"
+    },
+    {
+      "case_id": "P0-DISC-003",
+      "request_template": "requests/rcsb/P0-DISC-003.homolog-search.json"
+    },
+    {
+      "case_id": "P0-DISC-004",
+      "request_template": "requests/rcsb/P0-DISC-004.target-search.json"
+    },
+    {
+      "case_id": "P0-DISC-005",
+      "request_template": "requests/rcsb/P0-DISC-005.target-search.json"
+    }
+  ],
+  "rcsb_materialization_probes": [
+    {
+      "probe_id": "P0-M1B-PROBE-1UBQ",
+      "case_id": "P0-DISC-001",
+      "entry_id": "1UBQ",
+      "entity_id": "1",
+      "chain_id": "A",
+      "reason": "Frozen P0-M1 representative used only to observe entry/entity/chain/mmCIF output composition."
+    },
+    {
+      "probe_id": "P0-M1B-PROBE-6XRE",
+      "case_id": "P0-DISC-002",
+      "entry_id": "6XRE",
+      "entity_id": "13",
+      "chain_id": "M",
+      "reason": "Frozen P0-M1 representative used only to observe entry/entity/chain/mmCIF output composition."
+    },
+    {
+      "probe_id": "P0-M1B-PROBE-5XZC",
+      "case_id": "P0-DISC-002",
+      "entry_id": "5XZC",
+      "entity_id": "2",
+      "chain_id": "B",
+      "reason": "Frozen P0-M1 representative used only to observe entry/entity/chain/mmCIF output composition."
+    },
+    {
+      "probe_id": "P0-M1B-PROBE-6PPV",
+      "case_id": "P0-DISC-003",
+      "entry_id": "6PPV",
+      "entity_id": "1",
+      "chain_id": "A",
+      "reason": "Frozen P0-M1 representative used only to observe entry/entity/chain/mmCIF output composition."
+    }
+  ],
+  "afdb_queries": [
+    {
+      "case_id": "P0-DISC-002",
+      "accession": "P04637",
+      "accession_origin": "Explicit frozen UniProt sample identifier; no sequence-to-accession inference is performed."
+    },
+    {
+      "case_id": "P0-DISC-004",
+      "accession": "O15116",
+      "accession_origin": "Explicit frozen UniProt sample identifier; no sequence-to-accession inference is performed."
+    },
+    {
+      "case_id": "P0-DISC-005",
+      "accession": "WP_505187596.1",
+      "accession_origin": "Explicit RefSeq sample identifier retained to observe the unsupported-identifier response."
+    }
+  ],
+  "blast": {
+    "profile": "requests/blast/discovery-profile.json",
+    "cases": [
+      {
+        "case_id": "P0-DISC-001",
+        "sequence_file": "samples/P0-DISC-001.fasta"
+      },
+      {
+        "case_id": "P0-DISC-002",
+        "sequence_file": "samples/P0-DISC-002.fasta"
+      },
+      {
+        "case_id": "P0-DISC-003",
+        "sequence_file": "samples/P0-DISC-004.fasta"
+      },
+      {
+        "case_id": "P0-DISC-005",
+        "sequence_file": "samples/P0-DISC-005.fasta"
+      }
+    ]
+  }
+}

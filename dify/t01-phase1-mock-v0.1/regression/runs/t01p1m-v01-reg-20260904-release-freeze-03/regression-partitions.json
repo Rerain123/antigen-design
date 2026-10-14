@@ -1,0 +1,85 @@
+{
+  "document_type": "T01_PHASE1_MOCK_M4_PARTITION_RESULT",
+  "result_version": "T01-PHASE1-MOCK-M4-PARTITION-RESULT-v0.1",
+  "campaign_id": "t01p1m-v01-reg-20260904-release-freeze-03",
+  "status": "PASS",
+  "partition_count": 4,
+  "partitions": [
+    {
+      "partition_id": "documentation",
+      "status": "PASS",
+      "exit_code": 0,
+      "passed_count": 115,
+      "command": [
+        "python",
+        "scripts/check_docs.py"
+      ],
+      "working_directory": ".",
+      "duration_seconds": 0.839,
+      "output_log": {
+        "path": "dify/t01-phase1-mock-v0.1/regression/runs/t01p1m-v01-reg-20260904-release-freeze-03/checks/documentation.log",
+        "sha256": "e67fdae73e9c138fa15ed8adb170501867d97222126c95d5bbe3e27da3298d1b"
+      }
+    },
+    {
+      "partition_id": "current_phase1",
+      "status": "PASS",
+      "exit_code": 0,
+      "passed_count": 185,
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "-o",
+        "addopts="
+      ],
+      "working_directory": ".",
+      "duration_seconds": 74.34,
+      "output_log": {
+        "path": "dify/t01-phase1-mock-v0.1/regression/runs/t01p1m-v01-reg-20260904-release-freeze-03/checks/current_phase1.log",
+        "sha256": "a75a81bd69ccc4bc3797d0081c47ecf46be6d1c7e21e04c3960a452936af2eae"
+      }
+    },
+    {
+      "partition_id": "legacy_full_mock",
+      "status": "PASS",
+      "exit_code": 0,
+      "passed_count": 74,
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "-o",
+        "addopts="
+      ],
+      "working_directory": "legacy/full-t01-mock-v0.1",
+      "duration_seconds": 12.645,
+      "output_log": {
+        "path": "dify/t01-phase1-mock-v0.1/regression/runs/t01p1m-v01-reg-20260904-release-freeze-03/checks/legacy_full_mock.log",
+        "sha256": "8c6cfd10668d16c3b94607f0a158fd882245012fb956935ac4737f6976c07fb4"
+      }
+    },
+    {
+      "partition_id": "legacy_s07",
+      "status": "PASS",
+      "exit_code": 0,
+      "passed_count": 41,
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "-q",
+        "-o",
+        "addopts="
+      ],
+      "working_directory": "legacy/s07",
+      "duration_seconds": 3.525,
+      "output_log": {
+        "path": "dify/t01-phase1-mock-v0.1/regression/runs/t01p1m-v01-reg-20260904-release-freeze-03/checks/legacy_s07.log",
+        "sha256": "1cb2d3729e6536a7f051e3ce8864e029f32d2939c2b945dc6e9e4ea9bcba3a80"
+      }
+    }
+  ]
+}

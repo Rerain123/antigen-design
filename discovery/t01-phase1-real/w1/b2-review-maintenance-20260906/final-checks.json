@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-06",
+  "checks": [
+    {
+      "name": "documentation",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/check_docs.py",
+      "chunk_id": "0e2493",
+      "wall_time_seconds": 2.5850369,
+      "exit_code": 0,
+      "original_token_count": 12,
+      "output": "documentation_status=PASS markdown_files=181\r\n"
+    },
+    {
+      "name": "b2_evidence",
+      "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/check_w1_b2_review.py verify",
+      "chunk_id": "c10c39",
+      "wall_time_seconds": 2.1093151,
+      "exit_code": 0,
+      "original_token_count": 77,
+      "output": "{\"status\": \"PASS_REVIEW_PREPARATION\", \"synthetic_cases\": 20, \"replayed_records\": 11, \"published_annotation_references\": 4, \"accepted_independent_holdouts\": 0, \"protected_files\": 329, \"artifacts\": 86, \"model_executions_this_task\": 0, \"scientific_signoff\": \"NOT_GRANTED\", \"production_status\": \"NOT_DEPLOYED\"}\r\n"
+    }
+  ],
+  "root_rerun": {
+    "command": ".\\.venv\\Scripts\\python.exe -X utf8 -m pytest -o addopts='' -q --junitxml=discovery/t01-phase1-real/w1/b2-review-maintenance-20260906/root-tests-r02.xml",
+    "exit_code": 0,
+    "observed_terminal_summary": "802 passed, 1 skipped in 92.96s (0:01:32)",
+    "exact_report": "root-tests-r02.xml"
+  }
+}

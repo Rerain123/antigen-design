@@ -1,0 +1,151 @@
+{
+  "status": "PASS",
+  "boundary": "LOCAL_RESIDENT_ENGINEERING",
+  "fresh_tasks": [
+    {
+      "case": "n10-r02/n10",
+      "job_id": "t01p1r-job-d4f2d0ccdb46452d922545c2fcc96c3c",
+      "state": "succeeded"
+    },
+    {
+      "case": "n10-r02/structure",
+      "job_id": "t01p1r-job-b7157c79bb064392a33ac97dea08533c",
+      "state": "succeeded"
+    },
+    {
+      "case": "databases/blast",
+      "job_id": "t01p1r-job-4c8084f661764d58ace34d89cbaeed8a",
+      "state": "succeeded"
+    },
+    {
+      "case": "databases/homology",
+      "job_id": "t01p1r-job-c3231dc601f541e1978fdd6faf5ac52d",
+      "state": "succeeded"
+    },
+    {
+      "case": "gpu-foldx-r02/esm-if1",
+      "job_id": "t01p1r-job-e79510a78720440aacee8932ccee414c",
+      "state": "succeeded"
+    },
+    {
+      "case": "gpu-foldx-r02/foldx",
+      "job_id": "t01p1r-job-6e7e238e2aca49fbbe6af1f760320916",
+      "state": "succeeded"
+    },
+    {
+      "case": "gpu-foldx-r02/proteinmpnn",
+      "job_id": "t01p1r-job-6504c3424cf54e14b2177d54baa34936",
+      "state": "succeeded"
+    },
+    {
+      "case": "gpu-foldx-r02/structure",
+      "job_id": "t01p1r-job-ae16fd9ee7fe47f2baa2bb06c7fb6220",
+      "state": "succeeded"
+    },
+    {
+      "case": "gpu-foldx-r02/thermompnn",
+      "job_id": "t01p1r-job-b1986c94af6d43f7820708676db33364",
+      "state": "succeeded"
+    },
+    {
+      "case": "workflow-r04/node-bepipred",
+      "job_id": "t01p1r-job-52de86ca2c864814911b9b510d77c9a8",
+      "state": "succeeded"
+    },
+    {
+      "case": "workflow-r04/node-developability",
+      "job_id": "t01p1r-job-73d78461f9f44bad8bd88bd30b36305a",
+      "state": "succeeded"
+    },
+    {
+      "case": "workflow-r04/node-epitope_map",
+      "job_id": "t01p1r-job-dd74ceaf30084459ba2a8220a9168ee9",
+      "state": "succeeded"
+    },
+    {
+      "case": "workflow-r04/node-glycosylation",
+      "job_id": "t01p1r-job-0ad095b265d2412685f5e192bd3e3d99",
+      "state": "succeeded"
+    },
+    {
+      "case": "workflow-r04/node-local_delivery",
+      "job_id": "t01p1r-job-7549d5b564934e818df6e0ef7e3e8122",
+      "state": "succeeded"
+    },
+    {
+      "case": "workflow-r04/node-netmhc",
+      "job_id": "t01p1r-job-119d256ea821406581cbd94ca3138886",
+      "state": "succeeded"
+    },
+    {
+      "case": "workflow-r04/node-structure",
+      "job_id": "t01p1r-job-a1fe87572a2241ae931ca25302abe42f",
+      "state": "succeeded"
+    },
+    {
+      "case": "workflow-r04/node-topology",
+      "job_id": "t01p1r-job-1ea8a1a0daa34703b59b021915c405b8",
+      "state": "succeeded"
+    },
+    {
+      "case": "workflow-r04/node-variant_report",
+      "job_id": "t01p1r-job-dfcfa96f56664a65be89b530ccb7120e",
+      "state": "succeeded"
+    },
+    {
+      "case": "workflow-r04/node-wt_draft",
+      "job_id": "t01p1r-job-fe8cf34bf16547e5ba09ecaf8ebaf4a0",
+      "state": "succeeded"
+    },
+    {
+      "case": "workflow-r04/node-wt_reference",
+      "job_id": "t01p1r-job-346ec0bad3fe44048fae51eb9ef94210",
+      "state": "succeeded"
+    },
+    {
+      "case": "workflow-r04/workflow",
+      "job_id": "t01p1r-job-fa7e4eebf71040b3bce251ff442bb2e2",
+      "state": "succeeded"
+    }
+  ],
+  "artifacts_verified": 452,
+  "tools_verified": [
+    "structure-FreeSASA",
+    "DeepTMHMM",
+    "BepiPred",
+    "NetMHCpan-NetMHCIIpan",
+    "BLAST",
+    "MMseqs2-MAFFT",
+    "A3D",
+    "ProteinMPNN",
+    "ESM-IF1",
+    "ThermoMPNN",
+    "FoldX"
+  ],
+  "additional_native_tool": "PROPKA",
+  "windows_affected_tests": 183,
+  "linux_process_assembly_tests": 26,
+  "mcp": {
+    "actual_himat": false,
+    "authenticated": true,
+    "idempotent": true,
+    "missing_auth_status": 401,
+    "report_sha256": "ea58b0e505a705140a17b142b44edd10f89358dfb99f13bf33342d5c029c6132",
+    "status": "PASS",
+    "tool_count": 8,
+    "zip_members_recursive": 14
+  },
+  "native_run_mode": "assembly-r01 images with read-only source/config overlay; resulting image source hashes and startup independently verified",
+  "source_update": {
+    "path": "deploy/antigen-design-resident-integration-20260915-r01.zip",
+    "size_bytes": 534188,
+    "sha256": "527ea168e1577f1b7b1096d57f70bac351a1ce9cfe915bb16d4e990e9f7c4e4c"
+  },
+  "actual_himat": false,
+  "target_updated": false,
+  "target_database": false,
+  "original_24_rerun": false,
+  "scientific_gate": "CLOSED",
+  "production_status": "NOT_DEPLOYED",
+  "limitation": "MCP 1UBQ mmCIF N10 kept structure-format-not-supported; separate 9-AA structure fixture executed native A3D and PROPKA"
+}

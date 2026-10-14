@@ -1,0 +1,49 @@
+{
+  "exchange_id": "p0-s07-task6-acceptance-20260903-b--O15116-uniprot-fasta",
+  "classification": "discovery_evidence",
+  "production_deployment_status": "NOT_DEPLOYED",
+  "started_at": "2026-09-03T03:03:17.310940Z",
+  "finished_at": "2026-09-03T03:03:18.116640Z",
+  "request": {
+    "method": "GET",
+    "url": "https://rest.uniprot.org/uniprotkb/O15116.fasta",
+    "headers": {
+      "accept": "text/plain",
+      "content_type": null,
+      "user_agent": "T01-S07-Discovery/0.1 (non-production evidence capture)"
+    },
+    "body_file": null,
+    "body_sha256": null,
+    "timeout_seconds": 120,
+    "connection_override": null,
+    "ssl_revoke_best_effort": true
+  },
+  "response": {
+    "body_file": "entry.fasta",
+    "body_size_bytes": 241,
+    "body_sha256": "878637930baf89eb3716a0085d9b4b8a84b0705ee50a865fab6cd9133bb9e8e8",
+    "headers_file": "response.headers.txt",
+    "headers_sha256": "10190577660f49016210159b36bfb04682d507f86fa8a73f9738cd732f5f23ef"
+  },
+  "curl": {
+    "executable": "curl.exe",
+    "exit_code": 0,
+    "metrics": {
+      "http_code": 200,
+      "response_code": 200,
+      "exitcode": 0,
+      "content_type": "text/plain;format=fasta",
+      "remote_ip": "193.62.192.81",
+      "remote_port": 443,
+      "http_version": "1.1",
+      "method": "GET",
+      "num_redirects": 0,
+      "size_download": 241.0,
+      "size_upload": 0.0,
+      "time_total": 0.785154,
+      "ssl_verify_result": 0
+    },
+    "stderr_file": "curl.stderr.txt",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

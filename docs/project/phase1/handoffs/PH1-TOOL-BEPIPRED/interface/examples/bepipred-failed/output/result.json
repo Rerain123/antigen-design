@@ -1,0 +1,50 @@
+{
+  "contract_version": "0.1.0",
+  "tool_id": "t01.real.bepipred",
+  "request_id": "bepipred-failed",
+  "run_mode": "engineering_example",
+  "attempt_id": "bepipred-failed-attempt-001",
+  "execution_status": "failed",
+  "usable_for_pipeline": false,
+  "review_required": true,
+  "result": null,
+  "issues": [
+    {
+      "code": "ASSET_MISSING",
+      "severity": "error",
+      "message": "人工错误演示：模型文件缺失。"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "raw-example",
+      "role": "raw",
+      "path": "raw/fixture.txt",
+      "media_type": "text/plain",
+      "sha256": "fa0a1cd19255c1f3f0df67566e8ab7b7dc3a0ea7b596e8c47d4fc0a0599c7a06",
+      "size_bytes": 59
+    },
+    {
+      "artifact_id": "environment-example",
+      "role": "environment",
+      "path": "environment.json",
+      "media_type": "application/json",
+      "sha256": "475a4ff0cb79ea9623ac915bf46e2e0d72a371c37c27549d7ef210266ceefd54",
+      "size_bytes": 41
+    }
+  ],
+  "provenance": {
+    "adapter_version": "SYNTHETIC-NOT-IMPLEMENTED",
+    "tool_version": null,
+    "request_sha256": "775156b9c43b2849a524f8e265ebb27d328e07d39d624ae1c47fe4d203159781",
+    "parameters_sha256": "deeb433da100c0fe48831432e77fa99435bb3f885f2996113879efcfb28c2339",
+    "rule_profile": null,
+    "started_at": "2026-09-05T00:00:00Z",
+    "finished_at": "2026-09-05T00:00:00Z",
+    "command": [
+      "SYNTHETIC-NOT-EXECUTED"
+    ],
+    "tool_exit_code": null,
+    "environment_artifact_id": "environment-example"
+  }
+}

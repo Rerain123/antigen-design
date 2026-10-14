@@ -1,0 +1,38 @@
+{
+  "exchange_id": "p0-s07-m1b-20260901-b--blast-database-info",
+  "classification": "discovery_evidence",
+  "production_deployment_status": "NOT_DEPLOYED",
+  "started_at": "2026-09-01T09:32:43.801657Z",
+  "finished_at": "2026-09-01T09:32:45.174520Z",
+  "duration_ms": 1373,
+  "command": [
+    "D:\\work\\蛋白智能体\\var\\discovery-tools\\ncbi-blast-2.17.0\\ncbi-blast-2.17.0+\\bin\\blastdbcmd.exe",
+    "-db",
+    "D:\\work\\蛋白智能体\\var\\discovery-data\\wwpdb-20260822\\blastdb\\pdb_seqres_protein",
+    "-dbtype",
+    "prot",
+    "-info"
+  ],
+  "executable": {
+    "name": "blastdbcmd.exe",
+    "size_bytes": 14073856,
+    "sha256": "dc21b96926657847ac2da8583132d65a0390831b442acee261d1095604db39a5"
+  },
+  "timeout_seconds": 3600,
+  "working_directory": "D:\\work\\蛋白智能体\\var\\discovery-data\\wwpdb-20260822\\blastdb",
+  "environment_overrides": {
+    "BLASTDB": "D:\\work\\蛋白智能体\\var\\discovery-data\\wwpdb-20260822\\blastdb"
+  },
+  "timed_out": false,
+  "exit_code": 2,
+  "stdout": {
+    "file": "stdout.txt",
+    "size_bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "file": "stderr.txt",
+    "size_bytes": 95,
+    "sha256": "d6bda2fca7513667644d61b39f40e676d924b7aa32a03c1ff0e2d83648727532"
+  }
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "op": "test",
+    "path": "/metadata/resourceVersion",
+    "value": "50687989"
+  },
+  {
+    "op": "test",
+    "path": "/metadata/uid",
+    "value": "d0cae2e9-9cd1-486b-a7c7-ddb9827915bd"
+  },
+  {
+    "op": "replace",
+    "path": "/spec/template/spec/containers/0/volumeMounts/65",
+    "value": {
+      "name": "p4-nr-policy-r03",
+      "mountPath": "/app/src/t01_phase1_real/development/blast/policy.py",
+      "subPath": "policy.py",
+      "readOnly": true
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/volumes/-",
+    "value": {
+      "name": "p4-nr-policy-r03",
+      "configMap": {
+        "name": "antigen-m1-p4-nr-policy-r03"
+      }
+    }
+  }
+]

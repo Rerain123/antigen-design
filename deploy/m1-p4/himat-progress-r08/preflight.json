@@ -1,0 +1,44 @@
+{
+  "observed_state": {
+    "active_jobs": [
+      {
+        "job_id": "t01p1r-job-df485abbd2664ac68030f08bdaa0032a",
+        "state": "running"
+      },
+      {
+        "job_id": "t01p1r-job-429765bbfc954bb2af8a11570a8d0cbc",
+        "state": "running"
+      },
+      {
+        "job_id": "t01p1r-job-ffb7755bea434349ad8e1f2cd58c9ad5",
+        "state": "reconciling"
+      },
+      {
+        "job_id": "t01p1r-job-e15d89e91c3a4d3a8b4787f7b0d16daa",
+        "state": "reconciling"
+      }
+    ],
+    "gpu_state": {
+      "last_execution": {
+        "order": 1790236989833880381,
+        "sha256": "788fea639c19345bb262fbebf73a3d21d8e2872ce2692b53323c4c38cb18bade",
+        "target": "/var/lib/t01/resident/esmfold2/f49e46d7c0f96a6e88748d1f221ade9d",
+        "tool": "esmfold2",
+        "uncertain": false
+      },
+      "last_state": "succeeded",
+      "phase": "idle"
+    }
+  },
+  "source_hashes": {
+    "service_api/himat.py": "de758a1953fe0feedb7a26def5cc8da65e32ed30ecb27556ce130934177d1a75",
+    "service_api/progress.py": "f999b99ca485a0bcc5a89ed434a003cec61d09ea9821505659eeb9d1bd3aaaf8",
+    "service_api/transport.py": "af3b30f8e7226fbf753b1fb852c963f6acbbeee949339d474ce145e5a3df6817"
+  },
+  "prepared_sha256": {
+    "configmap.yaml": "b179c04db13a34a7d7d417426dfbc245eb9f6ac05c1b45a2711c74317e102137",
+    "deployment.patch.json": "c3b0ea35ac78ca4ae848837089efeb3ae85be391682e27ffb47e95e3f67cc5c4"
+  },
+  "applied": false,
+  "requires_fresh_idle_and_revision_check": true
+}

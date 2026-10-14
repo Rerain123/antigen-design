@@ -1,0 +1,286 @@
+[
+  {
+    "name": "normal-cif",
+    "expected": {
+      "sasa": "executed",
+      "rsa": "computed_unverified"
+    },
+    "structure_sha256": "7d2cae9f49de5f762a80b64257d94eff467e927547d2cb4aaca00a465f40fc9f",
+    "request_sha256": "c79658329644c32e337a6cfd328d751fc8ee619cd950d6c870f84fb5c7f5852e",
+    "reference_kind": "CONTROLLED_ENGINEERING_FIXTURE"
+  },
+  {
+    "name": "normal-pdb",
+    "expected": {
+      "sasa": "executed",
+      "rsa": "computed_unverified"
+    },
+    "structure_sha256": "d1e9ee6a10ef1f9f940b94cceef8b6bac1baa43916f9d40ecbb12dadb888ebc8",
+    "request_sha256": "0b4e36d626061d32e19071e06a5d2125797c2fab9757158e4be91b85af205906",
+    "reference_kind": "CONTROLLED_ENGINEERING_FIXTURE"
+  },
+  {
+    "name": "missing-residue",
+    "expected": {
+      "sasa": "executed",
+      "rsa": "computed_unverified",
+      "missing": [
+        5
+      ]
+    },
+    "structure_sha256": "9e4dc80fe28e9495fb589263c0823af12890351bd60aa1f2a00a2296274b7ad3",
+    "request_sha256": "a9ae422efcb7492baabad237473a84b50afbe26e4cb9b2d6f83b17af0a52ba1c",
+    "reference_kind": "CONTROLLED_ENGINEERING_FIXTURE"
+  },
+  {
+    "name": "ambiguous-chains",
+    "expected": {
+      "sasa": "blocked",
+      "reason": "MAPPING_NOT_UNIQUE"
+    },
+    "structure_sha256": "c75747a94ba7ca8f35ec35f8c41cfb348602343dfec15424eda4b7655cc40f5a",
+    "request_sha256": "032026a48bd80ed55c16bfc69ab083fad658016a8a025b41393423ac10ad4b4c",
+    "reference_kind": "CONTROLLED_ENGINEERING_FIXTURE"
+  },
+  {
+    "name": "quality-low",
+    "expected": {
+      "sasa": "skipped",
+      "reason": "QUALITY_LOW",
+      "confidence": "low"
+    },
+    "structure_sha256": "1b8e1408d36db96068e40376440a32bb5856ebdb946b1dd341669ee2a553d606",
+    "request_sha256": "36e92cfa6f933c5990fce8e4f5c0814ad3a9cf3ec618dae7b308ce5da8c44519",
+    "reference_kind": "CONTROLLED_ENGINEERING_FIXTURE"
+  },
+  {
+    "name": "quality-unknown-source",
+    "expected": {
+      "sasa": "skipped",
+      "reason": "QUALITY_LOW",
+      "confidence": "low"
+    },
+    "structure_sha256": "7d2cae9f49de5f762a80b64257d94eff467e927547d2cb4aaca00a465f40fc9f",
+    "request_sha256": "368262f68a1ac0960f0c93349b0c65c466ed990879b705337bd35adf8657648e",
+    "reference_kind": "CONTROLLED_ENGINEERING_FIXTURE"
+  },
+  {
+    "name": "quality-resolution-null",
+    "expected": {
+      "sasa": "executed",
+      "rsa": "computed_unverified",
+      "confidence": "medium"
+    },
+    "structure_sha256": "65111becfa9419743450f881fd4869996f5f5f4e201cbc03028e3eabfb608f52",
+    "request_sha256": "ed6aff7b1bf3e86b9aad4de8c1c81b18931bf5846d33cc97b5102065d4102897",
+    "reference_kind": "CONTROLLED_ENGINEERING_FIXTURE"
+  },
+  {
+    "name": "quality-nmr-review",
+    "expected": {
+      "sasa": "blocked",
+      "reason": "QUALITY_REVIEW_REQUIRED"
+    },
+    "structure_sha256": "00e5860eaf7f8e96ee7aedd65a61901ae6054430df21b6639997c08e318790e6",
+    "request_sha256": "d3615fceffdf98a28f65f932c5ed347aac759c71cb75f24d815fe058043aaf78",
+    "reference_kind": "CONTROLLED_ENGINEERING_FIXTURE"
+  },
+  {
+    "name": "quality-conflict",
+    "expected": {
+      "sasa": "blocked",
+      "reason": "QUALITY_REVIEW_REQUIRED"
+    },
+    "structure_sha256": "bab37377690f70ef6a315fede1acdcd6e5d302f497681790d80fba2f604a163f",
+    "request_sha256": "9cfb53a397464b1250dd697e37ad6253daf6dad759999e9c5a6f9ffd2fa360dd",
+    "reference_kind": "CONTROLLED_ENGINEERING_FIXTURE"
+  },
+  {
+    "name": "predicted-unverified",
+    "expected": {
+      "sasa": "blocked",
+      "reason": "QUALITY_REVIEW_REQUIRED"
+    },
+    "structure_sha256": "7d2cae9f49de5f762a80b64257d94eff467e927547d2cb4aaca00a465f40fc9f",
+    "request_sha256": "c6e802e4269cca8fc270eef1b760bc1bee118337025c7f59dfed60d3781b8a0d",
+    "reference_kind": "CONTROLLED_ENGINEERING_FIXTURE"
+  },
+  {
+    "name": "unknown-author-spelling",
+    "expected": {
+      "sasa": "review_required",
+      "reason": "MAPPING_ADDRESS_REVIEW"
+    },
+    "structure_sha256": "eb0747c01134e789ab0a605fc118f3133f7975aeebc2570f451faf7a85d6b8cd",
+    "request_sha256": "d5ea7b896e5ef5997f483f859a1997e95a8e270f566b8e070a44c8d983555653",
+    "reference_kind": "CONTROLLED_ENGINEERING_FIXTURE"
+  },
+  {
+    "name": "malformed-input",
+    "expected": {
+      "job": "failed",
+      "reason": "INPUT_UNSUPPORTED"
+    },
+    "structure_sha256": "89c4a51cf0f75a60a3169f37520701ab85cc3779ce96f6d53140cba963857ad9",
+    "request_sha256": "caf5cc722a1c30e3f4707cfb0a72a6483472e8b3ef8aaaa19a66e9dba1886b60",
+    "reference_kind": "CONTROLLED_ENGINEERING_FIXTURE"
+  },
+  {
+    "name": "format-mismatch",
+    "expected": {
+      "job": "failed",
+      "reason": "FORMAT_MISMATCH"
+    },
+    "structure_sha256": "d1e9ee6a10ef1f9f940b94cceef8b6bac1baa43916f9d40ecbb12dadb888ebc8",
+    "request_sha256": "fa9c990acc61d2a92cadd898458593f9e87766b9ac09903ce1e67fe70b539434",
+    "reference_kind": "CONTROLLED_ENGINEERING_FIXTURE"
+  },
+  {
+    "name": "original-1ubq-cif",
+    "expected": {
+      "sasa": "review_required",
+      "reason": "ICODE_UNKNOWN",
+      "reference": "tests/fixtures/structure_mapping/real/1UBQ.cif"
+    },
+    "structure_sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+    "request_sha256": "09278f9fe037070474d805b9466e41afb857c976797ea5c837ade779877c2920",
+    "reference_kind": "UNCHANGED_REAL_LOCAL_INPUT"
+  },
+  {
+    "name": "rsa-out-of-domain",
+    "expected": {
+      "sasa": "executed",
+      "rsa": "output_invalid",
+      "outlier_position": 76,
+      "reference": "discovery/t01-phase1-real/w1/freesasa-reference-20260905/inputs/1UBQ.pdb",
+      "occupancy_changes": [
+        {
+          "serial": "  575",
+          "original_occupancy": "  0.45"
+        },
+        {
+          "serial": "  576",
+          "original_occupancy": "  0.45"
+        },
+        {
+          "serial": "  577",
+          "original_occupancy": "  0.45"
+        },
+        {
+          "serial": "  578",
+          "original_occupancy": "  0.45"
+        },
+        {
+          "serial": "  579",
+          "original_occupancy": "  0.45"
+        },
+        {
+          "serial": "  580",
+          "original_occupancy": "  0.45"
+        },
+        {
+          "serial": "  581",
+          "original_occupancy": "  0.45"
+        },
+        {
+          "serial": "  582",
+          "original_occupancy": "  0.45"
+        },
+        {
+          "serial": "  583",
+          "original_occupancy": "  0.45"
+        },
+        {
+          "serial": "  584",
+          "original_occupancy": "  0.45"
+        },
+        {
+          "serial": "  585",
+          "original_occupancy": "  0.45"
+        },
+        {
+          "serial": "  586",
+          "original_occupancy": "  0.45"
+        },
+        {
+          "serial": "  587",
+          "original_occupancy": "  0.45"
+        },
+        {
+          "serial": "  588",
+          "original_occupancy": "  0.45"
+        },
+        {
+          "serial": "  589",
+          "original_occupancy": "  0.45"
+        },
+        {
+          "serial": "  590",
+          "original_occupancy": "  0.45"
+        },
+        {
+          "serial": "  591",
+          "original_occupancy": "  0.45"
+        },
+        {
+          "serial": "  592",
+          "original_occupancy": "  0.45"
+        },
+        {
+          "serial": "  593",
+          "original_occupancy": "  0.45"
+        },
+        {
+          "serial": "  594",
+          "original_occupancy": "  0.25"
+        },
+        {
+          "serial": "  595",
+          "original_occupancy": "  0.25"
+        },
+        {
+          "serial": "  596",
+          "original_occupancy": "  0.25"
+        },
+        {
+          "serial": "  597",
+          "original_occupancy": "  0.25"
+        },
+        {
+          "serial": "  598",
+          "original_occupancy": "  0.25"
+        },
+        {
+          "serial": "  599",
+          "original_occupancy": "  0.25"
+        },
+        {
+          "serial": "  600",
+          "original_occupancy": "  0.25"
+        },
+        {
+          "serial": "  601",
+          "original_occupancy": "  0.25"
+        },
+        {
+          "serial": "  602",
+          "original_occupancy": "  0.25"
+        }
+      ]
+    },
+    "structure_sha256": "180d1b9d08c3d32914cce3c28fd4085f6867d8228a7cc337ff7be7dc22dc62ea",
+    "request_sha256": "722adc4dd5d973e9c5b5cc4b8dada2cddb565b62c91947ab827339c588801365",
+    "reference_kind": "CONTROLLED_ENGINEERING_FIXTURE"
+  },
+  {
+    "name": "original-1ubq-pdb",
+    "expected": {
+      "sasa": "skipped",
+      "reason": "QUALITY_LOW",
+      "reference": "discovery/t01-phase1-real/w1/freesasa-reference-20260905/inputs/1UBQ.pdb"
+    },
+    "structure_sha256": "590efc8b4ed6b9881b8caae7a8e5f08faec514ba316066daf8fc7f2defe52fa3",
+    "request_sha256": "55344a4e3142d1f2ad8b9966683e8b9afa01c997924485174de0dad433619d2b",
+    "reference_kind": "UNCHANGED_REAL_LOCAL_INPUT"
+  }
+]

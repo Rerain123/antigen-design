@@ -1,0 +1,199 @@
+{
+  "job": {
+    "artifacts": [],
+    "attempt_id": "t01p1r-attempt-da018e24bc61402b85f826670d14b25a",
+    "contract_version": "0.1.0",
+    "created_at": "2026-09-17T07:48:00.111221Z",
+    "error_code": null,
+    "evidence_kind": "G0_REAL_OUTPUT",
+    "execution_identity": "exec-t01p1r-attempt-f269cef28d2d48cab3c572939538b186",
+    "execution_profile": {
+      "id": "local-workflow-controller",
+      "sha256": "addfb89f397c2939a7917137b6cf1fd20147bf19c9b2ec07f03219b6e4d10578",
+      "version": "0.1.0"
+    },
+    "exit_code": null,
+    "finished_at": null,
+    "job_id": "t01p1r-job-92f16b079a144eaba0ab2e9bfc4b9898",
+    "lease_epoch": 1,
+    "node_id": "N18",
+    "request_artifact": {
+      "artifact_id": "t01p1r-artifact-6bed4ba855cc47a7a2a4a70b298d1b6c",
+      "attempt_id": null,
+      "evidence_kind": "LOCAL_INPUT",
+      "job_id": null,
+      "media_type": "application/json",
+      "role": "request",
+      "run_id": "t01p1r-run-09b5fd672d674863ac581673266a3ca1",
+      "sha256": "d2145780203e2803a94a580c6cb3d87720e5fc923dbb6f8450e928057af801fc",
+      "size_bytes": 597
+    },
+    "request_id": "t01p1r-request-237235aa150648a4a99d65d82fd1d3c9",
+    "retry_of_job_id": null,
+    "review_required": true,
+    "revision": 16,
+    "rule_profile": {
+      "id": "local-workflow-closed-gate",
+      "sha256": "838f03497957fd385c4532ea9f665dc48a202879388b6c3b117e4a85e8531336",
+      "version": "0.1.0"
+    },
+    "run_id": "t01p1r-run-09b5fd672d674863ac581673266a3ca1",
+    "run_mode": "g0_probe",
+    "scientific_disposition": "pending",
+    "started_at": "2026-09-17T07:48:00.222170Z",
+    "state": "running",
+    "stop_confirmed": false,
+    "stop_reason": null,
+    "submission_sha256": "44905f69628b26314fa67eaf6e8f27e82dd571f90c87ec86f867d32bc9226178",
+    "tool_id": "t01.real.local_workflow",
+    "updated_at": "2026-09-17T07:50:35.170706Z",
+    "usable_for_pipeline": false
+  },
+  "nodes": {
+    "prediction": {
+      "job_id": "t01p1r-job-c0309371d84941d99abcd8a51f77a0b5",
+      "node_id": "N01",
+      "origin": "NEW_EXECUTION",
+      "reason_code": null,
+      "state": "reconciling",
+      "error_code": null,
+      "attempt_id": "t01p1r-attempt-5565437395904caea240bd75b0452d68",
+      "request_artifact": {
+        "artifact_id": "t01p1r-artifact-a1240479bcd44fe2bea58e99c9b5bfd5",
+        "attempt_id": null,
+        "evidence_kind": "LOCAL_INPUT",
+        "job_id": null,
+        "media_type": "application/json",
+        "role": "request",
+        "run_id": "t01p1r-run-09b5fd672d674863ac581673266a3ca1",
+        "sha256": "5ab4fb04985fd3cc4c4316b567088b25b9ac750d337c1f92febb33b08710242d",
+        "size_bytes": 212
+      },
+      "execution_profile": {
+        "id": "esmfold2-standard-resident-r01",
+        "sha256": "1de21cbad481cbd17bd43a4f9752f5e06ad88c19541bff8518be22907f94927d",
+        "version": "0.1.0"
+      },
+      "rule_profile": null,
+      "artifacts": [],
+      "qualification": "DEVELOPMENT_UNREVIEWED",
+      "scientific_signoff": null,
+      "usable_for_pipeline": false
+    },
+    "structure": {
+      "node_id": "N01",
+      "job_id": null,
+      "state": "not_executed",
+      "reason_code": "PENDING_DEPENDENCIES"
+    },
+    "topology": {
+      "node_id": "N02",
+      "job_id": null,
+      "state": "not_executed",
+      "reason_code": "PENDING_DEPENDENCIES"
+    },
+    "blast": {
+      "node_id": "N03",
+      "job_id": null,
+      "state": "not_executed",
+      "reason_code": "PENDING_DEPENDENCIES"
+    },
+    "bepipred": {
+      "node_id": "N04",
+      "job_id": null,
+      "state": "not_executed",
+      "reason_code": "PENDING_DEPENDENCIES"
+    },
+    "netmhc": {
+      "node_id": "N05",
+      "job_id": null,
+      "state": "not_executed",
+      "reason_code": "PENDING_DEPENDENCIES"
+    },
+    "epitope_map": {
+      "node_id": "N06",
+      "job_id": null,
+      "state": "not_executed",
+      "reason_code": "PENDING_DEPENDENCIES"
+    },
+    "glycosylation": {
+      "node_id": "N07",
+      "job_id": null,
+      "state": "not_executed",
+      "reason_code": "PENDING_DEPENDENCIES"
+    },
+    "homology": {
+      "node_id": "N08",
+      "job_id": null,
+      "state": "not_executed",
+      "reason_code": "PENDING_DEPENDENCIES"
+    },
+    "domains": {
+      "node_id": "N09",
+      "job_id": null,
+      "state": "not_executed",
+      "reason_code": "PENDING_DEPENDENCIES"
+    },
+    "developability": {
+      "node_id": "N10",
+      "job_id": null,
+      "state": "not_executed",
+      "reason_code": "PENDING_DEPENDENCIES"
+    },
+    "wt_draft": {
+      "node_id": "N18",
+      "job_id": null,
+      "state": "not_executed",
+      "reason_code": "PENDING_DEPENDENCIES"
+    },
+    "design": {
+      "node_id": "N11",
+      "job_id": null,
+      "state": "not_executed",
+      "reason_code": "PENDING_DEPENDENCIES"
+    },
+    "rescore": {
+      "node_id": "N12",
+      "job_id": null,
+      "state": "not_executed",
+      "reason_code": "PENDING_DEPENDENCIES"
+    },
+    "protection": {
+      "node_id": "N13",
+      "job_id": null,
+      "state": "not_executed",
+      "reason_code": "PENDING_DEPENDENCIES"
+    },
+    "stability": {
+      "node_id": "N14",
+      "job_id": null,
+      "state": "not_executed",
+      "reason_code": "PENDING_DEPENDENCIES"
+    },
+    "variant_report": {
+      "node_id": "N15",
+      "job_id": null,
+      "state": "not_executed",
+      "reason_code": "PENDING_DEPENDENCIES"
+    },
+    "codon": {
+      "node_id": "N16",
+      "job_id": null,
+      "state": "not_executed",
+      "reason_code": "PENDING_DEPENDENCIES"
+    },
+    "wt_reference": {
+      "node_id": "N17",
+      "job_id": null,
+      "state": "not_executed",
+      "reason_code": "PENDING_DEPENDENCIES"
+    },
+    "local_delivery": {
+      "node_id": "N18",
+      "job_id": null,
+      "state": "not_executed",
+      "reason_code": "PENDING_DEPENDENCIES"
+    }
+  },
+  "terminal": false
+}

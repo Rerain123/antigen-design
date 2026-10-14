@@ -1,0 +1,72 @@
+{
+  "campaign_id": "p0-s07-task6-acceptance-20260903-c",
+  "classification": "NON_PRODUCTION_ACCEPTANCE_HANDOFF",
+  "current_profile": {
+    "api": {
+      "allowlist_hosts": [
+        "search.rcsb.org",
+        "data.rcsb.org",
+        "files.rcsb.org",
+        "rest.uniprot.org",
+        "alphafold.ebi.ac.uk"
+      ],
+      "request_count": 25,
+      "total_download_bytes": 3041793,
+      "total_http_wall_time_seconds": 24.705311
+    },
+    "execution": "Windows acceptance workstation",
+    "local_search": {
+      "database_release": "wwPDB 2026-08-29",
+      "max_results_per_query": 10000,
+      "sampled_peak_working_set_bytes": 9949184,
+      "threads": 8,
+      "tool": "MMseqs2",
+      "tool_reported_estimated_memory_bytes": 3221225472,
+      "version": "18-8cc5c",
+      "wall_time_seconds": 3.607989
+    },
+    "python": "3.11.15",
+    "python_packages": {
+      "biopython": "1.88",
+      "jsonschema": "4.26.0",
+      "pydantic": "2.13.5",
+      "pytest": "8.4.2"
+    }
+  },
+  "data_and_license_handoff": [
+    {
+      "acceptance_version": "18-8cc5c",
+      "asset": "MMseqs2",
+      "license": "MIT"
+    },
+    {
+      "acceptance_release": "2026-08-29",
+      "asset": "wwPDB/RCSB PDB data",
+      "license": "CC0 1.0"
+    },
+    {
+      "asset": "UniProt data",
+      "license": "CC BY 4.0",
+      "observed_release": "2026_03"
+    },
+    {
+      "asset": "AlphaFold DB data",
+      "license": "CC BY 4.0",
+      "observed_model_version": "6"
+    }
+  ],
+  "generated_at": "2026-09-03T03:24:20.580406Z",
+  "production_profile": {
+    "await_cancel_resume": "OI-017_PENDING",
+    "job_state_machine": "OI-017_PENDING",
+    "per_tool_execution_profiles": "P0_V0_6_PENDING",
+    "status": "NOT_IMPLEMENTED_PENDING_P0_V0_6",
+    "target_server_local_databases": "HANDOFF_PENDING_RECEIVING_TEAM"
+  },
+  "schema_version": "s07-task6-runtime-matrix.v1",
+  "source": {
+    "path": "discovery/p0/s07/p0-s07-task6-acceptance-20260903-c/reports/task6_acceptance.json",
+    "sha256": "bc81d8ded1a8a56c25f5f1efe637ebcc9e7d6c4792cb3767f45ade69461db655",
+    "size_bytes": 37235
+  }
+}

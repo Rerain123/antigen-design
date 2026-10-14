@@ -1,0 +1,259 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-af3-environment-build-r05
+  namespace: him-ws
+immutable: true
+data:
+  fetch_af3_source.py: "\"\"\"Fetch, verify, and safely stage the pinned AlphaFold\
+    \ 3 v3.0.2 source.\"\"\"\nfrom __future__ import annotations\n\nimport argparse\n\
+    import hashlib\nimport io\nimport json\nfrom pathlib import Path, PurePosixPath\n\
+    import tarfile\nimport urllib.request\n\n\nCOMMIT = \"f6a5aecf6eea2b5de4f846df86921630c5036b0b\"\
+    \nURL = \"https://codeload.github.com/google-deepmind/alphafold3/tar.gz/\" + COMMIT\n\
+    PREFIX = \"alphafold3-\" + COMMIT\nEXPECTED_ARCHIVE_BYTES = 5_909_661\nEXPECTED_ARCHIVE_SHA256\
+    \ = \"c9badce145a62ccdfb776d6128fb2774a3ccb0b9f61cfd3d4d0ee83547f6dee6\"\nEXPECTED_MEMBERS\
+    \ = 220\nEXPECTED_DOCKERFILE_SHA256 = \"c4ffc1855c65962c1f5a7d434274bd85654a478e297498198ac250e698c1c58b\"\
+    \nEXPECTED_PYPROJECT_SHA256 = \"2064b089754d00470fb7d990e8dce9d76b98afa8f5d567265db6710a2fe081e2\"\
+    \nEXPECTED_UV_LOCK_BYTES = 135_267\nEXPECTED_UV_LOCK_SHA256 = \"86f48ffa1b38b37efc0d1b10bdc1be1f7989bd6521f3f04257e7aeeeb62510ed\"\
+    \nEXPECTED_WHEEL_URLS = 326\nEXPECTED_INDEX_URLS = 69\nCUDA_IMAGE = \"nvidia/cuda@sha256:c87e78933f4c16e3272123bf2f75537306596d0fbaa395a29696a22786e5ee0e\"\
+    \nUV_IMAGE = \"ghcr.io/astral-sh/uv@sha256:816fdce3387ed2142e37d2e56e1b1b97ccc1ea87731ba199dc8a25c04e4997c5\"\
+    \nPYPI_WHEEL_SOURCE = \"https://files.pythonhosted.org/\"\nPYPI_WHEEL_MIRROR =\
+    \ \"https://pypi.tuna.tsinghua.edu.cn/\"\nPYPI_INDEX_SOURCE = \"https://pypi.org/simple\"\
+    \nPYPI_INDEX_MIRROR = \"https://pypi.tuna.tsinghua.edu.cn/simple\"\nMAX_ARCHIVE_BYTES\
+    \ = 16 * 1024 * 1024\n\n\ndef sha256(raw: bytes) -> str:\n    return hashlib.sha256(raw).hexdigest()\n\
+    \n\ndef safe_relative(name: str) -> PurePosixPath | None:\n    if name == PREFIX:\n\
+    \        return None\n    expected = PREFIX + \"/\"\n    if not name.startswith(expected):\n\
+    \        raise ValueError(\"Archive member is outside the pinned source prefix\"\
+    )\n    relative = PurePosixPath(name[len(expected):])\n    if (relative.is_absolute()\
+    \ or \"\\\\\" in name or \"..\" in relative.parts\n            or any(part in\
+    \ (\"\", \".\") for part in relative.parts)):\n        raise ValueError(\"Unsafe\
+    \ source archive path: \" + repr(name))\n    return relative\n\n\ndef extract_verified(raw:\
+    \ bytes, output: Path) -> dict:\n    if len(raw) != EXPECTED_ARCHIVE_BYTES or\
+    \ sha256(raw) != EXPECTED_ARCHIVE_SHA256:\n        raise ValueError(\"Pinned AF3\
+    \ source archive identity differs\")\n    if output.exists():\n        raise ValueError(\"\
+    AF3 source output already exists; refusing overwrite\")\n    output.mkdir(parents=True)\n\
+    \    files = 0\n    directories = 0\n    seen: set[str] = set()\n    with tarfile.open(fileobj=io.BytesIO(raw),\
+    \ mode=\"r:gz\") as archive:\n        members = archive.getmembers()\n       \
+    \ if len(members) != EXPECTED_MEMBERS:\n            raise ValueError(\"Pinned\
+    \ AF3 source archive member count differs\")\n        for member in members:\n\
+    \            relative = safe_relative(member.name)\n            if relative is\
+    \ None:\n                if not member.isdir():\n                    raise ValueError(\"\
+    Pinned source root is not a directory\")\n                continue\n         \
+    \   key = relative.as_posix()\n            if key in seen:\n                raise\
+    \ ValueError(\"Duplicate AF3 source archive path: \" + key)\n            seen.add(key)\n\
+    \            destination = output.joinpath(*relative.parts)\n            if member.isdir():\n\
+    \                destination.mkdir(parents=True, exist_ok=False)\n           \
+    \     directories += 1\n                continue\n            if not member.isfile()\
+    \ or member.issym() or member.islnk() or member.isdev():\n                raise\
+    \ ValueError(\"Unsupported AF3 source archive member: \" + key)\n            destination.parent.mkdir(parents=True,\
+    \ exist_ok=True)\n            source = archive.extractfile(member)\n         \
+    \   if source is None:\n                raise ValueError(\"AF3 source archive\
+    \ member is unreadable: \" + key)\n            with destination.open(\"xb\") as\
+    \ stream:\n                while chunk := source.read(1024 * 1024):\n        \
+    \            stream.write(chunk)\n            destination.chmod(member.mode &\
+    \ 0o777)\n            files += 1\n\n    dockerfile = output / \"docker\" / \"\
+    Dockerfile\"\n    pyproject = output / \"pyproject.toml\"\n    uv_lock = output\
+    \ / \"uv.lock\"\n    if sha256(dockerfile.read_bytes()) != EXPECTED_DOCKERFILE_SHA256:\n\
+    \        raise ValueError(\"Pinned AF3 Dockerfile SHA-256 differs\")\n    if sha256(pyproject.read_bytes())\
+    \ != EXPECTED_PYPROJECT_SHA256:\n        raise ValueError(\"Pinned AF3 pyproject\
+    \ SHA-256 differs\")\n    official_uv_lock = uv_lock.read_bytes()\n    if (len(official_uv_lock)\
+    \ != EXPECTED_UV_LOCK_BYTES\n            or sha256(official_uv_lock) != EXPECTED_UV_LOCK_SHA256):\n\
+    \        raise ValueError(\"Pinned AF3 uv.lock identity differs\")\n\n    text\
+    \ = dockerfile.read_text(encoding=\"utf-8\")\n    cuda_old = \"FROM nvidia/cuda:12.6.3-base-ubuntu24.04\"\
+    \n    uv_old = \"COPY --from=ghcr.io/astral-sh/uv:0.9.24\"\n    if text.count(cuda_old)\
+    \ != 1 or text.count(uv_old) != 1:\n        raise ValueError(\"Pinned AF3 Dockerfile\
+    \ base image statements differ\")\n    text = text.replace(cuda_old, \"FROM \"\
+    \ + CUDA_IMAGE)\n    text = text.replace(uv_old, \"COPY --from=\" + UV_IMAGE)\n\
+    \    dockerfile.write_text(text, encoding=\"utf-8\", newline=\"\\n\")\n\n    lock_text\
+    \ = official_uv_lock.decode(\"utf-8\")\n    if lock_text.count(PYPI_WHEEL_SOURCE)\
+    \ != EXPECTED_WHEEL_URLS:\n        raise ValueError(\"Pinned AF3 uv.lock wheel\
+    \ URL count differs\")\n    if lock_text.count(PYPI_INDEX_SOURCE) != EXPECTED_INDEX_URLS:\n\
+    \        raise ValueError(\"Pinned AF3 uv.lock index URL count differs\")\n  \
+    \  lock_text = lock_text.replace(PYPI_WHEEL_SOURCE, PYPI_WHEEL_MIRROR)\n    lock_text\
+    \ = lock_text.replace(PYPI_INDEX_SOURCE, PYPI_INDEX_MIRROR)\n    uv_lock.write_text(lock_text,\
+    \ encoding=\"utf-8\", newline=\"\\n\")\n\n    return {\n        \"schema\": \"\
+    t01.af3-environment-source/1\",\n        \"status\": \"AF3_SOURCE_VERIFIED_BASE_IMAGES_PINNED_NOT_BUILT\"\
+    ,\n        \"version\": \"3.0.2\",\n        \"commit\": COMMIT,\n        \"url\"\
+    : URL,\n        \"archive_bytes\": len(raw),\n        \"archive_sha256\": sha256(raw),\n\
+    \        \"archive_members\": len(members),\n        \"source_files\": files,\n\
+    \        \"source_directories\": directories,\n        \"official_dockerfile_sha256\"\
+    : EXPECTED_DOCKERFILE_SHA256,\n        \"pinned_dockerfile_sha256\": sha256(dockerfile.read_bytes()),\n\
+    \        \"pyproject_sha256\": EXPECTED_PYPROJECT_SHA256,\n        \"official_uv_lock_bytes\"\
+    : EXPECTED_UV_LOCK_BYTES,\n        \"official_uv_lock_sha256\": EXPECTED_UV_LOCK_SHA256,\n\
+    \        \"mirrored_uv_lock_sha256\": sha256(uv_lock.read_bytes()),\n        \"\
+    mirrored_wheel_urls\": EXPECTED_WHEEL_URLS,\n        \"mirrored_index_urls\":\
+    \ EXPECTED_INDEX_URLS,\n        \"pypi_mirror\": PYPI_INDEX_MIRROR,\n        \"\
+    cuda_image\": CUDA_IMAGE,\n        \"uv_image\": UV_IMAGE,\n        \"scientific_gate\"\
+    : \"CLOSED\",\n        \"usable_for_pipeline\": False,\n    }\n\n\ndef download(opener=urllib.request.urlopen)\
+    \ -> bytes:\n    request = urllib.request.Request(URL, headers={\"Accept-Encoding\"\
+    : \"identity\"})\n    with opener(request, timeout=120) as response:\n       \
+    \ if response.status != 200:\n            raise ValueError(\"Pinned AF3 source\
+    \ download did not return 200\")\n        raw = response.read(MAX_ARCHIVE_BYTES\
+    \ + 1)\n    if len(raw) > MAX_ARCHIVE_BYTES:\n        raise ValueError(\"Pinned\
+    \ AF3 source archive exceeds the download bound\")\n    return raw\n\n\ndef prepare(workspace:\
+    \ Path, opener=urllib.request.urlopen) -> dict:\n    workspace = workspace.resolve()\n\
+    \    workspace.mkdir(parents=True, exist_ok=True)\n    output = workspace / \"\
+    source\"\n    receipt_path = workspace / \"source-receipt.json\"\n    if receipt_path.exists()\
+    \ or output.exists():\n        raise ValueError(\"AF3 build workspace is not empty\"\
+    )\n    receipt = extract_verified(download(opener), output)\n    receipt_path.write_text(json.dumps(receipt,\
+    \ indent=2, sort_keys=True) + \"\\n\", encoding=\"utf-8\")\n    print(\"AF3_SOURCE_VERIFIED\
+    \ \" + json.dumps(receipt, sort_keys=True), flush=True)\n    return receipt\n\n\
+    \ndef main() -> None:\n    parser = argparse.ArgumentParser(description=__doc__)\n\
+    \    parser.add_argument(\"workspace\", type=Path)\n    args = parser.parse_args()\n\
+    \    prepare(args.workspace)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  buildkitd.toml: "debug = false\n[registry.\"docker.io\"]\n  mirrors = [\"dockerproxy.net\"\
+    ]\n[registry.\"harbor-core.base.svc.cluster.local\"]\n  http = true\n  insecure\
+    \ = true\n"
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: antigen-af3-environment-build-r05
+  namespace: him-ws
+spec:
+  podSelector:
+    matchLabels:
+      app: antigen-af3-environment-build-r05
+  policyTypes:
+  - Ingress
+  - Egress
+  egress:
+  - ports:
+    - protocol: UDP
+      port: 53
+    - protocol: TCP
+      port: 53
+  - ports:
+    - protocol: TCP
+      port: 80
+    - protocol: TCP
+      port: 443
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-af3-environment-build-r05
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 21600
+  template:
+    metadata:
+      labels:
+        app: antigen-af3-environment-build-r05
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+      - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+      initContainers:
+      - name: source
+        image: harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:fba5a32c0550e56a5310160e2fc49d647fcd27d76851073a2d82cc935fb4c2fc
+        command:
+        - python
+        - -u
+        - -B
+        - /scripts/fetch_af3_source.py
+        - /workspace
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+            ephemeral-storage: 32Mi
+          limits:
+            cpu: '1'
+            memory: 512Mi
+            ephemeral-storage: 128Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          seccompProfile:
+            type: RuntimeDefault
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: workspace
+          mountPath: /workspace
+        - name: config
+          mountPath: /scripts
+          readOnly: true
+      containers:
+      - name: builder
+        image: moby/buildkit@sha256:995077ff90af1afff56ff23018699d7511d122b2b111041f2011bd12afd5c0fe
+        command:
+        - /bin/sh
+        - -ec
+        - "umask 077\necho AF3_ENVIRONMENT_BUILD_START harbor-core.base.svc.cluster.local/qcyz/antigen-af3:v3.0.2-f6a5aec-r05\n\
+          success=0\nfor attempt in 1 2 3; do\n  echo AF3_ENVIRONMENT_BUILD_ATTEMPT\
+          \ $attempt 3\n  rm -f /workspace/build-metadata.json\n  if buildctl-daemonless.sh\
+          \ build \\\n    --frontend dockerfile.v0 \\\n    --local context=/workspace/source\
+          \ \\\n    --local dockerfile=/workspace/source/docker \\\n    --opt filename=Dockerfile\
+          \ \\\n    --opt platform=linux/amd64 \\\n    --output type=image,name=harbor-core.base.svc.cluster.local/qcyz/antigen-af3:v3.0.2-f6a5aec-r05,push=true\
+          \ \\\n    --metadata-file /workspace/build-metadata.json; then\n    success=1\n\
+          \    break\n  fi\n  echo AF3_ENVIRONMENT_BUILD_RETRY $attempt\n  sleep 15\n\
+          done\ntest \"$success\" = 1\necho AF3_ENVIRONMENT_BUILD_PUSHED harbor-core.base.svc.cluster.local/qcyz/antigen-af3:v3.0.2-f6a5aec-r05\n\
+          cat /workspace/source-receipt.json\ncat /workspace/build-metadata.json\n"
+        env:
+        - name: BUILDKITD_FLAGS
+          value: --oci-worker-no-process-sandbox --config /etc/buildkit/buildkitd.toml
+        resources:
+          requests:
+            cpu: '4'
+            memory: 8Gi
+            ephemeral-storage: 20Gi
+          limits:
+            cpu: '8'
+            memory: 16Gi
+            ephemeral-storage: 50Gi
+        securityContext:
+          allowPrivilegeEscalation: true
+          seccompProfile:
+            type: Unconfined
+          appArmorProfile:
+            type: Unconfined
+          capabilities:
+            drop:
+            - ALL
+            add:
+            - SETUID
+            - SETGID
+        volumeMounts:
+        - name: workspace
+          mountPath: /workspace
+        - name: state
+          mountPath: /home/user/.local/share/buildkit
+        - name: tmp
+          mountPath: /tmp
+        - name: registry-auth
+          mountPath: /home/user/.docker
+          readOnly: true
+        - name: config
+          mountPath: /etc/buildkit/buildkitd.toml
+          subPath: buildkitd.toml
+          readOnly: true
+      volumes:
+      - name: workspace
+        emptyDir:
+          sizeLimit: 128Mi
+      - name: state
+        emptyDir:
+          sizeLimit: 50Gi
+      - name: tmp
+        emptyDir:
+          sizeLimit: 4Gi
+      - name: registry-auth
+        secret:
+          secretName: harbor
+          items:
+          - key: .dockerconfigjson
+            path: config.json
+      - name: config
+        configMap:
+          name: antigen-af3-environment-build-r05

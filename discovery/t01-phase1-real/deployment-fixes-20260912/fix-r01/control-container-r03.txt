@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/app/src/t01_phase1_real/linux_service.py", line 43, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/app/src/t01_phase1_real/linux_service.py", line 39, in main
+    return service_main()
+           ^^^^^^^^^^^^^^
+  File "/app/src/t01_phase1_real/service_api/transport.py", line 400, in main
+    serve(args.host, args.port, config, Credentials.from_environment())
+  File "/app/src/t01_phase1_real/service_api/transport.py", line 370, in serve
+    server = Phase1RealServiceServer((host, port), service)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/src/t01_phase1_real/service_api/transport.py", line 343, in __init__
+    super().__init__(address, RequestHandler)
+  File "/usr/local/lib/python3.11/socketserver.py", line 456, in __init__
+    self.server_bind()
+  File "/usr/local/lib/python3.11/http/server.py", line 140, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/local/lib/python3.11/socketserver.py", line 472, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+Traceback (most recent call last):
+{"cancelled_job_id": "t01p1r-job-3a864e1fe69a4627b14c13355fb5e93a", "phase": "prepare", "restart_job_id": "t01p1r-job-7e753a2d1bda438da6eca644f801cb11"}
+  File "/control_smoke.py", line 38, in <module>
+    process=start(0);client.verify(base);client.snapshot(base)
+            ^^^^^^^^
+  File "/control_smoke.py", line 29, in start
+    if proc.poll() is not None:raise RuntimeError('Service exited during startup')
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Service exited during startup

@@ -1,0 +1,589 @@
+{
+  "$schema": "T01_PHASE1_MOCK_ACCEPTANCE_CATALOG_SCHEMA_v0.1.json",
+  "document_type": "T01_PHASE1_MOCK_ACCEPTANCE_CATALOG",
+  "acceptance_catalog_version": "T01-PHASE1-MOCK-ACCEPTANCE-CATALOG-v0.1",
+  "fixture_manifest_version": "T01-PHASE1-MOCK-FIXTURE-MANIFEST-v0.1",
+  "scenario_catalog_version": "T01-PHASE1-MOCK-SCENARIO-CATALOG-v0.1",
+  "asset_registry_version": "T01-PHASE1-MOCK-ASSET-REGISTRY-v0.1",
+  "envelope_contract_version": "T01-PHASE1-ENVELOPE-v0.1",
+  "namespace_root": "t01_phase1_mock_v01",
+  "specification_state": "FROZEN_SPEC_ONLY",
+  "data_classification": "MOCK_DATA",
+  "scientific_compute": false,
+  "inventory": {
+    "acceptance_case_count": 21,
+    "submission_count": 23,
+    "global_assertion_count": 18,
+    "focus_assertion_count": 44,
+    "coverage_gate_count": 10
+  },
+  "source_documents": {
+    "scenario_catalog": "工作流设计/02-数据契约/T01_PHASE1_MOCK_SCENARIO_CATALOG_v0.1.json",
+    "fixture_manifest": "dify/t01-phase1-mock-v0.1/fixtures/T01_PHASE1_MOCK_FIXTURE_MANIFEST_v0.1.json",
+    "asset_registry": "工作流设计/03-Dify实现/T01_PHASE1_MOCK_ASSET_REGISTRY_v0.1.json",
+    "envelope_schema": "工作流设计/02-数据契约/T01_PHASE1_MOCK_ENVELOPE_SCHEMA_v0.1.json"
+  },
+  "selector_contract": {
+    "dialect": "T01-PHASE1-ASSERTION-PATH-v0.1",
+    "normalized_roots": [
+      "catalog",
+      "fixture",
+      "acceptance",
+      "request",
+      "submission[n]",
+      "run",
+      "trace",
+      "workflow",
+      "original_run"
+    ],
+    "keyed_selectors": [
+      "run.node[N01..N18]",
+      "run.control[design_suitability|n12_validation|n15_delivery_recommendation|n16_applicability|n17_applicability|n18_entry]",
+      "submission[1..n]"
+    ],
+    "rule": "The future harness MUST expose this normalized semantic view. n18_entry is assertion-view trace state derived from the catalog and E013/E026, not an added M1-04 control_decision. Selectors do not authorize adding envelope fields or scientific payloads."
+  },
+  "operator_contract": [
+    "JSON_SCHEMA_VALID",
+    "COUNT_EQUALS",
+    "SET_EQUALS",
+    "BIJECTION",
+    "EXACT_CATALOG_PROJECTION",
+    "FIELD_EQUALS",
+    "FIELD_ABSENT",
+    "MATCHES_REGEX",
+    "REFERENCES_RESOLVE",
+    "CONTAINS_NONE",
+    "NODE_STATUS_ALL",
+    "NODE_ATTEMPT_COUNT_EQUALS",
+    "NODE_ATTEMPT_FIELD_SEQUENCE_EQUALS",
+    "CONTROL_DECISION_SEQUENCE_EQUALS",
+    "EDGE_PRESENT",
+    "EDGE_ABSENT",
+    "EDGE_ORDERED_SUBSEQUENCE",
+    "SUBMISSION_ACTION_EQUALS",
+    "IDENTITY_RELATION_EQUALS",
+    "EMISSION_COUNT_EQUALS",
+    "NO_CONTROL_AFTER_NODE",
+    "NO_SCIENTIFIC_VALUES",
+    "JOIN_PRECONDITION",
+    "ORIGINAL_RUN_UNCHANGED",
+    "NO_STUB_PROMOTION",
+    "PATH_WITHIN",
+    "HASH_UNCHANGED",
+    "NORMALIZED_EQUALS"
+  ],
+  "execution_matrix": [
+    {
+      "stage": "M1_07_SPEC_STATIC",
+      "case_count": 21,
+      "submission_count": 23,
+      "required_execution_count": 1,
+      "state": "VERIFIED_AT_M1_07",
+      "scientific_execution_count": 0
+    },
+    {
+      "stage": "M2_BACKEND",
+      "case_count": 21,
+      "submission_count": 23,
+      "required_execution_count": 23,
+      "state": "DECLARED_NOT_RUN",
+      "scientific_execution_count": 0
+    },
+    {
+      "stage": "M3_DIFY_MAIN",
+      "case_count": 21,
+      "submission_count": 23,
+      "required_execution_count": 23,
+      "state": "DECLARED_NOT_RUN",
+      "scientific_execution_count": 0
+    },
+    {
+      "stage": "M3_DIFY_DEBUG",
+      "case_count": 21,
+      "submission_count": 23,
+      "required_execution_count": 23,
+      "state": "DECLARED_NOT_RUN",
+      "scientific_execution_count": 0
+    },
+    {
+      "stage": "M3_MAIN_DEBUG_PARITY",
+      "case_count": 21,
+      "submission_count": 23,
+      "required_execution_count": 21,
+      "state": "DECLARED_NOT_RUN",
+      "scientific_execution_count": 0
+    },
+    {
+      "stage": "M4_REGRESSION_FREEZE",
+      "case_count": 21,
+      "submission_count": 23,
+      "required_execution_count": 23,
+      "state": "DECLARED_NOT_RUN",
+      "scientific_execution_count": 0
+    }
+  ],
+  "global_assertions": [
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.001",
+      "applies_to": ["M1_07_SPEC_STATIC"],
+      "operator": "JSON_SCHEMA_VALID",
+      "actual_selector": "catalog",
+      "expected": {"source_selector": "catalog.$schema"},
+      "severity": "BLOCKER",
+      "description": "Scenario catalog strictly validates against its declared Draft 2020-12 schema."
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.002",
+      "applies_to": ["M1_07_SPEC_STATIC"],
+      "operator": "JSON_SCHEMA_VALID",
+      "actual_selector": "fixture",
+      "expected": {"source_selector": "fixture.$schema"},
+      "severity": "BLOCKER",
+      "description": "Fixture manifest strictly validates against its declared Draft 2020-12 schema."
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.003",
+      "applies_to": ["M1_07_SPEC_STATIC"],
+      "operator": "JSON_SCHEMA_VALID",
+      "actual_selector": "workflow.asset_registry",
+      "expected": {"source_selector": "workflow.asset_registry.$schema"},
+      "severity": "BLOCKER",
+      "description": "M1-06 asset registry validates against its declared schema."
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.004",
+      "applies_to": ["M1_07_SPEC_STATIC", "M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"],
+      "operator": "JSON_SCHEMA_VALID",
+      "actual_selector": "workflow.envelope_examples[*]|request|run",
+      "expected": {"source_selector": "workflow.envelope_schema"},
+      "severity": "BLOCKER",
+      "description": "Every materialized request and run envelope validates against M1-04."
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.005",
+      "applies_to": ["M1_07_SPEC_STATIC"],
+      "operator": "BIJECTION",
+      "actual_selector": "catalog.scenarios[*].scenario_key|fixture.fixture_cases[*].scenario_key|acceptance.acceptance_cases[*].scenario_key",
+      "expected": {"literal": {"cardinality": 21, "same_order": true}},
+      "severity": "BLOCKER",
+      "description": "Scenario, fixture case and acceptance case are a 21-item ordered bijection."
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.006",
+      "applies_to": ["M1_07_SPEC_STATIC"],
+      "operator": "COUNT_EQUALS",
+      "actual_selector": "fixture.inventory|acceptance.inventory",
+      "expected": {"literal": {"cases": 21, "submissions": 23, "request_variants": 22, "node_terminal_directives": 378, "attempts": 334, "attempt_fixture_keys": 326, "null_attempt_fixture_keys": 8, "checkpoint_plans": 4, "checkpoints": 16, "focus_assertions": 44}},
+      "severity": "BLOCKER",
+      "description": "All frozen inventory counts equal their recomputed source counts."
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.007",
+      "applies_to": ["M1_07_SPEC_STATIC"],
+      "operator": "SET_EQUALS",
+      "actual_selector": "fixture.request_variants[*].request_variant_key|catalog.scenarios[*].submission_plan[*].request_variant_key",
+      "expected": {"literal": {"unique_variant_count": 22, "submission_count": 23}},
+      "severity": "BLOCKER",
+      "description": "Every submission resolves one declared request variant and no unused variant exists."
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.008",
+      "applies_to": ["M1_07_SPEC_STATIC", "M2_BACKEND", "M4_REGRESSION_FREEZE"],
+      "operator": "REFERENCES_RESOLVE",
+      "actual_selector": "catalog.scenarios[*].node_plan.*.attempts[*].fixture_result_key",
+      "expected": {"source_selector": "fixture.attempt_fixture_resolution"},
+      "severity": "BLOCKER",
+      "description": "All and only 326 non-null attempt fixture keys resolve under the frozen current-phase root; null keys resolve nothing."
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.009",
+      "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"],
+      "operator": "EXACT_CATALOG_PROJECTION",
+      "actual_selector": "submission[*]|run.control|run.node[*]|trace.edge_plan|run.expected_run",
+      "expected": {"source_selector": "catalog.current_scenario.submission_plan|control_plan|node_plan|edge_plan|expected_run"},
+      "severity": "BLOCKER",
+      "description": "Runtime semantics are an exact projection of the selected scenario, not a recomputation."
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.010",
+      "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"],
+      "operator": "FIELD_EQUALS",
+      "actual_selector": "request.data_classification|run.data_classification|request.scientific_compute|run.scientific_compute|run.handoff_status",
+      "expected": {"literal": ["MOCK_DATA", "MOCK_DATA", false, false, "NOT_DEPLOYED"]},
+      "severity": "BLOCKER",
+      "description": "Every run remains unmistakably Mock and non-production."
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.011",
+      "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"],
+      "operator": "SET_EQUALS",
+      "actual_selector": "run.control[*].source|trace.route_decision_sources",
+      "expected": {"literal": ["SCENARIO_LITERAL"]},
+      "severity": "BLOCKER",
+      "description": "All Gate, recalc, condition and join routing sources are scenario literals only."
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.012",
+      "applies_to": ["M1_07_SPEC_STATIC", "M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"],
+      "operator": "NO_SCIENTIFIC_VALUES",
+      "actual_selector": "fixture|request|run|trace|workflow",
+      "expected": {"literal": {"scientific_assertion_count": 0, "remote_retrieval_count": 0, "scientific_execution_count": 0}},
+      "severity": "BLOCKER",
+      "description": "Fixtures and outputs carry only transport/state stubs and never scientific scores, candidates, thresholds or computed conclusions."
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.013",
+      "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"],
+      "operator": "REFERENCES_RESOLVE",
+      "actual_selector": "run.artifact_refs|run.error_refs|run.attempt_refs|run.audit_refs",
+      "expected": {"literal": {"dangling_reference_count": 0, "duplicate_identity_count": 0}},
+      "severity": "BLOCKER",
+      "description": "Artifact, error, attempt and audit references are closed and unique."
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.014",
+      "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"],
+      "operator": "MATCHES_REGEX",
+      "actual_selector": "request.request_id|run.run_id|run.envelope_id|run.recovery_refs",
+      "expected": {"source_selector": "workflow.asset_registry.identity_namespace"},
+      "severity": "BLOCKER",
+      "description": "Canonical IDs use only M1-06 namespaces; Dify system IDs cannot replace them."
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.015",
+      "applies_to": ["M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"],
+      "operator": "SET_EQUALS",
+      "actual_selector": "workflow.workflow_ids|workflow.provider_id|workflow.tool_ids",
+      "expected": {"source_selector": "workflow.asset_registry.workflows|workflow.asset_registry.tool_namespace.dify_provider_name|workflow.asset_registry.tool_namespace.tools"},
+      "severity": "BLOCKER",
+      "description": "Both workflows call exactly the registered current-phase provider and 26 tool identities."
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.016",
+      "applies_to": ["M3_MAIN_DEBUG_PARITY", "M4_REGRESSION_FREEZE"],
+      "operator": "NORMALIZED_EQUALS",
+      "actual_selector": "workflow.main.normalized_result|workflow.debug.normalized_result",
+      "expected": {"literal": true},
+      "severity": "BLOCKER",
+      "description": "Main and debug differ only in permitted observability fields, never in business semantics."
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.017",
+      "applies_to": ["M1_07_SPEC_STATIC", "M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"],
+      "operator": "CONTAINS_NONE",
+      "actual_selector": "fixture|request|run|trace|workflow.current_paths_and_identities",
+      "expected": {"literal": ["T01_Master_v10", "T01_P0_", "T01_P1_", "T01_P2_", "T01_P3_", "T01_P4_", "T01_P5_", "T01_P6_", "T01_P7_", "t01-mock-mcp", "t01_mock_mcp", "t01_dify_workflows", "MOCK-"]},
+      "severity": "BLOCKER",
+      "description": "No frozen legacy identity or path enters current-phase assets or results."
+    },
+    {
+      "assertion_id": "t01_phase1_mock_v01.acceptance.global.018",
+      "applies_to": ["M4_REGRESSION_FREEZE"],
+      "operator": "COUNT_EQUALS",
+      "actual_selector": "acceptance.executed_cases|acceptance.executed_submissions|acceptance.blocker_failures",
+      "expected": {"literal": [21, 23, 0]},
+      "severity": "BLOCKER",
+      "description": "M4 can freeze v0.1 only after every case and submission executes with zero blocker failures."
+    }
+  ],
+  "acceptance_cases": [
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.001",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.001",
+      "ordinal": 1,
+      "scenario_key": "happy_provided_structure",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.happy_provided_structure",
+      "catalog_scenario_pointer": "/scenarios/0",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.001.focus.01", "source_text": "N01 emits provided-local structure source stub", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "FIELD_EQUALS", "actual_selector": "run.node[N01].output.fact_set_key", "expected": {"source_selector": "catalog.node_plan.N01.fact_set_key"}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.001.focus.02", "source_text": "N16 and N17 settle before E026", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "JOIN_PRECONDITION", "actual_selector": "run.node[N16].status|run.node[N17].status|trace.edge_plan", "expected": {"literal": {"join_edge": "E026", "required_arrival_edges": ["E024", "E025"]}}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.002",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.002",
+      "ordinal": 2,
+      "scenario_key": "happy_no_structure_local_af3",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.happy_no_structure_local_af3",
+      "catalog_scenario_pointer": "/scenarios/1",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.002.focus.01", "source_text": "No S-07/RCSB/AlphaFold DB edge or fact exists", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "CONTAINS_NONE", "actual_selector": "request|run|trace", "expected": {"literal": ["S-07", "RCSB", "ALPHAFOLD_DB", "AFDB", "http://", "https://"]}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.002.focus.02", "source_text": "N01 route is literal, not selected by model execution", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "FIELD_EQUALS", "actual_selector": "catalog.input_profile.structure_case|run.node[N01].output.fact_set_key|trace.route_decision_sources", "expected": {"literal": ["ABSENT_ROUTE_LOCAL_AF3", "happy_no_structure_local_af3.n01.local_af3_route", ["SCENARIO_LITERAL"]]}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.003",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.003",
+      "ordinal": 3,
+      "scenario_key": "happy_no_structure_local_esmfold2",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.happy_no_structure_local_esmfold2",
+      "catalog_scenario_pointer": "/scenarios/2",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.003.focus.01", "source_text": "No remote fallback is permitted", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "CONTAINS_NONE", "actual_selector": "request|run|trace", "expected": {"literal": ["REMOTE_FALLBACK", "RCSB", "ALPHAFOLD_DB", "AFDB", "http://", "https://"]}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.003.focus.02", "source_text": "No runtime quality comparison selects the route", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "FIELD_EQUALS", "actual_selector": "catalog.input_profile.structure_case|run.node[N01].output.fact_set_key|trace.route_decision_sources", "expected": {"literal": ["ABSENT_ROUTE_LOCAL_ESMFOLD2", "happy_no_structure_local_esmfold2.n01.local_esmfold2_route", ["SCENARIO_LITERAL"]]}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.004",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.004",
+      "ordinal": 4,
+      "scenario_key": "gate_wt_direct",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.gate_wt_direct",
+      "catalog_scenario_pointer": "/scenarios/3",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.004.focus.01", "source_text": "N11-N17 are SKIPPED_BRANCH, never SUCCEEDED", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "NODE_STATUS_ALL", "actual_selector": "run.node[N11..N17].status", "expected": {"literal": "SKIPPED_BRANCH"}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.004.focus.02", "source_text": "Gate result is a literal, not derived from N10", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "FIELD_EQUALS", "actual_selector": "run.control[design_suitability]", "expected": {"source_selector": "catalog.control_plan.design_suitability"}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.005",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.005",
+      "ordinal": 5,
+      "scenario_key": "n12_pass_cycle_2",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.n12_pass_cycle_2",
+      "catalog_scenario_pointer": "/scenarios/4",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.005.focus.01", "source_text": "N12 decisions are RECALC_REQUIRED then VALIDATED_CANDIDATES_AVAILABLE", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "CONTROL_DECISION_SEQUENCE_EQUALS", "actual_selector": "run.control[n12_validation].decisions[*].decision", "expected": {"literal": ["RECALC_REQUIRED", "VALIDATED_CANDIDATES_AVAILABLE"]}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.005.focus.02", "source_text": "N11 budgets are 24 then 48", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "NODE_ATTEMPT_FIELD_SEQUENCE_EQUALS", "actual_selector": "run.node[N11].attempts[*].parameters.candidate_budget", "expected": {"literal": [24, 48]}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.006",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.006",
+      "ordinal": 6,
+      "scenario_key": "n12_pass_cycle_3",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.n12_pass_cycle_3",
+      "catalog_scenario_pointer": "/scenarios/5",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.006.focus.01", "source_text": "N12 decisions contain two RECALC_REQUIRED literals then one validation literal", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "CONTROL_DECISION_SEQUENCE_EQUALS", "actual_selector": "run.control[n12_validation].decisions[*].decision", "expected": {"literal": ["RECALC_REQUIRED", "RECALC_REQUIRED", "VALIDATED_CANDIDATES_AVAILABLE"]}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.006.focus.02", "source_text": "N11 budgets are 24, 48, 64", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "NODE_ATTEMPT_FIELD_SEQUENCE_EQUALS", "actual_selector": "run.node[N11].attempts[*].parameters.candidate_budget", "expected": {"literal": [24, 48, 64]}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.007",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.007",
+      "ordinal": 7,
+      "scenario_key": "n12_recalc_exhausted",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.n12_recalc_exhausted",
+      "catalog_scenario_pointer": "/scenarios/6",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.007.focus.01", "source_text": "No fourth design cycle exists", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "NODE_ATTEMPT_COUNT_EQUALS", "actual_selector": "run.node[N11].attempts|run.node[N12].attempts", "expected": {"literal": [3, 3]}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.007.focus.02", "source_text": "Scientific rejection reasons are not fabricated", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "CONTAINS_NONE", "actual_selector": "run.node[N11]|run.node[N12]|run.errors", "expected": {"literal": ["scientific_rejection", "threshold_score", "candidate_rank", "binding_score", "stability_score"]}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.008",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.008",
+      "ordinal": 8,
+      "scenario_key": "n15_wt_fallback",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.n15_wt_fallback",
+      "catalog_scenario_pointer": "/scenarios/7",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.008.focus.01", "source_text": "E021-E026 remain present", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "EDGE_PRESENT", "actual_selector": "trace.edge_plan", "expected": {"literal": ["E021", "E022", "E023", "E024", "E025", "E026"]}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.008.focus.02", "source_text": "N16 NOT_EXECUTED is not SKIPPED_BRANCH", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "FIELD_EQUALS", "actual_selector": "run.node[N16].status", "expected": {"literal": "NOT_EXECUTED"}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.009",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.009",
+      "ordinal": 9,
+      "scenario_key": "n16_missing_expression_host",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.n16_missing_expression_host",
+      "catalog_scenario_pointer": "/scenarios/8",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.009.focus.01", "source_text": "host_species is never used as expression_host", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "FIELD_EQUALS", "actual_selector": "request.options.expression_host", "expected": {"literal": null}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.009.focus.02", "source_text": "N16 emits no successful output", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "FIELD_EQUALS", "actual_selector": "run.node[N16].status|run.node[N16].output_mode", "expected": {"source_selector": "catalog.node_plan.N16.status|catalog.node_plan.N16.output_mode"}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.010",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.010",
+      "ordinal": 10,
+      "scenario_key": "n17_not_applicable",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.n17_not_applicable",
+      "catalog_scenario_pointer": "/scenarios/9",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.010.focus.01", "source_text": "No membrane or confidence calculation is performed", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "CONTAINS_NONE", "actual_selector": "run.node[N17]|trace", "expected": {"literal": ["membrane_calculation", "confidence_score", "scientific_threshold"]}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.010.focus.02", "source_text": "N17 remains in node_plan and E023/E025", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "FIELD_EQUALS", "actual_selector": "run.node[N17].status|trace.edge_plan", "expected": {"literal": ["SKIPPED_CONDITION", {"contains": ["E023", "E025"]}]}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.011",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.011",
+      "ordinal": 11,
+      "scenario_key": "n16_unsupported_expression_host",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.n16_unsupported_expression_host",
+      "catalog_scenario_pointer": "/scenarios/10",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.011.focus.01", "source_text": "Unsupported is a synthetic sentinel, not a claim about a real host", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "FIELD_EQUALS", "actual_selector": "catalog.input_profile.expression_host_case", "expected": {"literal": "PROVIDED_UNSUPPORTED_SENTINEL"}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.011.focus.02", "source_text": "N18 preserves the N16 error", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "FIELD_EQUALS", "actual_selector": "run.run_error_codes", "expected": {"source_selector": "catalog.expected_run.run_error_codes"}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.012",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.012",
+      "ordinal": 12,
+      "scenario_key": "n17_branch_failed",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.n17_branch_failed",
+      "catalog_scenario_pointer": "/scenarios/11",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.012.focus.01", "source_text": "N17 failure is not rewritten to success", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "FIELD_EQUALS", "actual_selector": "run.node[N17].status", "expected": {"literal": "FAILED"}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.012.focus.02", "source_text": "E025/E026 remain observable", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "EDGE_ORDERED_SUBSEQUENCE", "actual_selector": "trace.edge_plan", "expected": {"literal": ["E025", "E026"]}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.013",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.013",
+      "ordinal": 13,
+      "scenario_key": "n16_branch_timeout_partial",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.n16_branch_timeout_partial",
+      "catalog_scenario_pointer": "/scenarios/12",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.013.focus.01", "source_text": "Partial stub contains no DNA or scientific values", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "CONTAINS_NONE", "actual_selector": "run.node[N16].output", "expected": {"literal": ["dna_sequence", "codon_sequence", "scientific_score", "scientific_threshold", "real_candidate"]}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.013.focus.02", "source_text": "N18 preserves timeout and partial artifact refs", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "FIELD_EQUALS", "actual_selector": "run.node[N16].status|run.node[N16].output_completeness|run.run_error_codes|run.node[N16].output.artifacts", "expected": {"literal": ["TIMED_OUT", "PARTIAL", ["NODE_TIMED_OUT"], {"reference_preserved": true}]}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.014",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.014",
+      "ordinal": 14,
+      "scenario_key": "n08_upstream_tool_failed",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.n08_upstream_tool_failed",
+      "catalog_scenario_pointer": "/scenarios/13",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.014.focus.01", "source_text": "No success edge E009 exists", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "EDGE_ABSENT", "actual_selector": "trace.edge_plan", "expected": {"literal": ["E009"]}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.014.focus.02", "source_text": "No control decision is inferred after the upstream terminal", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "NO_CONTROL_AFTER_NODE", "actual_selector": "run.control|run.node[N08].status", "expected": {"literal": {"terminal_node": "N08", "control_state": "NOT_REACHED"}}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.015",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.015",
+      "ordinal": 15,
+      "scenario_key": "n01_local_prediction_failed_no_remote_fallback",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.n01_local_prediction_failed_no_remote_fallback",
+      "catalog_scenario_pointer": "/scenarios/14",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.015.focus.01", "source_text": "No E002 traversal exists", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "EDGE_ABSENT", "actual_selector": "trace.edge_plan", "expected": {"literal": ["E002"]}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.015.focus.02", "source_text": "No external structure identifier or URL is emitted", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "CONTAINS_NONE", "actual_selector": "run|trace", "expected": {"literal": ["rcsb_id", "alphafold_db_id", "external_structure_id", "http://", "https://"]}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.016",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.016",
+      "ordinal": 16,
+      "scenario_key": "run_cancelled_before_join",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.run_cancelled_before_join",
+      "catalog_scenario_pointer": "/scenarios/15",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.016.focus.01", "source_text": "Whole-run cancellation does not use tolerant branch join", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "FIELD_EQUALS", "actual_selector": "run.node[N18].status|run.control[n18_entry]", "expected": {"source_selector": "catalog.node_plan.N18.status|catalog.control_plan.n18_entry"}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.016.focus.02", "source_text": "E026 and E027 are absent", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "EDGE_ABSENT", "actual_selector": "trace.edge_plan", "expected": {"literal": ["E026", "E027"]}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.017",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.017",
+      "ordinal": 17,
+      "scenario_key": "n08_retryable_recovery",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.n08_retryable_recovery",
+      "catalog_scenario_pointer": "/scenarios/16",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.017.focus.01", "source_text": "Attempt 1 remains FAILED", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "NODE_ATTEMPT_FIELD_SEQUENCE_EQUALS", "actual_selector": "run.node[N08].attempts[*].status", "expected": {"literal": ["FAILED", "SUCCEEDED"]}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.017.focus.02", "source_text": "Attempt 2 has recovery_of_attempt_number=1", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "NODE_ATTEMPT_FIELD_SEQUENCE_EQUALS", "actual_selector": "run.node[N08].attempts[*].recovery_of_attempt_number", "expected": {"literal": [null, 1]}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.017.focus.03", "source_text": "No terminal record is overwritten", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "COUNT_EQUALS", "actual_selector": "run.node[N08].attempts", "expected": {"literal": 2}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.018",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.018",
+      "ordinal": 18,
+      "scenario_key": "idempotent_replay",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.idempotent_replay",
+      "catalog_scenario_pointer": "/scenarios/17",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.018.focus.01", "source_text": "Second submission action is RETURN_EXISTING_RUN", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "SUBMISSION_ACTION_EQUALS", "actual_selector": "submission[2].action|submission[2].run_id", "expected": {"literal": ["RETURN_EXISTING_RUN", {"same_as": "submission[1].run_id"}]}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.018.focus.02", "source_text": "Control literals are emitted once for the existing run", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "EMISSION_COUNT_EQUALS", "actual_selector": "run.control_emission_count", "expected": {"literal": 1}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.019",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.019",
+      "ordinal": 19,
+      "scenario_key": "idempotency_conflict",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.idempotency_conflict",
+      "catalog_scenario_pointer": "/scenarios/18",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.019.focus.01", "source_text": "Second submission is rejected before a new run exists", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "SUBMISSION_ACTION_EQUALS", "actual_selector": "submission[2].action|submission[2].error_code|submission[2].run_id", "expected": {"literal": ["REJECT_REQUEST", "REQUEST_IDEMPOTENCY_CONFLICT", null]}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.019.focus.02", "source_text": "Original run and control literals remain unchanged", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "ORIGINAL_RUN_UNCHANGED", "actual_selector": "original_run.hash_before|original_run.hash_after", "expected": {"literal": true}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.020",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.020",
+      "ordinal": 20,
+      "scenario_key": "n18_assembly_failed",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.n18_assembly_failed",
+      "catalog_scenario_pointer": "/scenarios/19",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.020.focus.01", "source_text": "E026 exists and E027 is absent", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "FIELD_EQUALS", "actual_selector": "trace.edge_plan", "expected": {"literal": {"contains": ["E026"], "excludes": ["E027"]}}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.020.focus.02", "source_text": "Existing upstream stubs are not promoted to a completed result", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "NO_STUB_PROMOTION", "actual_selector": "run.node[N18].status|run.run_status|run.result_kind", "expected": {"literal": ["FAILED", "FAILED", "FAILURE"]}, "severity": "BLOCKER"}
+      ]
+    },
+    {
+      "acceptance_case_id": "t01_phase1_mock_v01.acceptance.case.021",
+      "fixture_case_id": "t01_phase1_mock_v01.fixture.case.021",
+      "ordinal": 21,
+      "scenario_key": "n08_upstream_timed_out",
+      "scenario_ref": "t01_phase1_mock_v01.scenario.n08_upstream_timed_out",
+      "catalog_scenario_pointer": "/scenarios/20",
+      "inherited_global_assertion_ids": ["t01_phase1_mock_v01.acceptance.global.004", "t01_phase1_mock_v01.acceptance.global.009", "t01_phase1_mock_v01.acceptance.global.010", "t01_phase1_mock_v01.acceptance.global.011", "t01_phase1_mock_v01.acceptance.global.012", "t01_phase1_mock_v01.acceptance.global.013", "t01_phase1_mock_v01.acceptance.global.014"],
+      "focus_assertions": [
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.021.focus.01", "source_text": "No success edge E009 exists", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "EDGE_ABSENT", "actual_selector": "trace.edge_plan", "expected": {"literal": ["E009"]}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.021.focus.02", "source_text": "The timeout is injected by the scenario and never measured from wall-clock time", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "FIELD_EQUALS", "actual_selector": "run.node[N08].attempts[attempt_number=1].status|trace.timing_decision_source", "expected": {"literal": ["TIMED_OUT", "SCENARIO_LITERAL"]}, "severity": "BLOCKER"},
+        {"assertion_id": "t01_phase1_mock_v01.acceptance.case.021.focus.03", "source_text": "No control decision is inferred after the upstream terminal", "applies_to": ["M2_BACKEND", "M3_DIFY_MAIN", "M3_DIFY_DEBUG", "M4_REGRESSION_FREEZE"], "operator": "NO_CONTROL_AFTER_NODE", "actual_selector": "run.control|run.node[N08].status", "expected": {"literal": {"terminal_node": "N08", "control_state": "NOT_REACHED"}}, "severity": "BLOCKER"}
+      ]
+    }
+  ],
+  "coverage_gates": [
+    {"gate_id": "t01_phase1_mock_v01.coverage.happy_and_local_entry", "category": "NORMAL_AND_LOCAL_ENTRY", "required_scenario_keys": ["happy_provided_structure", "happy_no_structure_local_af3", "happy_no_structure_local_esmfold2"], "minimum_case_count": 3, "state": "SPEC_COVERAGE_VERIFIED"},
+    {"gate_id": "t01_phase1_mock_v01.coverage.gate_wt", "category": "GATE_AND_WT_DIRECT", "required_scenario_keys": ["gate_wt_direct"], "minimum_case_count": 1, "state": "SPEC_COVERAGE_VERIFIED"},
+    {"gate_id": "t01_phase1_mock_v01.coverage.n12_recalc", "category": "N12_CONTROLLED_RECALC", "required_scenario_keys": ["n12_pass_cycle_2", "n12_pass_cycle_3", "n12_recalc_exhausted"], "minimum_case_count": 3, "state": "SPEC_COVERAGE_VERIFIED"},
+    {"gate_id": "t01_phase1_mock_v01.coverage.n15_fallback", "category": "N15_WT_FALLBACK", "required_scenario_keys": ["n15_wt_fallback"], "minimum_case_count": 1, "state": "SPEC_COVERAGE_VERIFIED"},
+    {"gate_id": "t01_phase1_mock_v01.coverage.n16_n17_join", "category": "CONDITION_AND_TOLERANT_JOIN", "required_scenario_keys": ["n16_missing_expression_host", "n17_not_applicable", "n16_unsupported_expression_host", "n17_branch_failed", "n16_branch_timeout_partial"], "minimum_case_count": 5, "state": "SPEC_COVERAGE_VERIFIED"},
+    {"gate_id": "t01_phase1_mock_v01.coverage.upstream_terminal", "category": "UPSTREAM_FAILURE_AND_TIMEOUT", "required_scenario_keys": ["n08_upstream_tool_failed", "n01_local_prediction_failed_no_remote_fallback", "n08_upstream_timed_out"], "minimum_case_count": 3, "state": "SPEC_COVERAGE_VERIFIED"},
+    {"gate_id": "t01_phase1_mock_v01.coverage.cancel_recovery", "category": "CANCEL_AND_RECOVERY", "required_scenario_keys": ["run_cancelled_before_join", "n08_retryable_recovery"], "minimum_case_count": 2, "state": "SPEC_COVERAGE_VERIFIED"},
+    {"gate_id": "t01_phase1_mock_v01.coverage.idempotency", "category": "IDEMPOTENT_REPLAY_AND_CONFLICT", "required_scenario_keys": ["idempotent_replay", "idempotency_conflict"], "minimum_case_count": 2, "state": "SPEC_COVERAGE_VERIFIED"},
+    {"gate_id": "t01_phase1_mock_v01.coverage.n18_failure", "category": "N18_ASSEMBLY_FAILURE", "required_scenario_keys": ["n18_assembly_failed"], "minimum_case_count": 1, "state": "SPEC_COVERAGE_VERIFIED"},
+    {"gate_id": "t01_phase1_mock_v01.coverage.exclusion_and_isolation", "category": "OFFLINE_EXCLUSIONS_AND_LEGACY_ISOLATION", "required_scenario_keys": ["happy_no_structure_local_af3", "happy_no_structure_local_esmfold2", "n01_local_prediction_failed_no_remote_fallback"], "minimum_case_count": 3, "state": "SPEC_COVERAGE_VERIFIED"}
+  ],
+  "acceptance_policy": {
+    "all_assertions_are_blocking": true,
+    "warning_only_assertions_allowed": false,
+    "unknown_operator_policy": "REJECT",
+    "missing_selector_policy": "REJECT",
+    "missing_fixture_policy": "REJECT",
+    "catalog_mismatch_policy": "REJECT",
+    "runtime_pass_claim_before_execution": "FORBIDDEN",
+    "m4_freeze_requires": ["21_CASES_EXECUTED", "23_SUBMISSIONS_EXECUTED", "ZERO_BLOCKER_FAILURES", "MAIN_DEBUG_PARITY", "CURRENT_TESTS_PASS", "LEGACY_74_PASS", "S07_41_PASS"]
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "acceptance": {
+    "checks_passed": 10,
+    "rule_status": "PROVISIONAL_USER_APPROVED_EXPERT_PENDING",
+    "scientific_acceptance": "NOT_RUN",
+    "task6_nonproduction_acceptance": "PASS"
+  },
+  "campaign_id": "p0-s07-task6-acceptance-20260903-c",
+  "component": "S-07_STRUCTURE_ACQUISITION",
+  "contract_and_handoff_entries": [
+    {
+      "path": "docs/project/stages/p0/S07_TASK5_RESULT_CONTRACT.md",
+      "sha256": "8b017deb9ceb4a28aeb8f00a8d21c68f87db0972f2b3bb5d3b585127148cc99f",
+      "size_bytes": 15830
+    },
+    {
+      "path": "docs/project/stages/p0/S07_TASK5_RESULT_CONTRACT.schema.json",
+      "sha256": "13089c779b6fa8d6897b8abd636722cebc63de32594801ed14ad7b051cc1dc6d",
+      "size_bytes": 23510
+    },
+    {
+      "path": "docs/project/stages/p0/S07_LOCAL_DATA_AND_RUNTIME_PLAN.md",
+      "sha256": "25ab215623672b4d16dfaa5272c4a665113fcfd154833fcaefdb46808a472812",
+      "size_bytes": 18898
+    },
+    {
+      "path": "docs/project/stages/p0/S07_EXPERT_CONFIRMATIONS.md",
+      "sha256": "80c505f065a4e60a083804cb4d77f4088d16c1bc7be0a85237b3e153ea5a6d9c",
+      "size_bytes": 10682
+    },
+    {
+      "path": "docs/project/stages/p0/S07_TASK6_ACCEPTANCE_AND_HANDOFF.md",
+      "sha256": "170e7f7d221833cb33ba5f48d4266a4482889257ddf7b4e0ea3989a2cd7a5655",
+      "size_bytes": 9958
+    }
+  ],
+  "deployable": false,
+  "evidence": {
+    "acceptance_report": {
+      "path": "discovery/p0/s07/p0-s07-task6-acceptance-20260903-c/reports/task6_acceptance.json",
+      "sha256": "bc81d8ded1a8a56c25f5f1efe637ebcc9e7d6c4792cb3767f45ade69461db655",
+      "size_bytes": 37235
+    },
+    "original_artifact_manifest": {
+      "path": "discovery/p0/s07/p0-s07-task6-acceptance-20260903-c/reports/artifact_manifest.json",
+      "sha256": "84afb7fce98c46321b759e81c41c33af8bb067eeba18090b3d94e0c479ae7562",
+      "size_bytes": 37308
+    },
+    "runtime_dependency_matrix": {
+      "path": "discovery/p0/s07/p0-s07-task6-acceptance-20260903-c/reports/runtime_dependency_matrix.json",
+      "sha256": "11dd8fa68439a8943fb4f51d639a4c45c4f02721ae232a3a9a3c1d456768b4bc",
+      "size_bytes": 2092
+    }
+  },
+  "generated_at": "2026-09-03T03:24:20.581429Z",
+  "implementation_entries": [
+    {
+      "path": "src/t01_s07_acceptance/backend.py",
+      "sha256": "21c387082c80bf67a2245e22162565a46d3b72dfa193d0fd059914a82a56fd70",
+      "size_bytes": 13652
+    },
+    {
+      "path": "scripts/run_s07_task6_acceptance.py",
+      "sha256": "455963ae9b6f101e8740e0a4af424b84c087e4f204841ee166e74bbf2a3b59d3",
+      "size_bytes": 58459
+    },
+    {
+      "path": "scripts/run-s07-task6-windows.ps1",
+      "sha256": "b8cd4ee576bb92ad10b99c1503e69c7ff5e72400397787359c5d6ca8e8f978ad",
+      "size_bytes": 1148
+    },
+    {
+      "path": "scripts/verify_s07_task6_closeout.py",
+      "sha256": "75651efa444b2d83522dabec8c0d593bb6fa58e11b34b3ad48bd36b11a46846a",
+      "size_bytes": 25037
+    }
+  ],
+  "next_authorized_work": "Rewrite and review P0_IMPLEMENTATION_PLAN.md as v0.6 before production adapter work.",
+  "production_mode_enabled": false,
+  "release_gates": {
+    "dify_workflow": "NOT_DEPLOYED",
+    "expert_scientific_rules": "PENDING_5_ITEMS",
+    "mcp_adapter": "NOT_DEPLOYED",
+    "oi_017_production_job_runtime": "NOT_IMPLEMENTED_PENDING_V0_6",
+    "positive_blast_candidate_completeness": "BLOCKED_AT_PROFILE_CAP",
+    "s08_consumer": "NOT_DEPLOYED",
+    "s09_consumer": "NOT_DEPLOYED",
+    "target_server_local_profile": "HANDOFF_PENDING_RECEIVING_TEAM",
+    "task6_nonproduction_acceptance": "PASS"
+  },
+  "schema_version": "p0-s07-component-candidate.v1",
+  "status": "STAGED_ACCEPTANCE_EVIDENCE_ONLY"
+}

@@ -1,0 +1,137 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: t01-aggrescan3d-replace1
+  namespace: t01-phase1-real
+  labels: &id001
+    app.kubernetes.io/name: t01-phase1-real
+    app.kubernetes.io/component: scientific-job
+    t01.openai/tool: aggrescan3d
+  annotations: &id002
+    t01.openai/source-image-id: sha256:c9e5a38b7d7f22c0b76678c5135ec4bf1af47cf77e8c9547a3bb4b9f7f2e938b
+    t01.openai/not-submitted: 'true'
+    t01.openai/scientific-gate: CLOSED
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 900
+  ttlSecondsAfterFinished: 86400
+  template:
+    metadata:
+      labels: *id001
+      annotations: *id002
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      hostNetwork: false
+      hostPID: false
+      hostIPC: false
+      terminationGracePeriodSeconds: 10
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app.kubernetes.io/name: t01-phase1-real
+                app.kubernetes.io/component: control-plane
+            topologyKey: kubernetes.io/hostname
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      initContainers:
+      - name: stage-launcher
+        image: t01-phase1-real-control@sha256:cc131ca0e8a965d3f1b06f96963a7d3c320d70632e9b015d6cb4e0197a835b70
+        imagePullPolicy: IfNotPresent
+        command:
+        - python
+        - -B
+        - -c
+        args:
+        - import shutil; from pathlib import Path; shutil.copytree('/app/src/t01_phase1_real/development','/t01/launcher/development',dirs_exist_ok=True);
+          shutil.copytree('/app/src/t01_structure_mapping','/t01/launcher/code/t01_structure_mapping',dirs_exist_ok=True);
+          shutil.copy2('/app/docs/project/phase1/PHASE1_REAL_W1_FREESASA_PROFILE.json','/t01/launcher/profile.json')
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+        volumeMounts:
+        - name: launcher
+          mountPath: /t01/launcher
+        - name: tmp
+          mountPath: /tmp
+      containers:
+      - name: worker
+        image: replace-at-site.invalid/t01/aggrescan3d@sha256:0000000000000000000000000000000000000000000000000000000000000000
+        imagePullPolicy: IfNotPresent
+        command:
+        - /opt/conda/bin/python
+        - -B
+        - /t01/launcher/development/developability/a3d_worker.py
+        env:
+        - name: T01_TOOL_ASSET_ROOT
+          value: /t01/assets
+        - name: PYTHONUNBUFFERED
+          value: '1'
+        - name: PYTHONDONTWRITEBYTECODE
+          value: '1'
+        - name: HOME
+          value: /tmp
+        resources:
+          requests:
+            cpu: '2'
+            memory: 1Gi
+          limits:
+            cpu: '2'
+            memory: 1Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+        volumeMounts:
+        - name: runtime
+          mountPath: /input.json
+          subPath: executions/replace1/input.json
+          readOnly: true
+        - name: assets
+          mountPath: /t01/assets
+          readOnly: true
+        - name: launcher
+          mountPath: /t01/launcher
+          readOnly: true
+        - name: tmp
+          mountPath: /tmp
+        - name: runtime
+          mountPath: /input.pdb
+          subPath: executions/replace1/input/a3d-structure.pdb
+          readOnly: true
+        - name: runtime
+          mountPath: /out
+          subPath: executions/replace1/output/a3d-native
+      volumes:
+      - name: runtime
+        persistentVolumeClaim:
+          claimName: t01-phase1-real-runtime
+      - name: assets
+        persistentVolumeClaim:
+          claimName: t01-aggrescan3d-assets
+      - name: launcher
+        emptyDir:
+          sizeLimit: 4Mi
+      - name: tmp
+        emptyDir:
+          sizeLimit: 2Gi

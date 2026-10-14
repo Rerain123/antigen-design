@@ -1,0 +1,1310 @@
+app:
+  description: T-01 v10 阶段3、R-57与分支4调试流程。R-57跳过时不进入稳定性补救。
+  icon: 📊
+  icon_background: '#E8F5E9'
+  mode: workflow
+  name: T01_P3_WTDevelopability
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types: []
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: start
+        targetType: tool
+      id: edge_P3_START_source_P3_S36_SOLUBILITY
+      source: P3_START
+      sourceHandle: source
+      target: P3_S36_SOLUBILITY
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P3_S36_SOLUBILITY_source_P3_S36A_EXPRESSION
+      source: P3_S36_SOLUBILITY
+      sourceHandle: source
+      target: P3_S36A_EXPRESSION
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P3_S36A_EXPRESSION_source_P3_S37_AGGREGATION
+      source: P3_S36A_EXPRESSION
+      sourceHandle: source
+      target: P3_S37_AGGREGATION
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P3_S37_AGGREGATION_source_P3_S38_PH
+      source: P3_S37_AGGREGATION
+      sourceHandle: source
+      target: P3_S38_PH
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P3_S38_PH_source_P3_S39_TAG
+      source: P3_S38_PH
+      sourceHandle: source
+      target: P3_S39_TAG
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P3_S39_TAG_source_P3_S40_BASELINE
+      source: P3_S39_TAG
+      sourceHandle: source
+      target: P3_S40_BASELINE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P3_S40_BASELINE_source_P3_R57_GATE
+      source: P3_S40_BASELINE
+      sourceHandle: source
+      target: P3_R57_GATE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_P3_R57_GATE_source_P3_IF_CONTINUE
+      source: P3_R57_GATE
+      sourceHandle: source
+      target: P3_IF_CONTINUE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_P3_IF_CONTINUE_true_B4_GATE
+      source: P3_IF_CONTINUE
+      sourceHandle: 'true'
+      target: B4_GATE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_B4_GATE_source_B4_IF_RUN
+      source: B4_GATE
+      sourceHandle: source
+      target: B4_IF_RUN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_B4_IF_RUN_true_B4_S31_SCAN
+      source: B4_IF_RUN
+      sourceHandle: 'true'
+      target: B4_S31_SCAN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_B4_S31_SCAN_source_B4_TOP3_SCREEN
+      source: B4_S31_SCAN
+      sourceHandle: source
+      target: B4_TOP3_SCREEN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_B4_TOP3_SCREEN_source_B4_IF_SUCCESS
+      source: B4_TOP3_SCREEN
+      sourceHandle: source
+      target: B4_IF_SUCCESS
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_B4_IF_SUCCESS_true_B4_S08_PREDICT
+      source: B4_IF_SUCCESS
+      sourceHandle: 'true'
+      target: B4_S08_PREDICT
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_B4_S08_PREDICT_source_B4_S11_RSA
+      source: B4_S08_PREDICT
+      sourceHandle: source
+      target: B4_S11_RSA
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_B4_S11_RSA_source_B4_S09_QUALITY
+      source: B4_S11_RSA
+      sourceHandle: source
+      target: B4_S09_QUALITY
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: variable-aggregator
+      id: edge_P3_IF_CONTINUE_false_P3_RESULT_JOIN
+      source: P3_IF_CONTINUE
+      sourceHandle: 'false'
+      target: P3_RESULT_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: variable-aggregator
+      id: edge_B4_IF_RUN_false_P3_RESULT_JOIN
+      source: B4_IF_RUN
+      sourceHandle: 'false'
+      target: P3_RESULT_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: variable-aggregator
+      id: edge_B4_IF_SUCCESS_false_P3_RESULT_JOIN
+      source: B4_IF_SUCCESS
+      sourceHandle: 'false'
+      target: P3_RESULT_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: variable-aggregator
+      id: edge_B4_S09_QUALITY_source_P3_RESULT_JOIN
+      source: B4_S09_QUALITY
+      sourceHandle: source
+      target: P3_RESULT_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: variable-aggregator
+        targetType: end
+      id: edge_P3_RESULT_JOIN_source_P3_END
+      source: P3_RESULT_JOIN
+      sourceHandle: source
+      target: P3_END
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - variable: run_id
+          label: 运行 ID
+          type: text-input
+          required: true
+          max_length: 128
+          options: []
+        - variable: execution_mode
+          label: 执行模式
+          type: select
+          required: true
+          max_length: 128
+          options:
+          - mock
+      height: 154
+      id: P3_START
+      position:
+        x: 0
+        y: 220
+      positionAbsolute:
+        x: 0
+        y: 220
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: developability.predict_solubility · Predict solubility (mock only).
+        selected: false
+        title: S-36 溶解度
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-36 溶解度
+        tool_name: developability.predict_solubility
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P3_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-36
+          node_id:
+            type: constant
+            value: P3_S36_SOLUBILITY
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P3_START.run_id#}}:P3_S36_SOLUBILITY:attempt-1'
+      height: 98
+      id: P3_S36_SOLUBILITY
+      position:
+        x: 320
+        y: 300
+      positionAbsolute:
+        x: 320
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: developability.compute_expressibility · Compute expressibility features (mock only).
+        selected: false
+        title: S-36a 表达量
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-36a 表达量
+        tool_name: developability.compute_expressibility
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P3_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-36a
+          node_id:
+            type: constant
+            value: P3_S36A_EXPRESSION
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P3_START.run_id#}}:P3_S36A_EXPRESSION:attempt-1'
+      height: 98
+      id: P3_S36A_EXPRESSION
+      position:
+        x: 640
+        y: 300
+      positionAbsolute:
+        x: 640
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: developability.predict_aggregation · Predict aggregation propensity (mock only).
+        selected: false
+        title: S-37 聚集
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-37 聚集
+        tool_name: developability.predict_aggregation
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P3_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-37
+          node_id:
+            type: constant
+            value: P3_S37_AGGREGATION
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P3_START.run_id#}}:P3_S37_AGGREGATION:attempt-1'
+      height: 98
+      id: P3_S37_AGGREGATION
+      position:
+        x: 960
+        y: 300
+      positionAbsolute:
+        x: 960
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: developability.predict_ph_stability · Predict pH stability (mock only).
+        selected: false
+        title: S-38 pH稳定
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-38 pH稳定
+        tool_name: developability.predict_ph_stability
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P3_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-38
+          node_id:
+            type: constant
+            value: P3_S38_PH
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P3_START.run_id#}}:P3_S38_PH:attempt-1'
+      height: 98
+      id: P3_S38_PH
+      position:
+        x: 1280
+        y: 300
+      positionAbsolute:
+        x: 1280
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: developability.assess_tag_exposure · Assess tag exposure.
+        selected: false
+        title: S-39 标签暴露
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-39 标签暴露
+        tool_name: developability.assess_tag_exposure
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P3_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-39
+          node_id:
+            type: constant
+            value: P3_S39_TAG
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P3_START.run_id#}}:P3_S39_TAG:attempt-1'
+      height: 98
+      id: P3_S39_TAG
+      position:
+        x: 1600
+        y: 300
+      positionAbsolute:
+        x: 1600
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: developability.assess · Assemble baseline/coarse/final developability assessment.
+        selected: false
+        title: S-40 WT综合评估
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-40 WT综合评估
+        tool_name: developability.assess
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P3_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-40
+          node_id:
+            type: constant
+            value: P3_S40_BASELINE
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P3_START.run_id#}}:P3_S40_BASELINE:attempt-1'
+      height: 98
+      id: P3_S40_BASELINE
+      position:
+        x: 1920
+        y: 300
+      positionAbsolute:
+        x: 1920
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01.evaluate_design_applicability · Apply membrane and low-confidence design confirmation gates.
+        selected: false
+        title: R-57 设计适用域门控
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: R-57 设计适用域门控
+        tool_name: t01.evaluate_design_applicability
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P3_START
+            - run_id
+          step_id:
+            type: constant
+            value: R-57
+          node_id:
+            type: constant
+            value: P3_R57_GATE
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P3_S40_BASELINE
+            - data
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P3_START.run_id#}}:P3_R57_GATE:attempt-1'
+      height: 98
+      id: P3_R57_GATE
+      position:
+        x: 2240
+        y: 300
+      positionAbsolute:
+        x: 2240
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 允许继续设计?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: P3_IF_CONTINUE_condition
+            variable_selector:
+            - P3_R57_GATE
+            - data
+            - route
+            comparison_operator: is
+            value: CONTINUE
+            varType: string
+      height: 150
+      id: P3_IF_CONTINUE
+      position:
+        x: 2560
+        y: 300
+      positionAbsolute:
+        x: 2560
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01.route_stability_rescue · Run rescue only for poor non-membrane baseline.
+        selected: false
+        title: 分支4触发门控
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 分支4触发门控
+        tool_name: t01.route_stability_rescue
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P3_START
+            - run_id
+          step_id:
+            type: constant
+            value: B4
+          node_id:
+            type: constant
+            value: B4_GATE
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P3_S40_BASELINE
+            - data
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P3_START.run_id#}}:B4_GATE:attempt-1'
+      height: 98
+      id: B4_GATE
+      position:
+        x: 2880
+        y: 120
+      positionAbsolute:
+        x: 2880
+        y: 120
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 执行稳定性补救?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: B4_IF_RUN_condition
+            variable_selector:
+            - B4_GATE
+            - data
+            - route
+            comparison_operator: is
+            value: RUN_BRANCH4
+            varType: string
+      height: 150
+      id: B4_IF_RUN
+      position:
+        x: 3200
+        y: 120
+      positionAbsolute:
+        x: 3200
+        y: 120
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: stability.scan_mutations · Scan mutations (mock only).
+        selected: false
+        title: 分支4 S-31 饱和扫描
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 分支4 S-31 饱和扫描
+        tool_name: stability.scan_mutations
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P3_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-31
+          node_id:
+            type: constant
+            value: B4_S31_SCAN
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: rescue
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P3_START.run_id#}}:B4_S31_SCAN:attempt-1'
+      height: 98
+      id: B4_S31_SCAN
+      position:
+        x: 3520
+        y: 0
+      positionAbsolute:
+        x: 3520
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: stability.screen_rescue_top3 · Coarsely screen three rescue candidates (mock only).
+        selected: false
+        title: Top3 序列版粗筛
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: Top3 序列版粗筛
+        tool_name: stability.screen_rescue_top3
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P3_START
+            - run_id
+          step_id:
+            type: constant
+            value: B4-TOP3
+          node_id:
+            type: constant
+            value: B4_TOP3_SCREEN
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: rescue
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P3_START.run_id#}}:B4_TOP3_SCREEN:attempt-1'
+      height: 98
+      id: B4_TOP3_SCREEN
+      position:
+        x: 3840
+        y: 0
+      positionAbsolute:
+        x: 3840
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 补救成功?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: B4_IF_SUCCESS_condition
+            variable_selector:
+            - B4_TOP3_SCREEN
+            - data
+            - rescue_success
+            comparison_operator: is
+            value: true
+            varType: boolean
+      height: 150
+      id: B4_IF_SUCCESS
+      position:
+        x: 4160
+        y: 0
+      positionAbsolute:
+        x: 4160
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: structure.predict · Predict a structure (mock only in this service).
+        selected: false
+        title: 分支4 S-08 结构预测
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 分支4 S-08 结构预测
+        tool_name: structure.predict
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P3_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-08
+          node_id:
+            type: constant
+            value: B4_S08_PREDICT
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: rescue
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P3_START.run_id#}}:B4_S08_PREDICT:attempt-1'
+      height: 98
+      id: B4_S08_PREDICT
+      position:
+        x: 4480
+        y: -120
+      positionAbsolute:
+        x: 4480
+        y: -120
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: structure.compute_rsa · Compute RSA with sequence-alignment validation (mock only).
+        selected: false
+        title: 分支4 S-11 RSA
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 分支4 S-11 RSA
+        tool_name: structure.compute_rsa
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P3_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-11
+          node_id:
+            type: constant
+            value: B4_S11_RSA
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: rescue
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P3_START.run_id#}}:B4_S11_RSA:attempt-1'
+      height: 98
+      id: B4_S11_RSA
+      position:
+        x: 4800
+        y: -120
+      positionAbsolute:
+        x: 4800
+        y: -120
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: structure.assess_quality · Classify structure confidence as high, medium, or low.
+        selected: false
+        title: 分支4 S-09 质量重评
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 分支4 S-09 质量重评
+        tool_name: structure.assess_quality
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P3_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-09
+          node_id:
+            type: constant
+            value: B4_S09_QUALITY
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: rescue
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P3_START.run_id#}}:B4_S09_QUALITY:attempt-1'
+      height: 98
+      id: B4_S09_QUALITY
+      position:
+        x: 5120
+        y: -120
+      positionAbsolute:
+        x: 5120
+        y: -120
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: R-57与分支4结果汇合
+        type: variable-aggregator
+        advanced_settings:
+          group_enabled: false
+          groups: []
+        output_type: object
+        variables:
+        - - B4_S09_QUALITY
+          - json
+        - - B4_TOP3_SCREEN
+          - json
+        - - B4_GATE
+          - json
+        - - P3_R57_GATE
+          - json
+      height: 108
+      id: P3_RESULT_JOIN
+      position:
+        x: 5440
+        y: 300
+      positionAbsolute:
+        x: 5440
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 结束
+        type: end
+        outputs:
+        - variable: run_id
+          value_selector:
+          - P3_START
+          - run_id
+        - variable: stage_result
+          value_selector:
+          - P3_R57_GATE
+          - json
+        - variable: stage_route
+          value_selector:
+          - P3_R57_GATE
+          - data
+          - route
+        - variable: branch4_result
+          value_selector:
+          - P3_RESULT_JOIN
+          - output
+      height: 214
+      id: P3_END
+      position:
+        x: 5760
+        y: 300
+      positionAbsolute:
+        x: 5760
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    viewport:
+      x: 0
+      y: 0
+      zoom: 0.55
+  rag_pipeline_variables: []

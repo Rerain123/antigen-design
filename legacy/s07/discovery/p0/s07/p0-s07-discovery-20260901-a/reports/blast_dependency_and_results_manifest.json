@@ -1,0 +1,282 @@
+{
+  "schema_version": "p0-s07-blast-dependency-manifest.discovery.v0.1",
+  "campaign_id": "p0-s07-discovery-20260901-a",
+  "classification": "discovery_evidence",
+  "production_deployment_status": "NOT_DEPLOYED",
+  "tool": {
+    "name": "NCBI BLAST+",
+    "version": "2.17.0+",
+    "official_archive_url": "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.17.0/ncbi-blast-2.17.0+-x64-win64.tar.gz",
+    "official_md5_url": "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.17.0/ncbi-blast-2.17.0+-x64-win64.tar.gz.md5",
+    "archive": {
+      "workspace_relative_path": "var/discovery-tools/ncbi-blast-2.17.0/ncbi-blast-2.17.0+-x64-win64.tar.gz",
+      "storage_class": "workspace_ignored_discovery_dependency",
+      "size_bytes": 143400333,
+      "sha256": "ccde8788641e8f4137536aaadedfeac2f3599dbbc6166e701b5d89d19fa79038"
+    },
+    "official_md5": "dcd973097407a2910061ff4fb51b09fb",
+    "actual_md5": "dcd973097407a2910061ff4fb51b09fb",
+    "official_md5_matches": true
+  },
+  "database": {
+    "classification": "discovery_evidence",
+    "production_deployment_status": "NOT_DEPLOYED",
+    "database_role": "S-07 BLAST discovery structure-sequence database",
+    "generated_at": "2026-09-01T03:29:27.409705Z",
+    "source": {
+      "url": "https://files.wwpdb.org/pub/pdb/derived_data/pdb_seqres.txt.gz",
+      "last_modified": "2026-08-22T07:14:18Z",
+      "file_name": "pdb_seqres.txt.gz",
+      "size_bytes": 66543638,
+      "sha256": "e58353521f49336892fa583f0b0efb598e5b1cb482e5b6f33a9cb1f3e373c294"
+    },
+    "transformation": {
+      "rule": "keep FASTA records whose header contains mol:protein (case-insensitive)",
+      "script": "scripts/filter_wwpdb_protein_fasta.py"
+    },
+    "output": {
+      "logical_name": "pdb_seqres_protein.fasta",
+      "size_bytes": 386955714,
+      "sha256": "6da00091dd5e498ad0251dd49d09bf889ab8da649a681e398399bb75eb7ae5c6",
+      "record_count": 1090949,
+      "residue_count": 318599298,
+      "observed_sequence_characters": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z"
+      ]
+    }
+  },
+  "profile": {
+    "profile_id": "p0-s07-blast-discovery-v0.1",
+    "classification": "PROVISIONAL_DISCOVERY_PROFILE",
+    "production_approved": false,
+    "program": "blastp",
+    "program_version": "2.17.0+",
+    "database": {
+      "title": "wwpdb-pdb-seqres-protein-20260822",
+      "source_url": "https://files.wwpdb.org/pub/pdb/derived_data/pdb_seqres.txt.gz",
+      "source_last_modified": "2026-08-22T07:14:18Z",
+      "source_sha256": "e58353521f49336892fa583f0b0efb598e5b1cb482e5b6f33a9cb1f3e373c294",
+      "protein_records": 1090949,
+      "protein_residues": 318599298,
+      "blastdb_version": 5,
+      "taxdb_source_last_modified": "2026-08-31T15:26:19Z",
+      "taxdb_archive_sha256": "1ec18441f502859e073ed955c42c7cc5a56ebda67be035fda9a467c5d0d58eb4"
+    },
+    "search_parameters": {
+      "task": "blastp",
+      "evalue": 10.0,
+      "max_target_seqs": 100,
+      "num_threads": 8,
+      "archive_outfmt": 11
+    },
+    "derived_formats": {
+      "tabular_outfmt": "7 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qcovhsp qcovs qseq sseq stitle",
+      "json_outfmt": 15
+    },
+    "decision_boundary": "Parameters are selected only to observe real BLAST output shapes. They are not S-07 production thresholds or ranking policy."
+  },
+  "integrity_check": {
+    "exchange": {
+      "path": "evidence/blast/database-integrity-full-attempt-04/exchange.json",
+      "size_bytes": 1313,
+      "sha256": "9479aa54373963adbc400cb24620726a1cad4a366439c1c4cf8ad81e28afa410"
+    },
+    "exit_code": 0,
+    "result": "SUCCESS",
+    "taxdb_required_for_metadata_check": true
+  },
+  "cases": [
+    {
+      "case_id": "P0-DISC-001",
+      "hit_count": 100,
+      "result_cap": 100,
+      "result_was_capped": true,
+      "top_hit": {
+        "qseqid": "P0-DISC-001|1UBQ_1|ubiquitin|discovery_control",
+        "sseqid": "pdb|9egw|C",
+        "pident": 100.0,
+        "length": 76,
+        "mismatch": 0,
+        "gapopen": 0,
+        "qstart": 1,
+        "qend": 76,
+        "sstart": 13,
+        "send": 88,
+        "evalue": 3.11e-50,
+        "bitscore": 155.0,
+        "qcovhsp": 100.0,
+        "qcovs": 100.0,
+        "qseq": "MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG",
+        "sseq": "MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG",
+        "stitle": "mol:protein length:88  Polyubiquitin-C"
+      },
+      "artifacts": {
+        "archive": {
+          "path": "evidence/blast/P0-DISC-001/search/result.asn",
+          "size_bytes": 133078,
+          "sha256": "6c63b11bd13360bb76dbff8a075283339e711ca810daae102447210682fb314f"
+        },
+        "tabular": {
+          "path": "evidence/blast/P0-DISC-001/format-tabular/result.tsv",
+          "size_bytes": 30100,
+          "sha256": "84dd8977e3064f4b3e0eb825daaad6ef81d26ddee178497d11d9dedfc1d1fde0"
+        },
+        "json": {
+          "path": "evidence/blast/P0-DISC-001/format-json/result.json",
+          "size_bytes": 115332,
+          "sha256": "85c89d1d85b19ab54e9203ef42985c8de35df6e6a6ce8b985ff28f8ba512b677"
+        }
+      }
+    },
+    {
+      "case_id": "P0-DISC-002",
+      "hit_count": 100,
+      "result_cap": 100,
+      "result_was_capped": true,
+      "top_hit": {
+        "qseqid": "P0-DISC-002|UniProtKB_P04637|TP53_HUMAN|discovery_control",
+        "sseqid": "pdb|9r2q|N",
+        "pident": 100.0,
+        "length": 393,
+        "mismatch": 0,
+        "gapopen": 0,
+        "qstart": 1,
+        "qend": 393,
+        "sstart": 25,
+        "send": 417,
+        "evalue": 0.0,
+        "bitscore": 814.0,
+        "qcovhsp": 100.0,
+        "qcovs": 100.0,
+        "qseq": "MEEPQSDPSVEPPLSQETFSDLWKLLPENNVLSPLPSQAMDDLMLSPDDIEQWFTEDPGPDEAPRMPEAAPPVAPAPAAPTPAAPAPAPSWPLSSSVPSQKTYQGSYGFRLGFLHSGTAKSVTCTYSPALNKMFCQLAKTCPVQLWVDSTPPPGTRVRAMAIYKQSQHMTEVVRRCPHHERCSDSDGLAPPQHLIRVEGNLRVEYLDDRNTFRHSVVVPYEPPEVGSDCTTIHYNYMCNSSCMGGMNRRPILTIITLEDSSGNLLGRNSFEVRVCACPGRDRRTEEENLRKKGEPHHELPPGSTKRALPNNTSSSPQPKKKPLDGEYFTLQIRGRERFEMFRELNEALELKDAQAGKEPGGSRAHSSHLKSKKGQSTSRHKKLMFKTEGPDSD",
+        "sseq": "MEEPQSDPSVEPPLSQETFSDLWKLLPENNVLSPLPSQAMDDLMLSPDDIEQWFTEDPGPDEAPRMPEAAPPVAPAPAAPTPAAPAPAPSWPLSSSVPSQKTYQGSYGFRLGFLHSGTAKSVTCTYSPALNKMFCQLAKTCPVQLWVDSTPPPGTRVRAMAIYKQSQHMTEVVRRCPHHERCSDSDGLAPPQHLIRVEGNLRVEYLDDRNTFRHSVVVPYEPPEVGSDCTTIHYNYMCNSSCMGGMNRRPILTIITLEDSSGNLLGRNSFEVRVCACPGRDRRTEEENLRKKGEPHHELPPGSTKRALPNNTSSSPQPKKKPLDGEYFTLQIRGRERFEMFRELNEALELKDAQAGKEPGGSRAHSSHLKSKKGQSTSRHKKLMFKTEGPDSD",
+        "stitle": "mol:protein length:417  Cellular tumor antigen p53"
+      },
+      "artifacts": {
+        "archive": {
+          "path": "evidence/blast/P0-DISC-002/search/result.asn",
+          "size_bytes": 134842,
+          "sha256": "19fa1895a24daaa23776b74528700f05d1eace869ed40601643df3e1dd6954fa"
+        },
+        "tabular": {
+          "path": "evidence/blast/P0-DISC-002/format-tabular/result.tsv",
+          "size_bytes": 70256,
+          "sha256": "1116a9b00114a837b0f6c7c6a698d7e29640e74110befe3cd5a70d746e62501c"
+        },
+        "json": {
+          "path": "evidence/blast/P0-DISC-002/format-json/result.json",
+          "size_bytes": 173617,
+          "sha256": "222d2b31430dceb57cc0a9878c5b18d2395cfca0811add29755746072e55199c"
+        }
+      }
+    },
+    {
+      "case_id": "P0-DISC-003",
+      "hit_count": 100,
+      "result_cap": 100,
+      "result_was_capped": true,
+      "top_hit": {
+        "qseqid": "P0-DISC-004|UniProtKB_O15116|LSM1_HUMAN|discovery_control",
+        "sseqid": "pdb|6ppv|A",
+        "pident": 62.5,
+        "length": 72,
+        "mismatch": 27,
+        "gapopen": 0,
+        "qstart": 7,
+        "qend": 78,
+        "sstart": 15,
+        "send": 86,
+        "evalue": 1.15e-26,
+        "bitscore": 98.6,
+        "qcovhsp": 54.0,
+        "qcovs": 54.0,
+        "qseq": "TASLIEDIDKKHLVLLRDGRTLIGFLRSIDQFANLVLHQTVERIHVGKKYGDIPRGIFVVRGENVVLLGEID",
+        "sseq": "SGSLVDYVDRKVIVVLRDGKKLIGILRSFDQFANLMLQYTIERIYVDDMYGDIDRGVYIVRGENVVLLGELD",
+        "stitle": "mol:protein length:86  U6 snRNA-associated Sm-like protein LSm1"
+      },
+      "artifacts": {
+        "archive": {
+          "path": "evidence/blast/P0-DISC-003/search/result.asn",
+          "size_bytes": 163444,
+          "sha256": "7a2ca70e8fec30fde5e1bbc2c10aa8f97dc43dcf8304767fe486a63365336c8d"
+        },
+        "tabular": {
+          "path": "evidence/blast/P0-DISC-003/format-tabular/result.tsv",
+          "size_bytes": 33195,
+          "sha256": "57e28085186b2407772d5c1111072277957a57dcecee06380decfc985860de71"
+        },
+        "json": {
+          "path": "evidence/blast/P0-DISC-003/format-json/result.json",
+          "size_bytes": 117354,
+          "sha256": "b7a8183b650faa5f015bc6746767adb549caf29866b99ec00bce88195f285b10"
+        }
+      }
+    },
+    {
+      "case_id": "P0-DISC-005",
+      "hit_count": 42,
+      "result_cap": 100,
+      "result_was_capped": false,
+      "top_hit": {
+        "qseqid": "P0-DISC-005|RefSeq_WP_505187596.1|hypothetical_protein|discovery_control",
+        "sseqid": "pdb|4gin|A",
+        "pident": 28.0,
+        "length": 50,
+        "mismatch": 35,
+        "gapopen": 1,
+        "qstart": 5,
+        "qend": 53,
+        "sstart": 314,
+        "send": 363,
+        "evalue": 3.4,
+        "bitscore": 30.4,
+        "qcovhsp": 50.0,
+        "qcovs": 50.0,
+        "qseq": "REFEVTHLYEEKVQSFLDSVNAIDT-SIEWGWNTVVKGHEDDPDEFQGFG",
+        "sseq": "RALDRWHTIPRTLADFRQTIDKVDAIAGEYGWNTFFLGNHDNPRAVSHFG",
+        "stitle": "mol:protein length:584  Sucrose isomerase"
+      },
+      "artifacts": {
+        "archive": {
+          "path": "evidence/blast/P0-DISC-005/search/result.asn",
+          "size_bytes": 66337,
+          "sha256": "5c525003ce18565a2d7866b0421d7c33d2eb167d8d9d7fcd871f802ce11fe4c8"
+        },
+        "tabular": {
+          "path": "evidence/blast/P0-DISC-005/format-tabular/result.tsv",
+          "size_bytes": 11961,
+          "sha256": "954ca9390686b027975a2a07d7d4641e7e04ae3ff0eb79fbbce7a1cc5fda802f"
+        },
+        "json": {
+          "path": "evidence/blast/P0-DISC-005/format-json/result.json",
+          "size_bytes": 46110,
+          "sha256": "96e7a02cc29817e43d2cd5eabe96fe7dc3d82d3f8344de7579a66e29e89378b8"
+        }
+      }
+    }
+  ]
+}

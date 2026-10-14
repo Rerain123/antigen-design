@@ -1,0 +1,4 @@
+{
+  "resident/stderr.txt": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/backend/t01_phase1_real/development/esmfold2/worker.py\", line 53, in <module>\n    main()\n  File \"/backend/t01_phase1_real/development/esmfold2/worker.py\", line 21, in main\n    ensure(binding['input_sha256'] == sha(body_raw) and binding['execution_profile'] == policy.registered_profile(),\n  File \"/backend/t01_phase1_real/development/esmfold2/primitives.py\", line 17, in ensure\n    if not value: raise RuntimeFault(code, message)\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nt01_phase1_real.development.esmfold2.primitives.RuntimeFault: Bound input or worker implementation changed\n",
+  "resident/stdout.txt": ""
+}

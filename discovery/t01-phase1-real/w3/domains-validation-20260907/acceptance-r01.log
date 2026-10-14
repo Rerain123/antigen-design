@@ -1,0 +1,25 @@
+{"artifacts_verified":23,"case":"real-deeptmhmm","error_code":null,"job_id":"t01p1r-job-909c567f4a5144638a0d8fd144eaf0ab","state":"succeeded"}
+{"artifacts_verified":7,"case":"annotated-real-topology","error_code":null,"job_id":"t01p1r-job-74e42397d5874344a46b7d3733cd2608","state":"succeeded"}
+{"artifacts_verified":6,"case":"no-topology","error_code":null,"job_id":"t01p1r-job-b3e11205ca114f46b62ff97d9254b426","state":"succeeded"}
+{"artifacts_verified":6,"case":"empty-features","error_code":null,"job_id":"t01p1r-job-0b46c001a6d14416ab31cbd8f4a839e3","state":"succeeded"}
+{"artifacts_verified":6,"case":"no-hit","error_code":null,"job_id":"t01p1r-job-8120a0bed8bb44cfa96d5256eeb147de","state":"succeeded"}
+{"artifacts_verified":6,"case":"independent-motifs","error_code":null,"job_id":"t01p1r-job-f515d8fd8e54496c81c91ed9a19bf7f2","state":"succeeded"}
+{"artifacts_verified":6,"case":"unreviewed","error_code":null,"job_id":"t01p1r-job-9b048b2fddda4401818b004bccc8d9e9","state":"succeeded"}
+{"artifacts_verified":6,"case":"multiple","error_code":null,"job_id":"t01p1r-job-a11f97ce94fc417e98c21a46cbf8cb71","state":"succeeded"}
+{"artifacts_verified":6,"case":"explicit-mismatch","error_code":null,"job_id":"t01p1r-job-8674607b7738410295bd01c896a571c3","state":"succeeded"}
+{"artifacts_verified":6,"case":"parent-clipping-chain","error_code":null,"job_id":"t01p1r-job-88e1004ceec14508a443f8a7950c00a0","state":"succeeded"}
+{"artifacts_verified":33,"case":"structure-normal-cif","error_code":null,"job_id":"t01p1r-job-9019788793a54cf4b2066aeeb13e1f80","state":"succeeded"}
+Traceback (most recent call last):
+  File "D:\work\蛋白智能体\scripts\run_domains_acceptance.py", line 158, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "D:\work\蛋白智能体\scripts\run_domains_acceptance.py", line 111, in main
+    _,sv=run('geometry-'+case_name,sb)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work\蛋白智能体\scripts\run_domains_acceptance.py", line 74, in run
+    return record(name,job,state,error)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work\蛋白智能体\scripts\run_domains_acceptance.py", line 64, in record
+    assert job['state']==state and job['error_code']==error,(name,job['state'],job['error_code'],value and value['execution'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('geometry-normal-cif', 'failed', 'TOOL_FAILED', {'attempt_id': 't01p1r-attempt-66bdfbb85e0f4c11bf160b3180862414', 'backend': 'trusted-local-in-process', 'container_id': None, 'database_receipt': {'database_id': 'struct-normal-cif', 'files': [{'bytes': 209, 'path': 'entries.json', 'sha256': '8808506aaf5920e9ebea739f687080d09448d949095a7eb6ba9d83fec10d7738'}], 'manifest_sha256': 'cebcc5957a611cb3a1aa16c6f75f10e9e1798444eecccc0306f2b40cff1d91e2', 'qualification': 'ENGINEERING_FIXTURE', 'source': {'license': 'Project engineering fixture', 'name': 'Synthetic local UniProt-shaped annotations', 'reference': 'scripts/run_domains_acceptance.py; reviewed flag tests routing only', 'release_date': '2026-09-07', 'version': '20260907'}}, 'diagnostic': "'declared_format'", 'elapsed_seconds': 0.03476819999923464, 'error_code': 'TOOL_FAILED', 'execution_identity': 'exec-t01p1r-attempt-8c1504163e4f44979b80bd243b0af2ba', 'exit_code': 1, 'job_id': 't01p1r-job-8ed2a48d2e3a4f438937a0ae69138307', 'network_used': False, 'recovered': False, 'source_receipts': {'structure': {'artifact': {'artifact_id': 't01p1r-artifact-76eab6e3dce34f799b3fbd077b12e9e7', 'attempt_id': 't01p1r-attempt-d59492b27aed483eae1607f9d55acb97', 'evidence_kind': 'G0_REAL_OUTPUT', 'job_id': 't01p1r-job-9019788793a54cf4b2066aeeb13e1f80', 'media_type': 'application/json', 'role': 'result', 'run_id': 't01p1r-run-2368bdc3cb934a40a2d5258ff982138c', 'sha256': 'e3dbf33ed0ae0424bb0ae33e6129a4acc5a54c5426d54ff1cd2db2d777b4f3bb', 'size_bytes': 32921}, 'coordinate_space': 'mature', 'state': 'available', 'verified': True}, 'topology': {'artifact': None, 'state': 'not_provided', 'verified': True}}, 'stopped_confirmed': True})

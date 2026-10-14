@@ -1,0 +1,112 @@
+{
+  "status": "LOCAL_IMPLEMENTED_AND_TESTED_NOT_DEPLOYED",
+  "updated_at": "2026-10-09T08:14:17.951928+00:00",
+  "source_bundle": {
+    "manifest_sha256": "a987d7c01640a6768cf955668fc701f6b360f7318b5e94481d80abf140ae58cb",
+    "archive_sha256": "2b3339c82a73e2af12660b265f67105416c72e11c84d8f9e5f4654c62a893c53",
+    "archive_bytes": 784295,
+    "files": 268
+  },
+  "preserved": {
+    "previous_267_project_source_files_byte_identical": true,
+    "expert_originals": {
+      "version": "expert-feedback-20261009-v1",
+      "receipt_sha256": "0b4df758934d408a919b5865a59a7919f65f9b6273da28afc6f337bfee43b622",
+      "handoff_sha256": "3228fb81dd29a4bfb7850433d4b248377a2c39cfd18e250c309aa830224dad82"
+    },
+    "archived_run_evidence_unchanged": true,
+    "scientific_commands_images_and_assets_unchanged": true
+  },
+  "behavior": {
+    "idle_gpu_replicas": 0,
+    "cpu_gpu_requests": 0,
+    "controller_initial_replicas": 0,
+    "drains_existing_three_spools": true,
+    "new_arrivals_after_quiescence_wait_for_next_session": true,
+    "prestart_cancel_requires_no_gpu": true,
+    "uncertain_execution_not_replayed": true,
+    "uncertain_sessions_release_then_block_recovery": true,
+    "shared_rwo_volumes_keep_same_node": true,
+    "cpu_device_visibility": "void",
+    "normal_queue_drain_requires_quiescence_then_pod_deletion": true,
+    "cancellation_and_fault_release": "Scale down to stop the Pod; do not allocate a replacement until Pod deletion; uncertain science stays blocked"
+  },
+  "tests": {
+    "scope": "AFFECTED_TESTS_ONLY",
+    "passed": 98,
+    "skipped": 14,
+    "total": 112,
+    "linux_synthetic_probe": {
+      "status": "PASS",
+      "exit_code": 0,
+      "image_id": "sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84",
+      "actual_gpu_used": false,
+      "kubernetes_operations": 0,
+      "probe": {
+        "status": "PASS",
+        "qualification": "LOCAL_LINUX_SYNTHETIC_LIFECYCLE",
+        "checks": [
+          "quiescent_worker_parks",
+          "late_arrival_waits_for_new_session",
+          "previous_execution_not_replayed",
+          "prestart_cancel_without_gpu",
+          "sigterm_stops_real_process_tree"
+        ],
+        "stopped_descendant_state": "Z",
+        "actual_gpu_used": false,
+        "kubernetes_operations": 0,
+        "scientific_model_executions": 0
+      }
+    },
+    "full_root_suite_rerun": false,
+    "legacy_mock_s07_business_suites_rerun": false
+  },
+  "historical_attempts": {
+    "first_linux_probe": "FAIL: asserted absence of /proc child entry; final probe verified Z (stopped zombie), not an executing descendant",
+    "first_targeted": "97 passed / 14 skipped; pytest cache permission warning",
+    "prior_attempt_receipts_preserved": true
+  },
+  "deployment": {
+    "performed": false,
+    "cluster_mutations": 0,
+    "new_scientific_jobs": 0,
+    "cancelled_jobs_resumed": 0,
+    "last_observed_generation": 148,
+    "live_source_unchanged": true,
+    "actual_gpu_release_verified": false,
+    "reason": "User deployment pause remains in force; target lifecycle acceptance not performed",
+    "role_creation": "no",
+    "role_binding_creation": "no",
+    "preparation": "deploy/gpu-on-demand/r03/preparation.json"
+  },
+  "limitations": [
+    "Dedicated Role/RoleBinding must be provisioned by authorized platform administrator",
+    "Target lifecycle and shared-volume/API connectivity acceptance remain unverified",
+    "Abnormal lost/failed Pods or uncertain receipts require recovery; no automatic scientific replay",
+    "Scaling to zero requests release but cannot repair an external HAMi stale allocation",
+    "Future GPU work must reacquire its allocated card and may wait for other users"
+  ],
+  "scientific_consumption": "CLOSED",
+  "production_qualification": "NOT_DEPLOYED",
+  "evidence_hashes": {
+    "src/t01_phase1_real/gpu_on_demand.py": "bb035bebcfa43088ef07b484b4324eb62b5568e8f17a2946dc673e2563ab802a",
+    "scripts/prepare_gpu_on_demand.py": "b230cc6f1eeebd6a0bdba4c7923e2f9341724781f6533c12570f451c5cd7b2a7",
+    "scripts/probe_gpu_on_demand.py": "1e1e10feca38e8747a57deeb5309f45408efa340f16ca1e804ffc82c8c5d75ef",
+    "tests/test_gpu_on_demand.py": "fb08ac6576111c4b46be59d9fd92d80866a0f6b4b06cd48307d4828e42f45b27",
+    "reports/gpu-on-demand-20261009/targeted-r03.xml": "659540bce2d67f062b5195251385912154387d7176c5bb25a482db967689dfe9",
+    "reports/gpu-on-demand-20261009/linux-probe-r02.json": "bb383ee035998b93855b28d49790e070faba3a348db09a34cb6e67fd3c250650",
+    "deploy/gpu-on-demand/r03/objects.json": "7b8d22a3181d16ca047f6c457c6c54fdb49970a73f23e585bd03df9892de7ba0",
+    "deploy/gpu-on-demand/r03/cpu.patch.json": "bd5da5cb80c52365dbebf37c25a2bd8a4e65b01dcf8e9898ed76752a76cf8e6d",
+    "deploy/gpu-on-demand/r03/rollback.patch.json": "cf48160baa3ae9bf018842b54cc24ff0576aeee5fdcf7a22ff35dc844bd2c937",
+    "deploy/gpu-on-demand/r03/source-manifest.json": "a987d7c01640a6768cf955668fc701f6b360f7318b5e94481d80abf140ae58cb"
+  },
+  "docs": {
+    "status": "PASS_WITH_HISTORICAL_LINK_ISSUES",
+    "errors": [],
+    "historical_reference_count": 31,
+    "implementation_docs_modified": [
+      "docs/project/STATUS.md"
+    ],
+    "status_sha256": "fddb00fffaa1266de3b903baad68aa56a00e53ba4d39ca981cfd6ca1e486067e"
+  }
+}

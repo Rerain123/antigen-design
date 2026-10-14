@@ -1,0 +1,672 @@
+app:
+  description: T-01 v10 阶段2调试流程；上下文入口只补跑S-16，完整入口执行S-13至S-16。
+  icon: 🧭
+  icon_background: '#E8F5E9'
+  mode: workflow
+  name: T01_P2_ConservationDomain
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types: []
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: start
+        targetType: if-else
+      id: edge_P2_START_source_P2_IF_CONTEXT
+      source: P2_START
+      sourceHandle: source
+      target: P2_IF_CONTEXT
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_P2_IF_CONTEXT_false_P2_S13_HOMOLOGS
+      source: P2_IF_CONTEXT
+      sourceHandle: 'false'
+      target: P2_S13_HOMOLOGS
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P2_S13_HOMOLOGS_source_P2_S14_CONSERVATION
+      source: P2_S13_HOMOLOGS
+      sourceHandle: source
+      target: P2_S14_CONSERVATION
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P2_S14_CONSERVATION_source_P2_S15_REGIONS
+      source: P2_S14_CONSERVATION
+      sourceHandle: source
+      target: P2_S15_REGIONS
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P2_S15_REGIONS_source_P2_R11_TYPING
+      source: P2_S15_REGIONS
+      sourceHandle: source
+      target: P2_R11_TYPING
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P2_R11_TYPING_source_P2_S16_DOMAINS_FULL
+      source: P2_R11_TYPING
+      sourceHandle: source
+      target: P2_S16_DOMAINS_FULL
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_P2_IF_CONTEXT_true_P2_S16_DOMAINS_CONTEXT
+      source: P2_IF_CONTEXT
+      sourceHandle: 'true'
+      target: P2_S16_DOMAINS_CONTEXT
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: variable-aggregator
+      id: edge_P2_S16_DOMAINS_FULL_source_P2_RESULT_JOIN
+      source: P2_S16_DOMAINS_FULL
+      sourceHandle: source
+      target: P2_RESULT_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: variable-aggregator
+      id: edge_P2_S16_DOMAINS_CONTEXT_source_P2_RESULT_JOIN
+      source: P2_S16_DOMAINS_CONTEXT
+      sourceHandle: source
+      target: P2_RESULT_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: variable-aggregator
+        targetType: end
+      id: edge_P2_RESULT_JOIN_source_P2_END
+      source: P2_RESULT_JOIN
+      sourceHandle: source
+      target: P2_END
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - variable: run_id
+          label: 运行 ID
+          type: text-input
+          required: true
+          max_length: 128
+          options: []
+        - variable: execution_mode
+          label: 执行模式
+          type: select
+          required: true
+          max_length: 128
+          options:
+          - mock
+        - variable: entry_mode
+          label: 入口模式
+          type: select
+          required: true
+          max_length: 128
+          options:
+          - full
+          - context_only
+      height: 196
+      id: P2_START
+      position:
+        x: 0
+        y: 220
+      positionAbsolute:
+        x: 0
+        y: 220
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 仅补跑 S-16?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: P2_IF_CONTEXT_condition
+            variable_selector:
+            - P2_START
+            - entry_mode
+            comparison_operator: is
+            value: context_only
+            varType: string
+      height: 150
+      id: P2_IF_CONTEXT
+      position:
+        x: 320
+        y: 240
+      positionAbsolute:
+        x: 320
+        y: 240
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: conservation.collect_homologs · Collect homologs and confidence (mock only).
+        selected: false
+        title: S-13 同源收集
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-13 同源收集
+        tool_name: conservation.collect_homologs
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P2_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-13
+          node_id:
+            type: constant
+            value: P2_S13_HOMOLOGS
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P2_START.run_id#}}:P2_S13_HOMOLOGS:attempt-1'
+      height: 98
+      id: P2_S13_HOMOLOGS
+      position:
+        x: 640
+        y: 420
+      positionAbsolute:
+        x: 640
+        y: 420
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: conservation.compute · Compute per-position conservation (mock only).
+        selected: false
+        title: S-14 保守性计算
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-14 保守性计算
+        tool_name: conservation.compute
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P2_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-14
+          node_id:
+            type: constant
+            value: P2_S14_CONSERVATION
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P2_START.run_id#}}:P2_S14_CONSERVATION:attempt-1'
+      height: 98
+      id: P2_S14_CONSERVATION
+      position:
+        x: 960
+        y: 420
+      positionAbsolute:
+        x: 960
+        y: 420
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: conservation.extract_regions · Extract conserved regions.
+        selected: false
+        title: S-15 保守区提取
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-15 保守区提取
+        tool_name: conservation.extract_regions
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P2_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-15
+          node_id:
+            type: constant
+            value: P2_S15_REGIONS
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P2_START.run_id#}}:P2_S15_REGIONS:attempt-1'
+      height: 98
+      id: P2_S15_REGIONS
+      position:
+        x: 1280
+        y: 420
+      positionAbsolute:
+        x: 1280
+        y: 420
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: conservation.analyze_within_type · Run within-type degradation analysis.
+        selected: false
+        title: R-11 分型内分析
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: R-11 分型内分析
+        tool_name: conservation.analyze_within_type
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P2_START
+            - run_id
+          step_id:
+            type: constant
+            value: R-11
+          node_id:
+            type: constant
+            value: P2_R11_TYPING
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P2_S13_HOMOLOGS
+            - data
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P2_START.run_id#}}:P2_R11_TYPING:attempt-1'
+      height: 98
+      id: P2_R11_TYPING
+      position:
+        x: 1600
+        y: 420
+      positionAbsolute:
+        x: 1600
+        y: 420
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: domain.identify · Identify domains and four-component core_map (mock only).
+        selected: false
+        title: S-16 功能域识别
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-16 功能域识别
+        tool_name: domain.identify
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P2_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-16
+          node_id:
+            type: constant
+            value: P2_S16_DOMAINS_FULL
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P2_START.run_id#}}:P2_S16_DOMAINS_FULL:attempt-1'
+      height: 98
+      id: P2_S16_DOMAINS_FULL
+      position:
+        x: 1920
+        y: 420
+      positionAbsolute:
+        x: 1920
+        y: 420
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: domain.identify · Identify domains and four-component core_map (mock only).
+        selected: false
+        title: 0b 补跑 S-16
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 0b 补跑 S-16
+        tool_name: domain.identify
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P2_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-16
+          node_id:
+            type: constant
+            value: P2_S16_DOMAINS_CONTEXT
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P2_START.run_id#}}:P2_S16_DOMAINS_CONTEXT:attempt-1'
+      height: 98
+      id: P2_S16_DOMAINS_CONTEXT
+      position:
+        x: 960
+        y: 60
+      positionAbsolute:
+        x: 960
+        y: 60
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 阶段2结果汇合
+        type: variable-aggregator
+        advanced_settings:
+          group_enabled: false
+          groups: []
+        output_type: object
+        variables:
+        - - P2_S16_DOMAINS_FULL
+          - json
+        - - P2_S16_DOMAINS_CONTEXT
+          - json
+      height: 108
+      id: P2_RESULT_JOIN
+      position:
+        x: 2240
+        y: 240
+      positionAbsolute:
+        x: 2240
+        y: 240
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 结束
+        type: end
+        outputs:
+        - variable: run_id
+          value_selector:
+          - P2_START
+          - run_id
+        - variable: stage_result
+          value_selector:
+          - P2_RESULT_JOIN
+          - output
+      height: 142
+      id: P2_END
+      position:
+        x: 2560
+        y: 240
+      positionAbsolute:
+        x: 2560
+        y: 240
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    viewport:
+      x: 0
+      y: 0
+      zoom: 0.55
+  rag_pipeline_variables: []

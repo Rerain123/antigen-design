@@ -1,0 +1,35 @@
+{
+  "checked_at": "2026-10-10T02:44:48.422629+00:00",
+  "operations": [
+    {
+      "command": [
+        "patch",
+        "deployment",
+        "antigen-design",
+        "--type=json",
+        "--patch-file",
+        "deploy/gpu-on-demand/r08/cpu.patch.json",
+        "--dry-run=server",
+        "-o",
+        "name"
+      ],
+      "exit_code": 0,
+      "stdout": "deployment.apps/antigen-design\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "create",
+        "-f",
+        "deploy/gpu-on-demand/r08/workloads.json",
+        "--dry-run=server",
+        "-o",
+        "name"
+      ],
+      "exit_code": 0,
+      "stdout": "configmap/antigen-source-bcd79cb8ce17874b\nconfigmap/antigen-source-bcd79cb8ce17874b-part1\nconfigmap/antigen-source-bcd79cb8ce17874b-meta\nconfigmap/antigen-gpu-assigned-76fc9d9453aa\ndeployment.apps/antigen-design-worker-structure\ndeployment.apps/antigen-design-worker-deeptmhmm\ndeployment.apps/antigen-design-worker-bepipred\ndeployment.apps/antigen-design-worker-netmhc\ndeployment.apps/antigen-design-worker-blast\ndeployment.apps/antigen-design-worker-homology\ndeployment.apps/antigen-design-worker-foldx\ndeployment.apps/antigen-design-worker-aggrescan3d\nconfigmap/antigen-design-gpu-controller-fd70ddf623d1\nnetworkpolicy.networking.k8s.io/antigen-design-gpu-demand-offline\ndeployment.apps/antigen-design-gpu-demand\ndeployment.apps/antigen-design-gpu-controller\n",
+      "stderr": ""
+    }
+  ],
+  "cluster_mutations": 0
+}

@@ -1,0 +1,139 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: t01-blast-replace1
+  namespace: t01-phase1-real
+  labels: &id001
+    app.kubernetes.io/name: t01-phase1-real
+    app.kubernetes.io/component: scientific-job
+    t01.openai/tool: blast
+  annotations: &id002
+    t01.openai/source-image-id: sha256:81f118d2e4f7e11494d27fdbb99c9430423105afff50c4ae158db41d58a3fc57
+    t01.openai/not-submitted: 'true'
+    t01.openai/scientific-gate: CLOSED
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 900
+  ttlSecondsAfterFinished: 86400
+  template:
+    metadata:
+      labels: *id001
+      annotations: *id002
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      hostNetwork: false
+      hostPID: false
+      hostIPC: false
+      terminationGracePeriodSeconds: 10
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app.kubernetes.io/name: t01-phase1-real
+                app.kubernetes.io/component: control-plane
+            topologyKey: kubernetes.io/hostname
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      initContainers:
+      - name: stage-launcher
+        image: t01-phase1-real-control@sha256:cc131ca0e8a965d3f1b06f96963a7d3c320d70632e9b015d6cb4e0197a835b70
+        imagePullPolicy: IfNotPresent
+        command:
+        - python
+        - -B
+        - -c
+        args:
+        - import shutil; from pathlib import Path; shutil.copytree('/app/src/t01_phase1_real/development','/t01/launcher/development',dirs_exist_ok=True);
+          shutil.copytree('/app/src/t01_structure_mapping','/t01/launcher/code/t01_structure_mapping',dirs_exist_ok=True);
+          shutil.copy2('/app/docs/project/phase1/PHASE1_REAL_W1_FREESASA_PROFILE.json','/t01/launcher/profile.json')
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+        volumeMounts:
+        - name: launcher
+          mountPath: /t01/launcher
+        - name: tmp
+          mountPath: /tmp
+      containers:
+      - name: worker
+        image: replace-at-site.invalid/t01/blast@sha256:0000000000000000000000000000000000000000000000000000000000000000
+        imagePullPolicy: IfNotPresent
+        command:
+        - python3
+        - -B
+        - /t01/launcher/development/blast/worker.py
+        env:
+        - name: T01_TOOL_ASSET_ROOT
+          value: /t01/assets
+        - name: PYTHONUNBUFFERED
+          value: '1'
+        - name: PYTHONDONTWRITEBYTECODE
+          value: '1'
+        resources:
+          requests:
+            cpu: '2'
+            memory: 2Gi
+          limits:
+            cpu: '2'
+            memory: 2Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+        volumeMounts:
+        - name: runtime
+          mountPath: /input.json
+          subPath: executions/replace1/input.json
+          readOnly: true
+        - name: runtime
+          mountPath: /input.fasta
+          subPath: executions/replace1/input.fasta
+          readOnly: true
+        - name: runtime
+          mountPath: /out
+          subPath: executions/replace1/output
+        - name: assets
+          mountPath: /t01/assets
+          readOnly: true
+        - name: launcher
+          mountPath: /t01/launcher
+          readOnly: true
+        - name: tmp
+          mountPath: /tmp
+        - name: assets
+          mountPath: /database
+          subPath: database
+          readOnly: true
+      volumes:
+      - name: runtime
+        persistentVolumeClaim:
+          claimName: t01-phase1-real-runtime
+      - name: assets
+        persistentVolumeClaim:
+          claimName: t01-blast-assets
+      - name: launcher
+        emptyDir:
+          sizeLimit: 4Mi
+      - name: tmp
+        emptyDir:
+          sizeLimit: 2Gi

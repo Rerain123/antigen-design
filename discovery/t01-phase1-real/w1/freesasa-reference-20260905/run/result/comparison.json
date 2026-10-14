@@ -1,0 +1,4734 @@
+{
+  "scope": "NUMERICAL_REFERENCE_AND_CONVERGENCE_ONLY",
+  "recorded_at": "2026-09-05T07:15:05.234259+00:00",
+  "freesasa_version": "2.2.1",
+  "biopython_version": "1.88",
+  "freesasa_module": {
+    "path": "/usr/local/lib/python3.11/site-packages/freesasa.cpython-311-x86_64-linux-gnu.so",
+    "sha256": "218450bc4d196da9cf99c5b210ff0cb1e4a70c1c9378ce3933e8b892804cfd91",
+    "bytes": 2253008
+  },
+  "biopython_sasa_source": {
+    "path": "/usr/local/lib/python3.11/site-packages/Bio/PDB/SASA.py",
+    "sha256": "f083c039273fe14860869c30aff9f48642a4c5931f43cb0b089f4ec644c94f4f",
+    "bytes": 8505
+  },
+  "input": {
+    "path": "/input/1UBQ.pdb",
+    "sha256": "590efc8b4ed6b9881b8caae7a8e5f08faec514ba316066daf8fc7f2defe52fa3",
+    "bytes": 53549
+  },
+  "reference_spec": {
+    "path": "/reference_spec.json",
+    "sha256": "c70cd93f2339bb9104be6db559b4d413dcc694c42010f0a328b164cdbac7f168",
+    "bytes": 2654
+  },
+  "probe_source": {
+    "path": "/compare_reference.py",
+    "sha256": "a320230ba8f5bc7f88d2ab9bbbd0542e8365bd438e4488f8454d4dcae20506e9",
+    "bytes": 8362
+  },
+  "network_interfaces": [
+    "lo"
+  ],
+  "comparisons": [
+    {
+      "left": "FreeSASA-LR-20",
+      "right": "Biopython-SR-15360",
+      "total_delta_a2": -1.4185185748692675,
+      "total_relative_error": 0.00029518805589684406,
+      "max_abs_residue_sasa_delta_a2": 2.1652223861950546,
+      "max_abs_rsa_delta": 0.009174671127945178,
+      "p95_abs_rsa_delta": 0.005294231482641187,
+      "buried_classification_differences": [],
+      "residue_comparison": [
+        {
+          "chain": "A",
+          "residue_number": "1",
+          "residue_name": "MET",
+          "delta_sasa_a2": -1.1658586120751337,
+          "delta_rsa": -0.005204725946763994,
+          "left_rsa": 0.2428281601850797,
+          "right_rsa": 0.24803288613184368,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "2",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -1.792831251365115,
+          "delta_rsa": -0.007968138894956067,
+          "left_rsa": 0.32983158391151685,
+          "right_rsa": 0.3377997228064729,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "3",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "4",
+          "residue_name": "PHE",
+          "delta_sasa_a2": 0.625155598830375,
+          "delta_rsa": 0.0026048149951265476,
+          "left_rsa": 0.2282017533953611,
+          "right_rsa": 0.22559693840023456,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "5",
+          "residue_name": "VAL",
+          "delta_sasa_a2": -0.008607412625463943,
+          "delta_rsa": -4.946788865209163e-05,
+          "left_rsa": 1.116567772088841e-06,
+          "right_rsa": 5.058445642418047e-05,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "6",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -2.1652223861950546,
+          "delta_rsa": -0.009174671127945178,
+          "left_rsa": 0.42408415218632406,
+          "right_rsa": 0.43325882331426924,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "7",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.5808077106932075,
+          "delta_rsa": 0.0033767890156581742,
+          "left_rsa": 0.12299854961643515,
+          "right_rsa": 0.11962176060077698,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "8",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.3903364499153952,
+          "delta_rsa": 0.001941972387638824,
+          "left_rsa": 0.6819286592235821,
+          "right_rsa": 0.6799866868359433,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "9",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.28228383481742014,
+          "delta_rsa": 0.001641185086147856,
+          "left_rsa": 0.7273654191340321,
+          "right_rsa": 0.7257242340478842,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "10",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.5612712166980884,
+          "delta_rsa": -0.0053968386220970554,
+          "left_rsa": 0.6492731047548439,
+          "right_rsa": 0.654669943376941,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "11",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 0.46750965842066705,
+          "delta_rsa": 0.0019809731289011645,
+          "left_rsa": 0.43785095136681534,
+          "right_rsa": 0.4358699782379142,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "12",
+          "residue_name": "THR",
+          "delta_sasa_a2": -0.6178958099092569,
+          "delta_rsa": -0.0035924174994724223,
+          "left_rsa": 0.36482408794323357,
+          "right_rsa": 0.368416505442706,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "13",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.06240372006724382,
+          "delta_rsa": 0.00031677015262560407,
+          "left_rsa": 0.024532602215831752,
+          "right_rsa": 0.02421583206320615,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "14",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.20913207502074727,
+          "delta_rsa": 0.001215884157097391,
+          "left_rsa": 0.3610475857471202,
+          "right_rsa": 0.3598317015900228,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "15",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.5967959688788849,
+          "delta_rsa": -0.002969134173526792,
+          "left_rsa": 0.03075224042769836,
+          "right_rsa": 0.03372137460122515,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "16",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.033110998026529614,
+          "delta_rsa": -0.00014847981177823488,
+          "left_rsa": 0.6268731981422614,
+          "right_rsa": 0.6270216779540396,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "17",
+          "residue_name": "VAL",
+          "delta_sasa_a2": 0.1301497419404729,
+          "delta_rsa": 0.0007479870226463972,
+          "left_rsa": 0.03344209358756317,
+          "right_rsa": 0.032694106564916774,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "18",
+          "residue_name": "GLU",
+          "delta_sasa_a2": 0.4754447742048171,
+          "delta_rsa": 0.0021320393462099796,
+          "left_rsa": 0.4501908872035087,
+          "right_rsa": 0.4480588478572987,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "19",
+          "residue_name": "PRO",
+          "delta_sasa_a2": 0.13464548005336496,
+          "delta_rsa": 0.000846826918574628,
+          "left_rsa": 0.31804000140936967,
+          "right_rsa": 0.31719317449079504,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "20",
+          "residue_name": "SER",
+          "delta_sasa_a2": -0.00394736281955943,
+          "delta_rsa": -2.5466856900413504e-05,
+          "left_rsa": 0.5347359411241952,
+          "right_rsa": 0.5347614079810956,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "21",
+          "residue_name": "ASP",
+          "delta_sasa_a2": 0.0741027691901266,
+          "delta_rsa": 0.00038395217196957043,
+          "left_rsa": 0.16446737466914782,
+          "right_rsa": 0.16408342249717825,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "22",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.32830122824617547,
+          "delta_rsa": 0.0019087280711986843,
+          "left_rsa": 0.2858125821034558,
+          "right_rsa": 0.2839038540322571,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "23",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "24",
+          "residue_name": "GLU",
+          "delta_sasa_a2": 0.060689881489835784,
+          "delta_rsa": 0.0002721519349319079,
+          "left_rsa": 0.5243162986999991,
+          "right_rsa": 0.5240441467650672,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "25",
+          "residue_name": "ASN",
+          "delta_sasa_a2": 0.040644888074716334,
+          "delta_rsa": 0.00020843532346009885,
+          "left_rsa": 0.26330177079230976,
+          "right_rsa": 0.26309333546884967,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "26",
+          "residue_name": "VAL",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "27",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 0.259328433869662,
+          "delta_rsa": 0.0010988492960578855,
+          "left_rsa": 0.07168491181141019,
+          "right_rsa": 0.07058606251535231,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "28",
+          "residue_name": "ALA",
+          "delta_sasa_a2": -0.3120416000264896,
+          "delta_rsa": -0.002418927131988269,
+          "left_rsa": 0.36936918087944814,
+          "right_rsa": 0.3717881080114364,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "29",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 0.46669408955875724,
+          "delta_rsa": 0.0019775173286388226,
+          "left_rsa": 0.29014984607714284,
+          "right_rsa": 0.288172328748504,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "30",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.028965288814723836,
+          "delta_rsa": -0.00014703192291737983,
+          "left_rsa": 0.00043379061734402224,
+          "right_rsa": 0.0005808225402614021,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "31",
+          "residue_name": "GLN",
+          "delta_sasa_a2": 0.884422297444786,
+          "delta_rsa": 0.0039307657664212625,
+          "left_rsa": 0.33495800893656424,
+          "right_rsa": 0.331027243170143,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "32",
+          "residue_name": "ASP",
+          "delta_sasa_a2": -0.28712910547707793,
+          "delta_rsa": -0.0014877155724201119,
+          "left_rsa": 0.6731714487424427,
+          "right_rsa": 0.6746591643148628,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "33",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 0.16325790199610424,
+          "delta_rsa": 0.0006917707711699417,
+          "left_rsa": 0.4792631496684056,
+          "right_rsa": 0.47857137889723567,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "34",
+          "residue_name": "GLU",
+          "delta_sasa_a2": 0.44182341825592886,
+          "delta_rsa": 0.0019812709338830614,
+          "left_rsa": 0.2889279830974921,
+          "right_rsa": 0.28694671216360906,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "35",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.4418560084892249,
+          "delta_rsa": -0.004248615466242556,
+          "left_rsa": 0.4770754841016189,
+          "right_rsa": 0.48132409956786143,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "36",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.15418797099560066,
+          "delta_rsa": -0.0007826800558152214,
+          "left_rsa": 0.14982907249966068,
+          "right_rsa": 0.1506117525554759,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "37",
+          "residue_name": "PRO",
+          "delta_sasa_a2": 0.11643362770249865,
+          "delta_rsa": 0.0007322869666823717,
+          "left_rsa": 0.3304914039722087,
+          "right_rsa": 0.32975911700552635,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "38",
+          "residue_name": "PRO",
+          "delta_sasa_a2": 0.08200299514857079,
+          "delta_rsa": 0.000515742107852657,
+          "left_rsa": 0.3115835693602671,
+          "right_rsa": 0.31106782725241444,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "39",
+          "residue_name": "ASP",
+          "delta_sasa_a2": 1.0119494635559647,
+          "delta_rsa": 0.005243261469201843,
+          "left_rsa": 0.4355595413907008,
+          "right_rsa": 0.43031627992149896,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "40",
+          "residue_name": "GLN",
+          "delta_sasa_a2": 0.07063567501697321,
+          "delta_rsa": 0.0003139363334087597,
+          "left_rsa": 0.18101813632838337,
+          "right_rsa": 0.1807041999949746,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "41",
+          "residue_name": "GLN",
+          "delta_sasa_a2": 0.00531546365503905,
+          "delta_rsa": 2.3624282911284666e-05,
+          "left_rsa": 0.00011037151005853282,
+          "right_rsa": 8.674722714724816e-05,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "42",
+          "residue_name": "ARG",
+          "delta_sasa_a2": -0.4901413579041929,
+          "delta_rsa": -0.0017888370726430458,
+          "left_rsa": 0.3221510593342181,
+          "right_rsa": 0.32393989640686116,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "43",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.0012625161180535582,
+          "delta_rsa": 6.281174716684171e-06,
+          "left_rsa": 0.0016237585465798468,
+          "right_rsa": 0.0016174773718631626,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "44",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.09023611352740701,
+          "delta_rsa": -0.0004580513377025752,
+          "left_rsa": 0.14278172282214782,
+          "right_rsa": 0.1432397741598504,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "45",
+          "residue_name": "PHE",
+          "delta_sasa_a2": 0.17852257509325398,
+          "delta_rsa": 0.000743844062888549,
+          "left_rsa": 0.15660327342907768,
+          "right_rsa": 0.15585942936618913,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "46",
+          "residue_name": "ALA",
+          "delta_sasa_a2": -0.003536892381376333,
+          "delta_rsa": -2.7417770398274754e-05,
+          "left_rsa": 0.5614903228099665,
+          "right_rsa": 0.5615177405803647,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "47",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.14613697094793565,
+          "delta_rsa": -0.0014051631821916377,
+          "left_rsa": 0.7204133629756388,
+          "right_rsa": 0.7218185261578305,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "48",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 0.2805326307530436,
+          "delta_rsa": 0.0011886975879366046,
+          "left_rsa": 0.41895970866367466,
+          "right_rsa": 0.41777101107573805,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "49",
+          "residue_name": "GLN",
+          "delta_sasa_a2": 0.6429219661923042,
+          "delta_rsa": 0.0028574309608546677,
+          "left_rsa": 0.45222138590023386,
+          "right_rsa": 0.4493639549393792,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "50",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.2835882018080813,
+          "delta_rsa": -0.0014108865761596062,
+          "left_rsa": 0.028986711977848027,
+          "right_rsa": 0.030397598554007633,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "51",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.39108394542864744,
+          "delta_rsa": -0.0017537396655993298,
+          "left_rsa": 0.5158059642466604,
+          "right_rsa": 0.5175597039122597,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "52",
+          "residue_name": "ASP",
+          "delta_sasa_a2": 0.1695998215291752,
+          "delta_rsa": 0.0008787555519646495,
+          "left_rsa": 0.3145308100309614,
+          "right_rsa": 0.31365205447899674,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "53",
+          "residue_name": "GLY",
+          "delta_sasa_a2": 0.014023148196912416,
+          "delta_rsa": 0.00013483796343188859,
+          "left_rsa": 0.4535263965949169,
+          "right_rsa": 0.453391558631485,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "54",
+          "residue_name": "ARG",
+          "delta_sasa_a2": -0.7810403917438435,
+          "delta_rsa": -0.0028505123786272124,
+          "left_rsa": 0.4503132259376924,
+          "right_rsa": 0.4531637383163196,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "55",
+          "residue_name": "THR",
+          "delta_sasa_a2": -0.1376585614162451,
+          "delta_rsa": -0.0008003404733502861,
+          "left_rsa": 0.18887730005630532,
+          "right_rsa": 0.1896776405296556,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "56",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "57",
+          "residue_name": "SER",
+          "delta_sasa_a2": 0.3205129334006287,
+          "delta_rsa": 0.002067825376778243,
+          "left_rsa": 0.4112884573336729,
+          "right_rsa": 0.4092206319568947,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "58",
+          "residue_name": "ASP",
+          "delta_sasa_a2": 0.7323543747768042,
+          "delta_rsa": 0.0037945822527295503,
+          "left_rsa": 0.4485845443359118,
+          "right_rsa": 0.4447899620831822,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "59",
+          "residue_name": "TYR",
+          "delta_sasa_a2": -0.2512405888459668,
+          "delta_rsa": -0.0009552874100607067,
+          "left_rsa": 0.14016916697976636,
+          "right_rsa": 0.14112445438982707,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "60",
+          "residue_name": "ASN",
+          "delta_sasa_a2": 0.4860669637239283,
+          "delta_rsa": 0.0024926510960201487,
+          "left_rsa": 0.5902704775991136,
+          "right_rsa": 0.5877778265030934,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "61",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.013515783925272196,
+          "delta_rsa": -6.860804022981032e-05,
+          "left_rsa": 0.02278510307115181,
+          "right_rsa": 0.02285371111138162,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "62",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.3513458770247837,
+          "delta_rsa": -0.0015615372312212106,
+          "left_rsa": 0.526607032129523,
+          "right_rsa": 0.5281685693607442,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "63",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.23276155309505953,
+          "delta_rsa": -0.0009862777673519396,
+          "left_rsa": 0.5714168180018266,
+          "right_rsa": 0.5724030957691786,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "64",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.23341232582284022,
+          "delta_rsa": -0.0010466920440486138,
+          "left_rsa": 0.4358907274133171,
+          "right_rsa": 0.4369374194573657,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "65",
+          "residue_name": "SER",
+          "delta_sasa_a2": -0.14946096182583446,
+          "delta_rsa": -0.000964264269844084,
+          "left_rsa": 0.12651277633176994,
+          "right_rsa": 0.12747704060161402,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "66",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.1305960762791898,
+          "delta_rsa": 0.0007592795132511099,
+          "left_rsa": 0.30991709778435905,
+          "right_rsa": 0.30915781827110794,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "67",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "68",
+          "residue_name": "HIS",
+          "delta_sasa_a2": 0.22288722727049048,
+          "delta_rsa": 0.000995032264600404,
+          "left_rsa": 0.3504554410272756,
+          "right_rsa": 0.3494604087626752,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "69",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.3185317373380996,
+          "delta_rsa": -0.001584735011632336,
+          "left_rsa": 0.013110673537045342,
+          "right_rsa": 0.014695408548677678,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "70",
+          "residue_name": "VAL",
+          "delta_sasa_a2": -0.03286275903673186,
+          "delta_rsa": -0.00018886643124557678,
+          "left_rsa": 0.2134798775044927,
+          "right_rsa": 0.2136687439357383,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "71",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.6915389961503138,
+          "delta_rsa": 0.0034404925181607537,
+          "left_rsa": 0.38447839981445237,
+          "right_rsa": 0.3810379072962916,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "72",
+          "residue_name": "ARG",
+          "delta_sasa_a2": -0.6622191090409046,
+          "delta_rsa": -0.0024168580621931057,
+          "left_rsa": 0.42906143531381047,
+          "right_rsa": 0.4314782933760036,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "73",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.221981124885545,
+          "delta_rsa": -0.0011043837058982708,
+          "left_rsa": 0.5920779730264654,
+          "right_rsa": 0.5931823567323636,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "74",
+          "residue_name": "ARG",
+          "delta_sasa_a2": 0.5681930734138518,
+          "delta_rsa": 0.0020736973482258225,
+          "left_rsa": 0.7697100487346682,
+          "right_rsa": 0.7676363513864424,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "75",
+          "residue_name": "GLY",
+          "delta_sasa_a2": 0.29007326765793096,
+          "delta_rsa": 0.00278916603517243,
+          "left_rsa": 0.7053395876468477,
+          "right_rsa": 0.7025504216116752,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "76",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.5506000741946764,
+          "delta_rsa": -0.005294231482641187,
+          "left_rsa": 1.407842774439651,
+          "right_rsa": 1.413137005922292,
+          "buried_020_differs": false
+        }
+      ]
+    },
+    {
+      "left": "FreeSASA-LR-100",
+      "right": "Biopython-SR-15360",
+      "total_delta_a2": -1.0926477909306413,
+      "total_relative_error": 0.00022737564590193872,
+      "max_abs_residue_sasa_delta_a2": 0.2733563518420965,
+      "max_abs_rsa_delta": 0.0011582896264495934,
+      "p95_abs_rsa_delta": 0.0007184907749590019,
+      "buried_classification_differences": [],
+      "residue_comparison": [
+        {
+          "chain": "A",
+          "residue_number": "1",
+          "residue_name": "MET",
+          "delta_sasa_a2": -0.05336863900432576,
+          "delta_rsa": -0.00023825285269787888,
+          "left_rsa": 0.2477946332791458,
+          "right_rsa": 0.24803288613184368,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "2",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.07954373182273855,
+          "delta_rsa": -0.0003535276969899859,
+          "left_rsa": 0.3374461951094829,
+          "right_rsa": 0.3377997228064729,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "3",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "4",
+          "residue_name": "PHE",
+          "delta_sasa_a2": 0.020650254910066224,
+          "delta_rsa": 8.60427287919241e-05,
+          "left_rsa": 0.2256829811290265,
+          "right_rsa": 0.22559693840023456,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "5",
+          "residue_name": "VAL",
+          "delta_sasa_a2": 0.0009669609559327802,
+          "delta_rsa": 5.557246873176898e-06,
+          "left_rsa": 5.614170329735737e-05,
+          "right_rsa": 5.058445642418047e-05,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "6",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 0.037210802243819785,
+          "delta_rsa": 0.0001576728908636027,
+          "left_rsa": 0.43341649620513284,
+          "right_rsa": 0.43325882331426924,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "7",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.09183926393070507,
+          "delta_rsa": 0.0005339492088994452,
+          "left_rsa": 0.12015570980967642,
+          "right_rsa": 0.11962176060077698,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "8",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.049513941310692644,
+          "delta_rsa": -0.00024633801647111486,
+          "left_rsa": 0.6797403488194722,
+          "right_rsa": 0.6799866868359433,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "9",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.010487788916705654,
+          "delta_rsa": 6.09755169576065e-05,
+          "left_rsa": 0.7257852095648418,
+          "right_rsa": 0.7257242340478842,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "10",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.034112711448983646,
+          "delta_rsa": -0.0003280068408556547,
+          "left_rsa": 0.6543419365360853,
+          "right_rsa": 0.654669943376941,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "11",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 0.05678091428339371,
+          "delta_rsa": 0.00024059709442114663,
+          "left_rsa": 0.4361105753323353,
+          "right_rsa": 0.4358699782379142,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "12",
+          "residue_name": "THR",
+          "delta_sasa_a2": -0.04464367865614349,
+          "delta_rsa": -0.0002595562712566779,
+          "left_rsa": 0.3681569491714493,
+          "right_rsa": 0.368416505442706,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "13",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.06225597470844235,
+          "delta_rsa": -0.00031602017618498346,
+          "left_rsa": 0.023899811887021165,
+          "right_rsa": 0.02421583206320615,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "14",
+          "residue_name": "THR",
+          "delta_sasa_a2": -0.08488723318818359,
+          "delta_rsa": -0.0004935304255127004,
+          "left_rsa": 0.3593381711645101,
+          "right_rsa": 0.3598317015900228,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "15",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.10801348869312921,
+          "delta_rsa": -0.000537380540761842,
+          "left_rsa": 0.03318399406046331,
+          "right_rsa": 0.03372137460122515,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "16",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.1220684084476602,
+          "delta_rsa": -0.0005473919661330706,
+          "left_rsa": 0.6264742859879066,
+          "right_rsa": 0.6270216779540396,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "17",
+          "residue_name": "VAL",
+          "delta_sasa_a2": -0.0020303525501406128,
+          "delta_rsa": -1.1668692816893533e-05,
+          "left_rsa": 0.03268243787209988,
+          "right_rsa": 0.032694106564916774,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "18",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.13630954003976115,
+          "delta_rsa": -0.0006112535427791888,
+          "left_rsa": 0.4474475943145195,
+          "right_rsa": 0.4480588478572987,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "19",
+          "residue_name": "PRO",
+          "delta_sasa_a2": 0.05682694956151124,
+          "delta_rsa": 0.0003574021985000564,
+          "left_rsa": 0.3175505766892951,
+          "right_rsa": 0.31719317449079504,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "20",
+          "residue_name": "SER",
+          "delta_sasa_a2": 0.02423298870753854,
+          "delta_rsa": 0.0001563418626292501,
+          "left_rsa": 0.5349177498437249,
+          "right_rsa": 0.5347614079810956,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "21",
+          "residue_name": "ASP",
+          "delta_sasa_a2": -0.005378681768565485,
+          "delta_rsa": -2.7868817453702288e-05,
+          "left_rsa": 0.16405555367972455,
+          "right_rsa": 0.16408342249717825,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "22",
+          "residue_name": "THR",
+          "delta_sasa_a2": -0.1525071649575125,
+          "delta_rsa": -0.000886669563706477,
+          "left_rsa": 0.2830171844685506,
+          "right_rsa": 0.2839038540322571,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "23",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "24",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.06937268747888936,
+          "delta_rsa": -0.00031108828465875593,
+          "left_rsa": 0.5237330584804084,
+          "right_rsa": 0.5240441467650672,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "25",
+          "residue_name": "ASN",
+          "delta_sasa_a2": -0.0060347539284109075,
+          "delta_rsa": -3.094745604309557e-05,
+          "left_rsa": 0.26306238801280657,
+          "right_rsa": 0.26309333546884967,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "26",
+          "residue_name": "VAL",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "27",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 0.01218172404134421,
+          "delta_rsa": 5.1617474751464165e-05,
+          "left_rsa": 0.07063767999010377,
+          "right_rsa": 0.07058606251535231,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "28",
+          "residue_name": "ALA",
+          "delta_sasa_a2": -0.01700949611245761,
+          "delta_rsa": -0.00013185655901132298,
+          "left_rsa": 0.3716562514524251,
+          "right_rsa": 0.3717881080114364,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "29",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.004511087623967569,
+          "delta_rsa": -1.9114778067652605e-05,
+          "left_rsa": 0.28815321397043636,
+          "right_rsa": 0.288172328748504,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "30",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.03689834147580949,
+          "delta_rsa": 0.00018730122576553047,
+          "left_rsa": 0.0007681237660269325,
+          "right_rsa": 0.0005808225402614021,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "31",
+          "residue_name": "GLN",
+          "delta_sasa_a2": 0.1237527365525466,
+          "delta_rsa": 0.0005500121624557597,
+          "left_rsa": 0.33157725533259874,
+          "right_rsa": 0.331027243170143,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "32",
+          "residue_name": "ASP",
+          "delta_sasa_a2": 0.0510804222397212,
+          "delta_rsa": 0.0002646654002057547,
+          "left_rsa": 0.6749238297150686,
+          "right_rsa": 0.6746591643148628,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "33",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.10607734627092213,
+          "delta_rsa": -0.0004494802808089893,
+          "left_rsa": 0.4781218986164267,
+          "right_rsa": 0.47857137889723567,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "34",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.0039465944163552535,
+          "delta_rsa": -1.769773280879683e-05,
+          "left_rsa": 0.28692901443080027,
+          "right_rsa": 0.28694671216360906,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "35",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.011618993874193961,
+          "delta_rsa": -0.0001117210949441727,
+          "left_rsa": 0.48121237847291726,
+          "right_rsa": 0.48132409956786143,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "36",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.05096605619353056,
+          "delta_rsa": -0.00025871094514481885,
+          "left_rsa": 0.15035304161033108,
+          "right_rsa": 0.1506117525554759,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "37",
+          "residue_name": "PRO",
+          "delta_sasa_a2": 0.035247689317763786,
+          "delta_rsa": 0.00022168358061486204,
+          "left_rsa": 0.3299808005861412,
+          "right_rsa": 0.32975911700552635,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "38",
+          "residue_name": "PRO",
+          "delta_sasa_a2": 0.04213729953011125,
+          "delta_rsa": 0.0002650144624535278,
+          "left_rsa": 0.31133284171486797,
+          "right_rsa": 0.31106782725241444,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "39",
+          "residue_name": "ASP",
+          "delta_sasa_a2": 0.08488513244850537,
+          "delta_rsa": 0.0004398193391114136,
+          "left_rsa": 0.43075609926061037,
+          "right_rsa": 0.43031627992149896,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "40",
+          "residue_name": "GLN",
+          "delta_sasa_a2": 0.0301621096082485,
+          "delta_rsa": 0.00013405382048109482,
+          "left_rsa": 0.1808382538154557,
+          "right_rsa": 0.1807041999949746,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "41",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.004294442268439561,
+          "delta_rsa": -1.908641008195361e-05,
+          "left_rsa": 6.766081706529455e-05,
+          "right_rsa": 8.674722714724816e-05,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "42",
+          "residue_name": "ARG",
+          "delta_sasa_a2": -0.10062361841845302,
+          "delta_rsa": -0.0003672394832790471,
+          "left_rsa": 0.3235726569235821,
+          "right_rsa": 0.32393989640686116,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "43",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.003921180100302346,
+          "delta_rsa": 1.9508358707971858e-05,
+          "left_rsa": 0.0016369857305711345,
+          "right_rsa": 0.0016174773718631626,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "44",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.02318521746040858,
+          "delta_rsa": -0.00011769145918988366,
+          "left_rsa": 0.1431220827006605,
+          "right_rsa": 0.1432397741598504,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "45",
+          "residue_name": "PHE",
+          "delta_sasa_a2": -0.05746004000219074,
+          "delta_rsa": -0.00023941683334247066,
+          "left_rsa": 0.15562001253284666,
+          "right_rsa": 0.15585942936618913,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "46",
+          "residue_name": "ALA",
+          "delta_sasa_a2": 0.0561941930638028,
+          "delta_rsa": 0.00043561389971946696,
+          "left_rsa": 0.5619533544800842,
+          "right_rsa": 0.5615177405803647,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "47",
+          "residue_name": "GLY",
+          "delta_sasa_a2": 0.049502112382512564,
+          "delta_rsa": 0.00047598184983188574,
+          "left_rsa": 0.7222945080076624,
+          "right_rsa": 0.7218185261578305,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "48",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.05233812027489648,
+          "delta_rsa": -0.0002217716960800642,
+          "left_rsa": 0.417549239379658,
+          "right_rsa": 0.41777101107573805,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "49",
+          "residue_name": "GLN",
+          "delta_sasa_a2": 0.008521664050761046,
+          "delta_rsa": 3.787406244781799e-05,
+          "left_rsa": 0.449401829001827,
+          "right_rsa": 0.4493639549393792,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "50",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.014304816570239964,
+          "delta_rsa": -7.116824164298333e-05,
+          "left_rsa": 0.03032643031236465,
+          "right_rsa": 0.030397598554007633,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "51",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.08008111678384466,
+          "delta_rsa": -0.0003591081470127877,
+          "left_rsa": 0.5172005957652469,
+          "right_rsa": 0.5175597039122597,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "52",
+          "residue_name": "ASP",
+          "delta_sasa_a2": -0.10287536651744489,
+          "delta_rsa": -0.0005330329871370276,
+          "left_rsa": 0.3131190214918597,
+          "right_rsa": 0.31365205447899674,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "53",
+          "residue_name": "GLY",
+          "delta_sasa_a2": 0.055938640678142804,
+          "delta_rsa": 0.0005378715449821381,
+          "left_rsa": 0.45392943017646714,
+          "right_rsa": 0.453391558631485,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "54",
+          "residue_name": "ARG",
+          "delta_sasa_a2": -0.028886577974233774,
+          "delta_rsa": -0.00010542546705927247,
+          "left_rsa": 0.45305831284926035,
+          "right_rsa": 0.4531637383163196,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "55",
+          "residue_name": "THR",
+          "delta_sasa_a2": -0.035731618403069376,
+          "delta_rsa": -0.00020774196745970697,
+          "left_rsa": 0.1894698985621959,
+          "right_rsa": 0.1896776405296556,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "56",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "57",
+          "residue_name": "SER",
+          "delta_sasa_a2": -0.1111885249433513,
+          "delta_rsa": -0.0007173453222151793,
+          "left_rsa": 0.4085032866346795,
+          "right_rsa": 0.4092206319568947,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "58",
+          "residue_name": "ASP",
+          "delta_sasa_a2": -0.08585582945421777,
+          "delta_rsa": -0.0004448488572757481,
+          "left_rsa": 0.4443451132259065,
+          "right_rsa": 0.4447899620831822,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "59",
+          "residue_name": "TYR",
+          "delta_sasa_a2": -0.06435683192512442,
+          "delta_rsa": -0.00024470278298527326,
+          "left_rsa": 0.1408797516068418,
+          "right_rsa": 0.14112445438982707,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "60",
+          "residue_name": "ASN",
+          "delta_sasa_a2": 0.09419560134027449,
+          "delta_rsa": 0.0004830543658475017,
+          "left_rsa": 0.5882608808689409,
+          "right_rsa": 0.5877778265030934,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "61",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.007717805830501412,
+          "delta_rsa": -3.9176679342646514e-05,
+          "left_rsa": 0.022814534432038975,
+          "right_rsa": 0.02285371111138162,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "62",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.1143048003465168,
+          "delta_rsa": -0.0005080213348733764,
+          "left_rsa": 0.5276605480258708,
+          "right_rsa": 0.5281685693607442,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "63",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 0.2733563518420965,
+          "delta_rsa": 0.0011582896264495934,
+          "left_rsa": 0.5735613853956282,
+          "right_rsa": 0.5724030957691786,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "64",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.05290170519194248,
+          "delta_rsa": -0.00023722737754233725,
+          "left_rsa": 0.43670019207982336,
+          "right_rsa": 0.4369374194573657,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "65",
+          "residue_name": "SER",
+          "delta_sasa_a2": 0.04519187509308509,
+          "delta_rsa": 0.0002915604844715147,
+          "left_rsa": 0.12776860108608554,
+          "right_rsa": 0.12747704060161402,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "66",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.01976251512830629,
+          "delta_rsa": 0.00011489834376920971,
+          "left_rsa": 0.30927271661487715,
+          "right_rsa": 0.30915781827110794,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "67",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "68",
+          "residue_name": "HIS",
+          "delta_sasa_a2": -0.16094193359080577,
+          "delta_rsa": -0.0007184907749590019,
+          "left_rsa": 0.3487419179877162,
+          "right_rsa": 0.3494604087626752,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "69",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.06251934806457715,
+          "delta_rsa": -0.00031104153265958806,
+          "left_rsa": 0.01438436701601809,
+          "right_rsa": 0.014695408548677678,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "70",
+          "residue_name": "VAL",
+          "delta_sasa_a2": 0.06673918275343738,
+          "delta_rsa": 0.0003835585215714865,
+          "left_rsa": 0.21405230245730977,
+          "right_rsa": 0.2136687439357383,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "71",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.07516943496435147,
+          "delta_rsa": 0.00037397728837984534,
+          "left_rsa": 0.38141188458467146,
+          "right_rsa": 0.3810379072962916,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "72",
+          "residue_name": "ARG",
+          "delta_sasa_a2": 0.04479041604095357,
+          "delta_rsa": 0.00016346867168232082,
+          "left_rsa": 0.4316417620476859,
+          "right_rsa": 0.4314782933760036,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "73",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.03413987298729637,
+          "delta_rsa": -0.0001698501143646558,
+          "left_rsa": 0.593012506617999,
+          "right_rsa": 0.5931823567323636,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "74",
+          "residue_name": "ARG",
+          "delta_sasa_a2": -0.10951103732901402,
+          "delta_rsa": -0.0003996753187189839,
+          "left_rsa": 0.7672366760677234,
+          "right_rsa": 0.7676363513864424,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "75",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.11318528985999876,
+          "delta_rsa": -0.0010883200948076377,
+          "left_rsa": 0.7014621015168676,
+          "right_rsa": 0.7025504216116752,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "76",
+          "residue_name": "GLY",
+          "delta_sasa_a2": 0.0193021395993469,
+          "delta_rsa": 0.00018559749614754928,
+          "left_rsa": 1.4133226034184396,
+          "right_rsa": 1.413137005922292,
+          "buried_020_differs": false
+        }
+      ]
+    },
+    {
+      "left": "FreeSASA-LR-200",
+      "right": "Biopython-SR-15360",
+      "total_delta_a2": -0.5513573982598245,
+      "total_relative_error": 0.00011473527480009151,
+      "max_abs_residue_sasa_delta_a2": 0.2008083194541257,
+      "max_abs_rsa_delta": 0.0009638670647447167,
+      "p95_abs_rsa_delta": 0.0007217102237966344,
+      "buried_classification_differences": [],
+      "residue_comparison": [
+        {
+          "chain": "A",
+          "residue_number": "1",
+          "residue_name": "MET",
+          "delta_sasa_a2": 0.007894325329822038,
+          "delta_rsa": 3.5242523793832525e-05,
+          "left_rsa": 0.24806812865563752,
+          "right_rsa": 0.24803288613184368,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "2",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.12494567254104538,
+          "delta_rsa": -0.0005553141001824469,
+          "left_rsa": 0.33724440870629047,
+          "right_rsa": 0.3377997228064729,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "3",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "4",
+          "residue_name": "PHE",
+          "delta_sasa_a2": 0.06560243232866014,
+          "delta_rsa": 0.0002733434680360636,
+          "left_rsa": 0.22587028186827063,
+          "right_rsa": 0.22559693840023456,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "5",
+          "residue_name": "VAL",
+          "delta_sasa_a2": 0.0013380004824739972,
+          "delta_rsa": 7.68965794525286e-06,
+          "left_rsa": 5.827411436943333e-05,
+          "right_rsa": 5.058445642418047e-05,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "6",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 0.17032361281600572,
+          "delta_rsa": 0.0007217102237966344,
+          "left_rsa": 0.43398053353806587,
+          "right_rsa": 0.43325882331426924,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "7",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.06863320169502529,
+          "delta_rsa": 0.0003990302424129316,
+          "left_rsa": 0.12002079084318991,
+          "right_rsa": 0.11962176060077698,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "8",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.10027761067291863,
+          "delta_rsa": -0.000498893585437421,
+          "left_rsa": 0.6794877932505059,
+          "right_rsa": 0.6799866868359433,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "9",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.03569960279290285,
+          "delta_rsa": 0.000207555830191275,
+          "left_rsa": 0.7259317898780755,
+          "right_rsa": 0.7257242340478842,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "10",
+          "residue_name": "GLY",
+          "delta_sasa_a2": 0.04694671701230391,
+          "delta_rsa": 0.0004514107405029222,
+          "left_rsa": 0.6551213541174439,
+          "right_rsa": 0.654669943376941,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "11",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.03351660140405954,
+          "delta_rsa": -0.00014201949747483233,
+          "left_rsa": 0.43572795874043935,
+          "right_rsa": 0.4358699782379142,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "12",
+          "residue_name": "THR",
+          "delta_sasa_a2": -0.020736505419840512,
+          "delta_rsa": -0.00012056107802232985,
+          "left_rsa": 0.36829594436468366,
+          "right_rsa": 0.368416505442706,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "13",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.04110817958682844,
+          "delta_rsa": -0.00020867096236968502,
+          "left_rsa": 0.024007161100836463,
+          "right_rsa": 0.02421583206320615,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "14",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.04700223053033881,
+          "delta_rsa": 0.00027326878215316874,
+          "left_rsa": 0.360104970372176,
+          "right_rsa": 0.3598317015900228,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "15",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.0343660620002284,
+          "delta_rsa": -0.00017097543283695754,
+          "left_rsa": 0.033550399168388194,
+          "right_rsa": 0.03372137460122515,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "16",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.07238972927055443,
+          "delta_rsa": -0.0003246176200473183,
+          "left_rsa": 0.6266970603339923,
+          "right_rsa": 0.6270216779540396,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "17",
+          "residue_name": "VAL",
+          "delta_sasa_a2": -0.0026987715692152747,
+          "delta_rsa": -1.5510181432268344e-05,
+          "left_rsa": 0.032678596383484505,
+          "right_rsa": 0.032694106564916774,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "18",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.05009678733827627,
+          "delta_rsa": -0.00022464927057519457,
+          "left_rsa": 0.4478341985867235,
+          "right_rsa": 0.4480588478572987,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "19",
+          "residue_name": "PRO",
+          "delta_sasa_a2": 0.0005835489698071683,
+          "delta_rsa": 3.67011930696437e-06,
+          "left_rsa": 0.317196844610102,
+          "right_rsa": 0.31719317449079504,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "20",
+          "residue_name": "SER",
+          "delta_sasa_a2": 0.04072151752694708,
+          "delta_rsa": 0.00026271946791578404,
+          "left_rsa": 0.5350241274490114,
+          "right_rsa": 0.5347614079810956,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "21",
+          "residue_name": "ASP",
+          "delta_sasa_a2": 0.04607614809174265,
+          "delta_rsa": 0.0002387365186100887,
+          "left_rsa": 0.16432215901578834,
+          "right_rsa": 0.16408342249717825,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "22",
+          "residue_name": "THR",
+          "delta_sasa_a2": -0.1657851351360904,
+          "delta_rsa": -0.0009638670647447167,
+          "left_rsa": 0.2829399869675124,
+          "right_rsa": 0.2839038540322571,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "23",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "24",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.07619599974628954,
+          "delta_rsa": -0.0003416860975170577,
+          "left_rsa": 0.5237024606675501,
+          "right_rsa": 0.5240441467650672,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "25",
+          "residue_name": "ASN",
+          "delta_sasa_a2": 0.05309920938658763,
+          "delta_rsa": 0.0002723036378799448,
+          "left_rsa": 0.2633656391067296,
+          "right_rsa": 0.26309333546884967,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "26",
+          "residue_name": "VAL",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "27",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.012890059432219658,
+          "delta_rsa": -5.4618895899236075e-05,
+          "left_rsa": 0.07053144361945307,
+          "right_rsa": 0.07058606251535231,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "28",
+          "residue_name": "ALA",
+          "delta_sasa_a2": -0.06318792690178299,
+          "delta_rsa": -0.0004898288907114745,
+          "left_rsa": 0.37129827912072494,
+          "right_rsa": 0.3717881080114364,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "29",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 0.04669720188121573,
+          "delta_rsa": 0.00019786949949668342,
+          "left_rsa": 0.2883701982480007,
+          "right_rsa": 0.288172328748504,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "30",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.03486194905105465,
+          "delta_rsa": 0.00017696420838098808,
+          "left_rsa": 0.0007577867486423901,
+          "right_rsa": 0.0005808225402614021,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "31",
+          "residue_name": "GLN",
+          "delta_sasa_a2": 0.14304545595669538,
+          "delta_rsa": 0.0006357575820297723,
+          "left_rsa": 0.33166300075217275,
+          "right_rsa": 0.331027243170143,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "32",
+          "residue_name": "ASP",
+          "delta_sasa_a2": 0.13039454934869354,
+          "delta_rsa": 0.0006756194266771542,
+          "left_rsa": 0.67533478374154,
+          "right_rsa": 0.6746591643148628,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "33",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.07652457744086405,
+          "delta_rsa": -0.0003242566840714889,
+          "left_rsa": 0.4782471222131642,
+          "right_rsa": 0.47857137889723567,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "34",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.007953159135389853,
+          "delta_rsa": -3.566439074165206e-05,
+          "left_rsa": 0.2869110477728674,
+          "right_rsa": 0.28694671216360906,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "35",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.00493133648524946,
+          "delta_rsa": -4.741669697355677e-05,
+          "left_rsa": 0.4812766828708879,
+          "right_rsa": 0.48132409956786143,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "36",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.04996486888045126,
+          "delta_rsa": -0.00025362877604290235,
+          "left_rsa": 0.150358123779433,
+          "right_rsa": 0.1506117525554759,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "37",
+          "residue_name": "PRO",
+          "delta_sasa_a2": 0.015623760489866356,
+          "delta_rsa": 9.826264459034117e-05,
+          "left_rsa": 0.3298573796501167,
+          "right_rsa": 0.32975911700552635,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "38",
+          "residue_name": "PRO",
+          "delta_sasa_a2": 0.009174582082408733,
+          "delta_rsa": 5.770177410319155e-05,
+          "left_rsa": 0.31112552902651763,
+          "right_rsa": 0.31106782725241444,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "39",
+          "residue_name": "ASP",
+          "delta_sasa_a2": 0.027399828451777353,
+          "delta_rsa": 0.00014196802306620793,
+          "left_rsa": 0.43045824794456516,
+          "right_rsa": 0.43031627992149896,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "40",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.03889226761610587,
+          "delta_rsa": -0.0001728545227382694,
+          "left_rsa": 0.18053134547223634,
+          "right_rsa": 0.1807041999949746,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "41",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.0038840186542226478,
+          "delta_rsa": -1.7262305129878434e-05,
+          "left_rsa": 6.948492201736972e-05,
+          "right_rsa": 8.674722714724816e-05,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "42",
+          "residue_name": "ARG",
+          "delta_sasa_a2": -0.04840364789504292,
+          "delta_rsa": -0.00017665564925195554,
+          "left_rsa": 0.3237632407576092,
+          "right_rsa": 0.32393989640686116,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "43",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.004940360135461563,
+          "delta_rsa": 2.4578906146574802e-05,
+          "left_rsa": 0.0016420562780097374,
+          "right_rsa": 0.0016174773718631626,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "44",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.058001197265650006,
+          "delta_rsa": -0.0002944223211454322,
+          "left_rsa": 0.14294535183870496,
+          "right_rsa": 0.1432397741598504,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "45",
+          "residue_name": "PHE",
+          "delta_sasa_a2": -0.08487617845851503,
+          "delta_rsa": -0.0003536507435771552,
+          "left_rsa": 0.15550577862261197,
+          "right_rsa": 0.15585942936618913,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "46",
+          "residue_name": "ALA",
+          "delta_sasa_a2": 0.0004536707304509946,
+          "delta_rsa": 3.5168273678776174e-06,
+          "left_rsa": 0.5615212574077326,
+          "right_rsa": 0.5615177405803647,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "47",
+          "residue_name": "GLY",
+          "delta_sasa_a2": 0.06399233401751303,
+          "delta_rsa": 0.0006153109040145655,
+          "left_rsa": 0.722433837061845,
+          "right_rsa": 0.7218185261578305,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "48",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.05532272907622371,
+          "delta_rsa": -0.00023441834354331892,
+          "left_rsa": 0.41753659273219473,
+          "right_rsa": 0.41777101107573805,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "49",
+          "residue_name": "GLN",
+          "delta_sasa_a2": 0.0047788717889289956,
+          "delta_rsa": 2.123943017301455e-05,
+          "left_rsa": 0.4493851943695522,
+          "right_rsa": 0.4493639549393792,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "50",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.03328262339548793,
+          "delta_rsa": -0.00016558519102232577,
+          "left_rsa": 0.030232013362985307,
+          "right_rsa": 0.030397598554007633,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "51",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.15461997193304455,
+          "delta_rsa": -0.0006933631028387399,
+          "left_rsa": 0.516866340809421,
+          "right_rsa": 0.5175597039122597,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "52",
+          "residue_name": "ASP",
+          "delta_sasa_a2": -0.03717483984451775,
+          "delta_rsa": -0.000192615750489733,
+          "left_rsa": 0.313459438728507,
+          "right_rsa": 0.31365205447899674,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "53",
+          "residue_name": "GLY",
+          "delta_sasa_a2": 0.04451465422594225,
+          "delta_rsa": 0.00042802552140330796,
+          "left_rsa": 0.4538195841528883,
+          "right_rsa": 0.453391558631485,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "54",
+          "residue_name": "ARG",
+          "delta_sasa_a2": 0.13676177273028145,
+          "delta_rsa": 0.0004991305574097438,
+          "left_rsa": 0.45366286887372936,
+          "right_rsa": 0.4531637383163196,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "55",
+          "residue_name": "THR",
+          "delta_sasa_a2": -0.03784437077824521,
+          "delta_rsa": -0.00022002541150142885,
+          "left_rsa": 0.18945761511815418,
+          "right_rsa": 0.1896776405296556,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "56",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "57",
+          "residue_name": "SER",
+          "delta_sasa_a2": 0.012508631926550606,
+          "delta_rsa": 8.070085113898173e-05,
+          "left_rsa": 0.40930133280803366,
+          "right_rsa": 0.4092206319568947,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "58",
+          "residue_name": "ASP",
+          "delta_sasa_a2": 0.05167394299917305,
+          "delta_rsa": 0.00026774063730145015,
+          "left_rsa": 0.44505770272048367,
+          "right_rsa": 0.4447899620831822,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "59",
+          "residue_name": "TYR",
+          "delta_sasa_a2": -0.12065400660097225,
+          "delta_rsa": -0.0004587604813725277,
+          "left_rsa": 0.14066569390845454,
+          "right_rsa": 0.14112445438982707,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "60",
+          "residue_name": "ASN",
+          "delta_sasa_a2": -0.028658480900276118,
+          "delta_rsa": -0.00014696656871937552,
+          "left_rsa": 0.587630859934374,
+          "right_rsa": 0.5877778265030934,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "61",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.01120395269357477,
+          "delta_rsa": -5.6872856312562003e-05,
+          "left_rsa": 0.02279683825506906,
+          "right_rsa": 0.02285371111138162,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "62",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.12561983476145144,
+          "delta_rsa": -0.0005583103767174968,
+          "left_rsa": 0.5276102589840267,
+          "right_rsa": 0.5281685693607442,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "63",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 0.19541898365113752,
+          "delta_rsa": 0.0008280465408947446,
+          "left_rsa": 0.5732311423100733,
+          "right_rsa": 0.5724030957691786,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "64",
+          "residue_name": "GLU",
+          "delta_sasa_a2": 0.044890550212372204,
+          "delta_rsa": 0.00020130291575054526,
+          "left_rsa": 0.43713872237311624,
+          "right_rsa": 0.4369374194573657,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "65",
+          "residue_name": "SER",
+          "delta_sasa_a2": 0.029822223105455237,
+          "delta_rsa": 0.00019240143939003307,
+          "left_rsa": 0.12766944204100406,
+          "right_rsa": 0.12747704060161402,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "66",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.07172715626913373,
+          "delta_rsa": 0.0004170183504019209,
+          "left_rsa": 0.30957483662150986,
+          "right_rsa": 0.30915781827110794,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "67",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "68",
+          "residue_name": "HIS",
+          "delta_sasa_a2": -0.05955951945487925,
+          "delta_rsa": -0.00026589071185217916,
+          "left_rsa": 0.349194518050823,
+          "right_rsa": 0.3494604087626752,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "69",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.05892120769402309,
+          "delta_rsa": -0.00029314033678618477,
+          "left_rsa": 0.014402268211891493,
+          "right_rsa": 0.014695408548677678,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "70",
+          "residue_name": "VAL",
+          "delta_sasa_a2": 0.011157626115206654,
+          "delta_rsa": 6.412428801844117e-05,
+          "left_rsa": 0.21373286822375673,
+          "right_rsa": 0.2136687439357383,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "71",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.02784014004726032,
+          "delta_rsa": 0.0001385081594391102,
+          "left_rsa": 0.3811764154557307,
+          "right_rsa": 0.3810379072962916,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "72",
+          "residue_name": "ARG",
+          "delta_sasa_a2": -0.048501837922131585,
+          "delta_rsa": -0.00017701400701508607,
+          "left_rsa": 0.4313012793689885,
+          "right_rsa": 0.4314782933760036,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "73",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.07742277163465872,
+          "delta_rsa": -0.000385187918580443,
+          "left_rsa": 0.5927971688137832,
+          "right_rsa": 0.5931823567323636,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "74",
+          "residue_name": "ARG",
+          "delta_sasa_a2": -0.2008083194541257,
+          "delta_rsa": -0.0007328770782997207,
+          "left_rsa": 0.7669034743081427,
+          "right_rsa": 0.7676363513864424,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "75",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.032558814473617304,
+          "delta_rsa": -0.00031306552378473906,
+          "left_rsa": 0.7022373560878905,
+          "right_rsa": 0.7025504216116752,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "76",
+          "residue_name": "GLY",
+          "delta_sasa_a2": 0.010823383032061429,
+          "delta_rsa": 0.00010407099069298376,
+          "left_rsa": 1.413241076912985,
+          "right_rsa": 1.413137005922292,
+          "buried_020_differs": false
+        }
+      ]
+    },
+    {
+      "left": "FreeSASA-LR-400",
+      "right": "Biopython-SR-15360",
+      "total_delta_a2": -0.6243084373836609,
+      "total_relative_error": 0.00012991609498540666,
+      "max_abs_residue_sasa_delta_a2": 0.21231118862684184,
+      "max_abs_rsa_delta": 0.0008996236806222413,
+      "p95_abs_rsa_delta": 0.000554983895995953,
+      "buried_classification_differences": [],
+      "residue_comparison": [
+        {
+          "chain": "A",
+          "residue_number": "1",
+          "residue_name": "MET",
+          "delta_sasa_a2": 0.017128304784364445,
+          "delta_rsa": 7.646564635876985e-05,
+          "left_rsa": 0.24810935177820245,
+          "right_rsa": 0.24803288613184368,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "2",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.1143672670695679,
+          "delta_rsa": -0.000508298964753684,
+          "left_rsa": 0.33729142384171923,
+          "right_rsa": 0.3377997228064729,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "3",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "4",
+          "residue_name": "PHE",
+          "delta_sasa_a2": 0.07875023235061462,
+          "delta_rsa": 0.00032812596812753503,
+          "left_rsa": 0.2259250643683621,
+          "right_rsa": 0.22559693840023456,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "5",
+          "residue_name": "VAL",
+          "delta_sasa_a2": 0.0013481055393774963,
+          "delta_rsa": 7.747732984928137e-06,
+          "left_rsa": 5.8332189409108606e-05,
+          "right_rsa": 5.058445642418047e-05,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "6",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 0.08717249618759126,
+          "delta_rsa": 0.000369374983845705,
+          "left_rsa": 0.43362819829811494,
+          "right_rsa": 0.43325882331426924,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "7",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.05493231458641645,
+          "delta_rsa": 0.00031937392201404624,
+          "left_rsa": 0.11994113452279102,
+          "right_rsa": 0.11962176060077698,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "8",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.040160809823078125,
+          "delta_rsa": -0.0001998050239954141,
+          "left_rsa": 0.6797868818119479,
+          "right_rsa": 0.6799866868359433,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "9",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.024917464313119808,
+          "delta_rsa": 0.00014486897856469394,
+          "left_rsa": 0.7258691030264489,
+          "right_rsa": 0.7257242340478842,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "10",
+          "residue_name": "GLY",
+          "delta_sasa_a2": 0.028605091435252916,
+          "delta_rsa": 0.0002750489561081926,
+          "left_rsa": 0.6549449923330491,
+          "right_rsa": 0.654669943376941,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "11",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.05445484460896921,
+          "delta_rsa": -0.0002307408669871558,
+          "left_rsa": 0.435639237370927,
+          "right_rsa": 0.4358699782379142,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "12",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.01890115739682585,
+          "delta_rsa": 0.00010989044998149788,
+          "left_rsa": 0.3685263958926875,
+          "right_rsa": 0.368416505442706,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "13",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.04300443194065906,
+          "delta_rsa": -0.0002182966088358322,
+          "left_rsa": 0.023997535454370316,
+          "right_rsa": 0.02421583206320615,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "14",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.00446517233847743,
+          "delta_rsa": 2.596030429347085e-05,
+          "left_rsa": 0.3598576618943163,
+          "right_rsa": 0.3598317015900228,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "15",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.04733882132271017,
+          "delta_rsa": -0.00023551652399358275,
+          "left_rsa": 0.03348585807723157,
+          "right_rsa": 0.03372137460122515,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "16",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.09424849105025146,
+          "delta_rsa": -0.0004226389733195113,
+          "left_rsa": 0.6265990389807201,
+          "right_rsa": 0.6270216779540396,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "17",
+          "residue_name": "VAL",
+          "delta_sasa_a2": -0.005752734960148054,
+          "delta_rsa": -3.306169517326013e-05,
+          "left_rsa": 0.032661044869743514,
+          "right_rsa": 0.032694106564916774,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "18",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.0878240106693653,
+          "delta_rsa": -0.00039382964425721534,
+          "left_rsa": 0.4476650182130415,
+          "right_rsa": 0.4480588478572987,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "19",
+          "residue_name": "PRO",
+          "delta_sasa_a2": 0.04815578260483022,
+          "delta_rsa": 0.00030286655726308176,
+          "left_rsa": 0.3174960410480581,
+          "right_rsa": 0.31719317449079504,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "20",
+          "residue_name": "SER",
+          "delta_sasa_a2": 0.04335735477201297,
+          "delta_rsa": 0.0002797248694967891,
+          "left_rsa": 0.5350411328505924,
+          "right_rsa": 0.5347614079810956,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "21",
+          "residue_name": "ASP",
+          "delta_sasa_a2": 0.02893828263611553,
+          "delta_rsa": 0.00014993928827003455,
+          "left_rsa": 0.16423336178544828,
+          "right_rsa": 0.16408342249717825,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "22",
+          "residue_name": "THR",
+          "delta_sasa_a2": -0.14784457370087978,
+          "delta_rsa": -0.0008595614750050995,
+          "left_rsa": 0.283044292557252,
+          "right_rsa": 0.2839038540322571,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "23",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "24",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.06997014090241294,
+          "delta_rsa": -0.0003137674479929409,
+          "left_rsa": 0.5237303793170742,
+          "right_rsa": 0.5240441467650672,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "25",
+          "residue_name": "ASN",
+          "delta_sasa_a2": 0.028055949843938777,
+          "delta_rsa": 0.00014387666586634928,
+          "left_rsa": 0.263237212134716,
+          "right_rsa": 0.26309333546884967,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "26",
+          "residue_name": "VAL",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "27",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.018966439244806566,
+          "delta_rsa": -8.036626798646473e-05,
+          "left_rsa": 0.07050569624736584,
+          "right_rsa": 0.07058606251535231,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "28",
+          "residue_name": "ALA",
+          "delta_sasa_a2": -0.05250149327894604,
+          "delta_rsa": -0.00040698831999180785,
+          "left_rsa": 0.3713811196914446,
+          "right_rsa": 0.3717881080114364,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "29",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 0.043601365129802616,
+          "delta_rsa": 0.00018475154716018904,
+          "left_rsa": 0.2883570802956642,
+          "right_rsa": 0.288172328748504,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "30",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.03159054945169061,
+          "delta_rsa": 0.00016035811904411483,
+          "left_rsa": 0.0007411806593055169,
+          "right_rsa": 0.0005808225402614021,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "31",
+          "residue_name": "GLN",
+          "delta_sasa_a2": 0.12487137659908853,
+          "delta_rsa": 0.000554983895995953,
+          "left_rsa": 0.33158222706613893,
+          "right_rsa": 0.331027243170143,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "32",
+          "residue_name": "ASP",
+          "delta_sasa_a2": 0.06354795147180425,
+          "delta_rsa": 0.000329263997263185,
+          "left_rsa": 0.674988428312126,
+          "right_rsa": 0.6746591643148628,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "33",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.05359310296486797,
+          "delta_rsa": -0.00022708941934268534,
+          "left_rsa": 0.478344289477893,
+          "right_rsa": 0.47857137889723567,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "34",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.011767654267167416,
+          "delta_rsa": -5.276975007700857e-05,
+          "left_rsa": 0.28689394241353205,
+          "right_rsa": 0.28694671216360906,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "35",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.00321434492876449,
+          "delta_rsa": -3.0907162776594443e-05,
+          "left_rsa": 0.48129319240508484,
+          "right_rsa": 0.48132409956786143,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "36",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.06085052469656205,
+          "delta_rsa": -0.0003088859121652965,
+          "left_rsa": 0.1503028666433106,
+          "right_rsa": 0.1506117525554759,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "37",
+          "residue_name": "PRO",
+          "delta_sasa_a2": 0.031358271005359484,
+          "delta_rsa": 0.00019722183022241602,
+          "left_rsa": 0.32995633883574876,
+          "right_rsa": 0.32975911700552635,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "38",
+          "residue_name": "PRO",
+          "delta_sasa_a2": 0.0009797559891637775,
+          "delta_rsa": 6.161987353259235e-06,
+          "left_rsa": 0.3110739892397677,
+          "right_rsa": 0.31106782725241444,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "39",
+          "residue_name": "ASP",
+          "delta_sasa_a2": 0.036533096693375455,
+          "delta_rsa": 0.00018929065644235354,
+          "left_rsa": 0.4305055705779413,
+          "right_rsa": 0.43031627992149896,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "40",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.023263330140864014,
+          "delta_rsa": -0.00010339257840386029,
+          "left_rsa": 0.18060080741657075,
+          "right_rsa": 0.1807041999949746,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "41",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.004099946044030241,
+          "delta_rsa": -1.8221982417912185e-05,
+          "left_rsa": 6.852524472933597e-05,
+          "right_rsa": 8.674722714724816e-05,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "42",
+          "residue_name": "ARG",
+          "delta_sasa_a2": -0.0028858728517207055,
+          "delta_rsa": -1.0532382670513929e-05,
+          "left_rsa": 0.32392936402419065,
+          "right_rsa": 0.32393989640686116,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "43",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.00493217310378169,
+          "delta_rsa": 2.4538174645680026e-05,
+          "left_rsa": 0.0016420155465088427,
+          "right_rsa": 0.0016174773718631626,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "44",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.059303178332683615,
+          "delta_rsa": -0.0003010313620948335,
+          "left_rsa": 0.14293874279775556,
+          "right_rsa": 0.1432397741598504,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "45",
+          "residue_name": "PHE",
+          "delta_sasa_a2": -0.0803812318112449,
+          "delta_rsa": -0.0003349217992135167,
+          "left_rsa": 0.1555245075669756,
+          "right_rsa": 0.15585942936618913,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "46",
+          "residue_name": "ALA",
+          "delta_sasa_a2": -0.032117030650610445,
+          "delta_rsa": -0.0002489692298496271,
+          "left_rsa": 0.5612687713505151,
+          "right_rsa": 0.5615177405803647,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "47",
+          "residue_name": "GLY",
+          "delta_sasa_a2": 0.05075435870445233,
+          "delta_rsa": 0.0004880226798504861,
+          "left_rsa": 0.722306548837681,
+          "right_rsa": 0.7218185261578305,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "48",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.011878543712185774,
+          "delta_rsa": -5.033281233979281e-05,
+          "left_rsa": 0.41772067826339826,
+          "right_rsa": 0.41777101107573805,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "49",
+          "residue_name": "GLN",
+          "delta_sasa_a2": 0.058031857941003295,
+          "delta_rsa": 0.0002579193686266801,
+          "left_rsa": 0.4496218743080059,
+          "right_rsa": 0.4493639549393792,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "50",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.014438966415587728,
+          "delta_rsa": 7.183565380889517e-05,
+          "left_rsa": 0.030469434207816528,
+          "right_rsa": 0.030397598554007633,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "51",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.12759217690837943,
+          "delta_rsa": -0.0005721622282887084,
+          "left_rsa": 0.516987541683971,
+          "right_rsa": 0.5175597039122597,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "52",
+          "residue_name": "ASP",
+          "delta_sasa_a2": -0.07878652694321175,
+          "delta_rsa": -0.00040822034685600306,
+          "left_rsa": 0.31324383413214074,
+          "right_rsa": 0.31365205447899674,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "53",
+          "residue_name": "GLY",
+          "delta_sasa_a2": 0.054376158550446974,
+          "delta_rsa": 0.0005228476783696867,
+          "left_rsa": 0.4539144063098547,
+          "right_rsa": 0.453391558631485,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "54",
+          "residue_name": "ARG",
+          "delta_sasa_a2": 0.0008176767756680192,
+          "delta_rsa": 2.9842218089992656e-06,
+          "left_rsa": 0.4531667225381286,
+          "right_rsa": 0.4531637383163196,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "55",
+          "residue_name": "THR",
+          "delta_sasa_a2": -0.037802178625781835,
+          "delta_rsa": -0.00021978010828943573,
+          "left_rsa": 0.18945786042136617,
+          "right_rsa": 0.1896776405296556,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "56",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "57",
+          "residue_name": "SER",
+          "delta_sasa_a2": -0.01927460751437593,
+          "delta_rsa": -0.00012435230654439522,
+          "left_rsa": 0.4090962796503503,
+          "right_rsa": 0.4092206319568947,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "58",
+          "residue_name": "ASP",
+          "delta_sasa_a2": 0.013353219627234125,
+          "delta_rsa": 6.918766646235586e-05,
+          "left_rsa": 0.4448591497496446,
+          "right_rsa": 0.4447899620831822,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "59",
+          "residue_name": "TYR",
+          "delta_sasa_a2": -0.03442966696125893,
+          "delta_rsa": -0.00013091128122152962,
+          "left_rsa": 0.14099354310860554,
+          "right_rsa": 0.14112445438982707,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "60",
+          "residue_name": "ASN",
+          "delta_sasa_a2": -0.0499781093522671,
+          "delta_rsa": -0.00025629799667825637,
+          "left_rsa": 0.5875215285064151,
+          "right_rsa": 0.5877778265030934,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "61",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.011005127159363859,
+          "delta_rsa": -5.5863589641443057e-05,
+          "left_rsa": 0.02279784752174018,
+          "right_rsa": 0.02285371111138162,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "62",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.09537156611290243,
+          "delta_rsa": -0.00042387362716844734,
+          "left_rsa": 0.5277446957335757,
+          "right_rsa": 0.5281685693607442,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "63",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 0.21231118862684184,
+          "delta_rsa": 0.0008996236806222413,
+          "left_rsa": 0.5733027194498008,
+          "right_rsa": 0.5724030957691786,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "64",
+          "residue_name": "GLU",
+          "delta_sasa_a2": 0.04870987689945139,
+          "delta_rsa": 0.00021842994125315096,
+          "left_rsa": 0.43715584939861885,
+          "right_rsa": 0.4369374194573657,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "65",
+          "residue_name": "SER",
+          "delta_sasa_a2": 0.030327942882685477,
+          "delta_rsa": 0.00019566414763022566,
+          "left_rsa": 0.12767270474924425,
+          "right_rsa": 0.12747704060161402,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "66",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.05855682372948223,
+          "delta_rsa": 0.00034044664958998716,
+          "left_rsa": 0.30949826492069793,
+          "right_rsa": 0.30915781827110794,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "67",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "68",
+          "residue_name": "HIS",
+          "delta_sasa_a2": -0.08563090311051269,
+          "delta_rsa": -0.00038228081745766973,
+          "left_rsa": 0.34907812794521753,
+          "right_rsa": 0.3494604087626752,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "69",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.03939064446092644,
+          "delta_rsa": -0.00019597335552699706,
+          "left_rsa": 0.014499435193150681,
+          "right_rsa": 0.014695408548677678,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "70",
+          "residue_name": "VAL",
+          "delta_sasa_a2": 0.016053689871512233,
+          "delta_rsa": 9.226258546846111e-05,
+          "left_rsa": 0.21376100652120675,
+          "right_rsa": 0.2136687439357383,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "71",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.008783499579266163,
+          "delta_rsa": 4.3699002881925075e-05,
+          "left_rsa": 0.38108160629917354,
+          "right_rsa": 0.3810379072962916,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "72",
+          "residue_name": "ARG",
+          "delta_sasa_a2": -0.05030391132569889,
+          "delta_rsa": -0.00018359091724706733,
+          "left_rsa": 0.4312947024587565,
+          "right_rsa": 0.4314782933760036,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "73",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.06701004539161204,
+          "delta_rsa": -0.0003333833104059991,
+          "left_rsa": 0.5928489734219576,
+          "right_rsa": 0.5931823567323636,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "74",
+          "residue_name": "ARG",
+          "delta_sasa_a2": -0.12468393489569962,
+          "delta_rsa": -0.0004550508572834788,
+          "left_rsa": 0.7671813005291589,
+          "right_rsa": 0.7676363513864424,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "75",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.05506557917136945,
+          "delta_rsa": -0.0005294767228015695,
+          "left_rsa": 0.7020209448888737,
+          "right_rsa": 0.7025504216116752,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "76",
+          "residue_name": "GLY",
+          "delta_sasa_a2": 0.0031478516871743523,
+          "delta_rsa": 3.0267804684402932e-05,
+          "left_rsa": 1.4131672737269765,
+          "right_rsa": 1.413137005922292,
+          "buried_020_differs": false
+        }
+      ]
+    },
+    {
+      "left": "Biopython-SR-960",
+      "right": "Biopython-SR-15360",
+      "total_delta_a2": -10.57648427314507,
+      "total_relative_error": 0.0022009241797210665,
+      "max_abs_residue_sasa_delta_a2": 1.9290310735237028,
+      "max_abs_rsa_delta": 0.0070402593924222545,
+      "p95_abs_rsa_delta": 0.0063106495448430056,
+      "buried_classification_differences": [],
+      "residue_comparison": [
+        {
+          "chain": "A",
+          "residue_number": "1",
+          "residue_name": "MET",
+          "delta_sasa_a2": 0.5705020994179293,
+          "delta_rsa": 0.0025468843724014423,
+          "left_rsa": 0.2505797705042451,
+          "right_rsa": 0.24803288613184368,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "2",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.4500702086025683,
+          "delta_rsa": -0.0020003120382336426,
+          "left_rsa": 0.33579941076823927,
+          "right_rsa": 0.3377997228064729,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "3",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "4",
+          "residue_name": "PHE",
+          "delta_sasa_a2": 0.43423772700079155,
+          "delta_rsa": 0.0018093238625032926,
+          "left_rsa": 0.22740626226273786,
+          "right_rsa": 0.22559693840023456,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "5",
+          "residue_name": "VAL",
+          "delta_sasa_a2": -0.008801695417807402,
+          "delta_rsa": -5.058445642418047e-05,
+          "left_rsa": 0.0,
+          "right_rsa": 5.058445642418047e-05,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "6",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.3260096146477025,
+          "delta_rsa": -0.0013813966722360238,
+          "left_rsa": 0.4318774266420332,
+          "right_rsa": 0.43325882331426924,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "7",
+          "residue_name": "THR",
+          "delta_sasa_a2": -0.13423698159554576,
+          "delta_rsa": -0.000780447567415965,
+          "left_rsa": 0.11884131303336101,
+          "right_rsa": 0.11962176060077698,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "8",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.07316155697895965,
+          "delta_rsa": -0.00036398784566649134,
+          "left_rsa": 0.6796226989902768,
+          "right_rsa": 0.6799866868359433,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "9",
+          "residue_name": "THR",
+          "delta_sasa_a2": -0.5486449594044132,
+          "delta_rsa": -0.003189796275607004,
+          "left_rsa": 0.7225344377722772,
+          "right_rsa": 0.7257242340478842,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "10",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.14668963310082006,
+          "delta_rsa": -0.0014104772413541244,
+          "left_rsa": 0.6532594661355868,
+          "right_rsa": 0.654669943376941,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "11",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 1.5701051764111043,
+          "delta_rsa": 0.006652988035640295,
+          "left_rsa": 0.4425229662735545,
+          "right_rsa": 0.4358699782379142,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "12",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.30405086374682355,
+          "delta_rsa": 0.0017677375799233785,
+          "left_rsa": 0.37018424302262937,
+          "right_rsa": 0.368416505442706,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "13",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.26405086253422194,
+          "delta_rsa": -0.0013403597082955396,
+          "left_rsa": 0.02287547235491061,
+          "right_rsa": 0.02421583206320615,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "14",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.10240487584535174,
+          "delta_rsa": 0.0005953771851474055,
+          "left_rsa": 0.3604270787751702,
+          "right_rsa": 0.3598317015900228,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "15",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.3007646269314703,
+          "delta_rsa": 0.001496341427519747,
+          "left_rsa": 0.0352177160287449,
+          "right_rsa": 0.03372137460122515,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "16",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.4339480296156921,
+          "delta_rsa": -0.0019459552897564958,
+          "left_rsa": 0.6250757226642831,
+          "right_rsa": 0.6270216779540396,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "17",
+          "residue_name": "VAL",
+          "delta_sasa_a2": -0.07851838151486756,
+          "delta_rsa": -0.0004512550661773945,
+          "left_rsa": 0.03224285149873938,
+          "right_rsa": 0.032694106564916774,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "18",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.8223791267948855,
+          "delta_rsa": -0.0036877987748649144,
+          "left_rsa": 0.4443710490824338,
+          "right_rsa": 0.4480588478572987,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "19",
+          "residue_name": "PRO",
+          "delta_sasa_a2": -1.003393277630039,
+          "delta_rsa": -0.0063106495448430056,
+          "left_rsa": 0.31088252494595203,
+          "right_rsa": 0.31719317449079504,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "20",
+          "residue_name": "SER",
+          "delta_sasa_a2": 0.9813058359675892,
+          "delta_rsa": 0.006331005393339306,
+          "left_rsa": 0.5410924133744349,
+          "right_rsa": 0.5347614079810956,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "21",
+          "residue_name": "ASP",
+          "delta_sasa_a2": -0.24683853453413462,
+          "delta_rsa": -0.0012789561374825509,
+          "left_rsa": 0.1628044663596957,
+          "right_rsa": 0.16408342249717825,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "22",
+          "residue_name": "THR",
+          "delta_sasa_a2": -0.2166517561239658,
+          "delta_rsa": -0.0012596032332788942,
+          "left_rsa": 0.2826442507989782,
+          "right_rsa": 0.2839038540322571,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "23",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "24",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.3828373441972559,
+          "delta_rsa": -0.0017167593910191181,
+          "left_rsa": 0.522327387374048,
+          "right_rsa": 0.5240441467650672,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "25",
+          "residue_name": "ASN",
+          "delta_sasa_a2": 0.5079142106506325,
+          "delta_rsa": 0.002604688259746857,
+          "left_rsa": 0.2656980237285965,
+          "right_rsa": 0.26309333546884967,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "26",
+          "residue_name": "VAL",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "27",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.08879711635371734,
+          "delta_rsa": -0.00037625896760050404,
+          "left_rsa": 0.0702098035477518,
+          "right_rsa": 0.07058606251535231,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "28",
+          "residue_name": "ALA",
+          "delta_sasa_a2": 0.11739755409844577,
+          "delta_rsa": 0.0009100585589026933,
+          "left_rsa": 0.3726981665703391,
+          "right_rsa": 0.3717881080114364,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "29",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.778691517580512,
+          "delta_rsa": -0.0032995403287309766,
+          "left_rsa": 0.28487278841977304,
+          "right_rsa": 0.288172328748504,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "30",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.11442204043149622,
+          "delta_rsa": -0.0005808225402614021,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0005808225402614021,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "31",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.09657231273442335,
+          "delta_rsa": -0.00042921027881964724,
+          "left_rsa": 0.33059803289132333,
+          "right_rsa": 0.331027243170143,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "32",
+          "residue_name": "ASP",
+          "delta_sasa_a2": 0.379026854107849,
+          "delta_rsa": 0.0019638697104032987,
+          "left_rsa": 0.6766230340252661,
+          "right_rsa": 0.6746591643148628,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "33",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 0.05523934357637472,
+          "delta_rsa": 0.00023406501515410572,
+          "left_rsa": 0.47880544391238977,
+          "right_rsa": 0.47857137889723567,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "34",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.49272002868124076,
+          "delta_rsa": -0.0022095068550728736,
+          "left_rsa": 0.2847372053085362,
+          "right_rsa": 0.28694671216360906,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "35",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.45658042306636304,
+          "delta_rsa": -0.004390196375638089,
+          "left_rsa": 0.47693390319222334,
+          "right_rsa": 0.48132409956786143,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "36",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.18483560377395492,
+          "delta_rsa": 0.0009382517958068937,
+          "left_rsa": 0.1515500043512828,
+          "right_rsa": 0.1506117525554759,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "37",
+          "residue_name": "PRO",
+          "delta_sasa_a2": -0.18483560377395492,
+          "delta_rsa": -0.0011624880740500054,
+          "left_rsa": 0.32859662893147634,
+          "right_rsa": 0.32975911700552635,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "38",
+          "residue_name": "PRO",
+          "delta_sasa_a2": -0.7472620102013607,
+          "delta_rsa": -0.0046997610704487824,
+          "left_rsa": 0.30636806618196566,
+          "right_rsa": 0.31106782725241444,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "39",
+          "residue_name": "ASP",
+          "delta_sasa_a2": 0.2467936195766498,
+          "delta_rsa": 0.0012787234174955753,
+          "left_rsa": 0.43159500333899453,
+          "right_rsa": 0.43031627992149896,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "40",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.5916927963648533,
+          "delta_rsa": -0.002629745761621588,
+          "left_rsa": 0.17807445423335302,
+          "right_rsa": 0.1807041999949746,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "41",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.019518126108130834,
+          "delta_rsa": -8.674722714724816e-05,
+          "left_rsa": 0.0,
+          "right_rsa": 8.674722714724816e-05,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "42",
+          "residue_name": "ARG",
+          "delta_sasa_a2": -0.4534291765603342,
+          "delta_rsa": -0.0016548510093442603,
+          "left_rsa": 0.3222850453975169,
+          "right_rsa": 0.32393989640686116,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "43",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.03780383159819717,
+          "delta_rsa": 0.0001880787641701351,
+          "left_rsa": 0.0018055561360332977,
+          "right_rsa": 0.0016174773718631626,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "44",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.6161186792465223,
+          "delta_rsa": -0.0031275059860229604,
+          "left_rsa": 0.14011226817382744,
+          "right_rsa": 0.1432397741598504,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "45",
+          "residue_name": "PHE",
+          "delta_sasa_a2": -0.24381900584509708,
+          "delta_rsa": -0.0010159125243545675,
+          "left_rsa": 0.15484351684183456,
+          "right_rsa": 0.15585942936618913,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "46",
+          "residue_name": "ALA",
+          "delta_sasa_a2": -0.06519230180204261,
+          "delta_rsa": -0.0005053666806359436,
+          "left_rsa": 0.5610123738997288,
+          "right_rsa": 0.5615177405803647,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "47",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.32784932803315314,
+          "delta_rsa": -0.0031523973849341136,
+          "left_rsa": 0.7186661287728964,
+          "right_rsa": 0.7218185261578305,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "48",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.9630607093826313,
+          "delta_rsa": -0.004080765717723034,
+          "left_rsa": 0.413690245358015,
+          "right_rsa": 0.41777101107573805,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "49",
+          "residue_name": "GLN",
+          "delta_sasa_a2": 0.36203288315964244,
+          "delta_rsa": 0.001609035036265083,
+          "left_rsa": 0.4509729899756443,
+          "right_rsa": 0.4493639549393792,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "50",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.03178637266963413,
+          "delta_rsa": 0.00015814115756036806,
+          "left_rsa": 0.030555739711568,
+          "right_rsa": 0.030397598554007633,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "51",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.7483562498300671,
+          "delta_rsa": -0.003355857622556413,
+          "left_rsa": 0.5142038462897033,
+          "right_rsa": 0.5175597039122597,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "52",
+          "residue_name": "ASP",
+          "delta_sasa_a2": -0.325125059966183,
+          "delta_rsa": -0.0016845858029335692,
+          "left_rsa": 0.3119674686760632,
+          "right_rsa": 0.31365205447899674,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "53",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.2690960639863462,
+          "delta_rsa": -0.002587462153714859,
+          "left_rsa": 0.45080409647777014,
+          "right_rsa": 0.453391558631485,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "54",
+          "residue_name": "ARG",
+          "delta_sasa_a2": -0.9184538570678598,
+          "delta_rsa": -0.003352021376160086,
+          "left_rsa": 0.44981171694015953,
+          "right_rsa": 0.4531637383163196,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "55",
+          "residue_name": "THR",
+          "delta_sasa_a2": -0.6393919903233929,
+          "delta_rsa": -0.003717395292577891,
+          "left_rsa": 0.18596024523707771,
+          "right_rsa": 0.1896776405296556,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "56",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "57",
+          "residue_name": "SER",
+          "delta_sasa_a2": 0.42617291504733856,
+          "delta_rsa": 0.0027495026777247245,
+          "left_rsa": 0.4119701346346194,
+          "right_rsa": 0.4092206319568947,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "58",
+          "residue_name": "ASP",
+          "delta_sasa_a2": -0.6470342417024995,
+          "delta_rsa": -0.003352509024365291,
+          "left_rsa": 0.44143745305881693,
+          "right_rsa": 0.4447899620831822,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "59",
+          "residue_name": "TYR",
+          "delta_sasa_a2": 0.3593756193734734,
+          "delta_rsa": 0.001366447221952366,
+          "left_rsa": 0.14249090161177944,
+          "right_rsa": 0.14112445438982707,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "60",
+          "residue_name": "ASN",
+          "delta_sasa_a2": -0.7346545698080433,
+          "delta_rsa": -0.003767459332348899,
+          "left_rsa": 0.5840103671707445,
+          "right_rsa": 0.5877778265030934,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "61",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.078072504432523,
+          "delta_rsa": 0.00039630712909910146,
+          "left_rsa": 0.023250018240480723,
+          "right_rsa": 0.02285371111138162,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "62",
+          "residue_name": "GLN",
+          "delta_sasa_a2": 0.5323969530868311,
+          "delta_rsa": 0.0023662086803859506,
+          "left_rsa": 0.5305347780411301,
+          "right_rsa": 0.5281685693607442,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "63",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.8580919994076339,
+          "delta_rsa": -0.0036359830483373434,
+          "left_rsa": 0.5687671127208412,
+          "right_rsa": 0.5724030957691786,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "64",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.08182138985350207,
+          "delta_rsa": -0.0003669120621233035,
+          "left_rsa": 0.4365705073952424,
+          "right_rsa": 0.4369374194573657,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "65",
+          "residue_name": "SER",
+          "delta_sasa_a2": 0.07288593131098509,
+          "delta_rsa": 0.00047023181490959964,
+          "left_rsa": 0.12794727241652362,
+          "right_rsa": 0.12747704060161402,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "66",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.10266953866394601,
+          "delta_rsa": 0.0005969159224648024,
+          "left_rsa": 0.30975473419357274,
+          "right_rsa": 0.30915781827110794,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "67",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "68",
+          "residue_name": "HIS",
+          "delta_sasa_a2": -0.16694357911329405,
+          "delta_rsa": -0.0007452838353272373,
+          "left_rsa": 0.34871512492734796,
+          "right_rsa": 0.3494604087626752,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "69",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.3024404702626198,
+          "delta_rsa": -0.0015046789565304475,
+          "left_rsa": 0.01319072959214723,
+          "right_rsa": 0.014695408548677678,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "70",
+          "residue_name": "VAL",
+          "delta_sasa_a2": 0.28165425336983674,
+          "delta_rsa": 0.0016187026055737852,
+          "left_rsa": 0.21528744654131207,
+          "right_rsa": 0.2136687439357383,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "71",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.07724742729939749,
+          "delta_rsa": 0.0003843155587034408,
+          "left_rsa": 0.38142222285499505,
+          "right_rsa": 0.3810379072962916,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "72",
+          "residue_name": "ARG",
+          "delta_sasa_a2": 0.29902317012876267,
+          "delta_rsa": 0.0010913254384261606,
+          "left_rsa": 0.43256961881442973,
+          "right_rsa": 0.4314782933760036,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "73",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.6593653201170611,
+          "delta_rsa": 0.0032804244781943215,
+          "left_rsa": 0.596462781210558,
+          "right_rsa": 0.5931823567323636,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "74",
+          "residue_name": "ARG",
+          "delta_sasa_a2": -1.9290310735237028,
+          "delta_rsa": -0.0070402593924222545,
+          "left_rsa": 0.7605960919940201,
+          "right_rsa": 0.7676363513864424,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "75",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.2627375295428749,
+          "delta_rsa": -0.00252632239945072,
+          "left_rsa": 0.7000240992122245,
+          "right_rsa": 0.7025504216116752,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "76",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.39157817125740735,
+          "delta_rsa": -0.003765174723628917,
+          "left_rsa": 1.4093718311986632,
+          "right_rsa": 1.413137005922292,
+          "buried_020_differs": false
+        }
+      ]
+    },
+    {
+      "left": "Biopython-SR-3840",
+      "right": "Biopython-SR-15360",
+      "total_delta_a2": -2.100038597262028,
+      "total_relative_error": 0.0004370096534627647,
+      "max_abs_residue_sasa_delta_a2": 0.4425618839728003,
+      "max_abs_rsa_delta": 0.0032946831495637152,
+      "p95_abs_rsa_delta": 0.0017461539305547724,
+      "buried_classification_differences": [],
+      "residue_comparison": [
+        {
+          "chain": "A",
+          "residue_number": "1",
+          "residue_name": "MET",
+          "delta_sasa_a2": 0.26621038023432675,
+          "delta_rsa": 0.001188439197474661,
+          "left_rsa": 0.24922132532931834,
+          "right_rsa": 0.24803288613184368,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "2",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.09341664836374264,
+          "delta_rsa": -0.00041518510383886653,
+          "left_rsa": 0.33738453770263405,
+          "right_rsa": 0.3377997228064729,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "3",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "4",
+          "residue_name": "PHE",
+          "delta_sasa_a2": 0.13863840199060462,
+          "delta_rsa": 0.0005776600082941785,
+          "left_rsa": 0.22617459840852874,
+          "right_rsa": 0.22559693840023456,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "5",
+          "residue_name": "VAL",
+          "delta_sasa_a2": -0.008801695417807402,
+          "delta_rsa": -5.058445642418047e-05,
+          "left_rsa": 0.0,
+          "right_rsa": 5.058445642418047e-05,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "6",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.14653566233589288,
+          "delta_rsa": -0.000620913823457192,
+          "left_rsa": 0.43263790949081204,
+          "right_rsa": 0.43325882331426924,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "7",
+          "residue_name": "THR",
+          "delta_sasa_a2": -0.1645003363266575,
+          "delta_rsa": -0.0009563973042247542,
+          "left_rsa": 0.11866536329655222,
+          "right_rsa": 0.11962176060077698,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "8",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.1830835931833974,
+          "delta_rsa": -0.0009108636476785614,
+          "left_rsa": 0.6790758231882648,
+          "right_rsa": 0.6799866868359433,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "9",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.013309062752625778,
+          "delta_rsa": 7.737827181764079e-05,
+          "left_rsa": 0.7258016123197019,
+          "right_rsa": 0.7257242340478842,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "10",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.05174154013076304,
+          "delta_rsa": -0.0004975148089496617,
+          "left_rsa": 0.6541724285679913,
+          "right_rsa": 0.654669943376941,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "11",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 0.28684835322377467,
+          "delta_rsa": 0.0012154591238295875,
+          "left_rsa": 0.43708543736174377,
+          "right_rsa": 0.4358699782379142,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "12",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.032710197259333995,
+          "delta_rsa": 0.00019017556546119252,
+          "left_rsa": 0.3686066810081672,
+          "right_rsa": 0.368416505442706,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "13",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.05281017250684439,
+          "delta_rsa": -0.00026807194165910653,
+          "left_rsa": 0.023947760121547042,
+          "right_rsa": 0.02421583206320615,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "14",
+          "residue_name": "THR",
+          "delta_sasa_a2": 0.24482734254966942,
+          "delta_rsa": 0.0014234147822655419,
+          "left_rsa": 0.36125511637228835,
+          "right_rsa": 0.3598317015900228,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "15",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.14655300654532155,
+          "delta_rsa": -0.0007291194355488681,
+          "left_rsa": 0.03299225516567628,
+          "right_rsa": 0.03372137460122515,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "16",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.277837054671096,
+          "delta_rsa": -0.001245906074758274,
+          "left_rsa": 0.6257757718792814,
+          "right_rsa": 0.6270216779540396,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "17",
+          "residue_name": "VAL",
+          "delta_sasa_a2": 0.0033462870499265662,
+          "delta_rsa": 1.9231534769695302e-05,
+          "left_rsa": 0.03271333809968647,
+          "right_rsa": 0.032694106564916774,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "18",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.05972543971094524,
+          "delta_rsa": -0.00026782708390554744,
+          "left_rsa": 0.44779102077339317,
+          "right_rsa": 0.4480588478572987,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "19",
+          "residue_name": "PRO",
+          "delta_sasa_a2": 0.2992576442054542,
+          "delta_rsa": 0.0018821235484619558,
+          "left_rsa": 0.319075298039257,
+          "right_rsa": 0.31719317449079504,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "20",
+          "residue_name": "SER",
+          "delta_sasa_a2": -0.019727320181431196,
+          "delta_rsa": -0.00012727303342863205,
+          "left_rsa": 0.534634134947667,
+          "right_rsa": 0.5347614079810956,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "21",
+          "residue_name": "ASP",
+          "delta_sasa_a2": 0.0670118075472459,
+          "delta_rsa": 0.00034721143806865085,
+          "left_rsa": 0.1644306339352469,
+          "right_rsa": 0.16408342249717825,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "22",
+          "residue_name": "THR",
+          "delta_sasa_a2": -0.08132503457669316,
+          "delta_rsa": -0.0004728199684691514,
+          "left_rsa": 0.28343103406378795,
+          "right_rsa": 0.2839038540322571,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "23",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "24",
+          "residue_name": "GLU",
+          "delta_sasa_a2": 0.10308751774904579,
+          "delta_rsa": 0.00046227586434544055,
+          "left_rsa": 0.5245064226294126,
+          "right_rsa": 0.5240441467650672,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "25",
+          "residue_name": "ASN",
+          "delta_sasa_a2": 0.05857679489697176,
+          "delta_rsa": 0.0003003938199844791,
+          "left_rsa": 0.26339372928883414,
+          "right_rsa": 0.26309333546884967,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "26",
+          "residue_name": "VAL",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "27",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.1447802974406862,
+          "delta_rsa": -0.0006134758366130727,
+          "left_rsa": 0.06997258667873923,
+          "right_rsa": 0.07058606251535231,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "28",
+          "residue_name": "ALA",
+          "delta_sasa_a2": -0.005641940431686976,
+          "delta_rsa": -4.3735972338643236e-05,
+          "left_rsa": 0.37174437203909777,
+          "right_rsa": 0.3717881080114364,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "29",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.12128183889029742,
+          "delta_rsa": -0.0005139060969927556,
+          "left_rsa": 0.28765842265151126,
+          "right_rsa": 0.288172328748504,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "30",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.026405086253422208,
+          "delta_rsa": 0.00013403597082955446,
+          "left_rsa": 0.0007148585110909565,
+          "right_rsa": 0.0005808225402614021,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "31",
+          "residue_name": "GLN",
+          "delta_sasa_a2": 0.12901727448898725,
+          "delta_rsa": 0.0005734101088399335,
+          "left_rsa": 0.3316006532789829,
+          "right_rsa": 0.331027243170143,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "32",
+          "residue_name": "ASP",
+          "delta_sasa_a2": -0.00715080484079067,
+          "delta_rsa": -3.7050802283888906e-05,
+          "left_rsa": 0.674622113512579,
+          "right_rsa": 0.6746591643148628,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "33",
+          "residue_name": "LYS",
+          "delta_sasa_a2": -0.26009801902768004,
+          "delta_rsa": -0.0011021102501173052,
+          "left_rsa": 0.47746926864711836,
+          "right_rsa": 0.47857137889723567,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "34",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.11808445024219338,
+          "delta_rsa": -0.0005295266827004541,
+          "left_rsa": 0.2864171854809086,
+          "right_rsa": 0.28694671216360906,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "35",
+          "residue_name": "GLY",
+          "delta_sasa_a2": 0.15569111417644876,
+          "delta_rsa": 0.0014970299440043022,
+          "left_rsa": 0.48282112951186573,
+          "right_rsa": 0.48132409956786143,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "36",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.1320254312671132,
+          "delta_rsa": -0.0006701798541477733,
+          "left_rsa": 0.14994157270132813,
+          "right_rsa": 0.1506117525554759,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "37",
+          "residue_name": "PRO",
+          "delta_sasa_a2": -0.04400847708904365,
+          "delta_rsa": -0.0002767828747738399,
+          "left_rsa": 0.3294823341307525,
+          "right_rsa": 0.32975911700552635,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "38",
+          "residue_name": "PRO",
+          "delta_sasa_a2": -0.09348250727222762,
+          "delta_rsa": -0.0005879402973095749,
+          "left_rsa": 0.31047988695510487,
+          "right_rsa": 0.31106782725241444,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "39",
+          "residue_name": "ASP",
+          "delta_sasa_a2": 0.2330053003197463,
+          "delta_rsa": 0.0012072813488069323,
+          "left_rsa": 0.4315235612703059,
+          "right_rsa": 0.43031627992149896,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "40",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.04862530929286635,
+          "delta_rsa": -0.00021611248574607278,
+          "left_rsa": 0.18048808750922854,
+          "right_rsa": 0.1807041999949746,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "41",
+          "residue_name": "GLN",
+          "delta_sasa_a2": 0.006506042036043609,
+          "delta_rsa": 2.8915742382416043e-05,
+          "left_rsa": 0.0001156629695296642,
+          "right_rsa": 8.674722714724816e-05,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "42",
+          "residue_name": "ARG",
+          "delta_sasa_a2": -0.017723000430919456,
+          "delta_rsa": -6.468248332452964e-05,
+          "left_rsa": 0.32387521392353663,
+          "right_rsa": 0.32393989640686116,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "43",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.022682298958918268,
+          "delta_rsa": -0.00011284725850208097,
+          "left_rsa": 0.0015046301133610817,
+          "right_rsa": 0.0016174773718631626,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "44",
+          "residue_name": "ILE",
+          "delta_sasa_a2": 0.15843051752053583,
+          "delta_rsa": 0.0008042158249773335,
+          "left_rsa": 0.14404398998482773,
+          "right_rsa": 0.1432397741598504,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "45",
+          "residue_name": "PHE",
+          "delta_sasa_a2": -0.077901025833512,
+          "delta_rsa": -0.0003245876076396481,
+          "left_rsa": 0.15553484175854948,
+          "right_rsa": 0.15585942936618913,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "46",
+          "residue_name": "ALA",
+          "delta_sasa_a2": 0.08273384253227789,
+          "delta_rsa": 0.0006413476165293419,
+          "left_rsa": 0.5621590881968941,
+          "right_rsa": 0.5615177405803647,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "47",
+          "residue_name": "GLY",
+          "delta_sasa_a2": 0.12472425540295262,
+          "delta_rsa": 0.0011992716865668607,
+          "left_rsa": 0.7230177978443973,
+          "right_rsa": 0.7218185261578305,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "48",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 0.0466874211370083,
+          "delta_rsa": 0.00019782805566526118,
+          "left_rsa": 0.4179688391314033,
+          "right_rsa": 0.41777101107573805,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "49",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.27030819515186977,
+          "delta_rsa": -0.0012013697562305303,
+          "left_rsa": 0.44816258518314867,
+          "right_rsa": 0.4493639549393792,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "50",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.0390362522162615,
+          "delta_rsa": -0.0001942102100311524,
+          "left_rsa": 0.03020338834397648,
+          "right_rsa": 0.030397598554007633,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "51",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.3844276118535248,
+          "delta_rsa": -0.0017238906361144446,
+          "left_rsa": 0.5158358132761452,
+          "right_rsa": 0.5175597039122597,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "52",
+          "residue_name": "ASP",
+          "delta_sasa_a2": -0.045637523779625155,
+          "delta_rsa": -0.0002364638537804553,
+          "left_rsa": 0.3134155906252163,
+          "right_rsa": 0.31365205447899674,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "53",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.10947697724520822,
+          "delta_rsa": -0.001052663242742391,
+          "left_rsa": 0.4523388953887426,
+          "right_rsa": 0.453391558631485,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "54",
+          "residue_name": "ARG",
+          "delta_sasa_a2": 0.13205872887674275,
+          "delta_rsa": 0.00048196616378370916,
+          "left_rsa": 0.45364570448010333,
+          "right_rsa": 0.4531637383163196,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "55",
+          "residue_name": "THR",
+          "delta_sasa_a2": -0.12816847178635982,
+          "delta_rsa": -0.0007451655336416507,
+          "left_rsa": 0.18893247499601395,
+          "right_rsa": 0.1896776405296556,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "56",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "57",
+          "residue_name": "SER",
+          "delta_sasa_a2": -0.05677856035202211,
+          "delta_rsa": -0.000366313292593734,
+          "left_rsa": 0.40885431866430094,
+          "right_rsa": 0.4092206319568947,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "58",
+          "residue_name": "ASP",
+          "delta_sasa_a2": 0.3649882709986514,
+          "delta_rsa": 0.0018911309378168428,
+          "left_rsa": 0.44668109302099906,
+          "right_rsa": 0.4447899620831822,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "59",
+          "residue_name": "TYR",
+          "delta_sasa_a2": -0.015850971183539286,
+          "delta_rsa": -6.026985240889515e-05,
+          "left_rsa": 0.14106418453741817,
+          "right_rsa": 0.14112445438982707,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "60",
+          "residue_name": "ASN",
+          "delta_sasa_a2": -0.1250049534340434,
+          "delta_rsa": -0.0006410510432515171,
+          "left_rsa": 0.5871367754598419,
+          "right_rsa": 0.5877778265030934,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "61",
+          "residue_name": "ILE",
+          "delta_sasa_a2": -0.05204833628834926,
+          "delta_rsa": -0.0002642047527327378,
+          "left_rsa": 0.022589506358648884,
+          "right_rsa": 0.02285371111138162,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "62",
+          "residue_name": "GLN",
+          "delta_sasa_a2": -0.3297022132003349,
+          "delta_rsa": -0.0014653431697791985,
+          "left_rsa": 0.526703226190965,
+          "right_rsa": 0.5281685693607442,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "63",
+          "residue_name": "LYS",
+          "delta_sasa_a2": 0.21236642739492595,
+          "delta_rsa": 0.0008998577431988952,
+          "left_rsa": 0.5733029535123775,
+          "right_rsa": 0.5724030957691786,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "64",
+          "residue_name": "GLU",
+          "delta_sasa_a2": -0.324684500683901,
+          "delta_rsa": -0.001455984307999536,
+          "left_rsa": 0.43548143514936616,
+          "right_rsa": 0.4369374194573657,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "65",
+          "residue_name": "SER",
+          "delta_sasa_a2": -0.09470887377945303,
+          "delta_rsa": -0.0006110249921255084,
+          "left_rsa": 0.1268660156094885,
+          "right_rsa": 0.12747704060161402,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "66",
+          "residue_name": "THR",
+          "delta_sasa_a2": -0.16197691747750298,
+          "delta_rsa": -0.0009417262644040858,
+          "left_rsa": 0.30821609200670386,
+          "right_rsa": 0.30915781827110794,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "67",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.0,
+          "delta_rsa": 0.0,
+          "left_rsa": 0.0,
+          "right_rsa": 0.0,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "68",
+          "residue_name": "HIS",
+          "delta_sasa_a2": -0.11179619257188733,
+          "delta_rsa": -0.0004990901454102192,
+          "left_rsa": 0.348961318617265,
+          "right_rsa": 0.3494604087626752,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "69",
+          "residue_name": "LEU",
+          "delta_sasa_a2": -0.2109664551686583,
+          "delta_rsa": -0.0010495843540729282,
+          "left_rsa": 0.01364582419460475,
+          "right_rsa": 0.014695408548677678,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "70",
+          "residue_name": "VAL",
+          "delta_sasa_a2": -0.14082712668491837,
+          "delta_rsa": -0.0008093513027868648,
+          "left_rsa": 0.21285939263295142,
+          "right_rsa": 0.2136687439357383,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "71",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.3019236619086314,
+          "delta_rsa": 0.001502107770689709,
+          "left_rsa": 0.3825400150669813,
+          "right_rsa": 0.3810379072962916,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "72",
+          "residue_name": "ARG",
+          "delta_sasa_a2": -0.4425618839728003,
+          "delta_rsa": -0.001615189357564939,
+          "left_rsa": 0.42986310401843864,
+          "right_rsa": 0.4314782933760036,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "73",
+          "residue_name": "LEU",
+          "delta_sasa_a2": 0.08265530271594912,
+          "delta_rsa": 0.0004112204115220841,
+          "left_rsa": 0.5935935771438857,
+          "right_rsa": 0.5931823567323636,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "74",
+          "residue_name": "ARG",
+          "delta_sasa_a2": -0.408597749458238,
+          "delta_rsa": -0.0014912326622562588,
+          "left_rsa": 0.7661451187241861,
+          "right_rsa": 0.7676363513864424,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "75",
+          "residue_name": "GLY",
+          "delta_sasa_a2": -0.18160000877769278,
+          "delta_rsa": -0.0017461539305547724,
+          "left_rsa": 0.7008042676811205,
+          "right_rsa": 0.7025504216116752,
+          "buried_020_differs": false
+        },
+        {
+          "chain": "A",
+          "residue_number": "76",
+          "residue_name": "GLY",
+          "delta_sasa_a2": 0.34264704755463526,
+          "delta_rsa": 0.0032946831495637152,
+          "left_rsa": 1.4164316890718558,
+          "right_rsa": 1.413137005922292,
+          "buried_020_differs": false
+        }
+      ]
+    }
+  ],
+  "analytic_cases": [
+    {
+      "case_id": "single",
+      "expected_analytic_a2": [
+        105.68317686676065
+      ],
+      "freesasa_lr200_a2": [
+        105.6831768667601
+      ],
+      "biopython_sr15360_a2": [
+        105.68317686676063
+      ]
+    },
+    {
+      "case_id": "separated",
+      "expected_analytic_a2": [
+        105.68317686676063,
+        128.67963509103794
+      ],
+      "freesasa_lr200_a2": [
+        105.6831768667601,
+        128.6796350910379
+      ],
+      "biopython_sr15360_a2": [
+        105.68317686676063,
+        128.67963509103794
+      ]
+    },
+    {
+      "case_id": "unequal_overlap",
+      "expected_analytic_a2": [
+        78.91403546465772,
+        103.9312769634647
+      ],
+      "freesasa_lr200_a2": [
+        78.90806909471436,
+        103.92351030485071
+      ],
+      "biopython_sr15360_a2": [
+        78.90460106171946,
+        103.94901772197909
+      ]
+    },
+    {
+      "case_id": "contained",
+      "expected_analytic_a2": [
+        0.0,
+        191.13449704440302
+      ],
+      "freesasa_lr200_a2": [
+        0.0,
+        191.1344970444024
+      ],
+      "biopython_sr15360_a2": [
+        0.0,
+        191.134497044403
+      ]
+    }
+  ],
+  "independence": "Biopython SR is independent surface-integration code; geometry and ProtOr radius assignments are deliberately shared",
+  "limitations": [
+    "One real protein, no held-out population",
+    "Shared radii and input do not validate chemical context or experimental truth",
+    "No scientific tolerance is approved by this script"
+  ],
+  "production_approved": false
+}

@@ -1,0 +1,70 @@
+{
+  "status": "READY",
+  "qualification": "LOCAL_ACADEMIC_DEVELOPMENT",
+  "image_id": "sha256:c0a7239d4005484c1248b78de91bf7a76acffe0ed41f52614a54b6c20b3cf094",
+  "package_root": "var/t01-phase1-real/tool-assets/netmhc-pinned",
+  "archive_sha256": {
+    "mhc_i": "716e6ef6fbdb5cb2dd6aeb12ea4ff0115a492f0e6ceb3c0b3bb9bad36a8dd529",
+    "mhc_ii": "020edc7f402908823b09ab0dc7c144707184640bf31bc5dd0a04b6456368d095"
+  },
+  "original_archives": [
+    {"path": "original/netMHCpan-4.2e.Linux.tar.gz", "bytes": 119848598, "sha256": "716e6ef6fbdb5cb2dd6aeb12ea4ff0115a492f0e6ceb3c0b3bb9bad36a8dd529"},
+    {"path": "original/netMHCIIpan-4.3k.Linux.tar.gz", "bytes": 100810856, "sha256": "020edc7f402908823b09ab0dc7c144707184640bf31bc5dd0a04b6456368d095"}
+  ],
+  "components": {
+    "mhc_i": {
+      "observed_version": "NetMHCpan version 4.2e",
+      "executable_path": "/tools/src/netMHCpan-4.2/Linux_x86_64/bin/netMHCpan-4.2",
+      "executable_sha256": "104c992e8c2c4e81c280bd9444d3eecf60eace8aba3b584b903f2ed899201df4",
+      "allele_inventory_path": "metadata/netMHCpan-4.2/data/allelenames",
+      "full_fasta_verified": true,
+      "lengths_verified": [8, 9, 10, 11, 12, 13, 14],
+      "position_base": 1,
+      "native_identity_max_characters": 15,
+      "native_allele_display_mapping": "allelenames column 1 to column 2"
+    },
+    "mhc_ii": {
+      "observed_version": "NetMHCIIpan version 4.3k",
+      "executable_path": "/tools/src/netMHCIIpan-4.3/Linux_x86_64/bin/NetMHCIIpan-4.3",
+      "executable_sha256": "694ef3003736621a3c4d308a7b94f05e9d83ecf727ee5b64fe2ac75cff37cd00",
+      "allele_inventory_path": "metadata/netMHCIIpan-4.3/data/allele.list",
+      "full_fasta_verified": true,
+      "lengths_verified": [15],
+      "position_base": 1,
+      "native_identity_max_characters": 15
+    }
+  },
+  "runtime_package_files": {
+    "/tools/src/netMHCpan-4.2/data/version": "7f5418e932edb321c02e4a2b598fc25af254767e0959f1cc571f2cc2cd5092fa",
+    "/tools/src/netMHCpan-4.2/data/allelenames": "deaf4c6b8045d4413fa0c13daadd7924750368402de3b540068bf3a7f2f1c466",
+    "/tools/src/netMHCpan-4.2/Linux_x86_64/bin/netMHCpan-4.2": "104c992e8c2c4e81c280bd9444d3eecf60eace8aba3b584b903f2ed899201df4",
+    "/tools/src/netMHCIIpan-4.3/data/version": "dc818d52f3fbf751fce4233f0e94e60938a9a7f69f7cf62abcddc1188f31192e",
+    "/tools/src/netMHCIIpan-4.3/data/allele.list": "b5cb7a53459889baf2079e153743b8bad6f074783cf1eba9767bb8fd2482ce8e",
+    "/tools/src/netMHCIIpan-4.3/Linux_x86_64/bin/NetMHCIIpan-4.3": "694ef3003736621a3c4d308a7b94f05e9d83ecf727ee5b64fe2ac75cff37cd00"
+  },
+  "license_record": {
+    "kind": "DTU_ACADEMIC",
+    "reference": "Embedded netMHCpan-4.2/netMHCpan-4.2.readme and netMHCIIpan-4.3/netMHCIIpan-4.3.readme",
+    "acquisition": "USER_PROVIDED_ARCHIVES_2026-09-07",
+    "authorized_scope_recorded": "LOCAL_ACADEMIC_DEVELOPMENT_ONLY",
+    "confirmation": "User supplied both archives and explicitly requested integration",
+    "commercial_or_production_permission_inferred": false
+  },
+  "files": [
+    {"path": "Dockerfile", "bytes": 155, "sha256": "5499aad8975a50431dd985e7f061b9bb107deb0ab29d1ae1a1585e2dd33c206d"},
+    {"path": "metadata/netMHCpan-4.2/data/version", "bytes": 23, "sha256": "7f5418e932edb321c02e4a2b598fc25af254767e0959f1cc571f2cc2cd5092fa"},
+    {"path": "metadata/netMHCpan-4.2/data/allelenames", "bytes": 301290, "sha256": "deaf4c6b8045d4413fa0c13daadd7924750368402de3b540068bf3a7f2f1c466"},
+    {"path": "metadata/netMHCpan-4.2/netMHCpan-4.2.readme", "bytes": 5369, "sha256": "5494f21b2e5d78358783582035ecf437c2b87fa0e40b76dd32a0493ac47c7022"},
+    {"path": "metadata/netMHCpan-4.2/netMHCpan.1", "bytes": 4476, "sha256": "bc19f79b2dfcf513fb4349069dca0e5c957636c0fd229c5084c0a73f0cc2b72e"},
+    {"path": "metadata/netMHCpan-4.2/test/test.fsa", "bytes": 311, "sha256": "231794219b7a52a1ca9b862423ad751b3063eacbd82802f88da29da3da25939d"},
+    {"path": "metadata/netMHCIIpan-4.3/data/version", "bytes": 25, "sha256": "dc818d52f3fbf751fce4233f0e94e60938a9a7f69f7cf62abcddc1188f31192e"},
+    {"path": "metadata/netMHCIIpan-4.3/data/allele.list", "bytes": 212044, "sha256": "b5cb7a53459889baf2079e153743b8bad6f074783cf1eba9767bb8fd2482ce8e"},
+    {"path": "metadata/netMHCIIpan-4.3/data/allelelist.txt", "bytes": 424088, "sha256": "01feeda434960986da06537095c6c6041d377693b754f81f057c33abf3eb7e2a"},
+    {"path": "metadata/netMHCIIpan-4.3/netMHCIIpan-4.3.readme", "bytes": 5894, "sha256": "bf740c5d0b4a4e1b4ce35db38380c02faad32204418efbf02ced4ea534d472a2"},
+    {"path": "metadata/netMHCIIpan-4.3/netMHCIIpan.1", "bytes": 4068, "sha256": "b90fb121822eff4164a4c6909df5a8c3e4a04a818f0d0265fb3ab0bcffeaa827"},
+    {"path": "metadata/netMHCIIpan-4.3/test/example.fsa", "bytes": 159, "sha256": "52c67380a23574746ce79f10e452ca8d78ae7211e76e79bfded982c0923fd2b9"}
+  ],
+  "scientific_consumption": false,
+  "production_status": "NOT_DEPLOYED",
+  "open_item": "OI-003"
+}

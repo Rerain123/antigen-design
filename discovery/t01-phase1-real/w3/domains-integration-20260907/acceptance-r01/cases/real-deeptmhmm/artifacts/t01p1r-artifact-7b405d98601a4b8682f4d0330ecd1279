@@ -1,0 +1,52 @@
+{
+  "python": "3.8.20 (default, Sep 27 2024, 06:05:23) \n[GCC 12.2.0]",
+  "packages": {
+    "torch": "1.5.0+cu92",
+    "fair-esm": "0.4.0",
+    "numpy": "1.23.4",
+    "biopython": "1.79",
+    "matplotlib": "3.5.2"
+  },
+  "cuda_available": false,
+  "cpu_count": 32,
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "network_interfaces": [
+    [
+      1,
+      "lo"
+    ]
+  ],
+  "scientific_source_modified": false,
+  "observation": "sys.settrace on utils.generate_esm_embeddings only",
+  "entrypoint": [
+    "/app/predict.py",
+    "--fasta",
+    "/input.fasta",
+    "--output-dir",
+    "/out/result"
+  ],
+  "python_exit_code": 0,
+  "elapsed_seconds": 32.08100727499914,
+  "peak_rss_kib": 5326152,
+  "user_cpu_seconds": 11.391363,
+  "system_cpu_seconds": 18.061114,
+  "torch_intraop_threads": 32,
+  "torch_interop_threads": 34,
+  "native_output_sha256": {
+    "result/TMRs.gff3": "1366722de0bc4d68e74c089d039c339c33aece8e93ae5e8daf86594c7b309170",
+    "result/deeptmhmm_results.md": "16eaa77724f3d6b0b8c5d08192b6024424e2c7246556bf9be38d8c1cd4a7b8c8",
+    "result/embeddings/9b30bd2020f0189df92c421e641ab348": "57d3a3000269d37a6335f71f6d6e5b2268b9e2281432750583fd41b0284057eb",
+    "result/plot.png": "33474e1dc82d1fb13686bba06004d267a603de6868beea039dd64fb917d8a54b",
+    "result/predicted_topologies.3line": "9e2684e0d475155ccd0b0a9142eba7bf27691e5c3ccba517650a675b8a6351fd",
+    "result/probabilities/t01seq_d3a47b47c83fce53174053bd874e460454b3d77c535f23dd4d40740efa955b9c_probs.csv": "5087349bdf6b01612f25b38d8049fb5cb548580e805234e5c3a0512692a901d0"
+  }
+}

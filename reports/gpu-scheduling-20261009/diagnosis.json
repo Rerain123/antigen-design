@@ -1,0 +1,69 @@
+{
+  "status": "DIRECT_CAUSE_CONFIRMED;UNDERLYING_ALLOCATION_SOURCE_UNRESOLVED",
+  "checked_at": "2026-10-09T07:43:26.794832+00:00",
+  "scope": "READ_ONLY;NO_DEPLOYMENT_OR_RESOURCE_MUTATIONS",
+  "direct_cause": "Fixed A100 GPU UUID requires 100% memory and 100% cores; HAMi reports CardInsufficientMemory for that card; remaining cards excluded by UUID/type",
+  "gpu_uuid": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31",
+  "last_assigned_node": "k8s-a100-02",
+  "resources_and_gpu_constraints_unchanged_from_working_generation_146": true,
+  "deployment_generation": 148,
+  "ready_replicas": 0,
+  "new_release_remains_withdrawn": true,
+  "namespace_gpu_claims": {
+    "pending": 1,
+    "failed": 1,
+    "running": 0,
+    "includes_init_containers": true,
+    "total_namespace_pods": 11
+  },
+  "kubernetes_resource_quotas": [],
+  "historical_failure": {
+    "pod": "antigen-design-5475446db6-jt4c9",
+    "reason": "UnexpectedAdmissionError",
+    "message": "Pod was rejected: Allocate failed due to no healthy devices present; cannot allocate unhealthy devices nvidia.com/gpu, which is unexpected",
+    "ended_at": "2026-09-30T03:17:58Z",
+    "allocated_mib_annotation": 65536,
+    "current_occupation_proven": false,
+    "current_device_fault_proven": false
+  },
+  "unresolved": [
+    "Cross-project reservation of the same GPU",
+    "Stale HAMi allocation after old Pod deletion or failure",
+    "Device registration/accounting or physical health discrepancy"
+  ],
+  "access_limits": {
+    "node_read": "no",
+    "system_pod_list": "no",
+    "cross_namespace_pod_list": "Previously denied by server RBAC; not retried"
+  },
+  "administrator_evidence_needed": [
+    "All active GPU allocations for target UUID, with owning Pod UID/namespace",
+    "Target GPU nvidia-smi memory/process/health information on k8s-a100-02",
+    "HAMi registered total/used memory and cached allocation owners; scheduler/device-plugin logs around 2026-10-09 15:22 Asia/Shanghai"
+  ],
+  "upstream_references": [
+    {
+      "url": "https://github.com/Project-HAMi/HAMi/blob/master/pkg/device/nvidia/device.go",
+      "purpose": "Explains memory percentage and accounting rejection; installed version not inspected"
+    },
+    {
+      "url": "https://github.com/Project-HAMi/HAMi/issues/2923",
+      "purpose": "Similar stale allocation report only; not proof of local root cause"
+    },
+    {
+      "url": "https://github.com/Project-HAMi/HAMi/pull/2968",
+      "purpose": "Upstream cleanup fix; local applicability unverified"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "reports/gpu-scheduling-20261009/read-only-r01.json",
+      "sha256": "32ff72930eb82be8a15557244bbc118487bc93b85b8bf3855059d63bd2968ff6"
+    },
+    {
+      "path": "reports/gpu-scheduling-20261009/namespace-claims-r02.json",
+      "sha256": "a07662360b8449624768e9686ac68f375965fd960bdcf008717bacfcb1aef86b"
+    }
+  ],
+  "replicaset_selector_note": "The app=antigen-design list returned no items; it is not used to infer absence of ReplicaSets"
+}

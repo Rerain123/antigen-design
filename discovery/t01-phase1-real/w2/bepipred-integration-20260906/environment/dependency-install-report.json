@@ -1,0 +1,655 @@
+{
+  "version": "1",
+  "pip_version": "25.2",
+  "install": [
+    {
+      "download_info": {
+        "url": "file:///bp3-0.0.12.7-py2.py3-none-any.whl",
+        "archive_info": {
+          "hash": "sha256=6735063426e09db34136f008c7eb76ae243ff1cdc2a63cd984cea6d8e12e880d",
+          "hashes": {
+            "sha256": "6735063426e09db34136f008c7eb76ae243ff1cdc2a63cd984cea6d8e12e880d"
+          }
+        }
+      },
+      "is_direct": true,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.1",
+        "name": "bp3",
+        "version": "0.0.12.7",
+        "summary": "Bepipred-3.0. B-cell epitope prediction",
+        "description_content_type": "text/markdown",
+        "home_page": "https://github.com/UberClifford/BepiPred3.0-Predictor",
+        "author": "Joakim Clifford",
+        "author_email": "cliffordjoakim@gmail.com",
+        "license_file": [
+          "LICENSE"
+        ],
+        "classifier": [
+          "Programming Language :: Python :: 3",
+          "License :: OSI Approved :: MIT License",
+          "Operating System :: OS Independent"
+        ],
+        "requires_dist": [
+          "setuptools",
+          "importlib-resources"
+        ],
+        "project_url": [
+          "Bug Tracker, https://github.com/UberClifford/BepiPred3.0-Predictor/issues"
+        ]
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/fd/9d/5c7a30e36f94c843595d2086c8fca3f5ebdd2d1445fb76bfbc8298f6bb9b/fair_esm-1.0.3-py3-none-any.whl",
+        "archive_info": {
+          "hash": "sha256=68ee670bc66057a7e3ff3b1756a50c2be9eea3708ae4d608b1f9f5270b67576c",
+          "hashes": {
+            "sha256": "68ee670bc66057a7e3ff3b1756a50c2be9eea3708ae4d608b1f9f5270b67576c"
+          }
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.1",
+        "name": "fair-esm",
+        "version": "1.0.3",
+        "summary": "Evolutionary Scale Modeling (esm): Pretrained language models for proteins. From Facebook AI Research.",
+        "description_content_type": "text/markdown",
+        "home_page": "https://github.com/facebookresearch/esm",
+        "author": "Facebook AI Research",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE"
+        ],
+        "description": "# Evolutionary Scale Modeling\n\n\nThis repository contains code and pre-trained weights for **Transformer protein language models** from Facebook AI Research, including our state-of-the-art **ESM-2** and **MSA Transformer**, as well as **ESM-1v** for predicting variant effects and **ESM-IF1** for inverse folding.\nTransformer protein language models were introduced in our paper, [\"Biological structure and function emerge from scaling unsupervised learning to 250 million protein sequences\" (Rives et al., 2019)](https://doi.org/10.1101/622803).\n\n**ESM-2 outperforms all tested single-sequence protein language models across a range of structure prediction tasks.**\nThe MSA Transformer (ESM-MSA-1) can improve performance on some proteins by leveraging MSA information.\n\n<details><summary>Citation</summary>\n\n```bibtex\n@article{lin2022language,\n  title={Language models of protein sequences at the scale of evolution enable accurate structure prediction},\n  author={Lin, Zeming and Akin, Halil and Rao, Roshan and Hie, Brian and Zhu, Zhongkai and Lu, Wenting and dos Santos Costa, Allan and Fazel-Zarandi, Maryam and Sercu, Tom and Candido, Sal and others},\n  journal={bioRxiv},\n  year={2022},\n  publisher={Cold Spring Harbor Laboratory}\n}\n@article{rives2021biological,\n  title={Biological structure and function emerge from scaling unsupervised learning to 250 million protein sequences},\n  author={Rives, Alexander and Meier, Joshua and Sercu, Tom and Goyal, Siddharth and Lin, Zeming and Liu, Jason and Guo, Demi and Ott, Myle and Zitnick, C Lawrence and Ma, Jerry and others},\n  journal={Proceedings of the National Academy of Sciences},\n  volume={118},\n  number={15},\n  pages={e2016239118},\n  year={2021},\n  publisher={National Acad Sciences}\n}\n```\n</details>\n\n<details><summary>Table of contents</summary>\n\n- [Main models you should use](#main-models)\n- [Comparison to related works](#perf_related)\n- [Usage](#usage)\n  - [Quick Start](#quickstart)\n  - [Compute embeddings in bulk from FASTA](#bulk_fasta)\n  - [CPU offloading for inference with large models](#fsdp)\n  - [Zero-shot variant prediction](#zs_variant)\n  - [Inverse folding](#invf)\n- [Notebooks](#notebooks)\n- [Available Models and Datasets](#available)\n  - [Pre-trained Models](#available-models)\n  - [ESM Structural Split Dataset](#available-esmssd)\n  - [Pre-training Dataset Split](#available-pretraining-split)\n- [Citations](#citations)\n- [License](#license)\n</details>\n\n<details><summary>What's New</summary>\n\n- August 2022: ESM-2 - new SOTA Language Models released (see [Lin et al. 2022](https://www.biorxiv.org/content/10.1101/2022.07.20.500902v1))\n- April 2022: New inverse folding model ESM-IF1 released, trained on CATH and UniRef50 predicted structures.\n- August 2021: Added flexibility to tokenizer to allow for spaces and special tokens (like `<mask>`) in sequence.\n- July 2021: New pre-trained model ESM-1v released, trained on UniRef90 (see [Meier et al. 2021](https://doi.org/10.1101/2021.07.09.450648)).\n- July 2021: New MSA Transformer released, with a minor fix in the row positional embeddings (`ESM-MSA-1b`).\n- Feb 2021: MSA Transformer added (see [Rao et al. 2021](https://www.biorxiv.org/content/10.1101/2021.02.12.430858v1)). Example usage in [notebook](#notebooks).\n- Dec 2020: [Self-Attention Contacts](#notebooks) for all pre-trained models (see [Rao et al. 2020](https://doi.org/10.1101/2020.12.15.422761))\n- Dec 2020: Added new pre-trained model [ESM-1b](#perf_related) (see [Rives et al. 2019](https://doi.org/10.1101/622803) Appendix B)\n- Dec 2020: [ESM Structural Split Dataset](#available-esmssd) (see [Rives et al. 2019](https://doi.org/10.1101/622803) Appendix A.10)\n\n</details>\n\n## Main models you should use <a name=\"main-models\"></a>\n\n| Shorthand | `esm.pretrained.`           | Dataset | Description  |\n|-----------|-----------------------------|---------|--------------|\n| ESM-2    | `esm2_t36_3B_UR50D()` `esm2_t48_15B_UR50D()`       | UR50 (sample UR90)  | SOTA general-purpose protein language model. Can be used to predict structure, function and other protein properties directly from individual sequences. Released with [Lin et al. 2022](https://www.biorxiv.org/content/10.1101/2022.07.20.500902v1) (Aug 2022 update). |\n| ESM-1b    | `esm1b_t33_650M_UR50S()`       | UR50  | SOTA general-purpose protein language model. Can be used to predict structure, function and other protein properties directly from individual sequences. Released with [Rives et al. 2019](https://doi.org/10.1101/622803) (Dec 2020 update). |\n| ESM-MSA-1b| `esm_msa1b_t12_100M_UR50S()` |  UR50 + MSA  | MSA Transformer language model. Can be used to extract embeddings from an MSA. Enables SOTA inference of structure. Released with [Rao et al. 2021](https://www.biorxiv.org/content/10.1101/2021.02.12.430858v2) (ICML'21 version, June 2021).  |\n| ESM-1v    | `esm1v_t33_650M_UR90S_1()` ... `esm1v_t33_650M_UR90S_5()`| UR90  | Language model specialized for prediction of variant effects. Enables SOTA zero-shot prediction of the functional effects of sequence variations. Same architecture as ESM-1b, but trained on UniRef90. Released with [Meier et al. 2021](https://doi.org/10.1101/2021.07.09.450648). |\n| ESM-IF1  | `esm_if1_gvp4_t16_142M_UR50()` | CATH + UR50 | Inverse folding model. Can be used to design sequences for given structures, or to predict functional effects of sequence variation for given structures. Enables SOTA fixed backbone sequence design. Released with [Hsu et al. 2022](https://doi.org/10.1101/2022.04.10.487779). |\n\nFor a complete list of available models, with details and release notes, see [Pre-trained Models](#available-models).\n\n## Comparison to related works <a name=\"perf_related\"></a>\n<!--\nDO NOT EDIT THIS TABLE! This is the source of truth:\nhttps://docs.google.com/spreadsheets/d/1RPvWF47rIMEr-Jg-SRCoGElHcwCl5d7RyEeSyPgp59A/edit#gid=0\nexported via https://www.tablesgenerator.com/html_tables\n-->\n\n<table class=\"tg\">\n<thead>\n  <tr>\n    <th class=\"tg-0thz\"><span style=\"font-weight:bold\">Task</span></th>\n    <th class=\"tg-j6zm\" colspan=\"3\"><span style=\"font-weight:bold\">Unsupervised contact prediction</span></th>\n    <th class=\"tg-j6zm\" colspan=\"2\"><span style=\"font-weight:bold\">Structure Prediction</span></th>\n  </tr>\n</thead>\n<tbody>\n  <tr>\n    <td class=\"tg-j6zm\"><span style=\"font-weight:bold\">Test set</span></td>\n    <td class=\"tg-j6zm\"><span style=\"font-weight:bold\">Large valid</span></td>\n    <td class=\"tg-j6zm\"><span style=\"font-weight:bold\">CASP14</span></td>\n    <td class=\"tg-j6zm\"><span style=\"font-weight:bold\">CAMEO (Apr-Jun 2022)</span></td>\n    <td class=\"tg-j6zm\"><span style=\"font-weight:bold\">CASP14</span></td>\n    <td class=\"tg-j6zm\"><span style=\"font-weight:bold\">CAMEO (Apr-Jun 2022)</span></td>\n  </tr>\n  <tr>\n    <td class=\"tg-7zrl\">Gremlin (Potts)</td>\n    <td class=\"tg-7zrl\">39.3</td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n  </tr>\n  <tr>\n    <td class=\"tg-7zrl\">TAPE</td>\n    <td class=\"tg-7zrl\">11.2</td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n  </tr>\n  <tr>\n    <td class=\"tg-7zrl\">ProtBert-BFD</td>\n    <td class=\"tg-7zrl\">34.1</td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n  </tr>\n  <tr>\n    <td class=\"tg-7zrl\">Prot-T5-XL-BFD</td>\n    <td class=\"tg-7zrl\">35.6</td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-2b7s\">46.1</td>\n    <td class=\"tg-2b7s\">62.6</td>\n  </tr>\n  <tr>\n    <td class=\"tg-7zrl\">Prot-T5-XL-Ur50 (3B)</td>\n    <td class=\"tg-7zrl\">47.9</td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-2b7s\">49.8</td>\n    <td class=\"tg-2b7s\">69.4</td>\n  </tr>\n  <tr>\n    <td class=\"tg-7zrl\">ESM-1</td>\n    <td class=\"tg-7zrl\">33.7</td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n  </tr>\n  <tr>\n    <td class=\"tg-7zrl\">ESM-1b</td>\n    <td class=\"tg-7zrl\">41.1</td>\n    <td class=\"tg-7zrl\">24.4</td>\n    <td class=\"tg-7zrl\">39</td>\n    <td class=\"tg-2b7s\">41.6</td>\n    <td class=\"tg-2b7s\">64.5</td>\n  </tr>\n  <tr>\n    <td class=\"tg-7zrl\">ESM-1v</td>\n    <td class=\"tg-7zrl\">35.3</td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n  </tr>\n  <tr>\n    <td class=\"tg-7zrl\">ESM-MSA-1b</td>\n    <td class=\"tg-7zrl\">57.4</td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n    <td class=\"tg-7zrl\"></td>\n  </tr>\n  <tr>\n    <td class=\"tg-7zrl\">ESM-2 (8M)</td>\n    <td class=\"tg-7zrl\">15.9</td>\n    <td class=\"tg-7zrl\">9.8</td>\n    <td class=\"tg-7zrl\">15.7</td>\n    <td class=\"tg-2b7s\">36.7</td>\n    <td class=\"tg-2b7s\">48.1</td>\n  </tr>\n  <tr>\n    <td class=\"tg-7zrl\">ESM-2 (35M)</td>\n    <td class=\"tg-7zrl\">28.8</td>\n    <td class=\"tg-7zrl\">16.4</td>\n    <td class=\"tg-7zrl\">28.4</td>\n    <td class=\"tg-2b7s\">41.4</td>\n    <td class=\"tg-2b7s\">56.4</td>\n  </tr>\n  <tr>\n    <td class=\"tg-7zrl\">ESM-2 (150M)</td>\n    <td class=\"tg-7zrl\">42.2</td>\n    <td class=\"tg-7zrl\">26.8</td>\n    <td class=\"tg-7zrl\">40.1</td>\n    <td class=\"tg-2b7s\">49.0</td>\n    <td class=\"tg-2b7s\">64.9</td>\n  </tr>\n  <tr>\n    <td class=\"tg-7zrl\">ESM-2 (700M)</td>\n    <td class=\"tg-7zrl\">50.1</td>\n    <td class=\"tg-7zrl\">32.5</td>\n    <td class=\"tg-7zrl\">47.6</td>\n    <td class=\"tg-2b7s\">51.3</td>\n    <td class=\"tg-2b7s\">70.1</td>\n  </tr>\n  <tr>\n    <td class=\"tg-7zrl\">ESM-2 (3B)</td>\n    <td class=\"tg-7zrl\">52.7</td>\n    <td class=\"tg-7zrl\">34.0</td>\n    <td class=\"tg-7zrl\">49.9</td>\n    <td class=\"tg-2b7s\">52.5</td>\n    <td class=\"tg-2b7s\">71.8</td>\n  </tr>\n  <tr>\n    <td class=\"tg-7zrl\">ESM-2 (15B)</td>\n    <td class=\"tg-7zrl\">54.5</td>\n    <td class=\"tg-7zrl\">37.0</td>\n    <td class=\"tg-7zrl\">51.7</td>\n    <td class=\"tg-2b7s\">55.4</td>\n    <td class=\"tg-2b7s\">72.1</td>\n  </tr>\n</tbody>\n</table>\n\nComparison to related protein language models on structure prediction tasks.\n\n* All contact numbers are the top-L,LR precision metric, where long range means sequence separation of at least 24 residues\n* For unsupervised contact prediction, a sparse linear combination of the attention heads is used to directly predict protein contacts,\nfitted with logistic regression on 20 structures.\nFor more details on the method, see [Rao et al. 2020](https://doi.org/10.1101/2020.12.15.422761).\n* For structure prediction, a AlphaFold2 structure module is trained directly from the frozen language model embeddings.\nFor more details on the method, see [Lin et al. 2022](https://www.biorxiv.org/content/10.1101/2022.07.20.500902v1).\n* Direct coupling analysis methods (Gremlin, mfDCA, Psicov) and ESM-MSA-1 use the [trRosetta MSAs](https://yanglab.nankai.edu.cn/trRosetta/benchmark/), while other methods predict from single sequence.\n\n\n## Usage <a name=\"usage\"></a>\n\n### Quick Start <a name=\"quickstart\"></a>\n\nAs a prerequisite, you must have PyTorch installed to use this repository.\n\nYou can use this one-liner for installation, using the latest release of esm:\n\n```bash\npip install fair-esm  # latest release, OR:\npip install git+https://github.com/facebookresearch/esm.git  # bleeding edge, current repo main branch\n```\n\n\nWe also support PyTorch Hub, which removes the need to clone and/or install this repository yourself:\n\n```python\nimport torch\nmodel, alphabet = torch.hub.load(\"facebookresearch/esm:main\", \"esm2_t33_650M_UR50D\")\n```\n\nAfter pip install, you can load and use a pretrained model as follows:\n\n```python\nimport torch\nimport esm\n\n# Load ESM-2 model\nmodel, alphabet = esm.pretrained.esm2_t33_650M_UR50D()\nbatch_converter = alphabet.get_batch_converter()\nmodel.eval()  # disables dropout for deterministic results\n\n# Prepare data (first 2 sequences from ESMStructuralSplitDataset superfamily / 4)\ndata = [\n    (\"protein1\", \"MKTVRQERLKSIVRILERSKEPVSGAQLAEELSVSRQVIVQDIAYLRSLGYNIVATPRGYVLAGG\"),\n    (\"protein2\", \"KALTARQQEVFDLIRDHISQTGMPPTRAEIAQRLGFRSPNAAEEHLKALARKGVIEIVSGASRGIRLLQEE\"),\n    (\"protein2 with mask\",\"KALTARQQEVFDLIRD<mask>ISQTGMPPTRAEIAQRLGFRSPNAAEEHLKALARKGVIEIVSGASRGIRLLQEE\"),\n    (\"protein3\",  \"K A <mask> I S Q\"),\n]\nbatch_labels, batch_strs, batch_tokens = batch_converter(data)\n\n# Extract per-residue representations (on CPU)\nwith torch.no_grad():\n    results = model(batch_tokens, repr_layers=[33], return_contacts=True)\ntoken_representations = results[\"representations\"][33]\n\n# Generate per-sequence representations via averaging\n# NOTE: token 0 is always a beginning-of-sequence token, so the first residue is token 1.\nsequence_representations = []\nfor i, (_, seq) in enumerate(data):\n    sequence_representations.append(token_representations[i, 1 : len(seq) + 1].mean(0))\n\n# Look at the unsupervised self-attention map contact predictions\nimport matplotlib.pyplot as plt\nfor (_, seq), attention_contacts in zip(data, results[\"contacts\"]):\n    plt.matshow(attention_contacts[: len(seq), : len(seq)])\n    plt.title(seq)\n    plt.show()\n```\n\n### Compute embeddings in bulk from FASTA <a name=\"bulk_fasta\"></a>\n\nWe provide a script that efficiently extracts embeddings in bulk from a FASTA file.\nA cuda device is optional and will be auto-detected.\nThe following command extracts the final-layer embedding for a FASTA file from the ESM-2 model:\n\n```bash\npython scripts/extract.py esm2_t33_650M_UR50D examples/data/some_proteins.fasta \\\n  examples/data/some_proteins_emb_esm2 --repr_layers 0 32 33 --include mean per_tok\n```\n\nDirectory `some_proteins_emb_esm2/` now contains one `.pt` file per FASTA sequence; use `torch.load()` to load them.\n`scripts/extract.py` has flags that determine what's included in the `.pt` file:\n* `--repr-layers` (default: final only) selects which layers to include embeddings from.\n* `--include` specifies what embeddings to save. You can use the following:\n  * `per_tok` includes the full sequence, with an embedding per amino acid (seq_len x hidden_dim).\n  * `mean` includes the embeddings averaged over the full sequence, per layer.\n  * `bos` includes the embeddings from the beginning-of-sequence token.\n  (NOTE: Don't use with the pre-trained models - we trained without bos-token supervision)\n\n### CPU offloading for inference with large models <a name=\"fsdp\"></a>\nIf you want to load very large models like 15B and/or do inference on long sequences on your machine, regular GPU inference may lead to OOM errors.\nWe show how to load the model with Fairscale's [Fully Sharded Data Parallel (FSDP)](https://fairscale.readthedocs.io/en/stable/api/nn/fsdp.html) and\nuse its CPU offloading feature.\nThis allows to do inference of large models on a single GPU.\nPlease check out `examples/esm2_infer_fairscale_fsdp_cpu_offloading.py` for more details.\n\n### Zero-shot variant prediction <a name=\"zs_variant\"></a>\nSee \"[examples/variant-prediction/](examples/variant-prediction/)\" for code and pre-trained weights for the ESM-1v models described in\n[Language models enable zero-shot prediction of the effects of mutations on protein function. (Meier et al. 2021)](https://doi.org/10.1101/2021.07.09.450648).\n\nNote that ESM-2 could be used for variant prediction as well, and is expected to have similar performance to ESM-1v.\n\n### Inverse folding <a name=\"invf\"></a>\nSee \"[examples/inverse_folding/](examples/inverse_folding/)\" for detailed user guide. The ESM-IF1 model is described as `GVPTransformer` in [Learning inverse folding from millions of predicted structures. (Hsu et al. 2022)](https://doi.org/10.1101/2022.04.10.487779).\n\nWe also provide a colab notebook for the sequence design and sequence scoring functionalities.\n\n[<img src=\"https://colab.research.google.com/assets/colab-badge.svg\">](https://colab.research.google.com/github/facebookresearch/esm/blob/main/examples/inverse_folding/notebook.ipynb)\n\nThe ESM-IF1 inverse folding model is built for predicting protein sequences\nfrom their backbone atom coordinates. We provide scripts here 1) to sample sequence\ndesigns for a given structure and 2) to score sequences for a given structure.\n\nTrained with 12M protein structures predicted by AlphaFold2, the ESM-IF1\nmodel consists of invariant geometric input processing layers followed by a\nsequence-to-sequence transformer, and achieves 51% native sequence recovery on\nstructurally held-out backbones with 72% recovery for buried residues.\nThe model is also trained with span masking to tolerate missing backbone\ncoordinates and therefore can predict sequences for partially masked structures.\n\n#### Sample sequence designs for a given structure\nThe environment setup is described in [this subsection of examples/inverse_folding](examples/inverse_folding#recommended-environment).\n\nTo sample sequences for a given structure in PDB or mmCIF format, use the\n`sample_sequences.py` script. The input file can have either `.pdb` or\n`.cif` as suffix.\n\nFor example, to sample 3 sequence designs for the golgi casein kinase structure\n(PDB [5YH2](https://www.rcsb.org/structure/5yh2); [PDB Molecule of the Month\nfrom January 2022](https://pdb101.rcsb.org/motm/265)), we can run the following\ncommand from the esm root directory:\n```\npython examples/inverse_folding/sample_sequences.py examples/inverse_folding/data/5YH2.pdb \\\n  --chain C --temperature 1 --num-samples 3 --outpath examples/inverse_folding/output/sampled_sequences.fasta\n```\n\nThe sampled sequences will be saved in a fasta format to the specified output file.\n\nThe temperature parameter controls the sharpness of the probability\ndistribution for sequence sampling. Higher sampling temperatures yield more\ndiverse sequences but likely with lower native sequence recovery.\nThe default sampling temperature is 1. To optimize for native sequence\nrecovery, we recommend sampling with low temperature such as 1e-6.\n\n#### Scoring sequences\nTo score the conditional log-likelihoods for sequences conditioned on a given\nstructure, use the `score_log_likelihoods.py` script.\n\nFor example, to score the sequences in `examples/inverse_folding/data/5YH2_mutated_seqs.fasta`\naccording to the structure in `examples/inverse_folding/data/5YH2.pdb`, we can run\nthe following command from the esm root directory:\n```\npython examples/inverse_folding/score_log_likelihoods.py examples/inverse_folding/data/5YH2.pdb \\ \n  examples/inverse_folding/data/5YH2_mutated_seqs.fasta --chain C \\\n  --outpath examples/inverse_folding/output/5YH2_mutated_seqs_scores.csv\n```\n\nThe conditional log-likelihoods are saved in a csv format in the specified output path.\nThe output values are the average log-likelihoods averaged over all amino acids in a sequence.\n\nFor more information, see \"[./examples/inverse_folding/](examples/inverse_folding/)\" for detailed user guide.\n\n## Notebooks <a name=\"notebooks\"></a>\n\n### Inverse folding - predicting or scoring sequences based on backbone structures\n\n[<img src=\"https://colab.research.google.com/assets/colab-badge.svg\">](https://colab.research.google.com/github/facebookresearch/esm/blob/main/examples/inverse_folding/notebook.ipynb)\n\nThe ESM-IF1 inverse folding model predicts protein sequences from their backbone atom coordinates, trained with 12M protein structures predicted by AlphaFold2.\nThis notetook guide you through examples of sampling sequences, calculating conditional log-likelihoods, and extracting encoder output as structure representation.\n\n### Supervised variant prediction - training a classifier on the embeddings\n\n[<img src=\"https://colab.research.google.com/assets/colab-badge.svg\">](https://colab.research.google.com/github/facebookresearch/esm/blob/main/examples/sup_variant_prediction.ipynb)\n\n\nTo help you get started with using the embeddings, this [jupyter notebook tutorial](examples/sup_variant_prediction.ipynb) shows how to train a supervised variant predictor using embeddings from ESM-1.\nYou can adopt a similar protocol to train a model for any downstream task, even with limited data.\nFirst you can obtain the embeddings for ``examples/data/P62593.fasta`` either by [downloading the precomputed](https://dl.fbaipublicfiles.com/fair-esm/examples/P62593_reprs.tar.gz) embeddings\nas instructed in the notebook or by running the following:\n\n```bash\n# Obtain the embeddings\npython scripts/extract.py esm1v_t33_650M_UR90S_1 examples/data/P62593.fasta \\\n  examples/data/P62593_emb_esm1v --repr_layers 33 --include mean\n```\n\nThen, follow the remaining instructions in the tutorial. You can also run the tutorial in a [colab notebook](https://colab.research.google.com/github/facebookresearch/esm/blob/main/examples/sup_variant_prediction.ipynb).\n\n**Note, alternatively use [the newer instructions for zero-shot variant prediction](examples/variant-prediction/),\nwhich predicts mutational effects without any supervised training.**\n\n\n### Unsupervised contact prediction\n[<img src=\"https://colab.research.google.com/assets/colab-badge.svg\">](https://colab.research.google.com/github/facebookresearch/esm/blob/main/examples/contact_prediction.ipynb)\n\nThis [jupyter notebook tutorial](examples/contact_prediction.ipynb) demonstrates contact prediction with both the ESM-2 and MSA Transformer (ESM-MSA-1) models.\nContact prediction is based on a logistic regression over the model's attention maps.\nThis methodology is based on our ICLR 2021 paper,\n[Transformer protein language models are unsupervised structure learners. (Rao et al. 2020)](https://doi.org/10.1101/2020.12.15.422761)\nThe MSA Transformer (ESM-MSA-1) takes a multiple sequence alignment (MSA) as input, and uses the tied row self-attention maps in the same way.\nSee [MSA Transformer. (Rao et al. 2021)](https://www.biorxiv.org/content/10.1101/2021.02.12.430858v1).\n\nTo get unsupervised attention-based contacts, call `model.predict_contacts(tokens)` or `model(tokens, return_contacts=True)`.\n\n\n### ESMStructuralSplitDataset and self-attention contact prediction\n[<img src=\"https://colab.research.google.com/assets/colab-badge.svg\">](https://colab.research.google.com/github/facebookresearch/esm/blob/main/examples/esm_structural_dataset.ipynb)\n\nAnd this [jupyter notebook tutorial](examples/esm_structural_dataset.ipynb) shows how to load and index the `ESMStructuralSplitDataset`,\nand computes the self-attention map unsupervised contact predictions using ESM-2.\n\n\n## Available Models and Datasets <a name=\"available\"></a>\n\n### Pre-trained Models <a name=\"available-models\"></a>\n\n| Shorthand | `esm.pretrained.`           | #layers | #params | Dataset | Embedding Dim |  Model URL (automatically downloaded to `~/.cache/torch/hub/checkpoints`) |\n|-----------|---------------------|---------|---------|---------|---------------|-----------------------------------------------------------------------|\n| ESM-2     | `esm2_t48_15B_UR50D`         | 48 | 15B     | UR50/D 2021_04 | 5120 |  https://dl.fbaipublicfiles.com/fair-esm/models/esm2_t48_15B_UR50D.pt |\n|           | `esm2_t36_3B_UR50D`          | 36 | 3B      | UR50/D 2021_04 | 2560 |  https://dl.fbaipublicfiles.com/fair-esm/models/esm2_t36_3B_UR50D.pt |\n|           | `esm2_t33_650M_UR50D`        | 33 | 650M    | UR50/D 2021_04 | 1280 |  https://dl.fbaipublicfiles.com/fair-esm/models/esm2_t33_650M_UR50D.pt |\n|           | `esm2_t30_150M_UR50D`        | 30 | 150M    | UR50/D 2021_04 | 640  |  https://dl.fbaipublicfiles.com/fair-esm/models/esm2_t30_150M_UR50D.pt |\n|           | `esm2_t12_35M_UR50D`         | 12 | 35M     | UR50/D 2021_04 | 480  |  https://dl.fbaipublicfiles.com/fair-esm/models/esm2_t12_35M_UR50D.pt |\n|           | `esm2_t6_8M_UR50D`           | 6  | 8M      | UR50/D 2021_04 | 320  |  https://dl.fbaipublicfiles.com/fair-esm/models/esm2_t6_8M_UR50D.pt |\n| ESM-IF1   | `esm_if1_gvp4_t16_142M_UR50` | 20 | 124M    | CATH 4.3 + predicted structures for UR50 | 512  | https://dl.fbaipublicfiles.com/fair-esm/models/esm_if1_gvp4_t16_142M_UR50.pt   |\n| ESM-1v    | `esm1v_t33_650M_UR90S_[1-5]` | 33 | 650M    | UR90/S 2020_03  | 1280 | https://dl.fbaipublicfiles.com/fair-esm/models/esm1v_t33_650M_UR90S_1.pt   |\n| ESM-MSA-1b| `esm_msa1b_t12_100M_UR50S`   | 12 | 100M    | UR50/S + MSA 2018_03 | 768  | https://dl.fbaipublicfiles.com/fair-esm/models/esm_msa1b_t12_100M_UR50S.pt   |\n| ESM-MSA-1 | `esm_msa1_t12_100M_UR50S`    | 12 | 100M    | UR50/S + MSA 2018_03 | 768  | https://dl.fbaipublicfiles.com/fair-esm/models/esm_msa1_t12_100M_UR50S.pt   |\n| ESM-1b    | `esm1b_t33_650M_UR50S`       | 33 | 650M    | UR50/S 2018_03 | 1280 | https://dl.fbaipublicfiles.com/fair-esm/models/esm1b_t33_650M_UR50S.pt   |\n| ESM-1     | `esm1_t34_670M_UR50S`        | 34 | 670M    | UR50/S 2018_03 | 1280 |  https://dl.fbaipublicfiles.com/fair-esm/models/esm1_t34_670M_UR50S.pt |\n|           | `esm1_t34_670M_UR50D`        | 34 | 670M    | UR50/D 2018_03 | 1280 |  https://dl.fbaipublicfiles.com/fair-esm/models/esm1_t34_670M_UR50D.pt |\n|           | `esm1_t34_670M_UR100`        | 34 | 670M    | UR100 2018_03  | 1280 |  https://dl.fbaipublicfiles.com/fair-esm/models/esm1_t34_670M_UR100.pt |\n|           | `esm1_t12_85M_UR50S`         | 12 | 85M     | UR50/S 2018_03 | 768  |  https://dl.fbaipublicfiles.com/fair-esm/models/esm1_t12_85M_UR50S.pt  |\n|           | `esm1_t6_43M_UR50S`          | 6  | 43M     | UR50/S 2018_03 | 768  |  https://dl.fbaipublicfiles.com/fair-esm/models/esm1_t6_43M_UR50S.pt   |\n\n\nHere is a chronological list of the released models and the paper they were introduced in:\n\n| Shorthand  | Release Notes |\n|------------|---------------|\n| ESM-1      | Released with Rives et al. 2019 (Aug 2020 update). |\n| ESM-1b     | Released with Rives et al. 2019 (Dec 2020 update). See Appendix B. |\n| ESM-MSA-1  | Released with Rao et al. 2021 (Preprint v1). |\n| ESM-MSA-1b | Released with Rao et al. 2021 (ICML'21 version, June 2021). |\n| ESM-1v     | Released with Meier et al. 2021. |\n| ESM-IF1    | Released with Hsu et al. 2022. |\n| ESM-2      | Released with Lin et al. 2022. |\n\n### ESM Structural Split Dataset <a name=\"available-esmssd\"></a>\nThis is a five-fold cross validation dataset of protein domain structures that can be used to measure generalization of representations\nacross different levels of structural dissimilarity.\nThe dataset implements structural holdouts at the family, superfamily, and fold\nlevel. The SCOPe database is used to classify domains. Independently for each level of structural hold-out,\nthe domains are split into 5 equal sets, i.e. five sets of folds, superfamilies, or families. This ensures\nthat for each of the five partitions, structures having the same classification do not appear in both the\ntrain and test sets. For a given classification level each structure appears in a test set once, so that\nin the cross validation experiment each of the structures will be evaluated exactly once.\n\nThe dataset provides 3d coordinates, distance maps, and secondary structure labels.\nFor further details on the construction of the dataset\nsee [Rives et al. 2019](https://doi.org/10.1101/622803) Appendix A.10.\n\nThis [jupyter notebook tutorial](examples/esm_structural_dataset.ipynb) shows how to load and index the `ESMStructuralSplitDataset`.\n\n`ESMStructuralSplitDataset`, upon initializing, will download `splits` and `pkl`.\nWe also provide `msas` for each of the domains. The data can be directly downloaded below.\n\n| Name   | Description                                                                   | URL                                                                   |\n|--------|-------------------------------------------------------------------------------|-----------------------------------------------------------------------|\n| splits | train/valid splits                                                            | https://dl.fbaipublicfiles.com/fair-esm/structural-data/splits.tar.gz |\n| pkl    | pkl objects containing sequence, SSP labels, distance map, and 3d coordinates | https://dl.fbaipublicfiles.com/fair-esm/structural-data/pkl.tar.gz    |\n| msas   | a3m files containing MSA for each domain                                      | https://dl.fbaipublicfiles.com/fair-esm/structural-data/msas.tar.gz   |\n\n### Pre-training Dataset Split  <a name=\"available-pretraining-split\"></a>\nThe split files establishing which UniRef50 clusters were used as held-out evaluation set for pre-training\nin [Rives et al. 2019](https://doi.org/10.1101/622803) and [Rao et al. 2021](https://doi.org/10.1101/2021.02.12.430858) can be found here:\n* [UniRef50 IDs of evaluation set](https://dl.fbaipublicfiles.com/fair-esm/pretraining-data/uniref201803_ur50_valid_headers.txt.gz): 3.016 M clusters\n* [UniRef100 IDs of evaluation set](https://dl.fbaipublicfiles.com/fair-esm/pretraining-data/uniref201803_ur100_valid_headers.txt.gz): 13.745 M proteins, expanding the same UniRef50 clusters.\n\nThese files only contain only the UniRef50 IDs and UniRef100 IDs corresponding to the [UniRef database, 2018-03 release](https://ftp.uniprot.org/pub/databases/uniprot/previous_releases/release-2018_03/uniref/)\nwhich is released by the UniProt Consortium under a [Creative Commons Attribution (CC BY 4.0) License](https://www.uniprot.org/help/license).\n\n## Citations <a name=\"citations\"></a>\n\nIf you find the models useful in your research, we ask that you cite the relevant paper:\n\n```bibtex\n@article{rives2019biological,\n  author={Rives, Alexander and Meier, Joshua and Sercu, Tom and Goyal, Siddharth and Lin, Zeming and Liu, Jason and Guo, Demi and Ott, Myle and Zitnick, C. Lawrence and Ma, Jerry and Fergus, Rob},\n  title={Biological Structure and Function Emerge from Scaling Unsupervised Learning to 250 Million Protein Sequences},\n  year={2019},\n  doi={10.1101/622803},\n  url={https://www.biorxiv.org/content/10.1101/622803v4},\n  journal={bioRxiv}\n}\n```\n\nFor the self-attention contact prediction:\n\n```bibtex\n@article{rao2020transformer,\n  author = {Rao, Roshan M and Meier, Joshua and Sercu, Tom and Ovchinnikov, Sergey and Rives, Alexander},\n  title={Transformer protein language models are unsupervised structure learners},\n  year={2020},\n  doi={10.1101/2020.12.15.422761},\n  url={https://www.biorxiv.org/content/10.1101/2020.12.15.422761v1},\n  journal={bioRxiv}\n}\n```\n\nFor the MSA Transformer:\n\n```bibtex\n@article{rao2021msa,\n  author = {Rao, Roshan and Liu, Jason and Verkuil, Robert and Meier, Joshua and Canny, John F. and Abbeel, Pieter and Sercu, Tom and Rives, Alexander},\n  title={MSA Transformer},\n  year={2021},\n  doi={10.1101/2021.02.12.430858},\n  url={https://www.biorxiv.org/content/10.1101/2021.02.12.430858v1},\n  journal={bioRxiv}\n}\n```\n\nFor variant prediction using ESM-1v:\n\n```bibtex\n@article{meier2021language,\n  author = {Meier, Joshua and Rao, Roshan and Verkuil, Robert and Liu, Jason and Sercu, Tom and Rives, Alexander},\n  title = {Language models enable zero-shot prediction of the effects of mutations on protein function},\n  year={2021},\n  doi={10.1101/2021.07.09.450648},\n  url={https://www.biorxiv.org/content/10.1101/2021.07.09.450648v1},\n  journal={bioRxiv}\n}\n```\n\nFor inverse folding using ESM-IF1:\n\n```bibtex\n@article{hsu2022learning,\n\tauthor = {Hsu, Chloe and Verkuil, Robert and Liu, Jason and Lin, Zeming and Hie, Brian and Sercu, Tom and Lerer, Adam and Rives, Alexander},\n\ttitle = {Learning inverse folding from millions of predicted structures},\n\tyear = {2022},\n\tdoi = {10.1101/2022.04.10.487779},\n\turl = {https://www.biorxiv.org/content/early/2022/04/10/2022.04.10.487779},\n\tjournal = {bioRxiv}\n}\n\n```\n\nMuch of this code builds on the [fairseq](https://github.com/pytorch/fairseq) sequence modeling framework. We use fairseq internally for our protein language modeling research. We highly recommend trying it out if you'd like to pre-train protein language models from scratch.\n\nAdditionally, if you would like to use the variant prediction benchmark from Meier et al. (2021), we provide a bibtex file with citations for all data in [./examples/variant-prediction/mutation_data.bib](./examples/variant-prediction/mutation_data.bib). You can cite each paper individually, or add all citations in bulk using the LaTeX command:\n\n```tex\n\\nocite{wrenbeck2017deep,klesmith2015comprehensive,haddox2018mapping,romero2015dissecting,firnberg2014comprehensive,deng2012deep,stiffler2015evolvability,jacquier2013capturing,findlay2018comprehensive,mclaughlin2012spatial,kitzman2015massively,doud2016accurate,pokusaeva2019experimental,mishra2016systematic,kelsic2016rna,melnikov2014comprehensive,brenan2016phenotypic,rockah2015systematic,wu2015functional,aakre2015evolving,qi2014quantitative,matreyek2018multiplex,bandaru2017deconstruction,roscoe2013analyses,roscoe2014systematic,mavor2016determination,chan2017correlation,melamed2013deep,starita2013activity,araya2012fundamental}\n```\n\n## License <a name=\"license\"></a>\n\nThis source code is licensed under the MIT license found in the `LICENSE` file\nin the root directory of this source tree.\n"
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/3c/a7/4e4a2176fed10ab233cc39b083ba4ec222ba52de2be606e3e2b5195264e9/importlib_resources-5.8.0-py3-none-any.whl",
+        "archive_info": {
+          "hash": "sha256=7952325ffd516c05a8ad0858c74dff2c3343f136fe66a6002b2623dd1d43f223",
+          "hashes": {
+            "sha256": "7952325ffd516c05a8ad0858c74dff2c3343f136fe66a6002b2623dd1d43f223"
+          }
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.1",
+        "name": "importlib-resources",
+        "version": "5.8.0",
+        "summary": "Read resources from Python packages",
+        "home_page": "https://github.com/python/importlib_resources",
+        "author": "Barry Warsaw",
+        "author_email": "barry@python.org",
+        "license_file": [
+          "LICENSE"
+        ],
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Intended Audience :: Developers",
+          "License :: OSI Approved :: Apache Software License",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only"
+        ],
+        "requires_dist": [
+          "zipp (>=3.1.0) ; python_version < \"3.10\"",
+          "sphinx ; extra == 'docs'",
+          "jaraco.packaging (>=9) ; extra == 'docs'",
+          "rst.linker (>=1.9) ; extra == 'docs'",
+          "pytest (>=6) ; extra == 'testing'",
+          "pytest-checkdocs (>=2.4) ; extra == 'testing'",
+          "pytest-flake8 ; extra == 'testing'",
+          "pytest-cov ; extra == 'testing'",
+          "pytest-enabler (>=1.0.1) ; extra == 'testing'",
+          "pytest-black (>=0.3.7) ; (platform_python_implementation != \"PyPy\") and extra == 'testing'",
+          "pytest-mypy (>=0.9.1) ; (platform_python_implementation != \"PyPy\") and extra == 'testing'"
+        ],
+        "requires_python": ">=3.7",
+        "project_url": [
+          "Documentation, https://importlib-resources.readthedocs.io/"
+        ],
+        "provides_extra": [
+          "docs",
+          "testing"
+        ],
+        "description": ".. image:: https://img.shields.io/pypi/v/importlib_resources.svg\n   :target: `PyPI link`_\n\n.. image:: https://img.shields.io/pypi/pyversions/importlib_resources.svg\n   :target: `PyPI link`_\n\n.. _PyPI link: https://pypi.org/project/importlib_resources\n\n.. image:: https://github.com/python/importlib_resources/workflows/tests/badge.svg\n   :target: https://github.com/python/importlib_resources/actions?query=workflow%3A%22tests%22\n   :alt: tests\n\n.. image:: https://img.shields.io/badge/code%20style-black-000000.svg\n   :target: https://github.com/psf/black\n   :alt: Code style: Black\n\n.. image:: https://readthedocs.org/projects/importlib-resources/badge/?version=latest\n   :target: https://importlib-resources.readthedocs.io/en/latest/?badge=latest\n\n.. image:: https://img.shields.io/badge/skeleton-2022-informational\n   :target: https://blog.jaraco.com/skeleton\n\n``importlib_resources`` is a backport of Python standard library\n`importlib.resources\n<https://docs.python.org/3/library/importlib.html#module-importlib.resources>`_\nmodule for older Pythons.\n\nThe key goal of this module is to replace parts of `pkg_resources\n<https://setuptools.readthedocs.io/en/latest/pkg_resources.html>`_ with a\nsolution in Python's stdlib that relies on well-defined APIs.  This makes\nreading resources included in packages easier, with more stable and consistent\nsemantics.\n\nCompatibility\n=============\n\nNew features are introduced in this third-party library and later merged\ninto CPython. The following table indicates which versions of this library\nwere contributed to different versions in the standard library:\n\n.. list-table::\n   :header-rows: 1\n\n   * - importlib_resources\n     - stdlib\n   * - 5.8\n     - 3.12\n   * - 5.7\n     - 3.11\n   * - 5.0\n     - 3.10\n   * - 1.3\n     - 3.9\n   * - 0.5 (?)\n     - 3.7\n"
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/5b/9a/cce6992d25096371412f1a58e5c50f144299261d01dfc4c00fd563a589e7/numpy-1.22.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "archive_info": {
+          "hash": "sha256=a97e82c39d9856fe7d4f9b86d8a1e66eff99cf3a8b7ba48202f659703d27c46f",
+          "hashes": {
+            "sha256": "a97e82c39d9856fe7d4f9b86d8a1e66eff99cf3a8b7ba48202f659703d27c46f"
+          }
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.1",
+        "name": "numpy",
+        "version": "1.22.0",
+        "platform": [
+          "Windows",
+          "Linux",
+          "Solaris",
+          "Mac OS-X",
+          "Unix"
+        ],
+        "summary": "NumPy is the fundamental package for array computing with Python.",
+        "home_page": "https://www.numpy.org",
+        "download_url": "https://pypi.python.org/pypi/numpy",
+        "author": "Travis E. Oliphant et al.",
+        "maintainer": "NumPy Developers",
+        "maintainer_email": "numpy-discussion@python.org",
+        "license": "BSD",
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Intended Audience :: Science/Research",
+          "Intended Audience :: Developers",
+          "License :: OSI Approved :: BSD License",
+          "Programming Language :: C",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: 3.9",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: Implementation :: CPython",
+          "Topic :: Software Development",
+          "Topic :: Scientific/Engineering",
+          "Typing :: Typed",
+          "Operating System :: Microsoft :: Windows",
+          "Operating System :: POSIX",
+          "Operating System :: Unix",
+          "Operating System :: MacOS"
+        ],
+        "requires_python": ">=3.8",
+        "project_url": [
+          "Bug Tracker, https://github.com/numpy/numpy/issues",
+          "Documentation, https://numpy.org/doc/1.22",
+          "Source Code, https://github.com/numpy/numpy"
+        ],
+        "description": "It provides:\n\n- a powerful N-dimensional array object\n- sophisticated (broadcasting) functions\n- tools for integrating C/C++ and Fortran code\n- useful linear algebra, Fourier transform, and random number capabilities\n- and much more\n\nBesides its obvious scientific uses, NumPy can also be used as an efficient\nmulti-dimensional container of generic data. Arbitrary data-types can be\ndefined. This allows NumPy to seamlessly and speedily integrate with a wide\nvariety of databases.\n\nAll NumPy wheels distributed on PyPI are BSD licensed.\n\n\n\n"
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/ea/e4/a1cbaca4069fdd92c930bb1c5eebd9ea9c55717a9bf60bd41708c8a33f5a/pandas-1.4.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "archive_info": {
+          "hash": "sha256=6f803320c9da732cc79210d7e8cc5c8019aad512589c910c66529eb1b1818230",
+          "hashes": {
+            "sha256": "6f803320c9da732cc79210d7e8cc5c8019aad512589c910c66529eb1b1818230"
+          }
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.1",
+        "name": "pandas",
+        "version": "1.4.3",
+        "platform": [
+          "any"
+        ],
+        "summary": "Powerful data structures for data analysis, time series, and statistics",
+        "description_content_type": "text/markdown",
+        "home_page": "https://pandas.pydata.org",
+        "author": "The Pandas Development Team",
+        "author_email": "pandas-dev@python.org",
+        "license": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Environment :: Console",
+          "Intended Audience :: Science/Research",
+          "License :: OSI Approved :: BSD License",
+          "Operating System :: OS Independent",
+          "Programming Language :: Cython",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: 3.9",
+          "Programming Language :: Python :: 3.10",
+          "Topic :: Scientific/Engineering"
+        ],
+        "requires_dist": [
+          "python-dateutil (>=2.8.1)",
+          "pytz (>=2020.1)",
+          "numpy (>=1.18.5) ; platform_machine != \"aarch64\" and platform_machine != \"arm64\" and python_version < \"3.10\"",
+          "numpy (>=1.19.2) ; platform_machine == \"aarch64\" and python_version < \"3.10\"",
+          "numpy (>=1.20.0) ; platform_machine == \"arm64\" and python_version < \"3.10\"",
+          "numpy (>=1.21.0) ; python_version >= \"3.10\"",
+          "hypothesis (>=5.5.3) ; extra == 'test'",
+          "pytest (>=6.0) ; extra == 'test'",
+          "pytest-xdist (>=1.31) ; extra == 'test'"
+        ],
+        "requires_python": ">=3.8",
+        "project_url": [
+          "Bug Tracker, https://github.com/pandas-dev/pandas/issues",
+          "Documentation, https://pandas.pydata.org/pandas-docs/stable",
+          "Source Code, https://github.com/pandas-dev/pandas"
+        ],
+        "provides_extra": [
+          "test"
+        ],
+        "description": "<div align=\"center\">\n  <img src=\"https://pandas.pydata.org/static/img/pandas.svg\"><br>\n</div>\n\n-----------------\n\n# pandas: powerful Python data analysis toolkit\n[![PyPI Latest Release](https://img.shields.io/pypi/v/pandas.svg)](https://pypi.org/project/pandas/)\n[![Conda Latest Release](https://anaconda.org/conda-forge/pandas/badges/version.svg)](https://anaconda.org/anaconda/pandas/)\n[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3509134.svg)](https://doi.org/10.5281/zenodo.3509134)\n[![Package Status](https://img.shields.io/pypi/status/pandas.svg)](https://pypi.org/project/pandas/)\n[![License](https://img.shields.io/pypi/l/pandas.svg)](https://github.com/pandas-dev/pandas/blob/main/LICENSE)\n[![Coverage](https://codecov.io/github/pandas-dev/pandas/coverage.svg?branch=main)](https://codecov.io/gh/pandas-dev/pandas)\n[![Downloads](https://static.pepy.tech/personalized-badge/pandas?period=month&units=international_system&left_color=black&right_color=orange&left_text=PyPI%20downloads%20per%20month)](https://pepy.tech/project/pandas)\n[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pydata/pandas)\n[![Powered by NumFOCUS](https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](https://numfocus.org)\n[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)\n[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)\n\n## What is it?\n\n**pandas** is a Python package that provides fast, flexible, and expressive data\nstructures designed to make working with \"relational\" or \"labeled\" data both\neasy and intuitive. It aims to be the fundamental high-level building block for\ndoing practical, **real world** data analysis in Python. Additionally, it has\nthe broader goal of becoming **the most powerful and flexible open source data\nanalysis / manipulation tool available in any language**. It is already well on\nits way towards this goal.\n\n## Main Features\nHere are just a few of the things that pandas does well:\n\n  - Easy handling of [**missing data**][missing-data] (represented as\n    `NaN`, `NA`, or `NaT`) in floating point as well as non-floating point data\n  - Size mutability: columns can be [**inserted and\n    deleted**][insertion-deletion] from DataFrame and higher dimensional\n    objects\n  - Automatic and explicit [**data alignment**][alignment]: objects can\n    be explicitly aligned to a set of labels, or the user can simply\n    ignore the labels and let `Series`, `DataFrame`, etc. automatically\n    align the data for you in computations\n  - Powerful, flexible [**group by**][groupby] functionality to perform\n    split-apply-combine operations on data sets, for both aggregating\n    and transforming data\n  - Make it [**easy to convert**][conversion] ragged,\n    differently-indexed data in other Python and NumPy data structures\n    into DataFrame objects\n  - Intelligent label-based [**slicing**][slicing], [**fancy\n    indexing**][fancy-indexing], and [**subsetting**][subsetting] of\n    large data sets\n  - Intuitive [**merging**][merging] and [**joining**][joining] data\n    sets\n  - Flexible [**reshaping**][reshape] and [**pivoting**][pivot-table] of\n    data sets\n  - [**Hierarchical**][mi] labeling of axes (possible to have multiple\n    labels per tick)\n  - Robust IO tools for loading data from [**flat files**][flat-files]\n    (CSV and delimited), [**Excel files**][excel], [**databases**][db],\n    and saving/loading data from the ultrafast [**HDF5 format**][hdfstore]\n  - [**Time series**][timeseries]-specific functionality: date range\n    generation and frequency conversion, moving window statistics,\n    date shifting and lagging\n\n\n   [missing-data]: https://pandas.pydata.org/pandas-docs/stable/user_guide/missing_data.html\n   [insertion-deletion]: https://pandas.pydata.org/pandas-docs/stable/user_guide/dsintro.html#column-selection-addition-deletion\n   [alignment]: https://pandas.pydata.org/pandas-docs/stable/user_guide/dsintro.html?highlight=alignment#intro-to-data-structures\n   [groupby]: https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html#group-by-split-apply-combine\n   [conversion]: https://pandas.pydata.org/pandas-docs/stable/user_guide/dsintro.html#dataframe\n   [slicing]: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#slicing-ranges\n   [fancy-indexing]: https://pandas.pydata.org/pandas-docs/stable/user_guide/advanced.html#advanced\n   [subsetting]: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#boolean-indexing\n   [merging]: https://pandas.pydata.org/pandas-docs/stable/user_guide/merging.html#database-style-dataframe-or-named-series-joining-merging\n   [joining]: https://pandas.pydata.org/pandas-docs/stable/user_guide/merging.html#joining-on-index\n   [reshape]: https://pandas.pydata.org/pandas-docs/stable/user_guide/reshaping.html\n   [pivot-table]: https://pandas.pydata.org/pandas-docs/stable/user_guide/reshaping.html\n   [mi]: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#hierarchical-indexing-multiindex\n   [flat-files]: https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#csv-text-files\n   [excel]: https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#excel-files\n   [db]: https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#sql-queries\n   [hdfstore]: https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#hdf5-pytables\n   [timeseries]: https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#time-series-date-functionality\n\n## Where to get it\nThe source code is currently hosted on GitHub at:\nhttps://github.com/pandas-dev/pandas\n\nBinary installers for the latest released version are available at the [Python\nPackage Index (PyPI)](https://pypi.org/project/pandas) and on [Conda](https://docs.conda.io/en/latest/).\n\n```sh\n# conda\nconda install pandas\n```\n\n```sh\n# or PyPI\npip install pandas\n```\n\n## Dependencies\n- [NumPy - Adds support for large, multi-dimensional arrays, matrices and high-level mathematical functions to operate on these arrays](https://www.numpy.org)\n- [python-dateutil - Provides powerful extensions to the standard datetime module](https://dateutil.readthedocs.io/en/stable/index.html)\n- [pytz - Brings the Olson tz database into Python which allows accurate and cross platform timezone calculations](https://github.com/stub42/pytz)\n\nSee the [full installation instructions](https://pandas.pydata.org/pandas-docs/stable/install.html#dependencies) for minimum supported versions of required, recommended and optional dependencies.\n\n## Installation from sources\nTo install pandas from source you need [Cython](https://cython.org/) in addition to the normal\ndependencies above. Cython can be installed from PyPI:\n\n```sh\npip install cython\n```\n\nIn the `pandas` directory (same one where you found this file after\ncloning the git repo), execute:\n\n```sh\npython setup.py install\n```\n\nor for installing in [development mode](https://pip.pypa.io/en/latest/cli/pip_install/#install-editable):\n\n\n```sh\npython -m pip install -e . --no-build-isolation --no-use-pep517\n```\n\nIf you have `make`, you can also use `make develop` to run the same command.\n\nor alternatively\n\n```sh\npython setup.py develop\n```\n\nSee the full instructions for [installing from source](https://pandas.pydata.org/pandas-docs/stable/install.html#installing-from-source).\n\n## License\n[BSD 3](LICENSE)\n\n## Documentation\nThe official documentation is hosted on PyData.org: https://pandas.pydata.org/pandas-docs/stable\n\n## Background\nWork on ``pandas`` started at [AQR](https://www.aqr.com/) (a quantitative hedge fund) in 2008 and\nhas been under active development since then.\n\n## Getting Help\n\nFor usage questions, the best place to go to is [StackOverflow](https://stackoverflow.com/questions/tagged/pandas).\nFurther, general questions and discussions can also take place on the [pydata mailing list](https://groups.google.com/forum/?fromgroups#!forum/pydata).\n\n## Discussion and Development\nMost development discussions take place on GitHub in this repo. Further, the [pandas-dev mailing list](https://mail.python.org/mailman/listinfo/pandas-dev) can also be used for specialized discussions or design issues, and a [Gitter channel](https://gitter.im/pydata/pandas) is available for quick development related questions.\n\n## Contributing to pandas [![Open Source Helpers](https://www.codetriage.com/pandas-dev/pandas/badges/users.svg)](https://www.codetriage.com/pandas-dev/pandas)\n\nAll contributions, bug reports, bug fixes, documentation improvements, enhancements, and ideas are welcome.\n\nA detailed overview on how to contribute can be found in the **[contributing guide](https://pandas.pydata.org/docs/dev/development/contributing.html)**.\n\nIf you are simply looking to start working with the pandas codebase, navigate to the [GitHub \"issues\" tab](https://github.com/pandas-dev/pandas/issues) and start looking through interesting issues. There are a number of issues listed under [Docs](https://github.com/pandas-dev/pandas/issues?labels=Docs&sort=updated&state=open) and [good first issue](https://github.com/pandas-dev/pandas/issues?labels=good+first+issue&sort=updated&state=open) where you could start out.\n\nYou can also triage issues which may include reproducing bug reports, or asking for vital information such as version numbers or reproduction instructions. If you would like to start triaging issues, one easy way to get started is to [subscribe to pandas on CodeTriage](https://www.codetriage.com/pandas-dev/pandas).\n\nOr maybe through using pandas you have an idea of your own or are looking for something in the documentation and thinking ‘this can be improved’...you can do something about it!\n\nFeel free to ask questions on the [mailing list](https://groups.google.com/forum/?fromgroups#!forum/pydata) or on [Gitter](https://gitter.im/pydata/pandas).\n\nAs contributors and maintainers to this project, you are expected to abide by pandas' code of conduct. More information can be found at: [Contributor Code of Conduct](https://github.com/pandas-dev/pandas/blob/main/.github/CODE_OF_CONDUCT.md)\n"
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/79/92/f8282ed209c2e7d4077c5f236bc241d42fb9a2b2986330188909a60be7bb/plotly-5.8.0-py2.py3-none-any.whl",
+        "archive_info": {
+          "hash": "sha256=0e6e2382aafe2b2978d2c1b10ea93e73ad1ec80fa9a195ff6eea62af7905dfdc",
+          "hashes": {
+            "sha256": "0e6e2382aafe2b2978d2c1b10ea93e73ad1ec80fa9a195ff6eea62af7905dfdc"
+          }
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.1",
+        "name": "plotly",
+        "version": "5.8.0",
+        "platform": [
+          "UNKNOWN"
+        ],
+        "summary": "An open-source, interactive data visualization library for Python",
+        "description_content_type": "text/markdown",
+        "home_page": "https://plotly.com/python/",
+        "author": "Chris P",
+        "author_email": "chris@plot.ly",
+        "maintainer": "Nicolas Kruchten",
+        "maintainer_email": "nicolas@plot.ly",
+        "license": "MIT",
+        "license_file": [
+          "LICENSE.txt"
+        ],
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Programming Language :: Python :: 3.6",
+          "Programming Language :: Python :: 3.7",
+          "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: 3.9",
+          "Topic :: Scientific/Engineering :: Visualization"
+        ],
+        "requires_dist": [
+          "tenacity (>=6.2.0)"
+        ],
+        "requires_python": ">=3.6",
+        "project_url": [
+          "Github, https://github.com/plotly/plotly.py"
+        ],
+        "description": "# plotly.py\n\n<table>\n    <tr>\n        <td>Latest Release</td>\n        <td>\n            <a href=\"https://pypi.org/project/plotly/\"/>\n            <img src=\"https://badge.fury.io/py/plotly.svg\"/>\n        </td>\n    </tr>\n    <tr>\n        <td>User forum</td>\n        <td>\n            <a href=\"https://community.plotly.com/\"/>\n            <img src=\"https://img.shields.io/badge/help_forum-discourse-blue.svg\"/>\n        </td>\n    </tr>\n    <tr>\n        <td>PyPI Downloads</td>\n        <td>\n            <a href=\"https://pepy.tech/project/plotly\"/>\n            <img src=\"https://pepy.tech/badge/plotly/month\"/>\n        </td>\n    </tr>\n    <tr>\n        <td>License</td>\n        <td>\n            <a href=\"https://opensource.org/licenses/MIT\"/>\n            <img src=\"https://img.shields.io/badge/License-MIT-yellow.svg\"/>\n        </td>\n    </tr>\n</table>\n\n## Quickstart\n\n`pip install plotly==5.8.0`\n\nInside [Jupyter](https://jupyter.org/install) (installable with `pip install \"jupyterlab>=3\" \"ipywidgets>=7.6\"`):\n\n```python\nimport plotly.express as px\nfig = px.bar(x=[\"a\", \"b\", \"c\"], y=[1, 3, 2])\nfig.show()\n```\n\nSee the [Python documentation](https://plotly.com/python/) for more examples.\n\nRead about what's new in [plotly.py v4](https://medium.com/plotly/plotly-py-4-0-is-here-offline-only-express-first-displayable-anywhere-fc444e5659ee)\n\n## Overview\n\n[plotly.py](https://plotly.com/python/) is an interactive, open-source, and browser-based graphing library for Python :sparkles:\n\nBuilt on top of [plotly.js](https://github.com/plotly/plotly.js), `plotly.py` is a high-level, declarative charting library. plotly.js ships with over 30 chart types, including scientific charts, 3D graphs, statistical charts, SVG maps, financial charts, and more.\n\n`plotly.py` is [MIT Licensed](https://github.com/plotly/plotly.py/blob/master/LICENSE.txt). Plotly graphs can be viewed in Jupyter notebooks, standalone HTML files, or hosted online using [Chart Studio Cloud](https://chart-studio.plotly.com/feed/).\n\n[Contact us](https://plotly.com/consulting-and-oem/) for consulting, dashboard development, application integration, and feature additions.\n\n<p align=\"center\">\n    <a href=\"https://plotly.com/python/\" target=\"_blank\">\n    <img src=\"https://raw.githubusercontent.com/cldougl/plot_images/add_r_img/plotly_2017.png\">\n</a></p>\n\n---\n\n- [Online Documentation](https://plotly.com/python/)\n- [Contributing to plotly](https://github.com/plotly/plotly.py/blob/master/contributing.md)\n- [Changelog](https://github.com/plotly/plotly.py/blob/master/CHANGELOG.md)\n- [Code of Conduct](https://github.com/plotly/plotly.py/blob/master/CODE_OF_CONDUCT.md)\n- [Version 4 Migration Guide](https://plotly.com/python/v4-migration/)\n- [New! Announcing Dash 1.0](https://medium.com/plotly/welcoming-dash-1-0-0-f3af4b84bae)\n- [Community forum](https://community.plotly.com)\n\n---\n\n## Installation\n\nplotly.py may be installed using pip...\n\n```\npip install plotly==5.8.0\n```\n\nor conda.\n\n```\nconda install -c plotly plotly=5.8.0\n```\n\n### JupyterLab Support\n\nFor use in [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/), install the `jupyterlab` and `ipywidgets`\npackages using `pip`:\n\n```\npip install \"jupyterlab>=3\" \"ipywidgets>=7.6\"\n```\n\nor `conda`:\n\n```\nconda install \"jupyterlab>=3\" \"ipywidgets>=7.6\"\n```\n\nThe instructions above apply to JupyterLab 3.x. **For JupyterLab 2 or earlier**, run the following commands to install the required JupyterLab extensions (note that this will require [`node`](https://nodejs.org/) to be installed):\n\n```\n# JupyterLab 2.x renderer support\njupyter labextension install jupyterlab-plotly@5.8.0 @jupyter-widgets/jupyterlab-manager\n```\n\nPlease check out our [Troubleshooting guide](https://plotly.com/python/troubleshooting/) if you run into any problems with JupyterLab.\n\n### Jupyter Notebook Support\n\nFor use in the Jupyter Notebook, install the `notebook` and `ipywidgets`\npackages using `pip`:\n\n```\npip install \"notebook>=5.3\" \"ipywidgets>=7.5\"\n```\n\nor `conda`:\n\n```\nconda install \"notebook>=5.3\" \"ipywidgets>=7.5\"\n```\n\n### Static Image Export\n\nplotly.py supports [static image export](https://plotly.com/python/static-image-export/),\nusing either the [`kaleido`](https://github.com/plotly/Kaleido)\npackage (recommended, supported as of `plotly` version 4.9) or the [orca](https://github.com/plotly/orca)\ncommand line utility (legacy as of `plotly` version 4.9).\n\n#### Kaleido\n\nThe [`kaleido`](https://github.com/plotly/Kaleido) package has no dependencies and can be installed\nusing pip...\n\n```\npip install -U kaleido\n```\n\nor conda.\n\n```\nconda install -c conda-forge python-kaleido\n```\n\n#### Orca\n\nWhile Kaleido is now the recommended image export approach because it is easier to install\nand more widely compatible, [static image export](https://plotly.com/python/static-image-export/)\ncan also be supported\nby the legacy [orca](https://github.com/plotly/orca) command line utility and the\n [`psutil`](https://github.com/giampaolo/psutil) Python package.\n\nThese dependencies can both be installed using conda:\n\n```\nconda install -c plotly plotly-orca==1.3.1 psutil\n```\n\nOr, `psutil` can be installed using pip...\n\n```\npip install psutil\n```\n\nand orca can be installed according to the instructions in the [orca README](https://github.com/plotly/orca).\n\n\n### Extended Geo Support\n\nSome plotly.py features rely on fairly large geographic shape files. The county\nchoropleth figure factory is one such example. These shape files are distributed as a\nseparate `plotly-geo` package. This package can be installed using pip...\n\n```\npip install plotly-geo==1.0.0\n```\n\nor conda\n\n```\nconda install -c plotly plotly-geo=1.0.0\n```\n\n### Chart Studio support\n\nThe `chart-studio` package can be used to upload plotly figures to Plotly's Chart\nStudio Cloud or On-Prem service. This package can be installed using pip...\n\n```\npip install chart-studio==1.1.0\n```\n\nor conda\n\n```\nconda install -c plotly chart-studio=1.1.0\n```\n\n## Migration\n\nIf you're migrating from plotly.py v3 to v4, please check out the [Version 4 migration guide](https://plotly.com/python/v4-migration/)\n\nIf you're migrating from plotly.py v2 to v3, please check out the [Version 3 migration guide](https://github.com/plotly/plotly.py/blob/master/migration-guide.md)\n\n## Copyright and Licenses\n\nCode and documentation copyright 2019 Plotly, Inc.\n\nCode released under the [MIT license](https://github.com/plotly/plotly.py/blob/master/LICENSE.txt).\n\nDocs released under the [Creative Commons license](https://github.com/plotly/documentation/blob/source/LICENSE).\n\n\n"
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl",
+        "archive_info": {
+          "hash": "sha256=961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9",
+          "hashes": {
+            "sha256": "961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9"
+          }
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.1",
+        "name": "python-dateutil",
+        "version": "2.8.2",
+        "platform": [
+          "UNKNOWN"
+        ],
+        "summary": "Extensions to the standard Python datetime module",
+        "description_content_type": "text/x-rst",
+        "home_page": "https://github.com/dateutil/dateutil",
+        "author": "Gustavo Niemeyer",
+        "author_email": "gustavo@niemeyer.net",
+        "maintainer": "Paul Ganssle",
+        "maintainer_email": "dateutil@python.org",
+        "license": "Dual License",
+        "license_file": [
+          "LICENSE"
+        ],
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Intended Audience :: Developers",
+          "License :: OSI Approved :: BSD License",
+          "License :: OSI Approved :: Apache Software License",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 2",
+          "Programming Language :: Python :: 2.7",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3.3",
+          "Programming Language :: Python :: 3.4",
+          "Programming Language :: Python :: 3.5",
+          "Programming Language :: Python :: 3.6",
+          "Programming Language :: Python :: 3.7",
+          "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: 3.9",
+          "Topic :: Software Development :: Libraries"
+        ],
+        "requires_dist": [
+          "six (>=1.5)"
+        ],
+        "requires_python": "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7",
+        "project_url": [
+          "Documentation, https://dateutil.readthedocs.io/en/stable/",
+          "Source, https://github.com/dateutil/dateutil"
+        ],
+        "description": "dateutil - powerful extensions to datetime\n==========================================\n\n|pypi| |support| |licence|\n\n|gitter| |readthedocs|\n\n|travis| |appveyor| |pipelines| |coverage|\n\n.. |pypi| image:: https://img.shields.io/pypi/v/python-dateutil.svg?style=flat-square\n    :target: https://pypi.org/project/python-dateutil/\n    :alt: pypi version\n\n.. |support| image:: https://img.shields.io/pypi/pyversions/python-dateutil.svg?style=flat-square\n    :target: https://pypi.org/project/python-dateutil/\n    :alt: supported Python version\n\n.. |travis| image:: https://img.shields.io/travis/dateutil/dateutil/master.svg?style=flat-square&label=Travis%20Build\n    :target: https://travis-ci.org/dateutil/dateutil\n    :alt: travis build status\n\n.. |appveyor| image:: https://img.shields.io/appveyor/ci/dateutil/dateutil/master.svg?style=flat-square&logo=appveyor\n    :target: https://ci.appveyor.com/project/dateutil/dateutil\n    :alt: appveyor build status\n\n.. |pipelines| image:: https://dev.azure.com/pythondateutilazure/dateutil/_apis/build/status/dateutil.dateutil?branchName=master\n    :target: https://dev.azure.com/pythondateutilazure/dateutil/_build/latest?definitionId=1&branchName=master\n    :alt: azure pipelines build status\n\n.. |coverage| image:: https://codecov.io/gh/dateutil/dateutil/branch/master/graphs/badge.svg?branch=master\n    :target: https://codecov.io/gh/dateutil/dateutil?branch=master\n    :alt: Code coverage\n\n.. |gitter| image:: https://badges.gitter.im/dateutil/dateutil.svg\n   :alt: Join the chat at https://gitter.im/dateutil/dateutil\n   :target: https://gitter.im/dateutil/dateutil\n\n.. |licence| image:: https://img.shields.io/pypi/l/python-dateutil.svg?style=flat-square\n    :target: https://pypi.org/project/python-dateutil/\n    :alt: licence\n\n.. |readthedocs| image:: https://img.shields.io/readthedocs/dateutil/latest.svg?style=flat-square&label=Read%20the%20Docs\n   :alt: Read the documentation at https://dateutil.readthedocs.io/en/latest/\n   :target: https://dateutil.readthedocs.io/en/latest/\n\nThe `dateutil` module provides powerful extensions to\nthe standard `datetime` module, available in Python.\n\nInstallation\n============\n`dateutil` can be installed from PyPI using `pip` (note that the package name is\ndifferent from the importable name)::\n\n    pip install python-dateutil\n\nDownload\n========\ndateutil is available on PyPI\nhttps://pypi.org/project/python-dateutil/\n\nThe documentation is hosted at:\nhttps://dateutil.readthedocs.io/en/stable/\n\nCode\n====\nThe code and issue tracker are hosted on GitHub:\nhttps://github.com/dateutil/dateutil/\n\nFeatures\n========\n\n* Computing of relative deltas (next month, next year,\n  next Monday, last week of month, etc);\n* Computing of relative deltas between two given\n  date and/or datetime objects;\n* Computing of dates based on very flexible recurrence rules,\n  using a superset of the `iCalendar <https://www.ietf.org/rfc/rfc2445.txt>`_\n  specification. Parsing of RFC strings is supported as well.\n* Generic parsing of dates in almost any string format;\n* Timezone (tzinfo) implementations for tzfile(5) format\n  files (/etc/localtime, /usr/share/zoneinfo, etc), TZ\n  environment string (in all known formats), iCalendar\n  format files, given ranges (with help from relative deltas),\n  local machine timezone, fixed offset timezone, UTC timezone,\n  and Windows registry-based time zones.\n* Internal up-to-date world timezone information based on\n  Olson's database.\n* Computing of Easter Sunday dates for any given year,\n  using Western, Orthodox or Julian algorithms;\n* A comprehensive test suite.\n\nQuick example\n=============\nHere's a snapshot, just to give an idea about the power of the\npackage. For more examples, look at the documentation.\n\nSuppose you want to know how much time is left, in\nyears/months/days/etc, before the next easter happening on a\nyear with a Friday 13th in August, and you want to get today's\ndate out of the \"date\" unix system command. Here is the code:\n\n.. code-block:: python3\n\n    >>> from dateutil.relativedelta import *\n    >>> from dateutil.easter import *\n    >>> from dateutil.rrule import *\n    >>> from dateutil.parser import *\n    >>> from datetime import *\n    >>> now = parse(\"Sat Oct 11 17:13:46 UTC 2003\")\n    >>> today = now.date()\n    >>> year = rrule(YEARLY,dtstart=now,bymonth=8,bymonthday=13,byweekday=FR)[0].year\n    >>> rdelta = relativedelta(easter(year), today)\n    >>> print(\"Today is: %s\" % today)\n    Today is: 2003-10-11\n    >>> print(\"Year with next Aug 13th on a Friday is: %s\" % year)\n    Year with next Aug 13th on a Friday is: 2004\n    >>> print(\"How far is the Easter of that year: %s\" % rdelta)\n    How far is the Easter of that year: relativedelta(months=+6)\n    >>> print(\"And the Easter of that year is: %s\" % (today+rdelta))\n    And the Easter of that year is: 2004-04-11\n\nBeing exactly 6 months ahead was **really** a coincidence :)\n\nContributing\n============\n\nWe welcome many types of contributions - bug reports, pull requests (code, infrastructure or documentation fixes). For more information about how to contribute to the project, see the ``CONTRIBUTING.md`` file in the repository.\n\n\nAuthor\n======\nThe dateutil module was written by Gustavo Niemeyer <gustavo@niemeyer.net>\nin 2003.\n\nIt is maintained by:\n\n* Gustavo Niemeyer <gustavo@niemeyer.net> 2003-2011\n* Tomi Pieviläinen <tomi.pievilainen@iki.fi> 2012-2014\n* Yaron de Leeuw <me@jarondl.net> 2014-2016\n* Paul Ganssle <paul@ganssle.io> 2015-\n\nStarting with version 2.4.1 and running until 2.8.2, all source and binary\ndistributions will be signed by a PGP key that has, at the very least, been\nsigned by the key which made the previous release. A table of release signing\nkeys can be found below:\n\n===========  ============================\nReleases     Signing key fingerprint\n===========  ============================\n2.4.1-2.8.2  `6B49 ACBA DCF6 BD1C A206 67AB CD54 FCE3 D964 BEFB`_ \n===========  ============================\n\nNew releases *may* have signed tags, but binary and source distributions\nuploaded to PyPI will no longer have GPG signatures attached.\n\nContact\n=======\nOur mailing list is available at `dateutil@python.org <https://mail.python.org/mailman/listinfo/dateutil>`_. As it is hosted by the PSF, it is subject to the `PSF code of\nconduct <https://www.python.org/psf/conduct/>`_.\n\nLicense\n=======\n\nAll contributions after December 1, 2017 released under dual license - either `Apache 2.0 License <https://www.apache.org/licenses/LICENSE-2.0>`_ or the `BSD 3-Clause License <https://opensource.org/licenses/BSD-3-Clause>`_. Contributions before December 1, 2017 - except those those explicitly relicensed - are released only under the BSD 3-Clause License.\n\n\n.. _6B49 ACBA DCF6 BD1C A206 67AB CD54 FCE3 D964 BEFB:\n   https://pgp.mit.edu/pks/lookup?op=vindex&search=0xCD54FCE3D964BEFB\n\n\n"
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/60/2e/dec1cc18c51b8df33c7c4d0a321b084cf38e1733b98f9d15018880fb4970/pytz-2022.1-py2.py3-none-any.whl",
+        "archive_info": {
+          "hash": "sha256=e68985985296d9a66a881eb3193b0906246245294a881e7c8afe623866ac6a5c",
+          "hashes": {
+            "sha256": "e68985985296d9a66a881eb3193b0906246245294a881e7c8afe623866ac6a5c"
+          }
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.1",
+        "name": "pytz",
+        "version": "2022.1",
+        "platform": [
+          "Independent"
+        ],
+        "summary": "World timezone definitions, modern and historical",
+        "keywords": [
+          "timezone",
+          "tzinfo",
+          "datetime",
+          "olson",
+          "time"
+        ],
+        "home_page": "http://pythonhosted.org/pytz",
+        "download_url": "https://pypi.org/project/pytz/",
+        "author": "Stuart Bishop",
+        "author_email": "stuart@stuartbishop.net",
+        "maintainer": "Stuart Bishop",
+        "maintainer_email": "stuart@stuartbishop.net",
+        "license": "MIT",
+        "classifier": [
+          "Development Status :: 6 - Mature",
+          "Intended Audience :: Developers",
+          "License :: OSI Approved :: MIT License",
+          "Natural Language :: English",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 2",
+          "Programming Language :: Python :: 2.4",
+          "Programming Language :: Python :: 2.5",
+          "Programming Language :: Python :: 2.6",
+          "Programming Language :: Python :: 2.7",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3.1",
+          "Programming Language :: Python :: 3.2",
+          "Programming Language :: Python :: 3.3",
+          "Programming Language :: Python :: 3.4",
+          "Programming Language :: Python :: 3.5",
+          "Programming Language :: Python :: 3.6",
+          "Programming Language :: Python :: 3.7",
+          "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: 3.9",
+          "Programming Language :: Python :: 3.10",
+          "Topic :: Software Development :: Libraries :: Python Modules"
+        ],
+        "description": "pytz - World Timezone Definitions for Python\n============================================\n\n:Author: Stuart Bishop <stuart@stuartbishop.net>\n\nIntroduction\n~~~~~~~~~~~~\n\npytz brings the Olson tz database into Python. This library allows\naccurate and cross platform timezone calculations using Python 2.4\nor higher. It also solves the issue of ambiguous times at the end\nof daylight saving time, which you can read more about in the Python\nLibrary Reference (``datetime.tzinfo``).\n\nAlmost all of the Olson timezones are supported.\n\n.. note::\n\n    This library differs from the documented Python API for\n    tzinfo implementations; if you want to create local wallclock\n    times you need to use the ``localize()`` method documented in this\n    document. In addition, if you perform date arithmetic on local\n    times that cross DST boundaries, the result may be in an incorrect\n    timezone (ie. subtract 1 minute from 2002-10-27 1:00 EST and you get\n    2002-10-27 0:59 EST instead of the correct 2002-10-27 1:59 EDT). A\n    ``normalize()`` method is provided to correct this. Unfortunately these\n    issues cannot be resolved without modifying the Python datetime\n    implementation (see PEP-431).\n\n\nInstallation\n~~~~~~~~~~~~\n\nThis package can either be installed using ``pip`` or from a tarball using the\nstandard Python distutils.\n\nIf you are installing using ``pip``, you don't need to download anything as the\nlatest version will be downloaded for you from PyPI::\n\n    pip install pytz\n\nIf you are installing from a tarball, run the following command as an\nadministrative user::\n\n    python setup.py install\n\n\npytz for Enterprise\n~~~~~~~~~~~~~~~~~~~\n\nAvailable as part of the Tidelift Subscription.\n\nThe maintainers of pytz and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use. `Learn more. <https://tidelift.com/subscription/pkg/pypi-pytz?utm_source=pypi-pytz&utm_medium=referral&utm_campaign=enterprise&utm_term=repo>`_.\n\n\nExample & Usage\n~~~~~~~~~~~~~~~\n\nLocalized times and date arithmetic\n-----------------------------------\n\n>>> from datetime import datetime, timedelta\n>>> from pytz import timezone\n>>> import pytz\n>>> utc = pytz.utc\n>>> utc.zone\n'UTC'\n>>> eastern = timezone('US/Eastern')\n>>> eastern.zone\n'US/Eastern'\n>>> amsterdam = timezone('Europe/Amsterdam')\n>>> fmt = '%Y-%m-%d %H:%M:%S %Z%z'\n\nThis library only supports two ways of building a localized time. The\nfirst is to use the ``localize()`` method provided by the pytz library.\nThis is used to localize a naive datetime (datetime with no timezone\ninformation):\n\n>>> loc_dt = eastern.localize(datetime(2002, 10, 27, 6, 0, 0))\n>>> print(loc_dt.strftime(fmt))\n2002-10-27 06:00:00 EST-0500\n\nThe second way of building a localized time is by converting an existing\nlocalized time using the standard ``astimezone()`` method:\n\n>>> ams_dt = loc_dt.astimezone(amsterdam)\n>>> ams_dt.strftime(fmt)\n'2002-10-27 12:00:00 CET+0100'\n\nUnfortunately using the tzinfo argument of the standard datetime\nconstructors ''does not work'' with pytz for many timezones.\n\n>>> datetime(2002, 10, 27, 12, 0, 0, tzinfo=amsterdam).strftime(fmt)  # /!\\ Does not work this way!\n'2002-10-27 12:00:00 LMT+0020'\n\nIt is safe for timezones without daylight saving transitions though, such\nas UTC:\n\n>>> datetime(2002, 10, 27, 12, 0, 0, tzinfo=pytz.utc).strftime(fmt)  # /!\\ Not recommended except for UTC\n'2002-10-27 12:00:00 UTC+0000'\n\nThe preferred way of dealing with times is to always work in UTC,\nconverting to localtime only when generating output to be read\nby humans.\n\n>>> utc_dt = datetime(2002, 10, 27, 6, 0, 0, tzinfo=utc)\n>>> loc_dt = utc_dt.astimezone(eastern)\n>>> loc_dt.strftime(fmt)\n'2002-10-27 01:00:00 EST-0500'\n\nThis library also allows you to do date arithmetic using local\ntimes, although it is more complicated than working in UTC as you\nneed to use the ``normalize()`` method to handle daylight saving time\nand other timezone transitions. In this example, ``loc_dt`` is set\nto the instant when daylight saving time ends in the US/Eastern\ntimezone.\n\n>>> before = loc_dt - timedelta(minutes=10)\n>>> before.strftime(fmt)\n'2002-10-27 00:50:00 EST-0500'\n>>> eastern.normalize(before).strftime(fmt)\n'2002-10-27 01:50:00 EDT-0400'\n>>> after = eastern.normalize(before + timedelta(minutes=20))\n>>> after.strftime(fmt)\n'2002-10-27 01:10:00 EST-0500'\n\nCreating local times is also tricky, and the reason why working with\nlocal times is not recommended. Unfortunately, you cannot just pass\na ``tzinfo`` argument when constructing a datetime (see the next\nsection for more details)\n\n>>> dt = datetime(2002, 10, 27, 1, 30, 0)\n>>> dt1 = eastern.localize(dt, is_dst=True)\n>>> dt1.strftime(fmt)\n'2002-10-27 01:30:00 EDT-0400'\n>>> dt2 = eastern.localize(dt, is_dst=False)\n>>> dt2.strftime(fmt)\n'2002-10-27 01:30:00 EST-0500'\n\nConverting between timezones is more easily done, using the\nstandard astimezone method.\n\n>>> utc_dt = utc.localize(datetime.utcfromtimestamp(1143408899))\n>>> utc_dt.strftime(fmt)\n'2006-03-26 21:34:59 UTC+0000'\n>>> au_tz = timezone('Australia/Sydney')\n>>> au_dt = utc_dt.astimezone(au_tz)\n>>> au_dt.strftime(fmt)\n'2006-03-27 08:34:59 AEDT+1100'\n>>> utc_dt2 = au_dt.astimezone(utc)\n>>> utc_dt2.strftime(fmt)\n'2006-03-26 21:34:59 UTC+0000'\n>>> utc_dt == utc_dt2\nTrue\n\nYou can take shortcuts when dealing with the UTC side of timezone\nconversions. ``normalize()`` and ``localize()`` are not really\nnecessary when there are no daylight saving time transitions to\ndeal with.\n\n>>> utc_dt = datetime.utcfromtimestamp(1143408899).replace(tzinfo=utc)\n>>> utc_dt.strftime(fmt)\n'2006-03-26 21:34:59 UTC+0000'\n>>> au_tz = timezone('Australia/Sydney')\n>>> au_dt = au_tz.normalize(utc_dt.astimezone(au_tz))\n>>> au_dt.strftime(fmt)\n'2006-03-27 08:34:59 AEDT+1100'\n>>> utc_dt2 = au_dt.astimezone(utc)\n>>> utc_dt2.strftime(fmt)\n'2006-03-26 21:34:59 UTC+0000'\n\n\n``tzinfo`` API\n--------------\n\nThe ``tzinfo`` instances returned by the ``timezone()`` function have\nbeen extended to cope with ambiguous times by adding an ``is_dst``\nparameter to the ``utcoffset()``, ``dst()`` && ``tzname()`` methods.\n\n>>> tz = timezone('America/St_Johns')\n\n>>> normal = datetime(2009, 9, 1)\n>>> ambiguous = datetime(2009, 10, 31, 23, 30)\n\nThe ``is_dst`` parameter is ignored for most timestamps. It is only used\nduring DST transition ambiguous periods to resolve that ambiguity.\n\n>>> print(tz.utcoffset(normal, is_dst=True))\n-1 day, 21:30:00\n>>> print(tz.dst(normal, is_dst=True))\n1:00:00\n>>> tz.tzname(normal, is_dst=True)\n'NDT'\n\n>>> print(tz.utcoffset(ambiguous, is_dst=True))\n-1 day, 21:30:00\n>>> print(tz.dst(ambiguous, is_dst=True))\n1:00:00\n>>> tz.tzname(ambiguous, is_dst=True)\n'NDT'\n\n>>> print(tz.utcoffset(normal, is_dst=False))\n-1 day, 21:30:00\n>>> tz.dst(normal, is_dst=False).seconds\n3600\n>>> tz.tzname(normal, is_dst=False)\n'NDT'\n\n>>> print(tz.utcoffset(ambiguous, is_dst=False))\n-1 day, 20:30:00\n>>> tz.dst(ambiguous, is_dst=False)\ndatetime.timedelta(0)\n>>> tz.tzname(ambiguous, is_dst=False)\n'NST'\n\nIf ``is_dst`` is not specified, ambiguous timestamps will raise\nan ``pytz.exceptions.AmbiguousTimeError`` exception.\n\n>>> print(tz.utcoffset(normal))\n-1 day, 21:30:00\n>>> print(tz.dst(normal))\n1:00:00\n>>> tz.tzname(normal)\n'NDT'\n\n>>> import pytz.exceptions\n>>> try:\n...     tz.utcoffset(ambiguous)\n... except pytz.exceptions.AmbiguousTimeError:\n...     print('pytz.exceptions.AmbiguousTimeError: %s' % ambiguous)\npytz.exceptions.AmbiguousTimeError: 2009-10-31 23:30:00\n>>> try:\n...     tz.dst(ambiguous)\n... except pytz.exceptions.AmbiguousTimeError:\n...     print('pytz.exceptions.AmbiguousTimeError: %s' % ambiguous)\npytz.exceptions.AmbiguousTimeError: 2009-10-31 23:30:00\n>>> try:\n...     tz.tzname(ambiguous)\n... except pytz.exceptions.AmbiguousTimeError:\n...     print('pytz.exceptions.AmbiguousTimeError: %s' % ambiguous)\npytz.exceptions.AmbiguousTimeError: 2009-10-31 23:30:00\n\n\nProblems with Localtime\n~~~~~~~~~~~~~~~~~~~~~~~\n\nThe major problem we have to deal with is that certain datetimes\nmay occur twice in a year. For example, in the US/Eastern timezone\non the last Sunday morning in October, the following sequence\nhappens:\n\n    - 01:00 EDT occurs\n    - 1 hour later, instead of 2:00am the clock is turned back 1 hour\n      and 01:00 happens again (this time 01:00 EST)\n\nIn fact, every instant between 01:00 and 02:00 occurs twice. This means\nthat if you try and create a time in the 'US/Eastern' timezone\nthe standard datetime syntax, there is no way to specify if you meant\nbefore of after the end-of-daylight-saving-time transition. Using the\npytz custom syntax, the best you can do is make an educated guess:\n\n>>> loc_dt = eastern.localize(datetime(2002, 10, 27, 1, 30, 00))\n>>> loc_dt.strftime(fmt)\n'2002-10-27 01:30:00 EST-0500'\n\nAs you can see, the system has chosen one for you and there is a 50%\nchance of it being out by one hour. For some applications, this does\nnot matter. However, if you are trying to schedule meetings with people\nin different timezones or analyze log files it is not acceptable.\n\nThe best and simplest solution is to stick with using UTC.  The pytz\npackage encourages using UTC for internal timezone representation by\nincluding a special UTC implementation based on the standard Python\nreference implementation in the Python documentation.\n\nThe UTC timezone unpickles to be the same instance, and pickles to a\nsmaller size than other pytz tzinfo instances.  The UTC implementation\ncan be obtained as pytz.utc, pytz.UTC, or pytz.timezone('UTC').\n\n>>> import pickle, pytz\n>>> dt = datetime(2005, 3, 1, 14, 13, 21, tzinfo=utc)\n>>> naive = dt.replace(tzinfo=None)\n>>> p = pickle.dumps(dt, 1)\n>>> naive_p = pickle.dumps(naive, 1)\n>>> len(p) - len(naive_p)\n17\n>>> new = pickle.loads(p)\n>>> new == dt\nTrue\n>>> new is dt\nFalse\n>>> new.tzinfo is dt.tzinfo\nTrue\n>>> pytz.utc is pytz.UTC is pytz.timezone('UTC')\nTrue\n\nNote that some other timezones are commonly thought of as the same (GMT,\nGreenwich, Universal, etc.). The definition of UTC is distinct from these\nother timezones, and they are not equivalent. For this reason, they will\nnot compare the same in Python.\n\n>>> utc == pytz.timezone('GMT')\nFalse\n\nSee the section `What is UTC`_, below.\n\nIf you insist on working with local times, this library provides a\nfacility for constructing them unambiguously:\n\n>>> loc_dt = datetime(2002, 10, 27, 1, 30, 00)\n>>> est_dt = eastern.localize(loc_dt, is_dst=True)\n>>> edt_dt = eastern.localize(loc_dt, is_dst=False)\n>>> print(est_dt.strftime(fmt) + ' / ' + edt_dt.strftime(fmt))\n2002-10-27 01:30:00 EDT-0400 / 2002-10-27 01:30:00 EST-0500\n\nIf you pass None as the is_dst flag to localize(), pytz will refuse to\nguess and raise exceptions if you try to build ambiguous or non-existent\ntimes.\n\nFor example, 1:30am on 27th Oct 2002 happened twice in the US/Eastern\ntimezone when the clocks where put back at the end of Daylight Saving\nTime:\n\n>>> dt = datetime(2002, 10, 27, 1, 30, 00)\n>>> try:\n...     eastern.localize(dt, is_dst=None)\n... except pytz.exceptions.AmbiguousTimeError:\n...     print('pytz.exceptions.AmbiguousTimeError: %s' % dt)\npytz.exceptions.AmbiguousTimeError: 2002-10-27 01:30:00\n\nSimilarly, 2:30am on 7th April 2002 never happened at all in the\nUS/Eastern timezone, as the clocks where put forward at 2:00am skipping\nthe entire hour:\n\n>>> dt = datetime(2002, 4, 7, 2, 30, 00)\n>>> try:\n...     eastern.localize(dt, is_dst=None)\n... except pytz.exceptions.NonExistentTimeError:\n...     print('pytz.exceptions.NonExistentTimeError: %s' % dt)\npytz.exceptions.NonExistentTimeError: 2002-04-07 02:30:00\n\nBoth of these exceptions share a common base class to make error handling\neasier:\n\n>>> isinstance(pytz.AmbiguousTimeError(), pytz.InvalidTimeError)\nTrue\n>>> isinstance(pytz.NonExistentTimeError(), pytz.InvalidTimeError)\nTrue\n\n\nA special case is where countries change their timezone definitions\nwith no daylight savings time switch. For example, in 1915 Warsaw\nswitched from Warsaw time to Central European time with no daylight savings\ntransition. So at the stroke of midnight on August 5th 1915 the clocks\nwere wound back 24 minutes creating an ambiguous time period that cannot\nbe specified without referring to the timezone abbreviation or the\nactual UTC offset. In this case midnight happened twice, neither time\nduring a daylight saving time period. pytz handles this transition by\ntreating the ambiguous period before the switch as daylight savings\ntime, and the ambiguous period after as standard time.\n\n\n>>> warsaw = pytz.timezone('Europe/Warsaw')\n>>> amb_dt1 = warsaw.localize(datetime(1915, 8, 4, 23, 59, 59), is_dst=True)\n>>> amb_dt1.strftime(fmt)\n'1915-08-04 23:59:59 WMT+0124'\n>>> amb_dt2 = warsaw.localize(datetime(1915, 8, 4, 23, 59, 59), is_dst=False)\n>>> amb_dt2.strftime(fmt)\n'1915-08-04 23:59:59 CET+0100'\n>>> switch_dt = warsaw.localize(datetime(1915, 8, 5, 00, 00, 00), is_dst=False)\n>>> switch_dt.strftime(fmt)\n'1915-08-05 00:00:00 CET+0100'\n>>> str(switch_dt - amb_dt1)\n'0:24:01'\n>>> str(switch_dt - amb_dt2)\n'0:00:01'\n\nThe best way of creating a time during an ambiguous time period is\nby converting from another timezone such as UTC:\n\n>>> utc_dt = datetime(1915, 8, 4, 22, 36, tzinfo=pytz.utc)\n>>> utc_dt.astimezone(warsaw).strftime(fmt)\n'1915-08-04 23:36:00 CET+0100'\n\nThe standard Python way of handling all these ambiguities is not to\nhandle them, such as demonstrated in this example using the US/Eastern\ntimezone definition from the Python documentation (Note that this\nimplementation only works for dates between 1987 and 2006 - it is\nincluded for tests only!):\n\n>>> from pytz.reference import Eastern # pytz.reference only for tests\n>>> dt = datetime(2002, 10, 27, 0, 30, tzinfo=Eastern)\n>>> str(dt)\n'2002-10-27 00:30:00-04:00'\n>>> str(dt + timedelta(hours=1))\n'2002-10-27 01:30:00-05:00'\n>>> str(dt + timedelta(hours=2))\n'2002-10-27 02:30:00-05:00'\n>>> str(dt + timedelta(hours=3))\n'2002-10-27 03:30:00-05:00'\n\nNotice the first two results? At first glance you might think they are\ncorrect, but taking the UTC offset into account you find that they are\nactually two hours appart instead of the 1 hour we asked for.\n\n>>> from pytz.reference import UTC # pytz.reference only for tests\n>>> str(dt.astimezone(UTC))\n'2002-10-27 04:30:00+00:00'\n>>> str((dt + timedelta(hours=1)).astimezone(UTC))\n'2002-10-27 06:30:00+00:00'\n\n\nCountry Information\n~~~~~~~~~~~~~~~~~~~\n\nA mechanism is provided to access the timezones commonly in use\nfor a particular country, looked up using the ISO 3166 country code.\nIt returns a list of strings that can be used to retrieve the relevant\ntzinfo instance using ``pytz.timezone()``:\n\n>>> print(' '.join(pytz.country_timezones['nz']))\nPacific/Auckland Pacific/Chatham\n\nThe Olson database comes with a ISO 3166 country code to English country\nname mapping that pytz exposes as a dictionary:\n\n>>> print(pytz.country_names['nz'])\nNew Zealand\n\n\nWhat is UTC\n~~~~~~~~~~~\n\n'UTC' is `Coordinated Universal Time`_. It is a successor to, but distinct\nfrom, Greenwich Mean Time (GMT) and the various definitions of Universal\nTime. UTC is now the worldwide standard for regulating clocks and time\nmeasurement.\n\nAll other timezones are defined relative to UTC, and include offsets like\nUTC+0800 - hours to add or subtract from UTC to derive the local time. No\ndaylight saving time occurs in UTC, making it a useful timezone to perform\ndate arithmetic without worrying about the confusion and ambiguities caused\nby daylight saving time transitions, your country changing its timezone, or\nmobile computers that roam through multiple timezones.\n\n..  _Coordinated Universal Time: https://en.wikipedia.org/wiki/Coordinated_Universal_Time\n\n\nHelpers\n~~~~~~~\n\nThere are two lists of timezones provided.\n\n``all_timezones`` is the exhaustive list of the timezone names that can\nbe used.\n\n>>> from pytz import all_timezones\n>>> len(all_timezones) >= 500\nTrue\n>>> 'Etc/Greenwich' in all_timezones\nTrue\n\n``common_timezones`` is a list of useful, current timezones. It doesn't\ncontain deprecated zones or historical zones, except for a few I've\ndeemed in common usage, such as US/Eastern (open a bug report if you\nthink other timezones are deserving of being included here). It is also\na sequence of strings.\n\n>>> from pytz import common_timezones\n>>> len(common_timezones) < len(all_timezones)\nTrue\n>>> 'Etc/Greenwich' in common_timezones\nFalse\n>>> 'Australia/Melbourne' in common_timezones\nTrue\n>>> 'US/Eastern' in common_timezones\nTrue\n>>> 'Canada/Eastern' in common_timezones\nTrue\n>>> 'Australia/Yancowinna' in all_timezones\nTrue\n>>> 'Australia/Yancowinna' in common_timezones\nFalse\n\nBoth ``common_timezones`` and ``all_timezones`` are alphabetically\nsorted:\n\n>>> common_timezones_dupe = common_timezones[:]\n>>> common_timezones_dupe.sort()\n>>> common_timezones == common_timezones_dupe\nTrue\n>>> all_timezones_dupe = all_timezones[:]\n>>> all_timezones_dupe.sort()\n>>> all_timezones == all_timezones_dupe\nTrue\n\n``all_timezones`` and ``common_timezones`` are also available as sets.\n\n>>> from pytz import all_timezones_set, common_timezones_set\n>>> 'US/Eastern' in all_timezones_set\nTrue\n>>> 'US/Eastern' in common_timezones_set\nTrue\n>>> 'Australia/Victoria' in common_timezones_set\nFalse\n\nYou can also retrieve lists of timezones used by particular countries\nusing the ``country_timezones()`` function. It requires an ISO-3166\ntwo letter country code.\n\n>>> from pytz import country_timezones\n>>> print(' '.join(country_timezones('ch')))\nEurope/Zurich\n>>> print(' '.join(country_timezones('CH')))\nEurope/Zurich\n\n\nInternationalization - i18n/l10n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nPytz is an interface to the IANA database, which uses ASCII names. The `Unicode  Consortium's Unicode Locales (CLDR) <http://cldr.unicode.org>`_\nproject provides translations. Thomas Khyn's\n`l18n <https://pypi.org/project/l18n/>`_ package can be used to access\nthese translations from Python.\n\n\nLicense\n~~~~~~~\n\nMIT license.\n\nThis code is also available as part of Zope 3 under the Zope Public\nLicense,  Version 2.1 (ZPL).\n\nI'm happy to relicense this code if necessary for inclusion in other\nopen source projects.\n\n\nLatest Versions\n~~~~~~~~~~~~~~~\n\nThis package will be updated after releases of the Olson timezone\ndatabase.  The latest version can be downloaded from the `Python Package\nIndex <https://pypi.org/project/pytz/>`_.  The code that is used\nto generate this distribution is hosted on launchpad.net and available\nusing git::\n\n    git clone https://git.launchpad.net/pytz\n\nA mirror on github is also available at https://github.com/stub42/pytz\n\nAnnouncements of new releases are made on\n`Launchpad <https://launchpad.net/pytz>`_, and the\n`Atom feed <http://feeds.launchpad.net/pytz/announcements.atom>`_\nhosted there.\n\n\nBugs, Feature Requests & Patches\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nBugs can be reported using `Launchpad Bugs <https://bugs.launchpad.net/pytz>`_.\n\n\nSecurity Issues\n~~~~~~~~~~~~~~~\n\nReports about security issues can be made via `Tidelift <https://tidelift.com/security>`_.\n\n\nIssues & Limitations\n~~~~~~~~~~~~~~~~~~~~\n\n- Offsets from UTC are rounded to the nearest whole minute, so timezones\n  such as Europe/Amsterdam pre 1937 will be up to 30 seconds out. This\n  is a limitation of the Python datetime library.\n\n- If you think a timezone definition is incorrect, I probably can't fix\n  it. pytz is a direct translation of the Olson timezone database, and\n  changes to the timezone definitions need to be made to this source.\n  If you find errors they should be reported to the time zone mailing\n  list, linked from http://www.iana.org/time-zones.\n\n\nFurther Reading\n~~~~~~~~~~~~~~~\n\nMore info than you want to know about timezones:\nhttp://www.twinsun.com/tz/tz-link.htm\n\n\nContact\n~~~~~~~\n\nStuart Bishop <stuart@stuartbishop.net>\n\n\n\n\n"
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl",
+        "archive_info": {
+          "hash": "sha256=8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254",
+          "hashes": {
+            "sha256": "8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"
+          }
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.1",
+        "name": "six",
+        "version": "1.16.0",
+        "platform": [
+          "UNKNOWN"
+        ],
+        "summary": "Python 2 and 3 compatibility utilities",
+        "home_page": "https://github.com/benjaminp/six",
+        "author": "Benjamin Peterson",
+        "author_email": "benjamin@python.org",
+        "license": "MIT",
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Programming Language :: Python :: 2",
+          "Programming Language :: Python :: 3",
+          "Intended Audience :: Developers",
+          "License :: OSI Approved :: MIT License",
+          "Topic :: Software Development :: Libraries",
+          "Topic :: Utilities"
+        ],
+        "requires_python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*",
+        "description": ".. image:: https://img.shields.io/pypi/v/six.svg\n   :target: https://pypi.org/project/six/\n   :alt: six on PyPI\n\n.. image:: https://travis-ci.org/benjaminp/six.svg?branch=master\n   :target: https://travis-ci.org/benjaminp/six\n   :alt: six on TravisCI\n\n.. image:: https://readthedocs.org/projects/six/badge/?version=latest\n   :target: https://six.readthedocs.io/\n   :alt: six's documentation on Read the Docs\n\n.. image:: https://img.shields.io/badge/license-MIT-green.svg\n   :target: https://github.com/benjaminp/six/blob/master/LICENSE\n   :alt: MIT License badge\n\nSix is a Python 2 and 3 compatibility library.  It provides utility functions\nfor smoothing over the differences between the Python versions with the goal of\nwriting Python code that is compatible on both Python versions.  See the\ndocumentation for more information on what is provided.\n\nSix supports Python 2.7 and 3.3+.  It is contained in only one Python\nfile, so it can be easily copied into your project. (The copyright and license\nnotice must be retained.)\n\nOnline documentation is at https://six.readthedocs.io/.\n\nBugs can be reported to https://github.com/benjaminp/six.  The code can also\nbe found there.\n\n\n"
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/f2/a5/f86bc8d67c979020438c8559cc70cfe3a1643fd160d35e09c9cca6a09189/tenacity-8.0.1-py3-none-any.whl",
+        "archive_info": {
+          "hash": "sha256=f78f4ea81b0fabc06728c11dc2a8c01277bfc5181b321a4770471902e3eb844a",
+          "hashes": {
+            "sha256": "f78f4ea81b0fabc06728c11dc2a8c01277bfc5181b321a4770471902e3eb844a"
+          }
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.1",
+        "name": "tenacity",
+        "version": "8.0.1",
+        "platform": [
+          "UNKNOWN"
+        ],
+        "summary": "Retry code until it succeeds",
+        "home_page": "https://github.com/jd/tenacity",
+        "author": "Julien Danjou",
+        "author_email": "julien@danjou.info",
+        "license": "Apache 2.0",
+        "license_file": [
+          "LICENSE",
+          "AUTHORS"
+        ],
+        "classifier": [
+          "Intended Audience :: Developers",
+          "License :: OSI Approved :: Apache Software License",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.6",
+          "Programming Language :: Python :: 3.7",
+          "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: 3.9",
+          "Programming Language :: Python :: 3.10",
+          "Topic :: Utilities"
+        ],
+        "requires_dist": [
+          "reno ; extra == 'doc'",
+          "sphinx ; extra == 'doc'",
+          "tornado (>=4.5) ; extra == 'doc'"
+        ],
+        "requires_python": ">=3.6",
+        "provides_extra": [
+          "doc"
+        ],
+        "description": "Tenacity is a general-purpose retrying library to simplify the task of adding retry behavior to just about anything.\n\n"
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/18/67/36e9267722cc04a6b9f15c7f3441c2363321a3ea07da7ae0c0707beb2a9c/typing_extensions-4.15.0-py3-none-any.whl",
+        "archive_info": {
+          "hash": "sha256=f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548",
+          "hashes": {
+            "sha256": "f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548"
+          }
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.4",
+        "name": "typing_extensions",
+        "version": "4.15.0",
+        "summary": "Backported and Experimental Type Hints for Python 3.9+",
+        "description_content_type": "text/markdown",
+        "keywords": [
+          "annotations",
+          "backport",
+          "checker",
+          "checking",
+          "function",
+          "hinting",
+          "hints",
+          "type",
+          "typechecking",
+          "typehinting",
+          "typehints",
+          "typing"
+        ],
+        "author_email": "\"Guido van Rossum, Jukka Lehtosalo, Łukasz Langa, Michael Lee\" <levkivskyi@gmail.com>",
+        "license_expression": "PSF-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Environment :: Console",
+          "Intended Audience :: Developers",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.9",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Software Development"
+        ],
+        "requires_python": ">=3.9",
+        "project_url": [
+          "Bug Tracker, https://github.com/python/typing_extensions/issues",
+          "Changes, https://github.com/python/typing_extensions/blob/main/CHANGELOG.md",
+          "Documentation, https://typing-extensions.readthedocs.io/",
+          "Home, https://github.com/python/typing_extensions",
+          "Q & A, https://github.com/python/typing/discussions",
+          "Repository, https://github.com/python/typing_extensions"
+        ],
+        "description": "# Typing Extensions\n\n[![Chat at https://gitter.im/python/typing](https://badges.gitter.im/python/typing.svg)](https://gitter.im/python/typing)\n\n[Documentation](https://typing-extensions.readthedocs.io/en/latest/#) –\n[PyPI](https://pypi.org/project/typing-extensions/)\n\n## Overview\n\nThe `typing_extensions` module serves two related purposes:\n\n- Enable use of new type system features on older Python versions. For example,\n  `typing.TypeGuard` is new in Python 3.10, but `typing_extensions` allows\n  users on previous Python versions to use it too.\n- Enable experimentation with new type system PEPs before they are accepted and\n  added to the `typing` module.\n\n`typing_extensions` is treated specially by static type checkers such as\nmypy and pyright. Objects defined in `typing_extensions` are treated the same\nway as equivalent forms in `typing`.\n\n`typing_extensions` uses\n[Semantic Versioning](https://semver.org/). The\nmajor version will be incremented only for backwards-incompatible changes.\nTherefore, it's safe to depend\non `typing_extensions` like this: `typing_extensions ~=x.y`,\nwhere `x.y` is the first version that includes all features you need.\n[This](https://packaging.python.org/en/latest/specifications/version-specifiers/#compatible-release)\nis equivalent to `typing_extensions >=x.y, <(x+1)`. Do not depend on `~= x.y.z`\nunless you really know what you're doing; that defeats the purpose of\nsemantic versioning.\n\n## Included items\n\nSee [the documentation](https://typing-extensions.readthedocs.io/en/latest/#) for a\ncomplete listing of module contents.\n\n## Contributing\n\nSee [CONTRIBUTING.md](https://github.com/python/typing_extensions/blob/main/CONTRIBUTING.md)\nfor how to contribute to `typing_extensions`.\n\n"
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/80/0e/16a7ee38617aab6a624e95948d314097cc2669edae9b02ded53309941cfc/zipp-3.8.0-py3-none-any.whl",
+        "archive_info": {
+          "hash": "sha256=c4f6e5bbf48e74f7a38e7cc5b0480ff42b0ae5178957d564d18932525d5cf099",
+          "hashes": {
+            "sha256": "c4f6e5bbf48e74f7a38e7cc5b0480ff42b0ae5178957d564d18932525d5cf099"
+          }
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.1",
+        "name": "zipp",
+        "version": "3.8.0",
+        "platform": [
+          "UNKNOWN"
+        ],
+        "summary": "Backport of pathlib-compatible object wrapper for zip files",
+        "home_page": "https://github.com/jaraco/zipp",
+        "author": "Jason R. Coombs",
+        "author_email": "jaraco@jaraco.com",
+        "license": "UNKNOWN",
+        "license_file": [
+          "LICENSE"
+        ],
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Intended Audience :: Developers",
+          "License :: OSI Approved :: MIT License",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only"
+        ],
+        "requires_dist": [
+          "sphinx ; extra == 'docs'",
+          "jaraco.packaging (>=9) ; extra == 'docs'",
+          "rst.linker (>=1.9) ; extra == 'docs'",
+          "pytest (>=6) ; extra == 'testing'",
+          "pytest-checkdocs (>=2.4) ; extra == 'testing'",
+          "pytest-flake8 ; extra == 'testing'",
+          "pytest-cov ; extra == 'testing'",
+          "pytest-enabler (>=1.0.1) ; extra == 'testing'",
+          "jaraco.itertools ; extra == 'testing'",
+          "func-timeout ; extra == 'testing'",
+          "pytest-black (>=0.3.7) ; (platform_python_implementation != \"PyPy\") and extra == 'testing'",
+          "pytest-mypy (>=0.9.1) ; (platform_python_implementation != \"PyPy\") and extra == 'testing'"
+        ],
+        "requires_python": ">=3.7",
+        "provides_extra": [
+          "docs",
+          "testing"
+        ],
+        "description": ".. image:: https://img.shields.io/pypi/v/zipp.svg\n   :target: `PyPI link`_\n\n.. image:: https://img.shields.io/pypi/pyversions/zipp.svg\n   :target: `PyPI link`_\n\n.. _PyPI link: https://pypi.org/project/zipp\n\n.. image:: https://github.com/jaraco/zipp/workflows/tests/badge.svg\n   :target: https://github.com/jaraco/zipp/actions?query=workflow%3A%22tests%22\n   :alt: tests\n\n.. image:: https://img.shields.io/badge/code%20style-black-000000.svg\n   :target: https://github.com/psf/black\n   :alt: Code style: Black\n\n.. .. image:: https://readthedocs.org/projects/skeleton/badge/?version=latest\n..    :target: https://skeleton.readthedocs.io/en/latest/?badge=latest\n\n.. image:: https://img.shields.io/badge/skeleton-2022-informational\n   :target: https://blog.jaraco.com/skeleton\n\n\nA pathlib-compatible Zipfile object wrapper. Official backport of the standard library\n`Path object <https://docs.python.org/3.8/library/zipfile.html#path-objects>`_.\n\n\nCompatibility\n=============\n\nNew features are introduced in this third-party library and later merged\ninto CPython. The following table indicates which versions of this library\nwere contributed to different versions in the standard library:\n\n.. list-table::\n   :header-rows: 1\n\n   * - zipp\n     - stdlib\n   * - 3.5\n     - 3.11\n   * - 3.3\n     - 3.9\n   * - 1.0\n     - 3.8\n\n\nUsage\n=====\n\nUse ``zipp.Path`` in place of ``zipfile.Path`` on any Python.\n\n\n"
+      }
+    }
+  ],
+  "environment": {
+    "implementation_name": "cpython",
+    "implementation_version": "3.10.21",
+    "os_name": "posix",
+    "platform_machine": "x86_64",
+    "platform_release": "6.18.33.1-microsoft-standard-WSL2",
+    "platform_system": "Linux",
+    "platform_version": "#1 SMP PREEMPT_DYNAMIC Fri Jun  5 01:12:21 UTC 2026",
+    "python_full_version": "3.10.21",
+    "platform_python_implementation": "CPython",
+    "python_version": "3.10",
+    "sys_platform": "linux"
+  }
+}

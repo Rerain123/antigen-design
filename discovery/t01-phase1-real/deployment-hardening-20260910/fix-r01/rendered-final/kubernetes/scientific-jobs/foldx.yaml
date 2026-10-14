@@ -1,0 +1,145 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: t01-foldx-replace1
+  namespace: t01-phase1-real
+  labels: &id001
+    app.kubernetes.io/name: t01-phase1-real
+    app.kubernetes.io/component: scientific-job
+    t01.openai/tool: foldx
+  annotations: &id002
+    t01.openai/source-image-id: sha256:66539e081922ce4c4fb504c9906feb64044ce668033e63fdc9299d020af8c851
+    t01.openai/not-submitted: 'true'
+    t01.openai/scientific-gate: CLOSED
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 900
+  ttlSecondsAfterFinished: 86400
+  template:
+    metadata:
+      labels: *id001
+      annotations: *id002
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      hostNetwork: false
+      hostPID: false
+      hostIPC: false
+      terminationGracePeriodSeconds: 10
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app.kubernetes.io/name: t01-phase1-real
+                app.kubernetes.io/component: control-plane
+            topologyKey: kubernetes.io/hostname
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      initContainers:
+      - name: stage-launcher
+        image: replace-at-site.invalid/t01/control@sha256:0000000000000000000000000000000000000000000000000000000000000000
+        imagePullPolicy: IfNotPresent
+        command:
+        - python
+        - -B
+        - -c
+        args:
+        - import shutil; from pathlib import Path; shutil.copytree('/app/src/t01_phase1_real/development','/t01/launcher/development',dirs_exist_ok=True);
+          shutil.copytree('/app/src/t01_structure_mapping','/t01/launcher/code/t01_structure_mapping',dirs_exist_ok=True);
+          shutil.copy2('/app/docs/project/phase1/PHASE1_REAL_W1_FREESASA_PROFILE.json','/t01/launcher/profile.json')
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+        volumeMounts:
+        - name: launcher
+          mountPath: /t01/launcher
+        - name: tmp
+          mountPath: /tmp
+      containers:
+      - name: worker
+        image: replace-at-site.invalid/t01/foldx@sha256:0000000000000000000000000000000000000000000000000000000000000000
+        imagePullPolicy: IfNotPresent
+        command:
+        - python3
+        - -B
+        - /t01/launcher/development/foldx/worker.py
+        env:
+        - name: T01_TOOL_ASSET_ROOT
+          value: /t01/assets
+        - name: PYTHONUNBUFFERED
+          value: '1'
+        - name: PYTHONDONTWRITEBYTECODE
+          value: '1'
+        - name: HOME
+          value: /tmp
+        resources:
+          requests:
+            cpu: '2'
+            memory: 2Gi
+          limits:
+            cpu: '2'
+            memory: 2Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+        volumeMounts:
+        - name: runtime
+          mountPath: /input.json
+          subPath: executions/replace1/input.json
+          readOnly: true
+        - name: runtime
+          mountPath: /input.fasta
+          subPath: executions/replace1/input.fasta
+          readOnly: true
+        - name: runtime
+          mountPath: /native
+          subPath: executions/replace1/native
+          readOnly: true
+        - name: runtime
+          mountPath: /out
+          subPath: executions/replace1/output
+        - name: assets
+          mountPath: /t01/assets
+          readOnly: true
+        - name: launcher
+          mountPath: /t01/launcher
+          readOnly: true
+        - name: tmp
+          mountPath: /tmp
+        - name: assets
+          mountPath: /app
+          subPath: package
+          readOnly: true
+      volumes:
+      - name: runtime
+        persistentVolumeClaim:
+          claimName: t01-phase1-real-runtime
+      - name: assets
+        persistentVolumeClaim:
+          claimName: t01-foldx-assets
+      - name: launcher
+        emptyDir:
+          sizeLimit: 4Mi
+      - name: tmp
+        emptyDir:
+          sizeLimit: 2Gi

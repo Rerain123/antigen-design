@@ -1,0 +1,105 @@
+{
+  "date": "2026-10-13",
+  "status": "LOCAL_IMPLEMENTATION",
+  "authority": {
+    "expert_attachment": "reports\\wt-engine-routing-20261013\\expert-rule-update.png",
+    "sha256": "ab7674f1bc74103c84feb40b9debe93f544fa278d1c7a7c80dcdcfca5d3e991a",
+    "user_confirmation": "超过10%才用ESMFold，恰好10%用AF3"
+  },
+  "routing": {
+    "af3": "10 * mutation_count <= WT_length",
+    "esmfold2": "10 * mutation_count > WT_length",
+    "absolute_count_threshold": null,
+    "dual_engine": false
+  },
+  "config_id": "himat-expert-v2-20261013-same-engine-v2",
+  "comparison_policy": "same_prediction_engine_required",
+  "wt_analysis_engine": "af3",
+  "supplemental_wt_esmfold": "DEFERRED_AS_EXPERT_PERMITTED",
+  "missing_reference_behavior": "NOT_ASSESSED; no cross-engine RMSD/RSA; exclude downstream comparison pool",
+  "production_mutation_fraction": 0.07,
+  "old_requests_and_reports_migrated": false,
+  "new_scientific_jobs": 0,
+  "deployed": false,
+  "frozen_verification": {
+    "status": "PASS",
+    "count": 457
+  },
+  "documentation": {
+    "status": "PASS_WITH_HISTORICAL_LINK_ISSUES",
+    "historical_issues": 31
+  },
+  "verification": {
+    "final_reports": [
+      {
+        "file": "ratio-same-engine.xml",
+        "name": "pytest",
+        "errors": "0",
+        "failures": "0",
+        "skipped": "0",
+        "tests": "171",
+        "time": "88.510",
+        "timestamp": "2026-10-13T14:45:32.829101+08:00",
+        "hostname": "DESKTOP-8B96JVR"
+      },
+      {
+        "file": "regression-final.xml",
+        "name": "pytest",
+        "errors": "0",
+        "failures": "0",
+        "skipped": "0",
+        "tests": "245",
+        "time": "82.907",
+        "timestamp": "2026-10-13T14:48:27.815667+08:00",
+        "hostname": "DESKTOP-8B96JVR"
+      }
+    ],
+    "unique_tests_passed": 369,
+    "previous_full_suite": {
+      "tests": 3415,
+      "passed": 3389,
+      "skipped": 17,
+      "failed": 9
+    },
+    "previous_failures_rechecked": [
+      [
+        "tests.test_expert_revision_workflow",
+        "test_actual_assembly_keeps_full_inventory_schema_and_report"
+      ],
+      [
+        "tests.test_foldx_parallel",
+        "test_parallel_notice_is_visible_in_html_and_markdown_and_package"
+      ],
+      [
+        "tests.test_host_panel",
+        "test_report_exposes_provisional_panel_and_missing_ii"
+      ],
+      [
+        "tests.test_real_service_api",
+        "test_authenticated_http_and_mcp_surface"
+      ],
+      [
+        "tests.test_real_service_api",
+        "test_himat_mcp_card_is_direct_and_download_capability_is_bounded"
+      ],
+      [
+        "tests.test_remaining_tools",
+        "test_html_discloses_dna_fallback_and_consensus_without_overflow_markup"
+      ],
+      [
+        "tests.test_scientific_boundaries",
+        "test_actual_v2_no_model_report_preserves_raw_execution_evidence"
+      ],
+      [
+        "tests.test_variant_selection",
+        "test_html_discloses_missing_and_threshold_failure"
+      ],
+      [
+        "tests.test_workflow_performance",
+        "test_candidate_submission_http_auth_and_exact_fields"
+      ]
+    ],
+    "all_previous_failures_covered": true,
+    "single_full_green_run": false
+  }
+}

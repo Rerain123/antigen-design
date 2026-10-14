@@ -1,0 +1,29 @@
+{
+  "version": "0.1.0",
+  "commands": [
+    {
+      "tool": "foldx",
+      "argv": [
+        "/usr/local/bin/python",
+        "-B",
+        "/opt/t01/src/t01_phase1_real/development/foldx/worker.py"
+      ],
+      "environment": {
+        "MKL_NUM_THREADS": "2",
+        "MPLCONFIGDIR": "/tmp/matplotlib",
+        "OMP_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "1",
+        "PATH": "/usr/local/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin",
+        "PYTHONPATH": "/app",
+        "PYTHONUNBUFFERED": "1",
+        "T01_NATIVE_CWD": "/app",
+        "T01_NATIVE_PACKAGE": "/t01/assets/foldx-20270131",
+        "T01_PRIVATE_TMP": "1",
+        "T01_RESIDENT_OFFLINE": "1",
+        "T01_RESIDENT_SLOT": "/run/t01-slot",
+        "T01_SOURCE_IMAGE_ID": "sha256:66539e081922ce4c4fb504c9906feb64044ce668033e63fdc9299d020af8c851"
+      },
+      "memory_bytes": 8589934592
+    }
+  ]
+}

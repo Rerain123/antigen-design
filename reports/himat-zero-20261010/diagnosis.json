@@ -1,0 +1,37 @@
+{
+  "status": "CONFIRMED_CONTROLLER_TERMINAL_STATE_SYNC_DEFECT",
+  "job_id": "t01p1r-job-b7506c0cc61e4bd084c1e8ee466fb86e",
+  "checked_at": "2026-10-10T04:03:03.376885+00:00",
+  "reported_outcome": "no_valid_presampling",
+  "actual_pre_samples": 24,
+  "offline_valid_pre_samples": 24,
+  "invalid_pre_samples": 0,
+  "quarantined_pre_samples": 0,
+  "formal_generation_executed": false,
+  "formal_candidate_count": 0,
+  "qualified_candidate_count": "NOT_ASSESSED",
+  "root_cause": {
+    "file": "src/t01_phase1_real/development/workflow/revision_controller.py",
+    "function": "child",
+    "detail": "Parent node state only recorded inside non-terminal branch. Independently reconciled successful child bypasses parent update; assemble skips cached running proposal rows."
+  },
+  "report_discrepancy": "Final reporting refreshes visible node status to succeeded while frozen revision_state retains no_valid_presampling.",
+  "not_causes": [
+    "GPU scheduling",
+    "40GB model failure",
+    "all-chain FIXED",
+    "missing N08 database",
+    "scientific hard-filter rejection"
+  ],
+  "evidence": {
+    "artifact-index.json": "9f5e06433ad3ccf2550526dc8541aba22e772221138467f11db841557f390596",
+    "control-reproduction.json": "a4d3e9735cf77ced5089c2bc2a2cb0070d9b4cb00d792a806bdecd64c4836a26",
+    "offline-reconciliation.json": "9e7770ea11a502764eade2526d797e8601ae812d81174e0f3d633168422de9dc",
+    "snapshot.json": "bd694240a451101f4c5f16a8771955e39fa1635c0140d9b71724c45aec3e1550"
+  },
+  "cluster_mutations": 0,
+  "new_jobs": 0,
+  "models_executed_by_audit": 0,
+  "source_code_changes": 0,
+  "original_report_unchanged": true
+}

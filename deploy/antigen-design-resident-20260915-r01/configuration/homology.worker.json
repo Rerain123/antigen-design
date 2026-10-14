@@ -1,0 +1,28 @@
+{
+  "version": "0.1.0",
+  "commands": [
+    {
+      "tool": "homology",
+      "argv": [
+        "/usr/local/bin/python",
+        "-B",
+        "/opt/t01/src/t01_phase1_real/development/homology/worker.py"
+      ],
+      "environment": {
+        "LD_LIBRARY_PATH": "/blast/lib",
+        "MKL_NUM_THREADS": "2",
+        "MPLCONFIGDIR": "/tmp/matplotlib",
+        "OMP_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "1",
+        "PATH": "/opt/blast/bin:/usr/local/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin",
+        "PYTHONUNBUFFERED": "1",
+        "T01_DATABASE_ROOT": "/t01/databases/homology",
+        "T01_PRIVATE_TMP": "1",
+        "T01_RESIDENT_OFFLINE": "1",
+        "T01_RESIDENT_SLOT": "/run/t01-slot",
+        "T01_SOURCE_IMAGE_ID": "sha256:3679b2d22c59629380e47db3af59c7b4c3741e6330ab6962aa51ce526c67d32d"
+      },
+      "memory_bytes": 8589934592
+    }
+  ]
+}

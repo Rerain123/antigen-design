@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1.0",
+  "created_at": "2026-09-08",
+  "engine": "FoldX",
+  "tool_id": "t01.real.foldx",
+  "node_id": "N14",
+  "status": "ENGINEERING_CONTRACT_INTEGRATED_EXECUTION_BLOCKED",
+  "production_status": "NOT_DEPLOYED",
+  "scientific_consumption": false,
+  "candidate_asset_probe": "../stability-assets-20260908/foldx-user-package-probe-r02.json",
+  "asset_probe": "../stability-assets-20260908/foldx-asset-probe-r02.json",
+  "asset_receipt": "../../../../var/t01-phase1-real/tool-assets/foldx-20270131/assets.json",
+  "implemented_modes": ["positionscan", "buildmodel"],
+  "mandatory_preflight": ["RepairPDB", "structure_artifact_binding", "mapping_and_icode_guard"],
+  "raw_output_tracking": true,
+  "lifecycle": ["submit", "query", "dispatch", "cancel", "timeout", "retry", "recovery", "artifact_tracking"],
+  "targeted_tests": {
+    "command": "python -m pytest -q tests/test_foldx_development.py tests/test_thermompnn_development.py",
+    "result": "32 passed"
+  },
+  "execution_blockers": ["Docker Desktop Linux engine unavailable", "WSL unavailable", "candidate image not built"],
+  "scientific_effect": "No FoldX result exists; no N14/N17 scientific release or candidate recovery is implied."
+}

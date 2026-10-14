@@ -1,0 +1,49 @@
+{
+  "exchange_id": "p0-s07-task6-acceptance-20260903-c--O15116-afdb-model",
+  "classification": "discovery_evidence",
+  "production_deployment_status": "NOT_DEPLOYED",
+  "started_at": "2026-09-03T03:07:02.574588Z",
+  "finished_at": "2026-09-03T03:07:04.110885Z",
+  "request": {
+    "method": "GET",
+    "url": "https://alphafold.ebi.ac.uk/files/AF-O15116-F1-model_v6.cif",
+    "headers": {
+      "accept": "chemical/x-mmcif, text/plain;q=0.9",
+      "content_type": null,
+      "user_agent": "T01-S07-Discovery/0.1 (non-production evidence capture)"
+    },
+    "body_file": null,
+    "body_sha256": null,
+    "timeout_seconds": 120,
+    "connection_override": null,
+    "ssl_revoke_best_effort": true
+  },
+  "response": {
+    "body_file": "model.cif",
+    "body_size_bytes": 135937,
+    "body_sha256": "d37972527c798e13e39fb8202e33d9c5cb816ac211c57591218e753a357d80e1",
+    "headers_file": "response.headers.txt",
+    "headers_sha256": "6635d30cec29da24114b70ea6c67bd495e23a71c0926b11761ee01ad2373ccb3"
+  },
+  "curl": {
+    "executable": "curl.exe",
+    "exit_code": 0,
+    "metrics": {
+      "http_code": 200,
+      "response_code": 200,
+      "exitcode": 0,
+      "content_type": "application/octet-stream",
+      "remote_ip": "34.149.152.8",
+      "remote_port": 443,
+      "http_version": "1.1",
+      "method": "GET",
+      "num_redirects": 0,
+      "size_download": 135937.0,
+      "size_upload": 0.0,
+      "time_total": 1.515111,
+      "ssl_verify_result": 0
+    },
+    "stderr_file": "curl.stderr.txt",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

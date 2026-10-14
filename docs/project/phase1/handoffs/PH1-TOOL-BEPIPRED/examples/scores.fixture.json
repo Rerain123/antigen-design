@@ -1,0 +1,80 @@
+{
+  "fixture_kind": "SYNTHETIC_PARSER_AND_COMPARATOR_ONLY",
+  "scientific_compute": false,
+  "format_notice": "任务内部教学 JSON，不是 BepiPred 原生 CSV；position 已为 1-based。",
+  "sequence": "ACDEFGHIKL",
+  "rows": [
+    {
+      "position": 1,
+      "residue": "A",
+      "score": 0.1511999
+    },
+    {
+      "position": 2,
+      "residue": "C",
+      "score": 0.1512
+    },
+    {
+      "position": 3,
+      "residue": "D",
+      "score": 0.1512001
+    },
+    {
+      "position": 4,
+      "residue": "E",
+      "score": 0.2
+    },
+    {
+      "position": 5,
+      "residue": "F",
+      "score": 0.3
+    },
+    {
+      "position": 6,
+      "residue": "G",
+      "score": 0.1
+    },
+    {
+      "position": 7,
+      "residue": "H",
+      "score": 0.2
+    },
+    {
+      "position": 8,
+      "residue": "I",
+      "score": 0.2
+    },
+    {
+      "position": 9,
+      "residue": "K",
+      "score": 0.2
+    },
+    {
+      "position": 10,
+      "residue": "L",
+      "score": 0.1
+    }
+  ],
+  "expected_positions": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "threshold_comparator_only": {
+    "threshold": 0.1512,
+    "first_three_above_threshold": [
+      false,
+      false,
+      true
+    ]
+  },
+  "expected_linear_peaks": null,
+  "note": "这里只验证解析和严格大于比较；最终峰必须等待 BP-D02，不由本数据定义。"
+}

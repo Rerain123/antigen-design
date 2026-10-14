@@ -1,0 +1,68 @@
+{
+  "checked_at": "2026-10-10T03:16:34.817522+00:00",
+  "jobs": [
+    {
+      "job_id": "t01p1r-job-b7506c0cc61e4bd084c1e8ee466fb86e",
+      "tool_id": "t01.real.local_workflow",
+      "node_id": "N18",
+      "state": "running",
+      "started_at": "2026-10-10T03:10:53.106619Z",
+      "finished_at": null,
+      "error_code": null,
+      "nodes": {
+        "prediction": {
+          "job_id": "t01p1r-job-ca381a7194514f97ae550cc76ca4388d",
+          "node_id": "N01",
+          "origin": "NEW_EXECUTION",
+          "reason_code": null,
+          "recorded_at": "2026-10-10T03:16:04.374100Z",
+          "state": "succeeded"
+        },
+        "structure": {
+          "job_id": "t01p1r-job-91de3e1540c44dbebc662bec8f30778e",
+          "node_id": "N01",
+          "origin": "NEW_EXECUTION",
+          "reason_code": null,
+          "recorded_at": "2026-10-10T03:16:09.377378Z",
+          "state": "succeeded"
+        },
+        "topology": {
+          "job_id": "t01p1r-job-b5c606c9ce1d460dafea6ef2332dec8c",
+          "node_id": "N02",
+          "origin": "NEW_EXECUTION",
+          "reason_code": null,
+          "recorded_at": "2026-10-10T03:16:22.514290Z",
+          "state": "running"
+        }
+      },
+      "controller_error": null
+    },
+    {
+      "job_id": "t01p1r-job-ca381a7194514f97ae550cc76ca4388d",
+      "tool_id": "t01.real.esmfold2",
+      "node_id": "N01",
+      "state": "succeeded",
+      "started_at": "2026-10-10T03:10:53.569797Z",
+      "finished_at": "2026-10-10T03:16:03.372909Z",
+      "error_code": null
+    },
+    {
+      "job_id": "t01p1r-job-91de3e1540c44dbebc662bec8f30778e",
+      "tool_id": "t01.real.ingest_structure",
+      "node_id": "N01",
+      "state": "succeeded",
+      "started_at": "2026-10-10T03:16:05.274743Z",
+      "finished_at": "2026-10-10T03:16:08.297471Z",
+      "error_code": null
+    },
+    {
+      "job_id": "t01p1r-job-b5c606c9ce1d460dafea6ef2332dec8c",
+      "tool_id": "t01.real.deeptmhmm",
+      "node_id": "N02",
+      "state": "reconciling",
+      "started_at": "2026-10-10T03:16:09.596260Z",
+      "finished_at": null,
+      "error_code": null
+    }
+  ]
+}

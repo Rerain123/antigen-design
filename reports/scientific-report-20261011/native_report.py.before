@@ -1,0 +1,286 @@
+"""Visible tables and plots of registered facts across workflow versions."""
+import json
+import math
+import re
+
+CHECKS = {'PASS': '通过', 'FAIL': '未通过', 'NOT_ASSESSED': '未评估', 'NOT_APPLICABLE': '不适用',
+          'NOT_RUN': '未执行', 'SUCCEEDED': '已执行', 'FORMAL_POOL': '唯一候选', 'DUPLICATE': '重复记录'}
+REASONS = {
+    'CONFIRMED_EMPTY_TARGETS': '冻结的 WT 证据确认表位保护目标为空；该判定不适用，保留参考身份',
+    'no_verifiable_targets': '已确认没有可验证的表位保护目标',
+    'PREDICTOR_PROFILE_MISMATCH': 'WT 与候选的预测器版本指纹不同，无法作同版本保留判定',
+    'NOT_SELECTED_BUDGET': '未进入本轮结构或表位复算预算',
+    'STRUCTURE_FORMAT_NOT_SUPPORTED_FOR_AGGRESCAN3D_DEVELOPMENT': '本轮候选 CIF 尚未接通 AGGRESCAN3D 输入',
+    'STRUCTURE_FORMAT_NOT_SUPPORTED_FOR_PROPKA_DEVELOPMENT': '本轮候选 CIF 尚未接通 PROPKA 输入',
+    'OI_025_CAMSOL_PARAMETERS_INCOMPLETE': 'CamSol 参数和校准依据未齐备',
+    'CAMSOL_SCIENTIFIC_VALIDATION_NOT_COMPLETED': 'CamSol 已有公式计算值，独立参考验证尚未完成；不纳入综合评分',
+    'STABILITY_DDG_NOT_COMPUTED': 'FoldX 未取得 ΔΔG',
+    'RSA_NOT_AVAILABLE': '没有可消费的 RSA',
+    'NO_COMPLETE_TARGETS': '表位保护目标清单不完整；具体缺项须结合上游证据查看',
+    'ICODE_UNKNOWN': '结构编号中的插入码未知，结构适配未通过，表面积及局部几何比较受阻',
+    'RSA_OUT_OF_DOMAIN': '原始相对暴露度超出允许范围，按现行规则报错复核；未截断或替换数值',
+    'STRUCTURE_MAPPING_SCIENTIFIC_SIGNOFF_MISSING': '已有结构计算值，映射资格未签收',
+    'A3D_SPATIAL_CLUSTER_SCIENTIFIC_SIGNOFF_MISSING': '已有聚集计算值，聚集区资格未签收',
+    'NO_DESIGNABLE_POSITIONS': '所有位点固定，原生候选生成器未调用',
+    'no_designable_positions': '没有符合当前权限和预算的可设计位点，原生候选生成器未调用',
+    'DESIGN_NOT_EXECUTED': '候选生成未执行，依赖候选的计算未启动',
+    'OUTPUT_INVALID': '结果未通过校验，保留原始值及错误依据',
+}
+
+
+def structure_blockers(analysis):
+    """Explain existing results, without changing normalization or acceptance."""
+    analysis = analysis or {}; rows = []
+    sasa = analysis.get('freesasa') or {}; rsa = analysis.get('rsa') or {}
+    code = sasa.get('error_code')
+    if code:
+        rows.append([code, REASONS.get(code, code),
+                     '结构摄取 / FreeSASA；任务结束不代表本项已完成'])
+    for row in rsa.get('out_of_domain') or []:
+        rows.append(['RSA_OUT_OF_DOMAIN',
+                     '位置 ' + str(row['sequence_position']) + '（' + row['residue'] + '），原始 RSA=' + str(row['raw_ratio']),
+                     ('该位置不可用于 RSA 评价；所需位置全部有效才计算，坐标几何独立评价'
+                      if 'position_result' in rsa else '归一化结果不可消费；保留绝对面积及原始比值，不推断候选不合格')])
+    return rows
+
+
+def build(data, workflow, native=None):
+    from .user_report import esc, number, obs, table, series_svg, STATES
+    revision = workflow.get('expert_revision') or {}
+    records = [r for r in revision.get('formal_records', []) if r.get('disposition') != 'DUPLICATE']
+    nodes = (native or {}).get('nodes') or {}
+
+    def value(name): return (nodes.get(name) or {}).get('result') or {}
+    def check(code): return CHECKS.get(code, '未评估' if code is None else code)
+    def detail(title, obj): return '<details><summary>' + esc(title) + '</summary><pre>' + esc(json.dumps(obj, ensure_ascii=False, indent=2)) + '</pre></details>'
+    def sequence(seq): return '<div class="seq">' + ''.join('<span>' + str(i+1) + '</span><code>' + esc(seq[i:i+50]) + '</code>' for i in range(0, len(seq), 50)) + '</div>'
+    def reasons(codes): return '；'.join(REASONS.get(c, c) for c in dict.fromkeys(codes)) or '—'
+    def title(r): return '候选 ' + str(r['sample_number'])
+    def mhc(name): return (nodes.get(name) or {}).get('mhc_summary') or {}
+
+    permissions = ''
+    audit = value('design_inputs').get('audit') or {}
+    permitted = audit.get('permissions') or {}
+    if permitted:
+        permissions = '<h3>设计权限与实际执行</h3>' + table(['固定 FIXED', '受限 RESTRICTED', '开放 OPEN'],
+            [[str(len(permitted.get(k + '_positions') or [])) for k in ('fixed', 'restricted', 'open')]])
+        generation = value('design').get('generation') or {}
+        revision_empty = not revision.get('formal_records') and (
+            (nodes.get('revision_design') or {}).get('reason_code') == 'no_designable_positions'
+            or 'no_designable_positions' in (revision.get('stop_reason_codes') or []))
+        if generation.get('reason_code') == 'NO_DESIGNABLE_POSITIONS' or revision_empty:
+            permissions += '<p class="notice">当前权限与预算下未启动候选生成；原生候选生成器未调用。后续候选评分、结构复评及稳定性比较未执行。</p>'
+        domain_rows = (obs(data, 'domains').get('analysis') or {}).get('functional_domains') or []
+        fixed_sources = []
+        for index, domain in enumerate(domain_rows):
+            affected = [p['position'] for p in permitted.get('per_residue', [])
+                if p.get('design_permission') == 'FIXED' and any(
+                    e.get('source') == 'domains' and e.get('source_path') == f'analysis.functional_domains[{index}]'
+                    and e.get('constraint_state') == 'HARD' for e in p.get('evidence_source', []))]
+            if affected:
+                fixed_sources.append([esc(domain['type']), str(domain['start']) + '–' + str(domain['end']),
+                    esc(domain['confidence']), str(len(affected)), esc('S27_VALIDATED_FUNCTIONAL')])
+        if fixed_sources:
+            permissions += table(['固定约束来源', '区间', '置信度', '涉及固定位置数（可重叠）', '规则'], fixed_sources)
+        if any(r[0] == 'mature_chain' for r in fixed_sources):
+            permissions += '<p class="wide-note">本任务按原计算版本将成熟链注释用于固定。10月9日专家已明确：成熟链仅约束截短设计中的范围保留，不单独禁止残基突变。此页保留原任务权限；新规则需要另行计算，不追改历史结果。</p>'
+            from ..development.design_backend.boundary import describe
+            boundary = describe(permitted, domain_rows)
+            permissions += table(['成熟链参与固定', '仅有成熟链 HARD 依据', '同时有独立固定依据'], [[
+                str(len(boundary[k])) for k in ('mature_chain_fixed_positions', 'fixed_only_by_mature_chain',
+                                              'also_fixed_by_independent_evidence')]])
+            permissions += '<p class="subtle">上述分组只解释当前权限来源；不产生替代掩码，也不意味着可直接放开任一组位点。</p>'
+            permissions += detail('成熟链规则边界及逐位点依据分组', boundary)
+        exclusions=permitted.get('annotation_exclusions') or []
+        if exclusions:
+            permissions += '<p class="wide-note">已采用10月9日专家裁决：成熟链范围不参与残基固定、功能邻近负担及功能域结构比较；截短设计仍保留该链范围。独立功能位点、二硫键、E4接触和用户固定等保护依据照常生效。</p>'
+            permissions += detail('注释消费边界与规则版本',dict(exclusions=exclusions,authority=permitted.get('rule_authority')))
+
+    # Numeric results remain visible even when the qualification is unknown.
+    candidates = '<h3>5 条唯一候选的真实结果</h3>' if len(records) == 5 else '<h3>唯一候选的真实结果</h3>'
+    candidates += '<p>正式生成 ' + str(len(revision.get('formal_records', []))) + ' 条记录，去重后 ' + str(len(records)) + ' 条。下面显示实际工具数值；“未评估”表示没有完成对应判定，不会抹去已经取得的预测值。pLDDT 使用后端的 0–1 标度。</p>'
+    rows = []
+    for r in records:
+        score = r.get('esm_if1') or {}; structures = r.get('structure_observations') or {}
+        folds = r.get('foldx') or {}; validation = r.get('validation') or {}
+        rows.append([esc(title(r)), str(len(r['mutations'])), number(score.get('score'), 6), number(score.get('delta_pct'), 3),
+                     number((structures.get('af3') or {}).get('plddt'), 6), number((structures.get('esmfold2') or {}).get('plddt'), 6),
+                     esc(check(validation.get('check_status'))), esc(check(folds.get('execution_status'))), esc(check(r.get('provisional_acceptance_status')))])
+    candidates += table(['候选', '突变数', 'ESM-IF1 原始分数', '相对 WT 变化（%）', 'AF3 pLDDT', 'ESMFold2 pLDDT', 'S28', 'FoldX', '暂定验收'], rows)
+    baseline = next((r['esm_if1'].get('baseline') for r in records if (r.get('esm_if1') or {}).get('baseline') is not None), None)
+    candidates += '<p class="subtle">WT ESM-IF1 基线：' + number(baseline, 6) + '。S28 通过是当前待校准规则下的初步验证，完整验收仍为 ' + esc(check(revision.get('acceptance_status'))) + '；预采样用于位点提名。</p>'
+    if revision.get('runtime_policy_status') == 'pending_calibration':
+        candidates += '<p>v2 参数待校准。比较分只用于相同维度、模式和证据组，暂定验收与正式验收分别保留，没有跨组总排名。</p>'
+    for r in records:
+        n = r['sample_number']; prefix = 'z0_s' + str(n) + '_'; raw = value(prefix + 'bepipred').get('raw_scores') or []
+        candidates += '<h3>' + esc(title(r)) + ' · ' + str(len(r['mutations'])) + ' 个突变</h3>'
+        candidates += '<p class="mono">' + esc(', '.join(str(m.get('wt', m.get('wt_residue', ''))) + str(m['position']) + str(m.get('mut', m.get('mut_residue', ''))) for m in r['mutations'])) + '</p>'
+        candidates += '<details><summary>完整氨基酸序列与候选标识</summary>' + sequence(r['sequence']) + '<p class="mono">' + esc(r['candidate_id']) + '</p></details>'
+        l4 = r.get('l4') or {}; protection = r.get('protection') or {}
+        codes = list(l4.get('reason_codes') or []) + list(protection.get('reason_codes') or []) + list(r.get('reason_codes') or [])
+        candidates += '<p>表位工具执行：' + ('已完成本次所需预测' if l4.get('execution_complete') else '未完成') + '；保护判定：' + esc(check(protection.get('check_status'))) + '；L4 判定：' + esc(check(l4.get('check_status'))) + '。</p>'
+        identity=protection.get('l1_identity_pass')
+        candidates += '<p class="subtle">旧 L1 字面同一性：' + ('未评估' if identity is None else '通过（True）' if identity is True else '未通过（False）') + '。此字段只记录原始同一性对照。</p>'
+        candidates += '<p class="subtle">' + esc(reasons(codes)) + '</p>'
+        blockers = ([['WT'] + row for row in structure_blockers(obs(data, 'structure').get('analysis'))]
+                    + [['候选'] + row for row in structure_blockers(value(prefix+'structure').get('analysis'))])
+        if blockers:
+            candidates += '<h4>结构保护评价的上游阻塞</h4>' + table(
+                ['对象', '原因', '原始证据', '影响'], [[esc(v) for v in row] for row in blockers])
+            candidates += '<p class="notice">这些是独立的评价缺项；预测结构已生成或 S28 通过，不代表表面暴露度及局部几何检查通过。</p>'
+        early=r.get('sequence_developability') or {}
+        metrics=early.get('expressibility') or {}
+        if metrics:
+            candidates += '<h4>结构预测前的序列型可开发性</h4>' + table(
+                ['分子量（kDa）','等电点','GRAVY','不稳定指数','脂肪族指数','S-36a 分数'],
+                [[number(metrics.get(k),4) for k in ('mw_kda','pi','gravy','instability_index','aliphatic_index','score')]])
+            candidates += '<p class="subtle">沿用 ProtParam / S-36a 计算；未新增硬阈值，也不改变 ESM 优先、突变数及候选标识的结构分配顺序。</p>'
+            candidates += detail('序列指标方法与来源',early)
+        if l4.get('check_status')=='NOT_APPLICABLE' and l4.get('applicability_evidence'):
+            candidates += '<p>此候选保留参考身份。允许计算 FoldX 不代表表位保护通过；保护轴和完整验收不补分。</p>'
+            candidates += detail('不适用判定的范围与依据',l4['applicability_evidence'])
+        if raw:
+            candidates += series_svg([('BepiPred-3.0 score', [x.get('ensemble_probability') for x in raw], '#344f80'),
+                                      ('Linear epitope score', [x.get('linear_epitope_score') for x in raw], '#a58b69')], title(r) + ' BepiPred 原始分数')
+            candidates += '<p class="subtle">' + str(len(raw)) + ' 个残基的两列原始预测均已取得。曲线用于显示原始结果；版本不一致时不据此补写 L4 通过。</p>'
+            candidates += peak_table(value(prefix+'bepipred').get('postprocessing') or {},table,esc,number)
+        summaries = mhc(prefix + 'netmhc')
+        if summaries:
+            candidates += mhc_table(summaries, table, esc, check)
+            candidates += mhc_details(summaries, table, esc, number)
+        dims = r.get('developability_dimensions') or {}
+        if dims:
+            candidates += '<details><summary>本候选的可开发性原始值及未执行原因</summary>' + dimension_table(dims, table, esc, number) + '</details>'
+        candidates += detail('逐项检查、模型来源和评分依据', {k:r.get(k) for k in ('candidate_id', 'sequence', 'generation_source', 'esm_if1', 'structure_observations', 'validation', 'protection', 'hard_check_status', 'structure_reason', 'missing_frozen_dimensions', 'comparison_score', 'score_contexts', 'acceptance_score', 'acceptance_status', 'provisional_acceptance_status')})
+    candidates += '<details><summary>全部正式抽样及重复关系</summary>' + table(['样本', '候选标识', '处置', '重复来源'], [[str(r['sample_number']), esc(r['candidate_id']), esc(check(r['disposition'])), esc(str(r.get('duplicate_of') or '—'))] for r in revision.get('formal_records', [])]) + '</details>'
+
+    overview = ''
+    topology = obs(data, 'topology').get('topology') or {}
+    segments = topology.get('segments') or []
+    if segments:
+        overview += '<h3>DeepTMHMM 拓扑分段</h3>' + table(['类别', '起点', '终点'], [[esc(s.get('type', s.get('label'))), esc(s.get('start')), esc(s.get('end'))] for s in segments])
+    domains = obs(data, 'domains').get('analysis') or {}
+    if domains:
+        lookup = domains.get('annotation_provenance') or {}
+        overview += '<h3>功能注释检索</h3><p>Swiss-Prot 精确序列命中：' + esc(lookup.get('exact_sequence_matches', '未评估')) + '；以下序列模式观察不等同于验证功能域。</p>'
+        overview += table(['区域', '起点', '终点', '来源', '置信度'], [[esc(d.get('type')), str(d.get('start')), str(d.get('end')), esc(d.get('source')), esc(d.get('confidence'))] for d in domains.get('functional_domains') or []])
+    analysis = obs(data, 'structure').get('analysis') or {}; rsa = analysis.get('rsa') or {}
+    structure = (analysis.get('quality') or {}).get('structure') or {}
+    if structure.get('plddt_per_residue'):
+        overview += series_svg([('WT pLDDT（0–1）', structure['plddt_per_residue'], '#344f80')], 'WT 逐残基结构置信度')
+    if rsa:
+        overview += '<h3>FreeSASA / RSA 原始输出</h3><p>RSA 状态：' + esc(rsa.get('status')) + '。原始归一化比值保留越界值，不截断为合格；SASA 单位 Å²。</p>'
+        if rsa.get('out_of_domain'):
+            overview += table(['越界位置', '残基', '绝对 SASA（Å²）', '原始 RSA'], [[str(r['sequence_position']), esc(r['residue']), number(r['absolute_sasa_a2'], 6), number(r['raw_ratio'], 6)] for r in rsa['out_of_domain']])
+        overview += detail('完整逐残基 SASA、原始 RSA 及越界记录', {k:rsa.get(k) for k in ('status', 'error_code', 'aligned_absolute_sasa_a2', 'raw_normalized_ratios', 'missing_positions', 'out_of_domain', 'position_result')})
+
+    epitope = ''
+    epitope += peak_table(obs(data,'bepipred').get('postprocessing') or value('bepipred').get('postprocessing') or {},table,esc,number)
+    panel=obs(data,'netmhc').get('panel_selection') or {}
+    if panel.get('pig_mhc_ii_assessment')=='NOT_ASSESSED':
+        epitope += '<p class="notice">猪 MHC-II：一期未评估。现有本地清单无可用猪II面板，命中集合为未知，不代表零命中；未应用0.85折减。SLA-I结果为探索性预测，品种覆盖未评估。</p>'
+    maps=obs(data,'epitope_map').get('epitopes') or value('epitope_map').get('epitopes') or {}
+    hotspot=maps.get('b_cell_antigenic_hotspot_map') or {}
+    if hotspot.get('hotspots') is not None:
+        epitope += '<h3>WT 加权合成热点</h3><p>热点来自证据等级与预测分数的合成，仍待科学复核；不等同于实验证实的抗原热点。</p>'
+        epitope += table(['起点–终点','加权合成分数','外侧／信号区域标注'],[
+            [str(r['start'])+'–'+str(r['end']),number(r['weighted_score'],6),
+             '未提供拓扑标注' if r.get('in_outside_region') is None else '是' if r['in_outside_region'] else '否']
+            for r in hotspot['hotspots']])
+        if not hotspot['hotspots']:epitope += '<p class="subtle">本次已计算的热点集合为空；空结果不代表不存在实验表位。</p>'
+    if maps.get('density_per_residue'):
+        epitope += series_svg([('逐残基加权合成分数',maps['density_per_residue'],'#344f80')],'WT 表位加权合成分数')
+    search = obs(data, 'blast').get('search') or {}
+    if search:
+        epitope += '<h3>IEDB 本地 BLAST 命中</h3><p>原始 HSP：' + esc(search.get('raw_hsp_count')) + '；按本次检索阈值保留：' + esc(search.get('qualifying_hsp_count')) + '。序列相似命中不冒充实验保护验证。</p>'
+        epitope += detail('全部检索命中、表位映射与证据来源', search)
+    if mhc('netmhc'):
+        epitope += '<h3>WT MHC 原生批次汇总</h3>' + mhc_table(mhc('netmhc'), table, esc, check)
+        epitope += mhc_details(mhc('netmhc'), table, esc, number)
+    glyco = obs(data, 'glycosylation').get('glycosylation') or {}
+    if glyco.get('sites') is not None:
+        epitope += '<h3>糖基化序列位点</h3><p>位点（1-based）：' + esc('、'.join(map(str, glyco['sites'])) or '未检出') + '。序列模式不等同于实际糖基化，也不代表遮蔽风险已通过验证。</p>'
+
+    dev = obs(data, 'developability').get('developability') or {}; dims = dev.get('dimensions') or {}
+    developability = '<h3>WT 可开发性工具原始值</h3>' + dimension_table(dims, table, esc, number)
+    sol=(dims.get('solubility') or {}).get('value') or {}
+    if sol.get('per_residue'):
+        developability += '<h3>CamSol 逐残基溶解度剖面</h3>'
+        developability += series_svg([('CamSol 归一化分数',sol['per_residue'],'#344f80')],'CamSol 公式重实现')
+        developability += '<p class="subtle">正值对应较高溶解度，负值对应较低溶解度。归一化统计量已按专家协议计算，尚属候选统计量；独立参考验证未完成，不将数值当作已验收结果或纳入综合评分。</p>'
+        developability += detail('CamSol 模式、参数身份与验证状态',{k:sol.get(k) for k in ('mode','ph_used','global_score','classification','insoluble_regions','normalization_status','backend_identity','method_summary','reason_code')})
+    agg = (dims.get('aggregation') or {}).get('value') or {}
+    if agg:
+        developability += detail('AGGRESCAN3D 逐残基分数、聚集簇与原始状态', {k:agg.get(k) for k in ('average_score', 'per_residue', 'clusters', 'reliable', 'status', 'reason_code')})
+    ph = (dims.get('ph_stability') or {}).get('value') or {}
+    if ph.get('dg_curve'):
+        developability += '<h3>PROPKA pH 能量曲线</h3><p class="subtle">已有后端计算曲线，映射资格尚未签收；不等同于完整稳定性验收。</p>' + ph_plot(ph['dg_curve'], esc, number)
+        developability += detail('PROPKA 全部 pH 数值、pKa 和计算方法', {k:ph.get(k) for k in ('dg_curve', 'optimal_ph', 'stable_range', 'pka_groups', 'reliable', 'status', 'reason_code', 'method')})
+
+    appendix = ''
+    if native:
+        appendix = '<h3>真实后端执行及原始文件</h3><p>以下每一项来自本次已注册任务；任务正常结束、原生工具执行和科学判定通过分别记录。原始文件包 antigen-tool-results.zip 包含结果 JSON、原生输出、' + str(len(native.get('mhc_batches') or [])) + ' 个 MHC 批次及逐文件 SHA-256 清单；没有复制模型、工具安装包或凭据。</p>'
+        unused = {name for name, row in nodes.items() if re.fullmatch(r'rep\d+_\w+', name) and not row.get('job_id')}
+        def execution_label(row):
+            if row.get('origin') == 'INTERNAL_FACT' and not row.get('job_id'):
+                return '已记录流程结果（无原生工具任务）' if row['state'] == 'succeeded' else STATES.get(row['state'], row['state'])
+            return STATES.get(row['state'], row['state'])
+        appendix += table(['步骤', '工具', '流程状态', '原始文件', '后端类型', '未执行／缺项原因'], [[esc(name), esc(row.get('tool_id', row['node_id'])), esc(execution_label(row)), str(row.get('native_file_count', 0)), esc(((row.get('result') or {}).get('execution') or {}).get('backend') or '—'), esc(reasons([row['reason_code']]) if row.get('reason_code') else '—')] for name,row in nodes.items() if name not in unused])
+        if unused:appendix += '<p class="subtle">另有 ' + str(len(unused)) + ' 个预留候选步骤未创建任务，逐项原因保留在完整工具结果 JSON 中。</p>'
+        appendix += '<p class="subtle mono">run_id：' + esc(native['run_id']) + '<br>父任务：' + esc(native['job_id']) + '<br>原工作流包 SHA-256：' + esc(native['workflow_package_sha256']) + '</p>'
+        cfg = native.get('revision_config') or {}
+        appendix += '<p>本次计算规则：' + esc(cfg.get('rule_version') or '原版工作流（未启用专家 v2）') + '。报告展示版本不改变原任务的计算配置。</p>'
+        if cfg:appendix += detail('本次固定的计算配置与预算', cfg)
+    budget = revision.get('run_audit') or {}
+    if revision:
+        appendix += '<h3>覆盖及预算</h3><p>完整覆盖：' + ('已完成' if revision.get('coverage_complete') else '未完成') + '。正式与暂定验收：' + esc(check(revision.get('acceptance_status'))) + ' / ' + esc(check(revision.get('provisional_acceptance_status'))) + '。</p>'
+        appendix += '<p class="subtle">下表为候选设计阶段预算，不包含 WT 基线计算；候选阶段计数为 0 不代表整条工作流未执行工具。</p>'
+        appendix += table(['阶段', '实际任务数', '唯一对象数', '工具执行累计秒数', '预算状态'], [[esc(k), str(v.get('attempts')), str(v.get('unique_objects')), number(v.get('execution_seconds'), 3), esc(v.get('budget_status'))] for k,v in budget.items()])
+    return dict(candidates=candidates, permissions=permissions, overview=overview, epitope=epitope, developability=developability, appendix=appendix, unique_count=len(records))
+
+
+def mhc_table(summaries, table, esc, check):
+    return table(['通道', '原生预测行数', '强结合 SB', '弱结合 WB', 'NB', '状态'], [[esc(k.upper().replace('_', ' ')), str(v.get('observed_rows')) if v.get('status') == 'parsed_unreviewed' else '未执行', *[str(v['counts'][c]) if v['counts'][c] is not None else '未汇总' for c in ('SB', 'WB', 'NB')], esc('已有原生预测，待科学复核' if v['counts_complete'] else '无完整预测')] for k,v in summaries.items()])
+
+
+def mhc_details(summaries, table, esc, number):
+    result = '<p class="subtle">SB/WB/NB 保留工具原生 BindLevel；条目数包括不同肽长和等位基因，不能解释成实验表位数量。</p>'
+    for kind, value in summaries.items():
+        if not value.get('counts_complete'): continue
+        result += '<details><summary>' + esc(kind.upper()) + ' 全部等位基因的预测分类计数</summary>' + table(['等位基因', 'SB', 'WB', 'NB'], [[esc(r['allele']), str(r['SB']), str(r['WB']), str(r['NB'])] for r in value['allele_counts']]) + '</details>'
+        result += '<details><summary>查看原生强结合肽示例（%Rank 最小的前 20 行）</summary>' + table(['肽序列', '起点–终点', '等位基因', '%Rank', 'Score_EL', '原生分类'], [[esc(h['peptide_seq']), str(h['start']) + '–' + str(h['end']), esc(h['allele']), number(h['percent_rank'], 3), number(h['score_el'], 6), esc(h['classification'])] for h in value['strong_binding_examples']]) + '</details>'
+    return result
+
+
+def dimension_table(dims, table, esc, number):
+    rows = []
+    for key, d in dims.items():
+        value = d.get('value') or {}; raw = []
+        labels = {'mw_kda': '分子量（kDa）', 'pi': 'pI', 'gravy': 'GRAVY', 'instability_index': '不稳定指数', 'aliphatic_index': '脂肪族指数', 'average_score': '平均聚集分数', 'optimal_ph': '最适 pH','global_score':'全序列溶解度分数'}
+        for name,label in labels.items():
+            if name in value: raw.append(label + '：' + number(value[name], 6))
+        if 'stable_range' in value: raw.append('稳定 pH 区间：' + str(value['stable_range']))
+        if 'clusters' in value: raw.append('聚集区域：' + str(len(value['clusters'])))
+        if value.get('mode'):raw.append('计算模式：'+value['mode']+'；pH：'+str(value.get('ph_used')))
+        reason = d.get('exclusion_reason')
+        rows.append([esc(key), '<br>'.join(esc(r) for r in raw) or '没有可用原始值', number(d.get('normalized_score'), 6), esc(d.get('source')), esc(REASONS.get(reason, reason) or d.get('status'))])
+    return table(['维度', '工具原始值', '已有归一化分数', '工具／来源', '资格或缺项原因'], rows)
+
+
+def peak_table(processed,table,esc,number):
+    if processed.get('status')!='computed_pending_calibration':return ''
+    result='<h3>BepiPred 连续预测候选区段</h3><p>使用未经平滑的原始预测分数，先连接间隔不超过2个残基的区段，再保留总长至少6个残基的区段。阈值区段进入图1；前20%区段仅供对照。参数待校准，这些区段不是实验验证的线性表位。</p>'
+    for key,label in (('linear_peaks_threshold','阈值口径（严格大于0.1512）'),('linear_peaks_top20','前20%口径（向下取整，仅报告对照）')):
+        result+='<h4>'+label+'</h4>'+table(['起点–终点','达标残基数','达标比例','最长连续达标段','桥接残基数','全部残基均分','达标残基均分'],[
+            [str(r['start'])+'–'+str(r['end']),str(r['positive_count']),number(r['positive_fraction'],3),str(r['longest_positive_run']),str(r['bridge_count']),number(r['mean_score_all'],6),number(r['mean_score_positive'],6)] for r in processed[key]])
+    audit=processed['top20_audit']
+    result+='<p class="subtle">前20%实际选取 '+str(audit['count'])+' 个残基；并列分数按序列位置截断'+('，本次截断了并列组' if audit['tie_split'] else '')+'。全低分序列仍会选出前20%，不能作为额外置信度依据。</p>'
+    return result
+
+
+def ph_plot(curve, esc, number):
+    points = [(p['pH'], p['dG_kcal_mol']) for p in curve if all(type(p.get(k)) in (int, float) and math.isfinite(p[k]) for k in ('pH', 'dG_kcal_mol'))]
+    if not points: return ''
+    x0,x1=min(x for x,_ in points),max(x for x,_ in points);y0,y1=min(y for _,y in points),max(y for _,y in points)
+    path='M'+' L'.join(f'{52+800*(x-x0)/max(x1-x0,1e-9):.2f} {180-140*(y-y0)/max(y1-y0,1e-9):.2f}' for x,y in points)
+    return '<figure><div class="chart-scroll"><svg viewBox="0 0 880 240" role="img" aria-label="PROPKA pH 能量曲线"><title>PROPKA 原始 pH 能量曲线</title><path d="M52 40V180H852" fill="none" stroke="#e0e7e9"/><path d="'+path+'" fill="none" stroke="#344f80" stroke-width="2.2"/><text x="52" y="204">'+number(x0,1)+'</text><text x="852" y="204" text-anchor="end">'+number(x1,1)+'</text><text x="452" y="228" text-anchor="middle">pH</text><text x="50" y="28">ΔG (kcal/mol)</text><text x="42" y="180" text-anchor="end">'+number(y0)+'</text><text x="42" y="45" text-anchor="end">'+number(y1)+'</text></svg></div></figure>'

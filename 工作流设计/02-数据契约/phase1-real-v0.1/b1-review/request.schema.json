@@ -1,0 +1,278 @@
+{
+  "type": "object",
+  "properties": {
+    "contract_version": {
+      "const": "0.1.0"
+    },
+    "contract_status": {
+      "const": "DRAFT_REVIEW_ONLY"
+    },
+    "tool_id": {
+      "enum": [
+        "t01.real.ingest_structure",
+        "t01.real.map_structure"
+      ]
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+    },
+    "request_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+    },
+    "protein_sequence": {
+      "type": "string",
+      "pattern": "^[A-Z]+$"
+    },
+    "protein_sequence_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "host_species": {
+      "type": "string",
+      "minLength": 1
+    },
+    "structure_artifact": {
+      "type": "object",
+      "properties": {
+        "artifact_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+        },
+        "run_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+        },
+        "job_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "attempt_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "role": {
+          "enum": [
+            "request",
+            "input",
+            "result",
+            "raw",
+            "diagnostic",
+            "log",
+            "environment"
+          ]
+        },
+        "media_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "evidence_kind": {
+          "enum": [
+            "ENGINEERING_FIXTURE",
+            "G0_REAL_OUTPUT",
+            "PIPELINE_REAL_OUTPUT",
+            "LOCAL_INPUT"
+          ]
+        }
+      },
+      "required": [
+        "artifact_id",
+        "run_id",
+        "job_id",
+        "attempt_id",
+        "role",
+        "media_type",
+        "sha256",
+        "size_bytes",
+        "evidence_kind"
+      ],
+      "additionalProperties": false
+    },
+    "declared_format": {
+      "enum": [
+        "PDB",
+        "CIF",
+        "MMCIF"
+      ]
+    },
+    "selection": {
+      "type": "object",
+      "properties": {
+        "model_index": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "chain_selector": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "model_index",
+        "chain_selector"
+      ],
+      "additionalProperties": false
+    },
+    "source_declaration": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "unknown",
+            "experimental",
+            "predicted"
+          ]
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "note"
+      ],
+      "additionalProperties": false
+    },
+    "inventory_artifact": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "artifact_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+            },
+            "run_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+            },
+            "job_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "attempt_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "role": {
+              "enum": [
+                "request",
+                "input",
+                "result",
+                "raw",
+                "diagnostic",
+                "log",
+                "environment"
+              ]
+            },
+            "media_type": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "size_bytes": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "evidence_kind": {
+              "enum": [
+                "ENGINEERING_FIXTURE",
+                "G0_REAL_OUTPUT",
+                "PIPELINE_REAL_OUTPUT",
+                "LOCAL_INPUT"
+              ]
+            }
+          },
+          "required": [
+            "artifact_id",
+            "run_id",
+            "job_id",
+            "attempt_id",
+            "role",
+            "media_type",
+            "sha256",
+            "size_bytes",
+            "evidence_kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "contract_version",
+    "contract_status",
+    "tool_id",
+    "run_id",
+    "request_id",
+    "protein_sequence",
+    "protein_sequence_sha256",
+    "host_species",
+    "structure_artifact",
+    "declared_format",
+    "selection",
+    "source_declaration",
+    "inventory_artifact"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:t01:phase1:real:0.1.0:b1-review:request"
+}

@@ -1,0 +1,39 @@
+{
+  "status": "READ_ONLY_DIAGNOSIS_COMPLETE",
+  "active_jobs": [],
+  "evidence": "inspection.json",
+  "required_batches": 738,
+  "completed": 101,
+  "predicted_native_rows": 22158273,
+  "means_seconds": {
+    "batch": 58.14544732673267,
+    "mhc_i": 53.377247314245466,
+    "mhc_ii": 3.219640385670735,
+    "non_native": 1.5433481093596437,
+    "between_batches": 0.88846642
+  },
+  "projected_n05_hours": 12.1019523180802,
+  "projection_is_not_full_run_measurement": true,
+  "source_matches": {
+    "service_api/himat.py": false,
+    "development/netmhc/policy.py": true,
+    "development/netmhc/pan.py": true,
+    "development/netmhc/service.py": true,
+    "development/workflow/m1.py": true
+  },
+  "findings": [
+    "Expert SOP S18 host panels and ~30s expectation do not include a measured full-inventory fallback budget; A1 section7 explicitly defines that fallback while panels are absent.",
+    "Current HiMat always selects package_pan_allele; host metadata does not narrow the panel. This run expands to 23711 alleles across species.",
+    "Engineering caps 20/15 and balanced paired batches yield 738 sequential child jobs; each executes MHC I then II. No expert requirement fixes these batch caps.",
+    "101 hash-verified runtime receipts show MHC I dominates native elapsed time. No evidence of repeated retries or long inter-batch queue waits in these successful batches.",
+    "8h parent timeout clamps N05 to the entire remaining deadline, leaving no budget for WARNING+continue fallback or downstream work.",
+    "Conditional workflow tail creates a fresh wt_netmhc for the identical original sequence, plus variant N05 evaluations; these were not reached in the stopped run."
+  ],
+  "limitations": [
+    "No new native benchmark; cannot separate native model loading from inference within channel timings.",
+    "CPU limit is 2; historical CPU utilization/throttling not measured, so increasing cores is not a proven fix.",
+    "Host-specific allele panel remains missing in expert package. Cannot select arbitrary representative alleles or promise 30-second full inventory."
+  ],
+  "scientific_task_started": false,
+  "server_modified": false
+}

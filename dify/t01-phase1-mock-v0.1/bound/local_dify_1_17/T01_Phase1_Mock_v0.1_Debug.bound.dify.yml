@@ -1,0 +1,2901 @@
+app:
+  description: T01-PHASE1-MOCK-M3-GENERATOR-v0.1; workflow_id=t01_phase1_mock_v01.workflow.debug; template_id=t01_phase1_mock_v01.template.debug;
+    role=DEBUG; offline MOCK_DATA only; scientific_compute=false; semantic_edges=E001,E002,E003,E004,E005,E006,E007,E008,E009,E010,E011,E012,E013,E014,E015,E016,E017,E018,E019,E020,E021,E022,E023,E024,E025,E026,E027
+  icon: 🧪
+  icon_background: '#E5E7EB'
+  mode: workflow
+  name: T01_Phase1_Mock_v0.1_Debug
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: if-else
+      id: START-source-MODE_IF-target
+      source: START
+      sourceHandle: source
+      target: MODE_IF
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: variable-aggregator
+      id: MODE_IF-true-CONTEXT_AGG-target
+      source: MODE_IF
+      sourceHandle: 'true'
+      target: CONTEXT_AGG
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: MODE_IF-false-RUN_INITIALIZE-target
+      source: MODE_IF
+      sourceHandle: 'false'
+      target: RUN_INITIALIZE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: RUN_INITIALIZE-source-INIT_REJECT_IF-target
+      source: RUN_INITIALIZE
+      sourceHandle: source
+      target: INIT_REJECT_IF
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: end
+      id: INIT_REJECT_IF-true-REJECT_END-target
+      source: INIT_REJECT_IF
+      sourceHandle: 'true'
+      target: REJECT_END
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: variable-aggregator
+      id: INIT_REJECT_IF-false-CONTEXT_AGG-target
+      source: INIT_REJECT_IF
+      sourceHandle: 'false'
+      target: CONTEXT_AGG
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: variable-aggregator
+        targetType: tool
+        semantic_edge_id: E001
+      id: E001
+      source: CONTEXT_AGG
+      sourceHandle: source
+      target: N01
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: N01-source-CHECK_N01-target
+      source: N01
+      sourceHandle: source
+      target: CHECK_N01
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E002
+      id: E002
+      source: CHECK_N01
+      sourceHandle: 'true'
+      target: N02
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: N02-source-CHECK_N02-target
+      source: N02
+      sourceHandle: source
+      target: CHECK_N02
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E003
+      id: E003
+      source: CHECK_N02
+      sourceHandle: 'true'
+      target: N03
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: N03-source-CHECK_N03-target
+      source: N03
+      sourceHandle: source
+      target: CHECK_N03
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E004
+      id: E004
+      source: CHECK_N03
+      sourceHandle: 'true'
+      target: N04
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: N04-source-CHECK_N04-target
+      source: N04
+      sourceHandle: source
+      target: CHECK_N04
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E005
+      id: E005
+      source: CHECK_N04
+      sourceHandle: 'true'
+      target: N05
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: N05-source-CHECK_N05-target
+      source: N05
+      sourceHandle: source
+      target: CHECK_N05
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E006
+      id: E006
+      source: CHECK_N05
+      sourceHandle: 'true'
+      target: N06
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: N06-source-CHECK_N06-target
+      source: N06
+      sourceHandle: source
+      target: CHECK_N06
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E007
+      id: E007
+      source: CHECK_N06
+      sourceHandle: 'true'
+      target: N07
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: N07-source-CHECK_N07-target
+      source: N07
+      sourceHandle: source
+      target: CHECK_N07
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E008
+      id: E008
+      source: CHECK_N07
+      sourceHandle: 'true'
+      target: N08
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: N08-source-CHECK_N08-target
+      source: N08
+      sourceHandle: source
+      target: CHECK_N08
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E009
+      id: E009
+      source: CHECK_N08
+      sourceHandle: 'true'
+      target: N09
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: N09-source-CHECK_N09-target
+      source: N09
+      sourceHandle: source
+      target: CHECK_N09
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E010
+      id: E010
+      source: CHECK_N09
+      sourceHandle: 'true'
+      target: N10
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: N10-source-CHECK_N10-target
+      source: N10
+      sourceHandle: source
+      target: CHECK_N10
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E011
+      id: E011
+      source: CHECK_N10
+      sourceHandle: 'true'
+      target: CONTROL_GATE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: CONTROL_GATE-source-GATE_IF-target
+      source: CONTROL_GATE
+      sourceHandle: source
+      target: GATE_IF
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E014
+      id: E014
+      source: GATE_IF
+      sourceHandle: 'false'
+      target: N11_C1
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+        semantic_edge_id: E015
+      id: E015
+      source: N11_C1
+      sourceHandle: source
+      target: N12_C1
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+      id: N12_C1-source-CONTROL_N12-target
+      source: N12_C1
+      sourceHandle: source
+      target: CONTROL_N12
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: CONTROL_N12-source-RECALC_IF_C1-target
+      source: CONTROL_N12
+      sourceHandle: source
+      target: RECALC_IF_C1
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E016
+      id: RECALC_IF_C1-true-N11_C2-target-c2
+      source: RECALC_IF_C1
+      sourceHandle: 'true'
+      target: N11_C2
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+        semantic_edge_id: E015
+      id: N11_C2-source-N12_C2-target-c2
+      source: N11_C2
+      sourceHandle: source
+      target: N12_C2
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: N12_C2-source-RECALC_IF_C2-target
+      source: N12_C2
+      sourceHandle: source
+      target: RECALC_IF_C2
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E016
+      id: RECALC_IF_C2-true-N11_C3-target-c3
+      source: RECALC_IF_C2
+      sourceHandle: 'true'
+      target: N11_C3
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+        semantic_edge_id: E015
+      id: N11_C3-source-N12_C3-target-c3
+      source: N11_C3
+      sourceHandle: source
+      target: N12_C3
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: N12_C3-source-EXHAUSTED_IF-target
+      source: N12_C3
+      sourceHandle: source
+      target: EXHAUSTED_IF
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: N13-source-CHECK_N13-target
+      source: N13
+      sourceHandle: source
+      target: CHECK_N13
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: N14-source-CHECK_N14-target
+      source: N14
+      sourceHandle: source
+      target: CHECK_N14
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: N15-source-CHECK_N15-target
+      source: N15
+      sourceHandle: source
+      target: CHECK_N15
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E017
+      id: RECALC_IF_C1-false-N13-target-c1
+      source: RECALC_IF_C1
+      sourceHandle: 'false'
+      target: N13
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E017
+      id: RECALC_IF_C2-false-N13-target-c2
+      source: RECALC_IF_C2
+      sourceHandle: 'false'
+      target: N13
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E017
+      id: EXHAUSTED_IF-false-N13-target-c3
+      source: EXHAUSTED_IF
+      sourceHandle: 'false'
+      target: N13
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E019
+      id: E019
+      source: CHECK_N13
+      sourceHandle: 'true'
+      target: N14
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E020
+      id: E020
+      source: CHECK_N14
+      sourceHandle: 'true'
+      target: N15
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E021
+      id: E021
+      source: CHECK_N15
+      sourceHandle: 'true'
+      target: CONTROL_N15
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+        semantic_edge_id: E022
+      id: E022
+      source: CONTROL_N15
+      sourceHandle: source
+      target: CONTROL_N16
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+        semantic_edge_id: E023
+      id: E023
+      source: CONTROL_N15
+      sourceHandle: source
+      target: CONTROL_N17
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: CONTROL_N16-source-N16_IF-target
+      source: CONTROL_N16
+      sourceHandle: source
+      target: N16_IF
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: CONTROL_N17-source-N17_IF-target
+      source: CONTROL_N17
+      sourceHandle: source
+      target: N17_IF
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: N16_IF-true-N16-target
+      source: N16_IF
+      sourceHandle: 'true'
+      target: N16
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: template-transform
+      id: N16_IF-false-SKIP_N16-target
+      source: N16_IF
+      sourceHandle: 'false'
+      target: SKIP_N16
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: N17_IF-true-N17-target
+      source: N17_IF
+      sourceHandle: 'true'
+      target: N17
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: template-transform
+      id: N17_IF-false-SKIP_N17-target
+      source: N17_IF
+      sourceHandle: 'false'
+      target: SKIP_N17
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: variable-aggregator
+        semantic_edge_id: E024
+      id: N16-source-JOIN_N16_N17-target-exec
+      source: N16
+      sourceHandle: source
+      target: JOIN_N16_N17
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: template-transform
+        targetType: variable-aggregator
+        semantic_edge_id: E024
+      id: SKIP_N16-source-JOIN_N16_N17-target-skip
+      source: SKIP_N16
+      sourceHandle: source
+      target: JOIN_N16_N17
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: variable-aggregator
+        semantic_edge_id: E025
+      id: N17-source-JOIN_N16_N17-target-exec
+      source: N17
+      sourceHandle: source
+      target: JOIN_N16_N17
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: template-transform
+        targetType: variable-aggregator
+        semantic_edge_id: E025
+      id: SKIP_N17-source-JOIN_N16_N17-target-skip
+      source: SKIP_N17
+      sourceHandle: source
+      target: JOIN_N16_N17
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: variable-aggregator
+        targetType: tool
+        semantic_edge_id: E026
+      id: E026
+      source: JOIN_N16_N17
+      sourceHandle: source
+      target: CONTROL_N18
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: template-transform
+        semantic_edge_id: E012
+      id: E012
+      source: GATE_IF
+      sourceHandle: 'true'
+      target: WT_SETTLED
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: template-transform
+        targetType: tool
+        semantic_edge_id: E013
+      id: E013
+      source: WT_SETTLED
+      sourceHandle: source
+      target: CONTROL_N18
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+      id: CONTROL_N18-source-N18-target
+      source: CONTROL_N18
+      sourceHandle: source
+      target: N18
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+        semantic_edge_id: E027
+      id: E027
+      source: N18
+      sourceHandle: source
+      target: RUN_FINALIZE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: end
+      id: RUN_FINALIZE-source-END-target
+      source: RUN_FINALIZE
+      sourceHandle: source
+      target: END
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: CHECK_N01-false-RUN_FINALIZE-target
+      source: CHECK_N01
+      sourceHandle: 'false'
+      target: RUN_FINALIZE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: CHECK_N02-false-RUN_FINALIZE-target
+      source: CHECK_N02
+      sourceHandle: 'false'
+      target: RUN_FINALIZE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: CHECK_N03-false-RUN_FINALIZE-target
+      source: CHECK_N03
+      sourceHandle: 'false'
+      target: RUN_FINALIZE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: CHECK_N04-false-RUN_FINALIZE-target
+      source: CHECK_N04
+      sourceHandle: 'false'
+      target: RUN_FINALIZE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: CHECK_N05-false-RUN_FINALIZE-target
+      source: CHECK_N05
+      sourceHandle: 'false'
+      target: RUN_FINALIZE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: CHECK_N06-false-RUN_FINALIZE-target
+      source: CHECK_N06
+      sourceHandle: 'false'
+      target: RUN_FINALIZE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: CHECK_N07-false-RUN_FINALIZE-target
+      source: CHECK_N07
+      sourceHandle: 'false'
+      target: RUN_FINALIZE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: CHECK_N08-false-RUN_FINALIZE-target
+      source: CHECK_N08
+      sourceHandle: 'false'
+      target: RUN_FINALIZE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: CHECK_N09-false-RUN_FINALIZE-target
+      source: CHECK_N09
+      sourceHandle: 'false'
+      target: RUN_FINALIZE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: CHECK_N10-false-RUN_FINALIZE-target
+      source: CHECK_N10
+      sourceHandle: 'false'
+      target: RUN_FINALIZE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: CHECK_N13-false-RUN_FINALIZE-target
+      source: CHECK_N13
+      sourceHandle: 'false'
+      target: RUN_FINALIZE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: CHECK_N14-false-RUN_FINALIZE-target
+      source: CHECK_N14
+      sourceHandle: 'false'
+      target: RUN_FINALIZE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: CHECK_N15-false-RUN_FINALIZE-target
+      source: CHECK_N15
+      sourceHandle: 'false'
+      target: RUN_FINALIZE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+        semantic_edge_id: E018
+      id: E018
+      source: EXHAUSTED_IF
+      sourceHandle: 'true'
+      target: RUN_FINALIZE
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Canonical Request
+        type: start
+        variables:
+        - label: operation
+          max_length: 48
+          options:
+          - SUBMIT
+          - FINALIZE_EXISTING
+          required: true
+          type: select
+          variable: operation
+        - label: request_json
+          max_length: 200000
+          options: []
+          required: false
+          type: paragraph
+          variable: request_json
+        - label: run_id_override
+          max_length: 96
+          options: []
+          required: false
+          type: text-input
+          variable: run_id_override
+      height: 142
+      id: START
+      position:
+        x: 80
+        y: 200
+      positionAbsolute:
+        x: 80
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Existing run?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-start-operation
+            value: FINALIZE_EXISTING
+            varType: string
+            variable_selector:
+            - START
+            - operation
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: MODE_IF
+      position:
+        x: 410
+        y: 200
+      positionAbsolute:
+        x: 410
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Create / Replay Run
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          request_json:
+            value:
+            - START
+            - request_json
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.run.initialize
+        tool_name: t01_phase1_mock_v01.tool.run.initialize
+      height: 116
+      id: RUN_INITIALIZE
+      position:
+        x: 740
+        y: 380
+      positionAbsolute:
+        x: 740
+        y: 380
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Submission rejected?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-run_initialize-action
+            value: REJECT_REQUEST
+            varType: string
+            variable_selector:
+            - RUN_INITIALIZE
+            - action
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: INIT_REJECT_IF
+      position:
+        x: 1070
+        y: 380
+      positionAbsolute:
+        x: 1070
+        y: 380
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Canonical run context
+        type: variable-aggregator
+        advanced_settings:
+          group_enabled: true
+          groups:
+          - groupId: group-run-id
+            group_name: run_id
+            output_type: string
+            variables:
+            - - RUN_INITIALIZE
+              - run_id
+            - - START
+              - run_id_override
+          - groupId: group-submission-action
+            group_name: submission_action
+            output_type: string
+            variables:
+            - - RUN_INITIALIZE
+              - action
+            - - START
+              - operation
+        output_type: string
+        variables:
+        - - RUN_INITIALIZE
+          - run_id
+        - - START
+          - run_id_override
+      height: 180
+      id: CONTEXT_AGG
+      position:
+        x: 1400
+        y: 200
+      positionAbsolute:
+        x: 1400
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Rejected submission
+        type: end
+        outputs:
+        - value_selector:
+          - RUN_INITIALIZE
+          - result
+          value_type: object
+          variable: submission
+        - value_selector:
+          - RUN_INITIALIZE
+          - action
+          value_type: string
+          variable: submission_action
+        - value_selector:
+          - RUN_INITIALIZE
+          - error_code
+          value_type: string
+          variable: error_code
+      height: 116
+      id: REJECT_END
+      position:
+        x: 1400
+        y: 560
+      positionAbsolute:
+        x: 1400
+        y: 560
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N01 Mock fact
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n01
+        tool_name: t01_phase1_mock_v01.tool.node.n01
+      height: 116
+      id: N01
+      position:
+        x: 2060
+        y: 200
+      positionAbsolute:
+        x: 2060
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N01 succeeded?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-n01-status
+            value: SUCCEEDED
+            varType: string
+            variable_selector:
+            - N01
+            - status
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: CHECK_N01
+      position:
+        x: 2390
+        y: 200
+      positionAbsolute:
+        x: 2390
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N02 Mock fact
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n02
+        tool_name: t01_phase1_mock_v01.tool.node.n02
+      height: 116
+      id: N02
+      position:
+        x: 2720
+        y: 200
+      positionAbsolute:
+        x: 2720
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N02 succeeded?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-n02-status
+            value: SUCCEEDED
+            varType: string
+            variable_selector:
+            - N02
+            - status
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: CHECK_N02
+      position:
+        x: 3050
+        y: 200
+      positionAbsolute:
+        x: 3050
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N03 Mock fact
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n03
+        tool_name: t01_phase1_mock_v01.tool.node.n03
+      height: 116
+      id: N03
+      position:
+        x: 3380
+        y: 200
+      positionAbsolute:
+        x: 3380
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N03 succeeded?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-n03-status
+            value: SUCCEEDED
+            varType: string
+            variable_selector:
+            - N03
+            - status
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: CHECK_N03
+      position:
+        x: 3710
+        y: 200
+      positionAbsolute:
+        x: 3710
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N04 Mock fact
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n04
+        tool_name: t01_phase1_mock_v01.tool.node.n04
+      height: 116
+      id: N04
+      position:
+        x: 4040
+        y: 200
+      positionAbsolute:
+        x: 4040
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N04 succeeded?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-n04-status
+            value: SUCCEEDED
+            varType: string
+            variable_selector:
+            - N04
+            - status
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: CHECK_N04
+      position:
+        x: 4370
+        y: 200
+      positionAbsolute:
+        x: 4370
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N05 Mock fact
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n05
+        tool_name: t01_phase1_mock_v01.tool.node.n05
+      height: 116
+      id: N05
+      position:
+        x: 4700
+        y: 200
+      positionAbsolute:
+        x: 4700
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N05 succeeded?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-n05-status
+            value: SUCCEEDED
+            varType: string
+            variable_selector:
+            - N05
+            - status
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: CHECK_N05
+      position:
+        x: 5030
+        y: 200
+      positionAbsolute:
+        x: 5030
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N06 Mock fact
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n06
+        tool_name: t01_phase1_mock_v01.tool.node.n06
+      height: 116
+      id: N06
+      position:
+        x: 5360
+        y: 200
+      positionAbsolute:
+        x: 5360
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N06 succeeded?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-n06-status
+            value: SUCCEEDED
+            varType: string
+            variable_selector:
+            - N06
+            - status
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: CHECK_N06
+      position:
+        x: 5690
+        y: 200
+      positionAbsolute:
+        x: 5690
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N07 Mock fact
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n07
+        tool_name: t01_phase1_mock_v01.tool.node.n07
+      height: 116
+      id: N07
+      position:
+        x: 6020
+        y: 200
+      positionAbsolute:
+        x: 6020
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N07 succeeded?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-n07-status
+            value: SUCCEEDED
+            varType: string
+            variable_selector:
+            - N07
+            - status
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: CHECK_N07
+      position:
+        x: 6350
+        y: 200
+      positionAbsolute:
+        x: 6350
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N08 Mock fact
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n08
+        tool_name: t01_phase1_mock_v01.tool.node.n08
+      height: 116
+      id: N08
+      position:
+        x: 6680
+        y: 200
+      positionAbsolute:
+        x: 6680
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N08 succeeded?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-n08-status
+            value: SUCCEEDED
+            varType: string
+            variable_selector:
+            - N08
+            - status
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: CHECK_N08
+      position:
+        x: 7010
+        y: 200
+      positionAbsolute:
+        x: 7010
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N09 Mock fact
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n09
+        tool_name: t01_phase1_mock_v01.tool.node.n09
+      height: 116
+      id: N09
+      position:
+        x: 7340
+        y: 200
+      positionAbsolute:
+        x: 7340
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N09 succeeded?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-n09-status
+            value: SUCCEEDED
+            varType: string
+            variable_selector:
+            - N09
+            - status
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: CHECK_N09
+      position:
+        x: 7670
+        y: 200
+      positionAbsolute:
+        x: 7670
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N10 Mock fact
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n10
+        tool_name: t01_phase1_mock_v01.tool.node.n10
+      height: 116
+      id: N10
+      position:
+        x: 8000
+        y: 200
+      positionAbsolute:
+        x: 8000
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N10 succeeded?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-n10-status
+            value: SUCCEEDED
+            varType: string
+            variable_selector:
+            - N10
+            - status
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: CHECK_N10
+      position:
+        x: 8330
+        y: 200
+      positionAbsolute:
+        x: 8330
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Design suitability literal
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.control.design_suitability
+        tool_name: t01_phase1_mock_v01.tool.control.design_suitability
+      height: 116
+      id: CONTROL_GATE
+      position:
+        x: 8330
+        y: 200
+      positionAbsolute:
+        x: 8330
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: WT direct?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-control_gate-decision
+            value: DESIGN_NOT_SUITABLE
+            varType: string
+            variable_selector:
+            - CONTROL_GATE
+            - decision
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: GATE_IF
+      position:
+        x: 8660
+        y: 200
+      positionAbsolute:
+        x: 8660
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N11 cycle 1
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n11
+        tool_name: t01_phase1_mock_v01.tool.node.n11
+        t01_business_node_id: N11
+        t01_design_cycle: 1
+      height: 116
+      id: N11_C1
+      position:
+        x: 8990
+        y: 380
+      positionAbsolute:
+        x: 8990
+        y: 380
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N12 cycle 1
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n12
+        tool_name: t01_phase1_mock_v01.tool.node.n12
+        t01_business_node_id: N12
+        t01_design_cycle: 1
+      height: 116
+      id: N12_C1
+      position:
+        x: 9320
+        y: 380
+      positionAbsolute:
+        x: 9320
+        y: 380
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Recalculate after cycle 1?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-control_n12-decision_1
+            value: RECALC_REQUIRED
+            varType: string
+            variable_selector:
+            - CONTROL_N12
+            - decision_1
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: RECALC_IF_C1
+      position:
+        x: 9980
+        y: 380
+      positionAbsolute:
+        x: 9980
+        y: 380
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N11 cycle 2
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n11
+        tool_name: t01_phase1_mock_v01.tool.node.n11
+        t01_business_node_id: N11
+        t01_design_cycle: 2
+      height: 116
+      id: N11_C2
+      position:
+        x: 10310
+        y: 560
+      positionAbsolute:
+        x: 10310
+        y: 560
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N12 cycle 2
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n12
+        tool_name: t01_phase1_mock_v01.tool.node.n12
+        t01_business_node_id: N12
+        t01_design_cycle: 2
+      height: 116
+      id: N12_C2
+      position:
+        x: 10640
+        y: 560
+      positionAbsolute:
+        x: 10640
+        y: 560
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Recalculate after cycle 2?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-control_n12-decision_2
+            value: RECALC_REQUIRED
+            varType: string
+            variable_selector:
+            - CONTROL_N12
+            - decision_2
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: RECALC_IF_C2
+      position:
+        x: 11300
+        y: 560
+      positionAbsolute:
+        x: 11300
+        y: 560
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N11 cycle 3
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n11
+        tool_name: t01_phase1_mock_v01.tool.node.n11
+        t01_business_node_id: N11
+        t01_design_cycle: 3
+      height: 116
+      id: N11_C3
+      position:
+        x: 11630
+        y: 740
+      positionAbsolute:
+        x: 11630
+        y: 740
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N12 cycle 3
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n12
+        tool_name: t01_phase1_mock_v01.tool.node.n12
+        t01_business_node_id: N12
+        t01_design_cycle: 3
+      height: 116
+      id: N12_C3
+      position:
+        x: 11960
+        y: 740
+      positionAbsolute:
+        x: 11960
+        y: 740
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N12 validation literals
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.control.n12_validation
+        tool_name: t01_phase1_mock_v01.tool.control.n12_validation
+      height: 116
+      id: CONTROL_N12
+      position:
+        x: 9650
+        y: 560
+      positionAbsolute:
+        x: 9650
+        y: 560
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N12 exhausted?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-control_n12-decision_3
+            value: RECALC_EXHAUSTED
+            varType: string
+            variable_selector:
+            - CONTROL_N12
+            - decision_3
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: EXHAUSTED_IF
+      position:
+        x: 12620
+        y: 740
+      positionAbsolute:
+        x: 12620
+        y: 740
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N13 Mock fact
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n13
+        tool_name: t01_phase1_mock_v01.tool.node.n13
+      height: 116
+      id: N13
+      position:
+        x: 13280
+        y: 200
+      positionAbsolute:
+        x: 13280
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N13 succeeded?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-n13-status
+            value: SUCCEEDED
+            varType: string
+            variable_selector:
+            - N13
+            - status
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: CHECK_N13
+      position:
+        x: 13610
+        y: 200
+      positionAbsolute:
+        x: 13610
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N14 Mock fact
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n14
+        tool_name: t01_phase1_mock_v01.tool.node.n14
+      height: 116
+      id: N14
+      position:
+        x: 13940
+        y: 200
+      positionAbsolute:
+        x: 13940
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N14 succeeded?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-n14-status
+            value: SUCCEEDED
+            varType: string
+            variable_selector:
+            - N14
+            - status
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: CHECK_N14
+      position:
+        x: 14270
+        y: 200
+      positionAbsolute:
+        x: 14270
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N15 Mock fact
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n15
+        tool_name: t01_phase1_mock_v01.tool.node.n15
+      height: 116
+      id: N15
+      position:
+        x: 14600
+        y: 200
+      positionAbsolute:
+        x: 14600
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N15 succeeded?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-n15-status
+            value: SUCCEEDED
+            varType: string
+            variable_selector:
+            - N15
+            - status
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: CHECK_N15
+      position:
+        x: 14930
+        y: 200
+      positionAbsolute:
+        x: 14930
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N15 recommendation literal
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.control.n15_delivery_recommendation
+        tool_name: t01_phase1_mock_v01.tool.control.n15_delivery_recommendation
+      height: 116
+      id: CONTROL_N15
+      position:
+        x: 15590
+        y: 200
+      positionAbsolute:
+        x: 15590
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N16 applicability literal
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.control.n16_applicability
+        tool_name: t01_phase1_mock_v01.tool.control.n16_applicability
+      height: 116
+      id: CONTROL_N16
+      position:
+        x: 15920
+        y: 20
+      positionAbsolute:
+        x: 15920
+        y: 20
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N17 applicability literal
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.control.n17_applicability
+        tool_name: t01_phase1_mock_v01.tool.control.n17_applicability
+      height: 116
+      id: CONTROL_N17
+      position:
+        x: 15920
+        y: 380
+      positionAbsolute:
+        x: 15920
+        y: 380
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Execute N16?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-control_n16-decision
+            value: EXECUTE
+            varType: string
+            variable_selector:
+            - CONTROL_N16
+            - decision
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: N16_IF
+      position:
+        x: 16250
+        y: 20
+      positionAbsolute:
+        x: 16250
+        y: 20
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Execute N17?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-control_n17-decision
+            value: EXECUTE
+            varType: string
+            variable_selector:
+            - CONTROL_N17
+            - decision
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: N17_IF
+      position:
+        x: 16250
+        y: 380
+      positionAbsolute:
+        x: 16250
+        y: 380
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N16 Mock fact
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n16
+        tool_name: t01_phase1_mock_v01.tool.node.n16
+      height: 116
+      id: N16
+      position:
+        x: 16580
+        y: -160
+      positionAbsolute:
+        x: 16580
+        y: -160
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N17 Mock fact
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n17
+        tool_name: t01_phase1_mock_v01.tool.node.n17
+      height: 116
+      id: N17
+      position:
+        x: 16580
+        y: 560
+      positionAbsolute:
+        x: 16580
+        y: 560
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N16 settled without execution
+        type: template-transform
+        template: NOT_EXECUTED
+        variables: []
+      height: 54
+      id: SKIP_N16
+      position:
+        x: 16580
+        y: 200
+      positionAbsolute:
+        x: 16580
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N17 settled without execution
+        type: template-transform
+        template: NOT_EXECUTED
+        variables: []
+      height: 54
+      id: SKIP_N17
+      position:
+        x: 16580
+        y: 380
+      positionAbsolute:
+        x: 16580
+        y: 380
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N16/N17 settled join
+        type: variable-aggregator
+        advanced_settings:
+          group_enabled: true
+          groups:
+          - groupId: group-n16
+            group_name: n16_settled
+            output_type: string
+            variables:
+            - - N16
+              - status
+            - - SKIP_N16
+              - output
+          - groupId: group-n17
+            group_name: n17_settled
+            output_type: string
+            variables:
+            - - N17
+              - status
+            - - SKIP_N17
+              - output
+        output_type: string
+        variables:
+        - - N16
+          - status
+        - - SKIP_N16
+          - output
+      height: 218
+      id: JOIN_N16_N17
+      position:
+        x: 16910
+        y: 200
+      positionAbsolute:
+        x: 16910
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N18 entry literal
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.control.n18_entry
+        tool_name: t01_phase1_mock_v01.tool.control.n18_entry
+      height: 116
+      id: CONTROL_N18
+      position:
+        x: 17240
+        y: 200
+      positionAbsolute:
+        x: 17240
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: N18 Mock fact
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.node.n18
+        tool_name: t01_phase1_mock_v01.tool.node.n18
+      height: 116
+      id: N18
+      position:
+        x: 17570
+        y: 200
+      positionAbsolute:
+        x: 17570
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: WT direct branch
+        type: template-transform
+        template: WT_DIRECT
+        variables: []
+      height: 54
+      id: WT_SETTLED
+      position:
+        x: 15590
+        y: -340
+      positionAbsolute:
+        x: 15590
+        y: -340
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Canonical envelope
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          run_id:
+            value:
+            - CONTEXT_AGG
+            - run_id
+            - output
+            type: variable
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-mock-mcp-v01
+        provider_name: t01-phase1-mock-mcp-v01
+        tool_label: t01_phase1_mock_v01.tool.run.finalize
+        tool_name: t01_phase1_mock_v01.tool.run.finalize
+      height: 116
+      id: RUN_FINALIZE
+      position:
+        x: 18230
+        y: 200
+      positionAbsolute:
+        x: 18230
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Return canonical envelope
+        type: end
+        outputs:
+        - value_selector:
+          - RUN_FINALIZE
+          - result
+          value_type: object
+          variable: envelope
+        - value_selector:
+          - CONTEXT_AGG
+          - submission_action
+          - output
+          value_type: string
+          variable: submission_action
+        - value_selector:
+          - RUN_FINALIZE
+          - run_id
+          value_type: string
+          variable: canonical_run_id
+      height: 116
+      id: END
+      position:
+        x: 18560
+        y: 200
+      positionAbsolute:
+        x: 18560
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -50
+      y: 60
+      zoom: 0.38

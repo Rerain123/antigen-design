@@ -1,0 +1,62 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from homology.Dockerfile
+#1 transferring dockerfile: 737B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/t01-homology-development:20260907
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/python:3.11-slim-bookworm
+#3 DONE 0.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [stage-1 1/8] FROM docker.io/library/t01-homology-development:20260907@sha256:3679b2d22c59629380e47db3af59c7b4c3741e6330ab6962aa51ce526c67d32d
+#6 resolve docker.io/library/t01-homology-development:20260907@sha256:3679b2d22c59629380e47db3af59c7b4c3741e6330ab6962aa51ce526c67d32d 0.1s done
+#6 DONE 0.1s
+
+#7 [supervisor 1/1] FROM docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84
+#7 resolve docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84 0.1s done
+#7 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 14.31kB done
+#5 DONE 0.0s
+
+#8 [stage-1 2/8] COPY --from=supervisor /usr/local /opt/t01/supervisor
+#8 CACHED
+
+#9 [stage-1 3/8] COPY src /opt/t01/src
+#9 DONE 0.2s
+
+#10 [stage-1 4/8] COPY profile.json /profile.json
+#10 DONE 0.1s
+
+#11 [stage-1 5/8] COPY setup.py /opt/t01/setup.py
+#11 DONE 0.1s
+
+#12 [stage-1 6/8] COPY homology.worker.json /opt/t01/worker.json
+#12 DONE 0.1s
+
+#13 [stage-1 7/8] RUN /opt/t01/supervisor/bin/python3.11 -B /opt/t01/setup.py homology
+#13 DONE 0.3s
+
+#14 exporting to image
+#14 exporting layers
+#14 exporting layers 0.6s done
+#14 exporting manifest sha256:b9dcc225845b75253bd48bf7041b0128229dc6addba2f954a7485aac0f5ee10a 0.0s done
+#14 exporting config sha256:e1f4a1f6d400a3407637d27a32f1c88c69c550debbf49902cf920af30e631d42 0.0s done
+#14 exporting attestation manifest sha256:1418a00079ca1f5ccbe4ea53c6f3080dc63194ec79fc56d44fa3ab4073d925de
+#14 exporting attestation manifest sha256:1418a00079ca1f5ccbe4ea53c6f3080dc63194ec79fc56d44fa3ab4073d925de 0.1s done
+#14 exporting manifest list sha256:26be6ce642f147d44eeb44b0ea006d6a3ac96112ad98cac8a131cf643a89fbda 0.0s done
+#14 naming to docker.io/library/antigen-design-resident-homology:assembly-r01
+#14 naming to docker.io/library/antigen-design-resident-homology:assembly-r01 done
+#14 unpacking to docker.io/library/antigen-design-resident-homology:assembly-r01
+#14 unpacking to docker.io/library/antigen-design-resident-homology:assembly-r01 0.3s done
+#14 DONE 1.3s

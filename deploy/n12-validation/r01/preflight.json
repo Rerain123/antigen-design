@@ -1,0 +1,52 @@
+{
+  "status": "PREPARED_NOT_APPLIED_CLUSTER_UNAVAILABLE",
+  "source_hashes": {
+    "development/workflow/validation.py": "ad998f24aed53079aec8a35a8e27f3a6cc76adeb0945de9d42d2060b37b75e3c",
+    "development/workflow/design_rounds.py": "f4041275f1666280172a2f9702eb7345db84e1ebcf1f4266e5711b826731300f",
+    "development/workflow/policy.py": "53225f8420fc510219c5e9ccfcc7e6688f495694002c4fcb1fe54a11727a2ed7",
+    "development/workflow/service.py": "dc2273b5f5f5eabce2f7a1e6b780a17151483d285041aa60cc431af77c5b1740",
+    "development/workflow/m1.py": "b531bb20cc61e86c9284f29e41abf8c13196bc41ff8480d13f8fabf9e47796f0",
+    "development/variant_report/m1.py": "02d61c1282179973fbb4674b4fb73a7309fe8056fa9c9fd517598d3eb3f2fdac",
+    "development/variant_report/policy.py": "1c016291eae02d323f8225ca97c7c0effd7fd4e6cdc429274004b8d9636f5281",
+    "development/variant_report/source.py": "3e8179c579376adda56f1e504f54b1320094e5140fb2f86c8cbb4d2f78373c43",
+    "development/variant_report/compute.py": "ad7c2198e9df2f97b8287496798fc034a51dd93316cc473a16d81894f0b0b01a",
+    "development/epitope_protection/policy.py": "638d781d5b0b69f07caa5d842d8194354f4088d4f0202386fe4b4269cd236f6c",
+    "development/epitope_protection/source.py": "a86e34111116827e0030ae3b2659cee3941e4f77260abcc49e6be631664979be",
+    "development/n12_prediction_evidence.py": "219f6fccb471b9c6f407de1240544eab4ef76fafb8c226f92dc5b8d90b67212e",
+    "development/local_delivery/source.py": "2bb64d6077938bf6ce3e1b8ada8d9e113f399ca2c13ff4315de80be43529f571",
+    "development/local_delivery/compute.py": "a8d035acbcfd123a7ebf01ed74ede5d0b1411678d4ec5bdab01171a752272d12",
+    "development/local_delivery/policy.py": "96c9350dd6f38257bbdeebdbe244bab1c03be3c30e3d208b1fc36e76ec804672",
+    "service_api/user_report.py": "b1e91cffd22091bb38c8b26d4f37bacab627b616fdf3d732d5e00169d720336f",
+    "development/af3/policy.py": "86a9f6a1b1d8402617dee71e8ae6a07288e9b4503a3f4ae3ad70e022a3dd095c",
+    "development/af3/result.py": "8ed6f412603d3412aceef0e4d4dd496d8e0661f5c2f4be424e7ad0683afbcd7e",
+    "development/af3/source.py": "e5eacf58aa624043617f12546c870c0ce31d59009866b32d212ae5ac5721fae8"
+  },
+  "before_generation": 96,
+  "idle": null,
+  "blocker": "Existing deployment unavailable; scheduling reports Insufficient memory. No node read RBAC.",
+  "pods": [
+    {
+      "name": "antigen-design-54694b6f7b-dqqwd",
+      "status": {
+        "conditions": [
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-26T15:07:31Z",
+            "message": "0/3 nodes are available: 1 6/6 CardTypeMismatch, 1 Insufficient memory, 1 node(s) were unschedulable. no new claims to deallocate, preemption: 0/3 nodes are available: 1 Preemption is not helpful for scheduling, 2 No preemption victims found for incoming pod.",
+            "observedGeneration": 1,
+            "reason": "Unschedulable",
+            "status": "False",
+            "type": "PodScheduled"
+          }
+        ],
+        "phase": "Pending",
+        "qosClass": "Burstable"
+      }
+    }
+  ],
+  "prepared_sha256": {
+    "configmap.yaml": "bc359af4f0393d5c2f79d2dcc467dcfd0d7cde33a50fb9ad388fdda54036b354",
+    "deployment.patch.json": "25722df670dd977ba3cfe53ffe3d614bcf5c037a23f07cffc8728f112a6d3bdf",
+    "rollback.patch.json": "80173eb76a2db261208dc23d32d3646720eb752f09e15182b0a6a29a7a2d0a43"
+  }
+}

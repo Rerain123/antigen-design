@@ -1,0 +1,782 @@
+{
+  "campaign_id": "p0-s07-m1b-20260901-a",
+  "classification": "NON_PRODUCTION_OUTPUT_AUDIT",
+  "production_deployment_status": "NOT_DEPLOYED",
+  "generated_at": "2026-09-01T09:26:58.199177Z",
+  "decision_scope": "S07-D09 evidence only",
+  "boundary": {
+    "contains_scientific_decisions": false,
+    "contains_structure_selection": false,
+    "contains_workflow_route": false,
+    "connected_to_mcp_or_workflow": false,
+    "production_defaults_approved": false
+  },
+  "run": {
+    "execution_status": "COMPLETE_WITH_CAPTURE_FAILURES",
+    "started_at": "2026-09-01T09:25:46.145482Z",
+    "finished_at": "2026-09-01T09:26:58.025467Z",
+    "capture_count": 29,
+    "capture_process_failure_count": 5
+  },
+  "inventory": {
+    "file_count": 145,
+    "total_size_bytes": 9228326,
+    "empty_file_count": 31,
+    "artifact_type_count": 18,
+    "artifact_types": [
+      {
+        "artifact_type": "afdb_metadata_response",
+        "file_count": 3,
+        "total_size_bytes": 21002,
+        "minimum_size_bytes": 101,
+        "median_size_bytes": 1990,
+        "maximum_size_bytes": 18911
+      },
+      {
+        "artifact_type": "audit_plan",
+        "file_count": 1,
+        "total_size_bytes": 3836,
+        "minimum_size_bytes": 3836,
+        "median_size_bytes": 3836,
+        "maximum_size_bytes": 3836
+      },
+      {
+        "artifact_type": "blast_archive",
+        "file_count": 4,
+        "total_size_bytes": 984,
+        "minimum_size_bytes": 246,
+        "median_size_bytes": 246,
+        "maximum_size_bytes": 246
+      },
+      {
+        "artifact_type": "campaign_metadata",
+        "file_count": 3,
+        "total_size_bytes": 8572,
+        "minimum_size_bytes": 730,
+        "median_size_bytes": 3747,
+        "maximum_size_bytes": 4095
+      },
+      {
+        "artifact_type": "captured_http_request",
+        "file_count": 5,
+        "total_size_bytes": 3718,
+        "minimum_size_bytes": 653,
+        "median_size_bytes": 710,
+        "maximum_size_bytes": 970
+      },
+      {
+        "artifact_type": "cli_stream",
+        "file_count": 10,
+        "total_size_bytes": 766,
+        "minimum_size_bytes": 0,
+        "median_size_bytes": 47,
+        "maximum_size_bytes": 386
+      },
+      {
+        "artifact_type": "exchange_record",
+        "file_count": 29,
+        "total_size_bytes": 465620,
+        "minimum_size_bytes": 1315,
+        "median_size_bytes": 19553,
+        "maximum_size_bytes": 19674
+      },
+      {
+        "artifact_type": "http_response_headers",
+        "file_count": 24,
+        "total_size_bytes": 8819,
+        "minimum_size_bytes": 274,
+        "median_size_bytes": 373,
+        "maximum_size_bytes": 506
+      },
+      {
+        "artifact_type": "http_transport_stderr",
+        "file_count": 24,
+        "total_size_bytes": 0,
+        "minimum_size_bytes": 0,
+        "median_size_bytes": 0,
+        "maximum_size_bytes": 0
+      },
+      {
+        "artifact_type": "other_json",
+        "file_count": 7,
+        "total_size_bytes": 9075,
+        "minimum_size_bytes": 627,
+        "median_size_bytes": 663,
+        "maximum_size_bytes": 4320
+      },
+      {
+        "artifact_type": "protein_fasta",
+        "file_count": 4,
+        "total_size_bytes": 957,
+        "minimum_size_bytes": 126,
+        "median_size_bytes": 185,
+        "maximum_size_bytes": 460
+      },
+      {
+        "artifact_type": "rcsb_entry_metadata",
+        "file_count": 4,
+        "total_size_bytes": 45240,
+        "minimum_size_bytes": 9935,
+        "median_size_bytes": 11298,
+        "maximum_size_bytes": 12708
+      },
+      {
+        "artifact_type": "rcsb_mmcif",
+        "file_count": 4,
+        "total_size_bytes": 7934148,
+        "minimum_size_bytes": 103220,
+        "median_size_bytes": 435941,
+        "maximum_size_bytes": 6959046
+      },
+      {
+        "artifact_type": "rcsb_page_request",
+        "file_count": 5,
+        "total_size_bytes": 3718,
+        "minimum_size_bytes": 653,
+        "median_size_bytes": 710,
+        "maximum_size_bytes": 970
+      },
+      {
+        "artifact_type": "rcsb_pagination_record",
+        "file_count": 5,
+        "total_size_bytes": 2670,
+        "minimum_size_bytes": 534,
+        "median_size_bytes": 534,
+        "maximum_size_bytes": 534
+      },
+      {
+        "artifact_type": "rcsb_polymer_entity_metadata",
+        "file_count": 4,
+        "total_size_bytes": 367326,
+        "minimum_size_bytes": 22234,
+        "median_size_bytes": 92356,
+        "maximum_size_bytes": 160380
+      },
+      {
+        "artifact_type": "rcsb_polymer_instance_metadata",
+        "file_count": 4,
+        "total_size_bytes": 54565,
+        "minimum_size_bytes": 7136,
+        "median_size_bytes": 12650,
+        "maximum_size_bytes": 22129
+      },
+      {
+        "artifact_type": "rcsb_search_response",
+        "file_count": 5,
+        "total_size_bytes": 297310,
+        "minimum_size_bytes": 0,
+        "median_size_bytes": 87367,
+        "maximum_size_bytes": 121326
+      }
+    ]
+  },
+  "content_duplicates": {
+    "scope": "byte-identical non-empty files",
+    "duplicate_group_count": 7,
+    "redundant_copy_count": 11,
+    "groups": [
+      {
+        "sha256": "28bab96527f3a647a4c3021456fc07a427bf6a7e6745a5dc0b6332c9fe8c85bd",
+        "size_bytes": 653,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-001/page-0001/request.body.json",
+          "requests/rcsb/P0-DISC-001/page-0001.json"
+        ]
+      },
+      {
+        "sha256": "330742d3762e1048a38300dc6d494865cd08d6d90fea24f5f8f3d42f53b20d6d",
+        "size_bytes": 246,
+        "copy_count": 4,
+        "paths": [
+          "evidence/blast/P0-DISC-001/search/result.asn",
+          "evidence/blast/P0-DISC-002/search/result.asn",
+          "evidence/blast/P0-DISC-003/search/result.asn",
+          "evidence/blast/P0-DISC-005/search/result.asn"
+        ]
+      },
+      {
+        "sha256": "3640bb6b099148ae1ed3640d5a5837b3592a738497154b2b291a3abf9badccf4",
+        "size_bytes": 675,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-005/page-0001/request.body.json",
+          "requests/rcsb/P0-DISC-005/page-0001.json"
+        ]
+      },
+      {
+        "sha256": "837db1d33da4b29da2f952cde8225671fac709ebd050e9db25dee7ac606fcc82",
+        "size_bytes": 710,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-004/page-0001/request.body.json",
+          "requests/rcsb/P0-DISC-004/page-0001.json"
+        ]
+      },
+      {
+        "sha256": "8c9fc99e0904de81952da71e91d59c88ddc207286df5a1a4d1dca32b4b2f7829",
+        "size_bytes": 970,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-002/page-0001/request.body.json",
+          "requests/rcsb/P0-DISC-002/page-0001.json"
+        ]
+      },
+      {
+        "sha256": "d5b77b9c29a21016135901f2454dcd67a1890e3c56299b846fc0aa32d1a41c73",
+        "size_bytes": 710,
+        "copy_count": 2,
+        "paths": [
+          "evidence/rcsb-search/P0-DISC-003/page-0001/request.body.json",
+          "requests/rcsb/P0-DISC-003/page-0001.json"
+        ]
+      },
+      {
+        "sha256": "d6bda2fca7513667644d61b39f40e676d924b7aa32a03c1ff0e2d83648727532",
+        "size_bytes": 95,
+        "copy_count": 4,
+        "paths": [
+          "evidence/blast/P0-DISC-001/search/stderr.txt",
+          "evidence/blast/P0-DISC-002/search/stderr.txt",
+          "evidence/blast/P0-DISC-003/search/stderr.txt",
+          "evidence/blast/P0-DISC-005/search/stderr.txt"
+        ]
+      }
+    ],
+    "empty_files_excluded": 31
+  },
+  "rcsb_pagination": {
+    "cases": [
+      {
+        "case_id": "P0-DISC-001",
+        "page_count": 1,
+        "page_size": 100,
+        "reported_total_count": 1136,
+        "returned_result_count": 100,
+        "unique_polymer_entity_count": 100,
+        "unique_entry_count": 98,
+        "polymer_entities_sharing_an_entry_count": 2,
+        "entries_with_multiple_returned_entities": [
+          {
+            "entry_id": "22TU",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "28LN",
+            "entity_count": 2
+          }
+        ],
+        "across_page_duplicate_occurrences": 0,
+        "reported_total_changed_between_pages": false,
+        "stop_reason": "SOURCE_OR_TRANSPORT_FAILURE",
+        "audit_guard_reached": false,
+        "all_reported_results_captured": false,
+        "pages": [
+          {
+            "page": "page-0001",
+            "start": 0,
+            "rows_requested": 100,
+            "http_status": null,
+            "reported_total_count": 1136,
+            "result_count": 100,
+            "within_page_duplicate_occurrences": 0
+          }
+        ]
+      },
+      {
+        "case_id": "P0-DISC-002",
+        "page_count": 1,
+        "page_size": 100,
+        "reported_total_count": 236,
+        "returned_result_count": 100,
+        "unique_polymer_entity_count": 100,
+        "unique_entry_count": 100,
+        "polymer_entities_sharing_an_entry_count": 0,
+        "entries_with_multiple_returned_entities": [],
+        "across_page_duplicate_occurrences": 0,
+        "reported_total_changed_between_pages": false,
+        "stop_reason": "SOURCE_OR_TRANSPORT_FAILURE",
+        "audit_guard_reached": false,
+        "all_reported_results_captured": false,
+        "pages": [
+          {
+            "page": "page-0001",
+            "start": 0,
+            "rows_requested": 100,
+            "http_status": null,
+            "reported_total_count": 236,
+            "result_count": 100,
+            "within_page_duplicate_occurrences": 0
+          }
+        ]
+      },
+      {
+        "case_id": "P0-DISC-003",
+        "page_count": 1,
+        "page_size": 100,
+        "reported_total_count": 125,
+        "returned_result_count": 100,
+        "unique_polymer_entity_count": 100,
+        "unique_entry_count": 84,
+        "polymer_entities_sharing_an_entry_count": 16,
+        "entries_with_multiple_returned_entities": [
+          {
+            "entry_id": "3JCR",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "5O9Z",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6AH0",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6AHD",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6QW6",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "6QX9",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "7ABG",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8H6E",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8H6J",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8H6K",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8H6L",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8QO9",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8QXD",
+            "entity_count": 3
+          },
+          {
+            "entry_id": "8QZS",
+            "entity_count": 2
+          },
+          {
+            "entry_id": "8R08",
+            "entity_count": 2
+          }
+        ],
+        "across_page_duplicate_occurrences": 0,
+        "reported_total_changed_between_pages": false,
+        "stop_reason": "SOURCE_OR_TRANSPORT_FAILURE",
+        "audit_guard_reached": false,
+        "all_reported_results_captured": false,
+        "pages": [
+          {
+            "page": "page-0001",
+            "start": 0,
+            "rows_requested": 100,
+            "http_status": null,
+            "reported_total_count": 125,
+            "result_count": 100,
+            "within_page_duplicate_occurrences": 0
+          }
+        ]
+      },
+      {
+        "case_id": "P0-DISC-004",
+        "page_count": 1,
+        "page_size": 100,
+        "reported_total_count": null,
+        "returned_result_count": 0,
+        "unique_polymer_entity_count": 0,
+        "unique_entry_count": 0,
+        "polymer_entities_sharing_an_entry_count": 0,
+        "entries_with_multiple_returned_entities": [],
+        "across_page_duplicate_occurrences": 0,
+        "reported_total_changed_between_pages": false,
+        "stop_reason": "SOURCE_OR_TRANSPORT_FAILURE",
+        "audit_guard_reached": false,
+        "all_reported_results_captured": false,
+        "pages": [
+          {
+            "page": "page-0001",
+            "start": 0,
+            "rows_requested": 100,
+            "http_status": null,
+            "reported_total_count": null,
+            "result_count": 0,
+            "within_page_duplicate_occurrences": 0
+          }
+        ]
+      },
+      {
+        "case_id": "P0-DISC-005",
+        "page_count": 1,
+        "page_size": 100,
+        "reported_total_count": null,
+        "returned_result_count": 0,
+        "unique_polymer_entity_count": 0,
+        "unique_entry_count": 0,
+        "polymer_entities_sharing_an_entry_count": 0,
+        "entries_with_multiple_returned_entities": [],
+        "across_page_duplicate_occurrences": 0,
+        "reported_total_changed_between_pages": false,
+        "stop_reason": "SOURCE_OR_TRANSPORT_FAILURE",
+        "audit_guard_reached": false,
+        "all_reported_results_captured": false,
+        "pages": [
+          {
+            "page": "page-0001",
+            "start": 0,
+            "rows_requested": 100,
+            "http_status": null,
+            "reported_total_count": null,
+            "result_count": 0,
+            "within_page_duplicate_occurrences": 0
+          }
+        ]
+      }
+    ],
+    "case_count": 5,
+    "total_page_count": 5,
+    "cross_case_polymer_entity_overlap_count": 0,
+    "cross_case_polymer_entity_overlaps": [],
+    "cross_case_entry_overlap_count": 0,
+    "cross_case_entry_overlaps": [],
+    "deduplication_decision_made": false
+  },
+  "rcsb_materialization": {
+    "probe_count": 4,
+    "response_body_count": 16,
+    "response_body_total_size_bytes": 8401279,
+    "probes": [
+      {
+        "probe_id": "P0-M1B-PROBE-1UBQ",
+        "case_id": "P0-DISC-001",
+        "entry_id": "1UBQ",
+        "entity_id": "1",
+        "chain_id": "A",
+        "frozen_probe_not_a_selection": true,
+        "response_body_count": 4,
+        "response_body_total_size_bytes": 153344,
+        "http_status_by_kind": {
+          "entry": null,
+          "mmcif": null,
+          "polymer-entity": null,
+          "polymer-instance": null
+        },
+        "response_bodies": [
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-001/P0-M1B-PROBE-1UBQ/entry/response.json",
+            "size_bytes": 9935,
+            "sha256": "5a7d463af93a3f95b4fe52d6cbecbfaa32f2ec27c72a7c9397e10a8eaaf97bfe"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-001/P0-M1B-PROBE-1UBQ/mmcif/1UBQ.cif",
+            "size_bytes": 103220,
+            "sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-001/P0-M1B-PROBE-1UBQ/polymer-entity/response.json",
+            "size_bytes": 26236,
+            "sha256": "e296d0d87fa7f8fa584f00cd52f26d18ac40d33badb6a3a090eafe950971ba14"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-001/P0-M1B-PROBE-1UBQ/polymer-instance/response.json",
+            "size_bytes": 13953,
+            "sha256": "fdf3f834b91e41d0aa42148069ed64fc9f7159b0341d8561d341e45b7d67a845"
+          }
+        ]
+      },
+      {
+        "probe_id": "P0-M1B-PROBE-6XRE",
+        "case_id": "P0-DISC-002",
+        "entry_id": "6XRE",
+        "entity_id": "13",
+        "chain_id": "M",
+        "frozen_probe_not_a_selection": true,
+        "response_body_count": 4,
+        "response_body_total_size_bytes": 7152827,
+        "http_status_by_kind": {
+          "entry": null,
+          "mmcif": null,
+          "polymer-entity": null,
+          "polymer-instance": null
+        },
+        "response_bodies": [
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-6XRE/entry/response.json",
+            "size_bytes": 11272,
+            "sha256": "51da495a37317781c1b67a7c4266bfe1a73ade26084b5ce5f477842c9ebb16c6"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-6XRE/mmcif/6XRE.cif",
+            "size_bytes": 6959046,
+            "sha256": "48b2a9fa85e6f19adf4672427bb226ed8fc92af8567d09e8915aacad359a7249"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-6XRE/polymer-entity/response.json",
+            "size_bytes": 160380,
+            "sha256": "891cf08a3ed799705022d3625ea1b2133954987dbe047a36a4be46232dbae4c2"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-6XRE/polymer-instance/response.json",
+            "size_bytes": 22129,
+            "sha256": "41d503d3daee841d612b039a7585d285259d93b61c6ea20c5d471d7119d8f0a2"
+          }
+        ]
+      },
+      {
+        "probe_id": "P0-M1B-PROBE-5XZC",
+        "case_id": "P0-DISC-002",
+        "entry_id": "5XZC",
+        "entity_id": "2",
+        "chain_id": "B",
+        "frozen_probe_not_a_selection": true,
+        "response_body_count": 4,
+        "response_body_total_size_bytes": 447263,
+        "http_status_by_kind": {
+          "entry": null,
+          "mmcif": null,
+          "polymer-entity": null,
+          "polymer-instance": null
+        },
+        "response_bodies": [
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-5XZC/entry/response.json",
+            "size_bytes": 12708,
+            "sha256": "ac61cd42ed0609fbcbbfacd3bb664da50b374789ebdcfbc0f61e53a903b64efe"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-5XZC/mmcif/5XZC.cif",
+            "size_bytes": 268943,
+            "sha256": "744ea7b74175865b1c1c3538d714a75ac10ac5cbee166c0547aa2c2a29f74b9a"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-5XZC/polymer-entity/response.json",
+            "size_bytes": 158476,
+            "sha256": "98389ba98b95bf3e6cdd75dc4acf0c1824725165ad86f29597ca02dcb6c88c6a"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-002/P0-M1B-PROBE-5XZC/polymer-instance/response.json",
+            "size_bytes": 7136,
+            "sha256": "f2f255ab9e881f3d40a7db981c239c3e7284166023fff0da0accd329b21a823f"
+          }
+        ]
+      },
+      {
+        "probe_id": "P0-M1B-PROBE-6PPV",
+        "case_id": "P0-DISC-003",
+        "entry_id": "6PPV",
+        "entity_id": "1",
+        "chain_id": "A",
+        "frozen_probe_not_a_selection": true,
+        "response_body_count": 4,
+        "response_body_total_size_bytes": 647845,
+        "http_status_by_kind": {
+          "entry": null,
+          "mmcif": null,
+          "polymer-entity": null,
+          "polymer-instance": null
+        },
+        "response_bodies": [
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-003/P0-M1B-PROBE-6PPV/entry/response.json",
+            "size_bytes": 11325,
+            "sha256": "c5a69a96989515df61f45ab0eca0e383bcbe2ff22aeea7f55bb00ae0b524b349"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-003/P0-M1B-PROBE-6PPV/mmcif/6PPV.cif",
+            "size_bytes": 602939,
+            "sha256": "06564ae8e3b5cb93c079825d51cbd4b898cacbc6bdd655948742f645bb92cf68"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-003/P0-M1B-PROBE-6PPV/polymer-entity/response.json",
+            "size_bytes": 22234,
+            "sha256": "9f6153bdf90cde6a50e194c93f91423d0fbac7c44c8bcd90ce639ce21750208e"
+          },
+          {
+            "path": "evidence/rcsb-materialized/P0-DISC-003/P0-M1B-PROBE-6PPV/polymer-instance/response.json",
+            "size_bytes": 11347,
+            "sha256": "a6c84aab310278bee8abca325b8cee3692573dbe34093ed9cb1f4f93c2dc88af"
+          }
+        ]
+      }
+    ]
+  },
+  "afdb": {
+    "case_count": 3,
+    "cases": [
+      {
+        "case_id": "P0-DISC-002",
+        "queried_identifier": "P04637",
+        "identifier_was_explicit_not_inferred": true,
+        "metadata_http_status": null,
+        "metadata_shape": "MODEL_LIST",
+        "model_entity_id": "AF-P04637-F1",
+        "latest_version": 6,
+        "response_body_count": 1,
+        "response_body_total_size_bytes": 18911,
+        "response_bodies": [
+          {
+            "path": "evidence/afdb/P0-DISC-002/P04637/metadata/response.json",
+            "size_bytes": 18911,
+            "sha256": "1ef436288de2bfd9dbc9a24147b758fbe09bd4a1e27db56d0ced3e5bac215589"
+          }
+        ]
+      },
+      {
+        "case_id": "P0-DISC-004",
+        "queried_identifier": "O15116",
+        "identifier_was_explicit_not_inferred": true,
+        "metadata_http_status": null,
+        "metadata_shape": "MODEL_LIST",
+        "model_entity_id": "AF-O15116-F1",
+        "latest_version": 6,
+        "response_body_count": 1,
+        "response_body_total_size_bytes": 1990,
+        "response_bodies": [
+          {
+            "path": "evidence/afdb/P0-DISC-004/O15116/metadata/response.json",
+            "size_bytes": 1990,
+            "sha256": "4106b00fa105ad20d8e4532c4f79c892837fed09fd30e6f3eda9b75279940341"
+          }
+        ]
+      },
+      {
+        "case_id": "P0-DISC-005",
+        "queried_identifier": "WP_505187596.1",
+        "identifier_was_explicit_not_inferred": true,
+        "metadata_http_status": null,
+        "metadata_shape": "OBJECT_OR_ERROR",
+        "model_entity_id": null,
+        "latest_version": null,
+        "response_body_count": 1,
+        "response_body_total_size_bytes": 101,
+        "response_bodies": [
+          {
+            "path": "evidence/afdb/P0-DISC-005/WP_505187596.1/metadata/response.json",
+            "size_bytes": 101,
+            "sha256": "7d852982aa15df11e9f49715a30540091585db875ec248414b9f79674c2196b3"
+          }
+        ]
+      }
+    ]
+  },
+  "blast": {
+    "profile_id": "p0-s07-blast-discovery-v0.1",
+    "profile_classification": "PROVISIONAL_DISCOVERY_PROFILE",
+    "production_approved": false,
+    "case_count": 4,
+    "cases": [
+      {
+        "case_id": "P0-DISC-001",
+        "tabular_hit_count": null,
+        "discovery_profile_cap": 100,
+        "cap_was_reached": false,
+        "cap_is_production_default": false,
+        "search_exit_code": 2,
+        "archive": {
+          "path": "evidence/blast/P0-DISC-001/search/result.asn",
+          "size_bytes": 246,
+          "sha256": "330742d3762e1048a38300dc6d494865cd08d6d90fea24f5f8f3d42f53b20d6d"
+        },
+        "tabular": null,
+        "json": null
+      },
+      {
+        "case_id": "P0-DISC-002",
+        "tabular_hit_count": null,
+        "discovery_profile_cap": 100,
+        "cap_was_reached": false,
+        "cap_is_production_default": false,
+        "search_exit_code": 2,
+        "archive": {
+          "path": "evidence/blast/P0-DISC-002/search/result.asn",
+          "size_bytes": 246,
+          "sha256": "330742d3762e1048a38300dc6d494865cd08d6d90fea24f5f8f3d42f53b20d6d"
+        },
+        "tabular": null,
+        "json": null
+      },
+      {
+        "case_id": "P0-DISC-003",
+        "tabular_hit_count": null,
+        "discovery_profile_cap": 100,
+        "cap_was_reached": false,
+        "cap_is_production_default": false,
+        "search_exit_code": 2,
+        "archive": {
+          "path": "evidence/blast/P0-DISC-003/search/result.asn",
+          "size_bytes": 246,
+          "sha256": "330742d3762e1048a38300dc6d494865cd08d6d90fea24f5f8f3d42f53b20d6d"
+        },
+        "tabular": null,
+        "json": null
+      },
+      {
+        "case_id": "P0-DISC-005",
+        "tabular_hit_count": null,
+        "discovery_profile_cap": 100,
+        "cap_was_reached": false,
+        "cap_is_production_default": false,
+        "search_exit_code": 2,
+        "archive": {
+          "path": "evidence/blast/P0-DISC-005/search/result.asn",
+          "size_bytes": 246,
+          "sha256": "330742d3762e1048a38300dc6d494865cd08d6d90fea24f5f8f3d42f53b20d6d"
+        },
+        "tabular": null,
+        "json": null
+      }
+    ]
+  },
+  "exchanges": {
+    "exchange_count": 29,
+    "outcome_counts": {
+      "CLI_FAILURE": 5,
+      "HTTP_STATUS_UNKNOWN": 24
+    },
+    "integrity_issue_count": 0,
+    "integrity_issues": []
+  },
+  "traceability_gaps": [
+    {
+      "gap": "REMOTE_DATABASE_RELEASE_NOT_FROZEN",
+      "applies_to": [
+        "RCSB",
+        "AlphaFold DB"
+      ],
+      "available_evidence": "request, response, retrieval timestamps, URL, headers, and SHA-256"
+    },
+    {
+      "gap": "FULL_CANDIDATE_MATERIALIZATION_NOT_PERFORMED",
+      "applies_to": [
+        "RCSB search result set"
+      ],
+      "available_evidence": "complete search pages plus four frozen output-composition probes"
+    }
+  ],
+  "d09_review_topics": [
+    "main result versus artifact references",
+    "identity keys at entity/entry/chain/model/assembly levels",
+    "query snapshot contents and source version evidence",
+    "pagination contract and separation of safety guards from production limits"
+  ]
+}

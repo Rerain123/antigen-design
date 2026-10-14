@@ -1,0 +1,132 @@
+{
+  "scope": "W1-04_G0_PREPARATION_ONLY",
+  "model_execution": "NOT_RUN",
+  "production_status": "NOT_DEPLOYED",
+  "input_provenance": [
+    {
+      "path": "discovery/t01-phase1-real/w1/structure-prediction-20260905/official_sources/esm/cookbook/tutorials/esmfold2_local_gpu.ipynb",
+      "sha256": "88b811ab6bffe427816b235fb77ef9ad06a1b51cf145b548bcf61c4e8bb49f6e",
+      "locator": "code cell UBIQUITIN assignment"
+    },
+    {
+      "path": "tests/fixtures/structure_mapping/real/1UBQ.fasta",
+      "sha256": "50e96d2705b356a70b0d7163da2d12271126afa5eda3fa5ddd5aead72731280f",
+      "role": "Existing local identical-sequence cross-check; no historical query"
+    }
+  ],
+  "sequence_sha256": "233b4b0b8c4616095bc3249f9375fc345d32af7deaef07117d0383c51d6f19aa",
+  "af3_profile": {
+    "source_commit": "c0f97eda2f1f482fd94d3a38bece18c7069b4a5c",
+    "num_diffusion_samples": 5,
+    "model_seeds": [
+      1
+    ],
+    "data_pipeline": true,
+    "inference": true,
+    "network_mode": "none",
+    "execution_status": "NOT_RUN"
+  },
+  "esm_profile": {
+    "candidate_repository": "biohub/ESMFold2",
+    "candidate_revision": "e1e189d0f5fb70c2693da2332eca4443c0ccccd6",
+    "code_commit": "bf343ba264b650dff7a073643725f9aaa1fdbe8d",
+    "num_loops": 20,
+    "num_sampling_steps": 200,
+    "num_diffusion_samples": 1,
+    "seed": 1,
+    "lm_dropout": 0.3,
+    "msa_max_depth": 1024,
+    "msa_column_mask_rate": 0.1,
+    "kernel_backend": "Default, must record resolved backend at runtime",
+    "offline_assets": [
+      "fold checkpoint/config",
+      "ESMC-6B 6 shards/index/config",
+      "ccd.pkl"
+    ],
+    "network_mode": "none",
+    "execution_status": "NOT_RUN",
+    "scientific_parameter_approval": "PENDING_G1"
+  },
+  "cases": [
+    {
+      "id": "PRED-01",
+      "engine": "AF3",
+      "input": "ubiquitin76.fasta",
+      "kind": "OFFICIAL_TUTORIAL_SEQUENCE",
+      "checks": [
+        "Original local data pipeline input: MSA/template fields unset, never silently emptied",
+        "One seed and 5 diffusion samples; save every original mmCIF and confidence JSON",
+        "Compare project monomer pTM choice with official ranking; check has_clash for selected sample",
+        "Extract C-alpha pLDDT, explicitly normalize 0-100 to 0-1; preserve 76 input positions",
+        "Record runtime/GPU/RSS/network-none, errors and all hashes"
+      ],
+      "execution_status": "DECLARED_NOT_RUN",
+      "scientific_reference_status": "NOT_SIGNED_OFF"
+    },
+    {
+      "id": "PRED-02",
+      "engine": "ESMFold2",
+      "input": "ubiquitin76.fasta",
+      "kind": "OFFICIAL_TUTORIAL_SEQUENCE",
+      "checks": [
+        "Use pinned standard checkpoint, ESMC-6B and CCD; Fast is a separate candidate",
+        "Record wrapper defaults and fixed seed; no hidden performance overrides",
+        "Save mmCIF, complete raw pLDDT/pTM and all returned outputs with dtype/shape",
+        "Verify model raw API scale and exported B-factor scale separately",
+        "Resolve chain/token positions against original 76-aa input; no guessed labels",
+        "Offline missing nested backbone/CCD must fail, never fetch them during prediction"
+      ],
+      "execution_status": "DECLARED_NOT_RUN",
+      "scientific_reference_status": "NOT_SIGNED_OFF"
+    },
+    {
+      "id": "PRED-03",
+      "engine": "AF3",
+      "input": "authentic_precomputed_data.json",
+      "kind": "NOT_YET_AVAILABLE",
+      "checks": [
+        "Local CPU data stage produces hash-bound MSA/templates for exact sequence",
+        "GPU inference with --run_data_pipeline=false must reuse actual data",
+        "Blank synthetic MSA/template fields are not evidence for the intended MSA pipeline"
+      ],
+      "execution_status": "DECLARED_NOT_RUN",
+      "scientific_reference_status": "NOT_SIGNED_OFF"
+    },
+    {
+      "id": "PRED-04",
+      "engine": "both",
+      "input": "fault_inputs",
+      "kind": "SYNTHETIC_INPUT_AND_FAULT_INJECTION_PLANNED",
+      "checks": [
+        "Reject empty/illegal input, missing/corrupt weights and mismatched sequence output",
+        "Truncated confidence arrays, NaN/Inf, unknown scale and missing C-alpha require explicit failure/review",
+        "pTM unavailable remains null; no guessed topology reliability",
+        "Timeout/cancel only this job; preserve the actual reason"
+      ],
+      "execution_status": "DECLARED_NOT_RUN",
+      "scientific_reference_status": "NOT_SIGNED_OFF"
+    },
+    {
+      "id": "PRED-05",
+      "engine": "AF3_then_ESMFold2",
+      "input": "length_999_1000_1500_1501.fasta",
+      "kind": "SYNTHETIC_BOUNDARY_INPUTS_NOT_MODEL_BENCHMARK",
+      "checks": [
+        "1000/1500/1501 branches follow original warning/fallback rules",
+        "Do not create real OOM or wait 2 hours merely to test state routing",
+        "A short development timeout must not be mislabeled the expert >2-hour scientific fallback condition",
+        "Record injected fault evidence separately from real long-sequence prediction"
+      ],
+      "execution_status": "DECLARED_NOT_RUN",
+      "scientific_reference_status": "NOT_SIGNED_OFF"
+    }
+  ],
+  "execution_preconditions": [
+    "Suitable concrete server profile and bounded work directory",
+    "Asset identities + local SHA-256 verified; dependency image pinned",
+    "Applicable AF3 model/output terms recorded by user organization",
+    "Local database or authentic precomputed MSA/template inputs available",
+    "Actual inference remains separate from metadata/GPU-visibility checks"
+  ],
+  "scientific_accuracy": "No accuracy estimate; public example is not independent hold-out"
+}

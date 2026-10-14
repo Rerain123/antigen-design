@@ -1,0 +1,97 @@
+{
+  "status": "IEDB_N03_DEPLOYED_READONLY_VERIFIED",
+  "generation": 82,
+  "service": {
+    "source_hashes": {
+      "service_api/himat.py": "3d946d039cb5146976b1b0804f1b193c26625b4e88437a312bff260ce9864137",
+      "development/blast/policy.py": "e35c8045a02051df81a50da57c9f8b30f965286fe26c6c77bc786915628846f7",
+      "development/blast/result.py": "52f102294503873d26e0a8af22f2ca8ed1ad7c4c3b2fe024bbdb3b933778ca84",
+      "development/blast/worker.py": "e1420f86b9666a416d3490bae6f9c87cf7405723f56db8d79ee4135cea033a15",
+      "development/blast/iedb.py": "6d88ec40409f2cad7381bbd89c9bd63185f7c8e14217d4d53b90252d63e889d0",
+      "development/epitope_map/policy.py": "c2b68300d1af6b13620efcbd412f2017614953076ae1955be7fc23dee784d889",
+      "development/epitope_map/result.py": "002870b65baba628314a4aaec1de5b353e84dbe70b964fad28eb79b13b4c9511",
+      "development/design_backend/permissions.py": "0038ebbb8ca5876a0f6c507836584739d70ca9ffe187201dc3ec03c9d890c7fe",
+      "development/docker.py": "acc12ca29911b177c77499b3b87955e52455b2743e323b6dc4a241715c95c8e8",
+      "development/supervisor.py": "e2c3d0595298a3e8286d30f432f2faa8df99f11613009fd75cb362897f89e530"
+    },
+    "blast_original_state": "failed",
+    "blast_native_contract_pass": true,
+    "blast_replay_hsps": 500,
+    "blast_replay_qualifying_hsps": 500,
+    "tool_names": [
+      "workflow_submit_sequence",
+      "workflow_check"
+    ],
+    "card_summary": "任务 t01p1r-job-120f08a88827456e83bfdf5e6ef19b92 已生成工程报告；后端结论 DESIGN_INPUTS_UNAVAILABLE。计算含 2 项失败，报告交付不表示计算成功。科学资格 CLOSED / false / NOT_DEPLOYED。",
+    "card_issues": [
+      "N03 blast: failed / OUTPUT_INVALID",
+      "N16 codon: skipped / EXPRESSION_HOST_NOT_PROVIDED",
+      "N11 design: skipped / DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "N09 domains: skipped / DATABASE_NOT_PROVIDED",
+      "N08 homology: skipped / DATABASE_NOT_PROVIDED",
+      "N05 netmhc: skipped / ALLELE_PANEL_NOT_PROVIDED",
+      "N01 prediction: failed / TOOL_FAILED",
+      "N13 protection: skipped / DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "N12 rescore: skipped / DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "N14 stability: skipped / DESIGN_APPLICABILITY_INPUT_INSUFFICIENT",
+      "N01 structure: skipped / PREDICTION_UNAVAILABLE",
+      "variant_report: DEVELOPMENT_UNREVIEWED",
+      "wt_draft: DEVELOPMENT_UNREVIEWED",
+      "wt_reference: DEVELOPMENT_UNREVIEWED",
+      "N16: DNA_NOT_PROVIDED",
+      "delivery: OI_013_AGENT_C_INTERFACE_UNSIGNED",
+      "delivery: OI_014_CANDIDATE_RECORD_MAPPING_UNSIGNED",
+      "delivery: SCIENTIFIC_GATES_NOT_RELEASED"
+    ],
+    "downloads": [
+      {
+        "kind": "attachment_report",
+        "sha256": "7a1e10dfb39680ca19231fb091c0e014dce38d2ca41ca57196018325a92a417d",
+        "bytes": 2258
+      },
+      {
+        "kind": "attachment_zip",
+        "sha256": "7b26f959331a9c722ac964edf81a0479a18eac727ef20882ab6af9fd5fae222e",
+        "bytes": 85515
+      }
+    ],
+    "job_count_unchanged": true,
+    "design_input_mode": "BACKEND_EVIDENCE_V1"
+  },
+  "worker_hashes": {
+    "development/blast/worker.py": "e1420f86b9666a416d3490bae6f9c87cf7405723f56db8d79ee4135cea033a15",
+    "development/blast/iedb.py": "6d88ec40409f2cad7381bbd89c9bd63185f7c8e14217d4d53b90252d63e889d0"
+  },
+  "routing": {
+    "blast": {
+      "database_id": "iedb-20260924-r01",
+      "database_manifest_sha256": "96be17e60c108013d320558817037d081edbf8e3c0ed2f9facf83a2d818b6e12",
+      "thresholds": {
+        "identity_percent_min": 70,
+        "query_coverage_percent_min": 80
+      },
+      "timeout_seconds": 7200
+    },
+    "input_profile": "HIMAT_SEQUENCE_TARGET_IEDB_ENGINEERING_V1",
+    "idempotency_key": "himat-sequence-41f75a6dcc9f4960125a1c9854f3740db263d4b616551f9d",
+    "p2_live_check_preserved": true,
+    "actual_submit_called": false
+  },
+  "idle": {
+    "active_jobs": [],
+    "gpu_state": {
+      "last_execution": {
+        "order": 1790236989833880381,
+        "sha256": "788fea639c19345bb262fbebf73a3d21d8e2872ce2692b53323c4c38cb18bade",
+        "target": "/var/lib/t01/resident/esmfold2/f49e46d7c0f96a6e88748d1f221ade9d",
+        "tool": "esmfold2",
+        "uncertain": false
+      },
+      "last_state": "succeeded",
+      "phase": "idle"
+    }
+  },
+  "scientific_gate": "CLOSED",
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED"
+}

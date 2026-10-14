@@ -1,0 +1,87 @@
+{
+  "mapping_version": "0.1.0",
+  "artifact_type": "t01.real.structure_mapping",
+  "evidence_kind": "synthetic_fixture",
+  "mapping_status": "unverified",
+  "review_required": true,
+  "usable_for_pipeline": false,
+  "sequence": "ARG",
+  "sequence_sha256": "204ca7e7cf7d3e9cd8905f36d40edbe3910102d8ae4dcdb9475b6d5fe959be3d",
+  "structure_sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+  "format": "pdb",
+  "model_index": 0,
+  "model_serial": null,
+  "selection": {
+    "requested_model_index": null,
+    "requested_chain_id": null
+  },
+  "ingestion_chain_id": "A",
+  "target_chain_id": "A",
+  "fixed_chain_ids": [],
+  "method": {
+    "id": "exact_ordered_subsequence",
+    "version": "0.1.0",
+    "acceptance_threshold": null
+  },
+  "parser": {
+    "name": "Biopython",
+    "version": "1.88",
+    "strict": true,
+    "chain_namespace": "pdb_chain_id"
+  },
+  "producer_version": "0.1.0",
+  "chain_candidates": [
+    {
+      "chain_id": "A",
+      "observed_sequence": "AG",
+      "match_status": "partial_unique",
+      "positions": [
+        1,
+        3
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "sequence_position": 1,
+      "sequence_residue": "A",
+      "structure_residue": {
+        "chain_id": "A",
+        "res_seq": 42,
+        "insertion_code": "",
+        "hetero_flag": " ",
+        "residue_name": "ALA"
+      },
+      "reason": "mapped"
+    },
+    {
+      "sequence_position": 2,
+      "sequence_residue": "R",
+      "structure_residue": null,
+      "reason": "missing_structure_residue"
+    },
+    {
+      "sequence_position": 3,
+      "sequence_residue": "G",
+      "structure_residue": {
+        "chain_id": "A",
+        "res_seq": 42,
+        "insertion_code": "A",
+        "hetero_flag": " ",
+        "residue_name": "GLY"
+      },
+      "reason": "mapped"
+    }
+  ],
+  "issues": [
+    {
+      "code": "PARTIAL_MAPPING",
+      "message": "Missing input positions are null; exact-subsequence placement is a candidate requiring review"
+    },
+    {
+      "code": "G1_REVIEW_PENDING",
+      "message": "This local probe cannot approve scientific mapping or automatic handoff"
+    }
+  ],
+  "review": null
+}

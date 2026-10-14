@@ -1,0 +1,175 @@
+{
+  "date": "2026-09-05",
+  "recorded_at": "2026-09-05T14:54:26.036516+00:00",
+  "scope": "W1-09A local Windows engineering runtime",
+  "status": "PASS_ENGINEERING_SCOPE_ONLY",
+  "reviewer": "AI engineering implementation review; no algorithm/customer signoff asserted",
+  "completed_items": [
+    "A01",
+    "A02",
+    "A03",
+    "A04",
+    "A05",
+    "A06"
+  ],
+  "runtime_acceptance": {
+    "path": "discovery/t01-phase1-real/w1/runtime-engineering-20260905/acceptance.json",
+    "sha256": "cd1a5cffd878d8da6be68534add8d52540eb3cb5479bcd3c8485801e5e3ffd51",
+    "size_bytes": 3399
+  },
+  "runtime_manifest": {
+    "path": "discovery/t01-phase1-real/w1/runtime-engineering-20260905/manifest.json",
+    "sha256": "e91758cb51e337af1a922a3c8df2ef92abc88f95d8fc2ffaf2907df0bbcd20f4",
+    "size_bytes": 10361
+  },
+  "root_junit": {
+    "path": "discovery/t01-phase1-real/w1/runtime-engineering-20260905/maintenance/root-tests.xml",
+    "sha256": "babae7a42bf9f84afcaf9e73027e5886b5f414d33de2a662388de63167102bb3",
+    "size_bytes": 75475
+  },
+  "root_tests": {
+    "total": 526,
+    "passed": 525,
+    "skipped": 1,
+    "failed": 0
+  },
+  "engineering_tests": 51,
+  "evidence_tests": 2,
+  "runtime_case_groups": 15,
+  "cli_commands": 16,
+  "cli_cases": 5,
+  "checks": [
+    {
+      "name": "root_tests",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "-o",
+        "addopts=",
+        "-q",
+        "--junitxml=D:\\work\\蛋白智能体\\.tmp\\w1-09a-final-checks-20260905\\root-tests.xml"
+      ],
+      "exit_code": 0,
+      "stdout": "........................................................................ [ 13%]\n........................................................................ [ 27%]\n........................................................................ [ 41%]\n........................................................................ [ 54%]\n.......................................................s................ [ 68%]\n........................................................................ [ 82%]\n........................................................................ [ 95%]\n......................                                                   [100%]\n- generated xml file: D:\\work\\蛋白智能体\\.tmp\\w1-09a-final-checks-20260905\\root-tests.xml -\n525 passed, 1 skipped in 89.68s (0:01:29)\n",
+      "stderr": ""
+    },
+    {
+      "name": "documentation",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/check_docs.py"
+      ],
+      "exit_code": 0,
+      "stdout": "documentation_status=PASS markdown_files=164\n",
+      "stderr": ""
+    },
+    {
+      "name": "runtime_evidence",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/check_w1_runtime.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"status\": \"PASS_ENGINEERING_ONLY\", \"runtime_tests\": 51, \"runtime_cases\": 15, \"cli_cases\": 5, \"source_files\": 16, \"output_files\": 62, \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "contract",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/check_w1_contract.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"status\": \"PASS\", \"scope\": \"STATIC_CONTRACT_ONLY\", \"expert_sources\": 22, \"source_files\": 32, \"job_examples\": 8, \"submit_examples\": 1, \"control_examples\": 4, \"runtime_cases_declared\": 15, \"scientific_cases_declared\": 8, \"runtime_execution\": \"NOT_RUN\", \"scientific_execution\": \"NOT_RUN\", \"production_status\": \"NOT_DEPLOYED\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "frozen_mock",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/t01_phase1_mock/run_m4_campaign.py",
+        "verify"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"status\": \"PASS\", \"release_state\": \"FROZEN\", \"campaign_id\": \"t01p1m-v01-reg-20260904-release-freeze-03\", \"frozen_asset_count\": 457}\n",
+      "stderr": ""
+    },
+    {
+      "name": "historical_packages",
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/package_tool_handoffs.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"scope\": \"handoff_archive_and_engineering_interface\",\n  \"scientific_tool_execution\": \"NOT_RUN\",\n  \"scientific_acceptance\": \"NOT_RUN\",\n  \"packages\": [\n    {\n      \"package_id\": \"PH1-TOOL-FREESASA\",\n      \"version\": \"0.1\",\n      \"revision\": \"shared-interface-20260905\",\n      \"archive_sha256\": \"6cdb87a80d3b18064f3cbbd529ab58f21e182d593a5d043ff5d90358015c13ba\",\n      \"file_count\": 56,\n      \"source_copies_verified\": 6,\n      \"closed_local_links\": 42,\n      \"interface_files_identical\": 38,\n      \"synthetic_pairs_checked\": 8\n    },\n    {\n      \"package_id\": \"PH1-TOOL-BEPIPRED\",\n      \"version\": \"0.1\",\n      \"revision\": \"shared-interface-20260905\",\n      \"archive_sha256\": \"215ad2849c1a2ee1f7f007d140a1bb7808728ba43372686490070df9bd79cfab\",\n      \"file_count\": 56,\n      \"source_copies_verified\": 6,\n      \"closed_local_links\": 41,\n      \"interface_files_identical\": 38,\n      \"synthetic_pairs_checked\": 8\n    }\n  ]\n}\n",
+      "stderr": ""
+    }
+  ],
+  "authorization_source": {
+    "path": "docs/project/sources/PHASE1_W1_SERVER_CAPACITY_20260905.json",
+    "sha256": "aab40247aa2843a9c35fdfc427c5164dcd8155f2b85fe08a8218258ba8befeb1",
+    "size_bytes": 896
+  },
+  "engineering_findings": [
+    {
+      "id": "A-RV01",
+      "result": "PASS",
+      "detail": "Concurrent admission/claim serialized; crash rollback and committed restart verified"
+    },
+    {
+      "id": "A-RV02",
+      "result": "PASS",
+      "detail": "Actual owned process descendants stop on cancellation, timeout and supervisor death; unrelated process retained"
+    },
+    {
+      "id": "A-RV03",
+      "result": "PASS",
+      "detail": "Claim/start/receipt crash windows reconciled; stable attempt, epoch fencing and unknown execution without relaunch verified"
+    },
+    {
+      "id": "A-RV04",
+      "result": "PASS",
+      "detail": "Stop intent precedes terminal publication; terminal state remains immutable; explicit retry has new lineage"
+    },
+    {
+      "id": "A-RV05",
+      "result": "PASS",
+      "detail": "Byte/hash and artifact identities checked; traversal, junction, hardlink, cross-scope and tamper refused"
+    },
+    {
+      "id": "A-RV06",
+      "result": "PASS",
+      "detail": "All seven scientific tool registrations denied before launch; no fixture pipeline consumption"
+    }
+  ],
+  "limitations": [
+    "Windows local executor only; Linux/remote server executor and authenticated transport not implemented",
+    "Trusted OS-owned local storage; scope is not network authentication and Job Object is not a network sandbox",
+    "Unknown spawn-intent without a supervisor receipt remains reconciling pending execution-environment reconciliation",
+    "Per-task engineering resource limits only; no science performance/SLA, automatic orphan cleanup or power-loss qualification"
+  ],
+  "historical_tests": {
+    "legacy_full_mock": "NOT_RERUN",
+    "s07": "NOT_RERUN",
+    "reason": "No historical implementation partition change or stage freeze"
+  },
+  "next_preparation": "W1-08B1 input/contract/sample review preparation; not scientific adapter approval",
+  "scientific_execution": "NOT_RUN",
+  "server_execution": "NOT_RUN",
+  "scientific_module_approval": "NOT_GRANTED",
+  "production_status": "NOT_DEPLOYED"
+}

@@ -1,0 +1,112 @@
+{
+  "date": "2026-09-06",
+  "recorded_at": "2026-09-06T06:14:29.580329+00:00",
+  "scope": "W1-08B2 review preparation maintenance",
+  "status": "PASS_REVIEW_PREPARATION",
+  "reviewer": "AI engineering review; no algorithm or customer signoff asserted",
+  "completed_preparation_items": [
+    "B2-01",
+    "B2-02",
+    "B2-03",
+    "B2-04"
+  ],
+  "root_tests": {
+    "total": 803,
+    "passed": 802,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 1,
+    "duration_seconds": 92.925
+  },
+  "new_b2_tests": 71,
+  "new_documentation_tests": 8,
+  "documentation_tests": {
+    "total": 32,
+    "passed": 32,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration_seconds": 1.495
+  },
+  "skipped_reason": "One existing Windows symlink test lacks account permission",
+  "root_junit": {
+    "path": "discovery/t01-phase1-real/w1/b2-review-maintenance-20260906/root-tests-r02.xml",
+    "sha256": "6f0c2637ab8b698f89704a6652f6e3970775eb5a441b745c1d80389c6f04b24e",
+    "size_bytes": 113745
+  },
+  "initial_root_failure": {
+    "result": {
+      "total": 795,
+      "passed": 793,
+      "failed": 1,
+      "errors": 0,
+      "skipped": 1,
+      "duration_seconds": 97.923
+    },
+    "report": {
+      "path": "discovery/t01-phase1-real/w1/b2-review-maintenance-20260906/root-tests.xml",
+      "sha256": "ba8695497ce923c8d119ebd5b6b26ef1d67c674971632d0c6c6f70de6ee5b340",
+      "size_bytes": 113718
+    },
+    "cause": "Sealed Markdown source copy contains relative links valid at its original location, not at the archive location.",
+    "resolution": "Only the registered B2 README snapshot is treated as evidence when byte count and SHA-256 match both manifest file and source entries. Live originals, neighboring navigation, and invalid snapshots remain checked.",
+    "sealed_snapshot_mutated": false
+  },
+  "maintenance_manifest": {
+    "path": "discovery/t01-phase1-real/w1/b2-review-maintenance-20260906/manifest.json",
+    "sha256": "44ac33bcd3a79b874d7507768edc7edb02f79527fbc196d8ca36c7d242acd42d",
+    "size_bytes": 2866
+  },
+  "execution_records": [
+    {
+      "path": "discovery/t01-phase1-real/w1/b2-review-maintenance-20260906/checks-recorded.json",
+      "sha256": "475fbbfc4bf06784c7ffd089d130ec5ad56f4896b8faa2315f447eac94fcddf6",
+      "size_bytes": 8764
+    },
+    {
+      "path": "discovery/t01-phase1-real/w1/b2-review-maintenance-20260906/final-checks.json",
+      "sha256": "b4dcb72810613a1456595726e12ca5b936931df6dc38eb8429919e0f1b7e9099",
+      "size_bytes": 1307
+    }
+  ],
+  "review_batch": {
+    "manifest": {
+      "path": "discovery/t01-phase1-real/w1/b2-review-20260906/manifest.json",
+      "sha256": "2aeb44d8cd08c37d3735b4d65a018171748f914422c30dc4e30c19d02079f6cb",
+      "size_bytes": 30125
+    },
+    "synthetic_cases": 20,
+    "replayed_records": 11,
+    "published_annotation_references": 4,
+    "accepted_independent_holdouts": 0,
+    "artifacts": 86,
+    "protected_files": 329,
+    "model_executions_this_task": 0
+  },
+  "read_only_checks": {
+    "old_academic_evidence_files": 122,
+    "academic_assets": 41,
+    "old_public_evidence_files": 169,
+    "expert_originals": 22,
+    "b1_consumer_cases": 45,
+    "b1_input_facts_cases": 40,
+    "b1_review_cases": 23,
+    "b1_review_pairs": 2,
+    "current_runtime_sources": 16,
+    "contract_sources": 32,
+    "mock_frozen_assets": 457,
+    "handoff_archives": 2
+  },
+  "documentation": {
+    "status": "PASS",
+    "markdown_files": 181
+  },
+  "legacy_regressions": {
+    "status": "NOT_RERUN",
+    "reason": "Only current engineering partition changed; no cross-partition path/isolation change or stage freeze"
+  },
+  "scientific_signoff": "NOT_GRANTED",
+  "formal_adapter_release": "NOT_GRANTED",
+  "production_enabled": false,
+  "production_status": "NOT_DEPLOYED"
+}

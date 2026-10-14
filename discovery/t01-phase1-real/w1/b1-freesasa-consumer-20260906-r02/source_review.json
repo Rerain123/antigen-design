@@ -1,0 +1,64 @@
+{
+  "recorded_on": "2026-09-06",
+  "user_request": "下一步是 B1 消费者验证，建议先接 FreeSASA。",
+  "expert_sources": [
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/AgentA_SKILL_v10.5_20260902.md",
+      "sha256": "b9bf71d60046acc32422a16aecbb3d1f4376824a6512d867ebdbb23588ee1833",
+      "size_bytes": 24220,
+      "sections": "R-58"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/AgentA_SOP_v10.5_20260902.md",
+      "sha256": "856019022796f13413208f844d53aa82f10278215676fcf5177daa98f645160c",
+      "size_bytes": 222446,
+      "sections": "S-07b/c / S-11"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/ToolSpec_C34_FreeSASA_v10.5.md",
+      "sha256": "36915039a7c89f9cbf3911b02b5a7bdc1c7bccc4233b0da5c35f4e3940701221",
+      "size_bytes": 7270,
+      "sections": "2 / 2b / 4"
+    },
+    {
+      "path": "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/一期实施环境清单_v10.5.md",
+      "sha256": "89e8d2a2fb20b0dfe5a0cf200f403cde9c91444756c60ba62b621d1c98c22f3a",
+      "size_bytes": 15136,
+      "sections": "1a"
+    }
+  ],
+  "existing_decisions": [],
+  "profile": {
+    "path": "docs/project/phase1/PHASE1_REAL_W1_FREESASA_PROFILE.json",
+    "sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04",
+    "size_bytes": 5960
+  },
+  "user_adoption": {
+    "path": "docs/project/sources/PHASE1_W1_FREESASA_S09_ADOPTION_20260905.json",
+    "sha256": "c33d5bf5cd0868d792472664758a2d2cef3610cd2b9d80aa43cb426127e07c72",
+    "size_bytes": 2366
+  },
+  "public_documentation": [
+    {
+      "url": "https://freesasa.github.io/python/classes.html",
+      "sections": "Classifier.radius / Structure.addAtom / residueNumber / Result.atomArea",
+      "documentation_version": "2.2.0",
+      "installed_version": "2.2.1",
+      "finding": "String residue numbers, one-character chains and negative unknown-classifier radius are documented; actual token preservation and per-atom return were tested in the installed image, not assumed."
+    }
+  ],
+  "access_scope": "Public software/format documentation only. No input upload, database lookup, image pull or network fallback.",
+  "engineering_decisions": [
+    "Independent native atom API development route; existing PDB probe and profile remain unchanged",
+    "Strict consumer rejects unknown iCode, ambiguous tool token and non-full occupancy; old 1UBQ CIF and old derived PDB remain rejection cases",
+    "ProtOr radii checked before calculation and actual tool identity/coordinates/radii checked before indexed area joins",
+    "No sequence alignment, integer mapping promotion, source/confidence assessment, RSA normalization or pipeline qualification",
+    "Four equal-coordinate PDB/native groups require exact results, with documented fixed-width token padding removed only for comparison",
+    "First trial parity failure retained; a separate declared r02 synthetic fixture emits exact three-decimal coordinate tokens"
+  ],
+  "initial_execution_manifest": {
+    "path": "discovery/t01-phase1-real/w1/b1-freesasa-consumer-20260906/manifest.json",
+    "sha256": "5bd477e31f37f46f8582a1b0ef959f67c586cd12250cb9508bf8fadbf1c62f27",
+    "size_bytes": 186496
+  }
+}

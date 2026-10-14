@@ -1,0 +1,48 @@
+{
+  "date": "2026-09-05",
+  "scope": "W1-05 local preparation and public-source audit; no production implementation",
+  "checks": [
+    {
+      "command": ".venv/Scripts/python.exe discovery/t01-phase1-real/w1/deeptmhmm-20260905/probe_sdk_offline.py --output-dir discovery/t01-phase1-real/w1/deeptmhmm-20260905/sdk-offline",
+      "exit_code": 0,
+      "result": "EXPECTED_LOCAL_MODE_REJECTION",
+      "container_exit_code": 1,
+      "network_mode": "none",
+      "model_execution": "NOT_RUN"
+    },
+    {
+      "command": ".venv/Scripts/python.exe discovery/t01-phase1-real/w1/deeptmhmm-20260905/verify_evidence.py",
+      "exit_code": 0,
+      "result": "PASS",
+      "batch_files": 169,
+      "expert_sources_unchanged": 22
+    },
+    {
+      "command": ".venv/Scripts/python.exe -m pytest -o addopts='' -q",
+      "exit_code": 0,
+      "passed": 338,
+      "skipped": 1,
+      "elapsed_seconds": 84.22,
+      "new_deeptmhmm_tests": 20
+    },
+    {
+      "command": ".venv/Scripts/python.exe scripts/check_docs.py",
+      "exit_code": 0,
+      "result": "PASS",
+      "markdown_files": 151
+    },
+    {
+      "command": ".venv/Scripts/python.exe scripts/t01_phase1_mock/run_m4_campaign.py verify",
+      "exit_code": 0,
+      "result": "PASS",
+      "frozen_asset_count": 457
+    }
+  ],
+  "not_run": [
+    "DeepTMHMM model inference, current package region-table validation and scientific acceptance",
+    "Customer target environment G0, W1 G1 and production integration",
+    "Legacy full Mock and S07 regressions: no cross-partition changes",
+    "External package application submission or email"
+  ],
+  "production_status": "NOT_DEPLOYED"
+}

@@ -1,0 +1,76 @@
+{
+  "scope": "B1_FREESASA_CONSUMER_PREPARATION",
+  "binding": {
+    "b1_binding": {
+      "run_id": "t01p1r-run-b1-sasa-F-char-pdb",
+      "request_id": "b1-sasa-F-char-pdb",
+      "job_id": "t01p1r-job-b1-facts-f9b435206c824fcc8189181e1fe53c75",
+      "attempt_id": "t01p1r-attempt-b1-facts-f9b435206c824fcc8189181e1fe53c75",
+      "request_sha256": "098f3c798ad4a7069dac0b9fa3d6f9fdc65fbdf1ae7137afb1e4c731894aabfd",
+      "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+      "structure_sha256": "938ccd50f3715807be76489322d2ee6089355960b6cb85e556c17ecce38451a5"
+    },
+    "b1_result_sha256": "bb548329b53d6465de09f4e3d96715a14602dbb2601ca4b7874c589a4d9cf719",
+    "b1_structure_artifact": {
+      "artifact_id": "t01p1r-artifact-b1-sasa-F-char-pdb",
+      "run_id": "t01p1r-run-b1-sasa-F-char-pdb",
+      "job_id": null,
+      "attempt_id": null,
+      "role": "input",
+      "media_type": "chemical/x-cif",
+      "sha256": "938ccd50f3715807be76489322d2ee6089355960b6cb85e556c17ecce38451a5",
+      "size_bytes": 1191,
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    "b1_fact_artifacts": {
+      "preflight": {
+        "artifact_id": "t01p1r-artifact-b1-preflight-f9b435206c824fcc8189181e1fe53c75",
+        "run_id": "t01p1r-run-b1-sasa-F-char-pdb",
+        "job_id": "t01p1r-job-b1-facts-f9b435206c824fcc8189181e1fe53c75",
+        "attempt_id": "t01p1r-attempt-b1-facts-f9b435206c824fcc8189181e1fe53c75",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "a7e26fb2a9cff791391c9da19395b00379cd3cf6ce50d29bf322fcb05657284c",
+        "size_bytes": 1707,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      },
+      "raw_metadata": {
+        "artifact_id": "t01p1r-artifact-b1-raw-metadata-f9b435206c824fcc8189181e1fe53c75",
+        "run_id": "t01p1r-run-b1-sasa-F-char-pdb",
+        "job_id": "t01p1r-job-b1-facts-f9b435206c824fcc8189181e1fe53c75",
+        "attempt_id": "t01p1r-attempt-b1-facts-f9b435206c824fcc8189181e1fe53c75",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "0d1038cfdfb4ed5794ae8d32d3b1a77cd2c5c7874214ebc463f86ea5dbe83672",
+        "size_bytes": 1629,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      },
+      "raw_addresses": {
+        "artifact_id": "t01p1r-artifact-b1-raw-addresses-f9b435206c824fcc8189181e1fe53c75",
+        "run_id": "t01p1r-run-b1-sasa-F-char-pdb",
+        "job_id": "t01p1r-job-b1-facts-f9b435206c824fcc8189181e1fe53c75",
+        "attempt_id": "t01p1r-attempt-b1-facts-f9b435206c824fcc8189181e1fe53c75",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "cbe47e565cba1918162057176864ce19617c524a93f3e441885d323728d97d21",
+        "size_bytes": 100297,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      }
+    },
+    "consumer_selection_sha256": "feb81eb928a903a9447fad547d4860685e035dfbed6b6d5864ce3a012882d075",
+    "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+  },
+  "route": "pdb_file",
+  "status": "REJECTED_BEFORE_TOOL",
+  "error_code": "PDB_ADDRESS_UNREPRESENTABLE",
+  "error": "B1 PDB field projection is blocked",
+  "error_details": [
+    "AUTHOR_ID_NOT_CANONICAL_INTEGER"
+  ],
+  "preparation_sha256": null,
+  "scientific_approval": null,
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED",
+  "tool_invoked": false,
+  "calculation_started": false
+}

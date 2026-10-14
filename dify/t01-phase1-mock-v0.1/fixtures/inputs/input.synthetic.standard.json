@@ -1,0 +1,45 @@
+{
+  "document_type": "T01_PHASE1_MOCK_INPUT_FIXTURE",
+  "materialization_version": "T01-PHASE1-MOCK-FIXTURE-MATERIALIZATION-v0.1",
+  "fixture_key": "input.synthetic.standard",
+  "fixture_id": "t01_phase1_mock_v01.fixture.input.standard",
+  "data_classification": "MOCK_DATA",
+  "scientific_compute": false,
+  "synthetic_input_only": true,
+  "protein_sequence": "MOCKONLYTRANSPORTFIXTURE",
+  "host_species": "Synthetic non-production host fixture",
+  "structure": {
+    "artifact": {
+      "artifact_id": "t01_phase1_mock_v01.fixture.input.synthetic_local_structure",
+      "artifact_role": "INPUT_STRUCTURE",
+      "uri": "artifact://t01-phase1-mock-v0.1/fixtures/inputs/synthetic-local-structure",
+      "media_type": "chemical/x-pdb",
+      "format": "PDB",
+      "size_bytes": 70,
+      "sha256": "556bea7608616b2f7d58306d78811cfe94099294afd9e5460a974b3472350dc7",
+      "integrity_status": "VERIFIED",
+      "created_at": "2026-09-04T00:00:00Z",
+      "producer": {
+        "actor_type": "MOCK_SCENARIO",
+        "actor_id": "t01_phase1_mock_v01.fixture_materializer",
+        "component_version": "T01-PHASE1-MOCK-FIXTURE-MATERIALIZATION-v0.1"
+      },
+      "source_node_id": null,
+      "source_attempt_id": null,
+      "metadata": {
+        "mock_only": true,
+        "synthetic_transport_fixture": true,
+        "scientific_coordinates_present": false
+      }
+    },
+    "structure_format": "PDB",
+    "chain_selector": "AUTO",
+    "preserve_original_format": true
+  },
+  "synthetic_structure_payload": "REMARK 999 SYNTHETIC TRANSPORT FIXTURE; NO SCIENTIFIC COORDINATES\nEND\n",
+  "disclosures": [
+    "MOCK_DATA_ONLY",
+    "NOT_SCIENTIFIC_EVIDENCE",
+    "SYNTHETIC_TRANSPORT_INPUT"
+  ]
+}

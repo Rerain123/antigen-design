@@ -1,0 +1,701 @@
+{
+  "parent": {
+    "artifacts": [],
+    "attempt_id": "t01p1r-attempt-b201187e5b6d4cbe97bc261b5218a7a6",
+    "contract_version": "0.1.0",
+    "created_at": "2026-10-08T08:38:53.964238Z",
+    "error_code": null,
+    "evidence_kind": "G0_REAL_OUTPUT",
+    "execution_identity": "exec-t01p1r-attempt-728196a3f8ec478490453cb4804c2578",
+    "execution_profile": {
+      "id": "w2-netmhc42-netmhciipan43-local-development",
+      "sha256": "274a0c8cc4c2de477d9be7fb92a991efb42df86876be0cf1d6630663dac59228",
+      "version": "0.1.0"
+    },
+    "exit_code": null,
+    "finished_at": null,
+    "job_id": "t01p1r-job-c5c86fb69d434248b18127febd10ec38",
+    "lease_epoch": 1,
+    "node_id": "N05",
+    "request_artifact": {
+      "artifact_id": "t01p1r-artifact-4022e49a83e7487ca4f8e57bca38d458",
+      "attempt_id": null,
+      "evidence_kind": "LOCAL_INPUT",
+      "job_id": null,
+      "media_type": "application/json",
+      "role": "request",
+      "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+      "sha256": "7766c29551b3d4ff70086ee8f1085360b249b9565a05e9d6a0ffe653a08dfc50",
+      "size_bytes": 470
+    },
+    "request_id": "t01p1r-request-1075cfd3cbea42f1bd67b5e25fde3031",
+    "retry_of_job_id": null,
+    "review_required": true,
+    "revision": 4,
+    "rule_profile": null,
+    "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+    "run_mode": "g0_probe",
+    "scientific_disposition": "pending",
+    "started_at": "2026-10-08T08:38:54.105736Z",
+    "state": "running",
+    "stop_confirmed": false,
+    "stop_reason": null,
+    "submission_sha256": "57f98c583496767371a1203e3748983a7484758f0cb261f06fac5523f7c22e4a",
+    "tool_id": "t01.real.netmhc",
+    "updated_at": "2026-10-08T08:41:00.627221Z",
+    "usable_for_pipeline": false
+  },
+  "execution": {
+    "backend": "netmhc-pan-controller",
+    "batches": [
+      "t01p1r-job-aad1f0485a5e46fbabb2ca2911265efb",
+      "t01p1r-job-88f0b27ca02641e1ae742d84e3e42dbb",
+      "t01p1r-job-f0894647c342461fb1736ea29098cfaa"
+    ],
+    "dispatcher": null,
+    "phase": "scheduling",
+    "started_at": "2026-10-08T08:38:54.105736Z",
+    "storage_preflight": {
+      "free_bytes": 143754006528,
+      "predicted_native_rows": 118104,
+      "required_bytes": 433781056
+    },
+    "tree_stopped": false
+  },
+  "children": [
+    {
+      "job": {
+        "artifacts": [
+          {
+            "artifact_id": "t01p1r-artifact-9e321fb54e47445b96ddfd7f54b6e451",
+            "attempt_id": "t01p1r-attempt-8cb41092988f41cda95b9f47395413f0",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-aad1f0485a5e46fbabb2ca2911265efb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "0dd5493f93dd0549e6c350b18fa1543817b28ebbd928b6fa52fa4d6d8110976d",
+            "size_bytes": 250
+          },
+          {
+            "artifact_id": "t01p1r-artifact-12ea6a65d6594563802f45c78168bd91",
+            "attempt_id": "t01p1r-attempt-8cb41092988f41cda95b9f47395413f0",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-aad1f0485a5e46fbabb2ca2911265efb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "b53e919fe180fbc5877b68bdeb014e47b2554526117345ea9882f41b54c2efcd",
+            "size_bytes": 713
+          },
+          {
+            "artifact_id": "t01p1r-artifact-c1e0dcc84d3e4a3b862659d7622a7650",
+            "attempt_id": "t01p1r-attempt-8cb41092988f41cda95b9f47395413f0",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-aad1f0485a5e46fbabb2ca2911265efb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          {
+            "artifact_id": "t01p1r-artifact-60d5ed7d63d742e5a545fdee94aacb23",
+            "attempt_id": "t01p1r-attempt-8cb41092988f41cda95b9f47395413f0",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-aad1f0485a5e46fbabb2ca2911265efb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          {
+            "artifact_id": "t01p1r-artifact-42d55647ee78482c997c77ed272bc629",
+            "attempt_id": "t01p1r-attempt-8cb41092988f41cda95b9f47395413f0",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-aad1f0485a5e46fbabb2ca2911265efb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          {
+            "artifact_id": "t01p1r-artifact-5d61453664d847d182372f85dd44ed9b",
+            "attempt_id": "t01p1r-attempt-8cb41092988f41cda95b9f47395413f0",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-aad1f0485a5e46fbabb2ca2911265efb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "1bcdb9e73fc4162182abc77d18c9df8060ee54a85e1857fad6d3b295ef2b50a2",
+            "size_bytes": 3419107
+          },
+          {
+            "artifact_id": "t01p1r-artifact-250d5c5425ca423e9a198ad547600b76",
+            "attempt_id": "t01p1r-attempt-8cb41092988f41cda95b9f47395413f0",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-aad1f0485a5e46fbabb2ca2911265efb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "cdf50facbf1252bca10342a94b64ba1afe3e69dc1ddb14a1a886fe08e090b14c",
+            "size_bytes": 3456
+          },
+          {
+            "artifact_id": "t01p1r-artifact-a5c210e1b21f4d58a7d86e91c1d53015",
+            "attempt_id": "t01p1r-attempt-8cb41092988f41cda95b9f47395413f0",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-aad1f0485a5e46fbabb2ca2911265efb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "58ef6b8dc883e68515da1cf8214a2872c3b5929059f64fea3079e3bfe8bdb123",
+            "size_bytes": 2051
+          },
+          {
+            "artifact_id": "t01p1r-artifact-8aebabaca7d949bbbe5f773206888b5b",
+            "attempt_id": "t01p1r-attempt-8cb41092988f41cda95b9f47395413f0",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-aad1f0485a5e46fbabb2ca2911265efb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "1dd46f2bd6ce92c2e8fca6485a833e9202cdd9053b69708c27daa0e523caf548",
+            "size_bytes": 3292
+          },
+          {
+            "artifact_id": "t01p1r-artifact-1f823c7d901548548db6135d4a9902b5",
+            "attempt_id": "t01p1r-attempt-8cb41092988f41cda95b9f47395413f0",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-aad1f0485a5e46fbabb2ca2911265efb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "951b899311eaeba7283f5e05aa4fae72aff002118f3000501baa682bd3bd4d6b",
+            "size_bytes": 884
+          },
+          {
+            "artifact_id": "t01p1r-artifact-1939e198109e43de831420f96fd3372f",
+            "attempt_id": "t01p1r-attempt-8cb41092988f41cda95b9f47395413f0",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-aad1f0485a5e46fbabb2ca2911265efb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "c68d465686b30dd636d4083d1c0d505420915adead2aafac9506803e19a7a2aa",
+            "size_bytes": 1065
+          },
+          {
+            "artifact_id": "t01p1r-artifact-866d9dcdfa394647a5e1ce053c89e732",
+            "attempt_id": "t01p1r-attempt-8cb41092988f41cda95b9f47395413f0",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-aad1f0485a5e46fbabb2ca2911265efb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          {
+            "artifact_id": "t01p1r-artifact-87779b0ff92c4ecdaabd21a818e9c70f",
+            "attempt_id": "t01p1r-attempt-8cb41092988f41cda95b9f47395413f0",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-aad1f0485a5e46fbabb2ca2911265efb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          {
+            "artifact_id": "t01p1r-artifact-176694853c1b4cd18aeed8d81995e082",
+            "attempt_id": "t01p1r-attempt-8cb41092988f41cda95b9f47395413f0",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-aad1f0485a5e46fbabb2ca2911265efb",
+            "media_type": "application/json",
+            "role": "result",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "c17ec8add05bb4a5e87bb3412e3da05b38441bda72f16f33c5011aea7f8a0fae",
+            "size_bytes": 7740507
+          }
+        ],
+        "attempt_id": "t01p1r-attempt-8cb41092988f41cda95b9f47395413f0",
+        "contract_version": "0.1.0",
+        "created_at": "2026-10-08T08:38:54.176383Z",
+        "error_code": null,
+        "evidence_kind": "G0_REAL_OUTPUT",
+        "execution_identity": "exec-t01p1r-attempt-d230f2273a054543803bac2a44b35d21",
+        "execution_profile": {
+          "id": "w2-netmhc42-netmhciipan43-local-development",
+          "sha256": "274a0c8cc4c2de477d9be7fb92a991efb42df86876be0cf1d6630663dac59228",
+          "version": "0.1.0"
+        },
+        "exit_code": 0,
+        "finished_at": "2026-10-08T08:39:57.418711Z",
+        "job_id": "t01p1r-job-aad1f0485a5e46fbabb2ca2911265efb",
+        "lease_epoch": 2,
+        "node_id": "N05",
+        "request_artifact": {
+          "artifact_id": "t01p1r-artifact-93dbb768fac14c43ac8ce99caffa83e2",
+          "attempt_id": null,
+          "evidence_kind": "LOCAL_INPUT",
+          "job_id": null,
+          "media_type": "application/json",
+          "role": "request",
+          "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+          "sha256": "b53e919fe180fbc5877b68bdeb014e47b2554526117345ea9882f41b54c2efcd",
+          "size_bytes": 713
+        },
+        "request_id": "t01p1r-request-019605c267d74bb4932886b7a8ffd78f",
+        "retry_of_job_id": null,
+        "review_required": true,
+        "revision": 3,
+        "rule_profile": null,
+        "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+        "run_mode": "g0_probe",
+        "scientific_disposition": "review_required",
+        "started_at": "2026-10-08T08:38:54.247013Z",
+        "state": "succeeded",
+        "stop_confirmed": false,
+        "stop_reason": null,
+        "submission_sha256": "275bd8b20bd4c245627a74b11cdda2a50ffc5aeada9d3d8cbf00232388c567d1",
+        "tool_id": "t01.real.netmhc",
+        "updated_at": "2026-10-08T08:39:57.675700Z",
+        "usable_for_pipeline": false
+      },
+      "execution": {
+        "backend": "resident-process",
+        "container_id": null,
+        "container_name": "t01p1r-netmhc-development-slot",
+        "container_started": false,
+        "deadline": null,
+        "dispatcher": {
+          "birth": "71016880",
+          "pid": 1,
+          "platform": "linux"
+        },
+        "fault": null,
+        "phase": "finished",
+        "resident_config_sha256": "e48ed41b5f7fe4004da65272cf308b5d437f65c3a71917a4f89cb701ada9d49f",
+        "resident_receipt": {
+          "backend": "resident-process",
+          "binding": {
+            "attempt_id": "t01p1r-attempt-8cb41092988f41cda95b9f47395413f0",
+            "execution_identity": "exec-t01p1r-attempt-d230f2273a054543803bac2a44b35d21",
+            "job_id": "t01p1r-job-aad1f0485a5e46fbabb2ca2911265efb"
+          },
+          "execution_id": "4517b092eba5963f5f7772095565f8c7",
+          "exit_code": 0,
+          "outputs": {
+            "output/executor-observation.json": {
+              "sha256": "951b899311eaeba7283f5e05aa4fae72aff002118f3000501baa682bd3bd4d6b",
+              "size_bytes": 884
+            },
+            "output/native/netmhciipan.stderr.txt": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "size_bytes": 0
+            },
+            "output/native/netmhciipan.txt": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "size_bytes": 0
+            },
+            "output/native/netmhcpan.stderr.txt": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "size_bytes": 0
+            },
+            "output/native/netmhcpan.txt": {
+              "sha256": "1bcdb9e73fc4162182abc77d18c9df8060ee54a85e1857fad6d3b295ef2b50a2",
+              "size_bytes": 3419107
+            },
+            "output/native/runtime.json": {
+              "sha256": "cdf50facbf1252bca10342a94b64ba1afe3e69dc1ddb14a1a886fe08e090b14c",
+              "size_bytes": 3456
+            },
+            "output/native/runtime_started.json": {
+              "sha256": "58ef6b8dc883e68515da1cf8214a2872c3b5929059f64fea3079e3bfe8bdb123",
+              "size_bytes": 2051
+            },
+            "output/stderr.txt": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "size_bytes": 0
+            },
+            "output/stdout.txt": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "size_bytes": 0
+            }
+          },
+          "process_identity": {
+            "birth": "71048670",
+            "pid": 14,
+            "platform": "linux"
+          },
+          "process_name": "resident:b421f1ae9dcb236ad8467541137c2366abc060dd1588baef81257f630594e091:4517b092eba5963f5f7772095565f8c7",
+          "request_sha256": "c68d465686b30dd636d4083d1c0d505420915adead2aafac9506803e19a7a2aa",
+          "scientific_signoff": null,
+          "state": "succeeded",
+          "stopped_confirmed": true,
+          "usable_for_pipeline": false,
+          "version": "0.1.0"
+        },
+        "resident_request_sha256": "c68d465686b30dd636d4083d1c0d505420915adead2aafac9506803e19a7a2aa",
+        "resident_target": "/var/lib/t01/resident/netmhc/4517b092eba5963f5f7772095565f8c7",
+        "supervisor": null,
+        "timeout_seconds": 899,
+        "tree_stopped": true
+      }
+    },
+    {
+      "job": {
+        "artifacts": [
+          {
+            "artifact_id": "t01p1r-artifact-810f764f08084351a1f7c94429df7718",
+            "attempt_id": "t01p1r-attempt-f6771ead13044f7f979c3586bbbbff12",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-88f0b27ca02641e1ae742d84e3e42dbb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "0dd5493f93dd0549e6c350b18fa1543817b28ebbd928b6fa52fa4d6d8110976d",
+            "size_bytes": 250
+          },
+          {
+            "artifact_id": "t01p1r-artifact-ad850a9daabe4631b12a608e706a78a1",
+            "attempt_id": "t01p1r-attempt-f6771ead13044f7f979c3586bbbbff12",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-88f0b27ca02641e1ae742d84e3e42dbb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "851d532dbe8fe66ada04e9996c9ddf4d3bdbc2d6889c1cf57be180600f54a52d",
+            "size_bytes": 715
+          },
+          {
+            "artifact_id": "t01p1r-artifact-0937988603084755b986aaa8c686d0c0",
+            "attempt_id": "t01p1r-attempt-f6771ead13044f7f979c3586bbbbff12",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-88f0b27ca02641e1ae742d84e3e42dbb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          {
+            "artifact_id": "t01p1r-artifact-d7490dc7d2994f5fa1087020e051d584",
+            "attempt_id": "t01p1r-attempt-f6771ead13044f7f979c3586bbbbff12",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-88f0b27ca02641e1ae742d84e3e42dbb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          {
+            "artifact_id": "t01p1r-artifact-8abd7792828f49fc80127a4e543266ad",
+            "attempt_id": "t01p1r-attempt-f6771ead13044f7f979c3586bbbbff12",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-88f0b27ca02641e1ae742d84e3e42dbb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          {
+            "artifact_id": "t01p1r-artifact-e0008782de7e4e228265b6b09d2521c4",
+            "attempt_id": "t01p1r-attempt-f6771ead13044f7f979c3586bbbbff12",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-88f0b27ca02641e1ae742d84e3e42dbb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "43f0a25cd574f2fe7cbba62466183a638d552511ea51f7862584d7690ff82839",
+            "size_bytes": 3418795
+          },
+          {
+            "artifact_id": "t01p1r-artifact-a2e8e6833aef4452984aa35d2b373f2a",
+            "attempt_id": "t01p1r-attempt-f6771ead13044f7f979c3586bbbbff12",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-88f0b27ca02641e1ae742d84e3e42dbb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "efc29239495cac6c3a5a424be09dc2e63d360209a14b82c69397eedea3340390",
+            "size_bytes": 3458
+          },
+          {
+            "artifact_id": "t01p1r-artifact-15cf2c0a8f7f49f3baf87fe394d1d6e5",
+            "attempt_id": "t01p1r-attempt-f6771ead13044f7f979c3586bbbbff12",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-88f0b27ca02641e1ae742d84e3e42dbb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "3925eb9086677bc4c6a6eec48ba5786a0c0ea1661f85d6653f6569bdf3aa0313",
+            "size_bytes": 2051
+          },
+          {
+            "artifact_id": "t01p1r-artifact-ee76b172f2e64dccbfd7c864b1726f42",
+            "attempt_id": "t01p1r-attempt-f6771ead13044f7f979c3586bbbbff12",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-88f0b27ca02641e1ae742d84e3e42dbb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "8b3d64a2bfe10fc5ba3f61eadbc3b47250266a38c473acbfd50ce4fca004f318",
+            "size_bytes": 3292
+          },
+          {
+            "artifact_id": "t01p1r-artifact-d9c82b9242954575bf0765eb7f05de40",
+            "attempt_id": "t01p1r-attempt-f6771ead13044f7f979c3586bbbbff12",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-88f0b27ca02641e1ae742d84e3e42dbb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "951b899311eaeba7283f5e05aa4fae72aff002118f3000501baa682bd3bd4d6b",
+            "size_bytes": 884
+          },
+          {
+            "artifact_id": "t01p1r-artifact-75c17018150e485cabc9aff4cef24ecc",
+            "attempt_id": "t01p1r-attempt-f6771ead13044f7f979c3586bbbbff12",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-88f0b27ca02641e1ae742d84e3e42dbb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "d4cc8e5c5523dedf3886b926538fa848c90a15a970b259a038081741f3a321e4",
+            "size_bytes": 1065
+          },
+          {
+            "artifact_id": "t01p1r-artifact-5585cddf3c5e4ec3951b98db7cf87879",
+            "attempt_id": "t01p1r-attempt-f6771ead13044f7f979c3586bbbbff12",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-88f0b27ca02641e1ae742d84e3e42dbb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          {
+            "artifact_id": "t01p1r-artifact-3b4905498e7e4328adbbadb9fa715b47",
+            "attempt_id": "t01p1r-attempt-f6771ead13044f7f979c3586bbbbff12",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-88f0b27ca02641e1ae742d84e3e42dbb",
+            "media_type": "application/octet-stream",
+            "role": "raw",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size_bytes": 0
+          },
+          {
+            "artifact_id": "t01p1r-artifact-4f3f331f79f14730914d9b731119c3c4",
+            "attempt_id": "t01p1r-attempt-f6771ead13044f7f979c3586bbbbff12",
+            "evidence_kind": "G0_REAL_OUTPUT",
+            "job_id": "t01p1r-job-88f0b27ca02641e1ae742d84e3e42dbb",
+            "media_type": "application/json",
+            "role": "result",
+            "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+            "sha256": "aad60fcd3a5e2a9b162a694ab61822be2dd60db39e6c330541dd8d94b1679b5b",
+            "size_bytes": 7735682
+          }
+        ],
+        "attempt_id": "t01p1r-attempt-f6771ead13044f7f979c3586bbbbff12",
+        "contract_version": "0.1.0",
+        "created_at": "2026-10-08T08:39:57.743454Z",
+        "error_code": null,
+        "evidence_kind": "G0_REAL_OUTPUT",
+        "execution_identity": "exec-t01p1r-attempt-b1107af4ca9d4ee78ecae3f72758e9ca",
+        "execution_profile": {
+          "id": "w2-netmhc42-netmhciipan43-local-development",
+          "sha256": "274a0c8cc4c2de477d9be7fb92a991efb42df86876be0cf1d6630663dac59228",
+          "version": "0.1.0"
+        },
+        "exit_code": 0,
+        "finished_at": "2026-10-08T08:41:00.183249Z",
+        "job_id": "t01p1r-job-88f0b27ca02641e1ae742d84e3e42dbb",
+        "lease_epoch": 2,
+        "node_id": "N05",
+        "request_artifact": {
+          "artifact_id": "t01p1r-artifact-225127418a5d400ca94674296d6e4e2d",
+          "attempt_id": null,
+          "evidence_kind": "LOCAL_INPUT",
+          "job_id": null,
+          "media_type": "application/json",
+          "role": "request",
+          "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+          "sha256": "851d532dbe8fe66ada04e9996c9ddf4d3bdbc2d6889c1cf57be180600f54a52d",
+          "size_bytes": 715
+        },
+        "request_id": "t01p1r-request-5dd14c5c0f0c4c9d8a6d6d4947eca367",
+        "retry_of_job_id": null,
+        "review_required": true,
+        "revision": 3,
+        "rule_profile": null,
+        "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+        "run_mode": "g0_probe",
+        "scientific_disposition": "review_required",
+        "started_at": "2026-10-08T08:39:57.788284Z",
+        "state": "succeeded",
+        "stop_confirmed": false,
+        "stop_reason": null,
+        "submission_sha256": "90985c0f8d6981a1cc5c27be96a1fcf921bf8e4c02803d063a78eafaba9e1f48",
+        "tool_id": "t01.real.netmhc",
+        "updated_at": "2026-10-08T08:41:00.470341Z",
+        "usable_for_pipeline": false
+      },
+      "execution": {
+        "backend": "resident-process",
+        "container_id": null,
+        "container_name": "t01p1r-netmhc-development-slot",
+        "container_started": false,
+        "deadline": null,
+        "dispatcher": {
+          "birth": "71016880",
+          "pid": 1,
+          "platform": "linux"
+        },
+        "fault": null,
+        "phase": "finished",
+        "resident_config_sha256": "e48ed41b5f7fe4004da65272cf308b5d437f65c3a71917a4f89cb701ada9d49f",
+        "resident_receipt": {
+          "backend": "resident-process",
+          "binding": {
+            "attempt_id": "t01p1r-attempt-f6771ead13044f7f979c3586bbbbff12",
+            "execution_identity": "exec-t01p1r-attempt-b1107af4ca9d4ee78ecae3f72758e9ca",
+            "job_id": "t01p1r-job-88f0b27ca02641e1ae742d84e3e42dbb"
+          },
+          "execution_id": "edea9697e49d9d2cc62fd42ee15afe9d",
+          "exit_code": 0,
+          "outputs": {
+            "output/executor-observation.json": {
+              "sha256": "951b899311eaeba7283f5e05aa4fae72aff002118f3000501baa682bd3bd4d6b",
+              "size_bytes": 884
+            },
+            "output/native/netmhciipan.stderr.txt": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "size_bytes": 0
+            },
+            "output/native/netmhciipan.txt": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "size_bytes": 0
+            },
+            "output/native/netmhcpan.stderr.txt": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "size_bytes": 0
+            },
+            "output/native/netmhcpan.txt": {
+              "sha256": "43f0a25cd574f2fe7cbba62466183a638d552511ea51f7862584d7690ff82839",
+              "size_bytes": 3418795
+            },
+            "output/native/runtime.json": {
+              "sha256": "efc29239495cac6c3a5a424be09dc2e63d360209a14b82c69397eedea3340390",
+              "size_bytes": 3458
+            },
+            "output/native/runtime_started.json": {
+              "sha256": "3925eb9086677bc4c6a6eec48ba5786a0c0ea1661f85d6653f6569bdf3aa0313",
+              "size_bytes": 2051
+            },
+            "output/stderr.txt": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "size_bytes": 0
+            },
+            "output/stdout.txt": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "size_bytes": 0
+            }
+          },
+          "process_identity": {
+            "birth": "71055014",
+            "pid": 80,
+            "platform": "linux"
+          },
+          "process_name": "resident:b421f1ae9dcb236ad8467541137c2366abc060dd1588baef81257f630594e091:edea9697e49d9d2cc62fd42ee15afe9d",
+          "request_sha256": "d4cc8e5c5523dedf3886b926538fa848c90a15a970b259a038081741f3a321e4",
+          "scientific_signoff": null,
+          "state": "succeeded",
+          "stopped_confirmed": true,
+          "usable_for_pipeline": false,
+          "version": "0.1.0"
+        },
+        "resident_request_sha256": "d4cc8e5c5523dedf3886b926538fa848c90a15a970b259a038081741f3a321e4",
+        "resident_target": "/var/lib/t01/resident/netmhc/edea9697e49d9d2cc62fd42ee15afe9d",
+        "supervisor": null,
+        "timeout_seconds": 836,
+        "tree_stopped": true
+      }
+    },
+    {
+      "job": {
+        "artifacts": [],
+        "attempt_id": "t01p1r-attempt-a212c7e0c0f04169bc658660b87db670",
+        "contract_version": "0.1.0",
+        "created_at": "2026-10-08T08:41:00.569298Z",
+        "error_code": null,
+        "evidence_kind": "G0_REAL_OUTPUT",
+        "execution_identity": "exec-t01p1r-attempt-e4294c48543b44e697c6f7713b92afd2",
+        "execution_profile": {
+          "id": "w2-netmhc42-netmhciipan43-local-development",
+          "sha256": "274a0c8cc4c2de477d9be7fb92a991efb42df86876be0cf1d6630663dac59228",
+          "version": "0.1.0"
+        },
+        "exit_code": null,
+        "finished_at": null,
+        "job_id": "t01p1r-job-f0894647c342461fb1736ea29098cfaa",
+        "lease_epoch": 2,
+        "node_id": "N05",
+        "request_artifact": {
+          "artifact_id": "t01p1r-artifact-ab116896438e4171bd162945f7e60012",
+          "attempt_id": null,
+          "evidence_kind": "LOCAL_INPUT",
+          "job_id": null,
+          "media_type": "application/json",
+          "role": "request",
+          "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+          "sha256": "065e20a58a2c09a840389bd0705689b3a1906d615744135ddaa905ab44161e05",
+          "size_bytes": 723
+        },
+        "request_id": "t01p1r-request-b3f3bdd1fc5345a5ae4a07e26966bbb4",
+        "retry_of_job_id": null,
+        "review_required": true,
+        "revision": 2,
+        "rule_profile": null,
+        "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+        "run_mode": "g0_probe",
+        "scientific_disposition": "pending",
+        "started_at": "2026-10-08T08:41:00.774015Z",
+        "state": "reconciling",
+        "stop_confirmed": false,
+        "stop_reason": null,
+        "submission_sha256": "a3afe00b4d6e5e8f93d29a124a27ad020bea8ebd53b52c510fe0c51013207c4a",
+        "tool_id": "t01.real.netmhc",
+        "updated_at": "2026-10-08T08:41:01.626479Z",
+        "usable_for_pipeline": false
+      },
+      "execution": {
+        "backend": "resident-process",
+        "container_id": null,
+        "container_name": "t01p1r-netmhc-development-slot",
+        "container_started": false,
+        "deadline": null,
+        "dispatcher": {
+          "birth": "71016880",
+          "pid": 1,
+          "platform": "linux"
+        },
+        "fault": null,
+        "phase": "resident_observing",
+        "resident_config_sha256": "e48ed41b5f7fe4004da65272cf308b5d437f65c3a71917a4f89cb701ada9d49f",
+        "resident_request_sha256": "bc6f6125a271d58584ee369b68b21746e01bf971a30afcedc39e100d9f9be006",
+        "resident_target": "/var/lib/t01/resident/netmhc/83ddc65d1d5449761b1fa5a34a575b1d",
+        "supervisor": null,
+        "timeout_seconds": 773,
+        "tree_stopped": false
+      }
+    }
+  ]
+}

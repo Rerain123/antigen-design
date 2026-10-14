@@ -1,0 +1,25 @@
+{
+  "case": "original-233",
+  "sequence_length": 233,
+  "elapsed_seconds": 5.753784521948546,
+  "exit_code": 0,
+  "rows": 46,
+  "argv": [
+    "/blast/bin/blastp.REAL",
+    "-query",
+    "/var/lib/t01/runtime/datasets/iedb/20260924-r01/benchmark-r01/query.fasta",
+    "-db",
+    "/t01/databases/blast/iedb-20260924-r01/iedb",
+    "-outfmt",
+    "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen slen qcovhsp qseq sseq stitle",
+    "-max_target_seqs",
+    "500",
+    "-max_hsps",
+    "10",
+    "-num_threads",
+    "2"
+  ],
+  "stdout_sha256": "d66b23cefc5f3002ea45d02418dfe16667c3efb9fed2cc9413cbaa44580e3b0c",
+  "stderr": "",
+  "integrated_worker": false
+}

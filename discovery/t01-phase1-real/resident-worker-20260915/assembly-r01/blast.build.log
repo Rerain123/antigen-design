@@ -1,0 +1,62 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from blast.Dockerfile
+#1 transferring dockerfile: 709B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/ncbi/blast:2.17.0
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/python:3.11-slim-bookworm
+#3 DONE 0.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [stage-1 1/8] FROM docker.io/ncbi/blast:2.17.0@sha256:81f118d2e4f7e11494d27fdbb99c9430423105afff50c4ae158db41d58a3fc57
+#6 resolve docker.io/ncbi/blast:2.17.0@sha256:81f118d2e4f7e11494d27fdbb99c9430423105afff50c4ae158db41d58a3fc57 0.0s done
+#6 DONE 0.1s
+
+#7 [supervisor 1/1] FROM docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84
+#7 resolve docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84 0.1s done
+#7 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 14.24kB done
+#5 DONE 0.0s
+
+#8 [stage-1 2/8] COPY --from=supervisor /usr/local /opt/t01/supervisor
+#8 CACHED
+
+#9 [stage-1 3/8] COPY src /opt/t01/src
+#9 DONE 0.1s
+
+#10 [stage-1 4/8] COPY profile.json /profile.json
+#10 DONE 0.1s
+
+#11 [stage-1 5/8] COPY setup.py /opt/t01/setup.py
+#11 DONE 0.1s
+
+#12 [stage-1 6/8] COPY blast.worker.json /opt/t01/worker.json
+#12 DONE 0.1s
+
+#13 [stage-1 7/8] RUN /opt/t01/supervisor/bin/python3.11 -B /opt/t01/setup.py blast
+#13 DONE 0.4s
+
+#14 exporting to image
+#14 exporting layers
+#14 exporting layers 0.7s done
+#14 exporting manifest sha256:b59d9e03cd2c25c7fcf5a5c6a788f0b0412e3d12371f005f9b2691fd5a8e5e21 0.0s done
+#14 exporting config sha256:602dd9ec0183365aaa9d5464a15809bb73fb6326a44212beae6e928f84e78b4e 0.0s done
+#14 exporting attestation manifest sha256:15043adac6e3ccc8887fa6c7815f6cbfc90f80ce69a19532d3c4db8ad28d1777
+#14 exporting attestation manifest sha256:15043adac6e3ccc8887fa6c7815f6cbfc90f80ce69a19532d3c4db8ad28d1777 0.1s done
+#14 exporting manifest list sha256:611a0d674c5f6cbfbfbe1d0e82a565d5048186798f1477f3ee49d197e324ee2b 0.0s done
+#14 naming to docker.io/library/antigen-design-resident-blast:assembly-r01
+#14 naming to docker.io/library/antigen-design-resident-blast:assembly-r01 done
+#14 unpacking to docker.io/library/antigen-design-resident-blast:assembly-r01
+#14 unpacking to docker.io/library/antigen-design-resident-blast:assembly-r01 1.1s done
+#14 DONE 2.0s

@@ -1,0 +1,51 @@
+{
+  "idempotency_key": "cluster-analysis-6641b1f1f5b6442492da8e24b4e6ab9c",
+  "input_mode": "af3",
+  "sequence_sha256": "233b4b0b8c4616095bc3249f9375fc345d32af7deaef07117d0383c51d6f19aa",
+  "request": {
+    "protein_sequence": "MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG",
+    "user_sequence_id": "AF3 local adapter acceptance 1UBQ af3",
+    "host_species": "Homo sapiens",
+    "expression_host": "Escherichia coli K-12 W3110",
+    "organism": "Homo sapiens",
+    "structure": null,
+    "analysis": {
+      "topology": {
+        "timeout_seconds": 600
+      },
+      "blast": null,
+      "bepipred": {
+        "timeout_seconds": 900
+      },
+      "netmhc": {
+        "mhc_i_alleles": [
+          "HLA-A02:01"
+        ],
+        "mhc_ii_alleles": [
+          "HLA-DPA10202-DPB11901"
+        ],
+        "timeout_seconds": 600
+      },
+      "homology": null,
+      "domains": null,
+      "developability": {
+        "target_ph": null,
+        "target_ph_range": [
+          4.0,
+          8.0
+        ],
+        "dimension_weights": null,
+        "timeout_seconds": 60
+      }
+    },
+    "reuse_jobs": {},
+    "timeout_seconds": 3600,
+    "prediction": {
+      "engine": "af3",
+      "seed": 1,
+      "timeout_seconds": 600
+    }
+  },
+  "owner": "652efd7986d394f82538b5457e4547b4a84e7f229fb908af6b216a48adb0d201",
+  "job_id": "t01p1r-job-dc968d2972f2453f990edf3cd9e24709"
+}

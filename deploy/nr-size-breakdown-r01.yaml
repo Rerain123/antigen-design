@@ -1,0 +1,55 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-nr-size-breakdown-r01
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 180
+  template:
+    spec:
+      nodeName: k8s-a100-01
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets: [{name: harbor}]
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+      containers:
+        - name: inspect
+          image: harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:fba5a32c0550e56a5310160e2fc49d647fcd27d76851073a2d82cc935fb4c2fc
+          command:
+            - python
+            - -B
+            - -c
+            - |
+              import json
+              from collections import defaultdict
+              from pathlib import Path
+              root = Path('/data/nr-20250624')
+              receipt = json.loads((root / 'download-receipt.json').read_bytes())
+              groups = defaultdict(lambda: [0, 0])
+              for row in receipt['files']:
+                  suffix = row['path'].rsplit('.', 1)[-1]
+                  groups[suffix][0] += 1
+                  groups[suffix][1] += row['bytes']
+              print(json.dumps(dict(sorted(groups.items())), sort_keys=True))
+          resources:
+            requests: {cpu: 100m, memory: 64Mi}
+            limits: {cpu: '1', memory: 128Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: [ALL]
+          volumeMounts:
+            - name: database
+              mountPath: /data
+              readOnly: true
+      volumes:
+        - name: database
+          persistentVolumeClaim:
+            claimName: antigen-n03-nr
+            readOnly: true

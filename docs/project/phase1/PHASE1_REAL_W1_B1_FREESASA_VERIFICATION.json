@@ -1,0 +1,92 @@
+{
+  "date": "2026-09-06",
+  "recorded_at": "2026-09-06T02:05:31.144362+00:00",
+  "scope": "B1 F01-F04 FreeSASA development consumer",
+  "status": "PASS_ENGINEERING_ONLY",
+  "reviewer": "AI engineering review; no algorithm or customer signoff asserted",
+  "completed_items": [
+    "F01",
+    "F02",
+    "F03",
+    "F04"
+  ],
+  "root_tests": {
+    "total": 724,
+    "passed": 723,
+    "failed": 0,
+    "skipped": 1,
+    "duration_seconds": 93.468
+  },
+  "new_tests": 85,
+  "skipped_reason": "One existing Windows symlink test lacks account permission",
+  "root_junit": {
+    "path": "discovery/t01-phase1-real/w1/b1-freesasa-maintenance-20260906/root-tests.xml",
+    "sha256": "d0c99bbbff8706bcd0b9bb15427970f077babb7f585e95c0c0c604a13fedf7f8",
+    "size_bytes": 101432
+  },
+  "execution_record": {
+    "path": "discovery/t01-phase1-real/w1/b1-freesasa-maintenance-20260906/checks.json",
+    "sha256": "b0a828ef20f7d7df06c756820f027803ef3f21370f9469f470f9e03ece868287",
+    "size_bytes": 5812
+  },
+  "campaign": {
+    "path": "discovery/t01-phase1-real/w1/b1-freesasa-consumer-20260906-r02",
+    "cases": 45,
+    "raw_calculations": 18,
+    "preparation_rejections": 26,
+    "classifier_rejections_before_calculation": 1,
+    "actual_classifier_invocations": 19,
+    "route_parity_groups": 4,
+    "artifacts": 965,
+    "protected_files": 1616,
+    "prior_protected_files": 646,
+    "retained_initial_trial_files": 970,
+    "expert_originals": 22,
+    "reparsed": true
+  },
+  "initial_tool_trial": {
+    "status": "FAILED_ROUTE_PARITY_PRECONDITION",
+    "manifest": {
+      "path": "discovery/t01-phase1-real/w1/b1-freesasa-consumer-20260906/manifest.json",
+      "sha256": "5bd477e31f37f46f8582a1b0ef959f67c586cd12250cb9508bf8fadbf1c62f27",
+      "size_bytes": 186496
+    },
+    "cause": "Synthetic float addition generated a longer decimal than the PDB field could retain; native/PDB input coordinates differed.",
+    "resolution": "Original evidence retained. Exact three-decimal synthetic literals predeclared in a separate r02 campaign. No source input, consumer rule or scientific tolerance relaxed."
+  },
+  "actual_tool": {
+    "image_id": "sha256:bb6c6b5ce1add12dc9bda3538a218568a9e80c048c12525fc130eaa970dbb9e5",
+    "runtime": {
+      "python": "3.11.16",
+      "freesasa": "2.2.1",
+      "biopython": "1.88",
+      "numpy": "2.4.6"
+    },
+    "network_interfaces": [
+      "lo"
+    ],
+    "stderr_bytes": 0
+  },
+  "read_only_checks": {
+    "old_b1_cases": 23,
+    "old_b1_pairs": 2,
+    "old_facts_cases": 40,
+    "mock_frozen_assets": 457,
+    "handoff_archives": 2,
+    "r58_boundary_files": 212,
+    "original_runtime_sources": 16,
+    "current_runtime_sources": 16
+  },
+  "documentation": {
+    "status": "PASS",
+    "markdown_files": 177
+  },
+  "legacy_regressions": {
+    "status": "NOT_RERUN",
+    "reason": "Only current engineering partition changed; no cross-partition path/isolation change or stage freeze"
+  },
+  "scientific_acceptance": "NOT_RUN",
+  "mapping_approval": "NOT_GRANTED",
+  "production_workers_enabled": false,
+  "production_status": "NOT_DEPLOYED"
+}

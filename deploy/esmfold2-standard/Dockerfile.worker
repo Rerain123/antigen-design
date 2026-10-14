@@ -1,0 +1,4 @@
+ARG BASE_IMAGE=antigen-esmfold2:standard-env-r01
+FROM ${BASE_IMAGE}
+COPY run_structure.py /opt/t01/run_structure.py
+ENTRYPOINT ["python", "-B", "/opt/t01/run_structure.py"]

@@ -1,0 +1,224 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-af3-assets-inspect-r01
+  namespace: him-ws
+immutable: true
+data:
+  inspect_af3_assets.py: "\"\"\"Read-only AF3 archive/receipt and PVC-space inspection.\n\
+    \nThis deliberately does not decompress or hash the 238 GB database payloads.\n\
+    The downloader already recorded full-stream MD5/SHA-256 verification; this\nstep\
+    \ independently remounts both PVCs, checks identities/sizes/receipts and\nreports\
+    \ actual filesystem capacity before an extraction job is prepared.\n\"\"\"\nfrom\
+    \ __future__ import annotations\n\nimport argparse\nimport json\nimport os\nfrom\
+    \ pathlib import Path\nimport re\nimport stat\n\n\nWEIGHT_FILE = \"af3.bin.zst\"\
+    \nWEIGHT_BYTES = 1_020_545_840\nWEIGHT_SHA256 = \"74d0258616917cd122f5eab6d076afe4a8930e96823851e65e4f777dfb1f33ff\"\
+    \nOFFICIAL_EXPANDED_ESTIMATE_BYTES = 630_000_000_000\nPLANNING_RESERVE_BYTES =\
+    \ 64 * 1024**3\n\n\ndef read_json(path: Path) -> dict:\n    return json.loads(path.read_bytes())\n\
+    \n\ndef regular_file(path: Path, size: int | None = None) -> None:\n    info =\
+    \ path.lstat()\n    if not stat.S_ISREG(info.st_mode) or path.is_symlink():\n\
+    \        raise ValueError(f\"Expected regular file: {path.name}\")\n    if size\
+    \ is not None and info.st_size != size:\n        raise ValueError(f\"Unexpected\
+    \ size: {path.name}\")\n\n\ndef filesystem(path: Path) -> dict:\n    value = os.statvfs(path)\n\
+    \    return {\n        \"total_bytes\": value.f_blocks * value.f_frsize,\n   \
+    \     \"free_bytes\": value.f_bavail * value.f_frsize,\n        \"used_bytes\"\
+    : (value.f_blocks - value.f_bfree) * value.f_frsize,\n    }\n\n\ndef inspect(databases:\
+    \ Path, weights: Path, manifest_path: Path) -> dict:\n    databases, weights =\
+    \ databases.resolve(), weights.resolve()\n    manifest = read_json(manifest_path)\n\
+    \    if manifest[\"schema\"] != \"t01.af3-database-download/1\" or manifest[\"\
+    archives_only\"] is not True:\n        raise ValueError(\"Unexpected pinned database\
+    \ manifest\")\n    if read_json(databases / \"database-manifest.json\") != manifest:\n\
+    \        raise ValueError(\"PVC database manifest differs from the pinned manifest\"\
+    )\n    receipt = read_json(databases / \"download-receipt.json\")\n    if receipt.get(\"\
+    status\") != \"DATABASE_ARCHIVES_VERIFIED_NOT_DEPLOYED\":\n        raise ValueError(\"\
+    Database download receipt is not verified\")\n    if receipt.get(\"decompressed\"\
+    ) is not False or receipt.get(\"scientific_gate\") != \"CLOSED\":\n        raise\
+    \ ValueError(\"Database receipt release guards differ\")\n    receipt_assets =\
+    \ {row[\"file\"]: row for row in receipt[\"assets\"]}\n    expected_names = {row[\"\
+    file\"] for row in manifest[\"assets\"]}\n    if set(receipt_assets) != expected_names:\n\
+    \        raise ValueError(\"Database receipt inventory differs from the pinned\
+    \ manifest\")\n    rows = []\n    for asset in manifest[\"assets\"]:\n       \
+    \ name, identity = asset[\"file\"], asset[\"identity\"]\n        if Path(name).name\
+    \ != name or \"/\" in name or \"\\\\\" in name:\n            raise ValueError(\"\
+    Unsafe archive name\")\n        archive = databases / name\n        regular_file(archive,\
+    \ identity[\"bytes\"])\n        if (databases / f\"{name}.partial\").exists():\n\
+    \            raise ValueError(f\"Partial archive remains: {name}\")\n        if\
+    \ read_json(databases / f\"{name}.source.json\") != identity:\n            raise\
+    \ ValueError(f\"Source identity differs: {name}\")\n        per_file = read_json(databases\
+    \ / f\"{name}.receipt.json\")\n        if per_file != receipt_assets[name]:\n\
+    \            raise ValueError(f\"Per-file receipt differs: {name}\")\n       \
+    \ if any(per_file.get(key) != value for key, value in identity.items()):\n   \
+    \         raise ValueError(f\"Pinned identity differs in receipt: {name}\")\n\
+    \        if (per_file.get(\"status\"), per_file.get(\"official_md5_verified\"\
+    ),\n                per_file.get(\"decompressed\"), per_file.get(\"scientific_gate\"\
+    )) != (\n                \"ARCHIVE_VERIFIED_NOT_DEPLOYED\", True, False, \"CLOSED\"\
+    ):\n            raise ValueError(f\"Archive verification guard differs: {name}\"\
+    )\n        if not re.fullmatch(r\"[0-9a-f]{64}\", per_file.get(\"sha256\", \"\"\
+    )):\n            raise ValueError(f\"Missing archive SHA-256: {name}\")\n    \
+    \    rows.append({\"file\": name, \"bytes\": archive.stat().st_size, \"sha256\"\
+    : per_file[\"sha256\"]})\n    if sum(row[\"bytes\"] for row in rows) != manifest[\"\
+    total_bytes\"]:\n        raise ValueError(\"Database archive byte total differs\"\
+    )\n\n    weight_receipt = read_json(weights / \"download-receipt.json\")\n   \
+    \ regular_file(weights / WEIGHT_FILE, WEIGHT_BYTES)\n    if (weights / f\"{WEIGHT_FILE}.partial\"\
+    ).exists():\n        raise ValueError(\"Partial weight archive remains\")\n  \
+    \  if (weight_receipt.get(\"file\"), weight_receipt.get(\"bytes\"), weight_receipt.get(\"\
+    sha256\")) != (\n            WEIGHT_FILE, WEIGHT_BYTES, WEIGHT_SHA256):\n    \
+    \    raise ValueError(\"Weight receipt identity differs\")\n    if (weight_receipt.get(\"\
+    status\"), weight_receipt.get(\"official_crc32c_verified\"),\n            weight_receipt.get(\"\
+    decompressed\"), weight_receipt.get(\"scientific_gate\")) != (\n            \"\
+    WEIGHTS_DOWNLOADED_VERIFIED_NOT_DEPLOYED\", True, False, \"CLOSED\"):\n      \
+    \  raise ValueError(\"Weight verification guard differs\")\n\n    database_fs\
+    \ = filesystem(databases)\n    weights_fs = filesystem(weights)\n    planning_need\
+    \ = OFFICIAL_EXPANDED_ESTIMATE_BYTES + PLANNING_RESERVE_BYTES\n    return {\n\
+    \        \"status\": \"AF3_ASSETS_MOUNTED_RECEIPTS_AND_SIZES_VERIFIED_NOT_EXTRACTED\"\
+    ,\n        \"database_archives\": {\"count\": len(rows), \"bytes\": sum(row[\"\
+    bytes\"] for row in rows), \"files\": rows},\n        \"database_filesystem\"\
+    : database_fs,\n        \"extraction_space_planning\": {\n            \"official_approximate_expanded_bytes\"\
+    : OFFICIAL_EXPANDED_ESTIMATE_BYTES,\n            \"reserve_bytes\": PLANNING_RESERVE_BYTES,\n\
+    \            \"required_planning_free_bytes\": planning_need,\n            \"\
+    provisionally_sufficient\": database_fs[\"free_bytes\"] >= planning_need,\n  \
+    \          \"note\": \"Planning check only; exact expanded size must be measured\
+    \ and bounded by the extraction job.\",\n        },\n        \"weights\": {\"\
+    file\": WEIGHT_FILE, \"bytes\": WEIGHT_BYTES, \"sha256\": WEIGHT_SHA256},\n  \
+    \      \"weights_filesystem\": weights_fs,\n        \"scientific_gate\": \"CLOSED\"\
+    ,\n        \"usable_for_pipeline\": False,\n        \"production_status\": \"\
+    NOT_DEPLOYED\",\n    }\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(description=__doc__)\n\
+    \    parser.add_argument(\"databases\", type=Path)\n    parser.add_argument(\"\
+    weights\", type=Path)\n    parser.add_argument(\"manifest\", type=Path)\n    args\
+    \ = parser.parse_args()\n    result = inspect(args.databases, args.weights, args.manifest)\n\
+    \    print(\"AF3_ASSET_INSPECTION \" + json.dumps(result, ensure_ascii=False,\
+    \ sort_keys=True), flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  database-manifest.json: "{\n  \"schema\": \"t01.af3-database-download/1\",\n  \"\
+    release\": \"alphafold-databases/v3.0\",\n  \"listing_source\": \"https://github.com/google-deepmind/alphafold3/blob/v3.0.2/fetch_databases.sh\"\
+    ,\n  \"identity_checked_date\": \"2026-09-17\",\n  \"archives_only\": true,\n\
+    \  \"total_bytes\": 238784443666,\n  \"assets\": [\n    {\n      \"file\": \"\
+    pdb_seqres_2022_09_28.fasta.zst\",\n      \"generation\": \"1730832733047846\"\
+    ,\n      \"identity\": {\n        \"url\": \"https://storage.googleapis.com/alphafold-databases/v3.0/pdb_seqres_2022_09_28.fasta.zst\"\
+    ,\n        \"bytes\": 26493534,\n        \"etag\": \"\\\"86a1b92d3988ca499d79651d075379b2\\\
+    \"\",\n        \"md5_base64\": \"hqG5LTmIykmdeWUdB1N5sg==\",\n        \"crc32c_base64\"\
+    : \"uZUlYQ==\"\n      }\n    },\n    {\n      \"file\": \"rfam_14_9_clust_seq_id_90_cov_80_rep_seq.fasta.zst\"\
+    ,\n      \"generation\": \"1730832743346741\",\n      \"identity\": {\n      \
+    \  \"url\": \"https://storage.googleapis.com/alphafold-databases/v3.0/rfam_14_9_clust_seq_id_90_cov_80_rep_seq.fasta.zst\"\
+    ,\n        \"bytes\": 56604542,\n        \"etag\": \"\\\"7dd833c908ae8288b320fdb363b56848\\\
+    \"\",\n        \"md5_base64\": \"fdgzyQiugoizIP2zY7VoSA==\",\n        \"crc32c_base64\"\
+    : \"mw7VNQ==\"\n      }\n    },\n    {\n      \"file\": \"rnacentral_active_seq_id_90_cov_80_linclust.fasta.zst\"\
+    ,\n      \"generation\": \"1730833037254881\",\n      \"identity\": {\n      \
+    \  \"url\": \"https://storage.googleapis.com/alphafold-databases/v3.0/rnacentral_active_seq_id_90_cov_80_linclust.fasta.zst\"\
+    ,\n        \"bytes\": 3519676108,\n        \"etag\": \"\\\"f4db49a31a8c2576210d5fa273296117\\\
+    \"\",\n        \"md5_base64\": \"9NtJoxqMJXYhDV+icylhFw==\",\n        \"crc32c_base64\"\
+    : \"iZSwlA==\"\n      }\n    },\n    {\n      \"file\": \"bfd-first_non_consensus_sequences.fasta.zst\"\
+    ,\n      \"generation\": \"1730822885415645\",\n      \"identity\": {\n      \
+    \  \"url\": \"https://storage.googleapis.com/alphafold-databases/v3.0/bfd-first_non_consensus_sequences.fasta.zst\"\
+    ,\n        \"bytes\": 9880478127,\n        \"etag\": \"\\\"ccde88faeb9eb62b0c83d07edcbf3459\\\
+    \"\",\n        \"md5_base64\": \"zN6I+uuetisMg9B+3L80WQ==\",\n        \"crc32c_base64\"\
+    : \"v9fbdw==\"\n      }\n    },\n    {\n      \"file\": \"nt_rna_2023_02_23_clust_seq_id_90_cov_80_rep_seq.fasta.zst\"\
+    ,\n      \"generation\": \"1730828153681603\",\n      \"identity\": {\n      \
+    \  \"url\": \"https://storage.googleapis.com/alphafold-databases/v3.0/nt_rna_2023_02_23_clust_seq_id_90_cov_80_rep_seq.fasta.zst\"\
+    ,\n        \"bytes\": 17028641580,\n        \"etag\": \"\\\"2da99b2f9704896ce9b4f5dd9425e432\\\
+    \"\",\n        \"md5_base64\": \"LambL5cEiWzptPXdlCXkMg==\",\n        \"crc32c_base64\"\
+    : \"0jZlYg==\"\n      }\n    },\n    {\n      \"file\": \"uniref90_2022_05.fa.zst\"\
+    ,\n      \"generation\": \"1730837673075080\",\n      \"identity\": {\n      \
+    \  \"url\": \"https://storage.googleapis.com/alphafold-databases/v3.0/uniref90_2022_05.fa.zst\"\
+    ,\n        \"bytes\": 33271639594,\n        \"etag\": \"\\\"c9136c52ca9e25c2ce8d3a569d47e912\\\
+    \"\",\n        \"md5_base64\": \"yRNsUsqeJcLOjTpWnUfpEg==\",\n        \"crc32c_base64\"\
+    : \"OT/GbQ==\"\n      }\n    },\n    {\n      \"file\": \"uniprot_all_2021_04.fa.zst\"\
+    ,\n      \"generation\": \"1730835786074627\",\n      \"identity\": {\n      \
+    \  \"url\": \"https://storage.googleapis.com/alphafold-databases/v3.0/uniprot_all_2021_04.fa.zst\"\
+    ,\n        \"bytes\": 48688827585,\n        \"etag\": \"\\\"cabf618be6f8c85397c97f49d7da9307\\\
+    \"\",\n        \"md5_base64\": \"yr9hi+b4yFOXyX9J19qTBw==\",\n        \"crc32c_base64\"\
+    : \"k9mSMA==\"\n      }\n    },\n    {\n      \"file\": \"pdb_2022_09_28_mmcif_files.tar.zst\"\
+    ,\n      \"generation\": \"1730832728463652\",\n      \"identity\": {\n      \
+    \  \"url\": \"https://storage.googleapis.com/alphafold-databases/v3.0/pdb_2022_09_28_mmcif_files.tar.zst\"\
+    ,\n        \"bytes\": 56979074571,\n        \"etag\": \"\\\"13447e161d081c7d5df71781b6de2427\\\
+    \"\",\n        \"md5_base64\": \"E0R+Fh0IHH1d9xeBtt4kJw==\",\n        \"crc32c_base64\"\
+    : \"waDF1A==\"\n      }\n    },\n    {\n      \"file\": \"mgy_clusters_2022_05.fa.zst\"\
+    ,\n      \"generation\": \"1730826709796458\",\n      \"identity\": {\n      \
+    \  \"url\": \"https://storage.googleapis.com/alphafold-databases/v3.0/mgy_clusters_2022_05.fa.zst\"\
+    ,\n        \"bytes\": 69333008025,\n        \"etag\": \"\\\"d2482ea92b28ccb14e235bb4868b6d50\\\
+    \"\",\n        \"md5_base64\": \"0kguqSsozLFOI1u0hottUA==\",\n        \"crc32c_base64\"\
+    : \"gPPw4g==\"\n      }\n    }\n  ]\n}\n"
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: antigen-af3-assets-inspect-r01
+  namespace: him-ws
+spec:
+  podSelector:
+    matchLabels:
+      app: antigen-af3-assets-inspect-r01
+  policyTypes:
+  - Ingress
+  - Egress
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-af3-assets-inspect-r01
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 1800
+  template:
+    metadata:
+      labels:
+        app: antigen-af3-assets-inspect-r01
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+      - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+      - name: inspect
+        image: harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:fba5a32c0550e56a5310160e2fc49d647fcd27d76851073a2d82cc935fb4c2fc
+        command:
+        - python
+        - -u
+        - -B
+        - /inspect/inspect_af3_assets.py
+        - /databases/alphafold3-v3.0/archives
+        - /models/weights/alphafold3-official-r01
+        - /inspect/database-manifest.json
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+            ephemeral-storage: 64Mi
+          limits:
+            cpu: '1'
+            memory: 512Mi
+            ephemeral-storage: 256Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: databases
+          mountPath: /databases
+          readOnly: true
+        - name: models
+          mountPath: /models
+          readOnly: true
+        - name: inspect
+          mountPath: /inspect
+          readOnly: true
+      volumes:
+      - name: databases
+        persistentVolumeClaim:
+          claimName: antigen-af3-databases
+          readOnly: true
+      - name: models
+        persistentVolumeClaim:
+          claimName: antigen-af3-models
+          readOnly: true
+      - name: inspect
+        configMap:
+          name: antigen-af3-assets-inspect-r01

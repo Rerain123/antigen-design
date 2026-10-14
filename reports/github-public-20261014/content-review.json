@@ -1,0 +1,17 @@
+{
+  "status": "PASS_WITH_KNOWN_FALSE_POSITIVES",
+  "pattern_hit_records": 132,
+  "unresolved_hits": 0,
+  "review": [
+    "Previously reviewed patterns match the handoff audit: negative-test URLs, amino-acid sequences, code expressions and placeholder names.",
+    "Additional fingerprints occur only in amino-acid sequences in AF3 and DeepTMHMM inputs.",
+    "Nested ZIP/TAR/GZIP and Base64 deployment source payloads inspected.",
+    "Two 5-byte invalid ZIP negative-test fixtures were retained unchanged; they cannot contain expert document payloads."
+  ],
+  "limitations": [
+    "Pattern inspection cannot prove arbitrary data is secret-free."
+  ],
+  "unchanged_original_files": 41346,
+  "filtered_containers_rescan": 26,
+  "expert_material_rescan_hits": 0
+}

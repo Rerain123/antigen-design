@@ -1,0 +1,1743 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:t01:phase1:mock:envelope:v0.1",
+  "title": "T-01 Phase-1 Mock Envelope Contract v0.1",
+  "description": "PH1-MOCK-M1-04 request and run-result envelope. Scientific node payload schemas are intentionally opaque.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/request_envelope"
+    },
+    {
+      "$ref": "#/$defs/run_result_envelope"
+    }
+  ],
+  "$defs": {
+    "node_id": {
+      "type": "string",
+      "enum": [
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05",
+        "N06",
+        "N07",
+        "N08",
+        "N09",
+        "N10",
+        "N11",
+        "N12",
+        "N13",
+        "N14",
+        "N15",
+        "N16",
+        "N17",
+        "N18"
+      ]
+    },
+    "nullable_node_id": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/node_id"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "edge_id": {
+      "type": "string",
+      "enum": [
+        "E001",
+        "E002",
+        "E003",
+        "E004",
+        "E005",
+        "E006",
+        "E007",
+        "E008",
+        "E009",
+        "E010",
+        "E011",
+        "E012",
+        "E013",
+        "E014",
+        "E015",
+        "E016",
+        "E017",
+        "E018",
+        "E019",
+        "E020",
+        "E021",
+        "E022",
+        "E023",
+        "E024",
+        "E025",
+        "E026",
+        "E027"
+      ]
+    },
+    "nullable_edge_id": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/edge_id"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "nullable_nonempty_string": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "nullable_datetime": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "actor_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "actor_type",
+        "actor_id",
+        "component_version"
+      ],
+      "properties": {
+        "actor_type": {
+          "type": "string",
+          "enum": [
+            "USER",
+            "LLM",
+            "DIFY",
+            "MCP",
+            "BACKEND",
+            "WORKER",
+            "MOCK_SCENARIO",
+            "SYSTEM"
+          ]
+        },
+        "actor_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "component_version": {
+          "$ref": "#/$defs/nullable_nonempty_string"
+        }
+      }
+    },
+    "artifact_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_id",
+        "artifact_role",
+        "uri",
+        "media_type",
+        "format",
+        "size_bytes",
+        "sha256",
+        "integrity_status",
+        "created_at",
+        "producer",
+        "source_node_id",
+        "source_attempt_id",
+        "metadata"
+      ],
+      "properties": {
+        "artifact_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifact_role": {
+          "type": "string",
+          "enum": [
+            "INPUT_STRUCTURE",
+            "NODE_INPUT",
+            "NODE_OUTPUT",
+            "PARTIAL_RESULT",
+            "FINAL_RESULT",
+            "LOG",
+            "METHOD_SUMMARY",
+            "FAILURE_REPORT",
+            "AUDIT"
+          ]
+        },
+        "uri": {
+          "type": "string",
+          "pattern": "^artifact://[A-Za-z0-9][A-Za-z0-9._~:/-]*$"
+        },
+        "media_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "format": {
+          "type": "string",
+          "minLength": 1
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "integrity_status": {
+          "const": "VERIFIED"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "producer": {
+          "$ref": "#/$defs/actor_ref"
+        },
+        "source_node_id": {
+          "$ref": "#/$defs/nullable_node_id"
+        },
+        "source_attempt_id": {
+          "$ref": "#/$defs/nullable_nonempty_string"
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "error_envelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "error_id",
+        "code",
+        "category",
+        "severity",
+        "retryability",
+        "message",
+        "occurred_at",
+        "source",
+        "node_id",
+        "attempt_id",
+        "artifact_ids",
+        "rule_refs",
+        "details",
+        "caused_by_error_id",
+        "manual_review_required",
+        "blocks_auto_handoff"
+      ],
+      "properties": {
+        "error_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "code": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]{2,63}$"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "VALIDATION",
+            "CONTROL",
+            "TOOL",
+            "TIMEOUT",
+            "CANCELLATION",
+            "ARTIFACT",
+            "INTEGRITY",
+            "DEPENDENCY",
+            "INTERNAL"
+          ]
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "WARNING",
+            "ERROR",
+            "FATAL"
+          ]
+        },
+        "retryability": {
+          "type": "string",
+          "enum": [
+            "RETRYABLE",
+            "NON_RETRYABLE",
+            "MANUAL_REVIEW"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        },
+        "occurred_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source": {
+          "$ref": "#/$defs/actor_ref"
+        },
+        "node_id": {
+          "$ref": "#/$defs/nullable_node_id"
+        },
+        "attempt_id": {
+          "$ref": "#/$defs/nullable_nonempty_string"
+        },
+        "artifact_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "rule_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "details": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "caused_by_error_id": {
+          "$ref": "#/$defs/nullable_nonempty_string"
+        },
+        "manual_review_required": {
+          "type": "boolean"
+        },
+        "blocks_auto_handoff": {
+          "type": "boolean"
+        }
+      }
+    },
+    "disposition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "reason_code",
+        "reason",
+        "decided_at",
+        "control_decision_id"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "BRANCH_NOT_SELECTED",
+            "CONDITION_NOT_MET",
+            "UPSTREAM_BLOCKED",
+            "LAUNCH_BLOCKED",
+            "RUN_CANCELLED"
+          ]
+        },
+        "reason_code": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]{2,63}$"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decided_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "control_decision_id": {
+          "$ref": "#/$defs/nullable_nonempty_string"
+        }
+      }
+    },
+    "node_output_envelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "payload_type",
+        "payload_version",
+        "data",
+        "artifacts"
+      ],
+      "properties": {
+        "payload_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "payload_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/artifact_ref"
+          }
+        }
+      }
+    },
+    "attempt_metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "queue_ms",
+        "runtime_ms"
+      ],
+      "properties": {
+        "queue_ms": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "runtime_ms": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    },
+    "node_attempt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attempt_id",
+        "attempt_number",
+        "attempt_kind",
+        "status",
+        "design_cycle",
+        "recovery_of_attempt_id",
+        "started_at",
+        "finished_at",
+        "executor",
+        "parameters",
+        "input_artifact_ids",
+        "output_artifact_ids",
+        "issues",
+        "metrics"
+      ],
+      "properties": {
+        "attempt_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attempt_number": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "attempt_kind": {
+          "type": "string",
+          "enum": [
+            "INITIAL",
+            "RECALC",
+            "RECOVERY"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED",
+            "TIMED_OUT",
+            "CANCELLED"
+          ]
+        },
+        "design_cycle": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 3
+        },
+        "recovery_of_attempt_id": {
+          "$ref": "#/$defs/nullable_nonempty_string"
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "finished_at": {
+          "$ref": "#/$defs/nullable_datetime"
+        },
+        "executor": {
+          "$ref": "#/$defs/actor_ref"
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "input_artifact_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "output_artifact_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "issues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/error_envelope"
+          }
+        },
+        "metrics": {
+          "$ref": "#/$defs/attempt_metrics"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "RUNNING"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "finished_at": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "finished_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "FAILED",
+                  "TIMED_OUT",
+                  "CANCELLED"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "issues": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "node_result_envelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "node_id",
+        "status",
+        "started_at",
+        "finished_at",
+        "output_completeness",
+        "output",
+        "attempts",
+        "disposition",
+        "issues",
+        "upstream_node_ids",
+        "control_decision_ids"
+      ],
+      "properties": {
+        "node_id": {
+          "$ref": "#/$defs/node_id"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "PENDING",
+            "RUNNING",
+            "SUCCEEDED",
+            "SKIPPED_BRANCH",
+            "SKIPPED_CONDITION",
+            "FAILED",
+            "TIMED_OUT",
+            "CANCELLED",
+            "NOT_EXECUTED"
+          ]
+        },
+        "started_at": {
+          "$ref": "#/$defs/nullable_datetime"
+        },
+        "finished_at": {
+          "$ref": "#/$defs/nullable_datetime"
+        },
+        "output_completeness": {
+          "type": "string",
+          "enum": [
+            "NONE",
+            "PARTIAL",
+            "COMPLETE"
+          ]
+        },
+        "output": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/node_output_envelope"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "attempts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/node_attempt"
+          }
+        },
+        "disposition": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/disposition"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "issues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/error_envelope"
+          }
+        },
+        "upstream_node_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/node_id"
+          },
+          "uniqueItems": true
+        },
+        "control_decision_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "PENDING"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "started_at": {
+                "type": "null"
+              },
+              "finished_at": {
+                "type": "null"
+              },
+              "output_completeness": {
+                "const": "NONE"
+              },
+              "output": {
+                "type": "null"
+              },
+              "attempts": {
+                "maxItems": 0
+              },
+              "disposition": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "RUNNING"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "started_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "finished_at": {
+                "type": "null"
+              },
+              "attempts": {
+                "minItems": 1
+              },
+              "disposition": {
+                "type": "null"
+              },
+              "output_completeness": {
+                "enum": [
+                  "NONE",
+                  "PARTIAL"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "SUCCEEDED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "started_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "finished_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "output_completeness": {
+                "const": "COMPLETE"
+              },
+              "output": {
+                "$ref": "#/$defs/node_output_envelope"
+              },
+              "attempts": {
+                "minItems": 1
+              },
+              "disposition": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "SKIPPED_BRANCH",
+                  "SKIPPED_CONDITION",
+                  "NOT_EXECUTED"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "started_at": {
+                "type": "null"
+              },
+              "finished_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "output_completeness": {
+                "const": "NONE"
+              },
+              "output": {
+                "type": "null"
+              },
+              "attempts": {
+                "maxItems": 0
+              },
+              "disposition": {
+                "$ref": "#/$defs/disposition"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "FAILED",
+                  "TIMED_OUT"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "started_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "finished_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "output_completeness": {
+                "enum": [
+                  "NONE",
+                  "PARTIAL"
+                ]
+              },
+              "attempts": {
+                "minItems": 1
+              },
+              "issues": {
+                "minItems": 1
+              },
+              "disposition": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CANCELLED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "finished_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "output_completeness": {
+                "enum": [
+                  "NONE",
+                  "PARTIAL"
+                ]
+              },
+              "issues": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "control_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_id",
+        "control_type",
+        "decision",
+        "reason_code",
+        "reason",
+        "node_id",
+        "attempt_id",
+        "producer",
+        "occurred_at",
+        "source_facts"
+      ],
+      "properties": {
+        "decision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "control_type": {
+          "type": "string",
+          "enum": [
+            "DESIGN_SUITABILITY",
+            "N12_VALIDATION",
+            "N15_DELIVERY_RECOMMENDATION",
+            "N16_APPLICABILITY",
+            "N17_APPLICABILITY"
+          ]
+        },
+        "decision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason_code": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]{2,63}$"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "node_id": {
+          "$ref": "#/$defs/nullable_node_id"
+        },
+        "attempt_id": {
+          "$ref": "#/$defs/nullable_nonempty_string"
+        },
+        "producer": {
+          "$ref": "#/$defs/actor_ref"
+        },
+        "occurred_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source_facts": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "control_type": {
+                "const": "DESIGN_SUITABILITY"
+              }
+            },
+            "required": [
+              "control_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "decision": {
+                "enum": [
+                  "DESIGN_SUITABLE",
+                  "DESIGN_NOT_SUITABLE"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "control_type": {
+                "const": "N12_VALIDATION"
+              }
+            },
+            "required": [
+              "control_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "decision": {
+                "enum": [
+                  "VALIDATED_CANDIDATES_AVAILABLE",
+                  "RECALC_REQUIRED",
+                  "RECALC_EXHAUSTED"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "control_type": {
+                "const": "N15_DELIVERY_RECOMMENDATION"
+              }
+            },
+            "required": [
+              "control_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "decision": {
+                "enum": [
+                  "CANDIDATE_RECOMMENDED",
+                  "WT_FALLBACK_RECOMMENDED"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "control_type": {
+                "enum": [
+                  "N16_APPLICABILITY",
+                  "N17_APPLICABILITY"
+                ]
+              }
+            },
+            "required": [
+              "control_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "decision": {
+                "enum": [
+                  "EXECUTE",
+                  "SKIP_CONDITION",
+                  "NOT_EXECUTED"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "edge_traversal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "traversal_id",
+        "sequence",
+        "edge_id",
+        "occurred_at",
+        "source_node_id",
+        "target_node_id",
+        "attempt_id",
+        "control_decision_id"
+      ],
+      "properties": {
+        "traversal_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "edge_id": {
+          "$ref": "#/$defs/edge_id"
+        },
+        "occurred_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source_node_id": {
+          "$ref": "#/$defs/nullable_node_id"
+        },
+        "target_node_id": {
+          "$ref": "#/$defs/nullable_node_id"
+        },
+        "attempt_id": {
+          "$ref": "#/$defs/nullable_nonempty_string"
+        },
+        "control_decision_id": {
+          "$ref": "#/$defs/nullable_nonempty_string"
+        }
+      }
+    },
+    "audit_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_id",
+        "sequence",
+        "event_type",
+        "occurred_at",
+        "actor",
+        "node_id",
+        "attempt_id",
+        "edge_id",
+        "control_decision_id",
+        "details"
+      ],
+      "properties": {
+        "event_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "REQUEST_ACCEPTED",
+            "RUN_CREATED",
+            "RUN_STATE_CHANGED",
+            "NODE_STATE_CHANGED",
+            "CONTROL_DECISION_RECORDED",
+            "EDGE_TRAVERSED",
+            "ARTIFACT_ATTACHED",
+            "ERROR_RECORDED",
+            "RECOVERY_REQUESTED",
+            "HANDOFF_STATE_CHANGED"
+          ]
+        },
+        "occurred_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "actor": {
+          "$ref": "#/$defs/actor_ref"
+        },
+        "node_id": {
+          "$ref": "#/$defs/nullable_node_id"
+        },
+        "attempt_id": {
+          "$ref": "#/$defs/nullable_nonempty_string"
+        },
+        "edge_id": {
+          "$ref": "#/$defs/nullable_edge_id"
+        },
+        "control_decision_id": {
+          "$ref": "#/$defs/nullable_nonempty_string"
+        },
+        "details": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "audit_envelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "trace_id",
+        "correlation_id",
+        "events",
+        "audit_artifacts"
+      ],
+      "properties": {
+        "trace_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "correlation_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "events": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/audit_event"
+          }
+        },
+        "audit_artifacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/artifact_ref"
+          }
+        }
+      }
+    },
+    "common_header": {
+      "type": "object",
+      "required": [
+        "envelope_type",
+        "contract_version",
+        "topology_version",
+        "node_registry_version",
+        "control_flow_version",
+        "envelope_id",
+        "created_at",
+        "execution_mode",
+        "execution_profile",
+        "data_classification",
+        "scientific_compute"
+      ],
+      "properties": {
+        "envelope_type": {
+          "type": "string"
+        },
+        "contract_version": {
+          "const": "T01-PHASE1-ENVELOPE-v0.1"
+        },
+        "topology_version": {
+          "const": "T01-PHASE1-18NODE-OFFLINE"
+        },
+        "node_registry_version": {
+          "const": "T01-PHASE1-NODE-REGISTRY-v0.1"
+        },
+        "control_flow_version": {
+          "const": "T01-PHASE1-CONTROL-FLOW-v0.1"
+        },
+        "envelope_id": {
+          "type": "string",
+          "pattern": "^t01-phase1-mock-v01-env-[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "execution_mode": {
+          "const": "MOCK"
+        },
+        "execution_profile": {
+          "const": "PHASE1_FULL"
+        },
+        "data_classification": {
+          "const": "MOCK_DATA"
+        },
+        "scientific_compute": {
+          "const": false
+        }
+      }
+    },
+    "structure_input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact",
+        "structure_format",
+        "chain_selector",
+        "preserve_original_format"
+      ],
+      "properties": {
+        "artifact": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifact_ref"
+            },
+            {
+              "properties": {
+                "artifact_role": {
+                  "const": "INPUT_STRUCTURE"
+                }
+              }
+            }
+          ]
+        },
+        "structure_format": {
+          "type": "string",
+          "enum": [
+            "PDB",
+            "CIF",
+            "MMCIF"
+          ]
+        },
+        "chain_selector": {
+          "type": "string",
+          "pattern": "^(AUTO|[A-Za-z0-9_.-]+)$"
+        },
+        "preserve_original_format": {
+          "const": true
+        }
+      }
+    },
+    "request_inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "protein_sequence",
+        "host_species",
+        "structure"
+      ],
+      "properties": {
+        "protein_sequence": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Z]+$"
+        },
+        "host_species": {
+          "type": "string",
+          "minLength": 1
+        },
+        "structure": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/structure_input"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "request_options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "design_objective",
+        "expression_host"
+      ],
+      "properties": {
+        "design_objective": {
+          "type": "string",
+          "enum": [
+            "general",
+            "solubility",
+            "thermostability"
+          ]
+        },
+        "expression_host": {
+          "$ref": "#/$defs/nullable_nonempty_string"
+        }
+      }
+    },
+    "input_fingerprints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "protein_sequence_sha256",
+        "structure_sha256"
+      ],
+      "properties": {
+        "protein_sequence_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "structure_sha256": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "request_envelope": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/common_header"
+        },
+        {
+          "type": "object",
+          "required": [
+            "request_id",
+            "idempotency_key",
+            "scenario_ref",
+            "inputs",
+            "options",
+            "input_fingerprints",
+            "audit"
+          ],
+          "properties": {
+            "envelope_type": {
+              "const": "PHASE1_RUN_REQUEST"
+            },
+            "request_id": {
+              "type": "string",
+              "pattern": "^t01-phase1-mock-v01-req-[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+            },
+            "idempotency_key": {
+              "type": "string",
+              "minLength": 1
+            },
+            "scenario_ref": {
+              "type": "string",
+              "pattern": "^t01_phase1_mock_v01[.]scenario[.][a-z][a-z0-9_]*$"
+            },
+            "inputs": {
+              "$ref": "#/$defs/request_inputs"
+            },
+            "options": {
+              "$ref": "#/$defs/request_options"
+            },
+            "input_fingerprints": {
+              "$ref": "#/$defs/input_fingerprints"
+            },
+            "audit": {
+              "$ref": "#/$defs/audit_envelope"
+            }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "edge_traversals": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/edge_traversal"
+      }
+    },
+    "handoff_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "delivered",
+        "external_reference",
+        "occurred_at",
+        "issue_id"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "NOT_REQUESTED",
+            "PENDING",
+            "DECLINED",
+            "DELIVERED",
+            "FAILED",
+            "NOT_DEPLOYED"
+          ]
+        },
+        "delivered": {
+          "type": "boolean"
+        },
+        "external_reference": {
+          "$ref": "#/$defs/nullable_nonempty_string"
+        },
+        "occurred_at": {
+          "$ref": "#/$defs/nullable_datetime"
+        },
+        "issue_id": {
+          "$ref": "#/$defs/nullable_nonempty_string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "DELIVERED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "delivered": {
+                "const": true
+              },
+              "external_reference": {
+                "type": "string",
+                "minLength": 1
+              },
+              "occurred_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "delivered": {
+                "const": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "final_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "result_kind",
+        "summary",
+        "artifacts",
+        "handoff"
+      ],
+      "properties": {
+        "result_kind": {
+          "type": "string",
+          "enum": [
+            "CANDIDATE",
+            "WT",
+            "FAILURE"
+          ]
+        },
+        "summary": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/artifact_ref"
+          }
+        },
+        "handoff": {
+          "$ref": "#/$defs/handoff_summary"
+        }
+      }
+    },
+    "run_result_envelope": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/common_header"
+        },
+        {
+          "type": "object",
+          "required": [
+            "run_id",
+            "request_id",
+            "idempotency_key",
+            "scenario_ref",
+            "run_status",
+            "recovery_of_run_id",
+            "started_at",
+            "finished_at",
+            "current_node_ids",
+            "input_fingerprints",
+            "control_decisions",
+            "edge_traversals",
+            "node_results",
+            "result",
+            "issues",
+            "audit"
+          ],
+          "properties": {
+            "envelope_type": {
+              "const": "PHASE1_RUN_RESULT"
+            },
+            "run_id": {
+              "type": "string",
+              "pattern": "^t01-phase1-mock-v01-run-[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+            },
+            "request_id": {
+              "type": "string",
+              "pattern": "^t01-phase1-mock-v01-req-[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+            },
+            "idempotency_key": {
+              "type": "string",
+              "minLength": 1
+            },
+            "scenario_ref": {
+              "type": "string",
+              "pattern": "^t01_phase1_mock_v01[.]scenario[.][a-z][a-z0-9_]*$"
+            },
+            "run_status": {
+              "type": "string",
+              "enum": [
+                "QUEUED",
+                "RUNNING",
+                "COMPLETED",
+                "COMPLETED_WITH_GAPS",
+                "FAILED",
+                "TIMED_OUT",
+                "CANCELLED"
+              ]
+            },
+            "recovery_of_run_id": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "pattern": "^t01-phase1-mock-v01-run-[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "started_at": {
+              "$ref": "#/$defs/nullable_datetime"
+            },
+            "finished_at": {
+              "$ref": "#/$defs/nullable_datetime"
+            },
+            "current_node_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/node_id"
+              },
+              "uniqueItems": true
+            },
+            "input_fingerprints": {
+              "$ref": "#/$defs/input_fingerprints"
+            },
+            "control_decisions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/control_decision"
+              }
+            },
+            "edge_traversals": {
+              "$ref": "#/$defs/edge_traversals"
+            },
+            "node_results": {
+              "type": "array",
+              "minItems": 18,
+              "maxItems": 18,
+              "items": {
+                "$ref": "#/$defs/node_result_envelope"
+              }
+            },
+            "result": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/final_result"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "issues": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/error_envelope"
+              }
+            },
+            "audit": {
+              "$ref": "#/$defs/audit_envelope"
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "run_status": {
+                "enum": [
+                  "QUEUED",
+                  "RUNNING"
+                ]
+              }
+            },
+            "required": [
+              "run_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "finished_at": {
+                "type": "null"
+              },
+              "result": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "run_status": {
+                "enum": [
+                  "COMPLETED",
+                  "COMPLETED_WITH_GAPS"
+                ]
+              }
+            },
+            "required": [
+              "run_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "finished_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "current_node_ids": {
+                "maxItems": 0
+              },
+              "result": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/final_result"
+                  },
+                  {
+                    "properties": {
+                      "result_kind": {
+                        "enum": [
+                          "CANDIDATE",
+                          "WT"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "run_status": {
+                "enum": [
+                  "FAILED",
+                  "TIMED_OUT",
+                  "CANCELLED"
+                ]
+              }
+            },
+            "required": [
+              "run_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "finished_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "current_node_ids": {
+                "maxItems": 0
+              },
+              "result": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/final_result"
+                  },
+                  {
+                    "properties": {
+                      "result_kind": {
+                        "const": "FAILURE"
+                      }
+                    }
+                  }
+                ]
+              },
+              "issues": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    }
+  }
+}

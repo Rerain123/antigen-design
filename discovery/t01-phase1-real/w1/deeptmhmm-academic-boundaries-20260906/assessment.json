@@ -1,0 +1,1097 @@
+{
+  "status": "PASS_DEVELOPMENT_EVIDENCE_WITH_ORIGINAL_TOOL_FINDING",
+  "stage": "W1-08B2",
+  "real_cases": [
+    {
+      "case": "safe-id",
+      "input_kind": "EXISTING_G0_REFERENCE",
+      "outcome": "EXPECT_COMPLETE_RAW",
+      "expectation": "MET",
+      "result": {
+        "status": "COMPLETE_RAW_ONLY",
+        "diagnostics": [],
+        "trace": {
+          "amino_acids": 51,
+          "token_count": 53,
+          "chunk_token_counts": [
+            53
+          ],
+          "chunk_ranges_0based_half_open": [
+            [
+              0,
+              53
+            ]
+          ],
+          "exact_token_reconstruction": true,
+          "embedding_shape": [
+            51,
+            1280
+          ]
+        },
+        "raw_record": {
+          "sequence": "MQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLL",
+          "labels": "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII",
+          "type": "GLOB",
+          "segments": [
+            {
+              "label": "I",
+              "type": "inside",
+              "start": 1,
+              "end": 51
+            }
+          ]
+        },
+        "probability": {
+          "rows": 51,
+          "position_base": 0,
+          "max_probability_mass_deviation": 0.0,
+          "mass_tolerance": "NOT_A_SCIENTIFIC_ACCEPTANCE_THRESHOLD"
+        },
+        "required_outputs": [
+          "predicted_topologies.3line",
+          "TMRs.gff3",
+          "deeptmhmm_results.md",
+          "plot.png",
+          "probabilities/t01seq_2548dd1a2b1bb6adee62adcbda1ef4e46edb1c919da664011676adf1aee6174e_probs.csv",
+          "embeddings/540e78a823843e70b82efc3dd97de40a"
+        ],
+        "topology": null,
+        "usable_for_pipeline": false,
+        "automatic_handoff": false,
+        "requires_review": true,
+        "scientific_signoff": null,
+        "production_status": "NOT_DEPLOYED"
+      },
+      "execution": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/safe-id/execution.json",
+        "sha256": "0736115b6e67f975adcb523f8263c6f7ec5d5a919ecb7d7e31c65eda243aa666",
+        "size_bytes": 4306
+      },
+      "container_exit_code": 0,
+      "elapsed_seconds": 33.38999999999942,
+      "oom_killed": false,
+      "timed_out": false
+    },
+    {
+      "case": "length-1",
+      "input_kind": "SYNTHETIC_LENGTH_FIXTURE",
+      "outcome": "OBSERVE_COMPLETE_OR_DIAGNOSED_FAILURE",
+      "expectation": "MET",
+      "result": {
+        "status": "COMPLETE_RAW_ONLY",
+        "diagnostics": [],
+        "trace": {
+          "amino_acids": 1,
+          "token_count": 3,
+          "chunk_token_counts": [
+            3
+          ],
+          "chunk_ranges_0based_half_open": [
+            [
+              0,
+              3
+            ]
+          ],
+          "exact_token_reconstruction": true,
+          "embedding_shape": [
+            1,
+            1280
+          ]
+        },
+        "raw_record": {
+          "sequence": "M",
+          "labels": "O",
+          "type": "GLOB",
+          "segments": [
+            {
+              "label": "O",
+              "type": "outside",
+              "start": 1,
+              "end": 1
+            }
+          ]
+        },
+        "probability": {
+          "rows": 1,
+          "position_base": 0,
+          "max_probability_mass_deviation": 0.0,
+          "mass_tolerance": "NOT_A_SCIENTIFIC_ACCEPTANCE_THRESHOLD"
+        },
+        "required_outputs": [
+          "predicted_topologies.3line",
+          "TMRs.gff3",
+          "deeptmhmm_results.md",
+          "plot.png",
+          "probabilities/t01seq_08f271887ce94707da822d5263bae19d5519cb3614e0daedc4c7ce5dab7473f1_probs.csv",
+          "embeddings/69691c7bdcc3ce6d5d8a1361f22d04ac"
+        ],
+        "topology": null,
+        "usable_for_pipeline": false,
+        "automatic_handoff": false,
+        "requires_review": true,
+        "scientific_signoff": null,
+        "production_status": "NOT_DEPLOYED"
+      },
+      "execution": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/length-1/execution.json",
+        "sha256": "8978d4dbad167b2cc4b2f085c037ba8fc1c156c422a51864f11a799df1ae9114",
+        "size_bytes": 4304
+      },
+      "container_exit_code": 0,
+      "elapsed_seconds": 27.9220000000023,
+      "oom_killed": false,
+      "timed_out": false
+    },
+    {
+      "case": "length-8",
+      "input_kind": "SYNTHETIC_LENGTH_FIXTURE",
+      "outcome": "OBSERVE_COMPLETE_OR_DIAGNOSED_FAILURE",
+      "expectation": "MET",
+      "result": {
+        "status": "COMPLETE_RAW_ONLY",
+        "diagnostics": [],
+        "trace": {
+          "amino_acids": 8,
+          "token_count": 10,
+          "chunk_token_counts": [
+            10
+          ],
+          "chunk_ranges_0based_half_open": [
+            [
+              0,
+              10
+            ]
+          ],
+          "exact_token_reconstruction": true,
+          "embedding_shape": [
+            8,
+            1280
+          ]
+        },
+        "raw_record": {
+          "sequence": "MQLRHIGD",
+          "labels": "OOOOOOOO",
+          "type": "GLOB",
+          "segments": [
+            {
+              "label": "O",
+              "type": "outside",
+              "start": 1,
+              "end": 8
+            }
+          ]
+        },
+        "probability": {
+          "rows": 8,
+          "position_base": 0,
+          "max_probability_mass_deviation": 0.0,
+          "mass_tolerance": "NOT_A_SCIENTIFIC_ACCEPTANCE_THRESHOLD"
+        },
+        "required_outputs": [
+          "predicted_topologies.3line",
+          "TMRs.gff3",
+          "deeptmhmm_results.md",
+          "plot.png",
+          "probabilities/t01seq_87bed8155349016704d03b5b358c508a8fb9ecc3763fdbb3dfbd879c5d273b2e_probs.csv",
+          "embeddings/80206014f16ac6861ab09594568002c4"
+        ],
+        "topology": null,
+        "usable_for_pipeline": false,
+        "automatic_handoff": false,
+        "requires_review": true,
+        "scientific_signoff": null,
+        "production_status": "NOT_DEPLOYED"
+      },
+      "execution": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/length-8/execution.json",
+        "sha256": "934fb887d4d1275836d68cff830a285b3f96a3e280a9b1954cfeee371ff33336",
+        "size_bytes": 4294
+      },
+      "container_exit_code": 0,
+      "elapsed_seconds": 28.125,
+      "oom_killed": false,
+      "timed_out": false
+    },
+    {
+      "case": "length-9",
+      "input_kind": "SYNTHETIC_LENGTH_FIXTURE",
+      "outcome": "OBSERVE_COMPLETE_OR_DIAGNOSED_FAILURE",
+      "expectation": "MET",
+      "result": {
+        "status": "COMPLETE_RAW_ONLY",
+        "diagnostics": [],
+        "trace": {
+          "amino_acids": 9,
+          "token_count": 11,
+          "chunk_token_counts": [
+            11
+          ],
+          "chunk_ranges_0based_half_open": [
+            [
+              0,
+              11
+            ]
+          ],
+          "exact_token_reconstruction": true,
+          "embedding_shape": [
+            9,
+            1280
+          ]
+        },
+        "raw_record": {
+          "sequence": "MQLRHIGDS",
+          "labels": "IIIIIIIII",
+          "type": "GLOB",
+          "segments": [
+            {
+              "label": "I",
+              "type": "inside",
+              "start": 1,
+              "end": 9
+            }
+          ]
+        },
+        "probability": {
+          "rows": 9,
+          "position_base": 0,
+          "max_probability_mass_deviation": 0.0,
+          "mass_tolerance": "NOT_A_SCIENTIFIC_ACCEPTANCE_THRESHOLD"
+        },
+        "required_outputs": [
+          "predicted_topologies.3line",
+          "TMRs.gff3",
+          "deeptmhmm_results.md",
+          "plot.png",
+          "probabilities/t01seq_0b8f96c73642d707eabd77a6125eed7fdb4190897222fb06d47e012c2ad7ae6a_probs.csv",
+          "embeddings/c709cd14b2f193e62d90df9705195713"
+        ],
+        "topology": null,
+        "usable_for_pipeline": false,
+        "automatic_handoff": false,
+        "requires_review": true,
+        "scientific_signoff": null,
+        "production_status": "NOT_DEPLOYED"
+      },
+      "execution": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/length-9/execution.json",
+        "sha256": "a9bbfa89bca882fc6982e786ce3e0e5f9afdd6aa8e37f56965795baffbdf8995",
+        "size_bytes": 4293
+      },
+      "container_exit_code": 0,
+      "elapsed_seconds": 28.5,
+      "oom_killed": false,
+      "timed_out": false
+    },
+    {
+      "case": "length-29",
+      "input_kind": "SYNTHETIC_LENGTH_FIXTURE",
+      "outcome": "OBSERVE_COMPLETE_OR_DIAGNOSED_FAILURE",
+      "expectation": "MET",
+      "result": {
+        "status": "COMPLETE_RAW_ONLY",
+        "diagnostics": [],
+        "trace": {
+          "amino_acids": 29,
+          "token_count": 31,
+          "chunk_token_counts": [
+            31
+          ],
+          "chunk_ranges_0based_half_open": [
+            [
+              0,
+              31
+            ]
+          ],
+          "exact_token_reconstruction": true,
+          "embedding_shape": [
+            29,
+            1280
+          ]
+        },
+        "raw_record": {
+          "sequence": "MQLRHIGDSVNHRVIQEHLAQEVGDVLAP",
+          "labels": "IIIIIIIIIIIIIIIIIIIIIIIIIIIII",
+          "type": "GLOB",
+          "segments": [
+            {
+              "label": "I",
+              "type": "inside",
+              "start": 1,
+              "end": 29
+            }
+          ]
+        },
+        "probability": {
+          "rows": 29,
+          "position_base": 0,
+          "max_probability_mass_deviation": 0.0,
+          "mass_tolerance": "NOT_A_SCIENTIFIC_ACCEPTANCE_THRESHOLD"
+        },
+        "required_outputs": [
+          "predicted_topologies.3line",
+          "TMRs.gff3",
+          "deeptmhmm_results.md",
+          "plot.png",
+          "probabilities/t01seq_c4f3afe7b3c3c0e3cb077b06bd3ea22f0a5a2a5470edb26582225fa303eb53df_probs.csv",
+          "embeddings/418e5d969fd789cfe5a16bebbbcbcc5f"
+        ],
+        "topology": null,
+        "usable_for_pipeline": false,
+        "automatic_handoff": false,
+        "requires_review": true,
+        "scientific_signoff": null,
+        "production_status": "NOT_DEPLOYED"
+      },
+      "execution": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/length-29/execution.json",
+        "sha256": "0f685bb207f780ebab3bdc4b2c45c4db15af4ae83a5be198dcadf66b2fab8a18",
+        "size_bytes": 4311
+      },
+      "container_exit_code": 0,
+      "elapsed_seconds": 28.78099999999904,
+      "oom_killed": false,
+      "timed_out": false
+    },
+    {
+      "case": "length-30",
+      "input_kind": "SYNTHETIC_LENGTH_FIXTURE",
+      "outcome": "OBSERVE_COMPLETE_OR_DIAGNOSED_FAILURE",
+      "expectation": "MET",
+      "result": {
+        "status": "COMPLETE_RAW_ONLY",
+        "diagnostics": [],
+        "trace": {
+          "amino_acids": 30,
+          "token_count": 32,
+          "chunk_token_counts": [
+            32
+          ],
+          "chunk_ranges_0based_half_open": [
+            [
+              0,
+              32
+            ]
+          ],
+          "exact_token_reconstruction": true,
+          "embedding_shape": [
+            30,
+            1280
+          ]
+        },
+        "raw_record": {
+          "sequence": "MQLRHIGDSVNHRVIQEHLAQEVGDVLAPF",
+          "labels": "SSSSSSSSSSSSSSSSSSSSSSSSSSSSOO",
+          "type": "SP",
+          "segments": [
+            {
+              "label": "S",
+              "type": "signal",
+              "start": 1,
+              "end": 28
+            },
+            {
+              "label": "O",
+              "type": "outside",
+              "start": 29,
+              "end": 30
+            }
+          ]
+        },
+        "probability": {
+          "rows": 30,
+          "position_base": 0,
+          "max_probability_mass_deviation": 1.0000000000065512e-05,
+          "mass_tolerance": "NOT_A_SCIENTIFIC_ACCEPTANCE_THRESHOLD"
+        },
+        "required_outputs": [
+          "predicted_topologies.3line",
+          "TMRs.gff3",
+          "deeptmhmm_results.md",
+          "plot.png",
+          "probabilities/t01seq_5225b55b05b734344114a3e062e2e289750d912dc676ed6dde050fb9c2327d28_probs.csv",
+          "embeddings/9d4f892987ef58d01c31149108527deb"
+        ],
+        "topology": null,
+        "usable_for_pipeline": false,
+        "automatic_handoff": false,
+        "requires_review": true,
+        "scientific_signoff": null,
+        "production_status": "NOT_DEPLOYED"
+      },
+      "execution": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/length-30/execution.json",
+        "sha256": "4a2c171488096484ccd6af68d609450294a0fb2595a022f5368bf3b6a0ac3786",
+        "size_bytes": 4312
+      },
+      "container_exit_code": 0,
+      "elapsed_seconds": 29.34400000000096,
+      "oom_killed": false,
+      "timed_out": false
+    },
+    {
+      "case": "length-1020",
+      "input_kind": "SYNTHETIC_LENGTH_FIXTURE",
+      "outcome": "OBSERVE_COMPLETE_OR_DIAGNOSED_FAILURE",
+      "expectation": "MET",
+      "result": {
+        "status": "COMPLETE_RAW_ONLY",
+        "diagnostics": [],
+        "trace": {
+          "amino_acids": 1020,
+          "token_count": 1022,
+          "chunk_token_counts": [
+            722,
+            300
+          ],
+          "chunk_ranges_0based_half_open": [
+            [
+              0,
+              722
+            ],
+            [
+              722,
+              1022
+            ]
+          ],
+          "exact_token_reconstruction": true,
+          "embedding_shape": [
+            1020,
+            1280
+          ]
+        },
+        "raw_record": {
+          "sequence": "MQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLL",
+          "labels": "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+          "type": "GLOB",
+          "segments": [
+            {
+              "label": "O",
+              "type": "outside",
+              "start": 1,
+              "end": 1020
+            }
+          ]
+        },
+        "probability": {
+          "rows": 1020,
+          "position_base": 0,
+          "max_probability_mass_deviation": 0.0014600000000000168,
+          "mass_tolerance": "NOT_A_SCIENTIFIC_ACCEPTANCE_THRESHOLD"
+        },
+        "required_outputs": [
+          "predicted_topologies.3line",
+          "TMRs.gff3",
+          "deeptmhmm_results.md",
+          "plot.png",
+          "probabilities/t01seq_9cc2772957f7df1a6e5c816bf148ab3ba8707fcd2e5ee175acda19cb55502a38_probs.csv",
+          "embeddings/b93bec94953aff05e1a9acb177438b7c"
+        ],
+        "topology": null,
+        "usable_for_pipeline": false,
+        "automatic_handoff": false,
+        "requires_review": true,
+        "scientific_signoff": null,
+        "production_status": "NOT_DEPLOYED"
+      },
+      "execution": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/length-1020/execution.json",
+        "sha256": "ad62191c892751ca3b031f8a165faa8fce0bf960f9c85a4dc0181873e9f98a10",
+        "size_bytes": 4323
+      },
+      "container_exit_code": 0,
+      "elapsed_seconds": 95.59400000000096,
+      "oom_killed": false,
+      "timed_out": false
+    },
+    {
+      "case": "length-1021",
+      "input_kind": "SYNTHETIC_LENGTH_FIXTURE",
+      "outcome": "OBSERVE_COMPLETE_OR_DIAGNOSED_FAILURE",
+      "expectation": "MET",
+      "result": {
+        "status": "COMPLETE_RAW_ONLY",
+        "diagnostics": [],
+        "trace": {
+          "amino_acids": 1021,
+          "token_count": 1023,
+          "chunk_token_counts": [
+            722,
+            301
+          ],
+          "chunk_ranges_0based_half_open": [
+            [
+              0,
+              722
+            ],
+            [
+              722,
+              1023
+            ]
+          ],
+          "exact_token_reconstruction": true,
+          "embedding_shape": [
+            1021,
+            1280
+          ]
+        },
+        "raw_record": {
+          "sequence": "MQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLM",
+          "labels": "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+          "type": "GLOB",
+          "segments": [
+            {
+              "label": "O",
+              "type": "outside",
+              "start": 1,
+              "end": 1021
+            }
+          ]
+        },
+        "probability": {
+          "rows": 1021,
+          "position_base": 0,
+          "max_probability_mass_deviation": 0.0004899999999999904,
+          "mass_tolerance": "NOT_A_SCIENTIFIC_ACCEPTANCE_THRESHOLD"
+        },
+        "required_outputs": [
+          "predicted_topologies.3line",
+          "TMRs.gff3",
+          "deeptmhmm_results.md",
+          "plot.png",
+          "probabilities/t01seq_02b79c7a153506f01c45467cafd5b67997f94c4ce55dedbd082841474cbe3871_probs.csv",
+          "embeddings/9689a70fd3ca04133679fb18e3db7561"
+        ],
+        "topology": null,
+        "usable_for_pipeline": false,
+        "automatic_handoff": false,
+        "requires_review": true,
+        "scientific_signoff": null,
+        "production_status": "NOT_DEPLOYED"
+      },
+      "execution": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/length-1021/execution.json",
+        "sha256": "33c8d6ded19691d0211c5859ccef1769b54208e39af99594c77685e4845a48bd",
+        "size_bytes": 4323
+      },
+      "container_exit_code": 0,
+      "elapsed_seconds": 96.17199999999866,
+      "oom_killed": false,
+      "timed_out": false
+    },
+    {
+      "case": "length-1022",
+      "input_kind": "SYNTHETIC_LENGTH_FIXTURE",
+      "outcome": "OBSERVE_COMPLETE_OR_DIAGNOSED_FAILURE",
+      "expectation": "MET",
+      "result": {
+        "status": "COMPLETE_RAW_ONLY",
+        "diagnostics": [],
+        "trace": {
+          "amino_acids": 1022,
+          "token_count": 1024,
+          "chunk_token_counts": [
+            722,
+            302
+          ],
+          "chunk_ranges_0based_half_open": [
+            [
+              0,
+              722
+            ],
+            [
+              722,
+              1024
+            ]
+          ],
+          "exact_token_reconstruction": true,
+          "embedding_shape": [
+            1022,
+            1280
+          ]
+        },
+        "raw_record": {
+          "sequence": "MQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQ",
+          "labels": "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+          "type": "GLOB",
+          "segments": [
+            {
+              "label": "O",
+              "type": "outside",
+              "start": 1,
+              "end": 1022
+            }
+          ]
+        },
+        "probability": {
+          "rows": 1022,
+          "position_base": 0,
+          "max_probability_mass_deviation": 0.00036999999999998145,
+          "mass_tolerance": "NOT_A_SCIENTIFIC_ACCEPTANCE_THRESHOLD"
+        },
+        "required_outputs": [
+          "predicted_topologies.3line",
+          "TMRs.gff3",
+          "deeptmhmm_results.md",
+          "plot.png",
+          "probabilities/t01seq_0949923a2b156f82cafbb9f3a575db9a26958f299846cf478f0e6a58e4b5a792_probs.csv",
+          "embeddings/a86859c320a1a1543da763a521052d5c"
+        ],
+        "topology": null,
+        "usable_for_pipeline": false,
+        "automatic_handoff": false,
+        "requires_review": true,
+        "scientific_signoff": null,
+        "production_status": "NOT_DEPLOYED"
+      },
+      "execution": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/length-1022/execution.json",
+        "sha256": "0d7491ab0231ea804a14981c194d9e421175f62dc1581a4e81294b71f28da745",
+        "size_bytes": 4323
+      },
+      "container_exit_code": 0,
+      "elapsed_seconds": 96.15599999999904,
+      "oom_killed": false,
+      "timed_out": false
+    },
+    {
+      "case": "length-1023",
+      "input_kind": "SYNTHETIC_LENGTH_FIXTURE",
+      "outcome": "OBSERVE_COMPLETE_OR_DIAGNOSED_FAILURE",
+      "expectation": "MET",
+      "result": {
+        "status": "COMPLETE_RAW_ONLY",
+        "diagnostics": [],
+        "trace": {
+          "amino_acids": 1023,
+          "token_count": 1025,
+          "chunk_token_counts": [
+            722,
+            303
+          ],
+          "chunk_ranges_0based_half_open": [
+            [
+              0,
+              722
+            ],
+            [
+              722,
+              1025
+            ]
+          ],
+          "exact_token_reconstruction": true,
+          "embedding_shape": [
+            1023,
+            1280
+          ]
+        },
+        "raw_record": {
+          "sequence": "MQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQL",
+          "labels": "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+          "type": "GLOB",
+          "segments": [
+            {
+              "label": "O",
+              "type": "outside",
+              "start": 1,
+              "end": 1023
+            }
+          ]
+        },
+        "probability": {
+          "rows": 1023,
+          "position_base": 0,
+          "max_probability_mass_deviation": 0.0007300000000000084,
+          "mass_tolerance": "NOT_A_SCIENTIFIC_ACCEPTANCE_THRESHOLD"
+        },
+        "required_outputs": [
+          "predicted_topologies.3line",
+          "TMRs.gff3",
+          "deeptmhmm_results.md",
+          "plot.png",
+          "probabilities/t01seq_62fb5c626f2708819ecec51d9a4bde68e92cc78561b95477e0e5d717c5ba4327_probs.csv",
+          "embeddings/fd144d6cf18e4b8075df193ba7fad6e3"
+        ],
+        "topology": null,
+        "usable_for_pipeline": false,
+        "automatic_handoff": false,
+        "requires_review": true,
+        "scientific_signoff": null,
+        "production_status": "NOT_DEPLOYED"
+      },
+      "execution": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/length-1023/execution.json",
+        "sha256": "6a8a2c0970e08bf66036864fdd7f5313ae24c542ec882efe5cb85e639c92d528",
+        "size_bytes": 4323
+      },
+      "container_exit_code": 0,
+      "elapsed_seconds": 96.28099999999904,
+      "oom_killed": false,
+      "timed_out": false
+    },
+    {
+      "case": "empty",
+      "input_kind": "INVALID_INPUT_FAULT",
+      "outcome": "EXPECT_EXECUTION_FAILURE",
+      "expectation": "MET",
+      "result": {
+        "status": "REJECTED",
+        "raw_record": null,
+        "diagnostics": [
+          {
+            "type": "ValueError",
+            "message": "EXECUTION_FAILED_OR_NOT_STOPPED"
+          }
+        ],
+        "topology": null,
+        "usable_for_pipeline": false,
+        "automatic_handoff": false,
+        "requires_review": true,
+        "scientific_signoff": null,
+        "production_status": "NOT_DEPLOYED"
+      },
+      "execution": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/empty/execution.json",
+        "sha256": "8eeb7766e54652b5ee4c2961d478f05fa6a02584d79ee8e6ed984900e9c1295b",
+        "size_bytes": 3215
+      },
+      "container_exit_code": 1,
+      "elapsed_seconds": 1.2970000000022992,
+      "oom_killed": false,
+      "timed_out": false
+    },
+    {
+      "case": "invalid-symbol",
+      "input_kind": "INVALID_INPUT_FAULT",
+      "outcome": "EXPECT_EXECUTION_FAILURE",
+      "expectation": "NOT_MET_ORIGINAL_TOOL_ACCEPTED_INVALID_SYMBOL",
+      "result": {
+        "status": "REJECTED",
+        "raw_record": null,
+        "diagnostics": [
+          {
+            "type": "ValueError",
+            "message": "TOKEN_RECONSTRUCTION_MISMATCH"
+          }
+        ],
+        "topology": null,
+        "usable_for_pipeline": false,
+        "automatic_handoff": false,
+        "requires_review": true,
+        "scientific_signoff": null,
+        "production_status": "NOT_DEPLOYED"
+      },
+      "execution": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/invalid-symbol/execution.json",
+        "sha256": "747e796ba2c9453875ed502a239b55b35e68bbad521bddc06442c907ed519906",
+        "size_bytes": 4325
+      },
+      "container_exit_code": 0,
+      "elapsed_seconds": 27.156999999999243,
+      "oom_killed": false,
+      "timed_out": false
+    },
+    {
+      "case": "existing-output",
+      "input_kind": "EXISTING_OUTPUT_FAULT",
+      "outcome": "EXPECT_EXECUTION_FAILURE",
+      "expectation": "MET",
+      "result": {
+        "status": "REJECTED",
+        "raw_record": null,
+        "diagnostics": [
+          {
+            "type": "ValueError",
+            "message": "EXECUTION_FAILED_OR_NOT_STOPPED"
+          }
+        ],
+        "topology": null,
+        "usable_for_pipeline": false,
+        "automatic_handoff": false,
+        "requires_review": true,
+        "scientific_signoff": null,
+        "production_status": "NOT_DEPLOYED"
+      },
+      "execution": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/existing-output/execution.json",
+        "sha256": "f9d48fbcfe592a894a71a739e7588c9b83babe227791b8de69e6acce0e69d3f9",
+        "size_bytes": 4328
+      },
+      "container_exit_code": 1,
+      "elapsed_seconds": 1.0940000000009604,
+      "oom_killed": false,
+      "timed_out": false
+    }
+  ],
+  "fault_cases": [
+    {
+      "case": "missing-prediction",
+      "assessment": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/fault-missing-prediction/assessment.json",
+        "sha256": "dfab39292011efa4fdede54aced79c9b22a1b2c42ef70784c5c9421db948c2de",
+        "size_bytes": 362
+      },
+      "diagnostics": [
+        {
+          "type": "ValueError",
+          "message": "MISSING_REQUIRED_OUTPUT: predicted_topologies.3line"
+        }
+      ]
+    },
+    {
+      "case": "missing-regions",
+      "assessment": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/fault-missing-regions/assessment.json",
+        "sha256": "ff4b74b040a2bbf64aed25f9da4b9525711b53ec42e6db112d16862f63aab000",
+        "size_bytes": 345
+      },
+      "diagnostics": [
+        {
+          "type": "ValueError",
+          "message": "MISSING_REQUIRED_OUTPUT: TMRs.gff3"
+        }
+      ]
+    },
+    {
+      "case": "missing-probability",
+      "assessment": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/fault-missing-probability/assessment.json",
+        "sha256": "d5350606a40a245fca01d3c4271d59baeed3607b3a6f7c340829c80ad7c5ec19",
+        "size_bytes": 431
+      },
+      "diagnostics": [
+        {
+          "type": "ValueError",
+          "message": "MISSING_REQUIRED_OUTPUT: probabilities/t01seq_2548dd1a2b1bb6adee62adcbda1ef4e46edb1c919da664011676adf1aee6174e_probs.csv"
+        }
+      ]
+    },
+    {
+      "case": "missing-plot",
+      "assessment": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/fault-missing-plot/assessment.json",
+        "sha256": "57a13e7cddbc102208577863bc99966edc3341b958895100539454de116610ed",
+        "size_bytes": 344
+      },
+      "diagnostics": [
+        {
+          "type": "ValueError",
+          "message": "MISSING_REQUIRED_OUTPUT: plot.png"
+        }
+      ]
+    },
+    {
+      "case": "missing-report",
+      "assessment": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/fault-missing-report/assessment.json",
+        "sha256": "f173ce408212e2be170e8c8a8ff6fa2e37a2fa0dea6f37263a0db667bacdd929",
+        "size_bytes": 356
+      },
+      "diagnostics": [
+        {
+          "type": "ValueError",
+          "message": "MISSING_REQUIRED_OUTPUT: deeptmhmm_results.md"
+        }
+      ]
+    },
+    {
+      "case": "truncated-labels",
+      "assessment": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/fault-truncated-labels/assessment.json",
+        "sha256": "7b4826b06041d8e0c5f020903e78d25d7d0ba4a3dadced70c0fab43a5edb72ea",
+        "size_bytes": 332
+      },
+      "diagnostics": [
+        {
+          "type": "ValueError",
+          "message": "Label length mismatch"
+        }
+      ]
+    },
+    {
+      "case": "wrong-sequence",
+      "assessment": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/fault-wrong-sequence/assessment.json",
+        "sha256": "306ffa550768686c120078bd5f03228292b1f92b48b5e2338ba9a6cd893eaeae",
+        "size_bytes": 347
+      },
+      "diagnostics": [
+        {
+          "type": "ValueError",
+          "message": "Input/output sequence or ID mismatch"
+        }
+      ]
+    },
+    {
+      "case": "wrong-id",
+      "assessment": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/fault-wrong-id/assessment.json",
+        "sha256": "306ffa550768686c120078bd5f03228292b1f92b48b5e2338ba9a6cd893eaeae",
+        "size_bytes": 347
+      },
+      "diagnostics": [
+        {
+          "type": "ValueError",
+          "message": "Input/output sequence or ID mismatch"
+        }
+      ]
+    },
+    {
+      "case": "wrong-region",
+      "assessment": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/fault-wrong-region/assessment.json",
+        "sha256": "4180f4a229f4095bf48db5bd8e64011c2ead159a9649646f202d8e8a80fa1fbf",
+        "size_bytes": 409
+      },
+      "diagnostics": [
+        {
+          "type": "ValueError",
+          "message": "Region/label disagreement: t01seq_2548dd1a2b1bb6adee62adcbda1ef4e46edb1c919da664011676adf1aee6174e"
+        }
+      ]
+    },
+    {
+      "case": "nan-probability",
+      "assessment": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/fault-nan-probability/assessment.json",
+        "sha256": "842e2aed4bb527cc61dd265bfa776b3fefb1ee4bc93f1af39a747839e67ac727",
+        "size_bytes": 336
+      },
+      "diagnostics": [
+        {
+          "type": "ValueError",
+          "message": "Invalid probability value"
+        }
+      ]
+    },
+    {
+      "case": "wrong-probability-position",
+      "assessment": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/fault-wrong-probability-position/assessment.json",
+        "sha256": "9dac51fda0e98d885202e08f83d616ef98bad3b1476b0910219d7762abada75c",
+        "size_bytes": 343
+      },
+      "diagnostics": [
+        {
+          "type": "ValueError",
+          "message": "Probability position/AA mismatch"
+        }
+      ]
+    },
+    {
+      "case": "hash-tamper",
+      "assessment": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/fault-hash-tamper/assessment.json",
+        "sha256": "e7c3b8796f1c341d9825ca585510d2a390cec084e2ed984fe7ba57afc7620ec5",
+        "size_bytes": 380
+      },
+      "diagnostics": [
+        {
+          "type": "ValueError",
+          "message": "ARTIFACT_HASH_OR_PRESENCE_MISMATCH: result/predicted_topologies.3line"
+        }
+      ]
+    },
+    {
+      "case": "unexpected-artifact",
+      "assessment": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/fault-unexpected-artifact/assessment.json",
+        "sha256": "13f752599293394acf2cc59ba5088e34e5d884b4a6d819d74875f9603848d535",
+        "size_bytes": 330
+      },
+      "diagnostics": [
+        {
+          "type": "ValueError",
+          "message": "UNDECLARED_ARTIFACT"
+        }
+      ]
+    },
+    {
+      "case": "invalid-plot",
+      "assessment": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/fault-invalid-plot/assessment.json",
+        "sha256": "c11aee518510288c8389bfcd3ccb3434e24991d00bb5923c65aad12bbf3df94c",
+        "size_bytes": 333
+      },
+      "diagnostics": [
+        {
+          "type": "ValueError",
+          "message": "INVALID_PLOT_SIGNATURE"
+        }
+      ]
+    },
+    {
+      "case": "wrong-report-id",
+      "assessment": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/fault-wrong-report-id/assessment.json",
+        "sha256": "c1a5f3e11159f063ca002218533e09850ec84e62fbc7fd269494139840e3acd2",
+        "size_bytes": 329
+      },
+      "diagnostics": [
+        {
+          "type": "ValueError",
+          "message": "REPORT_ID_MISMATCH"
+        }
+      ]
+    },
+    {
+      "case": "missing-token-trace",
+      "assessment": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/fault-missing-token-trace/assessment.json",
+        "sha256": "8bb7675377ead52c668e49c3415b2e4609812053b4f7ce7c6f1453325b4a8575",
+        "size_bytes": 534
+      },
+      "diagnostics": [
+        {
+          "type": "FileNotFoundError",
+          "message": "[Errno 2] No such file or directory: 'D:\\\\work\\\\蛋白智能体\\\\discovery\\\\t01-phase1-real\\\\w1\\\\deeptmhmm-academic-boundaries-20260906\\\\runs\\\\fault-missing-token-trace\\\\output\\\\token_trace.jsonl'"
+        }
+      ]
+    },
+    {
+      "case": "wrong-token",
+      "assessment": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/runs/fault-wrong-token/assessment.json",
+        "sha256": "0d244cc41a1f898ac2986d81c560fc22f76b9ea901a84963c9e32edbf10e3766",
+        "size_bytes": 340
+      },
+      "diagnostics": [
+        {
+          "type": "ValueError",
+          "message": "TOKEN_RECONSTRUCTION_MISMATCH"
+        }
+      ]
+    }
+  ],
+  "original_tool_expectations_not_met": [
+    "invalid-symbol"
+  ],
+  "finding": {
+    "id": "B2-E01",
+    "kind": "ORIGINAL_TOKENIZER_SILENT_UNKNOWN_SUBSTITUTION",
+    "input": "ACDEFGHIK*",
+    "original_exit_code": 0,
+    "unknown_token_id": 3,
+    "unknown_decoded_token": "<unk>",
+    "impact": "Original package does not enforce project input domain. Keep INVALID_SEQUENCE_SYMBOL preflight and exact token reconstruction guard.",
+    "production_input_domain_expanded": false
+  },
+  "safe_id_comparison": {
+    "labels_equal": true,
+    "type_equal": true,
+    "segments_equal": true,
+    "original_source": {
+      "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/runs/short/output/result/predicted_topologies.3line",
+      "sha256": "aa1242f279d0b48c4555c973b12e186feea05693991c82ab6bfcd28c6d29ded1",
+      "size_bytes": 128
+    },
+    "kind": "DEVELOPMENT_ID_REGRESSION_NOT_SCIENTIFIC_ACCURACY"
+  },
+  "model_invocations": 13,
+  "complete_raw_outputs": 10,
+  "original_process_failures": 2,
+  "artifact_faults_rejected": 17,
+  "independent_scientific_holdouts_accepted": 0,
+  "scientific_signoff": "NOT_GRANTED",
+  "formal_adapter_release": "NOT_GRANTED",
+  "production_status": "NOT_DEPLOYED"
+}

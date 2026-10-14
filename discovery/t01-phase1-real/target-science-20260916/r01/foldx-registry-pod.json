@@ -1,0 +1,75 @@
+{
+  "apiVersion": "v1",
+  "kind": "Pod",
+  "metadata": {
+    "labels": {
+      "app": "antigen-foldx-registry-r01"
+    },
+    "name": "antigen-foldx-registry-r01",
+    "namespace": "him-ws"
+  },
+  "spec": {
+    "activeDeadlineSeconds": 180,
+    "automountServiceAccountToken": false,
+    "containers": [
+      {
+        "command": [
+          "python",
+          "-B",
+          "-c",
+          "\nimport base64,json,hashlib,sys\nfrom pathlib import Path\nraw=base64.b64decode(sys.argv[1]);m=json.loads(raw);root=Path('/assets')\nfor r in m['files']:\n    rel=Path(r['path']).relative_to('var/t01-phase1-real/tool-assets')\n    p=root/rel;assert not p.is_symlink() and p.resolve().is_relative_to(root)\n    b=p.read_bytes();assert len(b)==r['bytes'] and hashlib.sha256(b).hexdigest()==r['sha256']\np=root/'foldx-20270131/assets.json'\nassert not p.exists(),'Do not overwrite existing registry'\nwith p.open('xb') as f:f.write(raw)\nassert p.read_bytes()==raw\nprint(json.dumps(dict(status='PASS',created=str(p),sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw),verified_assets=len(m['files']))))\n",
+          "ew0KICAiYXJjaGl2ZV9zaGEyNTYiOiAiODQxYTMzZWQ2ODBhYzE5NWVmOGY2Y2NlZTI2NjIwZmJhNjRkZDVlOTI4OTFiZjQ5YzM1OTE3MGFlZTFlODFkMiIsDQogICJlbmdpbmUiOiAiRm9sZFgiLA0KICAiZXhlY3V0YWJsZSI6IHsNCiAgICAiYnl0ZXMiOiA4Nzk1NTczNiwNCiAgICAiZWxmNjRfbGludXgiOiB0cnVlLAogICAgIm5hbWUiOiAiZm9sZHhfMjAyNzAxMzEiLA0KICAgICJzaGEyNTYiOiAiNTMwOWQ4MWMzZjA4Yjg0MDVkMTcyMTUzYWFmOTc5MmEyNDRjMDZmOTgzODdjOWQ1N2ExMDQzMDJhOWNlZjJjZiINCiAgfSwNCiAgImV4ZWN1dGlvbl9zdGF0dXMiOiAiU1RBUlRVUF9SRVBBSVJfUE9TSVRJT05TQ0FOX0JVSUxETU9ERUxfVkVSSUZJRUQiLAogICJmaWxlcyI6IFsNCiAgICB7DQogICAgICAiYnl0ZXMiOiA4Nzk1NTczNiwNCiAgICAgICJwYXRoIjogInZhci90MDEtcGhhc2UxLXJlYWwvdG9vbC1hc3NldHMvZm9sZHgtMjAyNzAxMzEvZm9sZHhfMjAyNzAxMzEiLAogICAgICAic2hhMjU2IjogIjUzMDlkODFjM2YwOGI4NDA1ZDE3MjE1M2FhZjk3OTJhMjQ0YzA2Zjk4Mzg3YzlkNTdhMTA0MzAyYTljZWYyY2YiDQogICAgfSwNCiAgICB7DQogICAgICAiYnl0ZXMiOiAyNzc0MSwNCiAgICAgICJwYXRoIjogInZhci90MDEtcGhhc2UxLXJlYWwvdG9vbC1hc3NldHMvZm9sZHgtMjAyNzAxMzEvbW9sZWN1bGVzLzZIQS5qc29uIiwKICAgICAgInNoYTI1NiI6ICJkZjAwM2Q2Mzc1ZTRkMzE5MmViM2NlMmYwNmE0ODY1MmNkZWY5ZWU3YTZmOWJjMzNlNzBlMDJlZjdhYjNmYzZlIg0KICAgIH0sDQogICAgew0KICAgICAgImJ5dGVzIjogMjUxODgsDQogICAgICAicGF0aCI6ICJ2YXIvdDAxLXBoYXNlMS1yZWFsL3Rvb2wtYXNzZXRzL2ZvbGR4LTIwMjcwMTMxL21vbGVjdWxlcy82SEMuanNvbiIsCiAgICAgICJzaGEyNTYiOiAiZjQ3NjU2YzcyNThiNGI0OTdlZjViNWU5MjI2NzE5MDdmMDAxYTAwMjM1ZjZjMzdjNGMzZDE1ZjFhY2RjNDAxNSINCiAgICB9LA0KICAgIHsNCiAgICAgICJieXRlcyI6IDI5NzEzLA0KICAgICAgInBhdGgiOiAidmFyL3QwMS1waGFzZTEtcmVhbC90b29sLWFzc2V0cy9mb2xkeC0yMDI3MDEzMS9tb2xlY3VsZXMvNkhHLmpzb24iLAogICAgICAic2hhMjU2IjogIjFmMzlkZTNiZDIwZmNmNmRlODk5M2Y5Y2UyOTI4MWZhMDJlZjIyYTJmOGI0M2QwM2JlYWVjMDBhOGUzOTEyN2EiDQogICAgfSwNCiAgICB7DQogICAgICAiYnl0ZXMiOiAyNTc3OSwNCiAgICAgICJwYXRoIjogInZhci90MDEtcGhhc2UxLXJlYWwvdG9vbC1hc3NldHMvZm9sZHgtMjAyNzAxMzEvbW9sZWN1bGVzLzZIVC5qc29uIiwKICAgICAgInNoYTI1NiI6ICI5Yzc5OTgyZDZkMzk3OWU2ZDkwZGJjOGU4MWJiODkxOGJkYTA1Y2ZiYmIxMWZmMjI5ZTBmOGU0ZTI3YjYzNGMyIg0KICAgIH0sDQogICAgew0KICAgICAgImJ5dGVzIjogMjgwNTcsDQogICAgICAicGF0aCI6ICJ2YXIvdDAxLXBoYXNlMS1yZWFsL3Rvb2wtYXNzZXRzL2ZvbGR4LTIwMjcwMTMxL21vbGVjdWxlcy9BTWUuanNvbiIsCiAgICAgICJzaGEyNTYiOiAiM2EyMzg5ZGM5MTJmMGM4NDlhMDkyOTAxZmJkNDk5Y2UyZWNhZDcwMjA2OTc4ZTUzYTI0ZmJjNTg4ZGJjZDMzZCINCiAgICB9LA0KICAgIHsNCiAgICAgICJieXRlcyI6IDI1NTAzLA0KICAgICAgInBhdGgiOiAidmFyL3QwMS1waGFzZTEtcmVhbC90b29sLWFzc2V0cy9mb2xkeC0yMDI3MDEzMS9tb2xlY3VsZXMvQ01lLmpzb24iLAogICAgICAic2hhMjU2IjogIjhhZTIwMWFkODg2NDg2MDljMmJiZjZlNGNmNDQ3YmY3ZTlhOGJkYzExNjgwNjAxNmZmY2U0NDc1YjExMGMyYWUiDQogICAgfSwNCiAgICB7DQogICAgICAiYnl0ZXMiOiAyMzU1NSwNCiAgICAgICJwYXRoIjogInZhci90MDEtcGhhc2UxLXJlYWwvdG9vbC1hc3NldHMvZm9sZHgtMjAyNzAxMzEvbW9sZWN1bGVzL0RVLmpzb24iLAogICAgICAic2hhMjU2IjogIjJmNzU4OWE0OWI2NzU2NzMwNjE4OGVmMWEzYWZhNjEwZTdjYjdmNTQyMjZjOWY2ZmQ1YjQ4ODNmY2QzYjcxZmQiDQogICAgfSwNCiAgICB7DQogICAgICAiYnl0ZXMiOiAzMDAyNiwNCiAgICAgICJwYXRoIjogInZhci90MDEtcGhhc2UxLXJlYWwvdG9vbC1hc3NldHMvZm9sZHgtMjAyNzAxMzEvbW9sZWN1bGVzL0dNZS5qc29uIiwKICAgICAgInNoYTI1NiI6ICIyM2QwNTBjNzMwNmI2ZTZjMmVkM2E5OWQ3MzFmNjE4NDNlOWZhYWI1ODRlOGVmZjg5MTFmMDBhYWQ3NWFiNWVjIg0KICAgIH0sDQogICAgew0KICAgICAgImJ5dGVzIjogMjgyOTYsDQogICAgICAicGF0aCI6ICJ2YXIvdDAxLXBoYXNlMS1yZWFsL3Rvb2wtYXNzZXRzL2ZvbGR4LTIwMjcwMTMxL21vbGVjdWxlcy9SQS5qc29uIiwKICAgICAgInNoYTI1NiI6ICI4OGZkZTk3YjI5ZmRjY2JiNzJiNzk3MDViMjYwZjI5MGYxMTg4ZWIyMWJmMzM3MjQzMDU2YjFhYzIxODc4YWQ0Ig0KICAgIH0sDQogICAgew0KICAgICAgImJ5dGVzIjogMjU2NDQsDQogICAgICAicGF0aCI6ICJ2YXIvdDAxLXBoYXNlMS1yZWFsL3Rvb2wtYXNzZXRzL2ZvbGR4LTIwMjcwMTMxL21vbGVjdWxlcy9SQy5qc29uIiwKICAgICAgInNoYTI1NiI6ICIxZjgzOTM0YmMxMDk1ZWI5M2MxNmQ3ZGM3MzUyMWU0YTYwMDdjZWUwYjNhYzdlMzZiNWRhY2Y1NDVkYTYzY2RmIg0KICAgIH0sDQogICAgew0KICAgICAgImJ5dGVzIjogMjc2ODcsDQogICAgICAicGF0aCI6ICJ2YXIvdDAxLXBoYXNlMS1yZWFsL3Rvb2wtYXNzZXRzL2ZvbGR4LTIwMjcwMTMxL21vbGVjdWxlcy9SRy5qc29uIiwKICAgICAgInNoYTI1NiI6ICI5YjQyNDllNWU1MDgxMWIwYTdiYWNkYmM0YWNmYmMwZjliOTUyYWNiNmY5OGJjZTBmZTRiYzk0YjBjMmE5YjUzIg0KICAgIH0sDQogICAgew0KICAgICAgImJ5dGVzIjogMjQ4MDEsDQogICAgICAicGF0aCI6ICJ2YXIvdDAxLXBoYXNlMS1yZWFsL3Rvb2wtYXNzZXRzL2ZvbGR4LTIwMjcwMTMxL21vbGVjdWxlcy9SVS5qc29uIiwKICAgICAgInNoYTI1NiI6ICI3NjZmOGI4MTliMDJkZjQxZmZlM2IyNjQ3NTFkNGVjMDdkZjk1OWRmMmU4NWJhZWFlZmM4YmYyZTRjZWRhNzgyIg0KICAgIH0sDQogICAgew0KICAgICAgImJ5dGVzIjogNDA2NzksDQogICAgICAicGF0aCI6ICJ2YXIvdDAxLXBoYXNlMS1yZWFsL3Rvb2wtYXNzZXRzL2ZvbGR4LTIwMjcwMTMxL21vbGVjdWxlcy9UVFAuanNvbiIsCiAgICAgICJzaGEyNTYiOiAiNzhlNGY1OGUyM2QwZWM4OTNmNmVkNmM2MjZmMTdiNmFiNTM4ODY4MWMyNzI2Y2ZiNDBhNGRiOGQzMmIzNDU5MyINCiAgICB9LA0KICAgIHsNCiAgICAgICJieXRlcyI6IDIzNTUzLA0KICAgICAgInBhdGgiOiAidmFyL3QwMS1waGFzZTEtcmVhbC90b29sLWFzc2V0cy9mb2xkeC0yMDI3MDEzMS9tb2xlY3VsZXMvVS5qc29uIiwKICAgICAgInNoYTI1NiI6ICIxNDVhZmVkODU0N2Q0ZTVjN2UxMjQ5ZTQxMzllNjk4ZDljMDE3Yjc2NmVlODgyNTExZDkxNGQ1OWM5ZjdkNWNmIg0KICAgIH0sDQogICAgew0KICAgICAgImJ5dGVzIjogMjQyODQsDQogICAgICAicGF0aCI6ICJ2YXIvdDAxLXBoYXNlMS1yZWFsL3Rvb2wtYXNzZXRzL2ZvbGR4LTIwMjcwMTMxL21vbGVjdWxlcy9VTWUuanNvbiIsCiAgICAgICJzaGEyNTYiOiAiYTIzNzVmYzZhMWY0MGMwNGVmYTdhNDYwMjAwMzkzZDFhOWMxZDUyZjdlNWJmNWM0MzAzZmRiNzc1MDg5YTExMCINCiAgICB9LA0KICAgIHsNCiAgICAgICJieXRlcyI6IDQ3Mzk0LA0KICAgICAgInBhdGgiOiAidmFyL3QwMS1waGFzZTEtcmVhbC90b29sLWFzc2V0cy9mb2xkeC0yMDI3MDEzMS95YXNhcmFQbHVnaW4uemlwIiwKICAgICAgInNoYTI1NiI6ICI5NDFkMzQ1ZTUxNzk4MzNiYTgwYWIzZjYzNmM2YWZiMDkyYzQ2YWE3Nzg0ZjhjYzljNzNmNTMzYWU0ZTNlNGIzIg0KICAgIH0NCiAgXSwNCiAgImltYWdlIjogInNoYTI1Njo2NjUzOWUwODE5MjJjZTRjNGZiNTA0Yzk5MDZmZWI2NDA0NGNlNjY4MDMzZTYzZmRjOTI5OWQwMjBhZjhjODUxIiwKICAiaW1hZ2Vfc3RhdHVzIjogIkJVSUxUX1ZFUklGSUVEIiwKICAiaW1hZ2VfYnVpbGQiOiB7CiAgICAiYmFzZV9pbWFnZSI6ICJweXRob246My4xMC1zbGltLWJvb2t3b3JtIiwKICAgICJiYXNlX2ltYWdlX2lkIjogInNoYTI1Njo2OGQ5MTRlYzY0MWEwYjY5MjY3Y2U2NTE4NGQwMDBhMmJjM2E5ZWUyNTkwYWI3MDJiODIyNTBhYjIzODU3MzVhIiwKICAgICJuZXR3b3JrIjogIm5vbmUiLAogICAgInB1bGwiOiBmYWxzZQogIH0sCiAgImxpY2Vuc2VfYmFzaXMiOiAiVVNFUl9BVFRFU1RFRF9BQ0FERU1JQ19WRVJTSU9OIiwNCiAgImxpY2Vuc2VfZW50cmllcyI6IFtdLA0KICAibGljZW5zZV9yZWNlaXB0X3ByZXNlbnQiOiBmYWxzZSwNCiAgInByb2R1Y3Rpb25fc3RhdHVzIjogIk5PVF9ERVBMT1lFRCIsDQogICJyZXF1aXJlZF92ZXJzaW9uIjogIjUuMCIsDQogICJzY2hlbWFfdmVyc2lvbiI6ICIwLjEuMCIsDQogICJzY2llbnRpZmljX3NpZ25vZmYiOiBudWxsLA0KICAidXNlcl9hdHRlc3RhdGlvbiI6ICJBQ0FERU1JQ19WRVJTSU9OX1NVUFBMSUVEX0JZX1VTRVIiDQp9DQo="
+        ],
+        "image": "harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:78b5875032698cafe2ef82057622dd40949e3afbae5eaf69d701effe600b7dc1",
+        "imagePullPolicy": "IfNotPresent",
+        "name": "registry",
+        "resources": {
+          "limits": {
+            "cpu": "500m",
+            "memory": "128Mi"
+          },
+          "requests": {
+            "cpu": "50m",
+            "memory": "64Mi"
+          }
+        },
+        "securityContext": {
+          "allowPrivilegeEscalation": false,
+          "capabilities": {
+            "drop": [
+              "ALL"
+            ]
+          },
+          "readOnlyRootFilesystem": true
+        },
+        "volumeMounts": [
+          {
+            "mountPath": "/assets",
+            "name": "assets"
+          }
+        ]
+      }
+    ],
+    "imagePullSecrets": [
+      {
+        "name": "harbor"
+      }
+    ],
+    "nodeName": "k8s-a100-02",
+    "restartPolicy": "Never",
+    "securityContext": {
+      "fsGroup": 10001,
+      "runAsGroup": 10001,
+      "runAsNonRoot": true,
+      "runAsUser": 10001
+    },
+    "volumes": [
+      {
+        "name": "assets",
+        "persistentVolumeClaim": {
+          "claimName": "antigen-design-assets"
+        }
+      }
+    ]
+  }
+}

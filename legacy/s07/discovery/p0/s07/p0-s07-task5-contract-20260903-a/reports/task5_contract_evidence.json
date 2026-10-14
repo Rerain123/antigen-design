@@ -1,0 +1,364 @@
+{
+  "campaign_id": "p0-s07-task5-contract-20260903-a",
+  "contract_version": "s07.task5.v1-review",
+  "deployment_status": "NOT_DEPLOYED",
+  "expert_confirmation_ids": [
+    "S07-EQ-01",
+    "S07-EQ-02",
+    "S07-EQ-03",
+    "S07-EQ-04",
+    "S07-EQ-05"
+  ],
+  "generated_at": "2026-09-03T01:43:38.608847+00:00",
+  "limits": [
+    "All route cases are controlled compositions or component probes, not new live end-to-end searches.",
+    "R01 has a controlled one-candidate pool; the frozen 6Q00 file is real. It is not claimed as a new global optimum.",
+    "R02 is a derived partial fixture. Real 9R2Q remains four-chain ambiguous in R17.",
+    "R04 uses a controlled complete BLAST candidate set. Actual positive task-4 BLAST outputs hit the 100-row cap (R16).",
+    "R06/R12 use a 12-aa component probe which a full T-01 run would reject at the earlier length guard.",
+    "No S-09 confidence tier, CandidateRecord, production adapter, Dify deployment, or async runtime was created.",
+    "Online API reruns may observe changed releases; frozen evidence replay alone guarantees byte-identical reads."
+  ],
+  "network_calls": 0,
+  "rejection_check_count": 20,
+  "rejection_checks": [
+    {
+      "check_id": "N01_threshold_identity_equals_95",
+      "passed": true,
+      "rejection": "Value error, Exact full-length alignment requires full identity and both coverages"
+    },
+    {
+      "check_id": "N02_threshold_coverage_equals_90",
+      "passed": true,
+      "rejection": "Value error, PDB candidates must strictly exceed the expert thresholds"
+    },
+    {
+      "check_id": "N03_illegal_source_none",
+      "passed": true,
+      "rejection": "Input should be 'experimental' or 'alphafolddb'"
+    },
+    {
+      "check_id": "N04_premature_s09_confidence",
+      "passed": true,
+      "rejection": "Extra inputs are not permitted"
+    },
+    {
+      "check_id": "N05_nonexact_afdb_autoselection",
+      "passed": true,
+      "rejection": "Value error, EQ-03 forbids automatic non-exact AFDB selection"
+    },
+    {
+      "check_id": "N06_unverified_uniprot_sequence",
+      "passed": true,
+      "rejection": "Value error, AFDB selection needs a justified fallback and completed accession/model checks"
+    },
+    {
+      "check_id": "N07_unexecuted_source_claims_response_time",
+      "passed": true,
+      "rejection": "Value error, NOT_RUN cannot claim a query, output, time, or completeness"
+    },
+    {
+      "check_id": "N08_missing_partial_warning",
+      "passed": true,
+      "rejection": "Value error, Partial structure must retain degradation and warning"
+    },
+    {
+      "check_id": "N09_cancelled_routes_to_s08",
+      "passed": true,
+      "rejection": "Value error, Failure/cancellation/review cannot masquerade as a scientific outcome"
+    },
+    {
+      "check_id": "N10_metadata_failure_becomes_normal_none",
+      "passed": true,
+      "rejection": "Value error, Normal none must be unselected and error-free before S-08"
+    },
+    {
+      "check_id": "N11_capped_blast_autoselection",
+      "passed": true,
+      "rejection": "Value error, AFDB selection needs a justified fallback and completed accession/model checks"
+    },
+    {
+      "check_id": "N12_capped_blast_becomes_normal_none",
+      "passed": true,
+      "rejection": "Value error, Normal none requires complete PDB and profile-specific AFDB fallback closure"
+    },
+    {
+      "check_id": "N13_not_run_becomes_normal_none",
+      "passed": true,
+      "rejection": "Value error, Normal none requires complete PDB and profile-specific AFDB fallback closure"
+    },
+    {
+      "check_id": "N14_missing_artifact_reference",
+      "passed": true,
+      "rejection": "Value error, Unresolved artifact references: ['sha256-14b9d334cb8b7277bf452c38ac61f31618d338aa93b5feff3aba8f869b9a0d87', 'sha256-3dc023385f4595366fcf66d0aab0831607936b8db63bb183e8016ee5dc33380a', 'sha256-4920aa89189d3c3b208bf5d8211eae9741bb4a1e74b86211e9e6aa18a33a0392', 'sha256-566aa837e854f0d0a5c5efd9c673bf4ec7722006850b83c7cb72674965a20106', 'sha256-9575c4a6af0051e6746c274df12b413fae2c47e75f7a7ece555a49f7647b47f9', 'sha256-9ab3636c3e76bf3a3d3bc7a6ce357543de91b4788211028c209d8ef6efe01f1e', 'sha256-c38017d6a5f1e433217e59292ff4d0dabcfd8d33fe191ad544abb179113871e2', 'sha256-d7a2da91684a917b37b666fe2cd597d213964a49e5a43b25e090a11fccae13df', 'sha256-ee3db695c65a6c6947236214e99f93a8a657b6ff2ee361fd1afa3998a9163f9a']"
+    },
+    {
+      "check_id": "N15_ambiguous_chain_autoselection",
+      "passed": true,
+      "rejection": "Value error, R-58 chain ambiguity must block automatic handoff and require review"
+    },
+    {
+      "check_id": "N16_duplicate_source_operation",
+      "passed": true,
+      "rejection": "Value error, Every planned operation needs exactly one state, including NOT_RUN"
+    },
+    {
+      "check_id": "N17_wrong_missing_coordinate_ranges",
+      "passed": true,
+      "rejection": "Value error, Mapped and missing residue counts must cover the input exactly"
+    },
+    {
+      "check_id": "N18_rebound_source_sequence",
+      "passed": true,
+      "rejection": "Value error, Sources must use the unique bound input sequence"
+    },
+    {
+      "check_id": "N19_hidden_partial_metadata_failure",
+      "passed": true,
+      "rejection": "Value error, Capped or partly failed results cannot be called complete"
+    },
+    {
+      "check_id": "N20_retry_without_previous_result",
+      "passed": true,
+      "rejection": "Value error, Retries must reference a saved prior result; first attempts must not"
+    }
+  ],
+  "route_case_count": 19,
+  "route_cases": [
+    {
+      "case_id": "R01",
+      "name": "完整实验结构进入 S-09",
+      "next_step": "S-09",
+      "passed": true,
+      "result_artifact_id": "sha256-63f57dc2cbdd39247f95aac062008638b8ee1d92797e3ec155e72503db40b03f",
+      "result_path": "results/task5-R01/attempt-001.json",
+      "scope": "CONTROLLED_COMPOSITION",
+      "status": "SUCCEEDED"
+    },
+    {
+      "case_id": "R02",
+      "name": "受控 partial 保留 6 个 null 并进入 S-09",
+      "next_step": "S-09",
+      "passed": true,
+      "result_artifact_id": "sha256-4f76d96049c56a91388c55ce448641bf84782536d2ea321fc4f0918d1b5c68ba",
+      "result_path": "results/task5-R02/attempt-001.json",
+      "scope": "CONTROLLED_COMPOSITION",
+      "status": "DEGRADED"
+    },
+    {
+      "case_id": "R03",
+      "name": "已有 accession 的 AFDB 结构进入 S-09",
+      "next_step": "S-09",
+      "passed": true,
+      "result_artifact_id": "sha256-c9319ad0757a0adb3d873fdfd607ed90f6c475145b1d9c3a0cb5ab908fb8d5a9",
+      "result_path": "results/task5-R03/attempt-001.json",
+      "scope": "CONTROLLED_COMPOSITION",
+      "status": "SUCCEEDED"
+    },
+    {
+      "case_id": "R04",
+      "name": "受控完整 BLAST→UniProt→AFDB 链进入 S-09",
+      "next_step": "S-09",
+      "passed": true,
+      "result_artifact_id": "sha256-0ce7e808a99aaa73226f8384786344e16fe680748db6b3e97458b56ce661e842",
+      "result_path": "results/task5-R04/attempt-001.json",
+      "scope": "CONTROLLED_COMPOSITION",
+      "status": "SUCCEEDED"
+    },
+    {
+      "case_id": "R05",
+      "name": "BLAST 正常零命中；C4 未执行；进入 S-08",
+      "next_step": "S-08",
+      "passed": true,
+      "result_artifact_id": "sha256-90cfeb383330209d66827766f13e0c03de13354600f9e9208306c6ec4ebbd9bf",
+      "result_path": "results/task5-R05/attempt-001.json",
+      "scope": "CONTROLLED_COMPOSITION",
+      "status": "SUCCEEDED"
+    },
+    {
+      "case_id": "R06",
+      "name": "合法 accession 的 404 无模型（来源探针）",
+      "next_step": "S-08",
+      "passed": true,
+      "result_artifact_id": "sha256-5f469df58dc1ee36f706ab3f38caa0bc9689a8d90312a86c5f3f222f7ef4e64e",
+      "result_path": "results/task5-R06/attempt-001.json",
+      "scope": "COMPONENT_PROBE",
+      "status": "SUCCEEDED"
+    },
+    {
+      "case_id": "R07",
+      "name": "非法编号 400 保留错误",
+      "next_step": null,
+      "passed": true,
+      "result_artifact_id": "sha256-497876d1341fdcd988f1863399f11f7b7706c751f2e994cb05b28447dae3b58c",
+      "result_path": "results/task5-R07/attempt-001.json",
+      "scope": "COMPONENT_PROBE",
+      "status": "FAILED"
+    },
+    {
+      "case_id": "R08",
+      "name": "非精确 AFDB 候选保留待复核",
+      "next_step": null,
+      "passed": true,
+      "result_artifact_id": "sha256-465f816cabc415880fd05d1e55f016859784b913d8395b1de6f980affff8c927",
+      "result_path": "results/task5-R08/attempt-001.json",
+      "scope": "CONTROLLED_COMPOSITION",
+      "status": "WAITING_USER"
+    },
+    {
+      "case_id": "R09",
+      "name": "三个精确 accession 不按返回顺序选择",
+      "next_step": null,
+      "passed": true,
+      "result_artifact_id": "sha256-311b2bf187cdfbf07d2d964b18f0dd75d79a606af9b609f341e06643dd3ac513",
+      "result_path": "results/task5-R09/attempt-001.json",
+      "scope": "CONTROLLED_COMPOSITION",
+      "status": "WAITING_USER"
+    },
+    {
+      "case_id": "R10",
+      "name": "四个 isoform 与输入不一致，保留待复核",
+      "next_step": null,
+      "passed": true,
+      "result_artifact_id": "sha256-cef4db59fbe9371bfebc018e95147e4e74b370f2b731dce5f1f56101ea6955dc",
+      "result_path": "results/task5-R10/attempt-001.json",
+      "scope": "COMPONENT_PROBE",
+      "status": "WAITING_USER"
+    },
+    {
+      "case_id": "R11",
+      "name": "PDB 元数据全部失败后 AFDB 成功",
+      "next_step": "S-09",
+      "passed": true,
+      "result_artifact_id": "sha256-b0f24f1a14324bb952a4a6a2a62ba7e0d70081ac9302cf6a80a916eb0c4fc7c6",
+      "result_path": "results/task5-R11/attempt-001.json",
+      "scope": "CONTROLLED_COMPOSITION",
+      "status": "DEGRADED"
+    },
+    {
+      "case_id": "R12",
+      "name": "PDB 元数据失败且 AFDB 无模型，不误入 S-08",
+      "next_step": null,
+      "passed": true,
+      "result_artifact_id": "sha256-0be1a85d426f868f4513547d9b769e88e179b0fb9b1c9071a1843aa24f9a286a",
+      "result_path": "results/task5-R12/attempt-001.json",
+      "scope": "COMPONENT_PROBE",
+      "status": "FAILED"
+    },
+    {
+      "case_id": "R13",
+      "name": "查询超时保存第 1 次失败",
+      "next_step": null,
+      "passed": true,
+      "result_artifact_id": "sha256-e2c8c59c8428984a4caeac912a0333ba6819447e0a3f67be11b1697d4667782f",
+      "result_path": "results/task5-retry/attempt-001.json",
+      "scope": "CONTROLLED_COMPOSITION",
+      "status": "FAILED"
+    },
+    {
+      "case_id": "R14",
+      "name": "相同输入和 profile 重试，第 1 次证据保留",
+      "next_step": "S-09",
+      "passed": true,
+      "result_artifact_id": "sha256-f953660bb32129656fcf1dae7ec9e2bf440c12df2887b1a070f7658be0392bb4",
+      "result_path": "results/task5-retry/attempt-002.json",
+      "scope": "CONTROLLED_COMPOSITION",
+      "status": "SUCCEEDED"
+    },
+    {
+      "case_id": "R15",
+      "name": "取消后停止后续来源和路由",
+      "next_step": null,
+      "passed": true,
+      "result_artifact_id": "sha256-4ee46a16d7e0095ed09efd3d9ae5b3260474d10a1fdab13a5d85ded2ac66b9de",
+      "result_path": "results/task5-R15/attempt-001.json",
+      "scope": "CONTROLLED_COMPOSITION",
+      "status": "CANCELLED"
+    },
+    {
+      "case_id": "R16",
+      "name": "真实 BLAST 返回 100 条，禁止宣称候选收集完成",
+      "next_step": null,
+      "passed": true,
+      "result_artifact_id": "sha256-fd754a232557aec88f27d15c8e5dcc462fc7f58d84075c4bcbf9948a7938d7b6",
+      "result_path": "results/task5-R16/attempt-001.json",
+      "scope": "CONTROLLED_COMPOSITION",
+      "status": "FAILED"
+    },
+    {
+      "case_id": "R17",
+      "name": "9R2Q 四条匹配链按 R-58 停止自动交接",
+      "next_step": null,
+      "passed": true,
+      "result_artifact_id": "sha256-8aa68a7ab4bd44da9b6f8a3666be906cd2b3ae9add21434a51f5a63f3d98d4c6",
+      "result_path": "results/task5-R17/attempt-001.json",
+      "scope": "CONTROLLED_COMPOSITION",
+      "status": "WAITING_USER"
+    },
+    {
+      "case_id": "R18",
+      "name": "损坏结构文件保存原字节并报错",
+      "next_step": null,
+      "passed": true,
+      "result_artifact_id": "sha256-6bd1e1d47af945a491f33794c0997b6fe51a2ee3c24937dc5a39170ab47d01e1",
+      "result_path": "results/task5-R18/attempt-001.json",
+      "scope": "CONTROLLED_COMPOSITION",
+      "status": "FAILED"
+    },
+    {
+      "case_id": "R19",
+      "name": "PDB 元数据部分失败，不把剩余候选当作最优",
+      "next_step": null,
+      "passed": true,
+      "result_artifact_id": "sha256-fd23c4f9a43c15d5908407ff48b2ac2b901cb4b40436b8adf0ad00da8b86506d",
+      "result_path": "results/task5-R19/attempt-001.json",
+      "scope": "CONTROLLED_COMPOSITION",
+      "status": "FAILED"
+    }
+  ],
+  "rule_status": "PROVISIONAL_USER_APPROVED_EXPERT_PENDING",
+  "scientific_acceptance": "NOT_RUN",
+  "source_file_bytes": 3458076,
+  "source_file_count": 136,
+  "source_files_checked_against_prior_manifest": 136,
+  "status": "PASS_OFFLINE_CONTRACT_ONLY",
+  "storage_check_count": 7,
+  "storage_checks": [
+    {
+      "check_id": "F01_same_size_hash_mismatch",
+      "passed": true,
+      "rejection": "Artifact integrity mismatch: sha256-ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+    },
+    {
+      "check_id": "F02_missing_object",
+      "passed": true,
+      "rejection": "[Errno 2] No such file or directory: 'D:\\\\work\\\\蛋白智能体\\\\discovery\\\\p0\\\\s07\\\\p0-s07-task5-contract-20260903-a\\\\controlled\\\\storage-probes\\\\objects\\\\ffa63583dfa6706b87d284b86b0d693a161e4840aad2c5cf6b5d27c3b9621f7d'"
+    },
+    {
+      "check_id": "F03_overwrite_previous_evidence",
+      "passed": true,
+      "rejection": "Immutable evidence already exists with different bytes: D:\\work\\蛋白智能体\\discovery\\p0\\s07\\p0-s07-task5-contract-20260903-a\\controlled\\storage-probes\\immutable.json"
+    },
+    {
+      "check_id": "F04_repeat_read_same_bytes_no_new_invocation",
+      "passed": true,
+      "sha256": "63f57dc2cbdd39247f95aac062008638b8ee1d92797e3ec155e72503db40b03f"
+    },
+    {
+      "check_id": "F05_same_run_cannot_rebind_input",
+      "passed": true,
+      "rejection": "Immutable evidence already exists with different bytes: D:\\work\\蛋白智能体\\discovery\\p0\\s07\\p0-s07-task5-contract-20260903-a\\bindings\\task5-R01.json"
+    },
+    {
+      "check_id": "F06_retry_preserves_prior_attempt_hash",
+      "passed": true,
+      "prior_sha256": "e2c8c59c8428984a4caeac912a0333ba6819447e0a3f67be11b1697d4667782f"
+    },
+    {
+      "check_id": "F07_actual_mmcif_parse_failure",
+      "passed": true,
+      "rejection": "The input mmCIF file must begin with a 'data_' directive."
+    }
+  ],
+  "total_checks": 46
+}

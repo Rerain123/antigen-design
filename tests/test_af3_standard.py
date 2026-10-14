@@ -73,10 +73,10 @@ def test_af3_hmmer_arguments_are_stable_and_explicit():
 def test_af3_assigned_gpu_uses_actual_identity(monkeypatch, damage):
     from src.t01_phase1_real.development.af3 import native_worker
     from src.t01_phase1_real.gpu_device import POLICY
-    text='NVIDIA A100-SXM4-40GB, GPU-00000000-0000-4000-8000-000000000001, 40960'
+    text='NVIDIA A100-SXM4-40GB, GPU-53cfb869-cb43-8ac4-6a0c-b46b4d5202a8, 40960'
     if damage=='multiple':text+='\n'+text
     elif damage=='invalid_memory':text=text.replace('40960','nan')
-    elif damage=='missing_uuid':text=text.replace('GPU-00000000-0000-4000-8000-000000000001','missing')
+    elif damage=='missing_uuid':text=text.replace('GPU-53cfb869-cb43-8ac4-6a0c-b46b4d5202a8','missing')
     monkeypatch.setattr(native_worker.subprocess,'check_output',lambda *a,**k:text)
     if damage:
         with pytest.raises(Exception):native_worker.gpu_identity({'allocation_policy':POLICY})

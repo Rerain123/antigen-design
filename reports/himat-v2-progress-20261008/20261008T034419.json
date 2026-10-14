@@ -1,0 +1,128 @@
+{
+  "observed_at_utc": "2026-10-08T03:44:19.508187+00:00",
+  "parent": {
+    "job_id": "t01p1r-job-a7c8933226744c669836b11858585246",
+    "tool_id": "t01.real.local_workflow",
+    "state": "running",
+    "started_at": "2026-10-08T01:31:16.621888Z",
+    "finished_at": null,
+    "updated_at": "2026-10-08T03:43:43.232755Z",
+    "error_code": null
+  },
+  "run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+  "counts": {
+    "t01.real.local_workflow": {
+      "running": 1
+    },
+    "t01.real.esmfold2": {
+      "succeeded": 15
+    },
+    "t01.real.ingest_structure": {
+      "succeeded": 1
+    },
+    "t01.real.deeptmhmm": {
+      "succeeded": 1
+    },
+    "t01.real.blast": {
+      "succeeded": 1
+    },
+    "t01.real.bepipred": {
+      "succeeded": 1
+    },
+    "t01.real.netmhc": {
+      "succeeded": 5
+    },
+    "t01.real.epitope_map": {
+      "succeeded": 1
+    },
+    "t01.real.glycosylation": {
+      "succeeded": 1
+    },
+    "t01.real.domains": {
+      "succeeded": 1
+    },
+    "t01.real.developability": {
+      "succeeded": 1
+    },
+    "t01.real.wt_draft": {
+      "succeeded": 1
+    },
+    "t01.real.design_audit": {
+      "succeeded": 1
+    },
+    "t01.real.proteinmpnn": {
+      "succeeded": 3
+    },
+    "t01.real.esm_if1": {
+      "succeeded": 1
+    },
+    "t01.real.af3": {
+      "succeeded": 15,
+      "reconciling": 1
+    }
+  },
+  "active": [
+    {
+      "job_id": "t01p1r-job-a7c8933226744c669836b11858585246",
+      "tool_id": "t01.real.local_workflow",
+      "state": "running",
+      "started_at": "2026-10-08T01:31:16.621888Z",
+      "finished_at": null,
+      "updated_at": "2026-10-08T03:43:43.232755Z",
+      "error_code": null
+    },
+    {
+      "job_id": "t01p1r-job-0ad4505ad0934b78b20b25e237d145c4",
+      "tool_id": "t01.real.af3",
+      "state": "reconciling",
+      "started_at": "2026-10-08T03:41:44.691262Z",
+      "finished_at": null,
+      "updated_at": "2026-10-08T03:43:43.183858Z",
+      "error_code": null
+    }
+  ],
+  "running_steps": [
+    {
+      "step": "rx0_s20_af3",
+      "state": "reconciling",
+      "job_id": "t01p1r-job-0ad4505ad0934b78b20b25e237d145c4"
+    }
+  ],
+  "failures": [],
+  "structures": {
+    "both_complete": 14,
+    "af3_complete": 14,
+    "esmfold_complete": 14
+  },
+  "revision_summary": {
+    "design_outcomes": null,
+    "stop_reason_codes": null,
+    "coverage_complete": null,
+    "acceptance_status": null,
+    "provisional_acceptance_status": null,
+    "run_execution_status": null
+  },
+  "formal_records": 0,
+  "dispositions": {},
+  "gpu": {
+    "execution": {
+      "order": 1791430904805512138,
+      "sha256": "c5883387b412fba3d1e3dffe0e0cc1c93bfd0419a3acf529ef164ed962c02fb3",
+      "target": "/var/lib/t01/resident/af3/5596115480e8a7d2d447cea7dffc5cda",
+      "tool": "af3",
+      "uncertain": false
+    },
+    "phase": "active"
+  },
+  "worker_receipt": {
+    "binding": {
+      "attempt_id": "t01p1r-attempt-b6a52f194af54c84ab8b4d3eb41cb4d7",
+      "execution_identity": "exec-t01p1r-attempt-6677b2a0736c4c72b9e57b6539039adb",
+      "job_id": "t01p1r-job-0ad4505ad0934b78b20b25e237d145c4"
+    },
+    "state": "running",
+    "exit_code": null,
+    "stopped_confirmed": false
+  },
+  "read_only": true
+}

@@ -1,0 +1,98 @@
+{
+  "shared_contract_version": "t01-core-20260929-v1",
+  "calculation_config_id": "expert-v2-pending-calibration-20260930",
+  "rule_version": "expert-revision-20260929-v2",
+  "parameter_status": "SUGGESTED_UNCALIBRATED",
+  "presampling_n": 24,
+  "presampling_batches": 2,
+  "sampling_temperature": 0.1,
+  "design_site_fraction": 0.07,
+  "max_mutation_fraction": 0.07,
+  "max_mutations_abs": null,
+  "formal_round_sizes": [
+    24,
+    48,
+    64
+  ],
+  "random_seeds": [
+    17,
+    29
+  ],
+  "nomination_seed": 41,
+  "structure_eval_max": 24,
+  "l4_eval_max": 20,
+  "foldx_variant_max": 20,
+  "foldx_number_of_runs": 5,
+  "allow_esm_relaxation": false,
+  "max_tool_attempts": 1,
+  "call_limits": {},
+  "time_limits": {},
+  "policies": {
+    "s28": {
+      "required_set_id": "s28-orig-A",
+      "required_check_ids": [
+        "chk_seq_valid",
+        "chk_permission",
+        "chk_budget",
+        "chk_chem",
+        "chk_esm_delta",
+        "chk_struct_quality"
+      ],
+      "supply_fallback": true,
+      "threshold_status": "pending_calibration"
+    },
+    "model_roles": {
+      "model_role_policy": "primary_af3_secondary_c11",
+      "min_plddt": 0.5
+    },
+    "esm_near_zero": 0.01,
+    "geometry": {
+      "policy_version": "geom-audit-A-20260929",
+      "mode": "geometry_audit"
+    },
+    "hotspot": {
+      "policy_version": "l1-perm-A-20260929",
+      "migration": {
+        "SOP:S28": "s28-orig-A",
+        "SKILL:R56/L1": "l1-perm-A-20260929",
+        "SOP:T01/step19/L1": "l1-perm-A-20260929",
+        "phase1:N13": "l1-perm-A-20260929",
+        "SOP:S28/geometry": "geom-audit-A-20260929",
+        "SOP:S08/R04": "primary_af3_secondary_c11",
+        "Schema:S28/C18": "t01-core-20260929-v1",
+        "SOP:T01/step19b": "evaluation_pool",
+        "SOP:S40/step20": "cmp-A-2026-09-29",
+        "SKILL:SC10": "acc-A-2026-09-29"
+      }
+    },
+    "l4": {
+      "policy_version": "l4-wt-raw-A-20260929",
+      "delta_span_min": 0.05,
+      "delta_max": 0.2,
+      "threshold_status": "pending_calibration",
+      "selection_rule_id": "v2-stage-complete-dimension-group-dev-roundrobin-id-v1"
+    },
+    "foldx_pool": {
+      "source_pool_id": "evaluation_pool",
+      "selection_rule_id": "v2-stage-complete-dimension-group-dev-roundrobin-id-v1",
+      "reference_tasks": false
+    },
+    "score": {
+      "score_policy_version": "cmp-A-2026-09-29",
+      "objective": "general",
+      "weights": {
+        "dev": 0.5,
+        "stab": 0.1,
+        "epi": 0.3,
+        "burden": 0.1
+      },
+      "threshold_status": "pending_calibration"
+    },
+    "acceptance": {
+      "acceptance_config_id": "acc-A-2026-09-29",
+      "threshold": 0.3,
+      "threshold_status": "pending_calibration",
+      "missing_policy": "require_all"
+    }
+  }
+}

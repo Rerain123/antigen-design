@@ -1,0 +1,67 @@
+{
+  "checked_at": "2026-10-09T09:44:22.568120+00:00",
+  "status": "SCHEDULER_RESOURCE_REJECTION_CONFIRMED;ALLOCATION_OWNER_UNRESOLVED",
+  "live_evidence": {
+    "path": "reports\\gpu-scheduling-20261009\\code-cause-review-r01.json",
+    "sha256": "649fc66b40e81c75b15e787a1b1426125728e85439d6cc33575f7174520f98e6"
+  },
+  "deployment_template_equals_working_generation_146": true,
+  "deployment_generation": 148,
+  "ready_replicas": 0,
+  "pending_pod_assigned_node": false,
+  "pending_pod_started_containers": 0,
+  "running_gpu_pods_in_namespace": 0,
+  "active_replicasets": 1,
+  "rollout_strategy": "Recreate;replicas=1",
+  "gpu_on_demand_workloads": {
+    "antigen-design-gpu-demand": "NOT_FOUND",
+    "antigen-design-gpu-controller": "NOT_FOUND"
+  },
+  "worker_sources": {
+    "t01_phase1_real/unified_gpu_worker.py": {
+      "sha256": "bf4ba7ef762dae0d8269776c4959e40ed6866cc70654c1f9a52bbf2e44b83eb3",
+      "matches_working_generation_146": true,
+      "matches_pending_expert_release": true
+    },
+    "t01_phase1_real/resident_process.py": {
+      "sha256": "02b8100a16a980006457cdb547a206def6d0b2728fc35d077831d79cb512988c",
+      "matches_working_generation_146": true,
+      "matches_pending_expert_release": true
+    },
+    "t01_phase1_real/resident_worker.py": {
+      "sha256": "18bd00ca808bc963a12a9b740b1ecae96ef8c0a6013045d05c96f7c9ee199b6a",
+      "matches_working_generation_146": true,
+      "matches_pending_expert_release": true
+    }
+  },
+  "code_review": {
+    "legacy_worker_calls_cluster_api": false,
+    "legacy_worker_idle_releases_kubernetes_gpu_reservation": false,
+    "legacy_worker_uses_serial_native_process_and_stop_receipts": true,
+    "new_expert_release_has_started": false
+  },
+  "deployment_constraint": {
+    "fixed_gpu_uuid": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31",
+    "gpu_count": 1,
+    "memory_percent": 100,
+    "cores_percent": 100,
+    "cpu_service_shares_gpu_pod": true
+  },
+  "confirmed_direct_cause": "HAMi CardInsufficientMemory for required UUID; other cards excluded by UUID/type",
+  "unresolved": [
+    "Other-namespace live allocation",
+    "Stale HAMi reservation, potentially from a previous project Pod",
+    "Device registration/accounting discrepancy"
+  ],
+  "failed_old_pod_annotation_proves_current_allocation": false,
+  "permissions_limitation": "No node/system scheduler/cross-namespace allocation inspection",
+  "upstream_analogy_only": {
+    "issue": "https://github.com/Project-HAMi/HAMi/issues/2923",
+    "fix": "https://github.com/Project-HAMi/HAMi/pull/2968",
+    "installed_hami_version_known": false,
+    "local_same_bug_proven": false
+  },
+  "deployment_assessment": "Existing whole-card template cannot currently start; no new rollout submitted in this inspection",
+  "cluster_mutations": 0,
+  "new_scientific_jobs": 0
+}

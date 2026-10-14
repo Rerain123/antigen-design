@@ -1,0 +1,73 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from aggrescan3d.Dockerfile
+#1 transferring dockerfile: 828B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/lcbio/a3d_server:latest
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/python:3.11-slim-bookworm
+#3 DONE 0.1s
+
+#4 [internal] load metadata for docker.io/library/t01-freesasa-g0:2.2.1-20260905
+#4 DONE 0.1s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 DONE 0.0s
+
+#7 [supervisor 1/1] FROM docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84
+#7 resolve docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84
+#7 resolve docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84 0.1s done
+#7 DONE 0.1s
+
+#8 [native 1/1] FROM docker.io/lcbio/a3d_server:latest@sha256:c9e5a38b7d7f22c0b76678c5135ec4bf1af47cf77e8c9547a3bb4b9f7f2e938b
+#8 resolve docker.io/lcbio/a3d_server:latest@sha256:c9e5a38b7d7f22c0b76678c5135ec4bf1af47cf77e8c9547a3bb4b9f7f2e938b 0.1s done
+#8 DONE 0.1s
+
+#9 [stage-2 1/9] FROM docker.io/library/t01-freesasa-g0:2.2.1-20260905@sha256:bb6c6b5ce1add12dc9bda3538a218568a9e80c048c12525fc130eaa970dbb9e5
+#9 resolve docker.io/library/t01-freesasa-g0:2.2.1-20260905@sha256:bb6c6b5ce1add12dc9bda3538a218568a9e80c048c12525fc130eaa970dbb9e5 0.1s done
+#9 DONE 0.1s
+
+#6 [internal] load build context
+#6 transferring context: 14.26kB done
+#6 DONE 0.0s
+
+#10 [stage-2 2/9] COPY --from=native /opt/conda /opt/conda
+#10 CACHED
+
+#11 [stage-2 3/9] COPY --from=supervisor /usr/local /opt/t01/supervisor
+#11 CACHED
+
+#12 [stage-2 4/9] COPY src /opt/t01/src
+#12 DONE 0.1s
+
+#13 [stage-2 5/9] COPY profile.json /profile.json
+#13 DONE 0.1s
+
+#14 [stage-2 6/9] COPY setup.py /opt/t01/setup.py
+#14 DONE 0.1s
+
+#15 [stage-2 7/9] COPY aggrescan3d.worker.json /opt/t01/worker.json
+#15 DONE 0.1s
+
+#16 [stage-2 8/9] RUN /opt/t01/supervisor/bin/python3.11 -B /opt/t01/setup.py aggrescan3d
+#16 DONE 0.3s
+
+#17 exporting to image
+#17 exporting layers
+#17 exporting layers 0.6s done
+#17 exporting manifest sha256:9a40cdf8c737273a6918e2affa6e08560a99f7fd16422087ebd84687d45ceeee 0.0s done
+#17 exporting config sha256:9bd96db36d2bcee061d0dacbdb78520466793073d111c96cfb7ea6291c606abd 0.0s done
+#17 exporting attestation manifest sha256:e0bb0bf54fe79cb85e959032f5ac19b707ef629c057c79a922c1e41c0cc8fa7e
+#17 exporting attestation manifest sha256:e0bb0bf54fe79cb85e959032f5ac19b707ef629c057c79a922c1e41c0cc8fa7e 0.1s done
+#17 exporting manifest list sha256:f26cbbb92285810434b0bf7c7c5e43c3e0d7c1bc8d5f2f50fb4e3e41902c499d 0.0s done
+#17 naming to docker.io/library/antigen-design-resident-aggrescan3d:assembly-r01
+#17 naming to docker.io/library/antigen-design-resident-aggrescan3d:assembly-r01 done
+#17 unpacking to docker.io/library/antigen-design-resident-aggrescan3d:assembly-r01
+#17 unpacking to docker.io/library/antigen-design-resident-aggrescan3d:assembly-r01 0.3s done
+#17 DONE 1.3s

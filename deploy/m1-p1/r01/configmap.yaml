@@ -1,0 +1,1267 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-m1-p1-code-r01
+  namespace: him-ws
+immutable: true
+data:
+  development--workflow--policy.py: "from pathlib import Path\nfrom ...common import\
+    \ REPO, decode, encode, ensure, sha\n\nTOOL = 't01.real.local_workflow'\nNODE\
+    \ = 'N18'\nOPTIONS = ('topology', 'blast', 'bepipred', 'netmhc', 'homology', 'domains',\
+    \ 'developability')\nORDER = ('structure', 'topology', 'blast', 'bepipred', 'netmhc',\
+    \ 'epitope_map',\n         'glycosylation', 'homology', 'domains', 'developability',\
+    \ 'wt_draft',\n         'design', 'rescore', 'protection', 'stability', 'variant_report',\
+    \ 'codon',\n         'wt_reference', 'local_delivery')\nNODES = dict(zip(ORDER,\
+    \ ('N01','N02','N03','N04','N05','N06','N07','N08','N09','N10',\n            \
+    \            'N18','N11','N12','N13','N14','N15','N16','N17','N18')))\nNODES['prediction']\
+    \ = 'N01'\n\n\ndef order(body):\n    return ('prediction',) + ORDER if body.get('prediction')\
+    \ is not None else ORDER\n\ndef request(raw):\n    ensure(isinstance(raw, bytes)\
+    \ and len(raw) <= 65536, 'INVALID_REQUEST', 'Bounded workflow JSON required')\n\
+    \    b = decode(raw)\n    required = {'protein_sequence','user_sequence_id','host_species','expression_host','organism',\n\
+    \                'structure','analysis','reuse_jobs','timeout_seconds'}\n    ensure(isinstance(b,\
+    \ dict) and (set(b) - {'prediction','design_context','m1_test'}) in\n        \
+    \   (required, required | {'structure_artifact','configuration'}),\n         \
+    \  'INVALID_REQUEST', 'Exact workflow fields required')\n    from ..wt_draft.policy\
+    \ import design_context\n    b['design_context']=design_context(b.get('design_context'))\n\
+    \    s = b['protein_sequence']\n    ensure(isinstance(s,str) and 9 <= len(s) <=\
+    \ 2000 and set(s) <= set('ACDEFGHIKLMNPQRSTVWY'),\n           'INVALID_REQUEST',\
+    \ 'Workflow requires an exact 9..2000 AA20 sequence')\n    for name in ('user_sequence_id','host_species'):\n\
+    \        ensure(isinstance(b[name],str) and 0 < len(b[name]) <= 128, 'INVALID_REQUEST',\
+    \ 'Explicit sequence label and host required')\n    for name in ('expression_host','organism'):\n\
+    \        ensure(b[name] is None or isinstance(b[name],str) and 0 < len(b[name])\
+    \ <= 128,\n               'INVALID_REQUEST', 'Explicit name or null required')\n\
+    \    ensure(type(b['timeout_seconds']) is int and 1 <= b['timeout_seconds'] <=\
+    \ 7200,\n           'INVALID_REQUEST', 'Workflow deadline must be 1..7200 seconds')\n\
+    \    ensure(isinstance(b['analysis'],dict) and set(b['analysis']) == set(OPTIONS),\n\
+    \           'INVALID_REQUEST', 'All analysis options required; null explicitly\
+    \ disables a branch')\n    forbidden = {'protein_sequence','user_sequence_id','host_species','upstream','structure_input','topology_input'}\n\
+    \    for option in b['analysis'].values():\n        ensure(option is None or isinstance(option,dict)\
+    \ and not (set(option) & forbidden),\n               'INVALID_REQUEST', 'Analysis\
+    \ parameters cannot override workflow identity or upstream bindings')\n    from\
+    \ .. import policy as topology\n    from ..bepipred import policy as bepipred\n\
+    \    for name,maximum in [('topology',topology.MAX_AA),('bepipred',bepipred.MAX_AA)]:\n\
+    \        if b['analysis'][name] is not None:\n            ensure(len(s)<=maximum,'INVALID_REQUEST',\n\
+    \                   f'Workflow {name} input exceeds its current verified support\
+    \ cap of {maximum} aa; no truncation is performed')\n    ensure(isinstance(b['reuse_jobs'],dict)\
+    \ and set(b['reuse_jobs']) <= {'structure','variant_report','wt_reference'},\n\
+    \           'INVALID_REQUEST', 'Only explicit historical structure/report/reference\
+    \ reuse is supported')\n    if b.get('m1_test') is not None:\n        opt=b['m1_test']\n\
+    \        ensure(len(s)<=1000,'INVALID_REQUEST','M1 ProteinMPNN supports at most\
+    \ 1000 residues')\n        ensure(isinstance(opt,dict) and set(opt)=={'constraints','n_designs','sampling_temperature','seed','timeout_seconds'},\n\
+    \               'INVALID_REQUEST','Explicit M1 ProteinMPNN configuration required')\n\
+    \        ensure(not b['reuse_jobs'],'INVALID_REQUEST','M1 requires fresh same-run\
+    \ upstream results')\n        from ..proteinmpnn.policy import design_options\n\
+    \        design_options(opt,s)\n    import re\n    ensure(all(isinstance(j,str)\
+    \ and re.fullmatch('t01p1r-job-[0-9a-f]{32}',j) for j in b['reuse_jobs'].values()),\n\
+    \           'INVALID_REQUEST', 'Registered historical job IDs required')\n   \
+    \ ensure(not (b['structure'] is not None and 'structure' in b['reuse_jobs']),\n\
+    \           'INVALID_REQUEST', 'New structure and reused structure are mutually\
+    \ exclusive')\n    if b['structure'] is not None:\n        from ..structure import\
+    \ policy\n        ensure(isinstance(b['structure'],dict),'INVALID_REQUEST','Structure\
+    \ metadata must be an object')\n        policy.metadata(encode(dict(b['structure'],protein_sequence=s,host_species=b['host_species'])))\n\
+    \        ensure(not (set(b['structure']) & {'protein_sequence','host_species','structure_artifact'}),\n\
+    \               'INVALID_REQUEST', 'Structure identity belongs to workflow')\n\
+    \    if b.get('prediction') is not None:\n        opt = b['prediction']\n    \
+    \    ensure(isinstance(opt,dict) and set(opt)=={'engine','seed','timeout_seconds'}\n\
+    \               and opt['engine'] in ('esmfold2','af3')\n               and b['structure']\
+    \ is None and 'structure' not in b['reuse_jobs'],\n               'INVALID_REQUEST',\
+    \ 'Explicit local prediction excludes uploaded/reused structure')\n        if\
+    \ opt['engine']=='esmfold2':\n            from ..esmfold2 import policy as prediction\n\
+    \        else:\n            from ..af3 import policy as prediction\n        prediction.request(encode(dict(protein_sequence=s,user_sequence_id=b['user_sequence_id'],host_species=b['host_species'],\n\
+    \                                       seed=opt['seed'],timeout_seconds=opt['timeout_seconds'])))\n\
+    \    return b\n\ndef sequence_id(s): return 't01flow_' + sha(s.encode())[:16]\n\
+    \ndef registered_rules():\n    return dict(id='local-workflow-r57-routing-closed-release',version='0.3.0',sha256=sha(encode(dict(\n\
+    \        order=ORDER,optional_prediction=('esmfold2','af3'),business_routing='R57_TRI_STATE',\n\
+    \        internal_test='EXPLICIT_M1_P1_PROTEINMPNN_MASKS',\n        automatic_scientific_routing=False,scientific_release_gate='CLOSED',md='EXCLUDED'))))\n\
+    \ndef registered_profile():\n    paths = sorted((Path(__file__).parent.parent).rglob('*.py'))\n\
+    \    return dict(id='local-workflow-controller',version='0.2.0',sha256=sha(encode(\n\
+    \        {p.relative_to(REPO).as_posix():sha(p.read_bytes()) for p in paths})))\n"
+  development--workflow--service.py: "\"\"\"Transactional dependency scheduling over\
+    \ the existing jobs/executions store.\n\nA tick owns the controller only while\
+    \ scheduling/reconciling. Child insertion and\nparent linkage share one transaction,\
+    \ fencing cancellation and crash duplicates.\n\"\"\"\nimport copy\nimport io\n\
+    import zipfile\nfrom datetime import datetime, timezone\nfrom pathlib import Path\n\
+    from ...common import TERMINAL, RuntimeFault, decode, encode, ensure, new_id,\
+    \ now, sha\nfrom ...files import publish\nfrom ...winprocess import current_identity,\
+    \ alive\nfrom . import policy\n\ndef configuration(rt):\n    return {n: str(Path(getattr(rt,n)).resolve())\
+    \ if getattr(rt,n) is not None else None\n            for n in ('blast_database_root','homology_database_root','domains_database_root')}\n\
+    \ndef envelope(run, ref, worker, key):\n    return dict(contract_version='0.1.0',run_id=run,request_id=new_id('request'),idempotency_key=key,\n\
+    \                tool_id=worker.TOOL,node_id=worker.NODE,run_mode='g0_probe',request_artifact=ref,\n\
+    \                execution_profile=worker.registered_profile(),\n            \
+    \    rule_profile=worker.registered_rules() if hasattr(worker,'registered_rules')\
+    \ else None)\n\ndef submit(rt, raw, key, structure_data=None):\n    body = policy.request(raw)\n\
+    \    ensure('configuration' not in body, 'INVALID_REQUEST', 'Internal configuration\
+    \ cannot be supplied')\n    from ..structure import policy as sp\n    ensure((body['structure']\
+    \ is None) == (structure_data is None), 'INVALID_REQUEST', 'Structure metadata\
+    \ and bytes must be supplied together')\n    if structure_data is not None:\n\
+    \        ensure(isinstance(structure_data,bytes) and 0 < len(structure_data) <=\
+    \ sp.MAX_STRUCTURE_BYTES,\n               'INVALID_REQUEST', 'Structure must be\
+    \ 1 byte..4 MiB')\n    config = configuration(rt)\n    fingerprint = encode(dict(input_sha256=sha(raw),structure_sha256=sha(structure_data)\
+    \ if structure_data is not None else None,configuration=config))\n    with rt._tx()\
+    \ as db:\n        def action():\n            run = dict(contract_version='0.1.0',run_id=new_id('run'),created_at=now())\n\
+    \            db.execute('INSERT INTO runs VALUES(?,?,?)',(run['run_id'],rt.scope,encode(run).decode()))\n\
+    \            ref = None\n            if structure_data is not None:\n        \
+    \        aid = new_id('artifact'); path = f'runs/{run[\"run_id\"]}/inputs/{aid}.structure'\n\
+    \                ref = rt._artifact(aid,run['run_id'],None,None,'input',structure_data)\n\
+    \                ref.update(evidence_kind='LOCAL_INPUT',media_type='application/octet-stream')\n\
+    \                publish(rt.root,path,structure_data)\n                db.execute('INSERT\
+    \ INTO artifacts VALUES(?,?,?,?)',(aid,run['run_id'],path,encode(ref).decode()))\n\
+    \            staged = dict(body,structure_artifact=ref,configuration=config)\n\
+    \            ref = rt._stage(db,run['run_id'],encode(staged),policy.TOOL)\n  \
+    \          req = envelope(run['run_id'],ref,policy,key)\n            rt._admit(db,req)\n\
+    \            return rt._new_job(db,req,encode(req))\n        return rt._idempotent(db,'local_workflow',key,fingerprint,action)\n\
+    \ndef prediction_source(engine):\n    if engine == 'esmfold2':\n        from ..esmfold2\
+    \ import source\n        return source\n    if engine == 'af3':\n        from\
+    \ ..af3 import source\n        return source\n    raise RuntimeFault('INVALID_REQUEST','Unknown\
+    \ prediction engine')\n\n\ndef worker(name, body=None):\n    if name == 'design':\n\
+    \        from ..proteinmpnn import policy as proteinmpnn\n        return proteinmpnn\n\
+    \    if name == 'prediction':\n        ensure(body is not None and body.get('prediction')\
+    \ is not None,\n               'INVALID_REQUEST','Prediction engine context required')\n\
+    \        if body['prediction']['engine']=='esmfold2':\n            from ..esmfold2\
+    \ import policy as prediction\n        else:\n            from ..af3 import policy\
+    \ as prediction\n        return prediction\n    from ..registry import spec\n\
+    \    from ..wt_draft.policy import PRODUCERS\n    tool = PRODUCERS.get(name, 't01.real.'\
+    \ + name)\n    return spec(tool)\n\ndef source(rt, row):\n    if not row or not\
+    \ row.get('job_id'): return None\n    j = rt.get(row['job_id'])\n    return dict(job_id=j['job_id'],artifact=next((r\
+    \ for r in j['artifacts'] if r['role'] in ('result','diagnostic')),None))\n\n\
+    def verified(rt, body, name, jid, expected_run_id=None):\n    j = rt.get(jid)\n\
+    \    if body.get('m1_test') is not None:\n        ensure(expected_run_id is not\
+    \ None and j['run_id']==expected_run_id,\n               'FORBIDDEN','M1 upstream\
+    \ belongs to another run')\n    ensure(j['tool_id'] == worker(name,body).TOOL\
+    \ and j['run_mode'] == 'g0_probe' and not j['usable_for_pipeline'],\n        \
+    \   'FORBIDDEN', 'Workflow child producer or qualification differs')\n    request_raw\
+    \ = rt._request_bytes(j); req = decode(request_raw)\n    ensure(req.get('protein_sequence')\
+    \ == body['protein_sequence'], 'OUTPUT_INVALID', 'Workflow child sequence differs')\n\
+    \    ensure(req.get('host_species') in (None,body['host_species']), 'OUTPUT_INVALID',\
+    \ 'Workflow child host differs')\n    for ref in j['artifacts']: rt.artifact_bytes(jid,ref['artifact_id'])\n\
+    \    s = source(rt,dict(job_id=jid))\n    if s['artifact']:\n        with rt._db()\
+    \ as db: _,_,value = rt._registered_result_artifact(db,s['artifact'],worker(name,body).TOOL)\n\
+    \        ensure(value['binding'].get('input_sha256') == sha(request_raw)\n   \
+    \            and value['binding'].get('sequence_sha256') == sha(body['protein_sequence'].encode())\n\
+    \               and value.get('qualification') == 'DEVELOPMENT_UNREVIEWED'\n \
+    \              and value.get('scientific_signoff') is None and value.get('production_status')\
+    \ == 'NOT_DEPLOYED',\n               'OUTPUT_INVALID', 'Workflow child binding\
+    \ or signoff differs')\n    return j\n\ndef typed(rt, rows, name):\n    s = source(rt,rows.get(name))\n\
+    \    if s is None or s['artifact'] is None: return dict(state='not_provided',artifact=None,reason_code=None)\n\
+    \    j = rt.get(s['job_id'])\n    return dict(state='available' if j['state']=='succeeded'\
+    \ else 'upstream_unavailable',\n                artifact=s['artifact'],reason_code=j['error_code'])\n\
+    \n\ndef design_applicability(rt,rows):\n    row=rows.get('wt_draft') or {}\n \
+    \   if row.get('state')!='succeeded' or not row.get('job_id'):return None\n  \
+    \  value=rt.result(row['job_id']);draft=value.get('draft')\n    return copy.deepcopy(draft.get('gate'))\
+    \ if isinstance(draft,dict) else None\n\n\ndef design_route_reason(rt,rows):\n\
+    \    gate=design_applicability(rt,rows)\n    if gate is None or gate.get('status')=='INPUT_INSUFFICIENT_OR_NOT_EVALUATED':\n\
+    \        return 'DESIGN_APPLICABILITY_INPUT_INSUFFICIENT'\n    if gate.get('status')=='NOT_SUITABLE_FOR_DESIGN':\n\
+    \        return 'R57_MEMBRANE_DESIGN_SKIPPED' if gate.get('design_skip_reason')=='membrane_expected_poor'\
+    \ \\\n            else 'R57_LOW_CONFIDENCE_DESIGN_SKIPPED'\n    if gate.get('status')=='SUITABLE_FOR_DESIGN':return\
+    \ 'SCIENTIFIC_CONSUMPTION_NOT_RELEASED'\n    return 'DESIGN_APPLICABILITY_INPUT_INSUFFICIENT'\n\
+    \n\ndef m1_design_reason(rt, rows):\n    reason=design_route_reason(rt,rows)\n\
+    \    if reason!='SCIENTIFIC_CONSUMPTION_NOT_RELEASED':return reason\n    gate=design_applicability(rt,rows)\n\
+    \    # The first M1 path covers the known soluble/high-or-medium-quality domain.\n\
+    \    # Confirmed membrane/low-confidence variants need their specific masks later.\n\
+    \    if gate.get('constraints'):return 'M1_DESIGN_DOMAIN_NOT_SUPPORTED'\n    if\
+    \ (rows.get('structure') or {}).get('state')!='succeeded':return 'STRUCTURE_UNAVAILABLE'\n\
+    \    return None\n\n\ndef m1_inputs(rt, body, rows):\n    \"\"\"Bound facts and\
+    \ explicit gaps, not automatic scientific permissions.\"\"\"\n    from ..wt_draft.policy\
+    \ import PRODUCERS\n    inputs={name:dict(state=(rows.get(name) or {}).get('state','not_executed'),\n\
+    \        reason_code=(rows.get(name) or {}).get('reason_code'),source=source(rt,rows.get(name)))\n\
+    \        for name in PRODUCERS}\n    draft=rt.result(rows['wt_draft']['job_id'])['draft']\n\
+    \    epitope=(draft['assessments']['epitope_map']['observations'] or {}).get('epitopes')\
+    \ or {}\n    bcell=epitope.get('b_cell_epitope_map') or {}\n    profile=(bcell.get('raw_score_profiles')\
+    \ or {}).get('ensemble_probability')\n    return dict(purpose='M1_INTERNAL_TEST_ONLY',configuration=body['m1_test'],\n\
+    \        sequence_sha256=sha(body['protein_sequence'].encode()),\n        wt_assessment=source(rt,rows.get('wt_draft')),upstream=inputs,\n\
+    \        assessments=draft['assessments'],\n        bepipred_test_selection=dict(column='BepiPred-3.0\
+    \ score',field='ensemble_probability',\n            values=profile,state='available_unreviewed'\
+    \ if profile is not None else 'unavailable',\n            source=source(rt,rows.get('epitope_map')),provisional=True,\n\
+    \            difference='OI-026 remains unsigned; no peak or hotspot threshold\
+    \ change'),\n        permission_source='EXPLICIT_TEST_MASKS_NOT_AUTOMATIC_SCIENTIFIC_PERMISSIONS',\n\
+    \        missing_data_policy='PRESERVE_UNKNOWN_NO_ZERO_IMPUTATION',\n        scientific_release_gate='CLOSED',usable_for_pipeline=False,automatic_handoff=False)\n\
+    \ndef request_for(rt, b, rows, name):\n    base = dict(protein_sequence=b['protein_sequence'],user_sequence_id=b['user_sequence_id'],timeout_seconds=30)\n\
+    \    if name == 'prediction':\n        opt = b['prediction']\n        return dict(base,host_species=b['host_species'],seed=opt['seed'],timeout_seconds=opt['timeout_seconds']),\
+    \ None\n    if name == 'structure':\n        if b.get('prediction') is not None:\n\
+    \            row = rows.get('prediction', {})\n            if row.get('state')\
+    \ != 'succeeded': return None, 'PREDICTION_UNAVAILABLE'\n            source_module=prediction_source(b['prediction']['engine'])\n\
+    \            job = rt.get(row['job_id'])\n            with rt._db() as db:\n \
+    \               ref, _ = source_module.verified(rt,db,job['job_id'],b['protein_sequence'],b['host_species'],job['run_id'])\n\
+    \            engine=b['prediction']['engine']\n            return dict(protein_sequence=b['protein_sequence'],host_species=b['host_species'],structure_artifact=ref,\n\
+    \                        structure_name=engine+'.cif',declared_format='MMCIF',selection=dict(model_index=0,chain_selector='A'),\n\
+    \                        context_chain_ids=['A'],source_declaration=dict(kind='predicted',note=engine+'\
+    \ job '+job['job_id']),timeout_seconds=120), None\n        if b['structure'] is\
+    \ None: return None, 'PREDICTION_SERVICE_NOT_DEPLOYED'\n        return dict(b['structure'],protein_sequence=b['protein_sequence'],host_species=b['host_species'],structure_artifact=b['structure_artifact']),\
+    \ None\n    if name in policy.OPTIONS:\n        opt = b['analysis'][name]\n  \
+    \      if opt is None:\n            return None, 'ALLELE_PANEL_NOT_PROVIDED' if\
+    \ name=='netmhc' else 'DATABASE_NOT_PROVIDED' if name in ('blast','homology','domains')\
+    \ else 'NOT_REQUESTED'\n        req = dict(base,**opt)\n        if name=='netmhc':\
+    \ req['host_species']=b['host_species']\n        if name in ('domains','developability'):\
+    \ req['structure_input']=typed(rt,rows,'structure')\n        if name=='domains':\
+    \ req['topology_input']=typed(rt,rows,'topology')\n        return req,None\n \
+    \   if name=='epitope_map':\n        inputs={n+'_input':typed(rt,rows,n) for n\
+    \ in ('bepipred','netmhc','blast')}\n        if inputs['blast_input']['state']=='not_provided':\n\
+    \            inputs['blast_input']=dict(state='not_executed',artifact=None,reason_code='WORKFLOW_BLAST_NOT_EXECUTED')\n\
+    \        return dict(base,**inputs),None\n    if name=='glycosylation':\n    \
+    \    n06=rows.get('epitope_map',{})\n        hotspot=rt.n06_hotspot_input(n06['job_id'],b['protein_sequence'])\
+    \ if n06.get('state')=='succeeded' else dict(state='not_provided',hotspots=None,source=None,reason_code=None)\n\
+    \        return dict(base,hotspot_input=hotspot),None\n    if name=='wt_draft':\n\
+    \        return dict(base,host_species=b['host_species'],organism=b['organism'],\n\
+    \                    design_context=b['design_context'],\n                   \
+    \ upstream={n:source(rt,rows.get(n)) for n in worker(name).PRODUCERS}),None\n\
+    \    if name=='design' and b.get('m1_test') is not None:\n        reason=m1_design_reason(rt,rows)\n\
+    \        if reason:return None,reason\n        return dict(base,**b['m1_test'],structure_artifact=source(rt,rows['structure'])['artifact']),None\n\
+    \    if name in ('design','rescore','protection','stability'):\n        return\
+    \ None,'M1_P2_NOT_IMPLEMENTED' if b.get('m1_test') is not None else design_route_reason(rt,rows)\n\
+    \    if name=='variant_report':\n        return dict(base,variant_source='N11_DESIGN_AUDIT',upstream=dict(design_audit=None,foldx=None),foldx_bindings=[]),None\n\
+    \    if name=='codon': return None,'EXPRESSION_HOST_NOT_PROVIDED' if b['expression_host']\
+    \ is None else 'NO_ELIGIBLE_SEQUENCE'\n    if name=='wt_reference':\n        return\
+    \ dict(base,upstream={n:source(rt,rows.get(n)) for n in worker(name).PRODUCERS}),None\n\
+    \    if name=='local_delivery':\n        return dict(base,host_species=b['host_species'],expression_host=b['expression_host'],dna_bindings=[],\n\
+    \                    upstream={n:source(rt,rows.get(n)) for n in worker(name).PRODUCERS}),None\n\
+    \    raise RuntimeFault('INVALID_REQUEST','Unknown workflow node')\n\ndef _record(rt,\
+    \ jid, name, row):\n    with rt._tx() as db:\n        j=rt._job(db,jid);ex=rt._execution(db,jid)\n\
+    \        if j['state'] in TERMINAL:return\n        ex['nodes'][name]=dict(row,node_id=policy.NODES[name])\n\
+    \        rt._execution_store(db,jid,ex);rt._store(db,copy.deepcopy(j),j,'workflow_node_'+name)\n\
+    \ndef _create_child(rt, jid, name, req):\n    with rt._tx() as db:\n        j=rt._job(db,jid);ex=rt._execution(db,jid)\n\
+    \        if j['stop_reason'] or j['state'] in TERMINAL:return None\n        body=policy.request(rt._input(db,j['request_artifact'],j['run_id']))\n\
+    \        w=worker(name,body)\n        remaining=body['timeout_seconds']-(datetime.now(timezone.utc)-datetime.fromisoformat(ex['started_at'].replace('Z','+00:00'))).total_seconds()\n\
+    \        if remaining <= 0:\n            rt._stop(db,j,'timeout');return None\n\
+    \        req=dict(req,timeout_seconds=min(req['timeout_seconds'],max(1,int(remaining))))\n\
+    \        if name in ex['nodes']:return ex['nodes'][name].get('job_id')\n     \
+    \   ref=rt._stage(db,j['run_id'],encode(req),w.TOOL)\n        request=envelope(j['run_id'],ref,w,jid+'-'+name)\n\
+    \        rt._admit(db,request)\n        child=rt._new_job(db,request,encode(request))\n\
+    \        ex['nodes'][name]=dict(node_id=policy.NODES[name],job_id=child['job_id'],state='queued',origin='NEW_EXECUTION',reason_code=None)\n\
+    \        if name=='design' and body.get('m1_test') is not None:\n            ex['nodes'][name]['internal_test_input']=m1_inputs(rt,body,ex['nodes'])\n\
+    \        rt._execution_store(db,jid,ex);rt._store(db,copy.deepcopy(j),j,'workflow_child_submitted')\n\
+    \        return child['job_id']\n\ndef stop_children(rt,jid):\n    for row in\
+    \ rt.execution(jid).get('nodes',{}).values():\n        if row.get('origin')!='NEW_EXECUTION'\
+    \ or not row.get('job_id'):continue\n        child=rt.get(row['job_id'])\n   \
+    \     if child['state'] not in TERMINAL:\n            rt.control(encode(dict(contract_version='0.1.0',operation='cancel',job_id=child['job_id'],idempotency_key=jid+'-stop-'+child['job_id'])))\n\
+    \            rt.reconcile(child['job_id'])\n\ndef snapshot(rt,jid,verify=True):\n\
+    \    j=rt.get(jid);ensure(j['tool_id']==policy.TOOL,'INVALID_REQUEST','Workflow\
+    \ task required')\n    body=policy.request(rt._request_bytes(j));ex=rt.execution(jid);rows=copy.deepcopy(ex.get('nodes',{}))\n\
+    \    for name,row in rows.items():\n        if row.get('job_id'):\n          \
+    \  child=verified(rt,body,name,row['job_id'],j['run_id']) if verify else rt.get(row['job_id'])\n\
+    \            row.update(state=child['state'],error_code=child['error_code'],attempt_id=child['attempt_id'],\n\
+    \                       request_artifact=child['request_artifact'],execution_profile=child['execution_profile'],\n\
+    \                       rule_profile=child['rule_profile'],artifacts=child['artifacts'])\n\
+    \            row.update(qualification='DEVELOPMENT_UNREVIEWED',scientific_signoff=None,usable_for_pipeline=False)\n\
+    \    for name in policy.order(body):\n        rows.setdefault(name,dict(node_id=policy.NODES[name],job_id=None,state='not_executed',reason_code=j['error_code']\
+    \ or 'PENDING_DEPENDENCIES'))\n    gate=design_applicability(rt,rows) if verify\
+    \ else None\n    return dict(job=j,nodes=rows,configuration=body['configuration'],sequence_sha256=sha(body['protein_sequence'].encode()),\n\
+    \                internal_test=dict(selected=body.get('m1_test') is not None,\n\
+    \                    eligible_for_n11=body.get('m1_test') is not None and verify\
+    \ and m1_design_reason(rt,rows) is None,\n                    scope='M1_P1_ONLY'\
+    \ if body.get('m1_test') is not None else None),\n                qualification='DEVELOPMENT_UNREVIEWED',usable_for_pipeline=False,automatic_handoff=False,\n\
+    \                design_applicability_gate=gate,scientific_gate='CLOSED',scientific_release_gate='CLOSED',\n\
+    \                scientific_signoff=None,production_status='NOT_DEPLOYED',md='EXCLUDED')\n\
+    \ndef finish(rt,jid,error=None):\n    j=rt.get(jid);ex=rt.execution(jid)\n   \
+    \ if j['stop_reason']:\n        stop_children(rt,jid)\n        if any(rt.get(r['job_id'])['state']\
+    \ not in TERMINAL for r in ex['nodes'].values()\n               if r.get('job_id')\
+    \ and r.get('origin')=='NEW_EXECUTION'):return rt.get(jid)\n    data=snapshot(rt,jid,verify=error\
+    \ is None)\n    data['parent_at_assembly']=data.pop('job')\n    data['report_scope']='Snapshot\
+    \ before terminal publication; query the parent job for current lifecycle state'\n\
+    \    # A stopped or integrity-failed workflow never exports a consumable package.\n\
+    \    files={'output/workflow.json':encode(data)}\n    text=['# Local workflow\
+    \ engineering report','','Scientific Gate: CLOSED; DEVELOPMENT_UNREVIEWED; NOT_DEPLOYED.','',\n\
+    \          '| Node | Branch | State | Reason | Origin |','|---|---|---|---|---|']\n\
+    \    for name,row in data['nodes'].items():\n        text.append('| '+ ' | '.join(str(v\
+    \ or '') for v in (row['node_id'],name,row['state'],row.get('reason_code') or\
+    \ row.get('error_code'),row.get('origin'))) +' |')\n    files['output/workflow-report.md']=('\\\
+    n'.join(text)+'\\n').encode()\n    if error is None and not j['stop_reason']:\n\
+    \        contents={'workflow.json':files['output/workflow.json'],'workflow-report.md':files['output/workflow-report.md']}\n\
+    \        delivery=ex['nodes'].get('local_delivery',{})\n        if delivery.get('state')=='succeeded':\n\
+    \            value=rt.result(delivery['job_id'])\n            ref=next(r['artifact']\
+    \ for r in value['raw_artifacts'] if r['path']=='output/package.zip')\n      \
+    \      contents['local-delivery.zip']=rt.artifact_bytes(delivery['job_id'],ref['artifact_id'])\n\
+    \        contents['manifest.json']=encode(dict(files=[dict(path=n,size_bytes=len(raw),sha256=sha(raw))\
+    \ for n,raw in sorted(contents.items())]))\n        buf=io.BytesIO()\n       \
+    \ with zipfile.ZipFile(buf,'w',zipfile.ZIP_DEFLATED) as z:\n            for name,raw\
+    \ in sorted(contents.items()):\n                info=zipfile.ZipInfo(name,(2026,1,1,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;z.writestr(info,raw)\n\
+    \        files['output/package.zip']=buf.getvalue()\n    binding={k:j[k] for k\
+    \ in ('run_id','request_id','job_id','attempt_id','execution_identity','execution_profile','rule_profile')}\n\
+    \    binding.update(input_sha256=j['request_artifact']['sha256'],sequence_sha256=data['sequence_sha256'])\n\
+    \    result=dict(contract_version='0.2.0',tool_id=policy.TOOL,binding=binding,\n\
+    \                qualification='DEVELOPMENT_UNREVIEWED',evidence_kind='G0_REAL_OUTPUT',usable_for_pipeline=False,\n\
+    \                automatic_handoff=False,scientific_signoff=None,production_status='NOT_DEPLOYED',requires_review=True,\n\
+    \                scientific_gate='CLOSED',status='completed_with_gaps' if not\
+    \ error else 'unreliable',\n                workflow=data,null_reason=error,warnings=[],execution=dict(error_code=error,exit_code=1\
+    \ if error else 0,\n                    stopped_confirmed=True,network_used=False,backend='local-workflow-controller'))\n\
+    \    ex.update(tree_stopped=True,dispatcher=None)\n    return rt._finish_development(jid,ex,files,result)\n\
+    \ndef dispatch(rt,jid):\n    with rt._tx() as db:\n        before=rt._job(db,jid)\n\
+    \        if before['state'] in TERMINAL:return before\n        body=policy.request(rt._input(db,before['request_artifact'],before['run_id']))\n\
+    \        ex=rt._execution(db,jid)\n        owner=ex.get('dispatcher')\n      \
+    \  if owner and alive(owner):return before\n        if before['state']=='queued':\n\
+    \            j=copy.deepcopy(before)\n            j.update(state='running',attempt_id=new_id('attempt'),execution_identity='exec-'+new_id('attempt'),lease_epoch=1,started_at=now())\n\
+    \            ex=dict(nodes={},phase='scheduling',tree_stopped=False,started_at=j['started_at'])\n\
+    \            rt._store(db,j,before,'workflow_claimed')\n        ex['dispatcher']=current_identity();rt._execution_store(db,jid,ex)\n\
+    \    try:\n        ensure(body['configuration']==configuration(rt) and before['execution_profile']==policy.registered_profile(),\n\
+    \               'PROFILE_NOT_APPROVED','Workflow code or local database configuration\
+    \ changed')\n        if body['structure_artifact'] is not None:\n            with\
+    \ rt._db() as db:rt._structure_bytes(db,body,before['run_id'])\n        for name\
+    \ in policy.order(body):\n            j=rt.get(jid);ex=rt.execution(jid)\n   \
+    \         elapsed=(datetime.now(timezone.utc)-datetime.fromisoformat(ex['started_at'].replace('Z','+00:00'))).total_seconds()\n\
+    \            if elapsed>=body['timeout_seconds'] and not j['stop_reason']:\n \
+    \               with rt._tx() as db:rt._stop(db,rt._job(db,jid),'timeout')\n \
+    \               j=rt.get(jid)\n            if j['stop_reason']:return finish(rt,jid)\n\
+    \            rows=ex['nodes'];row=rows.get(name)\n            if row and not row.get('job_id'):continue\n\
+    \            if row and row.get('job_id'):\n                child=verified(rt,body,name,row['job_id'],j['run_id'])\n\
+    \                if child['state'] in TERMINAL:\n                    if row['state']!=child['state']:_record(rt,jid,name,dict(row,state=child['state'],reason_code=child['error_code']))\n\
+    \                    continue\n                if child['state']=='queued':rt.dispatch(child['job_id'])\n\
+    \                else:rt.recover(child['job_id'])\n                child=rt.get(child['job_id'])\n\
+    \                _record(rt,jid,name,dict(row,state=child['state'],reason_code=child['error_code']))\n\
+    \                if child['state'] not in TERMINAL:return rt.get(jid)\n      \
+    \          verified(rt,body,name,child['job_id'],j['run_id']);continue\n     \
+    \       if name in body['reuse_jobs']:\n                child=verified(rt,body,name,body['reuse_jobs'][name])\n\
+    \                ensure(child['state']=='succeeded','INVALID_STATE','Historical\
+    \ reuse requires terminal success')\n                _record(rt,jid,name,dict(job_id=child['job_id'],state=child['state'],origin='HISTORICAL_REUSE',reason_code=None))\n\
+    \                continue\n            try:\n                req,reason=request_for(rt,body,rows,name)\n\
+    \                if req is None:\n                    state='unavailable' if body.get('m1_test')\
+    \ is not None and name in ('blast','homology','domains') else 'skipped'\n    \
+    \                _record(rt,jid,name,dict(job_id=None,state=state,reason_code=reason,origin=None));continue\n\
+    \                # Recheck every prior source before constructing or admitting\
+    \ a dependent job.\n                for upstream,r in rows.items():\n        \
+    \            if r.get('job_id'):verified(rt,body,upstream,r['job_id'],j['run_id'])\n\
+    \                child_id=_create_child(rt,jid,name,req)\n                if child_id\
+    \ is None:return finish(rt,jid)\n                rt.dispatch(child_id)\n     \
+    \           child=rt.get(child_id)\n                _record(rt,jid,name,dict(rt.execution(jid)['nodes'][name],state=child['state'],reason_code=child['error_code']))\n\
+    \                if child['state'] not in TERMINAL:return rt.get(jid)\n      \
+    \      except RuntimeFault as exc:\n                if exc.code in ('HASH_MISMATCH','FORBIDDEN','PROFILE_NOT_APPROVED','OUTPUT_INVALID'):raise\n\
+    \                if rt.execution(jid)['nodes'].get(name,{}).get('job_id'):raise\n\
+    \                _record(rt,jid,name,dict(job_id=None,state='blocked',reason_code=exc.code,detail=str(exc),origin=None))\n\
+    \        return finish(rt,jid)\n    except RuntimeFault as exc:\n        stop_children(rt,jid)\n\
+    \        # Keep active children tracked; subsequent recovery confirms their stop.\n\
+    \        active=any(rt.get(r['job_id'])['state'] not in TERMINAL for r in rt.execution(jid)['nodes'].values()\n\
+    \                   if r.get('job_id') and r.get('origin')=='NEW_EXECUTION')\n\
+    \        if active:return rt.get(jid)\n        return finish(rt,jid,exc.code)\n\
+    \    finally:\n        with rt._tx() as db:\n            ex=rt._execution(db,jid);ex['dispatcher']=None;rt._execution_store(db,jid,ex)\n"
+  development--proteinmpnn--policy.py: "\"\"\"Pinned GPU ProteinMPNN profile and exhaustive\
+    \ explicit engineering masks.\"\"\"\nfrom pathlib import Path\nimport math\nimport\
+    \ re\nfrom ...common import REPO, decode, encode, ensure, sha, profile as base_profile\n\
+    from ...files import read_locked, no_links\nfrom ..glycosylation.policy import\
+    \ ARTIFACT_FIELDS\n\nTOOL='t01.real.proteinmpnn'\nNODE='N11'\nHERE=Path(__file__).parent\n\
+    PACKAGE=REPO/'var/t01-phase1-real/tool-assets/proteinmpnn-8907e6671bfb'\nCOMMIT='8907e6671bfbfc92303b5f79c4b5e6ce47cdef57'\n\
+    MODEL='v_48_020'\nIMAGE='sha256:5b6baa8ebc5660bd3de9cf8b6d1694c7de35fadd23fea6cd7a8352a536e3f3af'\n\
+    SLOT='t01p1r-proteinmpnn-development-slot'\nLIMITS=dict(memory=4*1024**3,cpus=2,cpuset='0-1',pids=128)\n\
+    ALPHABET='ACDEFGHIKLMNPQRSTVWY'\nAUTHORITY_ROOT=REPO/'\u5DE5\u4F5C\u6D41\u8BBE\
+    \u8BA1/01-\u4E1A\u52A1\u4F9D\u636E/\u6297\u539F\u667A\u80FD\u4F53_v10.5_\u4FEE\
+    \u8BA2\u7248_20260902'\nAUTHORITY=[AUTHORITY_ROOT/n for n in ('ToolSpec_C15_ProteinMPNN_v10.5.md','AgentA_SOP_v10.5_20260902.md')]\n\
+    \n\ndef request(raw):\n    body=decode(raw)\n    ensure(isinstance(body,dict)\
+    \ and set(body)=={'protein_sequence','user_sequence_id','structure_artifact','constraints',\n\
+    \        'n_designs','sampling_temperature','seed','timeout_seconds'},'INVALID_REQUEST','Exact\
+    \ N11 engineering request required')\n    seq=body['protein_sequence'];ensure(isinstance(seq,str)\
+    \ and re.fullmatch('['+ALPHABET+']{1,1000}',seq),\n        'INVALID_REQUEST','Exact\
+    \ uppercase AA20 sequence, 1..1000 aa required')\n    ensure(isinstance(body['user_sequence_id'],str)\
+    \ and 0<len(body['user_sequence_id'])<=512,'INVALID_REQUEST','Bounded user sequence\
+    \ label required')\n    ref=body['structure_artifact']\n    ensure(isinstance(ref,dict)\
+    \ and set(ref)==ARTIFACT_FIELDS and ref['role']=='result' and ref['media_type']=='application/json'\n\
+    \        and ref['evidence_kind']=='G0_REAL_OUTPUT' and isinstance(ref['sha256'],str)\
+    \ and re.fullmatch('[0-9a-f]{64}',ref['sha256'])\n        and type(ref['size_bytes'])\
+    \ is int and 0<ref['size_bytes']<=32*1024**2,'INVALID_REQUEST','Registered successful\
+    \ structure ArtifactRef required')\n    design_options(body, seq)\n    return\
+    \ body\n\n\ndef design_options(body, seq):\n    \"\"\"Shared validation for explicit\
+    \ workflow masks and the native request.\"\"\"\n    c=body['constraints']\n  \
+    \  ensure(isinstance(c,dict) and set(c)=={'purpose','source_id','fixed_positions','restricted_positions','open_positions'}\n\
+    \        and c['purpose']=='ENGINEERING_EXPLICIT_MASKS' and isinstance(c['source_id'],str)\
+    \ and 0<len(c['source_id'])<=512,\n        'INVALID_REQUEST','Explicit traceable\
+    \ engineering masks are required; scientific permission synthesis is closed')\n\
+    \    ensure(all(isinstance(c[k],list) for k in ('fixed_positions','restricted_positions','open_positions')),\n\
+    \        'INVALID_REQUEST','Constraint lists required')\n    positions=[]\n  \
+    \  for key in ('fixed_positions','open_positions'):\n        ensure(all(type(p)\
+    \ is int and 1<=p<=len(seq) for p in c[key]),'INVALID_REQUEST','Position outside\
+    \ bound sequence')\n        positions.extend(c[key])\n    for item in c['restricted_positions']:\n\
+    \        ensure(isinstance(item,dict) and set(item)=={'position','allowed_residues'}\
+    \ and type(item['position']) is int\n            and 1<=item['position']<=len(seq),'INVALID_REQUEST','Invalid\
+    \ restricted position')\n        allowed=item['allowed_residues']\n        ensure(isinstance(allowed,str)\
+    \ and 1<=len(allowed)<20 and len(set(allowed))==len(allowed)\n            and\
+    \ set(allowed)<=set(ALPHABET) and seq[item['position']-1] in allowed,\n      \
+    \      'INVALID_REQUEST','Restricted hard allow-set must include WT and be an\
+    \ explicit AA20 subset')\n        positions.append(item['position'])\n    ensure(len(positions)==len(seq)\
+    \ and set(positions)==set(range(1,len(seq)+1)),\n        'INVALID_REQUEST','Every\
+    \ sequence position must have exactly one explicit engineering permission')\n\
+    \    ensure(c['fixed_positions'],'INVALID_REQUEST','Empty FIXED mask requires\
+    \ unresolved T4 confirmation; this profile does not accept it')\n    ensure(type(body['n_designs'])\
+    \ is int and 1<=body['n_designs']<=24,'INVALID_REQUEST','Engineering sample count\
+    \ must be 1..24 (workflow default 24)')\n    ensure(type(body['sampling_temperature'])\
+    \ in (int,float) and math.isfinite(body['sampling_temperature'])\n        and\
+    \ body['sampling_temperature']==0.1,'INVALID_REQUEST','This profile fixes the\
+    \ workflow sampling temperature at 0.1')\n    ensure(type(body['seed']) is int\
+    \ and 1<=body['seed']<=2147483647,'INVALID_REQUEST','Explicit nonzero reproducible\
+    \ seed required')\n    ensure(type(body['timeout_seconds']) is int and 1<=body['timeout_seconds']<=900,'INVALID_REQUEST','Deadline\
+    \ must be 1..900 seconds')\n    return body\n\n\ndef sequence_id(seq):return 't01mpnn_'+sha(seq.encode())[:16]\n\
+    \n\ndef registered_rules():\n    return dict(id='w5-n11-proteinmpnn-explicit-engineering-masks',version='0.1.0',sha256=sha(encode(dict(\n\
+    \        authority={p.relative_to(REPO).as_posix():sha(p.read_bytes()) for p in\
+    \ AUTHORITY},\n        files={p.name:sha(p.read_bytes()) for p in HERE.glob('*.py')},commit=COMMIT,\n\
+    \        default_count=24,temperature=0.1,permission_synthesis=False,scientific_gate=False))))\n\
+    \n\ndef registered_profile():\n    paths=list(HERE.glob('*.py'))+list(HERE.glob('*.json'))+[HERE.parent/n\
+    \ for n in ('runtime.py','registry.py','contracts.py','cli.py','docker.py','supervisor.py')]\n\
+    \    paths+=list((REPO/'src/t01_structure_mapping').glob('*.py'))+[REPO/'requirements/proteinmpnn.Dockerfile']\n\
+    \    return dict(id='w5-n11-proteinmpnn-gpu-local-development',version='0.1.0',sha256=sha(encode(dict(\n\
+    \        code={p.relative_to(REPO).as_posix():sha(p.read_bytes()) for p in paths},rules=registered_rules(),\n\
+    \        image=IMAGE,limits=LIMITS,device='cuda:0',max_total_residues=1000,base=base_profile(),scientific_consumption=False))))\n\
+    \n\ndef verify_assets():\n    receipt=decode(read_locked(HERE/'assets.json',131072))\n\
+    \    ensure(receipt['commit']==COMMIT and receipt['image']==IMAGE,'ASSET_MISSING','Pinned\
+    \ ProteinMPNN asset registry mismatch')\n    for item in receipt['files']:\n \
+    \       path=no_links(REPO/item['path'])\n        ensure(path.is_file() and path.stat().st_size==item['bytes'],'ASSET_MISSING','Missing\
+    \ ProteinMPNN asset: '+item['path'])\n        ensure(sha(read_locked(path,32*1024**2))==item['sha256'],'HASH_MISMATCH','ProteinMPNN\
+    \ asset changed: '+item['path'])\n    return receipt\n"
+  development--wt_draft--policy.py: "\"\"\"Engineering-only WT envelope, separate\
+    \ from CandidateRecord/AgentCHandoff.\"\"\"\nfrom pathlib import Path\nimport\
+    \ re\nimport sys\n\nfrom ...common import REPO, decode, encode, ensure, sha, profile\
+    \ as base_profile\nfrom ..glycosylation.policy import ARTIFACT_FIELDS\n\nTOOL='t01.real.wt_draft'\n\
+    NODE='N18'\nHERE=Path(__file__).parent\nAUTHORITY_ROOT=REPO/'\u5DE5\u4F5C\u6D41\
+    \u8BBE\u8BA1/01-\u4E1A\u52A1\u4F9D\u636E/\u6297\u539F\u667A\u80FD\u4F53_v10.5_\u4FEE\
+    \u8BA2\u7248_20260902'\nAUTHORITY=[AUTHORITY_ROOT/name for name in (\n    'AgentA_SOP_v10.5_20260902.md','AgentA_Schema_v10.5_20260902.md',\n\
+    \    'AgentA_SKILL_v10.5_20260902.md')]\n# N01 local structure and N02 topology\
+    \ are distinct registered producers.\nPRODUCERS=dict(structure='t01.real.ingest_structure',topology='t01.real.deeptmhmm',\n\
+    \    blast='t01.real.blast',bepipred='t01.real.bepipred',netmhc='t01.real.netmhc',\n\
+    \    epitope_map='t01.real.epitope_map',glycosylation='t01.real.glycosylation',\n\
+    \    homology='t01.real.homology',domains='t01.real.domains',developability='t01.real.developability')\n\
+    DESIGN_CONTEXT_FIELDS={'pathogen_type','membrane_design_confirm','low_conf_design_confirm'}\n\
+    PATHOGEN_TYPES={'virus_enveloped','virus_non_enveloped','bacteria'}\n\n\ndef design_context(value=None):\n\
+    \    if value is None:\n        return dict(pathogen_type=None,membrane_design_confirm=False,low_conf_design_confirm=False)\n\
+    \    ensure(isinstance(value,dict) and set(value)==DESIGN_CONTEXT_FIELDS,\n  \
+    \      'INVALID_REQUEST','Exact R-57 design context required')\n    ensure(value['pathogen_type']\
+    \ is None or value['pathogen_type'] in PATHOGEN_TYPES,\n        'INVALID_REQUEST','Registered\
+    \ pathogen type or null required')\n    ensure(type(value['membrane_design_confirm'])\
+    \ is bool and type(value['low_conf_design_confirm']) is bool,\n        'INVALID_REQUEST','Explicit\
+    \ R-57 confirmations must be booleans')\n    return value\n\n\ndef request(raw):\n\
+    \    value=decode(raw)\n    required={'protein_sequence','user_sequence_id','host_species','organism','upstream','timeout_seconds'}\n\
+    \    ensure(isinstance(value,dict) and set(value) in (required,required|{'design_context'}),\n\
+    \        'INVALID_REQUEST','Exact local WT draft request required')\n    value['design_context']=design_context(value.get('design_context'))\n\
+    \    ensure(isinstance(value['protein_sequence'],str) and re.fullmatch('[ACDEFGHIKLMNPQRSTVWY]{1,20000}',value['protein_sequence']),\n\
+    \        'INVALID_REQUEST','Exact uppercase AA20 sequence required')\n    ensure(isinstance(value['user_sequence_id'],str)\
+    \ and 0<len(value['user_sequence_id'])<=512,\n        'INVALID_REQUEST','Bounded\
+    \ user sequence label required')\n    for field in ('host_species','organism'):\n\
+    \        ensure(value[field] is None or isinstance(value[field],str) and 0<len(value[field].strip())<=512,\n\
+    \            'INVALID_REQUEST','Species must be an explicit nonempty input fact\
+    \ or null')\n    ensure(isinstance(value['upstream'],dict) and set(value['upstream'])==set(PRODUCERS),\n\
+    \        'INVALID_REQUEST','All registered upstream slots must be explicit, with\
+    \ null for missing input')\n    for source in value['upstream'].values():\n  \
+    \      if source is None:continue\n        ensure(isinstance(source,dict) and\
+    \ set(source)=={'job_id','artifact'} and isinstance(source['job_id'],str)\n  \
+    \          and re.fullmatch('t01p1r-job-[0-9a-f]{32}',source['job_id']), 'INVALID_REQUEST','Exact\
+    \ registered task source required')\n        ref=source['artifact']\n        if\
+    \ ref is None:continue\n        ensure(isinstance(ref,dict) and set(ref)==ARTIFACT_FIELDS\
+    \ and ref['job_id']==source['job_id']\n            and ref['role'] in ('result','diagnostic')\
+    \ and ref['media_type']=='application/json'\n            and ref['evidence_kind']=='G0_REAL_OUTPUT'\
+    \ and isinstance(ref['sha256'],str)\n            and re.fullmatch('[0-9a-f]{64}',ref['sha256'])\
+    \ and type(ref['size_bytes']) is int\n            and 0<ref['size_bytes']<=32*1024**2,'INVALID_REQUEST','Exact\
+    \ result/diagnostic ArtifactRef required')\n    ensure(type(value['timeout_seconds'])\
+    \ is int and 1<=value['timeout_seconds']<=60,\n        'INVALID_REQUEST','Local\
+    \ draft deadline must be 1..60 seconds')\n    return value\n\n\ndef sequence_id(seq):return\
+    \ 't01wt_'+sha(seq.encode())[:16]\n\n\ndef registered_rules():\n    return dict(id='w4-gate-wt-local-draft-v105',version='0.2.0',sha256=sha(encode(dict(\n\
+    \        sources={p.relative_to(REPO).as_posix():sha(p.read_bytes()) for p in\
+    \ AUTHORITY},\n        code={p.name:sha(p.read_bytes()) for p in HERE.glob('*.py')},\n\
+    \        sections=['R-57','T-01 step 14','S-42','S-43','S-44','T-01 steps 24-28','Schema\
+    \ 1','Schema 2'],\n        unresolved=['OI-013','OI-014','OI-021 formal state/signoff'],business_gate='R57_IMPLEMENTED',\n\
+    \        scientific_gate=False,agent_c_handoff=False))))\n\n\ndef registered_profile():\n\
+    \    paths=list(HERE.glob('*.py'))+[HERE.parent/name for name in ('runtime.py','registry.py','contracts.py','cli.py')]\n\
+    \    return dict(id='w4-local-wt-assessment-draft',version='0.2.0',sha256=sha(encode(dict(\n\
+    \        code={p.relative_to(REPO).as_posix():sha(p.read_bytes()) for p in paths},rules=registered_rules(),\n\
+    \        python=sys.version,python_sha256=sha(Path(sys.executable).read_bytes()),base=base_profile(),\n\
+    \        backend='trusted-local-in-process',network=False,production_protocol=False))))\n"
+  development--wt_draft--compute.py: "\"\"\"Assemble traceable facts and the R-57\
+    \ business decision; never release science.\"\"\"\nimport copy\nfrom .policy import\
+    \ PRODUCERS\n\nOBSERVATIONS=dict(structure=('analysis',),topology=('topology',),blast=('database','search'),\n\
+    \    bepipred=('raw_scores',),netmhc=('channels',),epitope_map=('epitopes','branch_status','blast_similarity'),\n\
+    \    glycosylation=('glycosylation','hotspot_assessment'),homology=('analysis','homolog_set'),\n\
+    \    domains=('analysis',),developability=('developability','steps'))\n\n\ndef\
+    \ _reason(code,source,affects,**details):\n    return dict(code=code,source=source,affects=affects,**details)\n\
+    \n\ndef evaluate_design_applicability(body,values,receipts):\n    \"\"\"Apply\
+    \ R-57 as a business route without granting scientific release.\"\"\"\n    seq=body['protein_sequence'];context=body['design_context']\n\
+    \    topology=(values.get('topology') or {}).get('topology')\n    topology_known=receipts['topology']['state']=='available'\
+    \ and isinstance(topology,dict)\n    quality=((((values.get('structure') or {}).get('analysis')\
+    \ or {}).get('quality') or {}).get('quality') or {}).get('confidence')\n    quality_known=receipts['structure']['state']=='available'\
+    \ and quality in ('high','medium','low')\n    domain_analysis=(values.get('domains')\
+    \ or {}).get('analysis') or {}\n    domains=domain_analysis.get('functional_domains')\n\
+    \    domains_known=receipts['domains']['state']=='available' and isinstance(domains,list)\n\
+    \    tm_domain_present=any(isinstance(row,dict) and row.get('type')=='TMhelix'\
+    \ for row in domains) if domains_known else None\n\n    conditions={name:None\
+    \ for name in ('tm_count_at_least_3','tm_with_outside_under_100',\n        'tm_with_outside_fraction_under_0_25','enveloped_tm_cross_confirmed')}\n\
+    \    tm_count=outside_length=outside_fraction=None\n    if topology_known:\n \
+    \       tm_count=topology.get('tm_count');outside_length=topology.get('outside_length')\n\
+    \        if type(tm_count) is int and type(outside_length) is int and tm_count>=0\
+    \ and outside_length>=0:\n            outside_fraction=outside_length/len(seq)\n\
+    \            conditions['tm_count_at_least_3']=tm_count>=3\n            conditions['tm_with_outside_under_100']=tm_count>0\
+    \ and outside_length<100\n            conditions['tm_with_outside_fraction_under_0_25']=tm_count>0\
+    \ and outside_fraction<0.25\n            if tm_count<1 or context['pathogen_type']!='virus_enveloped'\
+    \ or tm_domain_present is False:\n                conditions['enveloped_tm_cross_confirmed']=False\n\
+    \            elif context['pathogen_type']=='virus_enveloped' and tm_domain_present\
+    \ is True:\n                conditions['enveloped_tm_cross_confirmed']=True\n\
+    \    flags=list(conditions.values())\n    membrane=True if True in flags else\
+    \ False if all(flag is False for flag in flags) else None\n    missing=[]\n  \
+    \  if not topology_known or conditions['tm_count_at_least_3'] is None:\n     \
+    \   missing.append('TOPOLOGY')\n    elif membrane is None and context['pathogen_type']=='virus_enveloped'\
+    \ and not domains_known:\n        missing.append('FUNCTIONAL_DOMAINS')\n    if\
+    \ not quality_known:missing.append('STRUCTURE_QUALITY')\n\n    decision=[];constraints=[];skip=None;mode=None\n\
+    \    if membrane is True and not context['membrane_design_confirm']:\n       \
+    \ status='NOT_SUITABLE_FOR_DESIGN';suitable=False;route='WT_PATH_REVIEW';skip='membrane_expected_poor'\n\
+    \        decision.append(_reason('R57_MEMBRANE_DESIGN_CONFIRMATION_REQUIRED','R-57',\n\
+    \            ['design_applicability','wt_route']))\n        if quality=='low'\
+    \ and not context['low_conf_design_confirm']:\n            decision.append(_reason('R57_LOW_CONFIDENCE_DESIGN_CONFIRMATION_REQUIRED','R-57',\n\
+    \                ['design_applicability','wt_route']))\n    elif quality=='low'\
+    \ and not context['low_conf_design_confirm']:\n        status='NOT_SUITABLE_FOR_DESIGN';suitable=False;route='WT_PATH_REVIEW';skip='skipped_low_confidence'\n\
+    \        decision.append(_reason('R57_LOW_CONFIDENCE_DESIGN_CONFIRMATION_REQUIRED','R-57',\n\
+    \            ['design_applicability','wt_route']))\n    elif membrane is None\
+    \ or not quality_known:\n        status='INPUT_INSUFFICIENT_OR_NOT_EVALUATED';suitable=None;route='HOLD_FOR_INPUTS'\n\
+    \        for fact in missing:\n            decision.append(_reason('DESIGN_APPLICABILITY_'+fact+'_REQUIRED',fact.lower(),\n\
+    \                ['design_applicability']))\n    else:\n        status='SUITABLE_FOR_DESIGN';suitable=True;route='DESIGN_PATH_REVIEW'\n\
+    \        if membrane:constraints.extend(['EXTRACELLULAR_ONLY','TM_AND_INSIDE_FIXED'])\n\
+    \        if quality=='low':constraints.append('LOW_CONFIDENCE_RESULT_CAVEAT')\n\
+    \        if membrane and quality=='low':mode='EXTRACELLULAR_RESTRICTED_LOW_CONFIDENCE_REVIEW'\n\
+    \        elif membrane:mode='EXTRACELLULAR_RESTRICTED'\n        elif quality=='low':mode='LOW_CONFIDENCE_CONFIRMED_REVIEW'\n\
+    \        else:mode='FULL_PROTEIN_REVIEW'\n\n    n10=(values.get('developability')\
+    \ or {}).get('developability') or {}\n    return dict(status=status,suitable_for_design=suitable,design_skip_reason=skip,route=route,\n\
+    \        business_gate_evaluated=status!='INPUT_INSUFFICIENT_OR_NOT_EVALUATED',wt_route=route=='WT_PATH_REVIEW',\n\
+    \        design_mode=mode,constraints=constraints,\n        quality_flags=[flag\
+    \ for flag,active in (('membrane_expected_poor',membrane is True),\n         \
+    \   ('skipped_low_confidence',quality=='low')) if active],\n        decision_qualification='DEVELOPMENT_UNREVIEWED',\n\
+    \        scientific_release_status='CLOSED',n11_release=False,automatic_design_release=False,\n\
+    \        formal_wt_release=False,agent_c_handoff=False,decision_reasons=decision,\n\
+    \        basis=dict(authority=['AgentA_SKILL R-57','AgentA_SOP T-01 step 14'],\n\
+    \            source_states={name:receipts[name]['state'] for name in ('structure','topology','domains','developability')},\n\
+    \            pathogen_type=context['pathogen_type'],confirmations=dict(\n    \
+    \            membrane_design_confirm=context['membrane_design_confirm'],\n   \
+    \             low_conf_design_confirm=context['low_conf_design_confirm']),\n \
+    \           topology=dict(tm_count=tm_count,outside_length=outside_length,outside_fraction=outside_fraction),\n\
+    \            functional_tm_domain_present=tm_domain_present,structure_confidence=quality,\n\
+    \            r57_membrane_conditions=conditions,is_membrane=membrane,required_missing=missing,\n\
+    \            n10_complete=n10.get('n10_complete'),developability_classification=n10.get('classification')))\n\
+    \n\ndef assemble(body,values,receipts):\n    reasons=[dict(code=code,source=None,affects=affects)\
+    \ for code,affects in (\n        ('OI_021_FORMAL_GATE_AND_WT_STATE_UNSIGNED',['scientific_release','formal_wt_delivery']),\n\
+    \        ('OI_014_CANDIDATE_MAPPING_INCOMPLETE',['formal_wt_delivery']),\n   \
+    \     ('OI_013_AGENT_C_PROTOCOL_UNRESOLVED',['agent_c_handoff']))]\n    assessments={}\n\
+    \    for name in PRODUCERS:\n        receipt=receipts[name];value=values.get(name);state=receipt['state']\n\
+    \        codes={'missing':'UPSTREAM_NOT_PROVIDED','pending':'UPSTREAM_NOT_TERMINAL',\n\
+    \            'failed':'UPSTREAM_FAILED','available':'UPSTREAM_SCIENTIFIC_SIGNOFF_MISSING'}\n\
+    \        reasons.append(dict(code=codes[state],source=name,affects=['scientific_release','formal_wt_delivery'],\n\
+    \            upstream_error=receipt.get('error_code')))\n        assessments[name]=dict(state=state,execution_state=receipt.get('job_state'),\n\
+    \            executed=receipt.get('attempt_id') is not None,scientifically_accepted=False,\n\
+    \            source_artifact=receipt.get('artifact'),upstream_status=receipt.get('result_status'),\n\
+    \            observations=None if value is None else {k:copy.deepcopy(value.get(k))\
+    \ for k in OBSERVATIONS[name]},\n            upstream_warnings=None if value is\
+    \ None else copy.deepcopy(value.get('warnings')))\n    n10=(values.get('developability')\
+    \ or {}).get('developability')\n    if n10 is not None and n10.get('n10_complete')\
+    \ is not True:\n        reasons.append(dict(code='N10_PARTIAL',source='developability',affects=['scientific_release','formal_wt_delivery'],\n\
+    \            missing_dimensions=copy.deepcopy(n10.get('missing_dimensions')),\n\
+    \            excluded_dimensions=copy.deepcopy(n10.get('excluded_dimensions'))))\n\
+    \    # Only direct, documented S-42 facts are projected. These are not a CandidateRecord.\n\
+    \    fields={}\n    for name in ('protein_sequence','host_species','organism'):\n\
+    \        fields[name]=dict(value=body[name],producer='request',source_path=name,\n\
+    \            reason_code=None if body[name] is not None else 'INPUT_FACT_NOT_PROVIDED')\n\
+    \    for name,producer,reason in (\n        ('candidate_id','S-42','OI_014_IDENTITY_MAPPING_PENDING'),\n\
+    \        ('protein_id','S-42','OI_014_IDENTITY_MAPPING_PENDING'),\n        ('evidence_level','S-42','SCIENTIFIC_EVIDENCE_NOT_SIGNED'),\n\
+    \        ('dna_sequence','codon_optimization','NOT_EXECUTED'),\n        ('design_permissions','S-27','DESIGN_NOT_EXECUTED'),\n\
+    \        ('validation','S-28','DESIGN_NOT_EXECUTED'),\n        ('stability_validation','S-31/S-32','NOT_EXECUTED'),\n\
+    \        ('delta_table','S-42','NO_VARIANT_COMPARISON'),\n        ('safety','S-23','NOT_EXECUTED')):\n\
+    \        fields[name]=dict(value=None,producer=producer,source_path=None,reason_code=reason)\n\
+    \    fields['optimization_status']=dict(value='not_optimized',producer='local\
+    \ WT path',\n        source_path=None,reason_code='CODON_OPTIMIZATION_NOT_EXECUTED')\n\
+    \    for field,producer,path in (('epitopes','epitope_map','epitopes'),\n    \
+    \    ('glycosylation','glycosylation','glycosylation'),('developability','developability','developability')):\n\
+    \        value=values.get(producer)\n        fields[field]=dict(value=copy.deepcopy(value.get(path))\
+    \ if value else None,\n            producer=PRODUCERS[producer],source_path=path,source_artifact=receipts[producer].get('artifact'),\n\
+    \            reason_code='DEVELOPMENT_UNREVIEWED' if value else 'UPSTREAM_UNAVAILABLE')\n\
+    \    # Only an evaluated N07 shielding assessment may retain its derived risk.\n\
+    \    glyco=values.get('glycosylation') or {}\n    shielding=(glyco.get('hotspot_assessment')\
+    \ or {}).get('status')\n    if fields['glycosylation']['value'] is not None and\
+    \ shielding!='EVALUATED':\n        fields['glycosylation']['value']['shielding_risk']=None\n\
+    \        fields['glycosylation']['reason_code']='HOTSPOT_SHIELDING_NOT_PERFORMED'\n\
+    \        reasons.append(dict(code='HOTSPOT_SHIELDING_NOT_PERFORMED',source='glycosylation',affects=['formal_wt_delivery']))\n\
+    \    gate=evaluate_design_applicability(body,values,receipts)\n    gate['reasons']=gate.pop('decision_reasons')+reasons\n\
+    \    return dict(document_kind='LOCAL_WT_ASSESSMENT_DRAFT',schema_identity='t01/w4/local-wt-draft/0.2.0',\n\
+    \        candidate_record_complete=False,agent_c_payload=None,formal_wt_delivery=False,\n\
+    \        subject=dict(kind='WT',protein_sequence=body['protein_sequence'],user_sequence_id=body['user_sequence_id'],\n\
+    \            host_species=body['host_species'],organism=body['organism']),fields=fields,assessments=assessments,\n\
+    \        checks=dict(executed=[n for n,r in assessments.items() if r['executed']],\n\
+    \            not_executed=[n for n,r in assessments.items() if not r['executed']],\n\
+    \            missing=[n for n,r in assessments.items() if r['state']=='missing'],\n\
+    \            failed=[n for n,r in assessments.items() if r['state']=='failed'],\n\
+    \            pending=[n for n,r in assessments.items() if r['state']=='pending'],\n\
+    \            unsigned=[n for n,r in assessments.items() if r['state']=='available'],\n\
+    \            scientific_checks_passed=None,experimental_safety_status='NOT_ASSESSED'),gate=gate)\n"
+  development--wt_draft--service.py: "\"\"\"Same-scope provenance verification and\
+    \ local WT draft task lifecycle.\"\"\"\nimport copy\nimport time\n\nfrom ...common\
+    \ import RuntimeFault, TERMINAL, encode, decode, ensure, new_id, now, sha\nfrom\
+    \ ...files import publish, within, read_verified\nfrom ...winprocess import current_identity\n\
+    from . import policy\nfrom .compute import assemble\n\n\ndef task_source(rt,name,job_id):\n\
+    \    ensure(name in policy.PRODUCERS,'INVALID_REQUEST','Unknown WT upstream slot')\n\
+    \    job=rt.get(job_id)\n    ensure(job['tool_id']==policy.PRODUCERS[name],'FORBIDDEN','WT\
+    \ upstream producer differs')\n    refs=[r for r in job['artifacts'] if r['role']\
+    \ in ('result','diagnostic')]\n    ensure(len(refs)<=1,'OUTPUT_INVALID','Ambiguous\
+    \ terminal result')\n    return dict(job_id=job_id,artifact=refs[0] if refs else\
+    \ None)\n\n\ndef sources(rt,db,body):\n    files={};values={};receipts={}\n  \
+    \  for name,tool in policy.PRODUCERS.items():\n        source=body['upstream'][name]\n\
+    \        if source is None:\n            receipts[name]=dict(state='missing',verified=False,artifact=None,attempt_id=None)\n\
+    \            continue\n        job=rt._job(db,source['job_id'])\n        ensure(job['tool_id']==tool\
+    \ and job['run_mode']=='g0_probe' and job['usable_for_pipeline'] is False\n  \
+    \          and job['evidence_kind']=='G0_REAL_OUTPUT','FORBIDDEN','WT source tool/scope/qualification\
+    \ differs')\n        request_raw=rt._input(db,job['request_artifact'],job['run_id']);up_request=decode(request_raw)\n\
+    \        ensure(isinstance(up_request,dict) and up_request.get('protein_sequence')==body['protein_sequence'],\n\
+    \            'OUTPUT_INVALID','WT upstream request sequence differs')\n      \
+    \  if up_request.get('host_species') is not None and body['host_species'] is not\
+    \ None:\n            ensure(up_request['host_species']==body['host_species'],'OUTPUT_INVALID','WT\
+    \ upstream host fact differs')\n        files['input/'+name+'-request.json']=request_raw\n\
+    \        refs=[r for r in job['artifacts'] if r['role'] in ('result','diagnostic')]\n\
+    \        ensure(len(refs)<=1 and source['artifact']==(refs[0] if refs else None),\n\
+    \            'FORBIDDEN','WT source must name the exact published result or diagnostic')\n\
+    \        value=None;verified_artifacts=[]\n        if refs:\n            _,raw,value=rt._registered_result_artifact(db,refs[0],tool)\n\
+    \            binding=value['binding']\n            ensure(all(binding.get(k)==job[k]\
+    \ for k in ('request_id','execution_identity','execution_profile'))\n        \
+    \        and binding.get('input_sha256')==sha(request_raw)\n                and\
+    \ binding.get('sequence_sha256')==sha(body['protein_sequence'].encode()),\n  \
+    \              'OUTPUT_INVALID','WT upstream binding/request/profile differs')\n\
+    \            ensure(value.get('qualification')=='DEVELOPMENT_UNREVIEWED' and value.get('scientific_signoff')\
+    \ is None\n                and value.get('evidence_kind')=='G0_REAL_OUTPUT' and\
+    \ value.get('production_status')=='NOT_DEPLOYED',\n                'OUTPUT_INVALID','WT\
+    \ upstream scientific qualification is not registered')\n            ensure(refs[0]['role']==('result'\
+    \ if job['state']=='succeeded' else 'diagnostic')\n                and value.get('execution',{}).get('error_code')==job['error_code'],\n\
+    \                'OUTPUT_INVALID','WT upstream failure state differs')\n     \
+    \       # Verify published raw evidence too; a valid result hash cannot hide damaged\
+    \ tool files.\n            raw_refs=value.get('raw_artifacts')\n            ensure(isinstance(raw_refs,list),'OUTPUT_INVALID','Upstream\
+    \ raw artifact manifest missing')\n            for item in raw_refs:\n       \
+    \         ensure(isinstance(item,dict) and isinstance(item.get('artifact'),dict)\n\
+    \                    and item['artifact'] in job['artifacts'] and item['artifact']['role']\
+    \ in ('raw','log'),\n                    'OUTPUT_INVALID','WT raw provenance references\
+    \ a foreign artifact')\n            for ref in job['artifacts']:\n           \
+    \     row=db.execute('SELECT relative_path,data FROM artifacts WHERE id=?',(ref['artifact_id'],)).fetchone()\n\
+    \                ensure(row and decode(row['data'])==ref,'FORBIDDEN','WT upstream\
+    \ publication registry differs')\n                read_verified(rt.root,row['relative_path'],ref['sha256'],ref['size_bytes'],32*1024**2)\n\
+    \                verified_artifacts.append(ref)\n            files['input/'+name+'-result.json']=raw\n\
+    \        ensure(job['state']!='succeeded' or value is not None,'OUTPUT_INVALID','Successful\
+    \ upstream has no result')\n        state='available' if job['state']=='succeeded'\
+    \ else 'failed' if job['state'] in TERMINAL else 'pending'\n        if state=='available':values[name]=value\n\
+    \        receipts[name]=dict(state=state,verified=True,artifact=source['artifact'],job_id=job['job_id'],\n\
+    \            run_id=job['run_id'],attempt_id=job['attempt_id'],job_state=job['state'],revision=job['revision'],\n\
+    \            error_code=job['error_code'],request_artifact=job['request_artifact'],\n\
+    \            sequence_sha256=sha(body['protein_sequence'].encode()),qualification=job['scientific_disposition'],\n\
+    \            result_status=value.get('status') if value else None,execution_profile=job['execution_profile'],\n\
+    \            rule_profile=job['rule_profile'],verified_artifacts=verified_artifacts)\n\
+    \    files['input/source-receipts.json']=encode(receipts)\n    return files,values,receipts\n\
+    \n\ndef evaluate(body,files):\n    receipts=decode(files['input/source-receipts.json'])\n\
+    \    values={name:decode(files['input/'+name+'-result.json']) for name in policy.PRODUCERS\n\
+    \        if receipts[name]['state']=='available'}\n    return assemble(body,values,receipts)\n\
+    \n\ndef result(job,body,files,execution,fault=None):\n    binding={k:job[k] for\
+    \ k in ('run_id','request_id','job_id','attempt_id','execution_identity','execution_profile','rule_profile')}\n\
+    \    binding.update(input_sha256=job['request_artifact']['sha256'],sequence_sha256=sha(body['protein_sequence'].encode()))\n\
+    \    value=dict(contract_version='0.2.0',tool_id=policy.TOOL,binding=binding,evidence_kind='G0_REAL_OUTPUT',\n\
+    \        qualification='DEVELOPMENT_UNREVIEWED',usable_for_pipeline=False,automatic_handoff=False,scientific_signoff=None,\n\
+    \        production_status='NOT_DEPLOYED',requires_review=True,execution=execution,status='unreliable',draft=None,\n\
+    \        source_receipts=execution.get('source_receipts'),null_reason=execution.get('error_code'),controlled_fault=fault,\n\
+    \        method_summary=dict(rule_profile=job['rule_profile'],network=False,\n\
+    \            scope='W4 R-57 business routing / WT draft; scientific release and\
+    \ S-44 closed'),warnings=[])\n    if execution.get('error_code'):return value\n\
+    \    try:\n        ensure(execution['stopped_confirmed'] is True and execution['exit_code']==0\
+    \ and execution['network_used'] is False,\n            'OUTPUT_INVALID','No clean\
+    \ local WT draft execution')\n        observation=decode(files['output/observation.json'])\n\
+    \        ensure(observation['input_hashes']=={k:sha(v) for k,v in files.items()\
+    \ if k.startswith('input/')},\n            'OUTPUT_INVALID','WT observation source\
+    \ hashes differ')\n        computed=evaluate(body,files)\n        ensure(observation['result']==computed\
+    \ and files['output/wt-draft.json']==encode(computed)\n            and decode(files['input/source-receipts.json'])==execution['source_receipts'],\n\
+    \            'OUTPUT_INVALID','WT draft differs from verified source facts')\n\
+    \        value.update(status='local_wt_draft_review_required',draft=computed,null_reason=None,\n\
+    \            warnings=[dict(code=r['code'],level='quality',severity='WARNING',message=r['code'])\
+    \ for r in computed['gate']['reasons']])\n    except (RuntimeFault,KeyError,ValueError,TypeError)\
+    \ as exc:\n        execution.update(error_code='OUTPUT_INVALID',diagnostic=str(exc));value.update(null_reason='OUTPUT_INVALID')\n\
+    \    return value\n\n\ndef dispatch(rt,job_id):\n    with rt._tx() as db:\n  \
+    \      before=rt._job(db,job_id)\n        if before['state']!='queued':return\
+    \ before\n        try:\n            ensure(before['execution_profile']==policy.registered_profile()\
+    \ and before['rule_profile']==policy.registered_rules(),\n                'PROFILE_NOT_APPROVED','WT\
+    \ draft implementation changed after submission')\n            raw=rt._input(db,before['request_artifact'],before['run_id']);body=policy.request(raw)\n\
+    \            upstream,_,receipts=sources(rt,db,body)\n        except RuntimeFault\
+    \ as exc:\n            value=copy.deepcopy(before);value.update(state='failed',finished_at=now(),error_code=exc.code,scientific_disposition='rejected')\n\
+    \            rt._store(db,value,before,'preflight_failed');return value\n    \
+    \    fault=rt._development_fault\n        ensure(fault in (None,'compute_failure','corrupt_output','interrupt_after_claim'),'INVALID_REQUEST','Unknown\
+    \ internal WT fault')\n        value=copy.deepcopy(before);value.update(state='running',attempt_id=new_id('attempt'),execution_identity='exec-'+new_id('attempt'),\n\
+    \            lease_epoch=1,started_at=now())\n        path=rt.attempt_path(value);fasta=('>'+policy.sequence_id(body['protein_sequence'])+'\\\
+    n'+body['protein_sequence']+'\\n').encode()\n        publish(rt.root,path+'/input.json',raw);publish(rt.root,path+'/input.fasta',fasta)\n\
+    \        for name,data in upstream.items():publish(rt.root,path+'/'+name,data)\n\
+    \        within(rt.root,path+'/output').mkdir()\n        ex=dict(phase='local_compute',dispatcher=current_identity(),supervisor=None,tree_stopped=False,backend='trusted-local-in-process',\n\
+    \            container_started=False,container_id=None,network_used=False,timeout_seconds=body['timeout_seconds'],fault=fault,\n\
+    \            source_receipts=receipts)\n        rt._execution_store(db,job_id,ex);rt._store(db,value,before,'claimed')\n\
+    \    if fault=='interrupt_after_claim':\n        with rt._tx() as db:\n      \
+    \      ex=rt._execution(db,job_id);ex.update(phase='interrupted_fixture',tree_stopped=True);rt._execution_store(db,job_id,ex)\n\
+    \        return rt.get(job_id)\n    files={'input.json':raw,'input.fasta':fasta,**upstream};error=None;diagnostic=None\n\
+    \    started=time.perf_counter()\n    try:\n        if fault=='compute_failure':raise\
+    \ RuntimeFault('TOOL_FAILED','Controlled WT draft calculation failure')\n    \
+    \    draft=evaluate(body,files)\n        observation=encode(dict(input_hashes={k:sha(v)\
+    \ for k,v in files.items() if k.startswith('input/')},result=draft))\n       \
+    \ if fault=='corrupt_output':observation=b'{}'\n        for name,data in (('output/observation.json',observation),('output/wt-draft.json',encode(draft))):\n\
+    \            publish(rt.root,path+'/'+name,data);files[name]=data\n        with\
+    \ rt._db() as db:_,_,after=sources(rt,db,body)\n        ensure(after==receipts,'HASH_MISMATCH','WT\
+    \ upstream changed during assembly')\n    except (RuntimeFault,OSError,ValueError,KeyError,TypeError)\
+    \ as exc:\n        error=exc.code if isinstance(exc,RuntimeFault) else 'TOOL_FAILED';diagnostic=str(exc)\n\
+    \    elapsed=time.perf_counter()-started\n    if elapsed>body['timeout_seconds']:\n\
+    \        error='TIMEOUT';diagnostic='WT local draft deadline exceeded'\n     \
+    \   with rt._tx() as db:\n            current=rt._job(db,job_id)\n           \
+    \ if current['stop_reason'] is None:rt._stop(db,current,'timeout')\n    actual=dict(job_id=job_id,attempt_id=value['attempt_id'],execution_identity=value['execution_identity'],exit_code=1\
+    \ if error else 0,\n        error_code=error,diagnostic=diagnostic,stopped_confirmed=True,backend='trusted-local-in-process',container_id=None,\n\
+    \        network_used=False,elapsed_seconds=elapsed,recovered=False,source_receipts=receipts)\n\
+    \    built=result(rt.get(job_id),body,files,actual,fault);ex=rt.execution(job_id);ex.update(tree_stopped=True,phase='collected')\n\
+    \    return rt._finish_development(job_id,ex,files,built)\n"
+  development--epitope_map--policy.py: "\"\"\"N06 request, source-reference shape\
+    \ and registered rule/profile identity.\"\"\"\nimport re\nfrom pathlib import\
+    \ Path\n\nfrom ...common import REPO, decode, encode, ensure, identifier, profile\
+    \ as base_profile, sha\n\nTOOL='t01.real.epitope_map'\nNODE='N06'\nMAX_AA=20000\n\
+    HERE=Path(__file__).parent\nSOURCE_STATES=frozenset(('available','upstream_unavailable','not_provided'))\n\
+    BLAST_SOURCE_STATES=frozenset(('available','upstream_unavailable','not_executed'))\n\
+    ARTIFACT_FIELDS={'artifact_id','run_id','job_id','attempt_id','role','media_type','sha256','size_bytes','evidence_kind'}\n\
+    SOP=REPO/'\u5DE5\u4F5C\u6D41\u8BBE\u8BA1/01-\u4E1A\u52A1\u4F9D\u636E/\u6297\u539F\
+    \u667A\u80FD\u4F53_v10.5_\u4FEE\u8BA2\u7248_20260902/AgentA_SOP_v10.5_20260902.md'\n\
+    SCHEMA=REPO/'\u5DE5\u4F5C\u6D41\u8BBE\u8BA1/01-\u4E1A\u52A1\u4F9D\u636E/\u6297\
+    \u539F\u667A\u80FD\u4F53_v10.5_\u4FEE\u8BA2\u7248_20260902/AgentA_Schema_v10.5_20260902.md'\n\
+    TOOLSPEC=REPO/'\u5DE5\u4F5C\u6D41\u8BBE\u8BA1/01-\u4E1A\u52A1\u4F9D\u636E/\u6297\
+    \u539F\u667A\u80FD\u4F53_v10.5_\u4FEE\u8BA2\u7248_20260902/ToolSpec_A1_NetMHCpan_v10.5.md'\n\
+    AUTHORITY=(SOP,SCHEMA,TOOLSPEC)\n\n\ndef _artifact(value,state):\n    if state\
+    \ in ('not_provided','not_executed'):\n        ensure(value is None,'INVALID_REQUEST',state+'\
+    \ source cannot claim an artifact')\n        return\n    ensure(isinstance(value,dict)\
+    \ and set(value)==ARTIFACT_FIELDS,'INVALID_REQUEST','Source requires an exact\
+    \ ArtifactRef')\n    for name in ('artifact_id','run_id','job_id','attempt_id'):identifier(value[name])\n\
+    \    ensure(value['role']==('result' if state=='available' else 'diagnostic')\n\
+    \        and value['media_type']=='application/json' and value['evidence_kind']=='G0_REAL_OUTPUT',\n\
+    \        'INVALID_REQUEST','Source ArtifactRef role/media/evidence differs from\
+    \ its state')\n    ensure(isinstance(value['sha256'],str) and re.fullmatch('[0-9a-f]{64}',value['sha256'])\n\
+    \        and type(value['size_bytes']) is int and 0<value['size_bytes']<=32*1024**2,\n\
+    \        'INVALID_REQUEST','Source ArtifactRef digest/size is invalid')\n\n\n\
+    def _source(value):\n    ensure(isinstance(value,dict) and set(value)=={'state','artifact','reason_code'},\n\
+    \        'INVALID_REQUEST','Each upstream input requires exact state, artifact\
+    \ and reason_code fields')\n    state=value['state'];ensure(state in SOURCE_STATES,'INVALID_REQUEST','Unsupported\
+    \ upstream input state')\n    _artifact(value['artifact'],state)\n    if state=='available':ensure(value['reason_code']\
+    \ is None,'INVALID_REQUEST','Available source has no failure reason')\n    elif\
+    \ state=='not_provided':ensure(value['reason_code'] is None,'INVALID_REQUEST','not_provided\
+    \ source has no failure reason')\n    else:ensure(isinstance(value['reason_code'],str)\
+    \ and re.fullmatch('[A-Z][A-Z0-9_]{0,63}',value['reason_code']),\n        'INVALID_REQUEST','Unavailable\
+    \ source requires a bounded reason code')\n    return value\n\n\ndef _blast_source(value):\n\
+    \    ensure(isinstance(value,dict) and set(value)=={'state','artifact','reason_code'},\n\
+    \        'INVALID_REQUEST','BLAST input requires exact state, artifact and reason_code\
+    \ fields')\n    state=value['state'];ensure(state in BLAST_SOURCE_STATES,'INVALID_REQUEST','Unsupported\
+    \ BLAST input state')\n    _artifact(value['artifact'],state)\n    if state=='available':\n\
+    \        ensure(value['reason_code'] is None,'INVALID_REQUEST','Available BLAST\
+    \ source has no failure reason')\n    else:\n        ensure(isinstance(value['reason_code'],str)\
+    \ and re.fullmatch('[A-Z][A-Z0-9_]{0,63}',value['reason_code']),\n           \
+    \ 'INVALID_REQUEST','Unavailable/not-executed BLAST source requires a bounded\
+    \ reason code')\n    return value\n\n\ndef request(raw):\n    value=decode(raw)\n\
+    \    expected={'protein_sequence','user_sequence_id','bepipred_input','netmhc_input','blast_input','timeout_seconds'}\n\
+    \    ensure(isinstance(value,dict) and set(value)==expected,'INVALID_REQUEST','Exact\
+    \ N06 sequence/source/BLAST/deadline fields required')\n    seq=value['protein_sequence']\n\
+    \    ensure(isinstance(seq,str) and re.fullmatch('[ACDEFGHIKLMNPQRSTVWY]+',seq)\
+    \ and 15<=len(seq)<=MAX_AA,\n        'INVALID_REQUEST','N06 requires exact uppercase\
+    \ AA20, 15..20000 aa; no normalization')\n    ensure(isinstance(value['user_sequence_id'],str)\
+    \ and len(value['user_sequence_id'])<=512,\n        'INVALID_REQUEST','User sequence\
+    \ ID must be bounded metadata')\n    _source(value['bepipred_input']);_source(value['netmhc_input'])\n\
+    \    _blast_source(value['blast_input'])\n    ensure(type(value['timeout_seconds'])\
+    \ is int and 1<=value['timeout_seconds']<=60,\n        'INVALID_REQUEST','N06\
+    \ local calculation deadline must be 1..60 seconds')\n    return value\n\n\ndef\
+    \ sequence_id(sequence):return 't01seq_'+sha(sequence.encode())\n\n\ndef registered_rules():\n\
+    \    authority={path.relative_to(REPO).as_posix():sha(path.read_bytes()) for path\
+    \ in AUTHORITY}\n    rules=dict(authority=authority,coordinates='1-based inclusive',t_cell_hit_mapping='native\
+    \ peptide start/end',\n        residue_rank='minimum percent_rank among covering\
+    \ peptides',rank_direction='1-minmax; lower native rank is better',\n        presentation_hotspot='residues\
+    \ covered by SB hits from >=2 distinct alleles; merge intervals separated by <=10\
+    \ residues',\n        native_bind_level_recomputed=False,bepipred_raw_columns_bound=True,bepipred_peak_selection='OI-026_REVIEW_REQUIRED',\n\
+    \        evidence_weights='S19_CANONICAL_ENGINEERING_UNREVIEWED_OI_007',density_per_residue=None,\n\
+    \        b_cell_antigenic_hotspots='EMPTY_WHEN_CURRENT_SOURCE_SET_UPPER_BOUND_LE_STRICT_0.5',\n\
+    \        blast='REGISTERED_N03_ARTIFACT_OR_EXPLICIT_NOT_EXECUTED; similarity only;\
+    \ never IEDB/E3/E4',\n        scientific_signoff=False)\n    return dict(id='w2-s19-bounded-map-development',version='10.5-20260902-r2',sha256=sha(encode(rules)))\n\
+    \n\ndef registered_profile():\n    paths=list(HERE.glob('*.py'))\n    paths +=\
+    \ [HERE.parent/name for name in ('runtime.py','registry.py','contracts.py','cli.py')]\n\
+    \    paths += [REPO/'scripts/t01_runtime.py']\n    profile=dict(files={path.relative_to(REPO).as_posix():sha(path.read_bytes())\
+    \ for path in sorted(paths)},\n        base_runtime=base_profile(),backend='trusted-local-in-process',network=False,container=False,\n\
+    \        aa_min=15,aa_max=MAX_AA,max_wall_seconds=60,rule_profile=registered_rules(),scientific_consumption=False)\n\
+    \    return dict(id='w2-n06-local-map-development',version='0.3.0',sha256=sha(encode(profile)))\n"
+  development--epitope_map--result.py: "\"\"\"Compute only the S-19 branches whose\
+    \ current scientific rules are unambiguous.\"\"\"\nimport math\n\nfrom ...common\
+    \ import RuntimeFault, decode, encode, ensure, sha\nfrom .policy import registered_rules\n\
+    \n\ndef _hit(row,sequence):\n    fields=('peptide_seq','start','end','allele','percent_rank','classification','core')\n\
+    \    ensure(isinstance(row,dict) and all(name in row for name in fields),'OUTPUT_INVALID','Malformed\
+    \ NetMHC hit')\n    start,end=row['start'],row['end'];peptide=row['peptide_seq']\n\
+    \    ensure(type(start) is int and type(end) is int and 1<=start<=end<=len(sequence)\n\
+    \        and end==start+len(peptide)-1 and sequence[start-1:end]==peptide,\n \
+    \       'OUTPUT_INVALID','NetMHC hit does not map to the bound sequence')\n  \
+    \  ensure(row['classification'] in ('SB','WB','NB') and isinstance(row['allele'],str)\n\
+    \        and type(row['percent_rank']) in (int,float) and math.isfinite(row['percent_rank'])\
+    \ and 0<=row['percent_rank']<=100,\n        'OUTPUT_INVALID','Malformed NetMHC\
+    \ rank/classification')\n    return {name:row[name] for name in fields}\n\n\n\
+    def _intervals(mask):\n    result=[];start=None\n    for index,active in enumerate(mask,1):\n\
+    \        if active and start is None:start=index\n        if start is not None\
+    \ and (not active or index==len(mask)):\n            end=index if active and index==len(mask)\
+    \ else index-1\n            result.append([start,end]);start=None\n    return\
+    \ result\n\n\ndef _presentation(hits,sequence):\n    length=len(sequence);rank=[None]*length;sb=[set()\
+    \ for _ in sequence];support=[set() for _ in sequence]\n    for hit in hits:\n\
+    \        for offset in range(hit['start']-1,hit['end']):\n            rank[offset]=hit['percent_rank']\
+    \ if rank[offset] is None else min(rank[offset],hit['percent_rank'])\n       \
+    \     if hit['classification'] in ('SB','WB'):support[offset].add(hit['allele'])\n\
+    \            if hit['classification']=='SB':sb[offset].add(hit['allele'])\n  \
+    \  values=[value for value in rank if value is not None]\n    if values and max(values)>min(values):\n\
+    \        low,high=min(values),max(values)\n        inverse=[None if value is None\
+    \ else 1-(value-low)/(high-low) for value in rank]\n        normalization=dict(status='computed',minimum_percent_rank=low,maximum_percent_rank=high,direction='1-minmax')\n\
+    \    elif values:\n        inverse=None;normalization=dict(status='review_required',reason_code='DEGENERATE_RANK_RANGE',\n\
+    \            minimum_percent_rank=values[0],maximum_percent_rank=values[0],direction='1-minmax')\n\
+    \    else:\n        inverse=None;normalization=dict(status='not_computed',reason_code='NO_MHC_HITS',direction='1-minmax')\n\
+    \    raw=_intervals([len(alleles)>=2 for alleles in sb]);merged=[]\n    for start,end\
+    \ in raw:\n        if merged and start-merged[-1][1]-1<=10:merged[-1][1]=end\n\
+    \        else:merged.append([start,end])\n    hotspots=[]\n    for start,end in\
+    \ merged:\n        alleles=sorted({allele for values_at_position in sb[start-1:end]\
+    \ for allele in values_at_position})\n        hotspots.append(dict(start=start,end=end,epitope_level='E2-consensus',support='SB_DISTINCT_ALLELES_GTE_2',\n\
+    \            alleles=alleles,allele_count=len(alleles)))\n    e1=_intervals([bool(supports)\
+    \ and len(strong)<2 for supports,strong in zip(support,sb)])\n    evidence_regions=[dict(start=start,end=end,epitope_level='E1-single',support='SINGLE_SB_OR_WB')\
+    \ for start,end in e1]\n    return dict(residue_min_percent_rank=rank,residue_inverse_minmax_score=inverse,normalization=normalization,\n\
+    \        presentation_hotspots=hotspots,evidence_regions=evidence_regions)\n\n\
+    \ndef _blast_similarity(source,item,sequence):\n    state=item['state']\n    if\
+    \ state!='available':\n        return dict(state=state,source_artifact=item['artifact'],reason_code=item['reason_code'],\n\
+    \            result_status=None,database=None,search_status=None,raw_hsp_count=None,qualifying_hsp_count=None,\n\
+    \            raw_hsps=None,qualifying_hsps=None,interpretation='NOT_AVAILABLE',iedb_evidence=None,\n\
+    \            epitope_evidence_level=None,epitope_regions=None,contact_residues=None)\n\
+    \    ensure(isinstance(source,dict) and source.get('tool_id')=='t01.real.blast'\n\
+    \        and source.get('status') in ('similarity_hits_unreviewed','no_qualifying_similarity_hit')\n\
+    \        and source.get('qualification')=='DEVELOPMENT_UNREVIEWED'\n        and\
+    \ source.get('usable_for_pipeline') is False and source.get('automatic_handoff')\
+    \ is False\n        and source.get('scientific_signoff') is None,'OUTPUT_INVALID','BLAST\
+    \ source qualification differs')\n    binding=source.get('binding');database=source.get('database');search=source.get('search')\n\
+    \    ensure(isinstance(binding,dict) and binding.get('sequence_sha256')==sha(sequence.encode())\n\
+    \        and isinstance(database,dict) and isinstance(search,dict),'OUTPUT_INVALID','BLAST\
+    \ source binding/database/search is incomplete')\n    ensure(database.get('database_id')==binding.get('database_id')\n\
+    \        and database.get('manifest_sha256')==binding.get('database_manifest_sha256')\n\
+    \        and database.get('qualification') in ('ENGINEERING_FIXTURE','TARGET_DATABASE_UNREVIEWED'),\n\
+    \        'OUTPUT_INVALID','BLAST database ID/manifest/qualification differs')\n\
+    \    raw=search.get('raw_hsps');qualified=search.get('qualifying_hsps')\n    ensure(isinstance(raw,list)\
+    \ and isinstance(qualified,list)\n        and search.get('raw_hsp_count')==len(raw)\
+    \ and search.get('qualifying_hsp_count')==len(qualified)\n        and qualified==[row\
+    \ for row in raw if isinstance(row,dict) and row.get('passes_registered_thresholds')\
+    \ is True],\n        'OUTPUT_INVALID','BLAST HSP counts or threshold subset differs')\n\
+    \    search_status='hit' if qualified else 'no_hit'\n    ensure(search.get('search_status')==search_status\n\
+    \        and source['status']==('similarity_hits_unreviewed' if qualified else\
+    \ 'no_qualifying_similarity_hit')\n        and all(search.get(name) is None for\
+    \ name in ('iedb_hit','evidence_level','epitope_regions','contact_residues')),\n\
+    \        'OUTPUT_INVALID','BLAST hit state or prohibited epitope semantics differs')\n\
+    \    return dict(state='available',source_artifact=item['artifact'],reason_code=None,result_status=source['status'],\n\
+    \        database={name:database[name] for name in ('database_id','manifest_sha256','qualification','purpose','source','blast')},\n\
+    \        search_status=search_status,raw_hsp_count=len(raw),qualifying_hsp_count=len(qualified),raw_hsps=raw,\n\
+    \        qualifying_hsps=qualified,interpretation='ORDINARY_PROTEIN_SIMILARITY_ONLY',iedb_evidence=None,\n\
+    \        epitope_evidence_level=None,epitope_regions=None,contact_residues=None)\n\
+    \n\ndef _empty_hotspot_proof(b_map,t_map):\n    \"\"\"Prove the current source\
+    \ set cannot satisfy S-19's strict >0.5 rule.\"\"\"\n    present=[name for name,value\
+    \ in (('bcell',b_map),('tcell',t_map)) if value is not None]\n    channel_weights={name:(1.0\
+    \ if len(present)==1 else 0.5) for name in present}\n    maxima=dict(bcell=0.2,tcell=0.5)\n\
+    \    components={name:channel_weights[name]*maxima[name] for name in present}\n\
+    \    upper_bound=sum(components.values())\n    ensure(upper_bound<=0.5,'OUTPUT_INVALID','Current\
+    \ N06 source-set bound unexpectedly permits a hotspot')\n    return dict(kind='S19_SOURCE_SET_UPPER_BOUND',qualification='DEVELOPMENT_UNREVIEWED',\n\
+    \        available_channels=present,channel_weights=channel_weights,\n       \
+    \ maximum_evidence_weight_by_channel={name:maxima[name] for name in present},\n\
+    \        maximum_component_by_channel=components,maximum_possible_score=upper_bound,\n\
+    \        normalized_score_upper_bound=1.0,hotspot_threshold=0.5,comparison='STRICT_GREATER_THAN',\n\
+    \        source_semantics=dict(bcell='BEPIPRED_ONLY_MAX_E1',tcell='NETMHC_MAX_E2',e3_e4='ABSENT_BY_SCOPE'),\n\
+    \        conclusion='NO_HOTSPOT_CAN_EXCEED_THRESHOLD',scientific_consumption=False)\n\
+    \n\ndef compute(body,sources):\n    sequence=body['protein_sequence'];bepi=sources.get('bepipred');netmhc=sources.get('netmhc')\n\
+    \    blast_similarity=_blast_similarity(sources.get('blast'),body['blast_input'],sequence)\n\
+    \    b_map=None;t_map=None;warnings=[]\n    if bepi is not None:\n        ensure(bepi['tool_id']=='t01.real.bepipred'\
+    \ and bepi['status']=='raw_scores_unreviewed'\n            and bepi['binding']['sequence_sha256']==sha(sequence.encode())\
+    \ and bepi['postprocessing']['status']=='review_required',\n            'OUTPUT_INVALID','BepiPred\
+    \ source qualification/binding differs')\n        rows=bepi['raw_scores'];ensure(len(rows)==len(sequence),'OUTPUT_INVALID','BepiPred\
+    \ score length differs')\n        for index,row in enumerate(rows,1):\n      \
+    \      ensure(row['sequence_position']==index and row['residue']==sequence[index-1],\n\
+    \                'OUTPUT_INVALID','BepiPred residue identity/order differs')\n\
+    \        b_map=dict(status='review_required',regions=None,\n            raw_score_profiles=dict(ensemble_probability=[row['ensemble_probability']\
+    \ for row in rows],\n                linear_epitope_score=[row['linear_epitope_score']\
+    \ for row in rows]),\n            selected_project_score=None,closure='OI-026')\n\
+    \        warnings.append(dict(code='B_CELL_PEAKS_REVIEW_REQUIRED',level='quality',severity='WARNING',\n\
+    \            message='BepiPred \u539F\u59CB\u4E24\u5217\u5DF2\u7ED1\u5B9A\uFF1B\
+    \u9879\u76EE\u9009\u5217\u3001\u5CF0\u63D0\u53D6\u53CA\u540E\u5904\u7406\u4ECD\
+    \u7531 OI-026 \u7EA6\u675F\u3002'))\n    if netmhc is not None:\n        ensure(netmhc['tool_id']=='t01.real.netmhc'\
+    \ and netmhc['binding']['sequence_sha256']==sha(sequence.encode())\n         \
+    \   and netmhc['status'] in ('raw_predictions_unreviewed','partial_unreliable'),\n\
+    \            'OUTPUT_INVALID','NetMHC source qualification/binding differs')\n\
+    \        channels={};all_hits=[]\n        for name in ('mhc_i','mhc_ii'):\n  \
+    \          source=netmhc['channels'].get(name)\n            if source is None\
+    \ or source['status']=='unavailable':channels[name]=None;continue\n          \
+    \  mapped=[_hit(row,sequence) for row in source['hits']];channels[name]=mapped;all_hits.extend(mapped)\n\
+    \        presentation=_presentation(all_hits,sequence)\n        t_map=dict(status='computed'\
+    \ if all(value is not None for value in channels.values()) else 'partial',\n \
+    \           mhc_i_hits=channels['mhc_i'],mhc_ii_hits=channels['mhc_ii'],channel_status={name:\n\
+    \                ('unavailable' if channels[name] is None else netmhc['channels'][name]['status'])\
+    \ for name in channels},**presentation)\n        if t_map['status']=='partial':warnings.append(dict(code='T_CELL_CHANNEL_PARTIAL',level='failure',severity='WARNING',\n\
+    \            message='\u81F3\u5C11\u4E00\u4E2A NetMHC \u901A\u9053\u4E0D\u53EF\
+    \u7528\uFF1B\u4FDD\u7559\u5176\u4F59\u901A\u9053\u5730\u56FE\uFF0C\u4E0D\u5C06\
+    \u7F3A\u5931\u901A\u9053\u89E3\u91CA\u4E3A\u7A7A\u547D\u4E2D\u3002'))\n    ensure(b_map\
+    \ is not None or t_map is not None,'TOOL_FAILED','S-19 has no available epitope\
+    \ predictor input')\n    proof=_empty_hotspot_proof(b_map,t_map)\n    warnings.append(dict(code='HOTSPOT_EMPTY_BY_SOURCE_SET_BOUND_UNREVIEWED',level='quality',severity='WARNING',\n\
+    \        message='\u6309 S-19 \u56FA\u5B9A\u6743\u91CD\uFF0C\u5F53\u524D\u6765\
+    \u6E90\u96C6\u5408\u7684\u9010\u6B8B\u57FA\u5F97\u5206\u4E0A\u754C\u4E0D\u8D85\
+    \u8FC7\u4E25\u683C\u70ED\u70B9\u9608\u503C\uFF1B\u8F93\u51FA\u5DE5\u7A0B\u7A7A\
+    \u70ED\u70B9\uFF0C\u79D1\u5B66\u6D88\u8D39\u4ECD\u672A\u7B7E\u6536\u3002'))\n\
+    \    warnings.append(dict(code='WEIGHTED_DENSITY_REVIEW_REQUIRED',level='quality',severity='WARNING',\n\
+    \        message='OI-007/026 \u672A\u7B7E\u6536\uFF1B\u4E0D\u9009\u62E9 BepiPred\
+    \ \u9879\u76EE\u5206\u6570\u5217\uFF0C\u4E0D\u751F\u6210\u9010\u6B8B\u57FA density\u3002\
+    '))\n    if blast_similarity['state']=='available':\n        warnings.append(dict(code='BLAST_SIMILARITY_NOT_EPITOPE_EVIDENCE',level='disclosure',severity='WARNING',\n\
+    \            message='N03 \u666E\u901A\u86CB\u767D\u76F8\u4F3C\u6027\u7ED3\u679C\
+    \u5DF2\u539F\u6837\u56DE\u8FDE\uFF1B\u4E0D\u751F\u6210 IEDB \u547D\u4E2D\u3001\
+    E3/E4 \u8BC1\u636E\u3001\u8868\u4F4D\u533A\u6216\u63A5\u89E6\u6B8B\u57FA\u3002\
+    '))\n    elif blast_similarity['state']=='upstream_unavailable':\n        warnings.append(dict(code='N03_UPSTREAM_UNAVAILABLE',level='failure',severity='WARNING',\n\
+    \            message='N03 \u8BCA\u65AD\u4EA7\u7269\u5DF2\u9A8C\u8BC1\uFF1B\u6267\
+    \u884C\u4E0D\u53EF\u7528\u4E0D\u5F97\u89E3\u91CA\u4E3A\u65E0\u76F8\u4F3C\u6027\
+    \u547D\u4E2D\u3002'))\n    epitopes=dict(b_cell_epitope_map=b_map,t_cell_presentation_map=t_map,\n\
+    \        b_cell_antigenic_hotspot_map=dict(status='computed_empty_unreviewed',hotspots=[],proof=proof,\n\
+    \            reason_codes=['CURRENT_SOURCE_SET_SCORE_UPPER_BOUND_LE_STRICT_THRESHOLD',\n\
+    \                'OI-007_SCIENTIFIC_WEIGHT_SIGNOFF_PENDING']),\n        immunogenicity_scores=None,density_per_residue=None)\n\
+    \    return dict(epitopes=epitopes,blast_input=body['blast_input'],blast_similarity=blast_similarity,warnings=warnings,\n\
+    \        branch_status=dict(b_cell='review_required' if b_map else 'unavailable',\n\
+    \            t_cell=t_map['status'] if t_map else 'unavailable',blast=blast_similarity['state'],\n\
+    \            weighted_hotspot='computed_empty_unreviewed',density='review_required'))\n\
+    \n\ndef _parse(files,body):\n    source_names={name:decode(files['input/'+name+'-result.json'])\
+    \ for name in ('bepipred','netmhc','blast')\n        if 'input/'+name+'-result.json'\
+    \ in files}\n    observed=decode(files['output/observation.json'])\n    ensure(isinstance(observed,dict)\
+    \ and set(observed)=={'method','source_sha256','result'}\n        and observed['method']=='s19-bounded-map-v10.5','OUTPUT_INVALID','Unexpected\
+    \ N06 observation shape/method')\n    ensure(observed['source_sha256']=={name:sha(encode(value))\
+    \ for name,value in source_names.items()},\n        'OUTPUT_INVALID','N06 observation\
+    \ source hashes differ')\n    expected=compute(body,source_names);ensure(observed['result']==expected,'OUTPUT_INVALID','Stored\
+    \ N06 map differs from deterministic calculation')\n    return expected\n\n\n\
+    def result(job,body,files,execution,fault=None):\n    binding={key:job[key] for\
+    \ key in ['run_id','request_id','job_id','attempt_id','execution_identity','execution_profile','rule_profile']}\n\
+    \    binding.update(input_sha256=job['request_artifact']['sha256'],sequence_sha256=sha(body['protein_sequence'].encode()),\n\
+    \        upstream_artifacts={name:body[name+'_input']['artifact'] for name in\
+    \ ('bepipred','netmhc','blast')})\n    value=dict(contract_version='0.2.0',tool_id=job['tool_id'],scope='N06_S19_EPITOPE_MAP',binding=binding,\n\
+    \        execution=execution,user_sequence_id=body['user_sequence_id'],qualification='DEVELOPMENT_UNREVIEWED',\n\
+    \        evidence_kind='G0_REAL_OUTPUT',usable_for_pipeline=False,automatic_handoff=False,scientific_signoff=None,\n\
+    \        production_status='NOT_DEPLOYED',requires_review=True,status='unreliable',null_reason=execution.get('error_code'),\n\
+    \        epitopes=None,branch_status=None,blast_input=body['blast_input'],blast_similarity=None,controlled_fault=fault,\n\
+    \        method_summary=dict(operation='S-19 bounded three-map development',rule_profile=registered_rules(),\n\
+    \            t_cell_map_computed=False,bepipred_raw_columns_bound=False,b_cell_peaks_computed=False,\n\
+    \            blast_source_bound=False,blast_similarity_retained=False,iedb_evidence_generated=False,\n\
+    \            e3_e4_evidence_generated=False,weighted_hotspots_computed=False,density_per_residue_computed=False,\n\
+    \            weighted_hotspot_emptiness_proved=False,hotspot_score_upper_bound=None,\n\
+    \            n07_hotspot_window_generated=False,n07_hotspot_input_available=False),warnings=[])\n\
+    \    try:\n        if execution.get('error_code'):raise RuntimeFault(execution['error_code'],execution.get('diagnostic')\
+    \ or 'N06 unavailable')\n        ensure(execution.get('stopped_confirmed') is\
+    \ True and execution.get('exit_code')==0\n            and execution.get('backend')=='trusted-local-in-process'\
+    \ and execution.get('network_used') is False\n            and execution.get('container_id')\
+    \ is None and execution.get('sources_verified') is True,\n            'OUTPUT_INVALID','No\
+    \ clean registered N06 local calculation/source verification')\n        parsed_files=files\n\
+    \        if fault=='corrupt_output':\n            parsed_files=dict(files);parsed_files['output/observation.json']=b'{\"\
+    truncated\":true}'\n        parsed=_parse(parsed_files,body)\n        source_states=[body[name+'_input']['state']\
+    \ for name in ('bepipred','netmhc')]\n        status='maps_unreviewed' if all(state=='available'\
+    \ for state in source_states) else 'partial_maps_unreviewed'\n        value['method_summary'].update(\n\
+    \            t_cell_map_computed=parsed['epitopes']['t_cell_presentation_map']\
+    \ is not None,\n            bepipred_raw_columns_bound=parsed['epitopes']['b_cell_epitope_map']\
+    \ is not None,\n            blast_source_bound=parsed['blast_similarity']['state']=='available',\n\
+    \            blast_similarity_retained=parsed['blast_similarity']['state']=='available',\n\
+    \            weighted_hotspot_emptiness_proved=True,\n            hotspot_score_upper_bound=parsed['epitopes']['b_cell_antigenic_hotspot_map']['proof']['maximum_possible_score'],\n\
+    \            n07_hotspot_input_available=True)\n        value.update(parsed,status=status,null_reason=None)\n\
+    \    except (RuntimeFault,KeyError,ValueError,TypeError,UnicodeError) as exc:\n\
+    \        error=execution.get('error_code') or getattr(exc,'code','OUTPUT_INVALID')\n\
+    \        execution.update(error_code=error,diagnostic=str(exc));value.update(status='unreliable',null_reason=error,\n\
+    \            epitopes=None,branch_status=None,blast_similarity=None,warnings=[dict(code=error,level='failure',severity='WARNING',\n\
+    \                message='N06 \u4E0A\u6E38\u7ED1\u5B9A\u6216\u5730\u56FE\u8BA1\
+    \u7B97\u5931\u8D25\uFF0C\u7ED3\u679C\u4E0D\u53EF\u6D88\u8D39\uFF1A'+str(exc))])\n\
+    \    return value\n"
+  development--glycosylation--result.py: "\"\"\"Deterministic S-12 scan and strict\
+    \ local observation validation.\"\"\"\nimport re\n\nimport Bio\nfrom Bio.Seq import\
+    \ Seq\n\nfrom ...common import RuntimeFault, decode, encode, ensure, sha\nfrom\
+    \ .policy import registered_rules\n\nPATTERN=re.compile(r'(?=(N[^P][ST]))')\n\n\
+    \ndef scan(body):\n    sequence=str(Seq(body['protein_sequence']))\n    matches=[dict(position=m.start()+1,sequon=m.group(1))\
+    \ for m in PATTERN.finditer(sequence)]\n    sites=[row['position'] for row in\
+    \ matches]\n    hotspot=body['hotspot_input'];annotations=[]\n    if hotspot['state']=='available':\n\
+    \        for interval in hotspot['hotspots']:\n            within=[position for\
+    \ position in sites if interval['start']<=position<=interval['end']]\n       \
+    \     annotations.append(dict(start=interval['start'],end=interval['end'],site_positions=within,site_count=len(within),\n\
+    \                shielding_risk=len(within)>=2))\n        assessment='EVALUATED';risk=any(row['shielding_risk']\
+    \ for row in annotations)\n    else:\n        assessment='NOT_PERFORMED';risk=False\n\
+    \    return dict(\n        glycosylation=dict(sites=sites,site_count=len(sites),shielding_risk=risk,\n\
+    \            expression_hint='\u771F\u6838\u8868\u8FBE\u4F18\u5148' if len(sites)>=3\
+    \ else None),\n        sequons=matches,\n        hotspot_assessment=dict(status=assessment,input_state=hotspot['state'],schema_value_when_not_performed=False,\n\
+    \            coordinate_rule='sequon N position within 1-based inclusive exact-20-aa\
+    \ window',windows=annotations,\n            source=hotspot['source'],source_verification='DECLARED_IN_REQUEST_ONLY'\
+    \ if hotspot['state']!='not_provided' else 'NOT_APPLICABLE',\n            upstream_reason_code=hotspot['reason_code']))\n\
+    \n\ndef _parse_observation(files,body):\n    observed=decode(files['output/observation.json'])\n\
+    \    ensure(isinstance(observed,dict) and set(observed)=={'biopython_version','method','result'},\n\
+    \        'OUTPUT_INVALID','Unexpected local observation shape')\n    ensure(observed['biopython_version']==Bio.__version__\
+    \ and observed['method']=='overlap-aware-regex-lookahead',\n        'OUTPUT_INVALID','Local\
+    \ method identity changed')\n    expected=scan(body)\n    ensure(observed['result']==expected,'OUTPUT_INVALID','Stored\
+    \ scan differs from deterministic S-12 calculation')\n    return expected\n\n\n\
+    def result(job,body,files,execution,fault=None):\n    binding={k:job[k] for k\
+    \ in ['run_id','request_id','job_id','attempt_id','execution_identity','execution_profile','rule_profile']}\n\
+    \    binding.update(input_sha256=job['request_artifact']['sha256'],sequence_sha256=sha(body['protein_sequence'].encode()),\n\
+    \        hotspot_input_sha256=sha(encode(body['hotspot_input'])))\n    value=dict(contract_version='0.1.0',tool_id=job['tool_id'],scope='N07_S12_GLYCOSYLATION_SCAN',binding=binding,\n\
+    \        execution=execution,user_sequence_id=body['user_sequence_id'],qualification='DEVELOPMENT_UNREVIEWED',\n\
+    \        evidence_kind='G0_REAL_OUTPUT',usable_for_pipeline=False,automatic_handoff=False,scientific_signoff=None,\n\
+    \        production_status='NOT_DEPLOYED',requires_review=True,status='unreliable',null_reason=execution.get('error_code'),\n\
+    \        glycosylation=None,sequons=None,hotspot_assessment=None,controlled_fault=fault,method_summary=dict(\n\
+    \            tool='C1/BioPython',biopython_version=Bio.__version__,operation='overlap-aware\
+    \ N-X-S/T (X != P) regex scan',\n            site_coordinate='1-based sequon N\
+    \ position',rule_profile=registered_rules(),experimental_confirmation=False,\n\
+    \            hotspot_source_artifact_validated=False,hotspot_full_chain_validated=False,\n\
+    \            hotspot_scientific_consumption=False),warnings=[])\n    try:\n  \
+    \      if execution.get('error_code'):\n            raise RuntimeFault(execution['error_code'],execution.get('diagnostic')\
+    \ or 'Local scan unavailable')\n        ensure(execution.get('stopped_confirmed')\
+    \ is True and execution.get('exit_code')==0\n            and execution.get('backend')=='trusted-local-in-process'\
+    \ and execution.get('network_used') is False\n            and execution.get('container_id')\
+    \ is None and execution.get('biopython_version')==Bio.__version__,\n         \
+    \   'OUTPUT_INVALID','No clean registered local calculation')\n        parsed_files=files\n\
+    \        if fault=='corrupt_output':\n            parsed_files=dict(files);parsed_files['output/observation.json']=b'{\"\
+    truncated\":true}'\n        parsed=_parse_observation(parsed_files,body)\n   \
+    \     verification=execution.get('hotspot_source_verification',{})\n        verification_status=verification.get('status','NOT_APPLICABLE')\n\
+    \        parsed['hotspot_assessment']['source_verification']=verification_status\n\
+    \        parsed['hotspot_assessment']['source_hotspot_status']=verification.get('upstream_hotspot_status')\n\
+    \        parsed['hotspot_assessment']['scientific_consumption']=False\n      \
+    \  artifact_validated=verification_status=='VERIFIED_N06_ARTIFACT_REF'\n     \
+    \   value['method_summary']['hotspot_source_artifact_validated']=artifact_validated\n\
+    \        value['method_summary']['hotspot_full_chain_validated']=artifact_validated\
+    \ and parsed['hotspot_assessment']['status']=='EVALUATED'\n        warnings=[dict(code='SEQUON_NOT_EXPERIMENTAL_EVIDENCE',level='quality',severity='WARNING',\n\
+    \            message='\u547D\u4E2D\u4EC5\u8868\u793A\u5E8F\u5217 sequon\uFF0C\u4E0D\
+    \u4EE3\u8868\u5B9E\u9A8C\u786E\u8BA4\u7684\u7CD6\u57FA\u5316\u3002')]\n      \
+    \  if parsed['hotspot_assessment']['status']=='NOT_PERFORMED':\n            warnings.append(dict(code='HOTSPOT_SHIELDING_NOT_PERFORMED',level='quality',severity='WARNING',\n\
+    \                message='\u70ED\u70B9\u672A\u63D0\u4F9B\u6216\u4E0A\u6E38\u4E0D\
+    \u53EF\u7528\uFF1B\u6309 S-12 \u8F93\u51FA shielding_risk=false\uFF0C\u540C\u65F6\
+    \u660E\u786E\u672A\u6267\u884C\u906E\u853D\u5224\u5B9A\u3002'))\n        if verification_status=='CONTRACT_FIXTURE_NOT_ARTIFACT_VERIFIED':\n\
+    \            warnings.append(dict(code='HOTSPOT_SOURCE_DECLARED_ONLY',level='quality',severity='WARNING',\n\
+    \                message='\u70ED\u70B9\u6765\u6E90\u662F\u5408\u540C\u5939\u5177\
+    \uFF0C\u4E0D\u662F\u5DF2\u767B\u8BB0\u7684 N06 \u771F\u5B9E\u4EA7\u7269\u3002\
+    '))\n        elif artifact_validated:\n            warnings.append(dict(code='N06_SOURCE_ARTIFACT_VERIFIED',level='quality',severity='WARNING',\n\
+    \                message='\u5DF2\u6821\u9A8C N06 \u4EFB\u52A1\u8EAB\u4EFD\u3001\
+    \u7ED3\u679C ArtifactRef\u3001\u54C8\u5E0C\u548C\u5E8F\u5217\u7ED1\u5B9A\uFF1B\
+    \u70ED\u70B9\u662F\u5426\u53EF\u7528\u4ECD\u6309 N06 \u5F53\u524D\u7ED3\u679C\u5224\
+    \u5B9A\u3002'))\n        if verification.get('upstream_hotspot_status')=='computed_empty_unreviewed':\n\
+    \            warnings.append(dict(code='N06_EMPTY_HOTSPOT_BOUND_UNREVIEWED',level='quality',severity='WARNING',\n\
+    \                message='N06 \u7A7A\u70ED\u70B9\u6765\u81EA\u5F53\u524D\u6765\
+    \u6E90\u96C6\u5408\u7684\u5206\u6570\u4E0A\u754C\u8BC1\u660E\uFF1B\u906E\u853D\
+    \u7A97\u53E3\u5DE5\u7A0B\u8BA1\u7B97\u5B8C\u6210\uFF0C\u4F46\u4E0D\u5F97\u89E3\
+    \u91CA\u4E3A\u79D1\u5B66\u901A\u8FC7\u3002'))\n        value.update(parsed,status='completed_empty'\
+    \ if parsed['glycosylation']['site_count']==0 else 'completed',\n            null_reason=None,warnings=warnings)\n\
+    \    except (RuntimeFault,KeyError,ValueError,TypeError,UnicodeError) as exc:\n\
+    \        error=execution.get('error_code') or 'OUTPUT_INVALID';execution.update(error_code=error,diagnostic=str(exc))\n\
+    \        value.update(status='unreliable',null_reason=error,glycosylation=None,sequons=None,hotspot_assessment=None,\n\
+    \            warnings=[dict(code=error,level='failure',severity='WARNING',message='N07\
+    \ \u8BA1\u7B97\u6216\u4EA7\u7269\u6821\u9A8C\u5931\u8D25\uFF0C\u7ED3\u679C\u4E0D\
+    \u53EF\u6D88\u8D39\uFF1A'+str(exc))])\n    return value\n"
+  development--domains--service.py: "\"\"\"N09 local lifecycle and authenticated upstream/data\
+    \ collection.\"\"\"\nimport copy\nimport time\nfrom pathlib import Path\nimport\
+    \ Bio\nfrom ...common import RuntimeFault, encode, decode, ensure, new_id, now,\
+    \ sha\nfrom ...files import publish, within\nfrom ...winprocess import current_identity\n\
+    from . import policy\nfrom .compute import compute\nfrom .geometry import geometry\n\
+    \nDEEP='t01.real.deeptmhmm'\nSTRUCTURE='t01.real.structure_analysis'\n\n\ndef\
+    \ sources(rt,db,body,expected_run_id=None):\n    from ..structure.policy import\
+    \ TOOL as structure_tool\n    files={};values={};receipts={}\n    for name,tool\
+    \ in (('topology',DEEP),('structure',structure_tool)):\n        item=body[name+'_input'];state=item['state']\n\
+    \        if state=='not_provided':\n            receipts[name]=dict(state=state,verified=True,artifact=None);continue\n\
+    \        job,raw,value=rt._registered_result_artifact(db,item['artifact'],tool)\n\
+    \        if expected_run_id is not None:\n            ensure(item['artifact']['run_id']==expected_run_id\
+    \ and job['run_id']==expected_run_id,\n                'FORBIDDEN','N09 upstream\
+    \ belongs to another run')\n        ensure(value['binding']['sequence_sha256']==sha(body['protein_sequence'].encode()),'OUTPUT_INVALID','N09\
+    \ upstream sequence mismatch')\n        if state=='available':\n            ensure(job['state']=='succeeded'\
+    \ and item['artifact']['role']=='result','OUTPUT_INVALID','Available upstream\
+    \ must be a success result')\n        else:\n            ensure(item['artifact']['role']=='diagnostic'\
+    \ and job['state']!='succeeded' and item['reason_code']==job['error_code'],\n\
+    \                'OUTPUT_INVALID','Upstream diagnostic state mismatch')\n    \
+    \    files['input/'+name+'-result.json']=raw\n        values[name]=value if state=='available'\
+    \ else None\n        receipts[name]=dict(state=state,verified=True,artifact=item['artifact'],coordinate_space='mature')\n\
+    \        if name=='structure' and state=='available' and value.get('analysis'):\n\
+    \            refs=[r['artifact'] for r in value['raw_artifacts'] if r['path']=='input.structure']\n\
+    \            ensure(len(refs)==1,'OUTPUT_INVALID','Structure input artifact missing')\n\
+    \            original=rt.artifact_bytes(job['job_id'],refs[0]['artifact_id'])\n\
+    \            ensure(sha(original)==value['binding']['structure_sha256'],'OUTPUT_INVALID','Structure\
+    \ bytes do not match source binding')\n            files['input/structure-original.bin']=original\n\
+    \    return files,values,receipts\n\n\ndef evaluate(body,files):\n    entries=decode(files['input/annotation-entries.json']);topology=None;geo=None\n\
+    \    if body['topology_input']['state']=='available':\n        source=decode(files['input/topology-result.json']);topology=source.get('topology')\n\
+    \        if topology is not None:\n            from ..raw_format import segments,\
+    \ LABELS\n            record=source['raw_record'];expected=segments(record['labels'])\n\
+    \            ensure(record['sequence']==body['protein_sequence'] and len(record['labels'])==len(body['protein_sequence'])\n\
+    \                and topology['segments']==[{k:r[k] for k in ('type','start','end')}\
+    \ for r in expected]\n                and topology['labels']==[LABELS[x] for x\
+    \ in record['labels']],'OUTPUT_INVALID','Bound topology segments/labels mismatch')\n\
+    \    if body['structure_input']['state']=='available':\n        value=decode(files['input/structure-result.json'])\n\
+    \        geo=geometry(value['analysis'],files['input/structure-original.bin'])\
+    \ if value.get('analysis') else dict(\n            status='review_required',reason='UPSTREAM_STRUCTURE_ANALYSIS_UNAVAILABLE',core_map=None,functional_domains=[])\n\
+    \    elif body['structure_input']['state']=='upstream_unavailable':\n        geo=dict(status='upstream_unavailable',core_map=None,functional_domains=[])\n\
+    \    return compute(body,entries,topology,geo)\n\n\ndef result(job,body,files,execution,fault=None):\n\
+    \    binding={k:job[k] for k in ('run_id','request_id','job_id','attempt_id','execution_identity','execution_profile','rule_profile')}\n\
+    \    binding.update(input_sha256=job['request_artifact']['sha256'],sequence_sha256=sha(body['protein_sequence'].encode()),\n\
+    \        database_id=body['database_id'],database_manifest_sha256=body['database_manifest_sha256'])\n\
+    \    value=dict(contract_version='0.1.0',tool_id=policy.TOOL,binding=binding,evidence_kind='G0_REAL_OUTPUT',\n\
+    \        qualification='DEVELOPMENT_UNREVIEWED',usable_for_pipeline=False,automatic_handoff=False,scientific_signoff=None,\n\
+    \        production_status='NOT_DEPLOYED',requires_review=True,execution=execution,status='unreliable',analysis=None,\n\
+    \        null_reason=execution.get('error_code'),controlled_fault=fault,method_summary=dict(biopython=Bio.__version__,\n\
+    \            rule_profile=policy.registered_rules(),network=False,homology_annotation_transfer=False),warnings=[])\n\
+    \    if execution.get('error_code'):return value\n    try:\n        ensure(execution['stopped_confirmed']\
+    \ is True and execution['exit_code']==0 and execution['network_used'] is False,\n\
+    \            'OUTPUT_INVALID','No clean local N09 execution')\n        observation=decode(files['output/observation.json'])\n\
+    \        ensure(observation['input_hashes']=={k:sha(v) for k,v in files.items()\
+    \ if k.startswith('input/')},\n            'OUTPUT_INVALID','N09 source observation\
+    \ hashes mismatch')\n        computed=evaluate(body,files)\n        ensure(observation['result']==computed,'OUTPUT_INVALID','N09\
+    \ observation differs from verified source computation')\n        value.update(status='domains_computed_unreviewed',analysis=computed,null_reason=None,\n\
+    \            database=execution['database_receipt'],source_receipts=execution['source_receipts'])\n\
+    \    except (RuntimeFault,KeyError,ValueError,TypeError) as exc:\n        execution.update(error_code='OUTPUT_INVALID',diagnostic=str(exc));value.update(null_reason='OUTPUT_INVALID')\n\
+    \    return value\n\n\ndef dispatch(rt,job_id):\n    with rt._tx() as db:\n  \
+    \      before=rt._job(db,job_id)\n        if before['state']!='queued':return\
+    \ before\n        try:\n            ensure(before['execution_profile']==policy.registered_profile()\
+    \ and before['rule_profile']==policy.registered_rules(),\n                'PROFILE_NOT_APPROVED','N09\
+    \ implementation changed after submission')\n            raw=rt._input(db,before['request_artifact'],before['run_id']);body=policy.request(raw)\n\
+    \            upstream,_,receipts=sources(rt,db,body,expected_run_id=before['run_id'])\n\
+    \        except RuntimeFault as exc:\n            value=copy.deepcopy(before);value.update(state='failed',finished_at=now(),error_code=exc.code,scientific_disposition='rejected')\n\
+    \            rt._store(db,value,before,'preflight_failed');return value\n    \
+    \    fault=rt._development_fault\n        ensure(fault in (None,'compute_failure','corrupt_output','interrupt_after_claim'),'INVALID_REQUEST','Unknown\
+    \ internal N09 fault')\n        value=copy.deepcopy(before);value.update(state='running',attempt_id=new_id('attempt'),execution_identity='exec-'+new_id('attempt'),\n\
+    \            lease_epoch=1,started_at=now())\n        path=rt.attempt_path(value);fasta=('>'+policy.sequence_id(body['protein_sequence'])+'\\\
+    n'+body['protein_sequence']+'\\n').encode()\n        publish(rt.root,path+'/input.json',raw);publish(rt.root,path+'/input.fasta',fasta)\n\
+    \        for name,data in upstream.items():publish(rt.root,path+'/'+name,data)\n\
+    \        within(rt.root,path+'/output').mkdir()\n        ex=dict(phase='local_compute',dispatcher=current_identity(),supervisor=None,tree_stopped=False,backend='trusted-local-in-process',\n\
+    \            container_started=False,container_id=None,network_used=False,timeout_seconds=body['timeout_seconds'],fault=fault,\n\
+    \            source_receipts=receipts)\n        rt._execution_store(db,job_id,ex);rt._store(db,value,before,'claimed')\n\
+    \    if fault=='interrupt_after_claim':\n        with rt._tx() as db:\n      \
+    \      ex=rt._execution(db,job_id);ex.update(phase='interrupted_fixture',tree_stopped=True);rt._execution_store(db,job_id,ex)\n\
+    \        return rt.get(job_id)\n    files={'input.json':raw,'input.fasta':fasta,**upstream};error=None;diagnostic=None;db_receipt=None\n\
+    \    started=time.perf_counter()\n    try:\n        db_receipt,local=policy.database(rt.domains_database_root,body)\n\
+    \        files.update(local)\n        for name,data in local.items():publish(rt.root,path+'/'+name,data)\n\
+    \        if fault=='compute_failure':raise RuntimeFault('TOOL_FAILED','Controlled\
+    \ N09 compute failure')\n        observation=encode(dict(input_hashes={k:sha(v)\
+    \ for k,v in files.items() if k.startswith('input/')},result=evaluate(body,files)))\n\
+    \        if fault=='corrupt_output':observation=b'{}'\n        publish(rt.root,path+'/output/observation.json',observation);files['output/observation.json']=observation\n\
+    \        after,_=policy.database(rt.domains_database_root,body)\n        ensure(after==db_receipt,'HASH_MISMATCH','Annotation\
+    \ package changed during N09 calculation')\n        with rt._db() as db:\n   \
+    \         _,_,after_sources=sources(rt,db,body,expected_run_id=value['run_id'])\n\
+    \        ensure(after_sources==receipts,'HASH_MISMATCH','N09 upstream changed\
+    \ during calculation')\n    except (RuntimeFault,OSError,ValueError,KeyError,TypeError)\
+    \ as exc:\n        error=exc.code if isinstance(exc,RuntimeFault) else 'TOOL_FAILED';diagnostic=str(exc)\n\
+    \    elapsed=time.perf_counter()-started\n    if elapsed>body['timeout_seconds']:\n\
+    \        error='TIMEOUT';diagnostic='N09 local deadline exceeded'\n        with\
+    \ rt._tx() as db:rt._stop(db,rt._job(db,job_id),'timeout')\n    actual=dict(job_id=job_id,attempt_id=value['attempt_id'],execution_identity=value['execution_identity'],exit_code=1\
+    \ if error else 0,\n        error_code=error,diagnostic=diagnostic,stopped_confirmed=True,backend='trusted-local-in-process',container_id=None,\n\
+    \        network_used=False,elapsed_seconds=elapsed,recovered=False,database_receipt=db_receipt,source_receipts=receipts)\n\
+    \    built=result(rt.get(job_id),body,files,actual,fault);ex=rt.execution(job_id);ex.update(tree_stopped=True,phase='collected')\n\
+    \    return rt._finish_development(job_id,ex,files,built)\n"
+  development--local_delivery--policy.py: "from pathlib import Path\nfrom ...common\
+    \ import decode,encode,ensure,sha,REPO\nfrom ..wt_reference.policy import base,source,AUTHORITY\n\
+    TOOL='t01.real.local_delivery'\nNODE='N18'\nHERE=Path(__file__).parent\nPRODUCERS=dict(wt_draft='t01.real.wt_draft',variant_report='t01.real.variant_report',wt_reference='t01.real.wt_reference')\n\
+    \ndef request(raw):\n    b=decode(raw);base(b,{'protein_sequence','user_sequence_id','host_species','expression_host','upstream','dna_bindings','timeout_seconds'})\n\
+    \    for field in ('host_species','expression_host'):\n        ensure(b[field]\
+    \ is None or isinstance(b[field],str) and 0<len(b[field])<=128,'INVALID_REQUEST','Explicit\
+    \ host or null required')\n    ensure(isinstance(b['upstream'],dict) and set(b['upstream'])==set(PRODUCERS),'INVALID_REQUEST','All\
+    \ N18 slots required')\n    for s in b['upstream'].values():source(s)\n    ensure(isinstance(b['dna_bindings'],list)\
+    \ and len(b['dna_bindings'])<=500,'INVALID_REQUEST','Bounded DNA bindings required')\n\
+    \    ids=[]\n    for item in b['dna_bindings']:\n        ensure(isinstance(item,dict)\
+    \ and set(item)=={'subject','source'} and isinstance(item['subject'],str) and\
+    \ item['source'] is not None,\n            'INVALID_REQUEST','DNA requires an\
+    \ explicit WT or report variant identity')\n        source(item['source']);ids.append(item['subject'])\n\
+    \    ensure(len(ids)==len(set(ids)),'INVALID_REQUEST','Duplicate DNA subject')\n\
+    \    return b\n\ndef sequence_id(s):return 't01delivery_'+sha(s.encode())[:16]\n\
+    def registered_rules():return dict(id='w7-n18-local-assembly',version='0.2.0',sha256=sha(encode({\n\
+    \    'authority':{p.name:sha(p.read_bytes()) for p in AUTHORITY},\n    'business_routes':['WT_PATH_REVIEW','DESIGN_PATH_REVIEW','HOLD_FOR_INPUTS'],\n\
+    \    'scientific_release':'CLOSED'})))\ndef registered_profile():\n    paths=list(HERE.glob('*.py'))+[HERE.parent/n\
+    \ for n in ('runtime.py','registry.py','contracts.py','cli.py')]\n    for package\
+    \ in ('wt_reference','wt_draft','variant_report','epitope_protection','codon'):paths.extend((HERE.parent/package).glob('*.py'))\n\
+    \    return dict(id='w7-n18-local-package',version='0.2.0',sha256=sha(encode({p.relative_to(REPO).as_posix():sha(p.read_bytes())\
+    \ for p in paths})))\n"
+  development--local_delivery--compute.py: "import io\nimport zipfile\nfrom ...common\
+    \ import decode,encode,sha\nfrom . import policy\n\ndef evaluate(body,files):\n\
+    \    receipts=decode(files['input/source-receipts.json'])\n    values={n:decode(files['input/'+n+'-result.json'])\
+    \ for n in policy.PRODUCERS if receipts[n]['state']=='available'}\n    report=(values.get('variant_report')\
+    \ or {}).get('report');wt=(values.get('wt_draft') or {}).get('draft')\n    reference=(values.get('wt_reference')\
+    \ or {}).get('reference');records=(report or {}).get('records',[])\n    gate=(wt\
+    \ or {}).get('gate') or {};gate_status=gate.get('status')\n    outcome='ALL_EXCLUDED'\
+    \ if report and report['outcome']=='ALL_EXCLUDED' else 'ENGINEERING_RECORDS_REVIEW_REQUIRED'\
+    \ if records else \\\n        'UPSTREAM_FAILED' if receipts['variant_report']['state']=='failed'\
+    \ else \\\n        'WT_ROUTE_REVIEW_REQUIRED' if gate_status=='NOT_SUITABLE_FOR_DESIGN'\
+    \ else \\\n        'DESIGN_ELIGIBLE_RELEASE_CLOSED' if gate_status=='SUITABLE_FOR_DESIGN'\
+    \ else \\\n        'DESIGN_INPUTS_UNAVAILABLE' if gate_status=='INPUT_INSUFFICIENT_OR_NOT_EVALUATED'\
+    \ else \\\n        'DESIGN_NOT_EXECUTED' if receipts['variant_report']['state']=='missing'\
+    \ else 'DESIGN_INPUTS_UNAVAILABLE'\n    gaps=[dict(source=n,code=r['state'].upper()\
+    \ if r['state']!='available' else 'DEVELOPMENT_UNREVIEWED') for n,r in receipts.items()\
+    \ if n in policy.PRODUCERS]\n    gaps.extend(dict(source='N16:'+r['subject'],code=r['reason'])\
+    \ for r in receipts['dna'])\n    if not receipts['dna']:gaps.append(dict(source='N16',code='DNA_NOT_PROVIDED'))\n\
+    \    gaps.extend(dict(source='delivery',code=c) for c in ('OI_013_AGENT_C_INTERFACE_UNSIGNED','OI_014_CANDIDATE_RECORD_MAPPING_UNSIGNED','SCIENTIFIC_GATES_NOT_RELEASED'))\n\
+    \    return dict(kind='LOCAL_ENGINEERING_DELIVERY_PACKAGE',subject=dict(kind='WT',protein_sequence=body['protein_sequence'],\n\
+    \        sequence_sha256=sha(body['protein_sequence'].encode()),host_species=body['host_species'],expression_host=body['expression_host']),\n\
+    \        outcome=outcome,business_route=gate.get('route'),design_applicability_gate=gate\
+    \ or None,\n        wt_draft=wt,variant_report=report,wt_reference=reference,dna=receipts['dna'],\n\
+    \        best_candidate=None,formal_candidate_id=None,candidate_record_complete=False,formal_wt_delivery=False,\n\
+    \        agent_c_payload=None,automatic_handoff=False,scientific_pass=None,production_status='NOT_DEPLOYED',\n\
+    \        source_receipts=receipts,missing_conditions=gaps,\n        methods={n:values[n].get('method_summary')\
+    \ for n in values},\n        export_policy=dict(scope='REGISTERED_RESULT_AND_REQUEST_ARTIFACTS_ONLY',\n\
+    \            raw_tool_files='REFERENCE_ONLY_IN_ORIGINAL_RUNTIME',server_models_and_licensed_tools='NOT_COPIED',credentials='NOT_INCLUDED'),\n\
+    \        review_reasons=[dict(code='LOCAL_ASSEMBLY_IS_NOT_PHASE1_COMPLETION')])\n\
+    \ndef readable(d):\n    lines=['# \u672C\u5730\u5DE5\u7A0B\u4EA4\u4ED8\u62A5\u544A\
+    ','',f\"\u7ED3\u679C\uFF1A{d['outcome']}\",'',\n        '\u5F00\u53D1\u672A\u7B7E\
+    \u6536\u3002\u4E0D\u662F\u6B63\u5F0F CandidateRecord \u6216 AgentCHandoff\uFF1B\
+    \u4E0D\u81EA\u52A8\u4EA4\u63A5 Agent C\u3002',\n        f\"WT SHA-256\uFF1A{d['subject']['sequence_sha256']}\"\
+    ,'',\n        '## \u53D8\u4F53\u7ED3\u8BBA','', '| \u53D8\u4F53 | \u7ED3\u679C\
+    \ | \u6DD8\u6C70\u539F\u56E0 |','|---|---|---|']\n    for r in (d['variant_report']\
+    \ or {}).get('records',[]):\n        lines.append('| '+r['id']+' | '+r['disposition']+'\
+    \ | '+', '.join(e['code'] for e in r['exclusion_reasons'])+' |')\n    lines+=['','\u6700\
+    \u4F73\u5019\u9009\uFF1A\u65E0\u3002\u6B63\u5F0F\u6392\u540D\u4E0E\u8D44\u683C\
+    \u672A\u5F00\u653E\u3002','','## \u6765\u6E90\u4E0E\u7F3A\u9879','']\n    lines.extend('-\
+    \ '+g['source']+': '+g['code'] for g in d['missing_conditions'])\n    lines+=['','\u65B9\
+    \u6CD5\u3001\u626B\u63CF\u8303\u56F4\u3001\u539F\u59CB ArtifactRef \u548C\u9010\
+    \u5C42\u7F3A\u9879\u89C1 [\u673A\u5668\u62A5\u544A](data.json)\u3002',\n     \
+    \   '\u5B9E\u9645\u5305\u5185\u6587\u4EF6\u53CA hash \u89C1 [\u6E05\u5355](manifest.json)\u3002\
+    \u539F\u59CB\u5DE5\u5177\u4EA7\u7269\u7559\u5728\u539F\u8FD0\u884C\u6839\uFF0C\
+    \u5305\u5185\u4FDD\u7559\u767B\u8BB0\u5F15\u7528\u3002','']\n    return '\\n'.join(lines).encode('utf-8')\n\
+    \ndef package(body,files,data):\n    contents={'data.json':encode(data),'report.md':readable(data),'request.json':encode(body)}\n\
+    \    for n in policy.PRODUCERS:\n        for suffix in ('request','result'):\n\
+    \            key='input/'+n+'-'+suffix+'.json'\n            if key in files:contents['sources/'+n+'-'+suffix+'.json']=files[key]\n\
+    \    contents['manifest.json']=encode(dict(kind='LOCAL_ENGINEERING_FILE_MANIFEST',\n\
+    \        self_inclusion=False,files=[dict(path=n,size_bytes=len(v),sha256=sha(v))\
+    \ for n,v in sorted(contents.items())]))\n    output=io.BytesIO()\n    with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_STORED)\
+    \ as z:\n        for name,raw in sorted(contents.items()):\n            info=zipfile.ZipInfo(name,date_time=(2026,1,1,0,0,0));info.compress_type=zipfile.ZIP_STORED;z.writestr(info,raw)\n\
+    \    return {'output/package.zip':output.getvalue(),'output/report.md':contents['report.md'],\n\
+    \        'output/data.json':contents['data.json'],'output/manifest.json':contents['manifest.json'],\n\
+    \        'output/package-manifest.json':contents['manifest.json']}\n"
+  development--local_delivery--service.py: "\"\"\"Bounded local audit lifecycle using\
+    \ the existing task store and cancellation fence.\"\"\"\nimport copy\nimport time\n\
+    from ...common import RuntimeFault,encode,decode,ensure,new_id,now,sha\nfrom ...files\
+    \ import publish,within\nfrom ...winprocess import current_identity\nfrom . import\
+    \ policy\nfrom .source import sources\nfrom .compute import evaluate,package\n\
+    \ndef result(job,body,files,execution,fault=None):\n    binding={k:job[k] for\
+    \ k in ('run_id','request_id','job_id','attempt_id','execution_identity','execution_profile','rule_profile')}\n\
+    \    binding.update(input_sha256=job['request_artifact']['sha256'],sequence_sha256=sha(body['protein_sequence'].encode()))\n\
+    \    value=dict(contract_version='0.2.0',tool_id=policy.TOOL,binding=binding,evidence_kind='G0_REAL_OUTPUT',\n\
+    \        qualification='DEVELOPMENT_UNREVIEWED',usable_for_pipeline=False,automatic_handoff=False,scientific_signoff=None,\n\
+    \        production_status='NOT_DEPLOYED',requires_review=True,execution=execution,status='unreliable',delivery=None,scientific_gate='NOT_EVALUATED',\n\
+    \        source_receipts=execution.get('source_receipts'),null_reason=execution.get('error_code'),controlled_fault=fault,\n\
+    \        method_summary=dict(rule_profile=job['rule_profile'],network=False,\n\
+    \            scope='Local delivery engineering assembly with R-57 business route;\
+    \ scientific release closed'),warnings=[])\n    if execution.get('error_code'):return\
+    \ value\n    try:\n        ensure(execution['stopped_confirmed'] is True and execution['exit_code']==0\
+    \ and execution['network_used'] is False,\n            'OUTPUT_INVALID','No clean\
+    \ local Local delivery execution')\n        observation=decode(files['output/observation.json'])\n\
+    \        ensure(observation['input_hashes']=={k:sha(v) for k,v in files.items()\
+    \ if k.startswith('input/')},\n            'OUTPUT_INVALID','WT observation source\
+    \ hashes differ')\n        computed=evaluate(body,files)\n        ensure(observation['result']==computed\
+    \ and files['output/local-delivery.json']==encode(computed)\n            and decode(files['input/source-receipts.json'])==execution['source_receipts'],\n\
+    \            'OUTPUT_INVALID','Local delivery differs from verified source facts')\n\
+    \        ensure(all(files.get(n)==v for n,v in package(body,files,computed).items()),'OUTPUT_INVALID','Delivery\
+    \ package differs from verified report')\n        value.update(status='local_delivery_unreviewed',delivery=computed,null_reason=None,\n\
+    \            warnings=[dict(code=r['code'],level='quality',severity='WARNING',message=r['code'])\
+    \ for r in computed['review_reasons']])\n    except (RuntimeFault,KeyError,ValueError,TypeError)\
+    \ as exc:\n        execution.update(error_code='OUTPUT_INVALID',diagnostic=str(exc));value.update(null_reason='OUTPUT_INVALID')\n\
+    \    return value\n\n\ndef dispatch(rt,job_id):\n    with rt._tx() as db:\n  \
+    \      before=rt._job(db,job_id)\n        if before['state']!='queued':return\
+    \ before\n        try:\n            ensure(before['execution_profile']==policy.registered_profile()\
+    \ and before['rule_profile']==policy.registered_rules(),\n                'PROFILE_NOT_APPROVED','Local\
+    \ delivery implementation changed after submission')\n            raw=rt._input(db,before['request_artifact'],before['run_id']);body=policy.request(raw)\n\
+    \            upstream,_,receipts=sources(rt,db,body)\n        except RuntimeFault\
+    \ as exc:\n            value=copy.deepcopy(before);value.update(state='failed',finished_at=now(),error_code=exc.code,scientific_disposition='rejected')\n\
+    \            rt._store(db,value,before,'preflight_failed');return value\n    \
+    \    fault=rt._development_fault\n        ensure(fault in (None,'compute_failure','corrupt_output','interrupt_after_claim'),'INVALID_REQUEST','Unknown\
+    \ internal WT fault')\n        value=copy.deepcopy(before);value.update(state='running',attempt_id=new_id('attempt'),execution_identity='exec-'+new_id('attempt'),\n\
+    \            lease_epoch=1,started_at=now())\n        path=rt.attempt_path(value);fasta=('>'+policy.sequence_id(body['protein_sequence'])+'\\\
+    n'+body['protein_sequence']+'\\n').encode()\n        publish(rt.root,path+'/input.json',raw);publish(rt.root,path+'/input.fasta',fasta)\n\
+    \        for name,data in upstream.items():publish(rt.root,path+'/'+name,data)\n\
+    \        within(rt.root,path+'/output').mkdir()\n        ex=dict(phase='local_compute',dispatcher=current_identity(),supervisor=None,tree_stopped=False,backend='trusted-local-in-process',\n\
+    \            container_started=False,container_id=None,network_used=False,timeout_seconds=body['timeout_seconds'],fault=fault,\n\
+    \            source_receipts=receipts)\n        rt._execution_store(db,job_id,ex);rt._store(db,value,before,'claimed')\n\
+    \    if fault=='interrupt_after_claim':\n        with rt._tx() as db:\n      \
+    \      ex=rt._execution(db,job_id);ex.update(phase='interrupted_fixture',tree_stopped=True);rt._execution_store(db,job_id,ex)\n\
+    \        return rt.get(job_id)\n    files={'input.json':raw,'input.fasta':fasta,**upstream};error=None;diagnostic=None\n\
+    \    started=time.perf_counter()\n    try:\n        if fault=='compute_failure':raise\
+    \ RuntimeFault('TOOL_FAILED','Controlled Local delivery calculation failure')\n\
+    \        draft=evaluate(body,files)\n        observation=encode(dict(input_hashes={k:sha(v)\
+    \ for k,v in files.items() if k.startswith('input/')},result=draft))\n       \
+    \ if fault=='corrupt_output':observation=b'{}'\n        for name,data in (('output/observation.json',observation),('output/local-delivery.json',encode(draft))):\n\
+    \            publish(rt.root,path+'/'+name,data);files[name]=data\n        for\
+    \ name,data in package(body,files,draft).items():\n            publish(rt.root,path+'/'+name,data);files[name]=data\n\
+    \        with rt._db() as db:_,_,after=sources(rt,db,body)\n        ensure(after==receipts,'HASH_MISMATCH','Report\
+    \ upstream changed during assembly')\n    except (RuntimeFault,OSError,ValueError,KeyError,TypeError)\
+    \ as exc:\n        error=exc.code if isinstance(exc,RuntimeFault) else 'TOOL_FAILED';diagnostic=str(exc)\n\
+    \    elapsed=time.perf_counter()-started\n    if elapsed>body['timeout_seconds']:\n\
+    \        error='TIMEOUT';diagnostic='Local delivery deadline exceeded'\n     \
+    \   with rt._tx() as db:\n            current=rt._job(db,job_id)\n           \
+    \ if current['stop_reason'] is None:rt._stop(db,current,'timeout')\n    actual=dict(job_id=job_id,attempt_id=value['attempt_id'],execution_identity=value['execution_identity'],exit_code=1\
+    \ if error else 0,\n        error_code=error,diagnostic=diagnostic,stopped_confirmed=True,backend='trusted-local-in-process',container_id=None,\n\
+    \        network_used=False,elapsed_seconds=elapsed,recovered=False,source_receipts=receipts)\n\
+    \    built=result(rt.get(job_id),body,files,actual,fault);ex=rt.execution(job_id);ex.update(tree_stopped=True,phase='collected')\n\
+    \    return rt._finish_development(job_id,ex,files,built)\n"

@@ -1,0 +1,11 @@
+"""Deploy generation-fact routing without changing scientific permissions."""
+import prepare_host_panel_deploy as deploy
+
+if __name__=='__main__':
+    deploy.NAME='antigen-host-panel-r02'
+    deploy.OUT=deploy.base.common.ROOT/'deploy/host-panel/r02'
+    deploy.FILES+=('development/workflow/m1.py','development/workflow/reporting.py')
+    base=deploy.base
+    base.NAME,base.OUT,base.EVIDENCE,base.FILES=deploy.NAME,deploy.OUT,deploy.EVIDENCE,deploy.FILES
+    base.render=deploy.render
+    base.main()

@@ -1,0 +1,705 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:t01:phase1:mock:fixture-manifest:v0.1",
+  "title": "T-01 Phase-1 Mock Fixture Manifest v0.1",
+  "description": "Closed logical fixture inventory for PH1-MOCK-M1-07. Payload files are deliberately not materialized in this specification task.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "document_type",
+    "fixture_manifest_version",
+    "acceptance_catalog_version",
+    "scenario_catalog_version",
+    "asset_registry_version",
+    "envelope_contract_version",
+    "namespace_root",
+    "implementation_state",
+    "data_classification",
+    "scientific_compute",
+    "fixture_root",
+    "policies",
+    "inventory",
+    "input_fixtures",
+    "request_variants",
+    "attempt_fixture_resolution",
+    "checkpoint_policy",
+    "checkpoint_plans",
+    "fixture_cases",
+    "prohibited_content_classes"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "T01_PHASE1_MOCK_FIXTURE_MANIFEST_SCHEMA_v0.1.json"
+    },
+    "document_type": {
+      "const": "T01_PHASE1_MOCK_FIXTURE_MANIFEST"
+    },
+    "fixture_manifest_version": {
+      "const": "T01-PHASE1-MOCK-FIXTURE-MANIFEST-v0.1"
+    },
+    "acceptance_catalog_version": {
+      "const": "T01-PHASE1-MOCK-ACCEPTANCE-CATALOG-v0.1"
+    },
+    "scenario_catalog_version": {
+      "const": "T01-PHASE1-MOCK-SCENARIO-CATALOG-v0.1"
+    },
+    "asset_registry_version": {
+      "const": "T01-PHASE1-MOCK-ASSET-REGISTRY-v0.1"
+    },
+    "envelope_contract_version": {
+      "const": "T01-PHASE1-ENVELOPE-v0.1"
+    },
+    "namespace_root": {
+      "const": "t01_phase1_mock_v01"
+    },
+    "implementation_state": {
+      "const": "SPEC_ONLY_PAYLOADS_NOT_MATERIALIZED"
+    },
+    "data_classification": {
+      "const": "MOCK_DATA"
+    },
+    "scientific_compute": {
+      "const": false
+    },
+    "fixture_root": {
+      "const": "dify/t01-phase1-mock-v0.1/fixtures"
+    },
+    "policies": {
+      "$ref": "#/$defs/policies"
+    },
+    "inventory": {
+      "$ref": "#/$defs/inventory"
+    },
+    "input_fixtures": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/input_fixture"
+      }
+    },
+    "request_variants": {
+      "type": "array",
+      "minItems": 22,
+      "maxItems": 22,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/request_variant"
+      }
+    },
+    "attempt_fixture_resolution": {
+      "$ref": "#/$defs/attempt_fixture_resolution"
+    },
+    "checkpoint_policy": {
+      "$ref": "#/$defs/checkpoint_policy"
+    },
+    "checkpoint_plans": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/checkpoint_plan"
+      }
+    },
+    "fixture_cases": {
+      "type": "array",
+      "minItems": 21,
+      "maxItems": 21,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/fixture_case"
+      }
+    },
+    "prohibited_content_classes": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "REAL_SCIENTIFIC_OUTPUT",
+          "REAL_STRUCTURE_OR_SEQUENCE_CANDIDATE",
+          "REAL_SCORE_THRESHOLD_OR_RANK",
+          "PRODUCTION_HANDOFF",
+          "REMOTE_DATABASE_LOOKUP",
+          "SECRET_OR_CREDENTIAL"
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "scenario_key": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "scenario_ref": {
+      "type": "string",
+      "pattern": "^t01_phase1_mock_v01[.]scenario[.][a-z][a-z0-9_]*$"
+    },
+    "input_fixture_key": {
+      "type": "string",
+      "enum": [
+        "input.synthetic.standard",
+        "input.synthetic.no_structure"
+      ]
+    },
+    "nullable_string": {
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "policies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "payload_materialization_milestone",
+        "input_fixture_source",
+        "request_variant_source",
+        "attempt_fixture_source",
+        "checkpoint_source",
+        "unknown_fixture_key_policy",
+        "missing_fixture_policy",
+        "default_fixture_policy",
+        "request_id_policy",
+        "run_id_policy",
+        "scientific_values_allowed",
+        "remote_retrieval_allowed"
+      ],
+      "properties": {
+        "payload_materialization_milestone": {
+          "const": "PH1-MOCK-M2"
+        },
+        "input_fixture_source": {
+          "const": "DECLARED_CHARACTERISTICS_ONLY"
+        },
+        "request_variant_source": {
+          "const": "SCENARIO_CATALOG_INPUT_AND_SUBMISSION_PLAN"
+        },
+        "attempt_fixture_source": {
+          "const": "SCENARIO_CATALOG_NODE_PLAN"
+        },
+        "checkpoint_source": {
+          "const": "M1_05_ASYNC_SCENARIO_DIRECTIVES"
+        },
+        "unknown_fixture_key_policy": {
+          "const": "REJECT"
+        },
+        "missing_fixture_policy": {
+          "const": "REJECT"
+        },
+        "default_fixture_policy": {
+          "const": "FORBIDDEN"
+        },
+        "request_id_policy": {
+          "const": "NEW_PER_SUBMISSION"
+        },
+        "run_id_policy": {
+          "const": "M1_06_BACKEND_ISSUED"
+        },
+        "scientific_values_allowed": {
+          "const": false
+        },
+        "remote_retrieval_allowed": {
+          "const": false
+        }
+      }
+    },
+    "inventory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fixture_case_count",
+        "input_fixture_count",
+        "request_variant_count",
+        "submission_count",
+        "node_terminal_directive_count",
+        "attempt_count",
+        "attempt_fixture_key_count",
+        "null_attempt_fixture_key_count",
+        "checkpoint_plan_count",
+        "checkpoint_count"
+      ],
+      "properties": {
+        "fixture_case_count": {
+          "const": 21
+        },
+        "input_fixture_count": {
+          "const": 2
+        },
+        "request_variant_count": {
+          "const": 22
+        },
+        "submission_count": {
+          "const": 23
+        },
+        "node_terminal_directive_count": {
+          "const": 378
+        },
+        "attempt_count": {
+          "const": 334
+        },
+        "attempt_fixture_key_count": {
+          "const": 326
+        },
+        "null_attempt_fixture_key_count": {
+          "const": 8
+        },
+        "checkpoint_plan_count": {
+          "const": 4
+        },
+        "checkpoint_count": {
+          "const": 16
+        }
+      }
+    },
+    "characteristics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "synthetic_input_only",
+        "protein_sequence_class",
+        "host_species_class",
+        "local_structure",
+        "remote_reference_allowed"
+      ],
+      "properties": {
+        "synthetic_input_only": {
+          "const": true
+        },
+        "protein_sequence_class": {
+          "const": "SYNTHETIC_TRANSPORT_VALID_NON_SCIENTIFIC"
+        },
+        "host_species_class": {
+          "const": "SYNTHETIC_NON_PRODUCTION"
+        },
+        "local_structure": {
+          "type": "string",
+          "enum": [
+            "PRESENT_LOCAL_PDB_FIXTURE",
+            "ABSENT"
+          ]
+        },
+        "remote_reference_allowed": {
+          "const": false
+        }
+      }
+    },
+    "input_fixture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fixture_key",
+        "fixture_id",
+        "planned_payload_path",
+        "materialization_state",
+        "characteristics"
+      ],
+      "properties": {
+        "fixture_key": {
+          "$ref": "#/$defs/input_fixture_key"
+        },
+        "fixture_id": {
+          "type": "string",
+          "pattern": "^t01_phase1_mock_v01[.]fixture[.]input[.][a-z][a-z0-9_.]*$"
+        },
+        "planned_payload_path": {
+          "type": "string",
+          "pattern": "^dify/t01-phase1-mock-v0[.]1/fixtures/inputs/input[.]synthetic[.](standard|no_structure)[.]json$"
+        },
+        "materialization_state": {
+          "const": "DECLARED_NOT_MATERIALIZED"
+        },
+        "characteristics": {
+          "$ref": "#/$defs/characteristics"
+        }
+      }
+    },
+    "mutation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "json_pointer",
+        "operation",
+        "value"
+      ],
+      "properties": {
+        "json_pointer": {
+          "const": "/options/design_objective"
+        },
+        "operation": {
+          "const": "REPLACE"
+        },
+        "value": {
+          "const": "solubility"
+        }
+      }
+    },
+    "request_variant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "request_variant_key",
+        "fixture_id",
+        "scenario_key",
+        "scenario_ref",
+        "input_fixture_key",
+        "profile_source_pointer",
+        "base_request_variant_key",
+        "canonical_request_mutations",
+        "planned_payload_path",
+        "materialization_state"
+      ],
+      "properties": {
+        "request_variant_key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*[.]request[.](base|changed)$"
+        },
+        "fixture_id": {
+          "type": "string",
+          "pattern": "^t01_phase1_mock_v01[.]fixture[.]request[.][a-z][a-z0-9_]*[.](base|changed)$"
+        },
+        "scenario_key": {
+          "$ref": "#/$defs/scenario_key"
+        },
+        "scenario_ref": {
+          "$ref": "#/$defs/scenario_ref"
+        },
+        "input_fixture_key": {
+          "$ref": "#/$defs/input_fixture_key"
+        },
+        "profile_source_pointer": {
+          "type": "string",
+          "pattern": "^/scenarios/(0|[1-9]|1[0-9]|20)/input_profile$"
+        },
+        "base_request_variant_key": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*[.]request[.]base$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "canonical_request_mutations": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "$ref": "#/$defs/mutation"
+          }
+        },
+        "planned_payload_path": {
+          "type": "string",
+          "pattern": "^dify/t01-phase1-mock-v0[.]1/fixtures/requests/[a-z][a-z0-9_]*/(base|changed)[.]request[.]json$"
+        },
+        "materialization_state": {
+          "const": "DECLARED_NOT_MATERIALIZED"
+        }
+      }
+    },
+    "submission_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "submission_key",
+        "request_variant_key",
+        "idempotency_relation",
+        "expected_action",
+        "expected_error_code",
+        "request_id_policy",
+        "run_id_expectation"
+      ],
+      "properties": {
+        "submission_key": {
+          "type": "string",
+          "pattern": "^submit_[12]$"
+        },
+        "request_variant_key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*[.]request[.](base|changed)$"
+        },
+        "idempotency_relation": {
+          "type": "string",
+          "enum": [
+            "NEW_KEY",
+            "SAME_KEY_SAME_CANONICAL_REQUEST",
+            "SAME_KEY_DIFFERENT_CANONICAL_REQUEST"
+          ]
+        },
+        "expected_action": {
+          "type": "string",
+          "enum": [
+            "CREATE_RUN",
+            "RETURN_EXISTING_RUN",
+            "REJECT_REQUEST"
+          ]
+        },
+        "expected_error_code": {
+          "oneOf": [
+            {
+              "const": "REQUEST_IDEMPOTENCY_CONFLICT"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "request_id_policy": {
+          "const": "NEW_PER_SUBMISSION"
+        },
+        "run_id_expectation": {
+          "type": "string",
+          "enum": [
+            "NEW_NAMESPACED_RUN_ID",
+            "SAME_AS_SUBMIT_1",
+            "NO_NEW_RUN_ID"
+          ]
+        }
+      }
+    },
+    "attempt_fixture_resolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "closed_key_source",
+        "source_selector",
+        "key_pattern",
+        "path_template",
+        "declared_key_count",
+        "materialization_state",
+        "matching_but_undeclared_key_policy",
+        "null_key_rule"
+      ],
+      "properties": {
+        "closed_key_source": {
+          "const": "SCENARIO_CATALOG_NON_NULL_FIXTURE_RESULT_KEYS"
+        },
+        "source_selector": {
+          "const": "scenarios[*].node_plan.*.attempts[*].fixture_result_key"
+        },
+        "key_pattern": {
+          "const": "^([a-z][a-z0-9_]*)[.]n(0[1-9]|1[0-8])[.]attempt_([1-9][0-9]*)$"
+        },
+        "path_template": {
+          "const": "dify/t01-phase1-mock-v0.1/fixtures/node-results/{scenario_key}/n{node_number}/attempt-{attempt_number}.json"
+        },
+        "declared_key_count": {
+          "const": 326
+        },
+        "materialization_state": {
+          "const": "DECLARED_NOT_MATERIALIZED"
+        },
+        "matching_but_undeclared_key_policy": {
+          "const": "REJECT"
+        },
+        "null_key_rule": {
+          "const": "NO_FIXTURE_FILE_AND_NO_OUTPUT_REFERENCE"
+        }
+      }
+    },
+    "checkpoint_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "unlisted_scenario_policy",
+        "clock_based_progression_allowed",
+        "sleep_based_progression_allowed",
+        "implicit_cancel_allowed",
+        "implicit_recovery_allowed",
+        "checkpoint_payload_materialized"
+      ],
+      "properties": {
+        "unlisted_scenario_policy": {
+          "const": "TERMINAL_PROJECTION_ONLY"
+        },
+        "clock_based_progression_allowed": {
+          "const": false
+        },
+        "sleep_based_progression_allowed": {
+          "const": false
+        },
+        "implicit_cancel_allowed": {
+          "const": false
+        },
+        "implicit_recovery_allowed": {
+          "const": false
+        },
+        "checkpoint_payload_materialized": {
+          "const": false
+        }
+      }
+    },
+    "checkpoint_step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sequence",
+        "action",
+        "checkpoint_fact",
+        "expected_run_status"
+      ],
+      "properties": {
+        "sequence": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4
+        },
+        "action": {
+          "type": "string",
+          "enum": [
+            "SUBMIT_CREATE",
+            "POLL_SCENARIO_CHECKPOINT",
+            "INJECT_SCENARIO_EVENT",
+            "CANCEL_RUN",
+            "REQUEST_RECOVERY",
+            "POLL_TERMINAL"
+          ]
+        },
+        "checkpoint_fact": {
+          "type": "string",
+          "enum": [
+            "CREATE_RUN_ACCEPTED",
+            "N16_ATTEMPT_ACTIVE",
+            "N16_TIMEOUT",
+            "EXPLICIT_CANCEL_ACCEPTED",
+            "N08_ATTEMPT_1_FAILED_RETRYABLE",
+            "N08_RECOVERY_ACCEPTED",
+            "N08_ATTEMPT_ACTIVE",
+            "N08_TIMEOUT",
+            "TERMINAL_PROJECTION_AVAILABLE"
+          ]
+        },
+        "expected_run_status": {
+          "type": "string",
+          "enum": [
+            "RUNNING",
+            "COMPLETED",
+            "COMPLETED_WITH_GAPS",
+            "TIMED_OUT",
+            "CANCELLED"
+          ]
+        }
+      }
+    },
+    "checkpoint_plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "checkpoint_plan_id",
+        "scenario_key",
+        "scenario_ref",
+        "submission_key",
+        "steps"
+      ],
+      "properties": {
+        "checkpoint_plan_id": {
+          "type": "string",
+          "pattern": "^t01_phase1_mock_v01[.]fixture[.]checkpoint_plan[.][a-z][a-z0-9_]*$"
+        },
+        "scenario_key": {
+          "type": "string",
+          "enum": [
+            "n16_branch_timeout_partial",
+            "run_cancelled_before_join",
+            "n08_retryable_recovery",
+            "n08_upstream_timed_out"
+          ]
+        },
+        "scenario_ref": {
+          "$ref": "#/$defs/scenario_ref"
+        },
+        "submission_key": {
+          "const": "submit_1"
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "$ref": "#/$defs/checkpoint_step"
+          }
+        }
+      }
+    },
+    "fixture_case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fixture_case_id",
+        "acceptance_case_id",
+        "ordinal",
+        "scenario_key",
+        "scenario_ref",
+        "catalog_scenario_pointer",
+        "input_fixture_key",
+        "idempotency_key_literal",
+        "request_variant_keys",
+        "submission_bindings",
+        "expected_projection_source"
+      ],
+      "properties": {
+        "fixture_case_id": {
+          "type": "string",
+          "pattern": "^t01_phase1_mock_v01[.]fixture[.]case[.](00[1-9]|01[0-9]|020|021)$"
+        },
+        "acceptance_case_id": {
+          "type": "string",
+          "pattern": "^t01_phase1_mock_v01[.]acceptance[.]case[.](00[1-9]|01[0-9]|020|021)$"
+        },
+        "ordinal": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 21
+        },
+        "scenario_key": {
+          "$ref": "#/$defs/scenario_key"
+        },
+        "scenario_ref": {
+          "$ref": "#/$defs/scenario_ref"
+        },
+        "catalog_scenario_pointer": {
+          "type": "string",
+          "pattern": "^/scenarios/(0|[1-9]|1[0-9]|20)$"
+        },
+        "input_fixture_key": {
+          "$ref": "#/$defs/input_fixture_key"
+        },
+        "idempotency_key_literal": {
+          "type": "string",
+          "pattern": "^t01_phase1_mock_v01[.]fixture[.]idem[.][a-z][a-z0-9_]*$"
+        },
+        "request_variant_keys": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*[.]request[.](base|changed)$"
+          }
+        },
+        "submission_bindings": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/submission_binding"
+          }
+        },
+        "expected_projection_source": {
+          "const": "SCENARIO_CATALOG_EXACT"
+        }
+      }
+    }
+  }
+}

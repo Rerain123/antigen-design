@@ -1,0 +1,81 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-nr-directory-inspect-r01
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 180
+  template:
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+        - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+      containers:
+        - name: inspect
+          image: harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:fba5a32c0550e56a5310160e2fc49d647fcd27d76851073a2d82cc935fb4c2fc
+          command:
+            - python
+            - -u
+            - -B
+            - -c
+            - |
+              from urllib.request import urlopen, Request
+              from html.parser import HTMLParser
+              from urllib.parse import urljoin, urlsplit
+              import json
+              base = 'http://ncbichina.iict.ac.cn:8008/blastdb/20250624/2025-06-24-01-05-02/'
+              class Listing(HTMLParser):
+                  def __init__(self):
+                      super().__init__()
+                      self.links = []
+                      self.text = []
+                  def handle_starttag(self, tag, attrs):
+                      href = dict(attrs).get('href')
+                      if tag == 'a' and href:
+                          self.links.append(href)
+                  def handle_data(self, data):
+                      self.text.append(data)
+              def inspect(url):
+                  print('DIRECTORY', url, flush=True)
+                  with urlopen(Request(url, headers={'User-Agent': 'T01-directory-inspection/1.0'}), timeout=30) as response:
+                      print('HTTP', response.status, 'FINAL_URL', response.url)
+                      kind = response.headers.get_content_type()
+                      if kind not in ('text/html', 'text/plain'):
+                          raise RuntimeError('Not a directory page: ' + kind)
+                      raw = response.read(2 * 1024 * 1024 + 1)
+                      if len(raw) > 2 * 1024 * 1024:
+                          raise RuntimeError('Directory exceeds 2 MiB inspection limit')
+                  page = Listing()
+                  page.feed(raw.decode('utf-8', errors='replace'))
+                  print('LISTING_TEXT_BEGIN')
+                  print(''.join(page.text))
+                  print('LISTING_TEXT_END')
+                  print('LINKS', json.dumps(page.links, ensure_ascii=False))
+                  return page.links
+              links = inspect(base)
+              for href in links:
+                  target = urljoin(base, href)
+                  path = urlsplit(target).path
+                  if target.startswith(base) and path.rstrip('/').split('/')[-1] == 'nr' and path.endswith('/'):
+                      inspect(target)
+                      break
+              print('DIRECTORY_INSPECTION_COMPLETE; database_files_downloaded=0')
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: '1'
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL

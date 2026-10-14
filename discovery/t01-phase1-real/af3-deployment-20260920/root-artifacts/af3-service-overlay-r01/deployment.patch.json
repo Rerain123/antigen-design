@@ -1,0 +1,233 @@
+[
+  {
+    "op": "test",
+    "path": "/metadata/resourceVersion",
+    "value": "48157190"
+  },
+  {
+    "op": "test",
+    "path": "/metadata/uid",
+    "value": "d0cae2e9-9cd1-486b-a7c7-ddb9827915bd"
+  },
+  {
+    "op": "test",
+    "path": "/spec/template/spec/containers/0/image",
+    "value": "harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:0e572b386fd2ad45d3d9b844910b3ff6fb01ce0ad5d42a1be27e183fb76bdb2b"
+  },
+  {
+    "op": "remove",
+    "path": "/spec/template/spec/containers/0/volumeMounts/32"
+  },
+  {
+    "op": "remove",
+    "path": "/spec/template/spec/containers/0/volumeMounts/31"
+  },
+  {
+    "op": "remove",
+    "path": "/spec/template/spec/containers/0/volumeMounts/30"
+  },
+  {
+    "op": "remove",
+    "path": "/spec/template/spec/containers/0/volumeMounts/29"
+  },
+  {
+    "op": "remove",
+    "path": "/spec/template/spec/containers/0/volumeMounts/28"
+  },
+  {
+    "op": "remove",
+    "path": "/spec/template/spec/containers/0/volumeMounts/27"
+  },
+  {
+    "op": "remove",
+    "path": "/spec/template/spec/containers/0/volumeMounts/26"
+  },
+  {
+    "op": "remove",
+    "path": "/spec/template/spec/containers/0/volumeMounts/25"
+  },
+  {
+    "op": "remove",
+    "path": "/spec/template/spec/containers/0/volumeMounts/24"
+  },
+  {
+    "op": "remove",
+    "path": "/spec/template/spec/containers/0/volumeMounts/23"
+  },
+  {
+    "op": "remove",
+    "path": "/spec/template/spec/containers/0/volumeMounts/22"
+  },
+  {
+    "op": "remove",
+    "path": "/spec/template/spec/containers/0/volumeMounts/18"
+  },
+  {
+    "op": "remove",
+    "path": "/spec/template/spec/containers/0/volumeMounts/13"
+  },
+  {
+    "op": "remove",
+    "path": "/spec/template/spec/volumes/20"
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/volumes/-",
+    "value": {
+      "name": "af3-service-code",
+      "configMap": {
+        "name": "antigen-af3-service-code-r02"
+      }
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
+      "name": "af3-service-code",
+      "mountPath": "/app/src/t01_phase1_real/development/contracts.py",
+      "subPath": "af3-development--contracts.py",
+      "readOnly": true
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
+      "name": "af3-service-code",
+      "mountPath": "/app/src/t01_phase1_real/development/registry.py",
+      "subPath": "af3-development--registry.py",
+      "readOnly": true
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
+      "name": "af3-service-code",
+      "mountPath": "/app/src/t01_phase1_real/development/runtime.py",
+      "subPath": "af3-development--runtime.py",
+      "readOnly": true
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
+      "name": "af3-service-code",
+      "mountPath": "/app/src/t01_phase1_real/development/supervisor.py",
+      "subPath": "af3-development--supervisor.py",
+      "readOnly": true
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
+      "name": "af3-service-code",
+      "mountPath": "/app/src/t01_phase1_real/development/workflow/policy.py",
+      "subPath": "af3-development--workflow--policy.py",
+      "readOnly": true
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
+      "name": "af3-service-code",
+      "mountPath": "/app/src/t01_phase1_real/development/workflow/service.py",
+      "subPath": "af3-development--workflow--service.py",
+      "readOnly": true
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
+      "name": "af3-service-code",
+      "mountPath": "/app/src/t01_phase1_real/development/af3/__init__.py",
+      "subPath": "af3-development--af3--__init__.py",
+      "readOnly": true
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
+      "name": "af3-service-code",
+      "mountPath": "/app/src/t01_phase1_real/development/af3/native_worker.py",
+      "subPath": "af3-development--af3--native_worker.py",
+      "readOnly": true
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
+      "name": "af3-service-code",
+      "mountPath": "/app/src/t01_phase1_real/development/af3/policy.py",
+      "subPath": "af3-development--af3--policy.py",
+      "readOnly": true
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
+      "name": "af3-service-code",
+      "mountPath": "/app/src/t01_phase1_real/development/af3/primitives.py",
+      "subPath": "af3-development--af3--primitives.py",
+      "readOnly": true
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
+      "name": "af3-service-code",
+      "mountPath": "/app/src/t01_phase1_real/development/af3/profile.json",
+      "subPath": "af3-development--af3--profile.json",
+      "readOnly": true
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
+      "name": "af3-service-code",
+      "mountPath": "/app/src/t01_phase1_real/development/af3/result.py",
+      "subPath": "af3-development--af3--result.py",
+      "readOnly": true
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
+      "name": "af3-service-code",
+      "mountPath": "/app/src/t01_phase1_real/development/af3/source.py",
+      "subPath": "af3-development--af3--source.py",
+      "readOnly": true
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
+      "name": "af3-service-code",
+      "mountPath": "/app/src/t01_phase1_real/development/af3/standard.py",
+      "subPath": "af3-development--af3--standard.py",
+      "readOnly": true
+    }
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/spec/containers/0/volumeMounts/-",
+    "value": {
+      "name": "af3-service-code",
+      "mountPath": "/app/src/t01_phase1_real/development/af3/worker.py",
+      "subPath": "af3-development--af3--worker.py",
+      "readOnly": true
+    }
+  }
+]

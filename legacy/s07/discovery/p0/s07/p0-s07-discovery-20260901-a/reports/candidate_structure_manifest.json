@@ -1,0 +1,384 @@
+{
+  "schema_version": "p0-s07-candidate-structure-manifest.discovery.v0.1",
+  "campaign_id": "p0-s07-discovery-20260901-a",
+  "classification": "discovery_evidence",
+  "production_deployment_status": "NOT_DEPLOYED",
+  "policy_status": "PROVISIONAL_DISCOVERY_POLICY",
+  "candidate_scope": "representative fully characterized candidates, not the complete search result sets",
+  "candidate_count": 5,
+  "candidates": [
+    {
+      "case_id": "P0-DISC-001",
+      "candidate_id": "RCSB:1UBQ_1:A",
+      "source": "RCSB_PDB",
+      "structure_kind": "EXPERIMENTAL",
+      "classification": "TARGET_MATCH",
+      "classification_status": "PROVISIONAL_DISCOVERY_POLICY",
+      "classification_basis": "normalized target sequence equals the complete RCSB polymer-entity canonical sequence",
+      "selected_for_production": false,
+      "conservative_route": "EXISTING_STRUCTURE_CANDIDATE_PENDING_RULES",
+      "entry_facts": {
+        "experimental_method": "X-ray",
+        "resolution_angstrom": 1.8
+      },
+      "entity_facts": {
+        "entity_length": 76,
+        "uniprot_accessions": [
+          "P0CG48"
+        ],
+        "artifact_monomer_count": 0,
+        "mutation_count": 0
+      },
+      "chain_facts": {
+        "modeled_residue_count": 76,
+        "unobserved_entity_ranges": []
+      },
+      "target_mapping_summary": {
+        "sequence_identity": 1.0,
+        "aligned_target_fraction": 1.0,
+        "coordinate_mapped_target_fraction": 1.0
+      },
+      "structure_artifact": {
+        "path": "evidence/rcsb/P0-DISC-001/mmcif-1UBQ/1UBQ.cif",
+        "size_bytes": 103220,
+        "sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6"
+      },
+      "evidence": {
+        "search_response": {
+          "path": "evidence/rcsb/P0-DISC-001/search-exact-attempt-04/response.json",
+          "size_bytes": 87374,
+          "sha256": "bfa3c09c9f1ce2008201928581a8075c8b8b47c6e4a0fef7db26642ef621a951"
+        },
+        "entry_response": {
+          "path": "evidence/rcsb/P0-DISC-001/entry-1UBQ/response.json",
+          "size_bytes": 9935,
+          "sha256": "5a7d463af93a3f95b4fe52d6cbecbfaa32f2ec27c72a7c9397e10a8eaaf97bfe"
+        },
+        "entity_response": {
+          "path": "evidence/rcsb/P0-DISC-001/polymer-entity-1UBQ-1/response.json",
+          "size_bytes": 26236,
+          "sha256": "e296d0d87fa7f8fa584f00cd52f26d18ac40d33badb6a3a090eafe950971ba14"
+        },
+        "instance_response": {
+          "path": "evidence/rcsb/P0-DISC-001/polymer-instance-1UBQ-A/response.json",
+          "size_bytes": 13953,
+          "sha256": "fdf3f834b91e41d0aa42148069ed64fc9f7159b0341d8561d341e45b7d67a845"
+        }
+      }
+    },
+    {
+      "case_id": "P0-DISC-002",
+      "candidate_id": "RCSB:6XRE_13:M",
+      "source": "RCSB_PDB",
+      "structure_kind": "EXPERIMENTAL",
+      "classification": "TARGET_MATCH",
+      "classification_status": "PROVISIONAL_DISCOVERY_POLICY",
+      "classification_basis": "complete polymer-entity sequence is an exact target match; coordinates are independently incomplete",
+      "selected_for_production": false,
+      "conservative_route": "EXISTING_STRUCTURE_CANDIDATE_PENDING_RULES",
+      "entry_facts": {
+        "experimental_method": "EM",
+        "resolution_angstrom": 4.6
+      },
+      "entity_facts": {
+        "entity_length": 393,
+        "uniprot_accessions": [
+          "P04637"
+        ],
+        "artifact_monomer_count": 0,
+        "mutation_count": 0
+      },
+      "chain_facts": {
+        "modeled_residue_count": 314,
+        "unobserved_entity_ranges": [
+          {
+            "start": 1,
+            "end": 11
+          },
+          {
+            "start": 62,
+            "end": 87
+          },
+          {
+            "start": 352,
+            "end": 393
+          }
+        ]
+      },
+      "target_mapping_summary": {
+        "sequence_identity": 1.0,
+        "aligned_target_fraction": 1.0,
+        "coordinate_mapped_target_fraction": 0.79898219
+      },
+      "structure_artifact": {
+        "path": "evidence/rcsb/P0-DISC-002/mmcif-6XRE-attempt-02/6XRE.cif",
+        "size_bytes": 6959046,
+        "sha256": "48b2a9fa85e6f19adf4672427bb226ed8fc92af8567d09e8915aacad359a7249"
+      },
+      "evidence": {
+        "search_response": {
+          "path": "evidence/rcsb/P0-DISC-002/search-attempt-01/response.json",
+          "size_bytes": 121327,
+          "sha256": "97ed4c2a67d703d347116c85e2fd98309edd9bc53e86cb6eb99206f90100c497"
+        },
+        "entry_response": {
+          "path": "evidence/rcsb/P0-DISC-002/entry-6XRE/response.json",
+          "size_bytes": 11272,
+          "sha256": "51da495a37317781c1b67a7c4266bfe1a73ade26084b5ce5f477842c9ebb16c6"
+        },
+        "entity_response": {
+          "path": "evidence/rcsb/P0-DISC-002/polymer-entity-6XRE-13/response.json",
+          "size_bytes": 160380,
+          "sha256": "891cf08a3ed799705022d3625ea1b2133954987dbe047a36a4be46232dbae4c2"
+        },
+        "instance_response": {
+          "path": "evidence/rcsb/P0-DISC-002/polymer-instance-6XRE-M/response.json",
+          "size_bytes": 22129,
+          "sha256": "41d503d3daee841d612b039a7585d285259d93b61c6ea20c5d471d7119d8f0a2"
+        }
+      }
+    },
+    {
+      "case_id": "P0-DISC-002",
+      "candidate_id": "RCSB:5XZC_2:B",
+      "source": "RCSB_PDB",
+      "structure_kind": "EXPERIMENTAL",
+      "classification": "TARGET_DERIVED",
+      "classification_status": "PROVISIONAL_DISCOVERY_POLICY",
+      "classification_basis": "same UniProt target but the polymer entity is target residues 92-356 rather than the complete 393-residue target",
+      "selected_for_production": false,
+      "conservative_route": "ENTER_S08_UNDER_PROVISIONAL_POLICY",
+      "entry_facts": {
+        "experimental_method": "EM",
+        "resolution_angstrom": 10.7
+      },
+      "entity_facts": {
+        "entity_length": 265,
+        "uniprot_accessions": [
+          "P04637"
+        ],
+        "artifact_monomer_count": 0,
+        "mutation_count": 0
+      },
+      "chain_facts": {
+        "modeled_residue_count": 232,
+        "unobserved_entity_ranges": [
+          {
+            "start": 201,
+            "end": 233
+          }
+        ]
+      },
+      "target_mapping_summary": {
+        "sequence_identity": 1.0,
+        "aligned_target_fraction": 0.67430025,
+        "coordinate_mapped_target_fraction": 0.59033079
+      },
+      "structure_artifact": {
+        "path": "evidence/rcsb/P0-DISC-002/mmcif-5XZC-attempt-02/5XZC.cif",
+        "size_bytes": 268943,
+        "sha256": "744ea7b74175865b1c1c3538d714a75ac10ac5cbee166c0547aa2c2a29f74b9a"
+      },
+      "evidence": {
+        "search_response": {
+          "path": "evidence/rcsb/P0-DISC-002/search-attempt-01/response.json",
+          "size_bytes": 121327,
+          "sha256": "97ed4c2a67d703d347116c85e2fd98309edd9bc53e86cb6eb99206f90100c497"
+        },
+        "entry_response": {
+          "path": "evidence/rcsb/P0-DISC-002/entry-5XZC/response.json",
+          "size_bytes": 12708,
+          "sha256": "ac61cd42ed0609fbcbbfacd3bb664da50b374789ebdcfbc0f61e53a903b64efe"
+        },
+        "entity_response": {
+          "path": "evidence/rcsb/P0-DISC-002/polymer-entity-5XZC-2/response.json",
+          "size_bytes": 158476,
+          "sha256": "98389ba98b95bf3e6cdd75dc4acf0c1824725165ad86f29597ca02dcb6c88c6a"
+        },
+        "instance_response": {
+          "path": "evidence/rcsb/P0-DISC-002/polymer-instance-5XZC-B/response.json",
+          "size_bytes": 7136,
+          "sha256": "f2f255ab9e881f3d40a7db981c239c3e7284166023fff0da0accd329b21a823f"
+        }
+      }
+    },
+    {
+      "case_id": "P0-DISC-003",
+      "candidate_id": "RCSB:6PPV_1:A",
+      "source": "RCSB_PDB",
+      "structure_kind": "EXPERIMENTAL",
+      "classification": "HOMOLOG_TEMPLATE",
+      "classification_status": "PROVISIONAL_DISCOVERY_POLICY",
+      "classification_basis": "different UniProt sequence with a 62.5% identity local alignment over 72 target residues",
+      "selected_for_production": false,
+      "conservative_route": "ENTER_S08_UNDER_PROVISIONAL_POLICY",
+      "entry_facts": {
+        "experimental_method": "X-ray",
+        "resolution_angstrom": 2.05
+      },
+      "entity_facts": {
+        "entity_length": 86,
+        "uniprot_accessions": [
+          "P87173"
+        ],
+        "artifact_monomer_count": 1,
+        "mutation_count": 0
+      },
+      "chain_facts": {
+        "modeled_residue_count": 69,
+        "unobserved_entity_ranges": [
+          {
+            "start": 1,
+            "end": 16
+          },
+          {
+            "start": 86,
+            "end": 86
+          }
+        ]
+      },
+      "target_mapping_summary": {
+        "sequence_identity": 0.625,
+        "aligned_target_fraction": 0.54135338,
+        "coordinate_mapped_target_fraction": 0.51879699
+      },
+      "structure_artifact": {
+        "path": "evidence/rcsb/P0-DISC-003/mmcif-6PPV/6PPV.cif",
+        "size_bytes": 602939,
+        "sha256": "06564ae8e3b5cb93c079825d51cbd4b898cacbc6bdd655948742f645bb92cf68"
+      },
+      "evidence": {
+        "search_response": {
+          "path": "evidence/rcsb/P0-DISC-003/homolog-search-attempt-01/response.json",
+          "size_bytes": 88626,
+          "sha256": "c7b0cf5c2e75a6f227d33f34ca22c8f010344a61f0e797034bdf26eda2e6882c"
+        },
+        "entry_response": {
+          "path": "evidence/rcsb/P0-DISC-003/entry-6PPV/response.json",
+          "size_bytes": 11325,
+          "sha256": "c5a69a96989515df61f45ab0eca0e383bcbe2ff22aeea7f55bb00ae0b524b349"
+        },
+        "entity_response": {
+          "path": "evidence/rcsb/P0-DISC-003/polymer-entity-6PPV-1/response.json",
+          "size_bytes": 22234,
+          "sha256": "9f6153bdf90cde6a50e194c93f91423d0fbac7c44c8bcd90ce639ce21750208e"
+        },
+        "instance_response": {
+          "path": "evidence/rcsb/P0-DISC-003/polymer-instance-6PPV-A/response.json",
+          "size_bytes": 11347,
+          "sha256": "a6c84aab310278bee8abca325b8cee3692573dbe34093ed9cb1f4f93c2dc88af"
+        }
+      }
+    },
+    {
+      "case_id": "P0-DISC-004",
+      "candidate_id": "AFDB:AF-O15116-F1:v6:A",
+      "source": "ALPHAFOLD_DB",
+      "structure_kind": "PUBLIC_PREDICTED",
+      "classification": "TARGET_MATCH",
+      "classification_status": "PROVISIONAL_DISCOVERY_POLICY",
+      "classification_basis": "frozen target sequence exactly matches the AlphaFold DB v6 metadata sequence and downloaded model",
+      "selected_for_production": false,
+      "conservative_route": "EXISTING_STRUCTURE_CANDIDATE_PENDING_RULES",
+      "model_facts": {
+        "tool_used": "AlphaFold Monomer v2.0 pipeline",
+        "model_created_date": "2025-08-01T00:00:00Z",
+        "latest_version": 6,
+        "global_metric_value": 89.69,
+        "confidence_vector_length": 133,
+        "pae_matrix_shape": [
+          133,
+          133
+        ],
+        "max_predicted_aligned_error": 31.75,
+        "quality_classification_note": "native quality facts only; S-09 thresholds are not applied in P0-M1"
+      },
+      "target_mapping_summary": {
+        "sequence_identity": 1.0,
+        "aligned_target_fraction": 1.0,
+        "coordinate_mapped_target_fraction": 1.0
+      },
+      "structure_artifact": {
+        "path": "evidence/afdb/P0-DISC-004/model-cif-v6/AF-O15116-F1-model_v6.cif",
+        "size_bytes": 135937,
+        "sha256": "d37972527c798e13e39fb8202e33d9c5cb816ac211c57591218e753a357d80e1"
+      },
+      "confidence_artifact": {
+        "path": "evidence/afdb/P0-DISC-004/confidence-v6/AF-O15116-F1-confidence_v6.json",
+        "size_bytes": 1797,
+        "sha256": "66b9f09f6ea60f48dd841a8c8f0c9a09f6bdf12e75c8cb69990d90a7bc636def"
+      },
+      "pae_artifact": {
+        "path": "evidence/afdb/P0-DISC-004/pae-v6/AF-O15116-F1-predicted_aligned_error_v6.json",
+        "size_bytes": 39746,
+        "sha256": "8826b30d2fa5f9a4adf6ab2bd3b7b993ada14c2d517fdcbc1422e4a52d0bc684"
+      },
+      "evidence": {
+        "metadata_response": {
+          "path": "evidence/afdb/P0-DISC-004/prediction-O15116-attempt-02/response.json",
+          "size_bytes": 1990,
+          "sha256": "4106b00fa105ad20d8e4532c4f79c892837fed09fd30e6f3eda9b75279940341"
+        }
+      }
+    }
+  ],
+  "case_outcomes": [
+    {
+      "case_id": "P0-DISC-001",
+      "outcome": "TARGET_MATCH_REPRESENTATIVES_FOUND",
+      "rcsb_total_count": 1136,
+      "rcsb_returned_count": 100,
+      "note": "many structures share the same target sequence; one fully characterized representative is retained"
+    },
+    {
+      "case_id": "P0-DISC-002",
+      "outcome": "TARGET_MATCH_AND_TARGET_DERIVED_REPRESENTATIVES_FOUND",
+      "rcsb_total_count": 236,
+      "rcsb_returned_count": 100,
+      "note": "sequence-level exactness and coordinate completeness are independent facts"
+    },
+    {
+      "case_id": "P0-DISC-003",
+      "outcome": "HOMOLOG_TEMPLATE_REPRESENTATIVE_FOUND",
+      "rcsb_total_count": 125,
+      "rcsb_returned_count": 100,
+      "blast_hit_count": 100,
+      "note": "template usability is not decided without algorithm-approved thresholds"
+    },
+    {
+      "case_id": "P0-DISC-004",
+      "outcome": "NO_EXACT_EXPERIMENTAL_TARGET_AND_AFDB_EXACT_TARGET_FOUND",
+      "rcsb_http_status": 204,
+      "afdb_candidate_id": "AF-O15116-F1",
+      "note": "HTTP 204 is a successful empty target search, not a tool failure"
+    },
+    {
+      "case_id": "P0-DISC-005",
+      "outcome": "NO_EXACT_TARGET_EVIDENCE_HOMOLOG_USABILITY_UNDECIDED",
+      "rcsb_http_status": 204,
+      "afdb_http_status": 400,
+      "blast_hit_count": 42,
+      "blast_top_hit": {
+        "qseqid": "P0-DISC-005|RefSeq_WP_505187596.1|hypothetical_protein|discovery_control",
+        "sseqid": "pdb|4gin|A",
+        "pident": 28.0,
+        "length": 50,
+        "mismatch": 35,
+        "gapopen": 1,
+        "qstart": 5,
+        "qend": 53,
+        "sstart": 314,
+        "send": 363,
+        "evalue": 3.4,
+        "bitscore": 30.4,
+        "qcovhsp": 50.0,
+        "qcovs": 50.0,
+        "qseq": "REFEVTHLYEEKVQSFLDSVNAIDT-SIEWGWNTVVKGHEDDPDEFQGFG",
+        "sseq": "RALDRWHTIPRTLADFRQTIDKVDAIAGEYGWNTFFLGNHDNPRAVSHFG",
+        "stitle": "mol:protein length:584  Sucrose isomerase"
+      },
+      "note": "AFDB rejected the RefSeq identifier format; weak BLAST output cannot be promoted to a usable homolog without approved thresholds"
+    }
+  ],
+  "decision_boundary": "No candidate is selected for production and no scientific threshold is introduced by this report."
+}

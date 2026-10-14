@@ -1,0 +1,29 @@
+{
+  "case_id": "P0-DISC-003",
+  "classification": "NON_PRODUCTION_OUTPUT_AUDIT",
+  "production_deployment_status": "NOT_DEPLOYED",
+  "page_size": 100,
+  "page_guard": 20,
+  "reported_total_count": 125,
+  "returned_result_count": 125,
+  "pages": [
+    {
+      "page_number": 1,
+      "start": 0,
+      "rows_requested": 100,
+      "http_status": 200,
+      "result_count": 100,
+      "reported_total_count": 125
+    },
+    {
+      "page_number": 2,
+      "start": 100,
+      "rows_requested": 100,
+      "http_status": 200,
+      "result_count": 25,
+      "reported_total_count": 125
+    }
+  ],
+  "stop_reason": "REPORTED_RESULT_SET_EXHAUSTED",
+  "guard_is_production_default": false
+}

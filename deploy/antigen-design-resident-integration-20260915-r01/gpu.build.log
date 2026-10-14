@@ -1,0 +1,39 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from gpu.Dockerfile
+#1 transferring dockerfile: 245B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/antigen-design-resident-gpu:assembly-r01
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 16.72kB done
+#4 DONE 0.0s
+
+#5 [1/3] FROM docker.io/library/antigen-design-resident-gpu:assembly-r01@sha256:3bad61dbfd42b36c130ac43913a1cad1ad23f58ebe833a7db914ac799ae65d16
+#5 resolve docker.io/library/antigen-design-resident-gpu:assembly-r01@sha256:3bad61dbfd42b36c130ac43913a1cad1ad23f58ebe833a7db914ac799ae65d16 0.1s done
+#5 DONE 0.3s
+
+#6 [2/3] COPY src /opt/t01/src
+#6 DONE 0.1s
+
+#7 [3/3] COPY configuration/gpu.worker.json /opt/t01/worker.json
+#7 DONE 0.1s
+
+#8 exporting to image
+#8 exporting layers
+#8 exporting layers 0.3s done
+#8 exporting manifest sha256:2079483853695089e1924d839221aa016481bc9e822b6e436dae8277a428ab8a 0.0s done
+#8 exporting config sha256:59cca3f334743391291ef651576f1e161f540b7d599d294433a59930f945260a 0.0s done
+#8 exporting attestation manifest sha256:5d9a23c38875f87efab4fe5af127246a05a7ff038712958a784b283750c56698
+#8 exporting attestation manifest sha256:5d9a23c38875f87efab4fe5af127246a05a7ff038712958a784b283750c56698 0.1s done
+#8 exporting manifest list sha256:b38babddf72f6a13b5769e6f28aee4ba99b2813eb2c14239b34c0d0a78747bcf 0.1s done
+#8 naming to docker.io/library/antigen-design-resident-gpu:integration-r01
+#8 naming to docker.io/library/antigen-design-resident-gpu:integration-r01 done
+#8 unpacking to docker.io/library/antigen-design-resident-gpu:integration-r01 0.1s done
+#8 DONE 0.8s

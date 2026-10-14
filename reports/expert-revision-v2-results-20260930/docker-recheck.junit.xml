@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="6" time="4.551" timestamp="2026-09-30T16:56:37.769759+08:00" hostname="DESKTOP-8B96JVR"><testcase classname="tests.test_same_run_submission" name="test_sequence_same_run_idempotency_and_conflict" time="0.150" /><testcase classname="tests.test_same_run_submission" name="test_same_run_submission_rejects_foreign_scope" time="0.064" /><testcase classname="tests.test_same_run_submission" name="test_structure_same_run_idempotency" time="0.154" /><testcase classname="tests.test_same_run_submission" name="test_same_run_proteinmpnn_keeps_source_provenance_checks" time="1.268"><failure message="AssertionError: assert ('failed' == 'succeeded'&#10;  &#10;  - succeeded&#10;  + failed)">tmp_path = WindowsPath('C:/Users/wing/AppData/Local/Temp/pytest-of-wing/pytest-2836/test_same_run_proteinmpnn_keep0')
+
+    def test_same_run_proteinmpnn_keeps_source_provenance_checks(tmp_path):
+        rt=Runtime(tmp_path)
+        target=rt.create_run('target-run')
+        foreign=rt.create_run('foreign-run')
+&gt;       _, foreign_ref=structure_result(rt, foreign['run_id'], 'foreign-structure')
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_same_run_submission.py:83: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = &lt;t01_phase1_real.development.runtime.Runtime object at 0x00000194C1FC43D0&gt;
+run_id = 't01p1r-run-9d5fc8f5cb6348698e3ee4e3bd31f913'
+key = 'foreign-structure'
+
+    def structure_result(rt, run_id, key):
+        if os.name == 'nt':
+            # pytest's private temp-directory ACL uses OWNER RIGHTS. Docker Desktop
+            # writes as a different owner; grant only this fixture root to this user.
+            account = subprocess.check_output(['whoami'], text=True).strip()
+            subprocess.run(['icacls', str(rt.root), '/grant', account + ':(OI)(CI)F', '/T'],
+                check=True, capture_output=True)
+        fixture=next(row for row in cases() if row['name']=='normal-pdb')
+        job=rt.submit_structure_in_run(run_id, encode(fixture['request']), key, fixture['data'])
+        rt.dispatch(job['job_id'])
+        # Docker cold starts can exceed Runtime.wait's 15-second polling default.
+        # Keep the request's 60-second worker budget and wait through reconciliation.
+        final=rt.wait(job['job_id'], timeout=90)
+&gt;       assert final['state']=='succeeded' and final['run_id']==run_id
+E       AssertionError: assert ('failed' == 'succeeded'
+E         
+E         - succeeded
+E         + failed)
+
+tests\test_same_run_submission.py:41: AssertionError</failure></testcase><testcase classname="tests.test_same_run_submission" name="test_same_run_proteinmpnn_still_rejects_corrupt_local_source[sequence]" time="1.301"><failure message="AssertionError: assert ('failed' == 'succeeded'&#10;  &#10;  - succeeded&#10;  + failed)">tmp_path = WindowsPath('C:/Users/wing/AppData/Local/Temp/pytest-of-wing/pytest-2836/test_same_run_proteinmpnn_stil0')
+damage = 'sequence'
+
+    @pytest.mark.parametrize('damage',['sequence','hash'])
+    def test_same_run_proteinmpnn_still_rejects_corrupt_local_source(tmp_path,damage):
+        rt=Runtime(tmp_path);run=rt.create_run('target')
+&gt;       structure,ref=structure_result(rt,run['run_id'],'structure');body=n11_body(ref)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_same_run_submission.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = &lt;t01_phase1_real.development.runtime.Runtime object at 0x00000194925F71D0&gt;
+run_id = 't01p1r-run-5a3a0d205b95459f9813f3b059ede017', key = 'structure'
+
+    def structure_result(rt, run_id, key):
+        if os.name == 'nt':
+            # pytest's private temp-directory ACL uses OWNER RIGHTS. Docker Desktop
+            # writes as a different owner; grant only this fixture root to this user.
+            account = subprocess.check_output(['whoami'], text=True).strip()
+            subprocess.run(['icacls', str(rt.root), '/grant', account + ':(OI)(CI)F', '/T'],
+                check=True, capture_output=True)
+        fixture=next(row for row in cases() if row['name']=='normal-pdb')
+        job=rt.submit_structure_in_run(run_id, encode(fixture['request']), key, fixture['data'])
+        rt.dispatch(job['job_id'])
+        # Docker cold starts can exceed Runtime.wait's 15-second polling default.
+        # Keep the request's 60-second worker budget and wait through reconciliation.
+        final=rt.wait(job['job_id'], timeout=90)
+&gt;       assert final['state']=='succeeded' and final['run_id']==run_id
+E       AssertionError: assert ('failed' == 'succeeded'
+E         
+E         - succeeded
+E         + failed)
+
+tests\test_same_run_submission.py:41: AssertionError</failure></testcase><testcase classname="tests.test_same_run_submission" name="test_same_run_proteinmpnn_still_rejects_corrupt_local_source[hash]" time="1.183"><failure message="AssertionError: assert ('failed' == 'succeeded'&#10;  &#10;  - succeeded&#10;  + failed)">tmp_path = WindowsPath('C:/Users/wing/AppData/Local/Temp/pytest-of-wing/pytest-2836/test_same_run_proteinmpnn_stil1')
+damage = 'hash'
+
+    @pytest.mark.parametrize('damage',['sequence','hash'])
+    def test_same_run_proteinmpnn_still_rejects_corrupt_local_source(tmp_path,damage):
+        rt=Runtime(tmp_path);run=rt.create_run('target')
+&gt;       structure,ref=structure_result(rt,run['run_id'],'structure');body=n11_body(ref)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_same_run_submission.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = &lt;t01_phase1_real.development.runtime.Runtime object at 0x00000194C1FD0550&gt;
+run_id = 't01p1r-run-5a81a3179d4b4230a3541373d3b8c28f', key = 'structure'
+
+    def structure_result(rt, run_id, key):
+        if os.name == 'nt':
+            # pytest's private temp-directory ACL uses OWNER RIGHTS. Docker Desktop
+            # writes as a different owner; grant only this fixture root to this user.
+            account = subprocess.check_output(['whoami'], text=True).strip()
+            subprocess.run(['icacls', str(rt.root), '/grant', account + ':(OI)(CI)F', '/T'],
+                check=True, capture_output=True)
+        fixture=next(row for row in cases() if row['name']=='normal-pdb')
+        job=rt.submit_structure_in_run(run_id, encode(fixture['request']), key, fixture['data'])
+        rt.dispatch(job['job_id'])
+        # Docker cold starts can exceed Runtime.wait's 15-second polling default.
+        # Keep the request's 60-second worker budget and wait through reconciliation.
+        final=rt.wait(job['job_id'], timeout=90)
+&gt;       assert final['state']=='succeeded' and final['run_id']==run_id
+E       AssertionError: assert ('failed' == 'succeeded'
+E         
+E         - succeeded
+E         + failed)
+
+tests\test_same_run_submission.py:41: AssertionError</failure></testcase></testsuite></testsuites>

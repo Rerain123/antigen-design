@@ -1,0 +1,691 @@
+{
+  "checked_at": "2026-10-10T10:12:20.772569+08:00",
+  "deployment": {
+    "generation": 150,
+    "replicas": 1,
+    "ready": 0,
+    "source_sha256": "06f01c313e11fc3ed93406c00b26e047799f37a71d73976ecb203f331f03f3e2",
+    "conditions": [
+      {
+        "lastTransitionTime": "2026-10-09T07:22:28Z",
+        "lastUpdateTime": "2026-10-09T07:22:28Z",
+        "message": "Deployment does not have minimum availability.",
+        "reason": "MinimumReplicasUnavailable",
+        "status": "False",
+        "type": "Available"
+      },
+      {
+        "lastTransitionTime": "2026-10-10T02:01:31Z",
+        "lastUpdateTime": "2026-10-10T02:03:44Z",
+        "message": "ReplicaSet \"antigen-design-5c7d8949cf\" is progressing.",
+        "reason": "ReplicaSetUpdated",
+        "status": "True",
+        "type": "Progressing"
+      }
+    ]
+  },
+  "pods": [
+    {
+      "name": "antigen-design-5475446db6-jt4c9",
+      "uid": "3f7a0042-3300-45e8-a7bf-0fb021e04986",
+      "phase": "Failed",
+      "node": "k8s-a100-02",
+      "created": "2026-09-29T13:00:30Z",
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-30T03:18:52Z",
+          "observedGeneration": 3,
+          "status": "False",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-30T03:18:52Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-30T03:18:52Z",
+          "observedGeneration": 3,
+          "reason": "PodFailed",
+          "status": "False",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-30T03:18:52Z",
+          "observedGeneration": 3,
+          "reason": "PodFailed",
+          "status": "False",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-30T03:18:52Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "init": [
+        {
+          "name": "install-project-source",
+          "state": {
+            "terminated": {
+              "containerID": "containerd://88e7838e3024b82bcb22b7f434583be6875e3b24c6b3c51ee2bcc0ca13a473ce",
+              "exitCode": 0,
+              "finishedAt": "2026-09-29T13:51:54Z",
+              "reason": "Completed",
+              "startedAt": "2026-09-29T13:51:53Z"
+            }
+          }
+        }
+      ],
+      "containers": [
+        {
+          "name": "service",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://5a312f3ad77062aa659a57ac233b966b3e4242027be2ac0b244940e85181a2b9",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:51:56Z"
+            }
+          }
+        },
+        {
+          "name": "worker-aggrescan3d",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://1287aa253ec8d72d92d8869b154ad8440b134b20d7b80683c41df021e3c9083b",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:52:02Z"
+            }
+          }
+        },
+        {
+          "name": "worker-bepipred",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://9635c52338433d6b7cab588b871d822576bfdcd20d66030fcdf7e116b0021780",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:51:58Z"
+            }
+          }
+        },
+        {
+          "name": "worker-blast",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://62957cbfc2d8f605edf1487847f92fe2324a8d2aa02e388cf242471d4f445854",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:52:00Z"
+            }
+          }
+        },
+        {
+          "name": "worker-deeptmhmm",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://5f1714aeaf6adf4cb7af1263ca7a8de20cf183852f942f980bbc49648df87f27",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:51:58Z"
+            }
+          }
+        },
+        {
+          "name": "worker-foldx",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://a640ef169b95da797bf6993c7b1a161e9149cfb0ebb778e1fd8ce25f07efb038",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:52:01Z"
+            }
+          }
+        },
+        {
+          "name": "worker-homology",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://3bff5d4f202892d13ed64169b407eeada3736128bfcc17e501d2613547e5b2c3",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:52:00Z"
+            }
+          }
+        },
+        {
+          "name": "worker-netmhc",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://ad42e5080a9ab8eb96007d1e2630c9ee37e5e6d2b9ee5fecd0e114a7623d9623",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:51:59Z"
+            }
+          }
+        },
+        {
+          "name": "worker-structure",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://062a57e837370ff12fabcc423024bbd13a154491a407577071306c367b8a8fa5",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:51:57Z"
+            }
+          }
+        },
+        {
+          "name": "worker-unified-gpu",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://8de16e05aa27368fd1d9b660b9ad705fdef73ddad1b5a16a3c00dc8b55dcea6c",
+              "exitCode": 255,
+              "finishedAt": "2026-09-30T03:17:58Z",
+              "reason": "Unknown",
+              "startedAt": "2026-09-29T13:52:05Z"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "antigen-design-5c7d8949cf-vdv8v",
+      "uid": "b01a38a5-9b9d-4f9b-897f-bd8658935489",
+      "phase": "Pending",
+      "node": "k8s-a100-01",
+      "created": "2026-10-10T02:03:43Z",
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-10T02:05:16Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-10T02:05:20Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-10T02:03:44Z",
+          "message": "containers with unready status: [worker-unified-gpu]",
+          "observedGeneration": 1,
+          "reason": "ContainersNotReady",
+          "status": "False",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-10T02:03:44Z",
+          "message": "containers with unready status: [worker-unified-gpu]",
+          "observedGeneration": 1,
+          "reason": "ContainersNotReady",
+          "status": "False",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-10T02:03:44Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "init": [
+        {
+          "name": "install-project-source",
+          "state": {
+            "terminated": {
+              "containerID": "containerd://7f05588e1b93e47510a94904cb15b524acfcd502c4f36c02bcca009e22a38ba1",
+              "exitCode": 0,
+              "finishedAt": "2026-10-10T02:05:16Z",
+              "reason": "Completed",
+              "startedAt": "2026-10-10T02:05:15Z"
+            }
+          }
+        }
+      ],
+      "containers": [
+        {
+          "name": "service",
+          "ready": true,
+          "restarts": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-10T02:05:21Z"
+            }
+          }
+        },
+        {
+          "name": "worker-aggrescan3d",
+          "ready": true,
+          "restarts": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-10T02:07:37Z"
+            }
+          }
+        },
+        {
+          "name": "worker-bepipred",
+          "ready": true,
+          "restarts": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-10T02:06:13Z"
+            }
+          }
+        },
+        {
+          "name": "worker-blast",
+          "ready": true,
+          "restarts": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-10T02:06:51Z"
+            }
+          }
+        },
+        {
+          "name": "worker-deeptmhmm",
+          "ready": true,
+          "restarts": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-10T02:05:53Z"
+            }
+          }
+        },
+        {
+          "name": "worker-foldx",
+          "ready": true,
+          "restarts": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-10T02:06:57Z"
+            }
+          }
+        },
+        {
+          "name": "worker-homology",
+          "ready": true,
+          "restarts": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-10T02:06:55Z"
+            }
+          }
+        },
+        {
+          "name": "worker-netmhc",
+          "ready": true,
+          "restarts": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-10T02:06:24Z"
+            }
+          }
+        },
+        {
+          "name": "worker-structure",
+          "ready": true,
+          "restarts": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-10T02:05:28Z"
+            }
+          }
+        },
+        {
+          "name": "worker-unified-gpu",
+          "ready": false,
+          "restarts": 0,
+          "state": {
+            "waiting": {
+              "reason": "PodInitializing"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "FilteringSucceed",
+      "message": "find fit node(k8s-a100-01), 0 nodes not fit, 3 nodes fit(k8s-a100-02:11.87,k8s-a4090:14.44,k8s-a100-01:18.38)",
+      "last": "2026-10-10T02:03:44Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "BindingSucceed",
+      "message": "Successfully binding node [k8s-a100-01] to him-ws/antigen-design-5c7d8949cf-vdv8v",
+      "last": "2026-10-10T02:03:44Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Scheduled",
+      "message": "Successfully assigned him-ws/antigen-design-5c7d8949cf-vdv8v to k8s-a100-01",
+      "last": "2026-10-10T02:03:44.138285Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "SuccessfulAttachVolume",
+      "message": "AttachVolume.Attach succeeded for volume \"pvc-a718d985-6a3d-44b9-b007-bddfae8bf452\" ",
+      "last": "2026-10-10T02:03:44Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "SuccessfulAttachVolume",
+      "message": "AttachVolume.Attach succeeded for volume \"pvc-a214e7d2-8805-412c-b1e2-7754e1b894b7\" ",
+      "last": "2026-10-10T02:03:44Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "SuccessfulAttachVolume",
+      "message": "AttachVolume.Attach succeeded for volume \"pvc-d052f609-2be4-473a-886e-a727773089b8\" ",
+      "last": "2026-10-10T02:03:44Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "SuccessfulAttachVolume",
+      "message": "AttachVolume.Attach succeeded for volume \"pvc-69d35e43-5ad8-482d-8680-28531e3f117a\" ",
+      "last": "2026-10-10T02:03:44Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "SuccessfulAttachVolume",
+      "message": "AttachVolume.Attach succeeded for volume \"pvc-2f62ba86-fb95-4ffa-aa68-4d54b0e30337\" ",
+      "last": "2026-10-10T02:03:44Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "SuccessfulAttachVolume",
+      "message": "AttachVolume.Attach succeeded for volume \"pvc-43532483-d30b-4350-af86-1c59c8483ec6\" ",
+      "last": "2026-10-10T02:03:44Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "VolumePermissionChangeInProgress",
+      "message": "Setting volume ownership for b01a38a5-9b9d-4f9b-897f-bd8658935489/volumes/kubernetes.io~csi/pvc-2f62ba86-fb95-4ffa-aa68-4d54b0e30337/mount is taking longer than expected, consider using OnRootMismatch - https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#configure-volume-permission-and-ownership-change-policy-for-pods",
+      "last": "2026-10-10T02:04:18Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Pulling",
+      "message": "Pulling image \"harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:0e572b386fd2ad45d3d9b844910b3ff6fb01ce0ad5d42a1be27e183fb76bdb2b\"",
+      "last": "2026-10-10T02:05:07Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Pulled",
+      "message": "Successfully pulled image \"harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:0e572b386fd2ad45d3d9b844910b3ff6fb01ce0ad5d42a1be27e183fb76bdb2b\" in 7.98s (7.98s including waiting). Image size: 104040498 bytes.",
+      "last": "2026-10-10T02:05:15Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Created",
+      "message": "Container created",
+      "last": "2026-10-10T02:05:15Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Started",
+      "message": "Container started",
+      "last": "2026-10-10T02:05:15Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Pulling",
+      "message": "Pulling image \"harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:0e572b386fd2ad45d3d9b844910b3ff6fb01ce0ad5d42a1be27e183fb76bdb2b\"",
+      "last": "2026-10-10T02:05:20Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Pulled",
+      "message": "Successfully pulled image \"harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:0e572b386fd2ad45d3d9b844910b3ff6fb01ce0ad5d42a1be27e183fb76bdb2b\" in 500ms (500ms including waiting). Image size: 104040498 bytes.",
+      "last": "2026-10-10T02:05:20Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Created",
+      "message": "Container created",
+      "last": "2026-10-10T02:05:20Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Started",
+      "message": "Container started",
+      "last": "2026-10-10T02:05:21Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Pulling",
+      "message": "Pulling image \"harbor-core.base.svc.cluster.local/qcyz/antigen-design-resident-structure@sha256:d1db25e69763755825320c6003ee8a2a740389327b11889e0af04af9104f8f70\"",
+      "last": "2026-10-10T02:05:21Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Pulled",
+      "message": "Successfully pulled image \"harbor-core.base.svc.cluster.local/qcyz/antigen-design-resident-structure@sha256:d1db25e69763755825320c6003ee8a2a740389327b11889e0af04af9104f8f70\" in 7.613s (7.613s including waiting). Image size: 164714776 bytes.",
+      "last": "2026-10-10T02:05:28Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Created",
+      "message": "Container created",
+      "last": "2026-10-10T02:05:28Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Started",
+      "message": "Container started",
+      "last": "2026-10-10T02:05:28Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Pulling",
+      "message": "Pulling image \"harbor-core.base.svc.cluster.local/qcyz/antigen-design-resident-deeptmhmm@sha256:f44806c4a2e66a229ef1bfcba9c6fa2ada8c788ebdbab8259e081796c9c1fe88\"",
+      "last": "2026-10-10T02:05:28Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Pulled",
+      "message": "Successfully pulled image \"harbor-core.base.svc.cluster.local/qcyz/antigen-design-resident-deeptmhmm@sha256:f44806c4a2e66a229ef1bfcba9c6fa2ada8c788ebdbab8259e081796c9c1fe88\" in 24.282s (24.282s including waiting). Image size: 756799641 bytes.",
+      "last": "2026-10-10T02:05:53Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Created",
+      "message": "Container created",
+      "last": "2026-10-10T02:05:53Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Started",
+      "message": "Container started",
+      "last": "2026-10-10T02:05:53Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Pulling",
+      "message": "Pulling image \"harbor-core.base.svc.cluster.local/qcyz/antigen-design-resident-bepipred@sha256:d80e773bef45c7efa8f4964ee1130e69d47af944cfca4e94b882995b399f74a5\"",
+      "last": "2026-10-10T02:05:53Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Pulled",
+      "message": "Successfully pulled image \"harbor-core.base.svc.cluster.local/qcyz/antigen-design-resident-bepipred@sha256:d80e773bef45c7efa8f4964ee1130e69d47af944cfca4e94b882995b399f74a5\" in 19.843s (19.844s including waiting). Image size: 335503929 bytes.",
+      "last": "2026-10-10T02:06:13Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Created",
+      "message": "Container created",
+      "last": "2026-10-10T02:06:13Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Started",
+      "message": "Container started",
+      "last": "2026-10-10T02:06:13Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Pulling",
+      "message": "Pulling image \"harbor-core.base.svc.cluster.local/qcyz/antigen-design-resident-netmhc@sha256:9d3a95bc4da66eaed6998f1bae933a36475c55e9049b84b0c3cdde261878a038\"",
+      "last": "2026-10-10T02:06:13Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Pulled",
+      "message": "Successfully pulled image \"harbor-core.base.svc.cluster.local/qcyz/antigen-design-resident-netmhc@sha256:9d3a95bc4da66eaed6998f1bae933a36475c55e9049b84b0c3cdde261878a038\" in 10.509s (10.509s including waiting). Image size: 280330763 bytes.",
+      "last": "2026-10-10T02:06:24Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Created",
+      "message": "Container created",
+      "last": "2026-10-10T02:06:24Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Started",
+      "message": "Container started",
+      "last": "2026-10-10T02:06:24Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Pulling",
+      "message": "Pulling image \"harbor-core.base.svc.cluster.local/qcyz/antigen-design-resident-blast@sha256:47f7b258c072f1f931ca485e03e76f721dd4a621bf1bd24ece9c1c3d1107057a\"",
+      "last": "2026-10-10T02:06:24Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "FailedMount",
+      "message": "MountVolume.MountDevice failed for volume \"pvc-2f62ba86-fb95-4ffa-aa68-4d54b0e30337\" : kubernetes.io/csi: attacher.MountDevice failed to create newCsiDriverClient: driver name rbd.csi.ceph.com not found in the list of registered CSI drivers",
+      "last": "2026-10-10T02:10:08Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "FailedMount",
+      "message": "MountVolume.MountDevice failed for volume \"pvc-d052f609-2be4-473a-886e-a727773089b8\" : kubernetes.io/csi: attacher.MountDevice failed to create newCsiDriverClient: driver name rbd.csi.ceph.com not found in the list of registered CSI drivers",
+      "last": "2026-10-10T02:10:08Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "FailedMount",
+      "message": "MountVolume.MountDevice failed for volume \"pvc-a214e7d2-8805-412c-b1e2-7754e1b894b7\" : kubernetes.io/csi: attacher.MountDevice failed to create newCsiDriverClient: driver name rbd.csi.ceph.com not found in the list of registered CSI drivers",
+      "last": "2026-10-10T02:10:12Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "FailedMount",
+      "message": "MountVolume.MountDevice failed for volume \"pvc-a718d985-6a3d-44b9-b007-bddfae8bf452\" : kubernetes.io/csi: attacher.MountDevice failed to create newCsiDriverClient: driver name rbd.csi.ceph.com not found in the list of registered CSI drivers",
+      "last": "2026-10-10T02:10:08Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "FailedMount",
+      "message": "MountVolume.MountDevice failed for volume \"pvc-43532483-d30b-4350-af86-1c59c8483ec6\" : kubernetes.io/csi: attacher.MountDevice failed to create newCsiDriverClient: driver name rbd.csi.ceph.com not found in the list of registered CSI drivers",
+      "last": "2026-10-10T02:10:08Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "FailedMount",
+      "message": "MountVolume.MountDevice failed for volume \"pvc-69d35e43-5ad8-482d-8680-28531e3f117a\" : kubernetes.io/csi: attacher.MountDevice failed to create newCsiDriverClient: driver name rbd.csi.ceph.com not found in the list of registered CSI drivers",
+      "last": "2026-10-10T02:10:09Z",
+      "series": null
+    },
+    {
+      "pod": "antigen-design-5c7d8949cf-vdv8v",
+      "reason": "Pulling",
+      "message": "Pulling image \"harbor-core.base.svc.cluster.local/qcyz/antigen-unified-gpu@sha256:ef4586e2849a54a82c97648691b248521b87042123ef624700dc4136d79898fe\"",
+      "last": "2026-10-10T02:10:22Z",
+      "series": null
+    }
+  ]
+}

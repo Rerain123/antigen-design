@@ -1,0 +1,24 @@
+......................F.........................                         [100%]
+================================== FAILURES ===================================
+_______________ test_runtime_routes_to_job_and_reuses_identity ________________
+
+setup = (<t01_phase1_real.development.runtime.Runtime object at 0x000001F4BA3E0050>, <test_kubernetes_runtime_bridge.FakeAPI o..., {'artifacts': [], 'attempt_id': None, 'contract_version': '0.1.0', 'created_at': '2026-09-10T15:09:00.614295Z', ...})
+
+    def test_runtime_routes_to_job_and_reuses_identity(setup):
+        rt,api,j=setup
+        assert rt.dispatch(j['job_id'])['state']=='running'
+        ex=rt.execution(j['job_id']);assert ex['backend']=='kubernetes' and ex['kubernetes_receipt']['uid']=='owned'
+        assert rt.recover(j['job_id'])['state']=='reconciling'
+        assert api.posts==1
+        api.job['status']={'succeeded':1}
+        end=rt.reconcile(j['job_id'])
+>       assert end['state']=='failed' and end['error_code']=='PROFILE_NOT_APPROVED'
+E       AssertionError: assert ('reconciling' == 'failed'
+E         
+E         - failed
+E         + reconciling)
+
+tests\test_kubernetes_runtime_bridge.py:39: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_kubernetes_runtime_bridge.py::test_runtime_routes_to_job_and_reuses_identity
+1 failed, 47 passed in 41.15s

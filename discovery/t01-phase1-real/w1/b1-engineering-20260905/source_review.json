@@ -1,0 +1,76 @@
+{
+  "recorded_on": "2026-09-06",
+  "access_scope": "Public format documentation only; no uploaded structure or sequence was sent and no structure lookup performed",
+  "format_sources": [
+    {
+      "url": "https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_atom_site.auth_seq_id.html",
+      "section": "Item Description / Data Type",
+      "finding": "Author sequence identifiers may be nonnumeric or negative; no implicit iCode split."
+    },
+    {
+      "url": "https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_atom_site.pdbx_PDB_ins_code.html",
+      "section": "Item Description",
+      "finding": "Insertion code is an independent atom_site field."
+    },
+    {
+      "url": "https://www.wwpdb.org/documentation/file-format-content/format33/sect9.html",
+      "section": "MODEL / ATOM",
+      "finding": "PDB model serial and fixed chain/resSeq/iCode columns are recorded separately."
+    },
+    {
+      "url": "https://www.wwpdb.org/documentation/file-format-content/format33/sect2.html",
+      "section": "SOURCE / EXPDTA",
+      "finding": "Preserve complete records and continuation text; do not overwrite user host species."
+    },
+    {
+      "url": "https://mmcif.wwpdb.org/docs/pdb_to_pdbx_correspondences.html",
+      "section": "EXPDTA / SOURCE / REMARK",
+      "finding": "Record method, resolution, organism and expression source categories with their own field names."
+    },
+    {
+      "url": "https://www.iucr.org/what-we-do/digital-standards/cif/cif1/file-syntax",
+      "section": "CIF 1.1 lexical and structural rules",
+      "finding": "Retain quoted and text tokens, scalar items and flat loops; missing markers remain typed."
+    }
+  ],
+  "expert_sections": [
+    {
+      "file": "AgentA_SOP_v10.5_20260902.md",
+      "section": "S-07b/c",
+      "application": "Explicit selection, AUTO first protein chain, all chains, preserve original format"
+    },
+    {
+      "file": "AgentA_SKILL_v10.5_20260902.md",
+      "section": "R-58",
+      "application": "Coordinate and author identity; no mapping/scientific approval here"
+    },
+    {
+      "file": "AgentA_Schema_v10.5_20260902.md",
+      "section": "host_species / structure",
+      "application": "User host and scientific structure.source/confidence remain separate"
+    },
+    {
+      "file": "ToolSpec_结构预测获取链_v10.5.md",
+      "section": "2d",
+      "application": "Local format ingestion; no conversion and no missing-atom denominator inference"
+    },
+    {
+      "file": "ToolSpec_C35_FoldX_v10.5.md",
+      "section": "2a",
+      "application": "Keep 43A example untouched; distinguish literal auth ID from integer+iCode and block unrepresentable FoldX token"
+    },
+    {
+      "file": "一期实施环境清单_v10.5.md",
+      "section": "1a",
+      "application": "Existing Biopython 1.88 development environment; no production version approval"
+    }
+  ],
+  "user_decision": "docs/project/sources/PHASE1_NODE01_OFFLINE_SOURCE_20260903.json",
+  "engineering_decisions": [
+    "Additive facts reader, original integer mapping probe unchanged",
+    "Unknown insertion code is not losslessly representable by an empty string; consumer projection blocks it",
+    "PDB metadata continuation fragments retained without joining or guessing entity attribution",
+    "Strict one-block CIF 1.1 subset; unsupported dialect is distinct from damaged syntax",
+    "All three artifacts remain diagnostic records on rejection; none is a production inventory or approved mapping"
+  ]
+}

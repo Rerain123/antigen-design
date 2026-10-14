@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-m1-p4-blast-worker-config-r01
+  namespace: him-ws
+immutable: true
+data:
+  worker.json: '{"commands":[{"argv":["/usr/bin/python3","-B","/opt/t01/src/t01_phase1_real/development/blast/worker.py"],"environment":{"MKL_NUM_THREADS":"2","MPLCONFIGDIR":"/tmp/matplotlib","OMP_NUM_THREADS":"2","OPENBLAS_NUM_THREADS":"1","PATH":"/usr/local/bin:/usr/bin:/bin:/blast/bin:/opt/conda/bin","PYTHONUNBUFFERED":"1","T01_DATABASE_ROOT":"/t01/databases/blast","T01_PRIVATE_TMP":"1","T01_RESIDENT_OFFLINE":"1","T01_RESIDENT_SLOT":"/run/t01-slot","T01_SOURCE_IMAGE_ID":"sha256:81f118d2e4f7e11494d27fdbb99c9430423105afff50c4ae158db41d58a3fc57"},"memory_bytes":1099511627776,"tool":"blast"}],"version":"0.1.0"}
+
+    '

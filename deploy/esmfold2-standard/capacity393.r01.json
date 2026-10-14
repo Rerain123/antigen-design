@@ -1,0 +1,178 @@
+{
+  "apiVersion": "v1",
+  "kind": "List",
+  "items": [
+    {
+      "apiVersion": "networking.k8s.io/v1",
+      "kind": "NetworkPolicy",
+      "metadata": {
+        "name": "antigen-esmfold2-capacity393-r01-no-egress",
+        "namespace": "him-ws"
+      },
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-esmfold2-capacity393-r01"
+          }
+        },
+        "policyTypes": [
+          "Egress"
+        ],
+        "egress": []
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "ConfigMap",
+      "metadata": {
+        "name": "antigen-esmfold2-capacity393-r01",
+        "namespace": "him-ws"
+      },
+      "immutable": true,
+      "data": {
+        "profile.json": "{\n  \"id\": \"esmfold2-capacity393-experimental-r01\",\n  \"contract_version\": \"t01.structure-worker/0.1\",\n  \"engine\": \"esmfold2\",\n  \"variant\": \"standard\",\n  \"asset_root\": \"/models/esmfold2-standard-20260916-r01\",\n  \"asset_manifest_sha256\": \"77ec2cdd4003e59a5c328ce99858be7e2ce42b8b2d7902971e74426f26a39a8f\",\n  \"environment_root\": \"/models/esmfold2-environment-20260916-r01\",\n  \"environment_manifest_sha256\": \"c719aade5db1dacf747cf1f882061a132558ae359bc5a5dd58fc1f5c955bab39\",\n  \"esmfold2_relative_path\": \"models/ESMFold2\",\n  \"esmc_relative_path\": \"models/ESMC-6B\",\n  \"ccd_relative_path\": \"models/ESMFold2/ccd.pkl\",\n  \"max_sequence_length\": 393,\n  \"max_timeout_seconds\": 1800,\n  \"inference\": {\n    \"num_loops\": 3,\n    \"num_sampling_steps\": 50,\n    \"num_diffusion_samples\": 1,\n    \"esmc_precision\": \"bf16\"\n  },\n  \"network\": \"disabled\",\n  \"scientific_gate\": \"CLOSED\"\n}",
+        "request.json": "{\n  \"contract_version\": \"t01.structure-worker/0.1\",\n  \"request_id\": \"antigen-esmfold2-capacity393-r01\",\n  \"engine\": \"esmfold2\",\n  \"asset_profile_id\": \"esmfold2-capacity393-experimental-r01\",\n  \"inputs\": {\n    \"sequence_id\": \"tp53-p04637-capacity-r01\",\n    \"sequence\": \"MEEPQSDPSVEPPLSQETFSDLWKLLPENNVLSPLPSQAMDDLMLSPDDIEQWFTEDPGPDEAPRMPEAAPPVAPAPAAPTPAAPAPAPSWPLSSSVPSQKTYQGSYGFRLGFLHSGTAKSVTCTYSPALNKMFCQLAKTCPVQLWVDSTPPPGTRVRAMAIYKQSQHMTEVVRRCPHHERCSDSDGLAPPQHLIRVEGNLRVEYLDDRNTFRHSVVVPYEPPEVGSDCTTIHYNYMCNSSCMGGMNRRPILTIITLEDSSGNLLGRNSFEVRVCACPGRDRRTEEENLRKKGEPHHELPPGSTKRALPNNTSSSPQPKKKPLDGEYFTLQIRGRERFEMFRELNEALELKDAQAGKEPGGSRAHSSHLKSKKGQSTSRHKKLMFKTEGPDSD\",\n    \"host_species\": \"Homo sapiens\",\n    \"chain_id\": \"A\"\n  },\n  \"parameters\": {\n    \"seed\": 1,\n    \"num_samples\": 1,\n    \"msa_mode\": \"none\",\n    \"prepared_input\": null,\n    \"timeout_seconds\": 1800\n  }\n}",
+        "run_structure.py": "\"\"\"Offline ESMFold2 standard worker for the t01.structure-worker/0.1 contract.\"\"\"\nfrom __future__ import annotations\n\nimport argparse\nimport hashlib\nimport json\nimport os\nfrom pathlib import Path\nimport re\nimport sys\nimport time\nfrom typing import Any\n\ntry:\n    import resource\nexcept ImportError:  # pragma: no cover - Windows only; worker runs on Linux.\n    resource = None\n\n\nAA20 = frozenset(\"ACDEFGHIKLMNPQRSTVWY\")\nSAFE_ID = re.compile(r\"^[A-Za-z0-9._-]+$\")\nSHA256 = re.compile(r\"^[0-9a-f]{64}$\")\n\n\ndef sha256_file(path: Path) -> str:\n    digest = hashlib.sha256()\n    with path.open(\"rb\") as stream:\n        for block in iter(lambda: stream.read(8 * 1024 * 1024), b\"\"):\n            digest.update(block)\n    return digest.hexdigest()\n\n\ndef read_json(path: Path) -> dict[str, Any]:\n    value = json.loads(path.read_text(encoding=\"utf-8\"))\n    if not isinstance(value, dict):\n        raise ValueError(f\"Expected a JSON object: {path}\")\n    return value\n\n\ndef atomic_json(path: Path, value: Any) -> None:\n    temporary = path.with_suffix(path.suffix + \".new\")\n    temporary.write_text(json.dumps(value, indent=2, sort_keys=True) + \"\\n\", encoding=\"utf-8\")\n    temporary.replace(path)\n\n\ndef validate_profile(profile: dict[str, Any]) -> None:\n    if profile.get(\"contract_version\") != \"t01.structure-worker/0.1\":\n        raise ValueError(\"Unsupported profile contract_version\")\n    if profile.get(\"engine\") != \"esmfold2\" or profile.get(\"variant\") != \"standard\":\n        raise ValueError(\"Profile must select ESMFold2 standard\")\n    if profile.get(\"scientific_gate\") != \"CLOSED\":\n        raise ValueError(\"Engineering profile must keep the scientific gate closed\")\n    if profile.get(\"network\") != \"disabled\":\n        raise ValueError(\"ESMFold2 profile must require disabled networking\")\n    if not SHA256.fullmatch(str(profile.get(\"asset_manifest_sha256\", \"\"))):\n        raise ValueError(\"Invalid asset manifest hash\")\n    if not SHA256.fullmatch(str(profile.get(\"environment_manifest_sha256\", \"\"))):\n        raise ValueError(\"Invalid environment manifest hash\")\n\n\ndef validate_request(request: dict[str, Any], profile: dict[str, Any]) -> None:\n    if request.get(\"contract_version\") != \"t01.structure-worker/0.1\":\n        raise ValueError(\"Unsupported request contract_version\")\n    for key in (\"request_id\",):\n        if not SAFE_ID.fullmatch(str(request.get(key, \"\"))):\n            raise ValueError(f\"Invalid {key}\")\n    if request.get(\"engine\") != \"esmfold2\":\n        raise ValueError(\"Request engine does not match worker\")\n    if request.get(\"asset_profile_id\") != profile.get(\"id\"):\n        raise ValueError(\"Request asset_profile_id does not match profile\")\n    inputs = request.get(\"inputs\")\n    parameters = request.get(\"parameters\")\n    if not isinstance(inputs, dict) or not isinstance(parameters, dict):\n        raise ValueError(\"inputs and parameters must be objects\")\n    if not SAFE_ID.fullmatch(str(inputs.get(\"sequence_id\", \"\"))):\n        raise ValueError(\"Invalid sequence_id\")\n    sequence = inputs.get(\"sequence\")\n    if not isinstance(sequence, str) or not sequence or set(sequence) - AA20:\n        raise ValueError(\"sequence must be non-empty uppercase AA20\")\n    if len(sequence) > int(profile[\"max_sequence_length\"]):\n        raise ValueError(\"sequence exceeds the verified engineering limit\")\n    if not isinstance(inputs.get(\"host_species\"), str) or not inputs[\"host_species\"].strip():\n        raise ValueError(\"host_species is required\")\n    if inputs.get(\"chain_id\") != \"A\":\n        raise ValueError(\"The initial worker supports chain A only\")\n    if parameters.get(\"seed\") != int(parameters.get(\"seed\", -1)) or int(parameters[\"seed\"]) < 0:\n        raise ValueError(\"seed must be a non-negative integer\")\n    if parameters.get(\"num_samples\") != 1:\n        raise ValueError(\"ESMFold2 initial worker requires one sample\")\n    if parameters.get(\"msa_mode\") != \"none\" or parameters.get(\"prepared_input\") is not None:\n        raise ValueError(\"Initial engineering profile only supports explicit msa_mode=none\")\n    timeout = parameters.get(\"timeout_seconds\")\n    if not isinstance(timeout, int) or timeout <= 0 or timeout > int(profile[\"max_timeout_seconds\"]):\n        raise ValueError(\"timeout_seconds is outside the profile limit\")\n\n\ndef verify_assets(profile: dict[str, Any]) -> tuple[Path, dict[str, Any]]:\n    root = Path(profile[\"asset_root\"])\n    manifest_path = root / \"asset-manifest.json\"\n    if sha256_file(manifest_path) != profile[\"asset_manifest_sha256\"]:\n        raise ValueError(\"Asset manifest hash mismatch\")\n    manifest = read_json(manifest_path)\n    if manifest.get(\"status\") != \"ASSETS_DOWNLOADED_NOT_DEPLOYED\":\n        raise ValueError(\"Unexpected source asset state\")\n    files = manifest.get(\"files\")\n    if not isinstance(files, list) or len(files) != 23:\n        raise ValueError(\"Expected the complete 23-file standard asset set\")\n    for row in files:\n        relative = Path(row[\"path\"])\n        if relative.is_absolute() or \"..\" in relative.parts:\n            raise ValueError(\"Unsafe asset path\")\n        path = root / relative\n        if path.stat().st_size != row[\"bytes\"] or sha256_file(path) != row[\"sha256\"]:\n            raise ValueError(f\"Asset integrity mismatch: {relative.as_posix()}\")\n    return root, manifest\n\n\ndef verify_environment(profile: dict[str, Any]) -> tuple[Path, dict[str, Any]]:\n    root = Path(profile[\"environment_root\"])\n    manifest_path = root / \"environment-pvc-manifest.json\"\n    if sha256_file(manifest_path) != profile[\"environment_manifest_sha256\"]:\n        raise ValueError(\"Environment manifest hash mismatch\")\n    manifest = read_json(manifest_path)\n    if manifest.get(\"id\") != \"esmfold2-python312-cu126-pvc-r01\":\n        raise ValueError(\"Unexpected environment id\")\n    if manifest.get(\"scientific_gate\") != \"CLOSED\":\n        raise ValueError(\"Environment manifest must keep the scientific gate closed\")\n    files = manifest.get(\"files\")\n    if not isinstance(files, list) or not files:\n        raise ValueError(\"Environment source files are missing\")\n    for row in files:\n        relative = Path(row[\"path\"])\n        if relative.is_absolute() or \"..\" in relative.parts:\n            raise ValueError(\"Unsafe environment source path\")\n        path = root / relative\n        if path.is_symlink() or path.stat().st_size != row[\"bytes\"] or sha256_file(path) != row[\"sha256\"]:\n            raise ValueError(f\"Environment source integrity mismatch: {relative.as_posix()}\")\n\n    extracted = manifest.get(\"extracted\")\n    if not isinstance(extracted, dict) or extracted.get(\"root\") != \"site-packages\":\n        raise ValueError(\"Unexpected extracted environment root\")\n    tree_manifest = read_json(root / str(extracted.get(\"manifest\")))\n    rows = tree_manifest.get(\"files\")\n    if not isinstance(rows, list) or len(rows) != extracted.get(\"file_count\"):\n        raise ValueError(\"Environment tree manifest count mismatch\")\n    site_packages = root / \"site-packages\"\n    expected_paths: set[str] = set()\n    total_bytes = 0\n    for row in rows:\n        relative = Path(row[\"path\"])\n        relative_posix = relative.as_posix()\n        if relative.is_absolute() or \"..\" in relative.parts or relative_posix in expected_paths:\n            raise ValueError(\"Unsafe or duplicate environment tree path\")\n        expected_paths.add(relative_posix)\n        path = site_packages / relative\n        if path.is_symlink() or path.stat().st_size != row[\"bytes\"] or sha256_file(path) != row[\"sha256\"]:\n            raise ValueError(f\"Environment tree integrity mismatch: {relative_posix}\")\n        total_bytes += row[\"bytes\"]\n    actual_paths = {\n        path.relative_to(site_packages).as_posix()\n        for path in site_packages.rglob(\"*\")\n        if path.is_file()\n    }\n    if actual_paths != expected_paths or total_bytes != extracted.get(\"total_bytes\"):\n        raise ValueError(\"Extracted environment file set mismatch\")\n    return root, manifest\n\n\ndef make_manifest(output: Path) -> dict[str, Any]:\n    files = []\n    for path in sorted(p for p in output.rglob(\"*\") if p.is_file() and p.name != \"manifest.json\"):\n        files.append(\n            {\n                \"path\": path.relative_to(output).as_posix(),\n                \"size_bytes\": path.stat().st_size,\n                \"sha256\": sha256_file(path),\n            }\n        )\n    return {\"schema_version\": \"1.0\", \"files\": files}\n\n\ndef run(request_path: Path, output: Path, profile_path: Path) -> None:\n    if output.exists():\n        raise ValueError(\"output-dir must not already exist\")\n    request = read_json(request_path)\n    profile = read_json(profile_path)\n    validate_profile(profile)\n    validate_request(request, profile)\n    output.mkdir(parents=False)\n    started = time.time()\n    try:\n        asset_root, asset_manifest = verify_assets(profile)\n        environment_root, environment_manifest = verify_environment(profile)\n        esmfold_path = asset_root / profile[\"esmfold2_relative_path\"]\n        esmc_path = asset_root / profile[\"esmc_relative_path\"]\n        ccd_path = asset_root / profile[\"ccd_relative_path\"]\n        for path in (esmfold_path, esmc_path, ccd_path):\n            if not path.exists():\n                raise ValueError(f\"Missing registered asset: {path.name}\")\n\n        os.environ.update(\n            {\n                \"HF_HUB_OFFLINE\": \"1\",\n                \"TRANSFORMERS_OFFLINE\": \"1\",\n                \"HF_HUB_DISABLE_TELEMETRY\": \"1\",\n                \"ESMCFOLD_CCD_PATH\": str(ccd_path),\n            }\n        )\n        import torch\n        from esm.models.esmfold2 import ESMFold2InputBuilder\n        from esm.utils.structure.input_builder import ProteinInput, StructurePredictionInput\n        from transformers.models.esmfold2.modeling_esmfold2 import ESMFold2Model\n\n        if not torch.cuda.is_available():\n            raise RuntimeError(\"CUDA is required\")\n        torch.cuda.reset_peak_memory_stats()\n        from esmc_strict_loader import load_esmc_strict, require_clean_loading\n        model, loading_info = ESMFold2Model.from_pretrained(\n            str(esmfold_path), load_esmc=False, local_files_only=True,\n            output_loading_info=True,\n        )\n        require_clean_loading(loading_info, \"ESMFold2\")\n        print(\"ESMFOLD2_PARAMETERS_STRICTLY_LOADED missing=0 unexpected=0\", flush=True)\n        model = model.to(\"cuda\").eval()\n        esmc_loading = load_esmc_strict(model, esmc_path)\n        atomic_json(output / \"checkpoint-loading.json\", {\"esmfold2\": loading_info, \"esmc\": esmc_loading})\n        print(\"ESMFOLD2_INFERENCE_START\", flush=True)\n        sequence = request[\"inputs\"][\"sequence\"]\n        builder = ESMFold2InputBuilder()\n        prediction_input = StructurePredictionInput(\n            sequences=[ProteinInput(id=\"A\", sequence=sequence, msa=None)]\n        )\n        result = builder.fold(\n            model,\n            prediction_input,\n            num_loops=int(profile[\"inference\"][\"num_loops\"]),\n            num_sampling_steps=int(profile[\"inference\"][\"num_sampling_steps\"]),\n            num_diffusion_samples=1,\n            seed=int(request[\"parameters\"][\"seed\"]),\n            complex_id=request[\"inputs\"][\"sequence_id\"],\n        )\n        structure = result.complex.to_mmcif()\n        structure_path = output / \"structure.cif\"\n        structure_path.write_text(structure, encoding=\"utf-8\")\n        plddt = result.plddt.detach().float().cpu()\n        if not torch.isfinite(plddt).all().item():\n            raise ValueError(\"Non-finite predicted confidence\")\n        metrics = {\n            \"mean_plddt\": float(plddt.mean().item()),\n            \"min_plddt\": float(plddt.min().item()),\n            \"max_plddt\": float(plddt.max().item()),\n            \"ptm\": result.ptm,\n            \"iptm\": result.iptm,\n        }\n        atomic_json(output / \"metrics.json\", metrics)\n        atomic_json(\n            output / \"execution.json\",\n            {\n                \"engine\": \"esmfold2\",\n                \"variant\": \"standard\",\n                \"network\": \"disabled\",\n                \"python\": sys.version.split()[0],\n                \"torch\": torch.__version__,\n                \"cuda\": torch.version.cuda,\n                \"gpu_name\": torch.cuda.get_device_name(0),\n                \"gpu_capability\": list(torch.cuda.get_device_capability(0)),\n                \"peak_gpu_memory_bytes\": torch.cuda.max_memory_allocated(),\n                \"peak_process_rss_kib\": (\n                    resource.getrusage(resource.RUSAGE_SELF).ru_maxrss if resource else None\n                ),\n                \"elapsed_seconds\": time.time() - started,\n                \"asset_manifest_sha256\": profile[\"asset_manifest_sha256\"],\n                \"asset_file_count\": len(asset_manifest[\"files\"]),\n                \"environment_manifest_sha256\": profile[\"environment_manifest_sha256\"],\n                \"environment_file_count\": environment_manifest[\"extracted\"][\"file_count\"],\n                \"environment_root\": str(environment_root),\n                \"offline_asset_paths\": {\n                    \"esmfold2\": profile[\"esmfold2_relative_path\"],\n                    \"esmc\": profile[\"esmc_relative_path\"],\n                    \"ccd\": profile[\"ccd_relative_path\"],\n                },\n            },\n        )\n        atomic_json(\n            output / \"result.json\",\n            {\n                \"contract_version\": \"t01.structure-worker/0.1\",\n                \"request_id\": request[\"request_id\"],\n                \"sequence_id\": request[\"inputs\"][\"sequence_id\"],\n                \"sequence_sha256\": hashlib.sha256(sequence.encode()).hexdigest(),\n                \"engine\": \"esmfold2\",\n                \"variant\": \"standard\",\n                \"msa_mode\": \"none\",\n                \"status\": \"predicted_engineering_unreviewed\",\n                \"structure\": {\n                    \"path\": \"structure.cif\",\n                    \"sha256\": sha256_file(structure_path),\n                    \"format\": \"mmcif\",\n                    \"chain_id\": \"A\",\n                },\n                \"metrics\": metrics,\n                \"scientific_gate\": \"CLOSED\",\n                \"usable_for_pipeline\": False,\n            },\n        )\n        atomic_json(output / \"profile.json\", profile)\n        atomic_json(output / \"request.json\", request)\n        atomic_json(output / \"manifest.json\", make_manifest(output))\n    except Exception as exc:\n        atomic_json(\n            output / \"failure.json\",\n            {\n                \"status\": \"failed\",\n                \"error_type\": type(exc).__name__,\n                \"message\": str(exc),\n                \"scientific_gate\": \"CLOSED\",\n            },\n        )\n        atomic_json(output / \"manifest.json\", make_manifest(output))\n        raise\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"--input\", required=True, type=Path)\n    parser.add_argument(\"--output-dir\", required=True, type=Path)\n    parser.add_argument(\"--profile\", required=True, type=Path)\n    args = parser.parse_args()\n    run(args.input, args.output_dir, args.profile)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+        "esmc_strict_loader.py": "\"\"\"Strict local loader for published ESMC weights into the pinned Biohub model.\n\nLayout reference (exact concatenation; no trained-value changes):\nBiohub/esm@43b4548b86762edfa747b07d5f440aad3c33acee\nesm/models/esmc/checkpoint_layout.py, published_to_native.\nAll original assets remain read-only. No remote code or network access.\n\"\"\"\nfrom __future__ import annotations\n\nfrom contextlib import ExitStack\nimport json\nfrom pathlib import Path\nimport time\n\nROOT_KEYS = {'embed.weight': 'esmc.embed_tokens.weight',\n             'transformer.norm.weight': 'esmc.norm.weight'}\nBLOCK_KEYS = {\n    'attn.layernorm_qkv.layer_norm_weight': ('input_layernorm.weight',),\n    'attn.layernorm_qkv.layer_norm_bias': ('input_layernorm.bias',),\n    'attn.q_ln.weight': ('self_attn.q_norm.weight',),\n    'attn.k_ln.weight': ('self_attn.k_norm.weight',),\n    'attn.out_proj.weight': ('self_attn.o_proj.weight',),\n    'ffn.layer_norm_weight': ('post_attention_layernorm.weight',),\n    'ffn.layer_norm_bias': ('post_attention_layernorm.bias',),\n    'ffn.fc2_weight': ('mlp.down_proj.weight',),\n    'attn.layernorm_qkv.weight': ('self_attn.q_proj.weight', 'self_attn.k_proj.weight', 'self_attn.v_proj.weight'),\n    'ffn.fc1_weight': ('mlp.gate_proj.weight', 'mlp.up_proj.weight'),\n}\nHEAD_KEYS = {'lm_head.' + key for key in ('dense.weight', 'dense.bias',\n             'layer_norm.weight', 'layer_norm.bias', 'decoder.weight', 'decoder.bias')}\n\n\ndef source_keys(name):\n    if name in ROOT_KEYS:\n        return (ROOT_KEYS[name],)\n    parts = name.split('.')\n    if len(parts) < 4 or parts[:2] != ['transformer', 'blocks'] or not parts[2].isdigit():\n        raise ValueError('Unknown native ESMC key: ' + name)\n    leaves = BLOCK_KEYS['.'.join(parts[3:])]\n    return tuple(f'esmc.layers.{parts[2]}.{leaf}' for leaf in leaves)\n\n\ndef validate_config(raw):\n    expected = {'model_type': 'esmc', 'hidden_size': 2560, 'num_attention_heads': 40,\n                'num_key_value_heads': 40, 'num_hidden_layers': 80, 'head_dim': 64,\n                'intermediate_size': 6912, 'vocab_size': 64, 'attention_bias': False,\n                'mlp_bias': False, 'hidden_act': 'silu', 'attention_dropout': 0.0,\n                'pad_token_id': 1, 'mask_token_id': 32}\n    if any(raw.get(k) != v for k, v in expected.items()):\n        raise ValueError('Unsupported published ESMC configuration')\n    if raw.get('rope_parameters') != {'rope_theta': 10000.0, 'rope_type': 'default'}:\n        raise ValueError('Unsupported ESMC rotary configuration')\n\n\ndef load_encoder(root, config, device, dtype, *, validate_only=False):\n    \"\"\"Materialize every native parameter from verified local checkpoint tensors.\"\"\"\n    import torch\n    from accelerate import init_empty_weights\n    from accelerate.utils import set_module_tensor_to_device\n    from safetensors import safe_open\n    from transformers.models.esmc.modeling_esmc import ESMCModel\n\n    index = json.loads((root / 'model.safetensors.index.json').read_bytes())['weight_map']\n    with init_empty_weights(include_buffers=False):\n        encoder = ESMCModel(config)\n    expected = dict(encoder.named_parameters())\n    plan = {name: source_keys(name) for name in expected}\n    consumed = [key for keys in plan.values() for key in keys]\n    if len(consumed) != len(set(consumed)):\n        raise ValueError('Duplicate checkpoint tensor mapping')\n    if set(index) != set(consumed) | HEAD_KEYS:\n        raise ValueError('ESMC checkpoint has missing or unexpected parameter keys')\n\n    with ExitStack() as stack:\n        handles = {}\n        for filename in sorted(set(index.values())):\n            if Path(filename).name != filename or '/' in filename or '\\\\' in filename:\n                raise ValueError('Unsafe ESMC shard name')\n            handles[filename] = stack.enter_context(safe_open(str(root / filename), framework='pt', device='cpu'))\n        actual = {}\n        for filename, handle in handles.items():\n            for key in handle.keys():\n                if key in actual:\n                    raise ValueError('Duplicate key in ESMC shard files')\n                actual[key] = filename\n        if actual != index:\n            raise ValueError('ESMC shard headers differ from index')\n        # Check the entire mapping before allocating any real model parameter.\n        for name, keys in plan.items():\n            shapes = [handles[index[k]].get_slice(k).get_shape() for k in keys]\n            shape = [sum(s[0] for s in shapes), *shapes[0][1:]]\n            if any(s[1:] != shapes[0][1:] for s in shapes) or tuple(shape) != tuple(expected[name].shape):\n                raise ValueError('ESMC tensor shape mismatch: ' + name)\n        print('ESMC_KEY_MAPPING_VERIFIED', len(expected), len(consumed), flush=True)\n        if validate_only:\n            return {'native_parameters': len(expected), 'source_encoder_tensors': len(consumed),\n                    'checkpoint_tensors': len(index), 'tensor_values_loaded': False}\n        last = time.monotonic()\n        for count, (name, keys) in enumerate(plan.items(), 1):\n            tensors = [handles[index[k]].get_tensor(k) for k in keys]\n            for tensor in tensors:\n                if tensor.dtype != torch.float32 or not torch.isfinite(tensor).all().item():\n                    raise ValueError('Non-finite or unexpected dtype in ESMC parameter: ' + name)\n            value = tensors[0] if len(tensors) == 1 else torch.cat(tensors, dim=0)\n            set_module_tensor_to_device(encoder, name, device, value=value, dtype=dtype)\n            del value, tensors\n            if time.monotonic() - last >= 30:\n                print('ESMC_PARAMETER_LOAD_PROGRESS', count, len(plan), flush=True)\n                last = time.monotonic()\n    if any(p.is_meta for p in encoder.parameters()):\n        raise ValueError('ESMC parameters remain uninitialized')\n    encoder.to(device=device, dtype=dtype).eval()\n    for parameter in encoder.parameters():\n        parameter.requires_grad_(False)\n    receipt = {'native_parameters_loaded': len(expected), 'source_encoder_tensors': len(consumed),\n               'omitted_masked_lm_head_keys': sorted(HEAD_KEYS), 'missing_keys': [],\n               'unexpected_keys': [], 'layout': 'published_split_to_native_fused',\n               'source_layout_reference': 'Biohub/esm@43b4548b86762edfa747b07d5f440aad3c33acee',\n               'precision': str(dtype)}\n    print('ESMC_PARAMETERS_STRICTLY_LOADED', len(expected), 'missing=0 unexpected=0', flush=True)\n    return encoder, receipt\n\n\ndef load_esmc_strict(model, root):\n    import torch\n    from transformers.models.esmc.configuration_esmc import ESMCConfig\n    raw = json.loads((root / 'config.json').read_bytes())\n    validate_config(raw)\n    config = ESMCConfig(d_model=raw['hidden_size'], n_heads=raw['num_attention_heads'],\n                        n_layers=raw['num_hidden_layers'], vocab_size=raw['vocab_size'],\n                        pad_token_id=raw['pad_token_id'], mask_token_id=raw['mask_token_id'])\n    model._esmc, receipt = load_encoder(root, config, model.device, torch.bfloat16)\n    model._esmc_fp8 = False\n    return receipt\n\n\ndef require_clean_loading(info, label):\n    failures = {key: info.get(key) for key in ('missing_keys', 'unexpected_keys', 'mismatched_keys', 'error_msgs') if info.get(key)}\n    if failures:\n        raise ValueError(label + ' checkpoint loading incomplete: ' + json.dumps(failures))\n",
+        "sequence-provenance.json": "{\"identifier\": \"UniProtKB:P04637\", \"length\": 393, \"source_file\": \"tests\\\\fixtures\\\\structure_mapping\\\\real\\\\5XZC.fasta\", \"source_file_sha256\": \"a5c70cd6ea90eedac06af5c41218f472405bd4024d6041595c1a0a95b210f341\", \"sequence_sha256\": \"e3ca60f18e3b6e98986ad6749215ee3b7a3abc09c191675213d1f243c035c9a3\", \"use\": \"Fresh engineering capacity run only; no historical structure or acceptance reused\", \"scientific_gate\": \"CLOSED\"}",
+        "resident_offline.py": "\"\"\"Inherited socket restriction for the registered Linux/amd64 native tools.\n\nUses the Linux seccomp ABI (kernel.org/doc/html/latest/userspace-api/seccomp_filter.html).\nThis is an offline execution guard, not a sandbox for untrusted executable code.\n\"\"\"\nimport ctypes\nimport errno\nimport platform\n\n\ndef restrict_sockets():\n    if platform.machine() != 'x86_64':\n        raise RuntimeError('Resident scientific profile requires Linux amd64')\n    class Filter(ctypes.Structure):\n        _fields_ = [('code', ctypes.c_ushort), ('jt', ctypes.c_ubyte),\n                    ('jf', ctypes.c_ubyte), ('k', ctypes.c_uint)]\n    class Program(ctypes.Structure):\n        _fields_ = [('len', ctypes.c_ushort), ('filter', ctypes.POINTER(Filter))]\n    allow = 0x7fff0000\n    deny = 0x00050000 | errno.EPERM\n    # seccomp_data: nr at 0, arch at 4, args[0] at 16. AF_UNIX is for\n    # local IPC, AF_NETLINK for interface enumeration. Reject alternate ABIs and io_uring,\n    # which could otherwise issue socket operations outside this filter.\n    rows = [(0x20,0,0,4), (0x15,1,0,0xc000003e), (0x06,0,0,deny),\n            (0x20,0,0,0), (0x35,0,1,0x40000000), (0x06,0,0,deny),\n            (0x15,0,1,425), (0x06,0,0,deny),\n            (0x15,1,0,41), (0x06,0,0,allow),\n            (0x20,0,0,16), (0x15,2,0,1), (0x15,1,0,16),\n            (0x06,0,0,deny), (0x06,0,0,allow)]\n    filters = (Filter * len(rows))(*(Filter(*row) for row in rows))\n    program = Program(len(rows), filters)\n    libc = ctypes.CDLL(None, use_errno=True)\n    if libc.prctl(38, 1, 0, 0, 0) or libc.prctl(22, 2, ctypes.byref(program), 0, 0):\n        raise OSError(ctypes.get_errno(), 'Cannot install resident offline socket restriction')\n    return 'seccomp-local-sockets-only-v1'\n",
+        "launch.py": "import fcntl,hashlib,json,os,runpy,socket,sys\nfrom pathlib import Path\nexpected={'run_structure.py': '8763edf2b8d08f79708680792b1ba9c4e7ecff3abc1aea1d331e6a9e0d61a21d', 'esmc_strict_loader.py': '871335fde4d91c984ae6464715ffd4c49e363c3be33f99051d38db9c10219fd7', 'resident_offline.py': 'ccc66a45d43f663b15d6b61e68d6b087339e2a11998b27221738192e99f7f079'}\nfor name,digest in expected.items():\n    assert hashlib.sha256((Path('/config')/name).read_bytes()).hexdigest()==digest\nsys.path.insert(0,'/config')\nlock=os.open('/shared/.gpu-execution.lock',os.O_CREAT|os.O_RDWR|os.O_NOFOLLOW,0o600)\nprint('CAPACITY_WAITING_FOR_GPU_LOCK',flush=True)\nfcntl.flock(lock,fcntl.LOCK_EX)\nfrom resident_offline import restrict_sockets\nrestriction=restrict_sockets()\nfor family in (socket.AF_INET,socket.AF_INET6):\n    try: socket.socket(family,socket.SOCK_STREAM)\n    except PermissionError: pass\n    else: raise RuntimeError('INET socket allowed')\nroot=Path('/shared/capacity393-20260918-r01')\nroot.mkdir(exist_ok=False)\n(root/'network.json').write_text(json.dumps(dict(restriction=restriction,socket_probe='INET_INET6_DENIED')))\nfor name in ('request.json','profile.json','sequence-provenance.json'):\n    (root/name).write_bytes((Path('/config')/name).read_bytes())\nsys.argv=['/config/run_structure.py','--input','/config/request.json','--output-dir',str(root/'native'),'--profile','/config/profile.json']\nprint('ESMFOLD2_CAPACITY_START 393 experimental_not_supported_range',flush=True)\nrunpy.run_path('/config/run_structure.py',run_name='__main__')\nprint('ESMFOLD2_CAPACITY_NATIVE_COMPLETED_REQUIRES_AUDIT',flush=True)\n"
+      }
+    },
+    {
+      "apiVersion": "batch/v1",
+      "kind": "Job",
+      "metadata": {
+        "name": "antigen-esmfold2-capacity393-r01",
+        "namespace": "him-ws",
+        "labels": {
+          "app": "antigen-esmfold2-capacity393-r01"
+        }
+      },
+      "spec": {
+        "backoffLimit": 0,
+        "activeDeadlineSeconds": 1800,
+        "template": {
+          "metadata": {
+            "labels": {
+              "app": "antigen-esmfold2-capacity393-r01"
+            }
+          },
+          "spec": {
+            "restartPolicy": "Never",
+            "automountServiceAccountToken": false,
+            "runtimeClassName": "nvidia",
+            "schedulerName": "hami-scheduler",
+            "imagePullSecrets": [
+              {
+                "name": "harbor"
+              }
+            ],
+            "securityContext": {
+              "runAsNonRoot": true,
+              "runAsUser": 10001,
+              "runAsGroup": 10001,
+              "fsGroup": 10001,
+              "fsGroupChangePolicy": "OnRootMismatch"
+            },
+            "containers": [
+              {
+                "name": "worker",
+                "image": "harbor-core.base.svc.cluster.local/qcyz/antigen-esmfold2@sha256:372545ebe3469a3d32269c27033d19624d713d75ca162dbe6fff5dafed44f77f",
+                "resources": {
+                  "requests": {
+                    "cpu": "2",
+                    "memory": "32Gi",
+                    "ephemeral-storage": "2Gi"
+                  },
+                  "limits": {
+                    "cpu": "8",
+                    "memory": "64Gi",
+                    "ephemeral-storage": "8Gi",
+                    "nvidia.com/gpu": 1,
+                    "nvidia.com/gpumem": 32768
+                  }
+                },
+                "securityContext": {
+                  "allowPrivilegeEscalation": false,
+                  "readOnlyRootFilesystem": true,
+                  "capabilities": {
+                    "drop": [
+                      "ALL"
+                    ]
+                  }
+                },
+                "volumeMounts": [
+                  {
+                    "name": "models",
+                    "mountPath": "/models",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "config",
+                    "mountPath": "/config",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "tmp",
+                    "mountPath": "/tmp"
+                  },
+                  {
+                    "name": "shared",
+                    "mountPath": "/shared"
+                  }
+                ],
+                "command": [
+                  "python",
+                  "-u",
+                  "-B",
+                  "/config/launch.py"
+                ]
+              }
+            ],
+            "volumes": [
+              {
+                "name": "models",
+                "persistentVolumeClaim": {
+                  "claimName": "antigen-esmfold2-models"
+                }
+              },
+              {
+                "name": "config",
+                "configMap": {
+                  "name": "antigen-esmfold2-capacity393-r01"
+                }
+              },
+              {
+                "name": "tmp",
+                "emptyDir": {
+                  "sizeLimit": "8Gi"
+                }
+              },
+              {
+                "name": "shared",
+                "persistentVolumeClaim": {
+                  "claimName": "antigen-design-runtime"
+                }
+              }
+            ],
+            "affinity": {
+              "podAffinity": {
+                "requiredDuringSchedulingIgnoredDuringExecution": [
+                  {
+                    "labelSelector": {
+                      "matchLabels": {
+                        "app.kubernetes.io/name": "antigen-design"
+                      }
+                    },
+                    "topologyKey": "kubernetes.io/hostname"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

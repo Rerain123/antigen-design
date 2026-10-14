@@ -1,0 +1,71 @@
+[
+    {
+        "Id": "sha256:e1aff495e254ca4da513286f4ada0e1e0a071a2ffd9e0bc8ae3d2e6c91384149",
+        "RepoTags": [
+            "t01-bepipred-development:3.0-bp3-0.0.12.7-20260906"
+        ],
+        "RepoDigests": [
+            "t01-bepipred-development@sha256:e1aff495e254ca4da513286f4ada0e1e0a071a2ffd9e0bc8ae3d2e6c91384149"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-09-06T13:32:20.520162102Z",
+        "Config": {
+            "Env": [
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "GPG_KEY=A035C8C19219BA821ECEA86B64E628F8D684696D",
+                "PYTHON_VERSION=3.10.21",
+                "PYTHON_SHA256=a0da1e72132e950154eca0f6f47d5db828454700de20e5113667940d81e0db04",
+                "PIP_DISABLE_PIP_VERSION_CHECK=1",
+                "PIP_NO_CACHE_DIR=1",
+                "MPLCONFIGDIR=/tmp/matplotlib",
+                "PYTHONDONTWRITEBYTECODE=1",
+                "PYTHONUNBUFFERED=1",
+                "HOME=/tmp",
+                "CUDA_VISIBLE_DEVICES=-1",
+                "OMP_NUM_THREADS=8",
+                "MKL_NUM_THREADS=8",
+                "OPENBLAS_NUM_THREADS=8"
+            ],
+            "Cmd": [
+                "python3"
+            ],
+            "WorkingDir": "/app"
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 321566141,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:1d69a5fd31932841d7825ef4780c06f008eea65aaa9f3110fe09d5832ed5c7d8",
+                "sha256:bc08d63eb54f5b356e84c8dd9880ffd0133e4afee9ce504dc7903eae7452ac30",
+                "sha256:7ef08dc5bba795ade698c25496041300ff0794999d26f6a2f4bba0901a378614",
+                "sha256:61496c170ab8b68fb6d154b388ee9e890c8000f1995ac487261769e7dbcfafb6",
+                "sha256:58ac70f3239550064763276c98b2fd6c456a9057e7864e6e5a2f21ece40508f6",
+                "sha256:4316ea79ac3a699223665507f8c6c4a179db58b0850cb1c149ae5ed8e56944b2",
+                "sha256:8a68331bfb7e648f9317178d196fc1c47c153d8039fce5e392e322d3cac72472",
+                "sha256:89a42f47d26093d7c8490ae6b79887ae13acb57970509c0ef4488d0950b57223",
+                "sha256:2aa903a7a2a423a02075844fca8a5edeb7f89794f676459e374afa2b2962ff98",
+                "sha256:15aa4fcacea7abf10f02fa7e5b7a842923532de45ce35eb96221eb17ea64b036",
+                "sha256:67bd274d568add3dcf455b0fe5de275a180da46774506e6d8e204a0263de690c"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-09-06T13:32:35.822135351Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:e1aff495e254ca4da513286f4ada0e1e0a071a2ffd9e0bc8ae3d2e6c91384149",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "glqy8x0bc0ktw4blthgy9a9lg",
+                    "CreatedAt": "2026-09-06T13:32:50.011429612Z"
+                }
+            ]
+        }
+    }
+]

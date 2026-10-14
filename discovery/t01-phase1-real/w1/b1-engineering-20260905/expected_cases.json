@@ -1,0 +1,954 @@
+{
+  "declared_before_campaign_execution": true,
+  "prepared_at": "2026-09-05T16:21:32.437162+00:00",
+  "expectation_source": {
+    "path": "scripts/b1_engineering_cases.py",
+    "sha256": "fe2128848a5e4bb090ecc4d568def096b03582befbfa57710ba05399a7dfd13c",
+    "size_bytes": 10580
+  },
+  "independent_basis": "Literal file edits, known prior atom counts and format rules; no scientific accuracy claim",
+  "cases": [
+    {
+      "id": "E-real-1ubq",
+      "input": {
+        "path": "inputs/E-real-1ubq.structure",
+        "sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+        "size_bytes": 103220
+      },
+      "request": {
+        "path": "inputs/E-real-1ubq.request.json",
+        "sha256": "14f85356b2fd7ce0c8531edef27317ddf4516cb1635ceebf7c604595cc3b5f90",
+        "size_bytes": 1094
+      },
+      "source": {
+        "path": "tests/fixtures/structure_mapping/real/1UBQ.cif",
+        "sha256": "056f98710cb2b36f633c45e41902a02eb446e82871da21ff2dd44f74a56ca0f6",
+        "size_bytes": 103220
+      },
+      "evidence_scope": "REUSED_LOCAL_FILE",
+      "expected": {
+        "error": null,
+        "atoms": 660,
+        "auto": [
+          "A"
+        ],
+        "chain": "A"
+      }
+    },
+    {
+      "id": "E-real-5xzc",
+      "input": {
+        "path": "inputs/E-real-5xzc.structure",
+        "sha256": "744ea7b74175865b1c1c3538d714a75ac10ac5cbee166c0547aa2c2a29f74b9a",
+        "size_bytes": 268943
+      },
+      "request": {
+        "path": "inputs/E-real-5xzc.request.json",
+        "sha256": "c1ab9ada3cf839af0f4d0d124dfdb1fde6c4d2e649c1aefb22f7f481f2b6d7a2",
+        "size_bytes": 1411
+      },
+      "source": {
+        "path": "tests/fixtures/structure_mapping/real/5XZC.cif",
+        "sha256": "744ea7b74175865b1c1c3538d714a75ac10ac5cbee166c0547aa2c2a29f74b9a",
+        "size_bytes": 268943
+      },
+      "evidence_scope": "REUSED_LOCAL_FILE",
+      "expected": {
+        "error": null,
+        "atoms": 1547,
+        "auto": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E"
+        ],
+        "chain": "A"
+      }
+    },
+    {
+      "id": "E-pdb-icode",
+      "input": {
+        "path": "inputs/E-pdb-icode.structure",
+        "sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+        "size_bytes": 725
+      },
+      "request": {
+        "path": "inputs/E-pdb-icode.request.json",
+        "sha256": "131769383d688cbffd48f3c822d6c681ae4487508a240e93b9d7fac0e62c8780",
+        "size_bytes": 1016
+      },
+      "source": {
+        "path": "tests/fixtures/structure_mapping/synthetic/partial-icode.pdb",
+        "sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+        "size_bytes": 725
+      },
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": null,
+        "atoms": 8,
+        "auth_ids": [
+          "42",
+          "42"
+        ],
+        "icodes": [
+          "",
+          "A"
+        ],
+        "pdb": [
+          true,
+          true
+        ],
+        "foldx": [
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "E-format-cif-as-pdb",
+      "input": {
+        "path": "inputs/E-format-cif-as-pdb.structure",
+        "sha256": "8ece7f81bf443e198f0268cb028be06baa483c2d3917fc89ea7623423b34e6cf",
+        "size_bytes": 554
+      },
+      "request": {
+        "path": "inputs/E-format-cif-as-pdb.request.json",
+        "sha256": "d35354cc2c146234de6b381f31e3acf79016ef3c1959292107021f716b2f708e",
+        "size_bytes": 1046
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "FORMAT_MISMATCH",
+        "atoms": 1
+      }
+    },
+    {
+      "id": "E-format-pdb-as-cif",
+      "input": {
+        "path": "inputs/E-format-pdb-as-cif.structure",
+        "sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+        "size_bytes": 725
+      },
+      "request": {
+        "path": "inputs/E-format-pdb-as-cif.request.json",
+        "sha256": "2db605689daefbea9de257784309082da4ebdd8db85defc12673308afe4b97b3",
+        "size_bytes": 1048
+      },
+      "source": {
+        "path": "tests/fixtures/structure_mapping/synthetic/partial-icode.pdb",
+        "sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+        "size_bytes": 725
+      },
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "FORMAT_MISMATCH",
+        "atoms": 8
+      }
+    },
+    {
+      "id": "E-zip",
+      "input": {
+        "path": "inputs/E-zip.structure",
+        "sha256": "ab26c88d690490a5b3d849cb2940bc0d41c0581931fcc7642193e2389a85bcf5",
+        "size_bytes": 5
+      },
+      "request": {
+        "path": "inputs/E-zip.request.json",
+        "sha256": "4cc6a3d29cc64d5b75e58e889faef87c51c4076184702cb2bf0b1f57bcb5630f",
+        "size_bytes": 988
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "INPUT_UNSUPPORTED",
+        "atoms": 0
+      }
+    },
+    {
+      "id": "E-url",
+      "input": {
+        "path": "inputs/E-url.structure",
+        "sha256": "278186492cbc607cf7b4f03e454bd7addce9a5281925dea0a39dc4d78107e678",
+        "size_bytes": 37
+      },
+      "request": {
+        "path": "inputs/E-url.request.json",
+        "sha256": "897c335a6de15c268d0f7ea566b0f2cdf8ec461a9c3d112aa692b87c4d57e37b",
+        "size_bytes": 989
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "INPUT_UNSUPPORTED",
+        "atoms": 0
+      }
+    },
+    {
+      "id": "E-empty",
+      "input": {
+        "path": "inputs/E-empty.structure",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size_bytes": 0
+      },
+      "request": {
+        "path": "inputs/E-empty.request.json",
+        "sha256": "a53d25b0f9073bceda8c67bb9f5cce9aa9cc856ea85b41e4b639b461bb13b7a8",
+        "size_bytes": 996
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "PARSE_FAILED",
+        "atoms": 0
+      }
+    },
+    {
+      "id": "E-broken-loop",
+      "input": {
+        "path": "inputs/E-broken-loop.structure",
+        "sha256": "d291d0f9470dd1a40708d12d5baad1e3fda3646a0451bd454b009bdcbf1070c1",
+        "size_bytes": 580
+      },
+      "request": {
+        "path": "inputs/E-broken-loop.request.json",
+        "sha256": "1e5825f108ea287cb25612e3dbdaab24ad6b7c9c1d2531ecc5dee683fc66d1ba",
+        "size_bytes": 1024
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "PARSE_FAILED",
+        "atoms": 0
+      }
+    },
+    {
+      "id": "E-duplicate-tag",
+      "input": {
+        "path": "inputs/E-duplicate-tag.structure",
+        "sha256": "d2de64f0968422f6627bd6ffa6af5580f557f51724c0b524fcb4d904cf6f0cf0",
+        "size_bytes": 591
+      },
+      "request": {
+        "path": "inputs/E-duplicate-tag.request.json",
+        "sha256": "cb5e4432219da7418c12a38781d25c29dadc4cea93077482c0c4503b8545584e",
+        "size_bytes": 1032
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "PARSE_FAILED",
+        "atoms": 0
+      }
+    },
+    {
+      "id": "E-multiple-blocks",
+      "input": {
+        "path": "inputs/E-multiple-blocks.structure",
+        "sha256": "1b90e0a1ea83999f287ca40ae8d4fa739ed5ca394abf82eb3dcdaf543ef6e9f1",
+        "size_bytes": 576
+      },
+      "request": {
+        "path": "inputs/E-multiple-blocks.request.json",
+        "sha256": "c5bd94a5888ddca2cba31ec346a20f8a59c68ff1364eec5e28c74b76eec3d54e",
+        "size_bytes": 1040
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "INPUT_UNSUPPORTED",
+        "atoms": 0
+      }
+    },
+    {
+      "id": "E-invalid-coordinate",
+      "input": {
+        "path": "inputs/E-invalid-coordinate.structure",
+        "sha256": "f6bd46bf58e0f1be9d4627dcef007c2ce0f5710744e15852b83d735699585113",
+        "size_bytes": 564
+      },
+      "request": {
+        "path": "inputs/E-invalid-coordinate.request.json",
+        "sha256": "ebdecc39f2fabc2d88394761aec8fc76fd612b4e47a518e3883c49758ed78442",
+        "size_bytes": 1052
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "PARSE_FAILED",
+        "atoms": 1
+      }
+    },
+    {
+      "id": "E-nan-coordinate",
+      "input": {
+        "path": "inputs/E-nan-coordinate.structure",
+        "sha256": "0f455c0aa773d7f9427d4fc763c6a247fe49f8729db22d0212033828572ffc88",
+        "size_bytes": 556
+      },
+      "request": {
+        "path": "inputs/E-nan-coordinate.request.json",
+        "sha256": "cc50328486b6f04eb01c7596c45837c6d7bb329957f1ff8a7e3782568b3f6044",
+        "size_bytes": 1036
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "PARSE_FAILED",
+        "atoms": 1
+      }
+    },
+    {
+      "id": "E-numeric-uncertainty",
+      "input": {
+        "path": "inputs/E-numeric-uncertainty.structure",
+        "sha256": "a2ca445716993e385f332e9f998024e0d9e2beb1324b7f4dfd973ae325f831d0",
+        "size_bytes": 559
+      },
+      "request": {
+        "path": "inputs/E-numeric-uncertainty.request.json",
+        "sha256": "1a12cc51652ae91896c67fcb29f7b3720427b316b3494a649380c8161da75e57",
+        "size_bytes": 1056
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "INPUT_UNSUPPORTED",
+        "atoms": 1
+      }
+    },
+    {
+      "id": "E-missing-chain",
+      "input": {
+        "path": "inputs/E-missing-chain.structure",
+        "sha256": "8ece7f81bf443e198f0268cb028be06baa483c2d3917fc89ea7623423b34e6cf",
+        "size_bytes": 554
+      },
+      "request": {
+        "path": "inputs/E-missing-chain.request.json",
+        "sha256": "5d53f03dc839c87a6c5b0ee97daf6a58332a0f760d2078f23630c463dd81710e",
+        "size_bytes": 1029
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "SELECTION_NOT_FOUND",
+        "atoms": 1
+      }
+    },
+    {
+      "id": "E-label-is-not-author-selector",
+      "input": {
+        "path": "inputs/E-label-is-not-author-selector.structure",
+        "sha256": "8ece7f81bf443e198f0268cb028be06baa483c2d3917fc89ea7623423b34e6cf",
+        "size_bytes": 554
+      },
+      "request": {
+        "path": "inputs/E-label-is-not-author-selector.request.json",
+        "sha256": "026c183ee78378aa66690effecd1159a122ecb7d8988553f9a0046bf4688ceb7",
+        "size_bytes": 1093
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "SELECTION_NOT_FOUND",
+        "atoms": 1
+      }
+    },
+    {
+      "id": "E-missing-model",
+      "input": {
+        "path": "inputs/E-missing-model.structure",
+        "sha256": "8ece7f81bf443e198f0268cb028be06baa483c2d3917fc89ea7623423b34e6cf",
+        "size_bytes": 554
+      },
+      "request": {
+        "path": "inputs/E-missing-model.request.json",
+        "sha256": "9c98c11705e62f5bdb318684501baf02715b7e43314c8becf920fc293b71aef2",
+        "size_bytes": 1029
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "SELECTION_NOT_FOUND",
+        "atoms": 1
+      }
+    },
+    {
+      "id": "E-model-required",
+      "input": {
+        "path": "inputs/E-model-required.structure",
+        "sha256": "4df099c3a2844c0df9f8cf1cb9981a727f78d04a4c436795bffbabde5ba2cac3",
+        "size_bytes": 608
+      },
+      "request": {
+        "path": "inputs/E-model-required.request.json",
+        "sha256": "b52c7a6d9e338debf8a5782988fa9e1d185826391cf108082561e1e656d47359",
+        "size_bytes": 1036
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "SELECTION_REQUIRED",
+        "atoms": 2,
+        "model_serials": [
+          "7",
+          "9"
+        ]
+      }
+    },
+    {
+      "id": "E-model-selected",
+      "input": {
+        "path": "inputs/E-model-selected.structure",
+        "sha256": "4df099c3a2844c0df9f8cf1cb9981a727f78d04a4c436795bffbabde5ba2cac3",
+        "size_bytes": 608
+      },
+      "request": {
+        "path": "inputs/E-model-selected.request.json",
+        "sha256": "60968c904ce2c461913ec2f442ecaa08242c48e1825d4ac68b915e42a013554d",
+        "size_bytes": 1033
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": null,
+        "atoms": 2,
+        "model_serials": [
+          "7",
+          "9"
+        ],
+        "chain": "A"
+      }
+    },
+    {
+      "id": "E-auto-context",
+      "input": {
+        "path": "inputs/E-auto-context.structure",
+        "sha256": "76c428b94aa98cc63e2aa1240fc78872a2aea9f125d54b2cafb5dc298670c4ce",
+        "size_bytes": 716
+      },
+      "request": {
+        "path": "inputs/E-auto-context.request.json",
+        "sha256": "9d659c01e71124282993fd4b950e01feedaf790b5c448e76f662e8d7e4e0de66",
+        "size_bytes": 1028
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": null,
+        "atoms": 4,
+        "auto": [
+          "P",
+          "Q"
+        ],
+        "all_chains": [
+          "W",
+          "D",
+          "P",
+          "Q"
+        ],
+        "chain": "P"
+      }
+    },
+    {
+      "id": "E-nonprotein-chain",
+      "input": {
+        "path": "inputs/E-nonprotein-chain.structure",
+        "sha256": "76c428b94aa98cc63e2aa1240fc78872a2aea9f125d54b2cafb5dc298670c4ce",
+        "size_bytes": 716
+      },
+      "request": {
+        "path": "inputs/E-nonprotein-chain.request.json",
+        "sha256": "a77f783b57f33681786ee02bc3fe8a0aa9ebd74a8e41969dc7dda727095e9d04",
+        "size_bytes": 1041
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "SELECTION_NOT_PROTEIN",
+        "atoms": 4
+      }
+    },
+    {
+      "id": "E-no-protein",
+      "input": {
+        "path": "inputs/E-no-protein.structure",
+        "sha256": "03d1a6ec4ffc4f529b6ba9288cce095388ca55643f5793a4ddf99ba944a897df",
+        "size_bytes": 556
+      },
+      "request": {
+        "path": "inputs/E-no-protein.request.json",
+        "sha256": "c2a71404c4a14d2f22ff160a8cb210936c73d693acb4aca2a45bea868b6d4b54",
+        "size_bytes": 1020
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "SELECTION_NOT_PROTEIN",
+        "atoms": 1
+      }
+    },
+    {
+      "id": "E-character-versus-icode",
+      "input": {
+        "path": "inputs/E-character-versus-icode.structure",
+        "sha256": "aa8443672478d7259e7612851199a5a6e0e59453523395256790ae2e98f16f97",
+        "size_bytes": 611
+      },
+      "request": {
+        "path": "inputs/E-character-versus-icode.request.json",
+        "sha256": "0428a03394139ec91b37d68f59e78846b2f243a54fcc90f54b06cf52a0997745",
+        "size_bytes": 1068
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": null,
+        "atoms": 2,
+        "auth_ids": [
+          "43A",
+          "43"
+        ],
+        "icodes": [
+          ".",
+          "A"
+        ],
+        "integer": [
+          false,
+          true
+        ],
+        "pdb": [
+          false,
+          true
+        ],
+        "foldx": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "id": "E-author-long-chain",
+      "input": {
+        "path": "inputs/E-author-long-chain.structure",
+        "sha256": "55baffd110bdd2b9af33925791a61377c0a3d980064bfcf4c943f8880e746bfa",
+        "size_bytes": 565
+      },
+      "request": {
+        "path": "inputs/E-author-long-chain.request.json",
+        "sha256": "c081ba7f6dc65c829202202b5a940b875433d5dc926eb337e4229b00e9a1826c",
+        "size_bytes": 1048
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": null,
+        "atoms": 1,
+        "chain": "AUTHOR_CHAIN",
+        "integer": [
+          true
+        ],
+        "pdb": [
+          false
+        ]
+      }
+    },
+    {
+      "id": "E-author-negative",
+      "input": {
+        "path": "inputs/E-author-negative.structure",
+        "sha256": "a26645b3628eae06ef8d5c55808460ab84b7fefb11c890d2684d13bbdd64a01e",
+        "size_bytes": 555
+      },
+      "request": {
+        "path": "inputs/E-author-negative.request.json",
+        "sha256": "c665be631a07a5b62f6044ed6f6ec93894c45e58a1b36931b6995556f913b88b",
+        "size_bytes": 1040
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": null,
+        "atoms": 1,
+        "auth_ids": [
+          "-3"
+        ],
+        "integer": [
+          true
+        ],
+        "pdb": [
+          true
+        ]
+      }
+    },
+    {
+      "id": "E-author-leading-zero",
+      "input": {
+        "path": "inputs/E-author-leading-zero.structure",
+        "sha256": "99a2c2254192e9cbcdef9ab23dec819fcb7e3c21b31f29a77e636d19d5331114",
+        "size_bytes": 611
+      },
+      "request": {
+        "path": "inputs/E-author-leading-zero.request.json",
+        "sha256": "94a46df797043d806cbb73024de5d6f8dcb9a323a942d5606159e5863312f812",
+        "size_bytes": 1056
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": null,
+        "atoms": 2,
+        "auth_ids": [
+          "043",
+          "43"
+        ],
+        "integer": [
+          false,
+          true
+        ]
+      }
+    },
+    {
+      "id": "E-missing-author",
+      "input": {
+        "path": "inputs/E-missing-author.structure",
+        "sha256": "470414ea1d139a4cab0514e990d83f98aeb78c77294dcdadebfaff4d1459d0d8",
+        "size_bytes": 554
+      },
+      "request": {
+        "path": "inputs/E-missing-author.request.json",
+        "sha256": "1600724dd99ee3b8c7acb11b387b0615ccdbaf5df919e64b7bf8c00e06e9cbad",
+        "size_bytes": 1036
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "INPUT_UNSUPPORTED",
+        "atoms": 1,
+        "integer": [
+          false
+        ]
+      }
+    },
+    {
+      "id": "E-quoted-question-author",
+      "input": {
+        "path": "inputs/E-quoted-question-author.structure",
+        "sha256": "a8a07526dfb56c6b8f66c5266f00a1a31bfb988262f8cceee05a1b552f29cfe7",
+        "size_bytes": 556
+      },
+      "request": {
+        "path": "inputs/E-quoted-question-author.request.json",
+        "sha256": "2d1ee6ef7a10c37e2be2daf3390d01332b329559c5fe0b380204765a1c48f6d4",
+        "size_bytes": 1068
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": null,
+        "atoms": 1,
+        "auth_ids": [
+          "?"
+        ],
+        "integer": [
+          false
+        ]
+      }
+    },
+    {
+      "id": "E-unknown-icode",
+      "input": {
+        "path": "inputs/E-unknown-icode.structure",
+        "sha256": "a7f631f784176bbf6d0feea4011b8faaf8bec06269d15053bf4fe787a21f68c6",
+        "size_bytes": 554
+      },
+      "request": {
+        "path": "inputs/E-unknown-icode.request.json",
+        "sha256": "a39e21d010f829919252b9a6026e255c5b810610e2da0c2e1744660864de19d5",
+        "size_bytes": 1032
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": null,
+        "atoms": 1,
+        "integer": [
+          false
+        ]
+      }
+    },
+    {
+      "id": "E-literal-dot-icode",
+      "input": {
+        "path": "inputs/E-literal-dot-icode.structure",
+        "sha256": "b3f4bd5d46f779f64a0a5bfa6ff9364de41e6786a2d0514b6b0a04677e214c78",
+        "size_bytes": 556
+      },
+      "request": {
+        "path": "inputs/E-literal-dot-icode.request.json",
+        "sha256": "2caf118d3cbd3cc50f2d32c0d32403cda791674b4bce42125aaa8eb6aee14c7d",
+        "size_bytes": 1048
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": null,
+        "atoms": 1,
+        "icodes": [
+          "."
+        ],
+        "integer": [
+          true
+        ],
+        "pdb": [
+          false
+        ]
+      }
+    },
+    {
+      "id": "E-long-icode",
+      "input": {
+        "path": "inputs/E-long-icode.structure",
+        "sha256": "9735cae8097636b16ff50801b22d1eca1b7cab6fb3524d53e7d48ebf8ef627c9",
+        "size_bytes": 555
+      },
+      "request": {
+        "path": "inputs/E-long-icode.request.json",
+        "sha256": "2b05cda384530af2145008304fd98e43f7ecdd2769f8fc68927879c36e5efc88",
+        "size_bytes": 1020
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": null,
+        "atoms": 1,
+        "integer": [
+          false
+        ],
+        "pdb": [
+          false
+        ]
+      }
+    },
+    {
+      "id": "E-projection-collision",
+      "input": {
+        "path": "inputs/E-projection-collision.structure",
+        "sha256": "5255315ddede41a8255ae896c3e8ec49903ae3c42fdfac6c94496f6627e2800e",
+        "size_bytes": 602
+      },
+      "request": {
+        "path": "inputs/E-projection-collision.request.json",
+        "sha256": "7f1c8f22294d161a4bd9d3edd074915dda75bda68968f3b02b4657435a536943",
+        "size_bytes": 1060
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": null,
+        "atoms": 2,
+        "integer": [
+          false,
+          false
+        ],
+        "pdb": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "id": "E-duplicate-atom",
+      "input": {
+        "path": "inputs/E-duplicate-atom.structure",
+        "sha256": "5709b8ebb3d14d0bfdfc4130281e8c5eba2623cb39d2f33a16aed4c30bd53dc6",
+        "size_bytes": 608
+      },
+      "request": {
+        "path": "inputs/E-duplicate-atom.request.json",
+        "sha256": "87039ea9826efb5b1fedfd0f5315c8cba4ac0946969e1a8c88bdc8d7e5edd7ea",
+        "size_bytes": 1036
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "PARSE_FAILED",
+        "atoms": 2
+      }
+    },
+    {
+      "id": "E-cif-metadata-conflicts",
+      "input": {
+        "path": "inputs/E-cif-metadata-conflicts.structure",
+        "sha256": "90f1852a419bcf1af9ed83699ab70d282d60ca0bca1a8886f28b8c0713e4f31a",
+        "size_bytes": 943
+      },
+      "request": {
+        "path": "inputs/E-cif-metadata-conflicts.request.json",
+        "sha256": "b2fb8ec225d1cc1919601a6d1044b393b89fe1e2482049d4ae87e379d5c20e5e",
+        "size_bytes": 1129
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": null,
+        "atoms": 1,
+        "metadata_codes": [
+          "METADATA_UNPARSEABLE",
+          "METADATA_MULTIPLE_VALUES",
+          "METADATA_VALUES_DIFFER"
+        ],
+        "metadata_values": {
+          "_exptl.method": [
+            "X-RAY DIFFRACTION",
+            "SOLUTION NMR"
+          ],
+          "_refine.ls_d_res_high": [
+            "1.80",
+            "2.40",
+            "not a number"
+          ]
+        }
+      }
+    },
+    {
+      "id": "E-pdb-metadata-conflicts",
+      "input": {
+        "path": "inputs/E-pdb-metadata-conflicts.structure",
+        "sha256": "81d5ad846b434ca8e601ee5e131b28c9aa349e9656c57cdc317e7a9316ad6e7f",
+        "size_bytes": 1131
+      },
+      "request": {
+        "path": "inputs/E-pdb-metadata-conflicts.request.json",
+        "sha256": "5d7eeb75c2c210b5046aa4cefe3fb3d38a2e42c7b58bc25971a2fd1282b98a76",
+        "size_bytes": 1128
+      },
+      "source": {
+        "path": "tests/fixtures/structure_mapping/synthetic/partial-icode.pdb",
+        "sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+        "size_bytes": 725
+      },
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": null,
+        "atoms": 8,
+        "metadata_codes": [
+          "METADATA_UNPARSEABLE",
+          "METADATA_MULTIPLE_VALUES",
+          "METADATA_VALUES_DIFFER",
+          "METADATA_CONTINUATION_UNRESOLVED"
+        ],
+        "metadata_values": {
+          "REMARK.2.resolution": [
+            "1.80",
+            "2.40",
+            "NOT APPLICABLE."
+          ]
+        }
+      }
+    },
+    {
+      "id": "E-pdb-model-unclosed",
+      "input": {
+        "path": "inputs/E-pdb-model-unclosed.structure",
+        "sha256": "8a26c6b4bac20a307479df57a1ae72874a9e72e3fb7917446bb2fdf53799590f",
+        "size_bytes": 740
+      },
+      "request": {
+        "path": "inputs/E-pdb-model-unclosed.request.json",
+        "sha256": "05f0b6dcfdb3b28c4394c45ccf77cca3da385df1ada39d2b29eb8b7ee35acf84",
+        "size_bytes": 1050
+      },
+      "source": {
+        "path": "tests/fixtures/structure_mapping/synthetic/partial-icode.pdb",
+        "sha256": "70a1dccc96810882a367559c76bdddef3ed57e02790bbd5d3b54352875a82223",
+        "size_bytes": 725
+      },
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "PARSE_FAILED",
+        "atoms": 8
+      }
+    },
+    {
+      "id": "E-pdb-truncated",
+      "input": {
+        "path": "inputs/E-pdb-truncated.structure",
+        "sha256": "d9fb5a93dab483c226e60ac45299465ea88145ff223e13620e34adb6532ede58",
+        "size_bytes": 25
+      },
+      "request": {
+        "path": "inputs/E-pdb-truncated.request.json",
+        "sha256": "6920b7016fbf680a2dd174625d0ea221553c1911f5871a9719afabef39929792",
+        "size_bytes": 1029
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": "PARSE_FAILED",
+        "atoms": 1
+      }
+    },
+    {
+      "id": "E-bom-crlf",
+      "input": {
+        "path": "inputs/E-bom-crlf.structure",
+        "sha256": "3b26a6d06dd62002ee2d41522f4c790618720e8f9b03f7db67f6d26e70c6c323",
+        "size_bytes": 610
+      },
+      "request": {
+        "path": "inputs/E-bom-crlf.request.json",
+        "sha256": "256ca04846612845529dadd283ac91bc755c15f84a7690c513b70d52b4e3fad3",
+        "size_bytes": 1012
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": null,
+        "atoms": 1
+      }
+    },
+    {
+      "id": "E-altloc-retained",
+      "input": {
+        "path": "inputs/E-altloc-retained.structure",
+        "sha256": "216ca7b6cdc6bc5a44790be44b5489395680e2791d8ecd4f5dea06a2ea83d805",
+        "size_bytes": 610
+      },
+      "request": {
+        "path": "inputs/E-altloc-retained.request.json",
+        "sha256": "f99a771767f9eebe79a6c30926252458c7be93da7449d23d4ea78246314f5935",
+        "size_bytes": 1040
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": null,
+        "atoms": 2,
+        "residues": 1
+      }
+    },
+    {
+      "id": "E-nonstandard-retained",
+      "input": {
+        "path": "inputs/E-nonstandard-retained.structure",
+        "sha256": "72fb543da09db3da21a823cb7e2603cac52aa418e7366a79339cbc2bad017501",
+        "size_bytes": 556
+      },
+      "request": {
+        "path": "inputs/E-nonstandard-retained.request.json",
+        "sha256": "a18dc980f442b82a894cb8edaaa48f9b924ecb39d5b8b8ccbcc63cd3eef4c77f",
+        "size_bytes": 1060
+      },
+      "source": null,
+      "evidence_scope": "SYNTHETIC_ENGINEERING_BOUNDARY",
+      "expected": {
+        "error": null,
+        "atoms": 1,
+        "unknown_letters": 1
+      }
+    }
+  ]
+}

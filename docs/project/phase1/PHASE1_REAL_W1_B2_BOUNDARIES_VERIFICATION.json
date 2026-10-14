@@ -1,0 +1,106 @@
+{
+  "date": "2026-09-06",
+  "recorded_at": "2026-09-06T06:45:57.785371+00:00",
+  "scope": "W1-08B2 original-package boundary and execution development evidence",
+  "status": "PASS_DEVELOPMENT_EVIDENCE_WITH_ORIGINAL_TOOL_FINDING",
+  "reviewer": "AI engineering verification; no algorithm or customer signoff asserted",
+  "root_tests": {
+    "total": 844,
+    "passed": 843,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 1,
+    "duration_seconds": 103.124
+  },
+  "new_boundary_tests": 41,
+  "root_junit": {
+    "path": "discovery/t01-phase1-real/w1/b2-boundaries-maintenance-20260906/root-tests.xml",
+    "size_bytes": 120223,
+    "sha256": "83fb48afb93e9c0677423b84534adbe7868221f156b55469ca2796bff6bb4dea"
+  },
+  "skipped_reason": "Existing Windows account lacks symlink creation permission",
+  "maintenance_manifest": {
+    "path": "discovery/t01-phase1-real/w1/b2-boundaries-maintenance-20260906/manifest.json",
+    "size_bytes": 1800,
+    "sha256": "0425f87d24fe6367b000fe7740e7d81d306cc762089a35eafb0ffd20f78e974e"
+  },
+  "execution_records": [
+    {
+      "path": "discovery/t01-phase1-real/w1/b2-boundaries-maintenance-20260906/prior-checks.json",
+      "size_bytes": 5359,
+      "sha256": "163c5e11dd8a2603bbe844338dbcc69347644b52646fc7ce0f5252c6e98b0c2c"
+    },
+    {
+      "path": "discovery/t01-phase1-real/w1/b2-boundaries-maintenance-20260906/final-checks.json",
+      "size_bytes": 2579,
+      "sha256": "3b169cb2232b5557ea17c3a578d27567f4947a8ee1f021025ebddb655694da36"
+    }
+  ],
+  "batch_manifest": {
+    "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/manifest.json",
+    "size_bytes": 97524,
+    "sha256": "b721d76ad0a8edd62c209d6c57fe3c5d3fd0a72e1b93bf688157a7f3b1d18a0c"
+  },
+  "executed_method": {
+    "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/method_summary.executed.json",
+    "size_bytes": 11430,
+    "sha256": "6069f6f96f6beb5fb386b3adda82adf80167047df64613f7cf118b34ca44d1e5"
+  },
+  "source_finding": {
+    "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/source_finding.json",
+    "size_bytes": 2372,
+    "sha256": "089dfd8f4361c459511862b14b792fcd9371c491887a13e673ade492baa8431a"
+  },
+  "real_invocations": 13,
+  "exit_zero": 11,
+  "exit_one": 2,
+  "complete_raw_outputs": 10,
+  "successful_process_with_rejected_output": 1,
+  "original_tool_expectations_not_met": [
+    "invalid-symbol"
+  ],
+  "artifact_faults_rejected": 17,
+  "batch_artifacts": 517,
+  "protected_files": 481,
+  "actual_model_execution": "EXECUTED_OFFLINE_CPU",
+  "oom_or_timeout_observed": false,
+  "original_package_sources_modified": false,
+  "initial_assessment": {
+    "status": "FAILED_ORIGINAL_TOOL_REJECTION_EXPECTATION",
+    "record": {
+      "path": "discovery/t01-phase1-real/w1/b2-boundaries-maintenance-20260906/first-assessment-failure.json",
+      "size_bytes": 662,
+      "sha256": "e5af5059741297cf3d6ec50d08cac04560621d834b4008b3343361cde76759dd"
+    },
+    "checker_snapshot": {
+      "path": "discovery/t01-phase1-real/w1/b2-boundaries-maintenance-20260906/check_b2_boundaries.before_finding.py",
+      "size_bytes": 11825,
+      "sha256": "7f19a153222bf39a17dcc358237ec6315535c88cb864c9fe19e5ee8559a221c9"
+    },
+    "resolution": "Original plan/output retained. The star-to-unknown behavior is a recorded original tool finding; existing input and token-reconstruction guards reject it. No scientific input domain or output checks relaxed."
+  },
+  "documentation": {
+    "status": "PASS",
+    "markdown_files": 183
+  },
+  "read_only_checks": {
+    "original_academic_evidence": 122,
+    "local_package_assets": 41,
+    "old_public_evidence": 169,
+    "b2_review_artifacts": 86,
+    "b1_consumer_cases": 45,
+    "contract_sources": 32,
+    "current_runtime_sources": 16,
+    "mock_frozen_assets": 457,
+    "handoff_archives": 2
+  },
+  "legacy_regressions": {
+    "status": "NOT_RERUN",
+    "reason": "Only current engineering partition changed; no cross-partition path/isolation change or stage freeze"
+  },
+  "independent_scientific_holdouts_accepted": 0,
+  "scientific_signoff": "NOT_GRANTED",
+  "formal_adapter_release": "NOT_GRANTED",
+  "production_enabled": false,
+  "production_status": "NOT_DEPLOYED"
+}

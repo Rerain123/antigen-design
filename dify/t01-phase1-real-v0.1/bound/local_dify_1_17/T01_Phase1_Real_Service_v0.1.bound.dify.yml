@@ -1,0 +1,515 @@
+app:
+  description: T01-PHASE1-REAL-SERVICE-DIFY-v0.1; workflow_id=t01_phase1_real_service_v01.workflow.main; authenticated real
+    service; scientific_gate=CLOSED
+  icon: 🔐
+  icon_background: '#E4FBCC'
+  mode: workflow
+  name: T01_Phase1_Real_Service_v0.1
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      enabled: false
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: if-else
+      id: START-source-MODE_IF-target
+      source: START
+      sourceHandle: source
+      target: MODE_IF
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: variable-aggregator
+      id: MODE_IF-true-JOB_AGG-target
+      source: MODE_IF
+      sourceHandle: 'true'
+      target: JOB_AGG
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: MODE_IF-false-SUBMIT-target
+      source: MODE_IF
+      sourceHandle: 'false'
+      target: SUBMIT
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: variable-aggregator
+      id: SUBMIT-source-JOB_AGG-target
+      source: SUBMIT
+      sourceHandle: source
+      target: JOB_AGG
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: variable-aggregator
+        targetType: tool
+      id: JOB_AGG-source-WAIT-target
+      source: JOB_AGG
+      sourceHandle: source
+      target: WAIT
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: WAIT-source-SUCCESS_IF-target
+      source: WAIT
+      sourceHandle: source
+      target: SUCCESS_IF
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: SUCCESS_IF-true-REPORT-target
+      source: SUCCESS_IF
+      sourceHandle: 'true'
+      target: REPORT
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: end
+      id: SUCCESS_IF-false-FAILURE_END-target
+      source: SUCCESS_IF
+      sourceHandle: 'false'
+      target: FAILURE_END
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: end
+      id: REPORT-source-SUCCESS_END-target
+      source: REPORT
+      sourceHandle: source
+      target: SUCCESS_END
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Real workflow request
+        type: start
+        variables:
+        - label: operation
+          max_length: 32
+          options:
+          - SUBMIT
+          - GET_EXISTING
+          required: true
+          type: select
+          variable: operation
+        - label: request_json
+          max_length: 200000
+          options: []
+          required: false
+          type: paragraph
+          variable: request_json
+        - label: idempotency_key
+          max_length: 128
+          options: []
+          required: false
+          type: text-input
+          variable: idempotency_key
+        - label: job_id
+          max_length: 96
+          options: []
+          required: false
+          type: text-input
+          variable: job_id
+        - label: wait_timeout_seconds
+          max_length: 600
+          options: []
+          required: true
+          type: number
+          variable: wait_timeout_seconds
+      height: 198
+      id: START
+      position:
+        x: 80
+        y: 200
+      positionAbsolute:
+        x: 80
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Existing task?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-start-operation
+            value: GET_EXISTING
+            varType: string
+            variable_selector:
+            - START
+            - operation
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: MODE_IF
+      position:
+        x: 410
+        y: 200
+      positionAbsolute:
+        x: 410
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Submit authenticated workflow
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          request_json:
+            type: variable
+            value:
+            - START
+            - request_json
+          idempotency_key:
+            type: variable
+            value:
+            - START
+            - idempotency_key
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-real-service-v01
+        provider_name: t01-phase1-real-service-v01
+        tool_label: t01_phase1_real_service_v01.tool.workflow.submit
+        tool_name: t01_phase1_real_service_v01.tool.workflow.submit
+      height: 116
+      id: SUBMIT
+      position:
+        x: 740
+        y: 390
+      positionAbsolute:
+        x: 740
+        y: 390
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Canonical job identity
+        type: variable-aggregator
+        advanced_settings:
+          group_enabled: true
+          groups:
+          - groupId: group-job-id
+            group_name: job_id
+            output_type: string
+            variables:
+            - - SUBMIT
+              - job_id
+            - - START
+              - job_id
+        output_type: string
+        variables:
+        - - SUBMIT
+          - job_id
+        - - START
+          - job_id
+      height: 154
+      id: JOB_AGG
+      position:
+        x: 1070
+        y: 200
+      positionAbsolute:
+        x: 1070
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Wait on backend state
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          job_id:
+            type: variable
+            value:
+            - JOB_AGG
+            - job_id
+            - output
+          timeout_seconds:
+            type: variable
+            value:
+            - START
+            - wait_timeout_seconds
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-real-service-v01
+        provider_name: t01-phase1-real-service-v01
+        tool_label: t01_phase1_real_service_v01.tool.workflow.wait
+        tool_name: t01_phase1_real_service_v01.tool.workflow.wait
+      height: 116
+      id: WAIT
+      position:
+        x: 1400
+        y: 200
+      positionAbsolute:
+        x: 1400
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Backend succeeded?
+        type: if-else
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: cond-wait-state
+            value: succeeded
+            varType: string
+            variable_selector:
+            - WAIT
+            - state
+          id: 'true'
+          logical_operator: and
+      height: 126
+      id: SUCCESS_IF
+      position:
+        x: 1730
+        y: 200
+      positionAbsolute:
+        x: 1730
+        y: 200
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Get verified report
+        type: tool
+        tool_node_version: '2'
+        tool_parameters:
+          job_id:
+            type: variable
+            value:
+            - JOB_AGG
+            - job_id
+            - output
+        tool_configurations: {}
+        provider_type: mcp
+        provider_id: t01-phase1-real-service-v01
+        provider_name: t01-phase1-real-service-v01
+        tool_label: t01_phase1_real_service_v01.tool.workflow.report
+        tool_name: t01_phase1_real_service_v01.tool.workflow.report
+      height: 116
+      id: REPORT
+      position:
+        x: 2060
+        y: 10
+      positionAbsolute:
+        x: 2060
+        y: 10
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Verified report
+        type: end
+        outputs:
+        - value_selector:
+          - REPORT
+          - job_id
+          value_type: string
+          variable: job_id
+        - value_selector:
+          - WAIT
+          - state
+          value_type: string
+          variable: state
+        - value_selector:
+          - REPORT
+          - sha256
+          value_type: string
+          variable: report_sha256
+        - value_selector:
+          - REPORT
+          - size_bytes
+          value_type: number
+          variable: report_size_bytes
+        - value_selector:
+          - REPORT
+          - report_markdown
+          value_type: string
+          variable: report_markdown
+        - value_selector:
+          - REPORT
+          - content_base64
+          value_type: string
+          variable: report_base64
+        - value_selector:
+          - REPORT
+          - scientific_gate
+          value_type: string
+          variable: scientific_gate
+        - value_selector:
+          - REPORT
+          - usable_for_pipeline
+          value_type: boolean
+          variable: usable_for_pipeline
+        - value_selector:
+          - REPORT
+          - production_status
+          value_type: string
+          variable: production_status
+      height: 238
+      id: SUCCESS_END
+      position:
+        x: 2390
+        y: 10
+      positionAbsolute:
+        x: 2390
+        y: 10
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        title: Backend did not succeed
+        type: end
+        outputs:
+        - value_selector:
+          - WAIT
+          - job_id
+          value_type: string
+          variable: job_id
+        - value_selector:
+          - WAIT
+          - state
+          value_type: string
+          variable: state
+        - value_selector:
+          - WAIT
+          - error_code
+          value_type: string
+          variable: error_code
+        - value_selector:
+          - WAIT
+          - wait_timed_out
+          value_type: boolean
+          variable: wait_timed_out
+        - value_selector:
+          - WAIT
+          - scientific_gate
+          value_type: string
+          variable: scientific_gate
+        - value_selector:
+          - WAIT
+          - usable_for_pipeline
+          value_type: boolean
+          variable: usable_for_pipeline
+        - value_selector:
+          - WAIT
+          - production_status
+          value_type: string
+          variable: production_status
+      height: 198
+      id: FAILURE_END
+      position:
+        x: 2060
+        y: 390
+      positionAbsolute:
+        x: 2060
+        y: 390
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 0
+      y: 80
+      zoom: 0.62

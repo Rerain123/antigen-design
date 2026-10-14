@@ -1,0 +1,250 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: antigen-af3-models
+  namespace: him-ws
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: ceph-rbd
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-af3-weights-download-r02
+  namespace: him-ws
+immutable: true
+data:
+  download.py: |
+    """Download only official AF3 weights; preserve partial bytes across Pod retries.
+
+    Verifies the Google object's MD5/CRC32C and records local SHA-256. Does not decompress,
+    load model parameters, fetch databases, or establish scientific qualification.
+    """
+    from __future__ import annotations
+
+    import base64
+    import hashlib
+    import json
+    from pathlib import Path
+    import shutil
+    import sys
+    import time
+    import urllib.request
+
+    URL = 'https://storage.googleapis.com/alphafold3/af3.bin.zst'
+
+
+    def crc32c_table():
+        table = []
+        for value in range(256):
+            for _ in range(8):
+                value = (value >> 1) ^ (0x82F63B78 if value & 1 else 0)
+            table.append(value)
+        return tuple(table)
+
+
+    CRC32C_TABLE = crc32c_table()
+
+
+    def crc32c_update(state, raw):
+        for byte in raw:
+            state = CRC32C_TABLE[(state ^ byte) & 255] ^ (state >> 8)
+        return state
+
+
+    def source_identity(headers):
+        values = headers.get_all('x-goog-hash', []) if hasattr(headers, 'get_all') else [headers.get('x-goog-hash', '')]
+        hashes = {}
+        for value in values:
+            for entry in value.split(','):
+                if '=' not in entry:
+                    continue
+                name, digest = entry.strip().split('=', 1)
+                if name in hashes and hashes[name] != digest:
+                    raise ValueError('Conflicting official checksum headers')
+                hashes[name] = digest
+        size = int(headers['Content-Length'])
+        etag = headers.get('ETag')
+        if size <= 0 or not etag or not any(k in hashes for k in ('md5', 'crc32c')):
+            raise ValueError('Official size/ETag/checksum identity is incomplete')
+        identity = {'url': URL, 'bytes': size, 'etag': etag}
+        for name, length in [('md5', 16), ('crc32c', 4)]:
+            if name in hashes:
+                if len(base64.b64decode(hashes[name], validate=True)) != length:
+                    raise ValueError('Invalid official ' + name + ' checksum')
+                identity[name + '_base64'] = hashes[name]
+        return identity
+
+
+    def atomic_json(path, value):
+        temporary = path.with_suffix(path.suffix + '.pending')
+        temporary.write_text(json.dumps(value, indent=2) + '\n', encoding='utf-8')
+        temporary.replace(path)
+
+
+    def download(root: Path, opener=urllib.request.urlopen):
+        root.mkdir(parents=True, exist_ok=True)
+        target = root / 'af3.bin.zst'
+        partial = root / 'af3.bin.zst.partial'
+        identity_path = root / 'download-source.json'
+        with opener(urllib.request.Request(URL, method='HEAD'), timeout=60) as response:
+            if response.status != 200:
+                raise ValueError('Official object HEAD did not return 200')
+            identity = source_identity(response.headers)
+        size, etag = identity['bytes'], identity['etag']
+        if identity_path.exists():
+            if json.loads(identity_path.read_text()) != identity:
+                raise ValueError('Remote object changed; refusing to mix asset versions')
+        elif target.exists() or partial.exists():
+            raise ValueError('Existing bytes have no source identity; refusing overwrite/resume')
+        else:
+            atomic_json(identity_path, identity)
+        if not target.exists():
+            offset = partial.stat().st_size if partial.exists() else 0
+            if offset > size:
+                raise ValueError('Partial file exceeds official object size')
+            if shutil.disk_usage(root).free < size - offset + 128 * 1024**2:
+                raise ValueError('Insufficient persistent volume free space')
+            if offset < size:
+                headers = {'If-Match': etag, 'Accept-Encoding': 'identity'}
+                if offset:
+                    headers['Range'] = 'bytes=' + str(offset) + '-'
+                request = urllib.request.Request(URL, headers=headers)
+                with opener(request, timeout=60) as response:
+                    if response.status != (206 if offset else 200):
+                        raise ValueError('Server did not honor download/range request')
+                    if offset and response.headers.get('Content-Range') != f'bytes {offset}-{size - 1}/{size}':
+                        raise ValueError('Server returned an unexpected resume range')
+                    if int(response.headers['Content-Length']) != size - offset:
+                        raise ValueError('Download response size differs from official object')
+                    if response.headers.get('ETag', etag) != etag:
+                        raise ValueError('Download ETag differs from HEAD')
+                    print('DOWNLOAD_START', offset, size, flush=True)
+                    last_log = time.monotonic()
+                    with partial.open('ab' if partial.exists() else 'xb') as output:
+                        while True:
+                            chunk = response.read(4 * 1024**2)
+                            if not chunk:
+                                break
+                            if offset + len(chunk) > size:
+                                raise ValueError('Download response exceeded official size')
+                            output.write(chunk)
+                            offset += len(chunk)
+                            if time.monotonic() - last_log >= 30:
+                                print('DOWNLOAD_PROGRESS', offset, size, round(100 * offset / size, 1), flush=True)
+                                last_log = time.monotonic()
+            checked = partial
+        else:
+            checked = target
+        if checked.stat().st_size != size:
+            raise ValueError('Download incomplete; partial bytes retained for retry')
+        print('VERIFYING_OFFICIAL_CHECKSUMS_AND_LOCAL_SHA256', flush=True)
+        remote_hash = hashlib.md5()
+        local_hash = hashlib.sha256()
+        crc_state = 0xffffffff
+        checked_bytes = 0
+        last_log = time.monotonic()
+        with checked.open('rb') as stream:
+            for chunk in iter(lambda: stream.read(4 * 1024**2), b''):
+                remote_hash.update(chunk)
+                local_hash.update(chunk)
+                if 'crc32c_base64' in identity:
+                    crc_state = crc32c_update(crc_state, chunk)
+                checked_bytes += len(chunk)
+                if time.monotonic() - last_log >= 30:
+                    print('VERIFY_PROGRESS', checked_bytes, size, flush=True)
+                    last_log = time.monotonic()
+        if 'md5_base64' in identity and base64.b64encode(remote_hash.digest()).decode() != identity['md5_base64']:
+            raise ValueError('Official MD5 mismatch; refusing to publish completed weights')
+        if 'crc32c_base64' in identity and base64.b64encode((crc_state ^ 0xffffffff).to_bytes(4, 'big')).decode() != identity['crc32c_base64']:
+            raise ValueError('Official CRC32C mismatch; refusing to publish completed weights')
+        if checked == partial:
+            partial.rename(target)
+        receipt = {**identity, 'sha256': local_hash.hexdigest(), 'file': target.name,
+                   'status': 'WEIGHTS_DOWNLOADED_VERIFIED_NOT_DEPLOYED',
+                   'official_md5_verified': 'md5_base64' in identity,
+                   'official_crc32c_verified': 'crc32c_base64' in identity, 'decompressed': False,
+                   'databases_downloaded': False, 'scientific_gate': 'CLOSED'}
+        atomic_json(root / 'download-receipt.json', receipt)
+        print('AF3_WEIGHTS_VERIFIED', size, receipt['sha256'], flush=True)
+        return receipt
+
+
+    def main():
+        import fcntl
+        root = Path(sys.argv[1])
+        root.mkdir(parents=True, exist_ok=True)
+        with (root / '.download.lock').open('a') as lock:
+            fcntl.flock(lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+            download(root)
+
+
+    if __name__ == '__main__':
+        main()
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-af3-weights-download-r02
+  namespace: him-ws
+spec:
+  backoffLimit: 3
+  activeDeadlineSeconds: 172800
+  template:
+    metadata:
+      labels:
+        app: antigen-af3-weights-download-r02
+      annotations:
+        antigen-design/downloader-sha256: 8f38c8c1cfa37b9c1caffacacdb00295120ab9e18858374759277a33267dc9c0
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+      - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+      - name: download
+        image: harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:fba5a32c0550e56a5310160e2fc49d647fcd27d76851073a2d82cc935fb4c2fc
+        command:
+        - python
+        - -u
+        - -B
+        - /download/download.py
+        - /weights/alphafold3-official-r01
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+            ephemeral-storage: 128Mi
+          limits:
+            cpu: '1'
+            memory: 512Mi
+            ephemeral-storage: 512Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: weights
+          mountPath: /weights
+        - name: script
+          mountPath: /download
+          readOnly: true
+      volumes:
+      - name: weights
+        persistentVolumeClaim:
+          claimName: antigen-af3-models
+      - name: script
+        configMap:
+          name: antigen-af3-weights-download-r02

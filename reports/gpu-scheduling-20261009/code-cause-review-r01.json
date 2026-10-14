@@ -1,0 +1,625 @@
+{
+  "checked_at": "2026-10-09T09:42:05.082339+00:00",
+  "deployment": {
+    "generation": 148,
+    "template_equals_previous_working": true,
+    "previous_generation": 146,
+    "strategy": {
+      "type": "Recreate"
+    },
+    "replicas": 1,
+    "ready": 0,
+    "annotations": {
+      "antigen-design/gpu-mode": "unified-resident-single64",
+      "antigen-design/gpu-worker-config": "antigen-unified-gpu-config-r11",
+      "antigen-design/gpu-worker-host-profile": "af3-combined-96-128gi-8-16cpu-r02",
+      "antigen-design/source-sha256": "06f01c313e11fc3ed93406c00b26e047799f37a71d73976ecb203f331f03f3e2",
+      "kubectl.kubernetes.io/restartedAt": "2026-09-24T10:55:47+08:00",
+      "nvidia.com/use-gputype": "A100-SXM-64GB",
+      "nvidia.com/use-gpuuuid": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31"
+    },
+    "containers": [
+      {
+        "name": "service",
+        "resources": {
+          "limits": {
+            "cpu": "2",
+            "memory": "4Gi"
+          },
+          "requests": {
+            "cpu": "500m",
+            "memory": "1Gi"
+          }
+        },
+        "command": null,
+        "args": [
+          "--host",
+          "0.0.0.0",
+          "--port",
+          "18083",
+          "--runtime-root",
+          "/var/lib/t01/runtime",
+          "--blast-database-root",
+          "/var/lib/t01/m1-p1-test-data/blast",
+          "--domains-database-root",
+          "/var/lib/t01/databases/domains"
+        ]
+      },
+      {
+        "name": "worker-structure",
+        "resources": {
+          "limits": {
+            "cpu": "2",
+            "memory": "8Gi"
+          },
+          "requests": {
+            "cpu": "250m",
+            "memory": "256Mi"
+          }
+        },
+        "command": null,
+        "args": null
+      },
+      {
+        "name": "worker-deeptmhmm",
+        "resources": {
+          "limits": {
+            "cpu": "4",
+            "memory": "8Gi"
+          },
+          "requests": {
+            "cpu": "250m",
+            "memory": "1Gi"
+          }
+        },
+        "command": null,
+        "args": null
+      },
+      {
+        "name": "worker-bepipred",
+        "resources": {
+          "limits": {
+            "cpu": "4",
+            "memory": "12Gi"
+          },
+          "requests": {
+            "cpu": "250m",
+            "memory": "1Gi"
+          }
+        },
+        "command": null,
+        "args": null
+      },
+      {
+        "name": "worker-netmhc",
+        "resources": {
+          "limits": {
+            "cpu": "2",
+            "memory": "4Gi"
+          },
+          "requests": {
+            "cpu": "250m",
+            "memory": "256Mi"
+          }
+        },
+        "command": null,
+        "args": null
+      },
+      {
+        "name": "worker-blast",
+        "resources": {
+          "limits": {
+            "cpu": "4",
+            "memory": "16Gi"
+          },
+          "requests": {
+            "cpu": "250m",
+            "memory": "256Mi"
+          }
+        },
+        "command": null,
+        "args": null
+      },
+      {
+        "name": "worker-homology",
+        "resources": {
+          "limits": {
+            "cpu": "4",
+            "memory": "8Gi"
+          },
+          "requests": {
+            "cpu": "250m",
+            "memory": "256Mi"
+          }
+        },
+        "command": null,
+        "args": null
+      },
+      {
+        "name": "worker-foldx",
+        "resources": {
+          "limits": {
+            "cpu": "2",
+            "memory": "4Gi"
+          },
+          "requests": {
+            "cpu": "250m",
+            "memory": "256Mi"
+          }
+        },
+        "command": null,
+        "args": null
+      },
+      {
+        "name": "worker-aggrescan3d",
+        "resources": {
+          "limits": {
+            "cpu": "2",
+            "memory": "8Gi"
+          },
+          "requests": {
+            "cpu": "250m",
+            "memory": "256Mi"
+          }
+        },
+        "command": null,
+        "args": null
+      },
+      {
+        "name": "worker-unified-gpu",
+        "resources": {
+          "limits": {
+            "cpu": "16",
+            "ephemeral-storage": "8Gi",
+            "memory": "128Gi",
+            "nvidia.com/gpu": "1",
+            "nvidia.com/gpucores": "100",
+            "nvidia.com/gpumem-percentage": "100"
+          },
+          "requests": {
+            "cpu": "8",
+            "ephemeral-storage": "2Gi",
+            "memory": "96Gi",
+            "nvidia.com/gpu": "1",
+            "nvidia.com/gpucores": "100",
+            "nvidia.com/gpumem-percentage": "100"
+          }
+        },
+        "command": [
+          "/opt/t01/supervisor/bin/python3.11",
+          "-u",
+          "-B",
+          "-m",
+          "t01_phase1_real.unified_gpu_worker"
+        ],
+        "args": [
+          "--config",
+          "/etc/t01/unified-gpu.json"
+        ]
+      }
+    ]
+  },
+  "pods": [
+    {
+      "name": "antigen-design-545bf87f-4m4t5",
+      "uid": "3d942bcf-a7af-4514-92f1-df0ccb017090",
+      "phase": "Pending",
+      "created": "2026-10-09T07:31:16Z",
+      "deletion": null,
+      "node": null,
+      "scheduler": "hami-scheduler",
+      "gpu_annotations": {
+        "antigen-design/gpu-mode": "unified-resident-single64",
+        "antigen-design/gpu-worker-config": "antigen-unified-gpu-config-r11",
+        "antigen-design/gpu-worker-host-profile": "af3-combined-96-128gi-8-16cpu-r02",
+        "nvidia.com/use-gputype": "A100-SXM-64GB",
+        "nvidia.com/use-gpuuuid": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31"
+      },
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-10-09T07:31:16Z",
+          "message": "0/3 nodes are available: 1 1/8 CardInsufficientMemory, 7/8 CardUuidMismatch, 2 8/8 CardTypeMismatch. no new claims to deallocate, preemption: 0/3 nodes are available: 3 No preemption victims found for incoming pod.",
+          "observedGeneration": 1,
+          "reason": "Unschedulable",
+          "status": "False",
+          "type": "PodScheduled"
+        }
+      ],
+      "containers": [
+        {
+          "name": "service",
+          "resources": {
+            "limits": {
+              "cpu": "2",
+              "memory": "4Gi"
+            },
+            "requests": {
+              "cpu": "500m",
+              "memory": "1Gi"
+            }
+          }
+        },
+        {
+          "name": "worker-structure",
+          "resources": {
+            "limits": {
+              "cpu": "2",
+              "memory": "8Gi"
+            },
+            "requests": {
+              "cpu": "250m",
+              "memory": "256Mi"
+            }
+          }
+        },
+        {
+          "name": "worker-deeptmhmm",
+          "resources": {
+            "limits": {
+              "cpu": "4",
+              "memory": "8Gi"
+            },
+            "requests": {
+              "cpu": "250m",
+              "memory": "1Gi"
+            }
+          }
+        },
+        {
+          "name": "worker-bepipred",
+          "resources": {
+            "limits": {
+              "cpu": "4",
+              "memory": "12Gi"
+            },
+            "requests": {
+              "cpu": "250m",
+              "memory": "1Gi"
+            }
+          }
+        },
+        {
+          "name": "worker-netmhc",
+          "resources": {
+            "limits": {
+              "cpu": "2",
+              "memory": "4Gi"
+            },
+            "requests": {
+              "cpu": "250m",
+              "memory": "256Mi"
+            }
+          }
+        },
+        {
+          "name": "worker-blast",
+          "resources": {
+            "limits": {
+              "cpu": "4",
+              "memory": "16Gi"
+            },
+            "requests": {
+              "cpu": "250m",
+              "memory": "256Mi"
+            }
+          }
+        },
+        {
+          "name": "worker-homology",
+          "resources": {
+            "limits": {
+              "cpu": "4",
+              "memory": "8Gi"
+            },
+            "requests": {
+              "cpu": "250m",
+              "memory": "256Mi"
+            }
+          }
+        },
+        {
+          "name": "worker-foldx",
+          "resources": {
+            "limits": {
+              "cpu": "2",
+              "memory": "4Gi"
+            },
+            "requests": {
+              "cpu": "250m",
+              "memory": "256Mi"
+            }
+          }
+        },
+        {
+          "name": "worker-aggrescan3d",
+          "resources": {
+            "limits": {
+              "cpu": "2",
+              "memory": "8Gi"
+            },
+            "requests": {
+              "cpu": "250m",
+              "memory": "256Mi"
+            }
+          }
+        },
+        {
+          "name": "worker-unified-gpu",
+          "resources": {
+            "limits": {
+              "cpu": "16",
+              "ephemeral-storage": "8Gi",
+              "memory": "128Gi",
+              "nvidia.com/gpu": "1",
+              "nvidia.com/gpucores": "100",
+              "nvidia.com/gpumem-percentage": "100"
+            },
+            "requests": {
+              "cpu": "8",
+              "ephemeral-storage": "2Gi",
+              "memory": "96Gi",
+              "nvidia.com/gpu": "1",
+              "nvidia.com/gpucores": "100",
+              "nvidia.com/gpumem-percentage": "100"
+            }
+          }
+        }
+      ],
+      "started_containers": 0
+    },
+    {
+      "name": "antigen-design-5475446db6-jt4c9",
+      "uid": "3f7a0042-3300-45e8-a7bf-0fb021e04986",
+      "phase": "Failed",
+      "created": "2026-09-29T13:00:30Z",
+      "deletion": null,
+      "node": "k8s-a100-02",
+      "scheduler": "hami-scheduler",
+      "gpu_annotations": {
+        "antigen-design/gpu-mode": "unified-resident-single64",
+        "antigen-design/gpu-worker-config": "antigen-unified-gpu-config-r11",
+        "antigen-design/gpu-worker-host-profile": "af3-combined-96-128gi-8-16cpu-r02",
+        "hami.io/bind-phase": "success",
+        "hami.io/bind-time": "1790689880",
+        "hami.io/vgpu-devices-allocated": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31,NVIDIA,65536,100:;",
+        "hami.io/vgpu-devices-to-allocate": ";;",
+        "hami.io/vgpu-node": "k8s-a100-02",
+        "hami.io/vgpu-time": "1790689880",
+        "nvidia.com/use-gputype": "A100-SXM-64GB",
+        "nvidia.com/use-gpuuuid": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31"
+      },
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-30T03:18:52Z",
+          "observedGeneration": 3,
+          "status": "False",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-30T03:18:52Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-30T03:18:52Z",
+          "observedGeneration": 3,
+          "reason": "PodFailed",
+          "status": "False",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-30T03:18:52Z",
+          "observedGeneration": 3,
+          "reason": "PodFailed",
+          "status": "False",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-30T03:18:52Z",
+          "observedGeneration": 3,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "containers": [
+        {
+          "name": "service",
+          "resources": {
+            "limits": {
+              "cpu": "2",
+              "memory": "4Gi"
+            },
+            "requests": {
+              "cpu": "500m",
+              "memory": "1Gi"
+            }
+          }
+        },
+        {
+          "name": "worker-structure",
+          "resources": {
+            "limits": {
+              "cpu": "2",
+              "memory": "8Gi"
+            },
+            "requests": {
+              "cpu": "250m",
+              "memory": "256Mi"
+            }
+          }
+        },
+        {
+          "name": "worker-deeptmhmm",
+          "resources": {
+            "limits": {
+              "cpu": "4",
+              "memory": "8Gi"
+            },
+            "requests": {
+              "cpu": "250m",
+              "memory": "1Gi"
+            }
+          }
+        },
+        {
+          "name": "worker-bepipred",
+          "resources": {
+            "limits": {
+              "cpu": "4",
+              "memory": "12Gi"
+            },
+            "requests": {
+              "cpu": "250m",
+              "memory": "1Gi"
+            }
+          }
+        },
+        {
+          "name": "worker-netmhc",
+          "resources": {
+            "limits": {
+              "cpu": "2",
+              "memory": "4Gi"
+            },
+            "requests": {
+              "cpu": "250m",
+              "memory": "256Mi"
+            }
+          }
+        },
+        {
+          "name": "worker-blast",
+          "resources": {
+            "limits": {
+              "cpu": "4",
+              "memory": "16Gi"
+            },
+            "requests": {
+              "cpu": "250m",
+              "memory": "256Mi"
+            }
+          }
+        },
+        {
+          "name": "worker-homology",
+          "resources": {
+            "limits": {
+              "cpu": "4",
+              "memory": "8Gi"
+            },
+            "requests": {
+              "cpu": "250m",
+              "memory": "256Mi"
+            }
+          }
+        },
+        {
+          "name": "worker-foldx",
+          "resources": {
+            "limits": {
+              "cpu": "2",
+              "memory": "4Gi"
+            },
+            "requests": {
+              "cpu": "250m",
+              "memory": "256Mi"
+            }
+          }
+        },
+        {
+          "name": "worker-aggrescan3d",
+          "resources": {
+            "limits": {
+              "cpu": "2",
+              "memory": "8Gi"
+            },
+            "requests": {
+              "cpu": "250m",
+              "memory": "256Mi"
+            }
+          }
+        },
+        {
+          "name": "worker-unified-gpu",
+          "resources": {
+            "limits": {
+              "cpu": "16",
+              "ephemeral-storage": "8Gi",
+              "memory": "128Gi",
+              "nvidia.com/gpu": "1",
+              "nvidia.com/gpucores": "100",
+              "nvidia.com/gpumem-percentage": "100"
+            },
+            "requests": {
+              "cpu": "8",
+              "ephemeral-storage": "2Gi",
+              "memory": "96Gi",
+              "nvidia.com/gpu": "1",
+              "nvidia.com/gpucores": "100",
+              "nvidia.com/gpumem-percentage": "100"
+            }
+          }
+        }
+      ],
+      "started_containers": 10
+    }
+  ],
+  "replicasets": [
+    {
+      "name": "antigen-design-545bf87f",
+      "replicas": 1,
+      "ready": 0
+    }
+  ],
+  "events": [
+    {
+      "reason": "FilteringFailed",
+      "message": "2 nodes CardTypeMismatch(k8s-a100-01,k8s-a4090)",
+      "count": 1195,
+      "first": "2026-10-09T07:31:16Z",
+      "last": "2026-10-09T09:21:36Z",
+      "source": {
+        "component": "hami-scheduler"
+      },
+      "reportingController": null
+    },
+    {
+      "reason": "FilteringFailed",
+      "message": "1 nodes CardInsufficientMemory(k8s-a100-02)",
+      "count": 1372,
+      "first": "2026-10-09T07:31:16Z",
+      "last": "2026-10-09T09:36:37Z",
+      "source": {
+        "component": "hami-scheduler"
+      },
+      "reportingController": null
+    },
+    {
+      "reason": "FilteringFailed",
+      "message": "1 nodes CardUuidMismatch(k8s-a100-02)",
+      "count": 1433,
+      "first": "2026-10-09T07:31:16Z",
+      "last": "2026-10-09T09:41:39Z",
+      "source": {
+        "component": "hami-scheduler"
+      },
+      "reportingController": null
+    },
+    {
+      "reason": "FailedScheduling",
+      "message": "0/3 nodes are available: 1 1/8 CardInsufficientMemory, 7/8 CardUuidMismatch, 2 8/8 CardTypeMismatch. no new claims to deallocate, preemption: 0/3 nodes are available: 3 No preemption victims found for incoming pod.",
+      "count": null,
+      "first": null,
+      "last": null,
+      "source": {},
+      "reportingController": null
+    }
+  ]
+}

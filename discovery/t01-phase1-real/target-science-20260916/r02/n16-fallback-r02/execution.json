@@ -1,0 +1,57 @@
+{
+  "backend": "owned-local-python",
+  "container_id": null,
+  "container_started": false,
+  "dispatcher": {
+    "birth": "40490551",
+    "pid": 548,
+    "platform": "linux"
+  },
+  "fault": null,
+  "job_object": "Local\\exec-t01p1r-attempt-97841a05ddff4e76ab4660e15d4ef80e",
+  "limits": {
+    "active_limit": 4,
+    "active_limit_enforcement": "container-or-pod-pids-limit",
+    "flags": "kill-process-group",
+    "job_memory": 1073741824,
+    "platform": "linux-process-group-rlimit"
+  },
+  "network_used": false,
+  "phase": "finished",
+  "source_receipts": {
+    "dependency_manifest_sha256": "d390f72037457cb6d730b8caa11e1b206c2d4d5814d5141149b0095c09cee5d1",
+    "state": "VERIFIED_LOCAL_TABLE_AND_DEPENDENCIES",
+    "table": {
+      "distribution": "python-codon-tables==0.1.18",
+      "distribution_source": "https://github.com/Edinburgh-Genome-Foundry/python_codon_tables",
+      "file": "e_coli_316407.csv",
+      "host": "E.coli",
+      "profile": "ecoli-k12-w3110-kazusa-316407-v1",
+      "provenance": "Bundled Kazusa-derived relative frequencies, original rounded values retained; not a fresh Kazusa download",
+      "sha256": "b7eb52a39dce8c4ed4475f4a6032333dc2eff47eb2b1f756209c14569ffc4ace",
+      "size_bytes": 739,
+      "source": "https://www.kazusa.or.jp/codon/cgi-bin/showcodon.cgi?aa=1&style=N&species=316407",
+      "taxonomy_id": 316407
+    },
+    "versions": {
+      "biopython": "1.88",
+      "colorama": "0.4.6",
+      "dnachisel": "3.2.16",
+      "docopt": "0.6.2",
+      "flametree": "0.2.1",
+      "numpy": "2.4.6",
+      "proglog": "0.1.12",
+      "python-codon-tables": "0.1.18",
+      "tqdm": "4.70.0"
+    }
+  },
+  "supervisor": null,
+  "timeout_seconds": 60,
+  "tree_stopped": true,
+  "worker": {
+    "birth": "40490745",
+    "pid": 619,
+    "platform": "linux"
+  },
+  "worker_started": true
+}

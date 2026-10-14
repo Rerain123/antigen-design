@@ -1,0 +1,262 @@
+{
+  "declared_before_execution": true,
+  "prepared_at": "2026-09-06T02:23:06.977022+00:00",
+  "oracle": "Literal label blocks/counts plus A5/S04/R48; synthetic cases are not model predictions or biological references",
+  "cases": [
+    {
+      "id": "normal-four-labels",
+      "sequence": "AAAAAAAAAAAA",
+      "labels": "IIIMMOOOOSSS",
+      "type": "SP+TM",
+      "failure": null,
+      "expected": {
+        "null_reason": null,
+        "counts": {
+          "tm_count": 1,
+          "outside_length": 4,
+          "has_signal": true,
+          "segments": 4
+        }
+      }
+    },
+    {
+      "id": "multiple-m-segments",
+      "sequence": "AAAAAAAAAAAA",
+      "labels": "MMIIMMIIOOOO",
+      "type": "TM",
+      "failure": null,
+      "expected": {
+        "null_reason": null,
+        "counts": {
+          "tm_count": 2,
+          "outside_length": 4,
+          "has_signal": false,
+          "segments": 5
+        }
+      }
+    },
+    {
+      "id": "all-inside",
+      "sequence": "AAAAAAAAA",
+      "labels": "IIIIIIIII",
+      "type": "GLOB",
+      "failure": null,
+      "expected": {
+        "null_reason": null,
+        "counts": {
+          "tm_count": 0,
+          "outside_length": 0,
+          "has_signal": false,
+          "segments": 1
+        }
+      }
+    },
+    {
+      "id": "signal",
+      "sequence": "AAAAAAAAA",
+      "labels": "SSSOOOOOO",
+      "type": "SP",
+      "failure": null,
+      "expected": {
+        "null_reason": null,
+        "counts": {
+          "tm_count": 0,
+          "outside_length": 6,
+          "has_signal": true,
+          "segments": 2
+        }
+      }
+    },
+    {
+      "id": "p-only-glob",
+      "sequence": "AAAAAAAAA",
+      "labels": "PPPOOOOOO",
+      "type": "GLOB",
+      "failure": null,
+      "expected": {
+        "null_reason": "PB_OUT_OF_DOMAIN",
+        "counts": null
+      }
+    },
+    {
+      "id": "b-only",
+      "sequence": "AAAAAAAAA",
+      "labels": "BBBOOOOOO",
+      "type": "BETA",
+      "failure": null,
+      "expected": {
+        "null_reason": "PB_OUT_OF_DOMAIN",
+        "counts": null
+      }
+    },
+    {
+      "id": "pb-full",
+      "sequence": "AAAAAAAAAAAA",
+      "labels": "SSPPBBBOOPPP",
+      "type": "BETA",
+      "failure": null,
+      "expected": {
+        "null_reason": "PB_OUT_OF_DOMAIN",
+        "counts": null
+      }
+    },
+    {
+      "id": "empty",
+      "sequence": "",
+      "labels": null,
+      "type": "GLOB",
+      "failure": null,
+      "expected": {
+        "null_reason": "INVALID_INPUT",
+        "counts": null
+      }
+    },
+    {
+      "id": "upstream-eight",
+      "sequence": "AAAAAAAA",
+      "labels": null,
+      "type": "GLOB",
+      "failure": null,
+      "expected": {
+        "null_reason": "INVALID_INPUT",
+        "counts": null
+      }
+    },
+    {
+      "id": "lowercase",
+      "sequence": "acdefghik",
+      "labels": null,
+      "type": "GLOB",
+      "failure": null,
+      "expected": {
+        "null_reason": "INVALID_INPUT",
+        "counts": null
+      }
+    },
+    {
+      "id": "whitespace",
+      "sequence": "ACD EFGHIK",
+      "labels": null,
+      "type": "GLOB",
+      "failure": null,
+      "expected": {
+        "null_reason": "INVALID_INPUT",
+        "counts": null
+      }
+    },
+    {
+      "id": "stop",
+      "sequence": "ACDEFGHI*",
+      "labels": null,
+      "type": "GLOB",
+      "failure": null,
+      "expected": {
+        "null_reason": "INVALID_INPUT",
+        "counts": null
+      }
+    },
+    {
+      "id": "unicode",
+      "sequence": "ACDEFGHIＡ",
+      "labels": null,
+      "type": "GLOB",
+      "failure": null,
+      "expected": {
+        "null_reason": "INVALID_INPUT",
+        "counts": null
+      }
+    },
+    {
+      "id": "non-aa20",
+      "sequence": "ACDEFGHIX",
+      "labels": null,
+      "type": "GLOB",
+      "failure": null,
+      "expected": {
+        "null_reason": "INPUT_REVIEW_REQUIRED",
+        "counts": null
+      }
+    },
+    {
+      "id": "above-observed-range",
+      "sequence": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "labels": null,
+      "type": "GLOB",
+      "failure": null,
+      "expected": {
+        "null_reason": "INPUT_REVIEW_REQUIRED",
+        "counts": null
+      }
+    },
+    {
+      "id": "tool_unavailable",
+      "sequence": "ACDEFGHIK",
+      "labels": null,
+      "type": "GLOB",
+      "failure": "TOOL_UNAVAILABLE",
+      "expected": {
+        "null_reason": "TOOL_UNAVAILABLE",
+        "counts": null
+      }
+    },
+    {
+      "id": "tool_failed",
+      "sequence": "ACDEFGHIK",
+      "labels": null,
+      "type": "GLOB",
+      "failure": "TOOL_FAILED",
+      "expected": {
+        "null_reason": "TOOL_FAILED",
+        "counts": null
+      }
+    },
+    {
+      "id": "invalid_output",
+      "sequence": "ACDEFGHIK",
+      "labels": null,
+      "type": "GLOB",
+      "failure": "INVALID_OUTPUT",
+      "expected": {
+        "null_reason": "INVALID_OUTPUT",
+        "counts": null
+      }
+    },
+    {
+      "id": "timed_out",
+      "sequence": "ACDEFGHIK",
+      "labels": null,
+      "type": "GLOB",
+      "failure": "TIMED_OUT",
+      "expected": {
+        "null_reason": "TIMED_OUT",
+        "counts": null
+      }
+    },
+    {
+      "id": "cancelled",
+      "sequence": "ACDEFGHIK",
+      "labels": null,
+      "type": "GLOB",
+      "failure": "CANCELLED",
+      "expected": {
+        "null_reason": "CANCELLED",
+        "counts": null
+      }
+    }
+  ],
+  "replay_cases": [
+    "short",
+    "coverage",
+    "x-residue"
+  ],
+  "expected_replay": {
+    "records": 11,
+    "ordinary": 8,
+    "pb": 2,
+    "input_review": 1
+  },
+  "raw_failure_cases": [
+    "empty"
+  ],
+  "raw_model_executions_this_task": 0
+}

@@ -1,0 +1,51 @@
+{
+  "classification": "discovery_evidence",
+  "production_deployment_status": "NOT_DEPLOYED",
+  "database_role": "S-07 BLAST discovery structure-sequence database",
+  "generated_at": "2026-09-01T03:29:27.409705Z",
+  "source": {
+    "url": "https://files.wwpdb.org/pub/pdb/derived_data/pdb_seqres.txt.gz",
+    "last_modified": "2026-08-22T07:14:18Z",
+    "file_name": "pdb_seqres.txt.gz",
+    "size_bytes": 66543638,
+    "sha256": "e58353521f49336892fa583f0b0efb598e5b1cb482e5b6f33a9cb1f3e373c294"
+  },
+  "transformation": {
+    "rule": "keep FASTA records whose header contains mol:protein (case-insensitive)",
+    "script": "scripts/filter_wwpdb_protein_fasta.py"
+  },
+  "output": {
+    "logical_name": "pdb_seqres_protein.fasta",
+    "size_bytes": 386955714,
+    "sha256": "6da00091dd5e498ad0251dd49d09bf889ab8da649a681e398399bb75eb7ae5c6",
+    "record_count": 1090949,
+    "residue_count": 318599298,
+    "observed_sequence_characters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z"
+    ]
+  }
+}

@@ -1,0 +1,351 @@
+{
+  "type": "object",
+  "properties": {
+    "extension_version": {
+      "const": "0.1.0"
+    },
+    "contract_status": {
+      "const": "DRAFT_ENGINEERING_EXTENSION"
+    },
+    "identity_scope": {
+      "const": "LOCAL_PROBE_NOT_RUNTIME_ISSUED"
+    },
+    "tool_id": {
+      "const": "t01.dev.structure_input_facts"
+    },
+    "binding": {
+      "type": "object",
+      "properties": {
+        "run_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+        },
+        "request_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+        },
+        "job_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+        },
+        "attempt_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+        },
+        "request_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "sequence_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "structure_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "run_id",
+        "request_id",
+        "job_id",
+        "attempt_id",
+        "request_sha256",
+        "sequence_sha256",
+        "structure_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "outcome": {
+      "enum": [
+        "recorded",
+        "rejected"
+      ]
+    },
+    "error_code": {
+      "enum": [
+        null,
+        "INPUT_UNSUPPORTED",
+        "FORMAT_MISMATCH",
+        "PARSE_FAILED",
+        "SELECTION_REQUIRED",
+        "SELECTION_NOT_FOUND",
+        "SELECTION_NOT_PROTEIN"
+      ]
+    },
+    "fact_artifacts": {
+      "type": "object",
+      "properties": {
+        "preflight": {
+          "type": "object",
+          "properties": {
+            "artifact_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+            },
+            "run_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+            },
+            "job_id": {
+              "type": "string",
+              "pattern": "^t01p1r-job-"
+            },
+            "attempt_id": {
+              "type": "string",
+              "pattern": "^t01p1r-attempt-"
+            },
+            "role": {
+              "const": "result"
+            },
+            "media_type": {
+              "const": "application/json"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "size_bytes": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "evidence_kind": {
+              "const": "ENGINEERING_FIXTURE"
+            }
+          },
+          "required": [
+            "artifact_id",
+            "run_id",
+            "job_id",
+            "attempt_id",
+            "role",
+            "media_type",
+            "sha256",
+            "size_bytes",
+            "evidence_kind"
+          ],
+          "additionalProperties": false
+        },
+        "raw_metadata": {
+          "type": "object",
+          "properties": {
+            "artifact_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+            },
+            "run_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+            },
+            "job_id": {
+              "type": "string",
+              "pattern": "^t01p1r-job-"
+            },
+            "attempt_id": {
+              "type": "string",
+              "pattern": "^t01p1r-attempt-"
+            },
+            "role": {
+              "const": "result"
+            },
+            "media_type": {
+              "const": "application/json"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "size_bytes": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "evidence_kind": {
+              "const": "ENGINEERING_FIXTURE"
+            }
+          },
+          "required": [
+            "artifact_id",
+            "run_id",
+            "job_id",
+            "attempt_id",
+            "role",
+            "media_type",
+            "sha256",
+            "size_bytes",
+            "evidence_kind"
+          ],
+          "additionalProperties": false
+        },
+        "raw_addresses": {
+          "type": "object",
+          "properties": {
+            "artifact_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+            },
+            "run_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+            },
+            "job_id": {
+              "type": "string",
+              "pattern": "^t01p1r-job-"
+            },
+            "attempt_id": {
+              "type": "string",
+              "pattern": "^t01p1r-attempt-"
+            },
+            "role": {
+              "const": "result"
+            },
+            "media_type": {
+              "const": "application/json"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "size_bytes": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "evidence_kind": {
+              "const": "ENGINEERING_FIXTURE"
+            }
+          },
+          "required": [
+            "artifact_id",
+            "run_id",
+            "job_id",
+            "attempt_id",
+            "role",
+            "media_type",
+            "sha256",
+            "size_bytes",
+            "evidence_kind"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "preflight",
+        "raw_metadata",
+        "raw_addresses"
+      ],
+      "additionalProperties": false
+    },
+    "host_species": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_declaration": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "unknown",
+            "experimental",
+            "predicted"
+          ]
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "note"
+      ],
+      "additionalProperties": false
+    },
+    "unresolved_metadata": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "const": null
+        },
+        "plddt": {
+          "const": null
+        },
+        "missing_atom_fraction": {
+          "const": null
+        }
+      },
+      "required": [
+        "source",
+        "plddt",
+        "missing_atom_fraction"
+      ],
+      "additionalProperties": false
+    },
+    "mapping_status": {
+      "const": null
+    },
+    "scientific_disposition": {
+      "const": "not_evaluated"
+    },
+    "review_required": {
+      "const": true
+    },
+    "usable_for_pipeline": {
+      "const": false
+    },
+    "production_status": {
+      "const": "NOT_DEPLOYED"
+    }
+  },
+  "required": [
+    "extension_version",
+    "contract_status",
+    "identity_scope",
+    "tool_id",
+    "binding",
+    "outcome",
+    "error_code",
+    "fact_artifacts",
+    "host_species",
+    "source_declaration",
+    "unresolved_metadata",
+    "mapping_status",
+    "scientific_disposition",
+    "review_required",
+    "usable_for_pipeline",
+    "production_status"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:t01:dev:b1-input-facts-result:0.1.0",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "recorded"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error_code": {
+            "const": null
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "error_code": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  ]
+}

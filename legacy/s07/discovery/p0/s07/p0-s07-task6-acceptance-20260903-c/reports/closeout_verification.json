@@ -1,0 +1,315 @@
+{
+  "acceptance_checks": [
+    {
+      "check_id": "CLOSE-T6-01",
+      "evidence": {
+        "campaign_status": "COMPLETE_NONPRODUCTION_ACCEPTANCE_WITH_RELEASE_GATES",
+        "deployment": "NOT_DEPLOYED",
+        "scientific_acceptance": "NOT_RUN"
+      },
+      "status": "PASS"
+    },
+    {
+      "check_id": "CLOSE-T6-02",
+      "evidence": {
+        "expected_ids": [
+          "T6-C01",
+          "T6-C02",
+          "T6-C03",
+          "T6-C04",
+          "T6-C05",
+          "T6-C06",
+          "T6-C07",
+          "T6-C08",
+          "T6-C09",
+          "T6-C10"
+        ],
+        "passed": 10
+      },
+      "status": "PASS"
+    },
+    {
+      "check_id": "CLOSE-T6-03",
+      "evidence": {
+        "release": "wwpdb-20260829-mmseqs2-18-8cc5c",
+        "strict_candidate_count": 2466,
+        "tp53_selection": {
+          "candidate_entry_id": "9R2Q",
+          "expert_confirmation_ids": [
+            "S07-EQ-02"
+          ],
+          "matching_chain_ids": [
+            "K",
+            "L",
+            "M",
+            "N"
+          ],
+          "reason_codes": [
+            "R58_AMBIGUOUS_MATCHING_CHAINS_BLOCK_AUTO_HANDOFF",
+            "MINIMUM_POSITIVE_ANGSTROM_UNDER_PROVISIONAL_EQ02"
+          ],
+          "selected_chain_id": null,
+          "selected_entry_id": null,
+          "status": "REVIEW_REQUIRED"
+        },
+        "ubiquitin_selection": {
+          "expert_confirmation_ids": [
+            "S07-EQ-02"
+          ],
+          "method": "X-RAY DIFFRACTION",
+          "method_group": "X_RAY",
+          "reason_codes": [
+            "MINIMUM_POSITIVE_ANGSTROM_UNDER_PROVISIONAL_EQ02",
+            "NMR_CANDIDATES_RETAINED_AS_PROVISIONAL_BACKUP"
+          ],
+          "resolution_angstrom": 0.85,
+          "rule_status": "PROVISIONAL_USER_APPROVED_EXPERT_PENDING",
+          "selected_chain_id": "A",
+          "selected_entry_id": "6Q00",
+          "status": "SELECTED_PROVISIONAL"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "check_id": "CLOSE-T6-04",
+      "evidence": {
+        "6Q00": 76,
+        "9R2Q": 200
+      },
+      "status": "PASS"
+    },
+    {
+      "check_id": "CLOSE-T6-05",
+      "evidence": {
+        "API-1UBQ": {
+          "chains": 2422,
+          "graphql_requests": 16,
+          "strict_entities": 1588,
+          "total": 1623
+        },
+        "API-O15116": {
+          "http_status": 204,
+          "total": 0
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "check_id": "CLOSE-T6-06",
+      "evidence": {
+        "integrative_candidate_count": 3,
+        "metadata_field": "rcsb_entry_info.experimental_method",
+        "selection_reason_codes": [
+          "MINIMUM_POSITIVE_ANGSTROM_UNDER_PROVISIONAL_EQ02",
+          "NMR_CANDIDATES_RETAINED_AS_PROVISIONAL_BACKUP",
+          "INCOMPARABLE_METHOD_CANDIDATES_RETAINED_AS_PROVISIONAL_BACKUP"
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "check_id": "CLOSE-T6-07",
+      "evidence": {
+        "model_id": "AF-O15116-F1",
+        "model_version": "6",
+        "sequence_checks": {
+          "input_equals_afdb_cif": true,
+          "input_equals_afdb_metadata": true,
+          "input_equals_uniprot_fasta": true,
+          "input_equals_uniprot_json": true
+        },
+        "uniprot_release": "2026_03"
+      },
+      "status": "PASS"
+    },
+    {
+      "check_id": "CLOSE-T6-08",
+      "evidence": {
+        "fault_and_recovery": {
+          "rejection_check_count": 20,
+          "route_case_count": 19,
+          "status": "PASS",
+          "storage_check_count": 7
+        },
+        "handoffs": {
+          "BLOCKED": 11,
+          "S-08": 2,
+          "S-09": 6
+        },
+        "validated_results": 19
+      },
+      "status": "PASS"
+    },
+    {
+      "check_id": "CLOSE-T6-09",
+      "evidence": {
+        "automatic_selection_allowed": false,
+        "candidate_collection_complete": false,
+        "configured_max_alignments": 100,
+        "configured_max_scores": 100,
+        "evidence_kind": "FROZEN_REPLAY",
+        "reason_code": "POSITIVE_BLAST_RESULT_OBSERVED_AT_CONFIGURED_CAP",
+        "reported_hit_count": 100,
+        "source_refs": {
+          "raw_result": {
+            "path": "discovery/p0/s07/p0-s07-task4-uniprot-afdb-20260902-a/evidence/blast-api/ebi/O15116/result-json",
+            "sha256": "6297f043aaebc7476042609873a67359d831fd70a5f102e73d5de95bc1bcfbf5",
+            "size_bytes": 209539
+          },
+          "report": {
+            "path": "discovery/p0/s07/p0-s07-task4-uniprot-afdb-20260902-a/reports/task4_api_evidence.json",
+            "sha256": "d21b77a345747a9b86ee6b9560833ed901c44083e5b4fdd96975ffb85517b2f8",
+            "size_bytes": 12861
+          },
+          "submission_response_headers": {
+            "path": "discovery/p0/s07/p0-s07-task4-uniprot-afdb-20260902-a/evidence/blast-api/ebi/O15116/submit.headers.txt",
+            "sha256": "00a62b0162ef9b21fa168844ad03956752fa4499f9aa38a65b4a40f21faa30a2",
+            "size_bytes": 375
+          }
+        },
+        "status": "REVIEW_REQUIRED_INCOMPLETE_CANDIDATE_COLLECTION"
+      },
+      "status": "PASS"
+    },
+    {
+      "check_id": "CLOSE-T6-10",
+      "evidence": {
+        "expert_confirmation_ids": [
+          "S07-EQ-01",
+          "S07-EQ-02",
+          "S07-EQ-03",
+          "S07-EQ-04",
+          "S07-EQ-05"
+        ],
+        "source": {
+          "path": "docs/project/stages/p0/S07_EXPERT_CONFIRMATIONS.md",
+          "sha256": "80c505f065a4e60a083804cb4d77f4088d16c1bc7be0a85237b3e153ea5a6d9c",
+          "size_bytes": 10682
+        },
+        "status": "PENDING"
+      },
+      "status": "PASS"
+    },
+    {
+      "check_id": "CLOSE-T6-11",
+      "evidence": {
+        "dify_workflow": "NOT_DEPLOYED",
+        "expert_scientific_rules": "PENDING_5_ITEMS",
+        "mcp_adapter": "NOT_DEPLOYED",
+        "oi_017_production_job_runtime": "NOT_IMPLEMENTED_PENDING_V0_6",
+        "positive_blast_candidate_completeness": "BLOCKED_AT_PROFILE_CAP",
+        "s08_consumer": "NOT_DEPLOYED",
+        "s09_consumer": "NOT_DEPLOYED",
+        "target_server_local_profile": "HANDOFF_PENDING_RECEIVING_TEAM",
+        "task6_nonproduction_acceptance": "PASS"
+      },
+      "status": "PASS"
+    },
+    {
+      "check_id": "CLOSE-T6-12",
+      "evidence": {
+        "authoritative_campaign": "p0-s07-task6-acceptance-20260903-c",
+        "campaign_a": {
+          "campaign_id": "p0-s07-task6-acceptance-20260903-a",
+          "classification": "NON_PRODUCTION_S07_ACCEPTANCE",
+          "failed_at": "2026-09-03T03:01:05.068055Z",
+          "failure": "Task 6 acceptance checks failed: ['T6-C06']",
+          "failure_type": "ValueError",
+          "production_deployment_status": "NOT_DEPLOYED",
+          "scientific_acceptance": "NOT_RUN",
+          "started_at": "2026-09-03T03:00:23.979628Z",
+          "status": "FAILED_INCOMPLETE"
+        },
+        "campaign_b_run_history": [
+          {
+            "attempt": 1,
+            "record": "reports/runner_attempts/attempt-001-failure.json",
+            "status": "FAILED_AFTER_ACCEPTANCE_DURING_MANIFEST_PACKAGING"
+          },
+          {
+            "attempt": 2,
+            "record": "reports/runner_resume_closeout.json",
+            "status": "FINALIZED_WITHOUT_REEXECUTING_EVIDENCE"
+          }
+        ]
+      },
+      "status": "PASS"
+    }
+  ],
+  "appended_records": {
+    "p0_s07_component_candidate": {
+      "path": "discovery/p0/s07/p0-s07-task6-acceptance-20260903-c/reports/p0_s07_component_candidate.json",
+      "sha256": "d5572e05f3c34d83b6a5de5509390cad4dc3b68cb927fa40b21349830a93bd44",
+      "size_bytes": 3624
+    },
+    "runtime_dependency_matrix": {
+      "path": "discovery/p0/s07/p0-s07-task6-acceptance-20260903-c/reports/runtime_dependency_matrix.json",
+      "sha256": "11dd8fa68439a8943fb4f51d639a4c45c4f02721ae232a3a9a3c1d456768b4bc",
+      "size_bytes": 2092
+    }
+  },
+  "campaign_id": "p0-s07-task6-acceptance-20260903-c",
+  "classification": "NON_PRODUCTION_ACCEPTANCE_CLOSEOUT",
+  "conclusion": {
+    "expert_confirmation": "PENDING_5_ITEMS",
+    "next_task": "P0_V0_6_IMPLEMENTATION_PLAN_REWRITE_AND_REVIEW",
+    "production_deployment_status": "NOT_DEPLOYED",
+    "scientific_acceptance": "NOT_RUN",
+    "task6": "COMPLETE_NONPRODUCTION_ACCEPTANCE_WITH_RELEASE_GATES"
+  },
+  "generated_at": "2026-09-03T03:24:34.911449Z",
+  "manifest_audit": {
+    "manifest": {
+      "path": "discovery/p0/s07/p0-s07-task6-acceptance-20260903-c/reports/artifact_manifest.json",
+      "sha256": "84afb7fce98c46321b759e81c41c33af8bb067eeba18090b3d94e0c479ae7562",
+      "size_bytes": 37308
+    },
+    "status": "PASS",
+    "verified_file_count": 151,
+    "verified_total_bytes": 8110881
+  },
+  "schema_version": "s07-task6-closeout.v1",
+  "status": "PASS",
+  "validation": {
+    "documentation": {
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "D:\\work\\蛋白智能体\\scripts\\check_docs.py"
+      ],
+      "log": {
+        "path": "discovery/p0/s07/p0-s07-task6-acceptance-20260903-c/reports/docs_check_output.txt",
+        "sha256": "f739221c21dc56052e64190c49bc277daf55848ad8fcc0471dbb3020d94c5cce",
+        "size_bytes": 142
+      },
+      "status": "PASS"
+    },
+    "pytest": {
+      "command": [
+        "D:\\work\\蛋白智能体\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-o",
+        "addopts=",
+        "-q",
+        "--basetemp=D:\\work\\蛋白智能体\\.tmp\\task6-closeout-2w5hmtys",
+        "--junitxml=D:\\work\\蛋白智能体\\discovery\\p0\\s07\\p0-s07-task6-acceptance-20260903-c\\reports\\pytest_results.xml"
+      ],
+      "errors": 0,
+      "failures": 0,
+      "junit": {
+        "path": "discovery/p0/s07/p0-s07-task6-acceptance-20260903-c/reports/pytest_results.xml",
+        "sha256": "2674f6640c27333472c502f174abc7fc2bc0abc3bc7724a65f6352b335e2029c",
+        "size_bytes": 14868
+      },
+      "log": {
+        "path": "discovery/p0/s07/p0-s07-task6-acceptance-20260903-c/reports/pytest_output.txt",
+        "sha256": "66c7f81a03a85f6108bddbee90609ebf5426ade729767abb77d9f0a114f6dd22",
+        "size_bytes": 578
+      },
+      "skipped": 0,
+      "status": "PASS",
+      "tests": 116
+    }
+  }
+}

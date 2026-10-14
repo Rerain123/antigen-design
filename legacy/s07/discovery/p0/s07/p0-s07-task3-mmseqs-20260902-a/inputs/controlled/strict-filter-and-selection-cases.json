@@ -1,0 +1,94 @@
+{
+  "schema_version": "s07-task3-controlled-cases.v0.1",
+  "strict_filter": {
+    "rule_under_test": "identity > 0.95 AND coverage > 0.90",
+    "coverage_field_for_fixture": "query_coverage",
+    "coverage_field_status": "PROPOSED_INTERPRETATION_PENDING_TARGETED_REVIEW",
+    "cases": [
+      {
+        "case_id": "IDENTITY_EQUALS_095",
+        "identity": 0.95,
+        "query_coverage": 1.0,
+        "expected_pass": false,
+        "expected_reason": "IDENTITY_NOT_STRICTLY_GREATER_THAN_095"
+      },
+      {
+        "case_id": "COVERAGE_EQUALS_090",
+        "identity": 1.0,
+        "query_coverage": 0.9,
+        "expected_pass": false,
+        "expected_reason": "COVERAGE_NOT_STRICTLY_GREATER_THAN_090"
+      },
+      {
+        "case_id": "BOTH_ABOVE_BOUNDARY",
+        "identity": 0.950001,
+        "query_coverage": 0.900001,
+        "expected_pass": true,
+        "expected_reason": "PASS"
+      },
+      {
+        "case_id": "ONLY_IDENTITY_PASSES",
+        "identity": 0.99,
+        "query_coverage": 0.89,
+        "expected_pass": false,
+        "expected_reason": "COVERAGE_NOT_STRICTLY_GREATER_THAN_090"
+      }
+    ]
+  },
+  "resolution_selection": {
+    "cases": [
+      {
+        "case_id": "COMPARABLE_MIN_POSITIVE",
+        "candidates": [
+          {"candidate_id": "X1", "method_group": "X_RAY", "resolution_angstrom": 2.0},
+          {"candidate_id": "E1", "method_group": "CRYO_EM", "resolution_angstrom": 3.5}
+        ],
+        "expected_status": "SELECTED",
+        "expected_candidate_ids": ["X1"]
+      },
+      {
+        "case_id": "EQUAL_COMPARABLE_RESOLUTION",
+        "candidates": [
+          {"candidate_id": "X1", "method_group": "X_RAY", "resolution_angstrom": 2.0},
+          {"candidate_id": "E1", "method_group": "CRYO_EM", "resolution_angstrom": 2.0}
+        ],
+        "expected_status": "RESOLUTION_TIE_UNRESOLVED",
+        "expected_candidate_ids": ["E1", "X1"]
+      },
+      {
+        "case_id": "NMR_AND_POSITIVE_RESOLUTION",
+        "candidates": [
+          {"candidate_id": "X1", "method_group": "X_RAY", "resolution_angstrom": 2.0},
+          {"candidate_id": "N1", "method_group": "NMR", "resolution_angstrom": null}
+        ],
+        "expected_status": "CROSS_METHOD_PRIORITY_UNRESOLVED",
+        "expected_candidate_ids": ["N1", "X1"]
+      },
+      {
+        "case_id": "NON_POSITIVE_VALUES_EXCLUDED",
+        "candidates": [
+          {"candidate_id": "X0", "method_group": "X_RAY", "resolution_angstrom": 0.0},
+          {"candidate_id": "XN", "method_group": "X_RAY", "resolution_angstrom": -1.0},
+          {"candidate_id": "X2", "method_group": "X_RAY", "resolution_angstrom": 2.5}
+        ],
+        "expected_status": "SELECTED",
+        "expected_candidate_ids": ["X2"]
+      }
+    ]
+  },
+  "matching_chain_handling": {
+    "rule_source": "Agent A SOP R-58 global multi-chain clause",
+    "cases": [
+      {
+        "case_id": "ONE_MATCHING_CHAIN",
+        "matching_chains": ["A"],
+        "expected_status": "UNIQUE_CHAIN"
+      },
+      {
+        "case_id": "FOUR_MATCHING_CHAINS",
+        "matching_chains": ["K", "L", "M", "N"],
+        "expected_status": "AMBIGUOUS_MATCHING_CHAINS_BLOCK_AUTO_HANDOFF"
+      }
+    ]
+  }
+}

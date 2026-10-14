@@ -1,0 +1,282 @@
+{
+  "stage": "W1-08B2_SUPPLEMENTAL_DEVELOPMENT_EVIDENCE",
+  "production_enabled": false,
+  "scientific_signoff": null,
+  "original_entrypoint": true,
+  "image_id": "sha256:7f85781fadf8c89ddbafced691d05006caf6881b06aa5b9bae4bd531393bcd72",
+  "limits": {
+    "cpu_quota": 8,
+    "cpu_affinity": "0-7",
+    "memory_bytes": 10737418240,
+    "timeout_seconds": 900,
+    "parallel_models": 1
+  },
+  "cases": [
+    {
+      "id": "safe-id",
+      "sequence": "MQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLL",
+      "kind": "EXISTING_G0_REFERENCE",
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/inputs/short.fasta",
+        "sha256": "b832c9a0d1dbba4a61424d5cfe8dd3b29208a86f9c181812d4292bdf8ede92c4",
+        "size_bytes": 71
+      },
+      "original_user_id": "../输入 | safe-id\nmetadata-only",
+      "outcome": "EXPECT_COMPLETE_RAW",
+      "purpose": "Safe-ID full-artifact link and original-ID comparison",
+      "internal_id": "t01seq_2548dd1a2b1bb6adee62adcbda1ef4e46edb1c919da664011676adf1aee6174e",
+      "input": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/inputs/safe-id.fasta",
+        "sha256": "08731e182764f46a20dbe19744e236fa8f108ed937c7bde33a3484f91441223e",
+        "size_bytes": 125
+      },
+      "sequence_sha256": "2548dd1a2b1bb6adee62adcbda1ef4e46edb1c919da664011676adf1aee6174e"
+    },
+    {
+      "id": "length-1",
+      "sequence": "M",
+      "kind": "SYNTHETIC_LENGTH_FIXTURE",
+      "original_user_id": "synthetic_1",
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/inputs/short.fasta",
+        "sha256": "b832c9a0d1dbba4a61424d5cfe8dd3b29208a86f9c181812d4292bdf8ede92c4",
+        "size_bytes": 71
+      },
+      "outcome": "OBSERVE_COMPLETE_OR_DIAGNOSED_FAILURE",
+      "purpose": "Real tokenizer/chunk and process boundary; not biological accuracy",
+      "internal_id": "t01seq_08f271887ce94707da822d5263bae19d5519cb3614e0daedc4c7ce5dab7473f1",
+      "input": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/inputs/length-1.fasta",
+        "sha256": "63e09d03056fbeca1bcd7efafb6ff24fd67f2c44f5d31161749b9ea8b1ca5e64",
+        "size_bytes": 75
+      },
+      "sequence_sha256": "08f271887ce94707da822d5263bae19d5519cb3614e0daedc4c7ce5dab7473f1"
+    },
+    {
+      "id": "length-8",
+      "sequence": "MQLRHIGD",
+      "kind": "SYNTHETIC_LENGTH_FIXTURE",
+      "original_user_id": "synthetic_8",
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/inputs/short.fasta",
+        "sha256": "b832c9a0d1dbba4a61424d5cfe8dd3b29208a86f9c181812d4292bdf8ede92c4",
+        "size_bytes": 71
+      },
+      "outcome": "OBSERVE_COMPLETE_OR_DIAGNOSED_FAILURE",
+      "purpose": "Real tokenizer/chunk and process boundary; not biological accuracy",
+      "internal_id": "t01seq_87bed8155349016704d03b5b358c508a8fb9ecc3763fdbb3dfbd879c5d273b2e",
+      "input": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/inputs/length-8.fasta",
+        "sha256": "d6fe761c97f1a10311fda834a2e989f617e8c848e82016e98d60e0a66fb058b8",
+        "size_bytes": 82
+      },
+      "sequence_sha256": "87bed8155349016704d03b5b358c508a8fb9ecc3763fdbb3dfbd879c5d273b2e"
+    },
+    {
+      "id": "length-9",
+      "sequence": "MQLRHIGDS",
+      "kind": "SYNTHETIC_LENGTH_FIXTURE",
+      "original_user_id": "synthetic_9",
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/inputs/short.fasta",
+        "sha256": "b832c9a0d1dbba4a61424d5cfe8dd3b29208a86f9c181812d4292bdf8ede92c4",
+        "size_bytes": 71
+      },
+      "outcome": "OBSERVE_COMPLETE_OR_DIAGNOSED_FAILURE",
+      "purpose": "Real tokenizer/chunk and process boundary; not biological accuracy",
+      "internal_id": "t01seq_0b8f96c73642d707eabd77a6125eed7fdb4190897222fb06d47e012c2ad7ae6a",
+      "input": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/inputs/length-9.fasta",
+        "sha256": "b13b4de4c89a77b37a47cd3c01c678000e61f46d832ce6b159da476dcda235a9",
+        "size_bytes": 83
+      },
+      "sequence_sha256": "0b8f96c73642d707eabd77a6125eed7fdb4190897222fb06d47e012c2ad7ae6a"
+    },
+    {
+      "id": "length-29",
+      "sequence": "MQLRHIGDSVNHRVIQEHLAQEVGDVLAP",
+      "kind": "SYNTHETIC_LENGTH_FIXTURE",
+      "original_user_id": "synthetic_29",
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/inputs/short.fasta",
+        "sha256": "b832c9a0d1dbba4a61424d5cfe8dd3b29208a86f9c181812d4292bdf8ede92c4",
+        "size_bytes": 71
+      },
+      "outcome": "OBSERVE_COMPLETE_OR_DIAGNOSED_FAILURE",
+      "purpose": "Real tokenizer/chunk and process boundary; not biological accuracy",
+      "internal_id": "t01seq_c4f3afe7b3c3c0e3cb077b06bd3ea22f0a5a2a5470edb26582225fa303eb53df",
+      "input": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/inputs/length-29.fasta",
+        "sha256": "e3c9779206eb3d89e499a09c1518ad45bb31df7b4d7c3c3cc9ff9908c9ba6500",
+        "size_bytes": 103
+      },
+      "sequence_sha256": "c4f3afe7b3c3c0e3cb077b06bd3ea22f0a5a2a5470edb26582225fa303eb53df"
+    },
+    {
+      "id": "length-30",
+      "sequence": "MQLRHIGDSVNHRVIQEHLAQEVGDVLAPF",
+      "kind": "SYNTHETIC_LENGTH_FIXTURE",
+      "original_user_id": "synthetic_30",
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/inputs/short.fasta",
+        "sha256": "b832c9a0d1dbba4a61424d5cfe8dd3b29208a86f9c181812d4292bdf8ede92c4",
+        "size_bytes": 71
+      },
+      "outcome": "OBSERVE_COMPLETE_OR_DIAGNOSED_FAILURE",
+      "purpose": "Real tokenizer/chunk and process boundary; not biological accuracy",
+      "internal_id": "t01seq_5225b55b05b734344114a3e062e2e289750d912dc676ed6dde050fb9c2327d28",
+      "input": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/inputs/length-30.fasta",
+        "sha256": "6a6371cf3c05df78bb9fa6d54b77c24597a68aaf2b66c0c77561780ea7f10d7f",
+        "size_bytes": 104
+      },
+      "sequence_sha256": "5225b55b05b734344114a3e062e2e289750d912dc676ed6dde050fb9c2327d28"
+    },
+    {
+      "id": "length-1020",
+      "sequence": "MQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLL",
+      "kind": "SYNTHETIC_LENGTH_FIXTURE",
+      "original_user_id": "synthetic_1020",
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/inputs/short.fasta",
+        "sha256": "b832c9a0d1dbba4a61424d5cfe8dd3b29208a86f9c181812d4292bdf8ede92c4",
+        "size_bytes": 71
+      },
+      "outcome": "OBSERVE_COMPLETE_OR_DIAGNOSED_FAILURE",
+      "purpose": "Real tokenizer/chunk and process boundary; not biological accuracy",
+      "internal_id": "t01seq_9cc2772957f7df1a6e5c816bf148ab3ba8707fcd2e5ee175acda19cb55502a38",
+      "input": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/inputs/length-1020.fasta",
+        "sha256": "875c3c61e83c1992246ff0b3ea0c6145130b1440e8a6edb8bb7e9cfab60e298a",
+        "size_bytes": 1094
+      },
+      "sequence_sha256": "9cc2772957f7df1a6e5c816bf148ab3ba8707fcd2e5ee175acda19cb55502a38"
+    },
+    {
+      "id": "length-1021",
+      "sequence": "MQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLM",
+      "kind": "SYNTHETIC_LENGTH_FIXTURE",
+      "original_user_id": "synthetic_1021",
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/inputs/short.fasta",
+        "sha256": "b832c9a0d1dbba4a61424d5cfe8dd3b29208a86f9c181812d4292bdf8ede92c4",
+        "size_bytes": 71
+      },
+      "outcome": "OBSERVE_COMPLETE_OR_DIAGNOSED_FAILURE",
+      "purpose": "Real tokenizer/chunk and process boundary; not biological accuracy",
+      "internal_id": "t01seq_02b79c7a153506f01c45467cafd5b67997f94c4ce55dedbd082841474cbe3871",
+      "input": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/inputs/length-1021.fasta",
+        "sha256": "689754e5e5e97212a4c4dfb796e7967693c0ad73b549467293b2e47657318cc0",
+        "size_bytes": 1095
+      },
+      "sequence_sha256": "02b79c7a153506f01c45467cafd5b67997f94c4ce55dedbd082841474cbe3871"
+    },
+    {
+      "id": "length-1022",
+      "sequence": "MQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQ",
+      "kind": "SYNTHETIC_LENGTH_FIXTURE",
+      "original_user_id": "synthetic_1022",
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/inputs/short.fasta",
+        "sha256": "b832c9a0d1dbba4a61424d5cfe8dd3b29208a86f9c181812d4292bdf8ede92c4",
+        "size_bytes": 71
+      },
+      "outcome": "OBSERVE_COMPLETE_OR_DIAGNOSED_FAILURE",
+      "purpose": "Real tokenizer/chunk and process boundary; not biological accuracy",
+      "internal_id": "t01seq_0949923a2b156f82cafbb9f3a575db9a26958f299846cf478f0e6a58e4b5a792",
+      "input": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/inputs/length-1022.fasta",
+        "sha256": "2b89815b9b3c3ab11ebf7f194be7af842d3b6e38124775cbe14e9b5b891de896",
+        "size_bytes": 1096
+      },
+      "sequence_sha256": "0949923a2b156f82cafbb9f3a575db9a26958f299846cf478f0e6a58e4b5a792"
+    },
+    {
+      "id": "length-1023",
+      "sequence": "MQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLLMQL",
+      "kind": "SYNTHETIC_LENGTH_FIXTURE",
+      "original_user_id": "synthetic_1023",
+      "source": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/inputs/short.fasta",
+        "sha256": "b832c9a0d1dbba4a61424d5cfe8dd3b29208a86f9c181812d4292bdf8ede92c4",
+        "size_bytes": 71
+      },
+      "outcome": "OBSERVE_COMPLETE_OR_DIAGNOSED_FAILURE",
+      "purpose": "Real tokenizer/chunk and process boundary; not biological accuracy",
+      "internal_id": "t01seq_62fb5c626f2708819ecec51d9a4bde68e92cc78561b95477e0e5d717c5ba4327",
+      "input": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/inputs/length-1023.fasta",
+        "sha256": "adae7a366a31c60b57668dca821e176da2ea1755f71986a2eab89f687bccbefc",
+        "size_bytes": 1097
+      },
+      "sequence_sha256": "62fb5c626f2708819ecec51d9a4bde68e92cc78561b95477e0e5d717c5ba4327"
+    },
+    {
+      "id": "empty",
+      "sequence": "",
+      "kind": "INVALID_INPUT_FAULT",
+      "original_user_id": "empty",
+      "outcome": "EXPECT_EXECUTION_FAILURE",
+      "purpose": "Empty FASTA record rejection",
+      "internal_id": "t01seq_e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "input": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/inputs/empty.fasta",
+        "sha256": "452212d168dca8ca95c8f7261faf13a84ed07b62af5a7934f67a29e94714c847",
+        "size_bytes": 74
+      },
+      "sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "invalid-symbol",
+      "sequence": "ACDEFGHIK*",
+      "kind": "INVALID_INPUT_FAULT",
+      "original_user_id": "star",
+      "outcome": "EXPECT_EXECUTION_FAILURE",
+      "purpose": "Original tokenizer invalid-symbol failure",
+      "internal_id": "t01seq_feb5990bf0929febfe775675149e020f63b9f54a3c9e8372aef0321271640d2f",
+      "input": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/inputs/invalid-symbol.fasta",
+        "sha256": "7e29a05a14cb878ba8cb609f7d209c1f6f33c9c975b803ae88b0fdc4b066db42",
+        "size_bytes": 84
+      },
+      "sequence_sha256": "feb5990bf0929febfe775675149e020f63b9f54a3c9e8372aef0321271640d2f"
+    },
+    {
+      "id": "existing-output",
+      "sequence": "MQLRHIGDSVNHRVIQEHLAQEVGDVLAPFVALVFVRGQVLLRFFWNNHLL",
+      "kind": "EXISTING_OUTPUT_FAULT",
+      "original_user_id": "Q8K459|GLOBULAR",
+      "outcome": "EXPECT_EXECUTION_FAILURE",
+      "purpose": "Actual original-package failure with retained stale successful artifacts",
+      "seed_from": "safe-id",
+      "internal_id": "t01seq_2548dd1a2b1bb6adee62adcbda1ef4e46edb1c919da664011676adf1aee6174e",
+      "input": {
+        "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-boundaries-20260906/inputs/existing-output.fasta",
+        "sha256": "08731e182764f46a20dbe19744e236fa8f108ed937c7bde33a3484f91441223e",
+        "size_bytes": 125
+      },
+      "sequence_sha256": "2548dd1a2b1bb6adee62adcbda1ef4e46edb1c919da664011676adf1aee6174e"
+    }
+  ],
+  "fault_cases": [
+    "missing-prediction",
+    "missing-regions",
+    "missing-probability",
+    "missing-plot",
+    "missing-report",
+    "truncated-labels",
+    "wrong-sequence",
+    "wrong-id",
+    "wrong-region",
+    "nan-probability",
+    "wrong-probability-position",
+    "hash-tamper",
+    "unexpected-artifact",
+    "invalid-plot",
+    "wrong-report-id",
+    "missing-token-trace",
+    "wrong-token"
+  ],
+  "acceptance": "Success: exact ID/sequence/labels/regions/probability/hash/token coverage; failure: concrete diagnostics, topology null, no consumption. No prediction or numeric accuracy thresholds invented."
+}

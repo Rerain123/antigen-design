@@ -1,0 +1,1285 @@
+app:
+  description: T-01 v10 阶段4调试流程：32设计首轮，全淘汰后仅重试48与64两轮。
+  icon: 🧪
+  icon_background: '#E8F5E9'
+  mode: workflow
+  name: T01_P4_Design
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types: []
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: start
+        targetType: tool
+      id: edge_P4_START_source_P4_S27_DESIGN_A1
+      source: P4_START
+      sourceHandle: source
+      target: P4_S27_DESIGN_A1
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P4_S27_DESIGN_A1_source_P4_S28_VALIDATE_A1
+      source: P4_S27_DESIGN_A1
+      sourceHandle: source
+      target: P4_S28_VALIDATE_A1
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P4_S28_VALIDATE_A1_source_P4_RETRY_GATE_A1
+      source: P4_S28_VALIDATE_A1
+      sourceHandle: source
+      target: P4_RETRY_GATE_A1
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_P4_RETRY_GATE_A1_source_P4_IF_RETRY_A1
+      source: P4_RETRY_GATE_A1
+      sourceHandle: source
+      target: P4_IF_RETRY_A1
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P4_S27_DESIGN_A2_source_P4_S28_VALIDATE_A2
+      source: P4_S27_DESIGN_A2
+      sourceHandle: source
+      target: P4_S28_VALIDATE_A2
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P4_S28_VALIDATE_A2_source_P4_RETRY_GATE_A2
+      source: P4_S28_VALIDATE_A2
+      sourceHandle: source
+      target: P4_RETRY_GATE_A2
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_P4_RETRY_GATE_A2_source_P4_IF_RETRY_A2
+      source: P4_RETRY_GATE_A2
+      sourceHandle: source
+      target: P4_IF_RETRY_A2
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P4_S27_DESIGN_A3_source_P4_S28_VALIDATE_A3
+      source: P4_S27_DESIGN_A3
+      sourceHandle: source
+      target: P4_S28_VALIDATE_A3
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: tool
+      id: edge_P4_S28_VALIDATE_A3_source_P4_RETRY_GATE_A3
+      source: P4_S28_VALIDATE_A3
+      sourceHandle: source
+      target: P4_RETRY_GATE_A3
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: if-else
+      id: edge_P4_RETRY_GATE_A3_source_P4_IF_EXHAUSTED
+      source: P4_RETRY_GATE_A3
+      sourceHandle: source
+      target: P4_IF_EXHAUSTED
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_P4_IF_RETRY_A1_true_P4_S27_DESIGN_A2
+      source: P4_IF_RETRY_A1
+      sourceHandle: 'true'
+      target: P4_S27_DESIGN_A2
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_P4_IF_RETRY_A1_false_P4_S29_CONSERVATIVE_A1
+      source: P4_IF_RETRY_A1
+      sourceHandle: 'false'
+      target: P4_S29_CONSERVATIVE_A1
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: variable-aggregator
+      id: edge_P4_S29_CONSERVATIVE_A1_source_P4_RESULT_JOIN
+      source: P4_S29_CONSERVATIVE_A1
+      sourceHandle: source
+      target: P4_RESULT_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_P4_IF_RETRY_A2_true_P4_S27_DESIGN_A3
+      source: P4_IF_RETRY_A2
+      sourceHandle: 'true'
+      target: P4_S27_DESIGN_A3
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_P4_IF_RETRY_A2_false_P4_S29_CONSERVATIVE_A2
+      source: P4_IF_RETRY_A2
+      sourceHandle: 'false'
+      target: P4_S29_CONSERVATIVE_A2
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: variable-aggregator
+      id: edge_P4_S29_CONSERVATIVE_A2_source_P4_RESULT_JOIN
+      source: P4_S29_CONSERVATIVE_A2
+      sourceHandle: source
+      target: P4_RESULT_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: variable-aggregator
+      id: edge_P4_IF_EXHAUSTED_true_P4_RESULT_JOIN
+      source: P4_IF_EXHAUSTED
+      sourceHandle: 'true'
+      target: P4_RESULT_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: if-else
+        targetType: tool
+      id: edge_P4_IF_EXHAUSTED_false_P4_S29_CONSERVATIVE_A3
+      source: P4_IF_EXHAUSTED
+      sourceHandle: 'false'
+      target: P4_S29_CONSERVATIVE_A3
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: tool
+        targetType: variable-aggregator
+      id: edge_P4_S29_CONSERVATIVE_A3_source_P4_RESULT_JOIN
+      source: P4_S29_CONSERVATIVE_A3
+      sourceHandle: source
+      target: P4_RESULT_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: variable-aggregator
+        targetType: variable-aggregator
+      id: edge_P4_RESULT_JOIN_source_P4_ROUTE_JOIN
+      source: P4_RESULT_JOIN
+      sourceHandle: source
+      target: P4_ROUTE_JOIN
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        sourceType: variable-aggregator
+        targetType: end
+      id: edge_P4_ROUTE_JOIN_source_P4_END
+      source: P4_ROUTE_JOIN
+      sourceHandle: source
+      target: P4_END
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - variable: run_id
+          label: 运行 ID
+          type: text-input
+          required: true
+          max_length: 128
+          options: []
+        - variable: execution_mode
+          label: 执行模式
+          type: select
+          required: true
+          max_length: 128
+          options:
+          - mock
+      height: 154
+      id: P4_START
+      position:
+        x: 0
+        y: 220
+      positionAbsolute:
+        x: 0
+        y: 220
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: design.generate_mutations · Generate permission-constrained mutations (mock only).
+        selected: false
+        title: S-27 设计 32
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-27 设计 32
+        tool_name: design.generate_mutations
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P4_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-27
+          node_id:
+            type: constant
+            value: P4_S27_DESIGN_A1
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{"design_count":32}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P4_START.run_id#}}:P4_S27_DESIGN_A1:attempt-1'
+      height: 98
+      id: P4_S27_DESIGN_A1
+      position:
+        x: 320
+        y: 300
+      positionAbsolute:
+        x: 320
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: design.validate · Validate generated designs (mock only).
+        selected: false
+        title: S-28 验证 第1轮
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-28 验证 第1轮
+        tool_name: design.validate
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P4_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-28
+          node_id:
+            type: constant
+            value: P4_S28_VALIDATE_A1
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P4_S27_DESIGN_A1
+            - data
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P4_START.run_id#}}:P4_S28_VALIDATE_A1:attempt-1'
+      height: 98
+      id: P4_S28_VALIDATE_A1
+      position:
+        x: 640
+        y: 300
+      positionAbsolute:
+        x: 640
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01.evaluate_design_retry · Route initial/48/64 design attempts.
+        selected: false
+        title: 重试门控 第1轮
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 重试门控 第1轮
+        tool_name: t01.evaluate_design_retry
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P4_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-28-RETRY
+          node_id:
+            type: constant
+            value: P4_RETRY_GATE_A1
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P4_S28_VALIDATE_A1
+            - data
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P4_START.run_id#}}:P4_RETRY_GATE_A1:attempt-1'
+      height: 98
+      id: P4_RETRY_GATE_A1
+      position:
+        x: 960
+        y: 300
+      positionAbsolute:
+        x: 960
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 第1轮需要重试?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: P4_IF_RETRY_A1_condition
+            variable_selector:
+            - P4_RETRY_GATE_A1
+            - data
+            - route
+            comparison_operator: is
+            value: RETRY
+            varType: string
+      height: 150
+      id: P4_IF_RETRY_A1
+      position:
+        x: 1280
+        y: 300
+      positionAbsolute:
+        x: 1280
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: design.check_conservative_mutations · Exclude conservative-region violations.
+        selected: false
+        title: S-29 保守检查 第1轮
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-29 保守检查 第1轮
+        tool_name: design.check_conservative_mutations
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P4_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-29
+          node_id:
+            type: constant
+            value: P4_S29_CONSERVATIVE_A1
+          attempt:
+            type: constant
+            value: 1
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P4_S28_VALIDATE_A1
+            - data
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P4_START.run_id#}}:P4_S29_CONSERVATIVE_A1:attempt-1'
+      height: 98
+      id: P4_S29_CONSERVATIVE_A1
+      position:
+        x: 1600
+        y: 80
+      positionAbsolute:
+        x: 1600
+        y: 80
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: design.generate_mutations · Generate permission-constrained mutations (mock only).
+        selected: false
+        title: S-27 设计 48
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-27 设计 48
+        tool_name: design.generate_mutations
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P4_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-27
+          node_id:
+            type: constant
+            value: P4_S27_DESIGN_A2
+          attempt:
+            type: constant
+            value: 2
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{"design_count":48}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P4_START.run_id#}}:P4_S27_DESIGN_A2:attempt-2'
+      height: 98
+      id: P4_S27_DESIGN_A2
+      position:
+        x: 1600
+        y: 520
+      positionAbsolute:
+        x: 1600
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: design.validate · Validate generated designs (mock only).
+        selected: false
+        title: S-28 验证 第2轮
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-28 验证 第2轮
+        tool_name: design.validate
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P4_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-28
+          node_id:
+            type: constant
+            value: P4_S28_VALIDATE_A2
+          attempt:
+            type: constant
+            value: 2
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P4_S27_DESIGN_A2
+            - data
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P4_START.run_id#}}:P4_S28_VALIDATE_A2:attempt-2'
+      height: 98
+      id: P4_S28_VALIDATE_A2
+      position:
+        x: 1920
+        y: 520
+      positionAbsolute:
+        x: 1920
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01.evaluate_design_retry · Route initial/48/64 design attempts.
+        selected: false
+        title: 重试门控 第2轮
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 重试门控 第2轮
+        tool_name: t01.evaluate_design_retry
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P4_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-28-RETRY
+          node_id:
+            type: constant
+            value: P4_RETRY_GATE_A2
+          attempt:
+            type: constant
+            value: 2
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P4_S28_VALIDATE_A2
+            - data
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P4_START.run_id#}}:P4_RETRY_GATE_A2:attempt-2'
+      height: 98
+      id: P4_RETRY_GATE_A2
+      position:
+        x: 2240
+        y: 520
+      positionAbsolute:
+        x: 2240
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 第2轮需要重试?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: P4_IF_RETRY_A2_condition
+            variable_selector:
+            - P4_RETRY_GATE_A2
+            - data
+            - route
+            comparison_operator: is
+            value: RETRY
+            varType: string
+      height: 150
+      id: P4_IF_RETRY_A2
+      position:
+        x: 2560
+        y: 520
+      positionAbsolute:
+        x: 2560
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: design.check_conservative_mutations · Exclude conservative-region violations.
+        selected: false
+        title: S-29 保守检查 第2轮
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-29 保守检查 第2轮
+        tool_name: design.check_conservative_mutations
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P4_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-29
+          node_id:
+            type: constant
+            value: P4_S29_CONSERVATIVE_A2
+          attempt:
+            type: constant
+            value: 2
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P4_S28_VALIDATE_A2
+            - data
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P4_START.run_id#}}:P4_S29_CONSERVATIVE_A2:attempt-2'
+      height: 98
+      id: P4_S29_CONSERVATIVE_A2
+      position:
+        x: 2880
+        y: 300
+      positionAbsolute:
+        x: 2880
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: design.generate_mutations · Generate permission-constrained mutations (mock only).
+        selected: false
+        title: S-27 设计 64
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-27 设计 64
+        tool_name: design.generate_mutations
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P4_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-27
+          node_id:
+            type: constant
+            value: P4_S27_DESIGN_A3
+          attempt:
+            type: constant
+            value: 3
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: constant
+            value: '{"design_count":64}'
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P4_START.run_id#}}:P4_S27_DESIGN_A3:attempt-3'
+      height: 98
+      id: P4_S27_DESIGN_A3
+      position:
+        x: 2880
+        y: 740
+      positionAbsolute:
+        x: 2880
+        y: 740
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: design.validate · Validate generated designs (mock only).
+        selected: false
+        title: S-28 验证 第3轮
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-28 验证 第3轮
+        tool_name: design.validate
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P4_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-28
+          node_id:
+            type: constant
+            value: P4_S28_VALIDATE_A3
+          attempt:
+            type: constant
+            value: 3
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P4_S27_DESIGN_A3
+            - data
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P4_START.run_id#}}:P4_S28_VALIDATE_A3:attempt-3'
+      height: 98
+      id: P4_S28_VALIDATE_A3
+      position:
+        x: 3200
+        y: 740
+      positionAbsolute:
+        x: 3200
+        y: 740
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: t01.evaluate_design_retry · Route initial/48/64 design attempts.
+        selected: false
+        title: 重试门控 第3轮
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: 重试门控 第3轮
+        tool_name: t01.evaluate_design_retry
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P4_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-28-RETRY
+          node_id:
+            type: constant
+            value: P4_RETRY_GATE_A3
+          attempt:
+            type: constant
+            value: 3
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P4_S28_VALIDATE_A3
+            - data
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P4_START.run_id#}}:P4_RETRY_GATE_A3:attempt-3'
+      height: 98
+      id: P4_RETRY_GATE_A3
+      position:
+        x: 3520
+        y: 740
+      positionAbsolute:
+        x: 3520
+        y: 740
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 三轮全部淘汰?
+        type: if-else
+        _targetBranches:
+        - id: 'true'
+          name: IF
+        - id: 'false'
+          name: ELSE
+        logical_operator: and
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: P4_IF_EXHAUSTED_condition
+            variable_selector:
+            - P4_RETRY_GATE_A3
+            - data
+            - route
+            comparison_operator: is
+            value: EXHAUSTED
+            varType: string
+      height: 150
+      id: P4_IF_EXHAUSTED
+      position:
+        x: 3840
+        y: 740
+      positionAbsolute:
+        x: 3840
+        y: 740
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: design.check_conservative_mutations · Exclude conservative-region violations.
+        selected: false
+        title: S-29 保守检查 第3轮
+        type: tool
+        provider_id: __T01_MCP_PROVIDER_ID__
+        provider_name: __T01_MCP_PROVIDER_ID__
+        provider_type: mcp
+        tool_configurations: {}
+        tool_label: S-29 保守检查 第3轮
+        tool_name: design.check_conservative_mutations
+        tool_node_version: '2'
+        tool_parameters:
+          schema_version:
+            type: constant
+            value: 0.1.0
+          workflow_version:
+            type: constant
+            value: T01-v10
+          run_id:
+            type: variable
+            value:
+            - P4_START
+            - run_id
+          step_id:
+            type: constant
+            value: S-29
+          node_id:
+            type: constant
+            value: P4_S29_CONSERVATIVE_A3
+          attempt:
+            type: constant
+            value: 3
+          scope:
+            type: constant
+            value: wt
+          execution_mode:
+            type: constant
+            value: mock
+          parameters:
+            type: variable
+            value:
+            - P4_S28_VALIDATE_A3
+            - data
+          input_artifacts:
+            type: constant
+            value: '[]'
+          context:
+            type: constant
+            value: '{}'
+          idempotency_key:
+            type: mixed
+            value: '{{#P4_START.run_id#}}:P4_S29_CONSERVATIVE_A3:attempt-3'
+      height: 98
+      id: P4_S29_CONSERVATIVE_A3
+      position:
+        x: 4160
+        y: 520
+      positionAbsolute:
+        x: 4160
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 设计轮次结果汇合
+        type: variable-aggregator
+        advanced_settings:
+          group_enabled: false
+          groups: []
+        output_type: object
+        variables:
+        - - P4_RETRY_GATE_A3
+          - json
+        - - P4_RETRY_GATE_A2
+          - json
+        - - P4_RETRY_GATE_A1
+          - json
+      height: 108
+      id: P4_RESULT_JOIN
+      position:
+        x: 4480
+        y: 360
+      positionAbsolute:
+        x: 4480
+        y: 360
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 最终设计路由汇合
+        type: variable-aggregator
+        advanced_settings:
+          group_enabled: false
+          groups: []
+        output_type: string
+        variables:
+        - - P4_RETRY_GATE_A3
+          - data
+          - route
+        - - P4_RETRY_GATE_A2
+          - data
+          - route
+        - - P4_RETRY_GATE_A1
+          - data
+          - route
+      height: 108
+      id: P4_ROUTE_JOIN
+      position:
+        x: 4800
+        y: 360
+      positionAbsolute:
+        x: 4800
+        y: 360
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    - data:
+        desc: ''
+        selected: false
+        title: 结束
+        type: end
+        outputs:
+        - variable: run_id
+          value_selector:
+          - P4_START
+          - run_id
+        - variable: stage_result
+          value_selector:
+          - P4_RESULT_JOIN
+          - output
+        - variable: stage_route
+          value_selector:
+          - P4_ROUTE_JOIN
+          - output
+      height: 178
+      id: P4_END
+      position:
+        x: 5120
+        y: 360
+      positionAbsolute:
+        x: 5120
+        y: 360
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 270
+    viewport:
+      x: 0
+      y: 0
+      zoom: 0.55
+  rag_pipeline_variables: []

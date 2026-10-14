@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: antigen-design-himat-attachments
+  namespace: him-ws
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: himat.ws.scqcyz.cn
+    http:
+      paths:
+      - path: /antigen-design/attachments/
+        pathType: Prefix
+        backend:
+          service:
+            name: antigen-design
+            port:
+              number: 80

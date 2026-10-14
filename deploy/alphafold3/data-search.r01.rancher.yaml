@@ -1,0 +1,257 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-af3-data-search-r01
+  namespace: him-ws
+immutable: true
+data:
+  run_af3_data_search.py: "\"\"\"Run and verify the pinned AF3 local data pipeline\
+    \ for the 1UBQ acceptance input.\"\"\"\nfrom __future__ import annotations\n\n\
+    import hashlib\nimport json\nimport os\nfrom pathlib import Path\nimport shutil\n\
+    import subprocess\nimport sys\nimport time\n\ntry:\n    import resource\nexcept\
+    \ ImportError:  # Windows test environment; the acceptance container is Linux.\n\
+    \    resource = None\n\n\nRUN_ID = \"data-search-r01\"\nRUN_ROOT = Path(\"/runtime\"\
+    ) / RUN_ID\nINPUT_SOURCE = Path(\"/input/fold_input.json\")\nDATABASE_ROOT = Path(\"\
+    /databases/alphafold3-v3.0/unpacked-r03\")\nMODEL_ROOT = Path(\"/weights/alphafold3-official-r01\"\
+    )\nMODEL_FILE = MODEL_ROOT / \"af3.bin\"\nMODEL_SHA256 = \"df8bbf2621f17dd3ee21c2a921e84a50bc2b80cdc0c7971cb915c2826fee1f9b\"\
+    \nSEQUENCE = (\n    \"MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG\"\
+    \n)\nSEQUENCE_SHA256 = \"233b4b0b8c4616095bc3249f9375fc345d32af7deaef07117d0383c51d6f19aa\"\
+    \nREQUIRED_DATABASES = (\n    \"pdb_seqres_2022_09_28.fasta\",\n    \"rfam_14_9_clust_seq_id_90_cov_80_rep_seq.fasta\"\
+    ,\n    \"rnacentral_active_seq_id_90_cov_80_linclust.fasta\",\n    \"bfd-first_non_consensus_sequences.fasta\"\
+    ,\n    \"nt_rna_2023_02_23_clust_seq_id_90_cov_80_rep_seq.fasta\",\n    \"uniref90_2022_05.fa\"\
+    ,\n    \"uniprot_all_2021_04.fa\",\n    \"mgy_clusters_2022_05.fa\",\n    \"mmcif_files\"\
+    ,\n)\n\n\ndef sha256_file(path: Path) -> str:\n    digest = hashlib.sha256()\n\
+    \    with path.open(\"rb\") as stream:\n        while chunk := stream.read(8 *\
+    \ 1024 * 1024):\n            digest.update(chunk)\n    return digest.hexdigest()\n\
+    \n\ndef file_identity(path: Path, root: Path) -> dict[str, object]:\n    return\
+    \ {\n        \"path\": path.relative_to(root).as_posix(),\n        \"bytes\":\
+    \ path.stat().st_size,\n        \"sha256\": sha256_file(path),\n    }\n\n\ndef\
+    \ atomic_json(path: Path, value: dict[str, object]) -> None:\n    temporary =\
+    \ path.with_suffix(path.suffix + \".partial\")\n    temporary.write_text(json.dumps(value,\
+    \ indent=2, sort_keys=True) + \"\\n\", encoding=\"utf-8\")\n    temporary.replace(path)\n\
+    \n\ndef cgroup_memory() -> dict[str, int | None]:\n    result: dict[str, int |\
+    \ None] = {}\n    for name in (\"memory.current\", \"memory.peak\"):\n       \
+    \ path = Path(\"/sys/fs/cgroup\") / name\n        try:\n            value = path.read_text(encoding=\"\
+    ascii\").strip()\n            result[name.replace(\".\", \"_\") + \"_bytes\"]\
+    \ = None if value == \"max\" else int(value)\n        except (FileNotFoundError,\
+    \ PermissionError, ValueError):\n            result[name.replace(\".\", \"_\"\
+    ) + \"_bytes\"] = None\n    return result\n\n\ndef validate_input(value: dict[str,\
+    \ object]) -> None:\n    if value.get(\"dialect\") != \"alphafold3\" or value.get(\"\
+    version\") != 1:\n        raise ValueError(\"Expected pinned alphafold3 input\
+    \ dialect version 1\")\n    if value.get(\"modelSeeds\") != [1]:\n        raise\
+    \ ValueError(\"Expected the pinned model seed [1]\")\n    sequences = value.get(\"\
+    sequences\")\n    if not isinstance(sequences, list) or len(sequences) != 1:\n\
+    \        raise ValueError(\"Expected exactly one protein chain\")\n    protein\
+    \ = sequences[0].get(\"protein\") if isinstance(sequences[0], dict) else None\n\
+    \    if not isinstance(protein, dict) or protein.get(\"id\") != \"A\" or protein.get(\"\
+    sequence\") != SEQUENCE:\n        raise ValueError(\"Pinned 1UBQ chain differs\"\
+    )\n    if \"unpairedMsa\" in protein or \"pairedMsa\" in protein:\n        raise\
+    \ ValueError(\"MSA fields must be unset so AF3 builds them locally\")\n    if\
+    \ hashlib.sha256(SEQUENCE.encode()).hexdigest() != SEQUENCE_SHA256:\n        raise\
+    \ ValueError(\"Pinned sequence hash differs\")\n\n\ndef validate_processed_data(path:\
+    \ Path) -> dict[str, object]:\n    value = json.loads(path.read_bytes())\n   \
+    \ sequences = value.get(\"sequences\")\n    if not isinstance(sequences, list)\
+    \ or len(sequences) != 1:\n        raise ValueError(f\"Processed AF3 input has\
+    \ unexpected sequence count: {path}\")\n    protein = sequences[0].get(\"protein\"\
+    ) if isinstance(sequences[0], dict) else None\n    if not isinstance(protein,\
+    \ dict) or protein.get(\"sequence\") != SEQUENCE:\n        raise ValueError(f\"\
+    Processed AF3 input sequence differs: {path}\")\n    unpaired = protein.get(\"\
+    unpairedMsa\")\n    paired = protein.get(\"pairedMsa\")\n    templates = protein.get(\"\
+    templates\")\n    if not isinstance(unpaired, str) or not unpaired:\n        raise\
+    \ ValueError(\"Local data pipeline did not produce an unpaired MSA\")\n    if\
+    \ not isinstance(paired, str):\n        raise ValueError(\"Local data pipeline\
+    \ did not materialize paired MSA state\")\n    if not isinstance(templates, list):\n\
+    \        raise ValueError(\"Local data pipeline did not materialize template state\"\
+    )\n    return {\n        \"path\": path.relative_to(RUN_ROOT).as_posix(),\n  \
+    \      \"unpaired_msa_bytes\": len(unpaired.encode()),\n        \"paired_msa_bytes\"\
+    : len(paired.encode()),\n        \"template_count\": len(templates),\n    }\n\n\
+    \ndef run() -> dict[str, object]:\n    if RUN_ROOT.exists():\n        raise FileExistsError(f\"\
+    Refusing to reuse AF3 run directory: {RUN_ROOT}\")\n    input_dir = RUN_ROOT /\
+    \ \"input\"\n    output_dir = RUN_ROOT / \"output\"\n    tmp_dir = RUN_ROOT /\
+    \ \"tmp\"\n    input_dir.mkdir(parents=True)\n    output_dir.mkdir()\n    tmp_dir.mkdir()\n\
+    \n    input_value = json.loads(INPUT_SOURCE.read_bytes())\n    validate_input(input_value)\n\
+    \    input_path = input_dir / \"fold_input.json\"\n    input_path.write_bytes(INPUT_SOURCE.read_bytes())\n\
+    \n    missing = [name for name in REQUIRED_DATABASES if not (DATABASE_ROOT / name).exists()]\n\
+    \    if missing:\n        raise FileNotFoundError(\"Missing AF3 database paths:\
+    \ \" + \", \".join(missing))\n    if not MODEL_FILE.is_file() or sha256_file(MODEL_FILE)\
+    \ != MODEL_SHA256:\n        raise ValueError(\"AF3 decompressed weight identity\
+    \ differs\")\n\n    command = [\n        \"/alphafold3_venv/bin/python\",\n  \
+    \      \"/app/alphafold/run_alphafold.py\",\n        f\"--json_path={input_path}\"\
+    ,\n        f\"--model_dir={MODEL_ROOT}\",\n        f\"--db_dir={DATABASE_ROOT}\"\
+    ,\n        f\"--output_dir={output_dir}\",\n        \"--run_data_pipeline=true\"\
+    ,\n        \"--run_inference=false\",\n        \"--jackhmmer_n_cpu=8\",\n    \
+    \    \"--nhmmer_n_cpu=8\",\n        \"--max_template_date=2021-09-30\",\n    ]\n\
+    \    atomic_json(\n        RUN_ROOT / \"command.json\",\n        {\n         \
+    \   \"command\": command,\n            \"cwd\": \"/app/alphafold\",\n        \
+    \    \"network\": \"DENY_ALL\",\n            \"gpu_requested\": False,\n     \
+    \       \"input_sha256\": sha256_file(input_path),\n            \"sequence_sha256\"\
+    : SEQUENCE_SHA256,\n            \"model_sha256\": MODEL_SHA256,\n        },\n\
+    \    )\n\n    environment = {\n        **os.environ,\n        \"CUDA_VISIBLE_DEVICES\"\
+    : \"\",\n        \"JAX_PLATFORMS\": \"cpu\",\n        \"HOME\": str(tmp_dir),\n\
+    \        \"TMPDIR\": str(tmp_dir),\n        \"XDG_CACHE_HOME\": str(tmp_dir /\
+    \ \"cache\"),\n        \"PYTHONDONTWRITEBYTECODE\": \"1\",\n    }\n    started\
+    \ = time.monotonic()\n    log_path = RUN_ROOT / \"pipeline.log\"\n    with log_path.open(\"\
+    w\", encoding=\"utf-8\") as log:\n        process = subprocess.Popen(\n      \
+    \      command,\n            cwd=\"/app/alphafold\",\n            env=environment,\n\
+    \            stdout=subprocess.PIPE,\n            stderr=subprocess.STDOUT,\n\
+    \            text=True,\n            bufsize=1,\n        )\n        assert process.stdout\
+    \ is not None\n        for line in process.stdout:\n            sys.stdout.write(line)\n\
+    \            sys.stdout.flush()\n            log.write(line)\n            log.flush()\n\
+    \        returncode = process.wait()\n    elapsed = time.monotonic() - started\n\
+    \    usage = resource.getrusage(resource.RUSAGE_CHILDREN) if resource is not None\
+    \ else None\n\n    if returncode != 0:\n        failure = {\n            \"status\"\
+    : \"AF3_LOCAL_DATA_SEARCH_FAILED_PARTIAL_RETAINED\",\n            \"returncode\"\
+    : returncode,\n            \"elapsed_seconds\": round(elapsed, 3),\n         \
+    \   \"run_root\": str(RUN_ROOT),\n            \"scientific_gate\": \"CLOSED\"\
+    ,\n            \"usable_for_pipeline\": False,\n            \"production_status\"\
+    : \"NOT_DEPLOYED\",\n            **cgroup_memory(),\n        }\n        atomic_json(RUN_ROOT\
+    \ / \"failure-receipt.json\", failure)\n        print(\"AF3_LOCAL_DATA_SEARCH_FAILED\
+    \ \" + json.dumps(failure, sort_keys=True), flush=True)\n        raise SystemExit(returncode)\n\
+    \n    processed_paths = sorted(output_dir.rglob(\"*_data.json\"))\n    if len(processed_paths)\
+    \ != 1:\n        raise ValueError(f\"Expected one processed AF3 data JSON, found\
+    \ {len(processed_paths)}\")\n    processed = validate_processed_data(processed_paths[0])\n\
+    \n    files = sorted(\n        path for path in RUN_ROOT.rglob(\"*\")\n      \
+    \  if path.is_file() and path.name not in {\"files-manifest.json\", \"data-search-receipt.json\"\
+    }\n    )\n    identities = [file_identity(path, RUN_ROOT) for path in files]\n\
+    \    manifest = {\"schema\": \"t01.af3-data-search-files/1\", \"files\": identities}\n\
+    \    atomic_json(RUN_ROOT / \"files-manifest.json\", manifest)\n    receipt =\
+    \ {\n        \"schema\": \"t01.af3-data-search/1\",\n        \"status\": \"AF3_LOCAL_DATA_SEARCH_VERIFIED_NOT_INFERRED\"\
+    ,\n        \"run_id\": RUN_ID,\n        \"run_root\": str(RUN_ROOT),\n       \
+    \ \"elapsed_seconds\": round(elapsed, 3),\n        \"child_user_cpu_seconds\"\
+    : round(usage.ru_utime, 3) if usage is not None else None,\n        \"child_system_cpu_seconds\"\
+    : round(usage.ru_stime, 3) if usage is not None else None,\n        \"child_max_rss_kib\"\
+    : int(usage.ru_maxrss) if usage is not None else None,\n        \"input_sha256\"\
+    : sha256_file(input_path),\n        \"sequence_sha256\": SEQUENCE_SHA256,\n  \
+    \      \"model_sha256\": MODEL_SHA256,\n        \"database_root\": str(DATABASE_ROOT),\n\
+    \        \"required_database_paths\": list(REQUIRED_DATABASES),\n        \"processed_input\"\
+    : processed,\n        \"file_count\": len(identities),\n        \"total_bytes\"\
+    : sum(int(row[\"bytes\"]) for row in identities),\n        \"files_manifest_sha256\"\
+    : sha256_file(RUN_ROOT / \"files-manifest.json\"),\n        \"gpu_requested\"\
+    : False,\n        \"inference_run\": False,\n        \"usable_as_inference_input\"\
+    : True,\n        \"scientific_gate\": \"CLOSED\",\n        \"usable_for_pipeline\"\
+    : False,\n        \"production_status\": \"NOT_DEPLOYED\",\n        **cgroup_memory(),\n\
+    \    }\n    atomic_json(RUN_ROOT / \"data-search-receipt.json\", receipt)\n  \
+    \  print(\"AF3_LOCAL_DATA_SEARCH_VERIFIED \" + json.dumps(receipt, sort_keys=True),\
+    \ flush=True)\n    return receipt\n\n\nif __name__ == \"__main__\":\n    run()\n"
+  fold_input.json: "{\n  \"name\": \"t01-1ubq-af3-data-r01\",\n  \"modelSeeds\": [\n\
+    \    1\n  ],\n  \"sequences\": [\n    {\n      \"protein\": {\n        \"id\"\
+    : \"A\",\n        \"sequence\": \"MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG\"\
+    \n      }\n    }\n  ],\n  \"dialect\": \"alphafold3\",\n  \"version\": 1\n}\n"
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: antigen-af3-data-search-r01
+  namespace: him-ws
+spec:
+  podSelector:
+    matchLabels:
+      app: antigen-af3-data-search-r01
+  policyTypes:
+  - Ingress
+  - Egress
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: antigen-af3-runtime
+  namespace: him-ws
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
+  storageClassName: ceph-rbd
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-af3-data-search-r01
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 28800
+  template:
+    metadata:
+      labels:
+        app: antigen-af3-data-search-r01
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+      - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+      - name: data-search
+        image: harbor-core.base.svc.cluster.local/qcyz/antigen-af3@sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373
+        imagePullPolicy: IfNotPresent
+        command:
+        - /alphafold3_venv/bin/python
+        - -u
+        - -B
+        - /runner/run_af3_data_search.py
+        env:
+        - name: PYTHONDONTWRITEBYTECODE
+          value: '1'
+        - name: CUDA_VISIBLE_DEVICES
+          value: ''
+        - name: JAX_PLATFORMS
+          value: cpu
+        resources:
+          requests:
+            cpu: '8'
+            memory: 64Gi
+            ephemeral-storage: 512Mi
+          limits:
+            cpu: '16'
+            memory: 96Gi
+            ephemeral-storage: 4Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          seccompProfile:
+            type: RuntimeDefault
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: runner
+          mountPath: /runner
+          readOnly: true
+        - name: runner
+          mountPath: /input
+          readOnly: true
+        - name: databases
+          mountPath: /databases
+          readOnly: true
+        - name: weights
+          mountPath: /weights
+          readOnly: true
+        - name: runtime
+          mountPath: /runtime
+        - name: tmp
+          mountPath: /tmp
+      volumes:
+      - name: runner
+        configMap:
+          name: antigen-af3-data-search-r01
+      - name: databases
+        persistentVolumeClaim:
+          claimName: antigen-af3-databases
+          readOnly: true
+      - name: weights
+        persistentVolumeClaim:
+          claimName: antigen-af3-models
+          readOnly: true
+      - name: runtime
+        persistentVolumeClaim:
+          claimName: antigen-af3-runtime
+      - name: tmp
+        emptyDir:
+          sizeLimit: 4Gi

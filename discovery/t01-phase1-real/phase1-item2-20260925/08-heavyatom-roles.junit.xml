@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="3" time="0.616" timestamp="2026-09-25T14:57:26.276156+08:00" hostname="DESKTOP-8B96JVR"><testcase classname="tests.test_phase1_item2" name="test_e4_heavy_atoms_cutoff_original_address_fallback_and_hash" time="0.001" /><testcase classname="tests.test_phase1_item2" name="test_e4_excludes_hydrogen_and_does_not_invent_ambiguous_chain_roles" time="0.001"><failure message="AssertionError: assert not [{'chain': 'A', 'coordinate_sha256': 'ace52dfeb1147b603afea565ad9427ac9a8733fbb069e111a97bbdc174763542', 'evidence_source': '99', 'icode': '', ...}]">def test_e4_excludes_hydrogen_and_does_not_invent_ambiguous_chain_roles():
+        p=complex_package(20)
+        p['pdb_text']+=atom(4,'GLY','B',1,1,element='H').replace('  CA ','  H  ')
+        p['coordinate_sha256']=hashlib.sha256(p['pdb_text'].encode()).hexdigest()
+&gt;       assert not complex_contacts(p,dict(ant_pdb_chain='A'),'AC')[0]
+E       AssertionError: assert not [{'chain': 'A', 'coordinate_sha256': 'ace52dfeb1147b603afea565ad9427ac9a8733fbb069e111a97bbdc174763542', 'evidence_source': '99', 'icode': '', ...}]
+
+tests\test_phase1_item2.py:193: AssertionError</failure></testcase><testcase classname="tests.test_phase1_item2" name="test_e4_contacts_transfer_to_query_and_keep_source" time="0.002" /></testsuite></testsuites>

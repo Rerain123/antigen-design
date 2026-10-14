@@ -1,0 +1,698 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:t01:phase1:mock:asset-registry:v0.1",
+  "title": "T-01 Phase-1 Mock Asset Registry v0.1",
+  "description": "PH1-MOCK-M1-06 workflow, tool, scenario, identity, template, bound, generation, binding and regression-isolation registry. This schema describes planned assets only and does not define Mock implementation or Dify DSL.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "document_type",
+    "registry_version",
+    "topology_version",
+    "node_registry_version",
+    "control_flow_version",
+    "envelope_contract_version",
+    "scenario_catalog_version",
+    "namespace_root",
+    "filesystem_release_root",
+    "implementation_state",
+    "workflows",
+    "tool_namespace",
+    "scenario_namespace",
+    "identity_namespace",
+    "directory_layout",
+    "generation",
+    "binding",
+    "regression_isolation"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "T01_PHASE1_MOCK_ASSET_REGISTRY_SCHEMA_v0.1.json"
+    },
+    "document_type": {
+      "const": "T01_PHASE1_MOCK_ASSET_REGISTRY"
+    },
+    "registry_version": {
+      "const": "T01-PHASE1-MOCK-ASSET-REGISTRY-v0.1"
+    },
+    "topology_version": {
+      "const": "T01-PHASE1-18NODE-OFFLINE"
+    },
+    "node_registry_version": {
+      "const": "T01-PHASE1-NODE-REGISTRY-v0.1"
+    },
+    "control_flow_version": {
+      "const": "T01-PHASE1-CONTROL-FLOW-v0.1"
+    },
+    "envelope_contract_version": {
+      "const": "T01-PHASE1-ENVELOPE-v0.1"
+    },
+    "scenario_catalog_version": {
+      "const": "T01-PHASE1-MOCK-SCENARIO-CATALOG-v0.1"
+    },
+    "namespace_root": {
+      "const": "t01_phase1_mock_v01"
+    },
+    "filesystem_release_root": {
+      "const": "t01-phase1-mock-v0.1"
+    },
+    "implementation_state": {
+      "const": "SPEC_ONLY"
+    },
+    "workflows": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/workflow"
+      }
+    },
+    "tool_namespace": {
+      "$ref": "#/$defs/tool_namespace"
+    },
+    "scenario_namespace": {
+      "$ref": "#/$defs/scenario_namespace"
+    },
+    "identity_namespace": {
+      "$ref": "#/$defs/identity_namespace"
+    },
+    "directory_layout": {
+      "$ref": "#/$defs/directory_layout"
+    },
+    "generation": {
+      "$ref": "#/$defs/generation"
+    },
+    "binding": {
+      "$ref": "#/$defs/binding"
+    },
+    "regression_isolation": {
+      "$ref": "#/$defs/regression_isolation"
+    }
+  },
+  "$defs": {
+    "node_id": {
+      "type": "string",
+      "enum": [
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05",
+        "N06",
+        "N07",
+        "N08",
+        "N09",
+        "N10",
+        "N11",
+        "N12",
+        "N13",
+        "N14",
+        "N15",
+        "N16",
+        "N17",
+        "N18"
+      ]
+    },
+    "nullable_node_id": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/node_id"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "control_key": {
+      "type": "string",
+      "enum": [
+        "design_suitability",
+        "n12_validation",
+        "n15_delivery_recommendation",
+        "n16_applicability",
+        "n17_applicability",
+        "n18_entry"
+      ]
+    },
+    "nullable_control_key": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/control_key"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "workflow_id",
+        "workflow_role",
+        "dify_app_name",
+        "template_id",
+        "template_path",
+        "toolset_id"
+      ],
+      "properties": {
+        "workflow_id": {
+          "type": "string",
+          "enum": [
+            "t01_phase1_mock_v01.workflow.main",
+            "t01_phase1_mock_v01.workflow.debug"
+          ]
+        },
+        "workflow_role": {
+          "type": "string",
+          "enum": [
+            "PRIMARY",
+            "DEBUG"
+          ]
+        },
+        "dify_app_name": {
+          "type": "string",
+          "enum": [
+            "T01_Phase1_Mock_v0.1",
+            "T01_Phase1_Mock_v0.1_Debug"
+          ]
+        },
+        "template_id": {
+          "type": "string",
+          "enum": [
+            "t01_phase1_mock_v01.template.main",
+            "t01_phase1_mock_v01.template.debug"
+          ]
+        },
+        "template_path": {
+          "type": "string",
+          "pattern": "^dify/t01-phase1-mock-v0[.]1/templates/T01_Phase1_Mock_v0[.]1(_Debug)?[.]template[.]dify[.]yml$"
+        },
+        "toolset_id": {
+          "const": "t01_phase1_mock_v01.toolset.workflow_v01"
+        }
+      }
+    },
+    "tool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tool_id",
+        "tool_role",
+        "node_id",
+        "control_key"
+      ],
+      "properties": {
+        "tool_id": {
+          "type": "string",
+          "pattern": "^t01_phase1_mock_v01[.]tool[.][a-z][a-z0-9_.]*$"
+        },
+        "tool_role": {
+          "type": "string",
+          "enum": [
+            "RUN_INITIALIZER",
+            "NODE_STUB",
+            "CONTROL_LITERAL",
+            "RUN_FINALIZER"
+          ]
+        },
+        "node_id": {
+          "$ref": "#/$defs/nullable_node_id"
+        },
+        "control_key": {
+          "$ref": "#/$defs/nullable_control_key"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "tool_role": {
+                "const": "NODE_STUB"
+              }
+            },
+            "required": [
+              "tool_role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "node_id": {
+                "$ref": "#/$defs/node_id"
+              },
+              "control_key": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "tool_role": {
+                "const": "CONTROL_LITERAL"
+              }
+            },
+            "required": [
+              "tool_role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "node_id": {
+                "type": "null"
+              },
+              "control_key": {
+                "$ref": "#/$defs/control_key"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "tool_role": {
+                "enum": [
+                  "RUN_INITIALIZER",
+                  "RUN_FINALIZER"
+                ]
+              }
+            },
+            "required": [
+              "tool_role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "node_id": {
+                "type": "null"
+              },
+              "control_key": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "tool_namespace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "logical_provider_id",
+        "mcp_server_name",
+        "dify_provider_name",
+        "provider_binding_token",
+        "toolset_id",
+        "tools"
+      ],
+      "properties": {
+        "logical_provider_id": {
+          "const": "t01_phase1_mock_v01.provider.mcp"
+        },
+        "mcp_server_name": {
+          "const": "t01-phase1-mock-v01"
+        },
+        "dify_provider_name": {
+          "const": "t01-phase1-mock-mcp-v01"
+        },
+        "provider_binding_token": {
+          "const": "__T01_PHASE1_MOCK_V01_MCP_PROVIDER_ID__"
+        },
+        "toolset_id": {
+          "const": "t01_phase1_mock_v01.toolset.workflow_v01"
+        },
+        "tools": {
+          "type": "array",
+          "minItems": 26,
+          "maxItems": 26,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/tool"
+          }
+        }
+      }
+    },
+    "scenario_mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scenario_key",
+        "scenario_ref"
+      ],
+      "properties": {
+        "scenario_key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "scenario_ref": {
+          "type": "string",
+          "pattern": "^t01_phase1_mock_v01[.]scenario[.][a-z][a-z0-9_]*$"
+        }
+      }
+    },
+    "scenario_namespace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "catalog_path",
+        "scenario_ref_template",
+        "mappings"
+      ],
+      "properties": {
+        "catalog_path": {
+          "const": "工作流设计/02-数据契约/T01_PHASE1_MOCK_SCENARIO_CATALOG_v0.1.json"
+        },
+        "scenario_ref_template": {
+          "const": "t01_phase1_mock_v01.scenario.{scenario_key}"
+        },
+        "mappings": {
+          "type": "array",
+          "minItems": 21,
+          "maxItems": 21,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/scenario_mapping"
+          }
+        }
+      }
+    },
+    "identity_namespace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "request_id_regex",
+        "run_id_regex",
+        "envelope_id_regex",
+        "run_id_issuer",
+        "dify_workflow_run_id_role",
+        "idempotent_replay_rule",
+        "recovery_rule",
+        "identity_entropy_controls_flow"
+      ],
+      "properties": {
+        "request_id_regex": {
+          "const": "^t01-phase1-mock-v01-req-[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "run_id_regex": {
+          "const": "^t01-phase1-mock-v01-run-[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "envelope_id_regex": {
+          "const": "^t01-phase1-mock-v01-env-[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "run_id_issuer": {
+          "const": "MOCK_BACKEND_ONLY"
+        },
+        "dify_workflow_run_id_role": {
+          "const": "EXTERNAL_CORRELATION_ONLY"
+        },
+        "idempotent_replay_rule": {
+          "const": "RETURN_EXISTING_RUN_ID"
+        },
+        "recovery_rule": {
+          "const": "NEW_RUN_ID_AND_REFERENCE_ORIGINAL"
+        },
+        "identity_entropy_controls_flow": {
+          "const": false
+        }
+      }
+    },
+    "directory_layout": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_package_root",
+        "test_root",
+        "script_root",
+        "dify_root",
+        "template_root",
+        "binding_root",
+        "bound_root",
+        "fixture_root",
+        "regression_root",
+        "regression_run_root_template",
+        "runtime_root",
+        "run_root_template",
+        "artifact_uri_prefix_template"
+      ],
+      "properties": {
+        "source_package_root": {
+          "const": "src/t01_phase1_mock"
+        },
+        "test_root": {
+          "const": "tests/t01_phase1_mock"
+        },
+        "script_root": {
+          "const": "scripts/t01_phase1_mock"
+        },
+        "dify_root": {
+          "const": "dify/t01-phase1-mock-v0.1"
+        },
+        "template_root": {
+          "const": "dify/t01-phase1-mock-v0.1/templates"
+        },
+        "binding_root": {
+          "const": "dify/t01-phase1-mock-v0.1/config"
+        },
+        "bound_root": {
+          "const": "dify/t01-phase1-mock-v0.1/bound"
+        },
+        "fixture_root": {
+          "const": "dify/t01-phase1-mock-v0.1/fixtures"
+        },
+        "regression_root": {
+          "const": "dify/t01-phase1-mock-v0.1/regression"
+        },
+        "regression_run_root_template": {
+          "const": "dify/t01-phase1-mock-v0.1/regression/runs/{campaign_id}"
+        },
+        "runtime_root": {
+          "const": "var/t01-phase1-mock-v0.1"
+        },
+        "run_root_template": {
+          "const": "var/t01-phase1-mock-v0.1/runs/{run_id}"
+        },
+        "artifact_uri_prefix_template": {
+          "const": "artifact://t01-phase1-mock-v0.1/{run_id}/"
+        }
+      }
+    },
+    "generation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authoritative_source",
+        "cli_wrapper",
+        "registry_input",
+        "scenario_catalog_input",
+        "source_creation_milestone",
+        "current_state",
+        "template_outputs",
+        "manual_edit_forbidden"
+      ],
+      "properties": {
+        "authoritative_source": {
+          "const": "src/t01_phase1_mock/dify/generator.py"
+        },
+        "cli_wrapper": {
+          "const": "scripts/t01_phase1_mock/build_dify_workflows.py"
+        },
+        "registry_input": {
+          "const": "工作流设计/03-Dify实现/T01_PHASE1_MOCK_ASSET_REGISTRY_v0.1.json"
+        },
+        "scenario_catalog_input": {
+          "const": "工作流设计/02-数据契约/T01_PHASE1_MOCK_SCENARIO_CATALOG_v0.1.json"
+        },
+        "source_creation_milestone": {
+          "const": "PH1-MOCK-M3"
+        },
+        "current_state": {
+          "const": "PLANNED_NOT_CREATED"
+        },
+        "template_outputs": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^dify/t01-phase1-mock-v0[.]1/templates/T01_Phase1_Mock_v0[.]1(_Debug)?[.]template[.]dify[.]yml$"
+          }
+        },
+        "manual_edit_forbidden": {
+          "type": "array",
+          "const": [
+            "TEMPLATE",
+            "BOUND"
+          ]
+        }
+      }
+    },
+    "bound_output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bound_id_template",
+        "workflow_id",
+        "template_id",
+        "output_path_template"
+      ],
+      "properties": {
+        "bound_id_template": {
+          "type": "string",
+          "pattern": "^t01_phase1_mock_v01[.]bound[.]\u007bbinding_profile\u007d[.](main|debug)$"
+        },
+        "workflow_id": {
+          "type": "string",
+          "enum": [
+            "t01_phase1_mock_v01.workflow.main",
+            "t01_phase1_mock_v01.workflow.debug"
+          ]
+        },
+        "template_id": {
+          "type": "string",
+          "enum": [
+            "t01_phase1_mock_v01.template.main",
+            "t01_phase1_mock_v01.template.debug"
+          ]
+        },
+        "output_path_template": {
+          "type": "string",
+          "pattern": "^dify/t01-phase1-mock-v0[.]1/bound/\u007bbinding_profile\u007d/T01_Phase1_Mock_v0[.]1(_Debug)?[.]bound[.]dify[.]yml$"
+        }
+      }
+    },
+    "binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "binding_manifest_path_template",
+        "binding_profile_regex",
+        "provider_binding_key",
+        "provider_binding_token",
+        "binding_source_policy",
+        "unresolved_token_policy",
+        "secrets_allowed",
+        "required_hashes",
+        "bound_outputs"
+      ],
+      "properties": {
+        "binding_manifest_path_template": {
+          "const": "dify/t01-phase1-mock-v0.1/config/provider-bindings.{binding_profile}.json"
+        },
+        "binding_profile_regex": {
+          "const": "^[a-z][a-z0-9_-]{0,31}$"
+        },
+        "provider_binding_key": {
+          "const": "mcp_provider_id"
+        },
+        "provider_binding_token": {
+          "const": "__T01_PHASE1_MOCK_V01_MCP_PROVIDER_ID__"
+        },
+        "binding_source_policy": {
+          "const": "READ_FROM_TARGET_DIFY_INSTANCE"
+        },
+        "unresolved_token_policy": {
+          "const": "FAIL_CLOSED_NO_BOUND_OUTPUT"
+        },
+        "secrets_allowed": {
+          "const": false
+        },
+        "required_hashes": {
+          "type": "array",
+          "const": [
+            "REGISTRY",
+            "TEMPLATE",
+            "BINDING_MANIFEST",
+            "BOUND"
+          ]
+        },
+        "bound_outputs": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/bound_output"
+          }
+        }
+      }
+    },
+    "regression_isolation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "campaign_id_regex",
+        "current_pytest_root",
+        "current_regression_root",
+        "legacy_root",
+        "legacy_generator",
+        "legacy_regression_root",
+        "s07_root",
+        "forbidden_current_import_roots",
+        "forbidden_legacy_identity_markers_in_current_runtime_assets",
+        "legacy_assets_immutable",
+        "cross_boundary_symlink_or_junction_forbidden",
+        "current_commands_may_write_legacy",
+        "legacy_expected_test_count",
+        "s07_expected_test_count"
+      ],
+      "properties": {
+        "campaign_id_regex": {
+          "const": "^t01p1m-v01-reg-[0-9]{8}-[a-z0-9][a-z0-9_-]{0,31}$"
+        },
+        "current_pytest_root": {
+          "const": "tests"
+        },
+        "current_regression_root": {
+          "const": "dify/t01-phase1-mock-v0.1/regression"
+        },
+        "legacy_root": {
+          "const": "legacy/full-t01-mock-v0.1"
+        },
+        "legacy_generator": {
+          "const": "legacy/full-t01-mock-v0.1/src/t01_dify_workflows/generator.py"
+        },
+        "legacy_regression_root": {
+          "const": "legacy/full-t01-mock-v0.1/dify/regression"
+        },
+        "s07_root": {
+          "const": "legacy/s07"
+        },
+        "forbidden_current_import_roots": {
+          "type": "array",
+          "const": [
+            "t01_mock_mcp",
+            "t01_dify_workflows"
+          ]
+        },
+        "forbidden_legacy_identity_markers_in_current_runtime_assets": {
+          "type": "array",
+          "minItems": 11,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "legacy_assets_immutable": {
+          "const": true
+        },
+        "cross_boundary_symlink_or_junction_forbidden": {
+          "const": true
+        },
+        "current_commands_may_write_legacy": {
+          "const": false
+        },
+        "legacy_expected_test_count": {
+          "const": 74
+        },
+        "s07_expected_test_count": {
+          "const": 41
+        }
+      }
+    }
+  }
+}

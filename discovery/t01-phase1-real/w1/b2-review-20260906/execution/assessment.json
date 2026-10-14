@@ -1,0 +1,362 @@
+{
+  "status": "PASS_REVIEW_PREPARATION",
+  "declared_plan_sha256": "f13b592eae5bb126f99efa648f743f755cca23b159e0c44ae335ba757d7bfa03",
+  "synthetic_cases": [
+    {
+      "id": "normal-four-labels",
+      "status": "PASS",
+      "null_reason": null,
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    {
+      "id": "multiple-m-segments",
+      "status": "PASS",
+      "null_reason": null,
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    {
+      "id": "all-inside",
+      "status": "PASS",
+      "null_reason": null,
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    {
+      "id": "signal",
+      "status": "PASS",
+      "null_reason": null,
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    {
+      "id": "p-only-glob",
+      "status": "PASS",
+      "null_reason": "PB_OUT_OF_DOMAIN",
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    {
+      "id": "b-only",
+      "status": "PASS",
+      "null_reason": "PB_OUT_OF_DOMAIN",
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    {
+      "id": "pb-full",
+      "status": "PASS",
+      "null_reason": "PB_OUT_OF_DOMAIN",
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    {
+      "id": "empty",
+      "status": "PASS",
+      "null_reason": "INVALID_INPUT",
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    {
+      "id": "upstream-eight",
+      "status": "PASS",
+      "null_reason": "INVALID_INPUT",
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    {
+      "id": "lowercase",
+      "status": "PASS",
+      "null_reason": "INVALID_INPUT",
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    {
+      "id": "whitespace",
+      "status": "PASS",
+      "null_reason": "INVALID_INPUT",
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    {
+      "id": "stop",
+      "status": "PASS",
+      "null_reason": "INVALID_INPUT",
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    {
+      "id": "unicode",
+      "status": "PASS",
+      "null_reason": "INVALID_INPUT",
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    {
+      "id": "non-aa20",
+      "status": "PASS",
+      "null_reason": "INPUT_REVIEW_REQUIRED",
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    {
+      "id": "above-observed-range",
+      "status": "PASS",
+      "null_reason": "INPUT_REVIEW_REQUIRED",
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    {
+      "id": "tool_unavailable",
+      "status": "PASS",
+      "null_reason": "TOOL_UNAVAILABLE",
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    {
+      "id": "tool_failed",
+      "status": "PASS",
+      "null_reason": "TOOL_FAILED",
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    {
+      "id": "invalid_output",
+      "status": "PASS",
+      "null_reason": "INVALID_OUTPUT",
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    {
+      "id": "timed_out",
+      "status": "PASS",
+      "null_reason": "TIMED_OUT",
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    {
+      "id": "cancelled",
+      "status": "PASS",
+      "null_reason": "CANCELLED",
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    }
+  ],
+  "replay_cases": [
+    {
+      "id": "short-1",
+      "source_case": "short",
+      "request": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/short-1-request.json",
+        "sha256": "bc5d8b31fb431a1dbc95b2238b7ce085d69cbd2844f541825f26097651390aec",
+        "size_bytes": 654
+      },
+      "result": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/short-1-result.json",
+        "sha256": "6bf7f9ed3a32c883274a4db3373c3ac3ca500e904302eeae702647055458d623",
+        "size_bytes": 3890
+      },
+      "null_reason": null
+    },
+    {
+      "id": "coverage-1",
+      "source_case": "coverage",
+      "request": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/coverage-1-request.json",
+        "sha256": "602e5188cf95f7e8ff93bd3b7e5527655b343947d3021487e5e3a8afafea40d2",
+        "size_bytes": 1075
+      },
+      "result": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/coverage-1-result.json",
+        "sha256": "219a1d351873aa5db67eb790ccfa4f223ea99b53c301ececa21f27c2c6994a33",
+        "size_bytes": 15016
+      },
+      "null_reason": null
+    },
+    {
+      "id": "coverage-2",
+      "source_case": "coverage",
+      "request": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/coverage-2-request.json",
+        "sha256": "90ea2c4f5686d12b0e2f6cf630c7e37006bb4e98df2a325c3716fad561f79119",
+        "size_bytes": 1595
+      },
+      "result": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/coverage-2-result.json",
+        "sha256": "48a7c08e6370218de6d1479e5debbfce6c7d720d62a6df04fd47b1255c46d3c1",
+        "size_bytes": 24004
+      },
+      "null_reason": null
+    },
+    {
+      "id": "coverage-3",
+      "source_case": "coverage",
+      "request": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/coverage-3-request.json",
+        "sha256": "ea31a26d67c433a57a960f63ffcebcc3b44630a4ef99fb327888032ad606805d",
+        "size_bytes": 700
+      },
+      "result": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/coverage-3-result.json",
+        "sha256": "45db24f2cc61988cb0ec76872b27a11f2b568ac99639c8b313a3e8e4d44d6b1d",
+        "size_bytes": 5032
+      },
+      "null_reason": null
+    },
+    {
+      "id": "coverage-4",
+      "source_case": "coverage",
+      "request": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/coverage-4-request.json",
+        "sha256": "8a35398723accc1dc4a0a6b3293f420e7f19ddd1c03f37a0b776e5021e2d560a",
+        "size_bytes": 911
+      },
+      "result": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/coverage-4-result.json",
+        "sha256": "6109d397a9f28e6ec6f76fbe93385d76e2dc879eeebb8f563193193dcb175271",
+        "size_bytes": 8779
+      },
+      "null_reason": null
+    },
+    {
+      "id": "coverage-5",
+      "source_case": "coverage",
+      "request": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/coverage-5-request.json",
+        "sha256": "f15f7f3ecac2ea5c4e64768edfb3575d34d20bfec00e3b966cd7b6a6b54d610a",
+        "size_bytes": 981
+      },
+      "result": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/coverage-5-result.json",
+        "sha256": "7f40f274016935da3f925513f83b9ae607aed83dea7fe3b311e3f08b395d6369",
+        "size_bytes": 7457
+      },
+      "null_reason": "PB_OUT_OF_DOMAIN"
+    },
+    {
+      "id": "coverage-6",
+      "source_case": "coverage",
+      "request": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/coverage-6-request.json",
+        "sha256": "243be5eb3d1ee00771298a3188201d75136708493bf65a6a9d2057fb828a8e11",
+        "size_bytes": 660
+      },
+      "result": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/coverage-6-result.json",
+        "sha256": "f8b95478dea8b257de321f69aee7977cab1d86aa3e904b7652ee4fbef8bc9d55",
+        "size_bytes": 3918
+      },
+      "null_reason": null
+    },
+    {
+      "id": "coverage-7",
+      "source_case": "coverage",
+      "request": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/coverage-7-request.json",
+        "sha256": "c3f7c45ab684169c8b7e5b2fc787a6b936f56dd79867957533cc81842b61b02c",
+        "size_bytes": 657
+      },
+      "result": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/coverage-7-result.json",
+        "sha256": "eca55db2eb92d5c2f49a150d0d69f8b1500d698d708e6862336179b04097e5ea",
+        "size_bytes": 4117
+      },
+      "null_reason": null
+    },
+    {
+      "id": "coverage-8",
+      "source_case": "coverage",
+      "request": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/coverage-8-request.json",
+        "sha256": "78a0854bee2b62847c3bc368ba49df468092fe102c285448a83353066ab2de91",
+        "size_bytes": 700
+      },
+      "result": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/coverage-8-result.json",
+        "sha256": "c04d5ca0879afd29dd95f9e2f86347e5f8f069fa188c5c131f7ddcd5742e055d",
+        "size_bytes": 5264
+      },
+      "null_reason": null
+    },
+    {
+      "id": "coverage-9",
+      "source_case": "coverage",
+      "request": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/coverage-9-request.json",
+        "sha256": "06c97d99d4e2d47ce4b0eb9266bc62fd047b18f96ac13ab85d9939d3aa50282e",
+        "size_bytes": 778
+      },
+      "result": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/coverage-9-result.json",
+        "sha256": "db9a7092c9cea2dbfba101de85e69df68512731599d8e1f69c7bbecf8916632a",
+        "size_bytes": 5209
+      },
+      "null_reason": "PB_OUT_OF_DOMAIN"
+    },
+    {
+      "id": "x-residue-1",
+      "source_case": "x-residue",
+      "request": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/x-residue-1-request.json",
+        "sha256": "eab2615ff73547e77c4215383ce209a416208a322a17da9a6aa62fc95860ecf7",
+        "size_bytes": 665
+      },
+      "result": {
+        "path": "discovery/t01-phase1-real/w1/b2-review-20260906/execution/x-residue-1-result.json",
+        "sha256": "9865bd2c0aaeaf853300d5fdf1c156ad03f065e5ecb2738d942b2618aeb0fdcb",
+        "size_bytes": 3084
+      },
+      "null_reason": "INPUT_REVIEW_REQUIRED"
+    }
+  ],
+  "replay_counts": {
+    "ordinary": 8,
+    "pb": 2,
+    "input_review": 1
+  },
+  "reference_comparison": [
+    {
+      "id": "Q8K459",
+      "sequence_sha256": "2548dd1a2b1bb6adee62adcbda1ef4e46edb1c919da664011676adf1aee6174e",
+      "annotation_labels_sha256": "ef3d136bc91b3d2f2483f1f20855b30eb489e0cf653e809de011b806806b3821",
+      "prediction_labels_sha256": "ef3d136bc91b3d2f2483f1f20855b30eb489e0cf653e809de011b806806b3821",
+      "different_positions_1based": [],
+      "comparison_kind": "DIAGNOSTIC_AGREEMENT_ONLY",
+      "scientific_acceptance": "NOT_EVALUATED",
+      "training_independence": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "P01499",
+      "sequence_sha256": "be5d7b78004c290b39b5ba630ba2e054520bada0203f5c26c5f3f674ad510d0a",
+      "annotation_labels_sha256": "313193834fa91123052143cfd7574cf5a2dcc4bdd9b8c90c7838d8c4ace829db",
+      "prediction_labels_sha256": "313193834fa91123052143cfd7574cf5a2dcc4bdd9b8c90c7838d8c4ace829db",
+      "different_positions_1based": [],
+      "comparison_kind": "DIAGNOSTIC_AGREEMENT_ONLY",
+      "scientific_acceptance": "NOT_EVALUATED",
+      "training_independence": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "P07471",
+      "sequence_sha256": "baed0262dabbd902c330c8fdeabe81542f1127ed7ef9470708e6dc37cd7e268a",
+      "annotation_labels_sha256": "1ef67df9ca361bbea1935132e871fde52f4ccf8ef76b9cf97e709896526ffb6a",
+      "prediction_labels_sha256": "7039743ecab61f46cac9cff9cdb9486d689bee2903d970faff5256f1f4af965c",
+      "different_positions_1based": [
+        16
+      ],
+      "comparison_kind": "DIAGNOSTIC_AGREEMENT_ONLY",
+      "scientific_acceptance": "NOT_EVALUATED",
+      "training_independence": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "Q9HVD1",
+      "sequence_sha256": "2725eb98fa6403202f7cad737718cf5de6fe27bcbe73cc75bdecbe4027961444",
+      "annotation_labels_sha256": "3156cd8ddfe08a26b9a872d635cc6f15fa970a45cd5bbd0dcee55f6144798b15",
+      "prediction_labels_sha256": "3156cd8ddfe08a26b9a872d635cc6f15fa970a45cd5bbd0dcee55f6144798b15",
+      "different_positions_1based": [],
+      "comparison_kind": "DIAGNOSTIC_AGREEMENT_ONLY",
+      "scientific_acceptance": "NOT_EVALUATED",
+      "training_independence": "NOT_ESTABLISHED"
+    }
+  ],
+  "original_empty_input": {
+    "status": "REJECTED_BEFORE_MODEL_LOADING",
+    "execution": {
+      "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/runs/empty/execution.json",
+      "sha256": "0c4c40bad5342dab0f71fffa598dda08a7c4ae4f64fd1eb31055a3c758437efd",
+      "size_bytes": 2283
+    },
+    "source_scope": "ORIGINAL_G0_FAILURE; not a new adapter invocation"
+  },
+  "prior_evidence_verification": {
+    "status": "PASS",
+    "batch_files": 122,
+    "expert_sources_unchanged": 22,
+    "local_assets_verified": "NOT_REQUESTED",
+    "model_execution": "EXECUTED_OFFLINE_CPU",
+    "production_status": "NOT_DEPLOYED"
+  },
+  "model_executions_this_task": 0,
+  "scientific_signoff": "NOT_GRANTED",
+  "production_enabled": false
+}

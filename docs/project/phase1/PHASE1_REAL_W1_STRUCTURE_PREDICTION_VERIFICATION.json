@@ -1,0 +1,58 @@
+{
+  "date": "2026-09-05",
+  "task": "W1-04 structure prediction identity, assets, resource feasibility and raw validation preparation",
+  "maintenance_verification": "PASS",
+  "checks": [
+    {
+      "command": ".venv/Scripts/python.exe -X utf8 -m pytest -o addopts= -q",
+      "cwd": ".",
+      "exit_code": 0,
+      "passed": 428,
+      "skipped": 1,
+      "elapsed_seconds": 62.59,
+      "added_preparation_evidence_tests": 18
+    },
+    {
+      "command": ".venv/Scripts/python.exe -X utf8 scripts/check_docs.py",
+      "cwd": ".",
+      "exit_code": 0,
+      "result": "PASS",
+      "markdown_files": 158
+    },
+    {
+      "command": ".venv/Scripts/python.exe -X utf8 discovery/t01-phase1-real/w1/structure-prediction-20260905/verify_evidence.py",
+      "cwd": ".",
+      "exit_code": 0,
+      "result": "PASS",
+      "batch_files": 84,
+      "official_source_downloads": 58,
+      "preserved_expected_fetch_failures": 1,
+      "expert_sources_unchanged": 22,
+      "prepared_cases": 5
+    },
+    {
+      "command": ".venv/Scripts/python.exe -X utf8 scripts/t01_phase1_mock/run_m4_campaign.py verify",
+      "cwd": ".",
+      "exit_code": 0,
+      "result": "PASS",
+      "frozen_asset_count": 457
+    }
+  ],
+  "environment_execution": {
+    "scoped_host_docker_wsl_inventory": "EXECUTED_READ_ONLY",
+    "container_gpu_visibility": "PASS_NVIDIA_SMI_ONLY",
+    "gpu_probe_network": "none",
+    "jax_pytorch_kernel_compatibility": "NOT_TESTED",
+    "weight_or_database_download": "NOT_RUN",
+    "af3_weight_request": "HEAD_ONLY_NO_MODEL_BYTES"
+  },
+  "not_run": [
+    "AF3 and ESMFold2 installation, weight/database staging and inference",
+    "Actual predicted structures, runtime output-scale/sample-selection verification and long-input benchmark",
+    "Scientific accuracy, independent references/tolerances and named G1 signoff",
+    "Customer target environment deployment or production adapter",
+    "Legacy full Mock and S07 regressions: no cross-partition implementation or stage-freeze change; previous results remain historical"
+  ],
+  "model_execution": "NOT_RUN",
+  "production_status": "NOT_DEPLOYED"
+}

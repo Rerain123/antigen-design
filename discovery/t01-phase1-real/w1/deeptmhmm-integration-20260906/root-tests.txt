@@ -1,0 +1,447 @@
+........................................................................ [  7%]
+........................................................................ [ 15%]
+........................................................................ [ 23%]
+........................................................................ [ 31%]
+........................................................................ [ 39%]
+.....................F.................................................. [ 47%]
+........................................................................ [ 55%]
+........................................................................ [ 63%]
+..........................................s............................. [ 70%]
+........................................................................ [ 78%]
+..F...........F............................................FFFF......... [ 86%]
+........................................................................ [ 94%]
+...............................FFFF...........F..                        [100%]
+================================== FAILURES ===================================
+___________________ test_sealed_boundary_execution_evidence ___________________
+
+    def test_sealed_boundary_execution_evidence():
+        if not (BATCH/'manifest.json').exists():
+            pytest.skip('Campaign has not yet been sealed')
+>       result=verify(BATCH)
+               ^^^^^^^^^^^^^
+
+tests\test_b2_boundaries.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\check_b2_boundaries.py:162: in verify
+    verify_files(ROOT,manifest['sources']); verify_files(ROOT,read(batch/'protected_before.json')['files'])
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+scripts\b2_boundary_evidence.py:62: in verify_files
+    require(p.is_file() and fingerprint(p, folder.resolve()) == entry, 'ARTIFACT_HASH_OR_PRESENCE_MISMATCH: '+name)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = False
+message = 'ARTIFACT_HASH_OR_PRESENCE_MISMATCH: scripts/check_docs.py'
+
+    def require(value, message):
+        if not value:
+>           raise ValueError(message)
+E           ValueError: ARTIFACT_HASH_OR_PRESENCE_MISMATCH: scripts/check_docs.py
+
+scripts\b2_boundary_evidence.py:18: ValueError
+________ test_real_raw_replay_preserves_original_id_and_exposes_guard _________
+
+    def test_real_raw_replay_preserves_original_id_and_exposes_guard():
+>       records=replay_case('coverage')
+                ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_w1_b2_review.py:139: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\b2_review_contract.py:196: in replay_case
+    observed = audit.audit_case(case)
+               ^^^^^^^^^^^^^^^^^^^^^^
+discovery\t01-phase1-real\w1\deeptmhmm-academic-20260905\audit_raw.py:116: in audit_case
+    inspect = json.loads((folder/'container_inspect.json').read_text())[0]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\json\__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\json\decoder.py:337: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.decoder.JSONDecoder object at 0x0000028727213E50>
+s = '[\n    {\n        "Id": "90df591764776b391a0678a5aa21c686154d6732e8f8364e635f606ad3e5ec42",\n        "Created": "2026...orm": {\n                "architecture": "amd64",\n                "os": "linux"\n            }\n        }\n    }\n]\n'
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+>           obj, end = self.scan_once(s, idx)
+                       ^^^^^^^^^^^^^^^^^^^^^^
+E           json.decoder.JSONDecodeError: Invalid \escape: line 116 column 50 (char 4049)
+
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\json\decoder.py:353: JSONDecodeError
+_________________________ test_sealed_review_evidence _________________________
+
+    def test_sealed_review_evidence():
+        from check_w1_b2_review import verify
+        if not (BATCH/'manifest.json').exists(): pytest.skip('Review batch not sealed yet')
+>       result=verify()
+               ^^^^^^^^
+
+tests\test_w1_b2_review.py:195: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\check_w1_b2_review.py:149: in verify
+    expected.extend((case,raw) for raw in replay_case(case))
+                                          ^^^^^^^^^^^^^^^^^
+scripts\b2_review_contract.py:196: in replay_case
+    observed = audit.audit_case(case)
+               ^^^^^^^^^^^^^^^^^^^^^^
+discovery\t01-phase1-real\w1\deeptmhmm-academic-20260905\audit_raw.py:116: in audit_case
+    inspect = json.loads((folder/'container_inspect.json').read_text())[0]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\json\__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\json\decoder.py:337: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.decoder.JSONDecoder object at 0x0000028727213E50>
+s = '[\n    {\n        "Id": "dd6f491c7efb10f34aa170b7f528b0d8a54b3b6dfacc49c0334d96cd004dfe93",\n        "Created": "2026...orm": {\n                "architecture": "amd64",\n                "os": "linux"\n            }\n        }\n    }\n]\n'
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+>           obj, end = self.scan_once(s, idx)
+                       ^^^^^^^^^^^^^^^^^^^^^^
+E           json.decoder.JSONDecodeError: Invalid \escape: line 116 column 50 (char 4046)
+
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\json\decoder.py:353: JSONDecodeError
+________________________ test_actual_offline_evidence _________________________
+
+    def test_actual_offline_evidence():
+>       result = load('verify_evidence').verify()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_w1_deeptmhmm_academic.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+discovery\t01-phase1-real\w1\deeptmhmm-academic-20260905\verify_evidence.py:86: in verify
+    require(module.audit() == read(BATCH/'raw_audit.json'), 'Raw interpretation drift')
+            ^^^^^^^^^^^^^^
+discovery\t01-phase1-real\w1\deeptmhmm-academic-20260905\audit_raw.py:147: in audit
+    cases = [audit_case(case) for case in ('short', 'coverage', 'x-residue')]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+discovery\t01-phase1-real\w1\deeptmhmm-academic-20260905\audit_raw.py:147: in <listcomp>
+    cases = [audit_case(case) for case in ('short', 'coverage', 'x-residue')]
+             ^^^^^^^^^^^^^^^^
+discovery\t01-phase1-real\w1\deeptmhmm-academic-20260905\audit_raw.py:116: in audit_case
+    inspect = json.loads((folder/'container_inspect.json').read_text())[0]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\json\__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\json\decoder.py:337: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.decoder.JSONDecoder object at 0x0000028727213E50>
+s = '[\n    {\n        "Id": "dd6f491c7efb10f34aa170b7f528b0d8a54b3b6dfacc49c0334d96cd004dfe93",\n        "Created": "2026...orm": {\n                "architecture": "amd64",\n                "os": "linux"\n            }\n        }\n    }\n]\n'
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+>           obj, end = self.scan_once(s, idx)
+                       ^^^^^^^^^^^^^^^^^^^^^^
+E           json.decoder.JSONDecodeError: Invalid \escape: line 116 column 50 (char 4046)
+
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\json\decoder.py:353: JSONDecodeError
+____________ test_real_beta_regions_do_not_count_as_alpha_helices _____________
+
+audit = <module 'academic_audit_raw' from 'D:\\work\\����������\\discovery\\t01-phase1-real\\w1\\deeptmhmm-academic-20260905\\audit_raw.py'>
+
+    def test_real_beta_regions_do_not_count_as_alpha_helices(audit):
+>       rows = audit.audit_case('coverage')['records']
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_w1_deeptmhmm_academic.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+discovery\t01-phase1-real\w1\deeptmhmm-academic-20260905\audit_raw.py:116: in audit_case
+    inspect = json.loads((folder/'container_inspect.json').read_text())[0]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\json\__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\json\decoder.py:337: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.decoder.JSONDecoder object at 0x0000028727213E50>
+s = '[\n    {\n        "Id": "90df591764776b391a0678a5aa21c686154d6732e8f8364e635f606ad3e5ec42",\n        "Created": "2026...orm": {\n                "architecture": "amd64",\n                "os": "linux"\n            }\n        }\n    }\n]\n'
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+>           obj, end = self.scan_once(s, idx)
+                       ^^^^^^^^^^^^^^^^^^^^^^
+E           json.decoder.JSONDecodeError: Invalid \escape: line 116 column 50 (char 4049)
+
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\json\decoder.py:353: JSONDecodeError
+___________________ test_real_single_tm_and_signal_outputs ____________________
+
+audit = <module 'academic_audit_raw' from 'D:\\work\\����������\\discovery\\t01-phase1-real\\w1\\deeptmhmm-academic-20260905\\audit_raw.py'>
+
+    def test_real_single_tm_and_signal_outputs(audit):
+>       rows = audit.audit_case('coverage')['records']
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_w1_deeptmhmm_academic.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+discovery\t01-phase1-real\w1\deeptmhmm-academic-20260905\audit_raw.py:116: in audit_case
+    inspect = json.loads((folder/'container_inspect.json').read_text())[0]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\json\__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\json\decoder.py:337: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.decoder.JSONDecoder object at 0x0000028727213E50>
+s = '[\n    {\n        "Id": "90df591764776b391a0678a5aa21c686154d6732e8f8364e635f606ad3e5ec42",\n        "Created": "2026...orm": {\n                "architecture": "amd64",\n                "os": "linux"\n            }\n        }\n    }\n]\n'
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+>           obj, end = self.scan_once(s, idx)
+                       ^^^^^^^^^^^^^^^^^^^^^^
+E           json.decoder.JSONDecodeError: Invalid \escape: line 116 column 50 (char 4049)
+
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\json\decoder.py:353: JSONDecodeError
+__ test_unknown_residue_is_observed_without_broadening_project_input_domain ___
+
+audit = <module 'academic_audit_raw' from 'D:\\work\\����������\\discovery\\t01-phase1-real\\w1\\deeptmhmm-academic-20260905\\audit_raw.py'>
+
+    def test_unknown_residue_is_observed_without_broadening_project_input_domain(audit):
+>       row = audit.audit_case('x-residue')['records']['Q8K459_X_SYNTHETIC']
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_w1_deeptmhmm_academic.py:50: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+discovery\t01-phase1-real\w1\deeptmhmm-academic-20260905\audit_raw.py:116: in audit_case
+    inspect = json.loads((folder/'container_inspect.json').read_text())[0]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\json\__init__.py:346: in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\json\decoder.py:337: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <json.decoder.JSONDecoder object at 0x0000028727213E50>
+s = '[\n    {\n        "Id": "ef8c0cb72232e8902ebd6210e4070cb3006ae65069756585ff791a696fadabac",\n        "Created": "2026...orm": {\n                "architecture": "amd64",\n                "os": "linux"\n            }\n        }\n    }\n]\n'
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+>           obj, end = self.scan_once(s, idx)
+                       ^^^^^^^^^^^^^^^^^^^^^^
+E           json.decoder.JSONDecodeError: Invalid \escape: line 116 column 50 (char 4050)
+
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\json\decoder.py:353: JSONDecodeError
+________________ test_snapshot_does_not_claim_model_execution _________________
+
+    def test_snapshot_does_not_claim_model_execution():
+>       result = load('verify_evidence').verify()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_w1_structure_prediction_readiness.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+discovery\t01-phase1-real\w1\structure-prediction-20260905\verify_evidence.py:63: in verify
+    require(module.derive()==read(BATCH/'readiness.json'),'Readiness calculation drift')
+            ^^^^^^^^^^^^^^^
+discovery\t01-phase1-real\w1\structure-prediction-20260905\assess_readiness.py:87: in derive
+    esm_project = tomllib.loads((OFFICIAL/'esm/pyproject.toml').read_text())['project']
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('D:/work/����������/discovery/t01-phase1-real/w1/structure-prediction-20260905/official_sources/esm/pyproject.toml')
+encoding = 'locale', errors = None
+
+    def read_text(self, encoding=None, errors=None):
+        """
+        Open the file in text mode, read it, and close the file.
+        """
+        encoding = io.text_encoding(encoding)
+        with self.open(mode='r', encoding=encoding, errors=errors) as f:
+>           return f.read()
+                   ^^^^^^^^
+E           UnicodeDecodeError: 'gbk' codec can't decode byte 0x94 in position 1693: illegal multibyte sequence
+
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\pathlib.py:1059: UnicodeDecodeError
+____ test_may_model_identity_separate_from_runtime_and_local_availability _____
+
+    def test_may_model_identity_separate_from_runtime_and_local_availability():
+>       result = load('assess_readiness').derive()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_w1_structure_prediction_readiness.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+discovery\t01-phase1-real\w1\structure-prediction-20260905\assess_readiness.py:87: in derive
+    esm_project = tomllib.loads((OFFICIAL/'esm/pyproject.toml').read_text())['project']
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('D:/work/����������/discovery/t01-phase1-real/w1/structure-prediction-20260905/official_sources/esm/pyproject.toml')
+encoding = 'locale', errors = None
+
+    def read_text(self, encoding=None, errors=None):
+        """
+        Open the file in text mode, read it, and close the file.
+        """
+        encoding = io.text_encoding(encoding)
+        with self.open(mode='r', encoding=encoding, errors=errors) as f:
+>           return f.read()
+                   ^^^^^^^^
+E           UnicodeDecodeError: 'gbk' codec can't decode byte 0x94 in position 1693: illegal multibyte sequence
+
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\pathlib.py:1059: UnicodeDecodeError
+_____________ test_backbone_and_ccd_are_included_in_asset_budget ______________
+
+    def test_backbone_and_ccd_are_included_in_asset_budget():
+>       result = load('assess_readiness').derive()['esmfold2']
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_w1_structure_prediction_readiness.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+discovery\t01-phase1-real\w1\structure-prediction-20260905\assess_readiness.py:87: in derive
+    esm_project = tomllib.loads((OFFICIAL/'esm/pyproject.toml').read_text())['project']
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('D:/work/����������/discovery/t01-phase1-real/w1/structure-prediction-20260905/official_sources/esm/pyproject.toml')
+encoding = 'locale', errors = None
+
+    def read_text(self, encoding=None, errors=None):
+        """
+        Open the file in text mode, read it, and close the file.
+        """
+        encoding = io.text_encoding(encoding)
+        with self.open(mode='r', encoding=encoding, errors=errors) as f:
+>           return f.read()
+                   ^^^^^^^^
+E           UnicodeDecodeError: 'gbk' codec can't decode byte 0x94 in position 1693: illegal multibyte sequence
+
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\pathlib.py:1059: UnicodeDecodeError
+_______________ test_default_memory_is_estimate_not_actual_oom ________________
+
+    def test_default_memory_is_estimate_not_actual_oom():
+>       result = load('assess_readiness').derive()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_w1_structure_prediction_readiness.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+discovery\t01-phase1-real\w1\structure-prediction-20260905\assess_readiness.py:87: in derive
+    esm_project = tomllib.loads((OFFICIAL/'esm/pyproject.toml').read_text())['project']
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('D:/work/����������/discovery/t01-phase1-real/w1/structure-prediction-20260905/official_sources/esm/pyproject.toml')
+encoding = 'locale', errors = None
+
+    def read_text(self, encoding=None, errors=None):
+        """
+        Open the file in text mode, read it, and close the file.
+        """
+        encoding = io.text_encoding(encoding)
+        with self.open(mode='r', encoding=encoding, errors=errors) as f:
+>           return f.read()
+                   ^^^^^^^^
+E           UnicodeDecodeError: 'gbk' codec can't decode byte 0x94 in position 1693: illegal multibyte sequence
+
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\pathlib.py:1059: UnicodeDecodeError
+___ test_actual_fold_defaults_do_not_come_from_example_or_checkpoint_config ___
+
+    def test_actual_fold_defaults_do_not_come_from_example_or_checkpoint_config():
+        audit = load('assess_readiness')
+>       result = audit.derive()['esmfold2']['fold_wrapper_defaults']
+                 ^^^^^^^^^^^^^^
+
+tests\test_w1_structure_prediction_readiness.py:87: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+discovery\t01-phase1-real\w1\structure-prediction-20260905\assess_readiness.py:87: in derive
+    esm_project = tomllib.loads((OFFICIAL/'esm/pyproject.toml').read_text())['project']
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('D:/work/����������/discovery/t01-phase1-real/w1/structure-prediction-20260905/official_sources/esm/pyproject.toml')
+encoding = 'locale', errors = None
+
+    def read_text(self, encoding=None, errors=None):
+        """
+        Open the file in text mode, read it, and close the file.
+        """
+        encoding = io.text_encoding(encoding)
+        with self.open(mode='r', encoding=encoding, errors=errors) as f:
+>           return f.read()
+                   ^^^^^^^^
+E           UnicodeDecodeError: 'gbk' codec can't decode byte 0x94 in position 1693: illegal multibyte sequence
+
+C:\Users\wing\AppData\Local\hermes\hermes-agent\.hermes-runtime\python\generation-1785804456-6396-644e5167\cpython-3.11-windows-x86_64-none\Lib\pathlib.py:1059: UnicodeDecodeError
+=========================== short test summary info ===========================
+FAILED tests/test_b2_boundaries.py::test_sealed_boundary_execution_evidence
+FAILED tests/test_w1_b2_review.py::test_real_raw_replay_preserves_original_id_and_exposes_guard
+FAILED tests/test_w1_b2_review.py::test_sealed_review_evidence - json.decoder...
+FAILED tests/test_w1_deeptmhmm_academic.py::test_actual_offline_evidence - js...
+FAILED tests/test_w1_deeptmhmm_academic.py::test_real_beta_regions_do_not_count_as_alpha_helices
+FAILED tests/test_w1_deeptmhmm_academic.py::test_real_single_tm_and_signal_outputs
+FAILED tests/test_w1_deeptmhmm_academic.py::test_unknown_residue_is_observed_without_broadening_project_input_domain
+FAILED tests/test_w1_structure_prediction_readiness.py::test_snapshot_does_not_claim_model_execution
+FAILED tests/test_w1_structure_prediction_readiness.py::test_may_model_identity_separate_from_runtime_and_local_availability
+FAILED tests/test_w1_structure_prediction_readiness.py::test_backbone_and_ccd_are_included_in_asset_budget
+FAILED tests/test_w1_structure_prediction_readiness.py::test_default_memory_is_estimate_not_actual_oom
+FAILED tests/test_w1_structure_prediction_readiness.py::test_actual_fold_defaults_do_not_come_from_example_or_checkpoint_config
+12 failed, 900 passed, 1 skipped in 145.74s (0:02:25)

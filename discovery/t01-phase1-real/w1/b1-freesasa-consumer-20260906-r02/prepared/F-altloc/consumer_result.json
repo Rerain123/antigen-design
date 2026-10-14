@@ -1,0 +1,115 @@
+{
+  "scope": "B1_FREESASA_CONSUMER_PREPARATION",
+  "binding": {
+    "b1_binding": {
+      "run_id": "t01p1r-run-b1-sasa-F-altloc",
+      "request_id": "b1-sasa-F-altloc",
+      "job_id": "t01p1r-job-b1-facts-92bf58bc14c3486ba0a41cb55ac2a51c",
+      "attempt_id": "t01p1r-attempt-b1-facts-92bf58bc14c3486ba0a41cb55ac2a51c",
+      "request_sha256": "1e0d25054f4c4d594fb3e7ba927ef4c31044e90f097468b99917b629de320600",
+      "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+      "structure_sha256": "e7107b4d3af51bfd5cb83f2063c3b92c498831049479009295de5f8d4714ca69"
+    },
+    "b1_result_sha256": "fbf9015392d30ce75e19cc4d8c6bcfb21859c9727b283a5b9f8afd756159ac06",
+    "b1_structure_artifact": {
+      "artifact_id": "t01p1r-artifact-b1-sasa-F-altloc",
+      "run_id": "t01p1r-run-b1-sasa-F-altloc",
+      "job_id": null,
+      "attempt_id": null,
+      "role": "input",
+      "media_type": "chemical/x-cif",
+      "sha256": "e7107b4d3af51bfd5cb83f2063c3b92c498831049479009295de5f8d4714ca69",
+      "size_bytes": 1181,
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    "b1_fact_artifacts": {
+      "preflight": {
+        "artifact_id": "t01p1r-artifact-b1-preflight-92bf58bc14c3486ba0a41cb55ac2a51c",
+        "run_id": "t01p1r-run-b1-sasa-F-altloc",
+        "job_id": "t01p1r-job-b1-facts-92bf58bc14c3486ba0a41cb55ac2a51c",
+        "attempt_id": "t01p1r-attempt-b1-facts-92bf58bc14c3486ba0a41cb55ac2a51c",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "5c11ee693a498971ab2ee541e363ede2384ac767eb676bacee329666e074cce2",
+        "size_bytes": 1703,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      },
+      "raw_metadata": {
+        "artifact_id": "t01p1r-artifact-b1-raw-metadata-92bf58bc14c3486ba0a41cb55ac2a51c",
+        "run_id": "t01p1r-run-b1-sasa-F-altloc",
+        "job_id": "t01p1r-job-b1-facts-92bf58bc14c3486ba0a41cb55ac2a51c",
+        "attempt_id": "t01p1r-attempt-b1-facts-92bf58bc14c3486ba0a41cb55ac2a51c",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "e1393fd07b5fb7d2993188267e81d649c9c79603cc857fec0acd377928e919ae",
+        "size_bytes": 1625,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      },
+      "raw_addresses": {
+        "artifact_id": "t01p1r-artifact-b1-raw-addresses-92bf58bc14c3486ba0a41cb55ac2a51c",
+        "run_id": "t01p1r-run-b1-sasa-F-altloc",
+        "job_id": "t01p1r-job-b1-facts-92bf58bc14c3486ba0a41cb55ac2a51c",
+        "attempt_id": "t01p1r-attempt-b1-facts-92bf58bc14c3486ba0a41cb55ac2a51c",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "8a2e23c71ad55ed4b01aaee41d29c1f791246feaeeffb3de491e6c132ea3558f",
+        "size_bytes": 100508,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      }
+    },
+    "consumer_selection_sha256": "5d71d87695e9cd7a952677d7657013a0f9090d951f61eb3099d4df8ebd9fca90",
+    "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+  },
+  "route": "native_atoms",
+  "status": "REJECTED_BEFORE_TOOL",
+  "error_code": "ALTLOC_REVIEW_REQUIRED",
+  "error": "No implicit choice of alternate conformer",
+  "error_details": {
+    "raw_row_index": 1,
+    "raw_residue_id": "raw-residue-1",
+    "raw_address": {
+      "auth_asym_id": [
+        "A",
+        null
+      ],
+      "auth_seq_id": [
+        "42",
+        null
+      ],
+      "pdbx_PDB_ins_code": [
+        null,
+        "not_applicable"
+      ],
+      "label_asym_id": [
+        "LABEL_A",
+        null
+      ],
+      "label_seq_id": [
+        "1",
+        null
+      ],
+      "label_entity_id": [
+        "1",
+        null
+      ],
+      "label_comp_id": [
+        "ALA",
+        null
+      ],
+      "auth_comp_id": [
+        "ALA",
+        null
+      ],
+      "group_PDB": [
+        "ATOM",
+        null
+      ]
+    }
+  },
+  "preparation_sha256": null,
+  "scientific_approval": null,
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED",
+  "tool_invoked": false,
+  "calculation_started": false
+}

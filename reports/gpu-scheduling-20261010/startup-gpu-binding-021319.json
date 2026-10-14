@@ -1,0 +1,162 @@
+{
+  "checked_at": "2026-10-10T10:13:19.958251+08:00",
+  "generation": 150,
+  "deployment_gpu_annotations": {
+    "antigen-design/gpu-mode": "unified-resident-single64",
+    "antigen-design/gpu-worker-config": "antigen-unified-gpu-config-r11",
+    "antigen-design/gpu-worker-host-profile": "af3-combined-96-128gi-8-16cpu-r02"
+  },
+  "pod_gpu_annotations": {
+    "antigen-design/gpu-mode": "unified-resident-single64",
+    "antigen-design/gpu-worker-config": "antigen-unified-gpu-config-r11",
+    "antigen-design/gpu-worker-host-profile": "af3-combined-96-128gi-8-16cpu-r02",
+    "hami.io/bind-phase": "success",
+    "hami.io/bind-time": "1791597824",
+    "hami.io/vgpu-devices-allocated": "GPU-53cfb869-cb43-8ac4-6a0c-b46b4d5202a8,NVIDIA,40960,100:;",
+    "hami.io/vgpu-devices-to-allocate": ";;",
+    "hami.io/vgpu-node": "k8s-a100-01",
+    "hami.io/vgpu-time": "1791597824"
+  },
+  "gpu_resources": {
+    "limits": {
+      "cpu": "16",
+      "ephemeral-storage": "8Gi",
+      "memory": "128Gi",
+      "nvidia.com/gpu": "1",
+      "nvidia.com/gpucores": "100",
+      "nvidia.com/gpumem-percentage": "100"
+    },
+    "requests": {
+      "cpu": "8",
+      "ephemeral-storage": "2Gi",
+      "memory": "96Gi",
+      "nvidia.com/gpu": "1",
+      "nvidia.com/gpucores": "100",
+      "nvidia.com/gpumem-percentage": "100"
+    }
+  },
+  "worker_config_uuid": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31",
+  "worker_command": [
+    "/opt/t01/supervisor/bin/python3.11",
+    "-u",
+    "-B",
+    "-m",
+    "t01_phase1_real.unified_gpu_worker"
+  ],
+  "ready": 9,
+  "gpu_container_status": {
+    "image": "harbor-core.base.svc.cluster.local/qcyz/antigen-unified-gpu@sha256:ef4586e2849a54a82c97648691b248521b87042123ef624700dc4136d79898fe",
+    "imageID": "",
+    "lastState": {},
+    "name": "worker-unified-gpu",
+    "ready": false,
+    "restartCount": 0,
+    "started": false,
+    "state": {
+      "waiting": {
+        "reason": "PodInitializing"
+      }
+    },
+    "volumeMounts": [
+      {
+        "mountPath": "/var/lib/t01",
+        "name": "runtime"
+      },
+      {
+        "mountPath": "/t01/assets",
+        "name": "tool-assets",
+        "readOnly": true,
+        "recursiveReadOnly": "Disabled"
+      },
+      {
+        "mountPath": "/models",
+        "name": "esmfold2-models",
+        "readOnly": true,
+        "recursiveReadOnly": "Disabled"
+      },
+      {
+        "mountPath": "/af3-weights",
+        "name": "af3-models",
+        "readOnly": true,
+        "recursiveReadOnly": "Disabled"
+      },
+      {
+        "mountPath": "/af3-databases",
+        "name": "af3-databases",
+        "readOnly": true,
+        "recursiveReadOnly": "Disabled"
+      },
+      {
+        "mountPath": "/run/t01-slot",
+        "name": "slot-gpu"
+      },
+      {
+        "mountPath": "/backend",
+        "name": "esmfold2-code",
+        "readOnly": true,
+        "recursiveReadOnly": "Disabled"
+      },
+      {
+        "mountPath": "/etc/t01/resident.json",
+        "name": "resident-config",
+        "readOnly": true,
+        "recursiveReadOnly": "Disabled"
+      },
+      {
+        "mountPath": "/etc/t01/gpu.worker.json",
+        "name": "resident-config",
+        "readOnly": true,
+        "recursiveReadOnly": "Disabled"
+      },
+      {
+        "mountPath": "/etc/t01/esmfold2.worker.json",
+        "name": "resident-config",
+        "readOnly": true,
+        "recursiveReadOnly": "Disabled"
+      },
+      {
+        "mountPath": "/etc/t01/af3.worker.json",
+        "name": "resident-config",
+        "readOnly": true,
+        "recursiveReadOnly": "Disabled"
+      },
+      {
+        "mountPath": "/etc/t01/unified-gpu.json",
+        "name": "resident-config",
+        "readOnly": true,
+        "recursiveReadOnly": "Disabled"
+      },
+      {
+        "mountPath": "/opt/t01/src/t01_phase1_real",
+        "name": "project-source",
+        "readOnly": true,
+        "recursiveReadOnly": "Disabled"
+      },
+      {
+        "mountPath": "/opt/t01/src/t01_structure_mapping",
+        "name": "project-source",
+        "readOnly": true,
+        "recursiveReadOnly": "Disabled"
+      },
+      {
+        "mountPath": "/backend/t01_phase1_real",
+        "name": "project-source",
+        "readOnly": true,
+        "recursiveReadOnly": "Disabled"
+      },
+      {
+        "mountPath": "/backend/t01_structure_mapping",
+        "name": "project-source",
+        "readOnly": true,
+        "recursiveReadOnly": "Disabled"
+      }
+    ]
+  },
+  "old_gpu_annotations": {
+    "antigen-design/gpu-mode": "unified-resident-single64",
+    "antigen-design/gpu-worker-config": "antigen-unified-gpu-config-r11",
+    "antigen-design/gpu-worker-host-profile": "af3-combined-96-128gi-8-16cpu-r02",
+    "nvidia.com/use-gputype": "A100-SXM-64GB",
+    "nvidia.com/use-gpuuuid": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31"
+  }
+}

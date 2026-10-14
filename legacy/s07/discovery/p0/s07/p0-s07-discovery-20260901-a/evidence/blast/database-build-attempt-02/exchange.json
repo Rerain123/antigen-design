@@ -1,0 +1,39 @@
+{
+  "exchange_id": "p0-s07-discovery-20260901-a--blast--makeblastdb-wwpdb-20260822-attempt-02",
+  "classification": "discovery_evidence",
+  "production_deployment_status": "NOT_DEPLOYED",
+  "started_at": "2026-09-01T03:31:23.166388Z",
+  "finished_at": "2026-09-01T03:31:43.359711Z",
+  "duration_ms": 20194,
+  "command": [
+    "P:\\var\\discovery-tools\\ncbi-blast-2.17.0\\ncbi-blast-2.17.0+\\bin\\makeblastdb.exe",
+    "-in",
+    "P:\\var\\discovery-data\\wwpdb-20260822\\pdb_seqres_protein.fasta",
+    "-dbtype",
+    "prot",
+    "-parse_seqids",
+    "-hash_index",
+    "-title",
+    "wwpdb-pdb-seqres-protein-20260822",
+    "-out",
+    "P:\\var\\discovery-data\\wwpdb-20260822\\blastdb\\pdb_seqres_protein"
+  ],
+  "executable": {
+    "name": "makeblastdb.exe",
+    "size_bytes": 14923264,
+    "sha256": "7f98495406ff48f1c7e723a067e3d0e682e42df3700fab45494f952e522ca160"
+  },
+  "timeout_seconds": 3600,
+  "timed_out": false,
+  "exit_code": 0,
+  "stdout": {
+    "file": "stdout.txt",
+    "size_bytes": 336,
+    "sha256": "823904f71255590589d2a7a3fee67cad889b057c9f6c413f2511e22d51e5ea44"
+  },
+  "stderr": {
+    "file": "stderr.txt",
+    "size_bytes": 126,
+    "sha256": "9579b81993c72baafac18ac4c132f323ece8409caca28824613b6d1832eaec65"
+  }
+}

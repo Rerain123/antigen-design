@@ -1,0 +1,150 @@
+# T-01 开发运行手册
+
+先按 [STATUS](../project/STATUS.md)进入当前交付包；只查本次变更涉及的命令。
+开发、科学消费、目标发布采用 [现行计划](../project/PHASE1_DELIVERY_PLAN.md#4-每个真实波次的门禁)，旧命令参考不决定阶段顺序。
+
+## 按变更选择验证
+
+| 变更 | 必须执行 |
+|---|---|
+| 纯文档文字/导航 | 文档检查 |
+| 文档检查器/规则 | 文档检查、tests/test_docs.py |
+| 路径、契约、生成、绑定、冻结引用 | 文档检查、受影响测试、对应只读资产校验 |
+| 跨当前/历史分区路径或隔离 | 上述检查、当前根测试、旧完整 Mock 与 S07 分别回归 |
+| 阶段冻结 | 适用全部门禁、四分区检查、冻结证据 |
+
+普通功能改动运行能覆盖实际行为与风险的测试；完整检查通过后，不因整理文字重复运行科学工具。
+当前根、旧 Mock、S07 结果分别报告，不能相加作为一期功能完成度。具体执行事实保留在本批记录，STATUS 只记摘要。
+
+## 日常只读检查
+
+从项目根执行文档检查：
+
+```powershell
+.\.venv\Scripts\python.exe -X utf8 scripts/check_docs.py
+```
+
+需要核验冻结引用时运行，只读不重冻：
+
+```powershell
+.\.venv\Scripts\python.exe -X utf8 scripts/t01_phase1_mock/run_m4_campaign.py verify
+```
+
+## DeepTMHMM 当前统一入口
+
+提交、执行、查询、取消、恢复和重试的命令及开发请求边界单点维护在 [当前交付包](../project/phase1/PHASE1_REAL_W1_BACKLOG.md#本机调用与接口)。
+固定本地 Academic 资产及 Docker Linux Engine 可用后运行；本机结果仍不可科研消费。
+
+```powershell
+.\.venv\Scripts\python.exe -X utf8 -m pytest -q tests/test_deeptmhmm_development.py
+.\.venv\Scripts\python.exe -X utf8 scripts/run_deeptmhmm_acceptance.py --root D:\work\蛋白智能体\var\t01-phase1-real\deeptmhmm-acceptance-new --batch D:\work\蛋白智能体\discovery\t01-phase1-real\w1\deeptmhmm-acceptance-new
+```
+
+第二条会实际执行一组串行模型及明确标记的故障案例，需要使用尚不存在的证据目录；普通只读复核不重复运行模型。
+
+## 本地结构分析当前统一入口
+
+一条命令、输入元数据和结果语义见 [W1 本地结构调用](../project/phase1/PHASE1_REAL_W1_BACKLOG.md#本地结构调用与接口)。需本机已登记的 FreeSASA 镜像，使用同一任务层，计算禁网且保持开发资格。
+
+```powershell
+.\.venv\Scripts\python.exe -X utf8 -m pytest -q tests/test_structure_development.py tests/test_deeptmhmm_development.py
+.\.venv\Scripts\python.exe -X utf8 scripts/run_structure_acceptance.py --root D:\work\蛋白智能体\var\t01-phase1-real\structure-acceptance-new --batch D:\work\蛋白智能体\discovery\t01-phase1-real\w1\structure-acceptance-new
+```
+
+第二条需要全新的运行目录与批次目录，实际执行原件、工程夹具及明确标记的故障场景，生成本批 index.json。`--receipt-damage-only` 与 `--stop-only` 可补跑对应工程场景；默认已包含二者。完整性测试只改动新验收任务的指定文件，并先保存原字节。
+
+## 测试与历史回归
+
+按变更范围选择，不默认同时执行所有行：
+
+```powershell
+.\.venv\Scripts\python.exe -X utf8 -m pytest -q tests/test_docs.py
+.\.venv\Scripts\python.exe -X utf8 -m pytest -q
+```
+
+旧分区的独立命令和操作条件见 [历史回归命令](REFERENCE_COMMANDS.md#测试与历史回归)。
+
+<details>
+<summary>工具实测、历史证据复核和实例操作（按需查）</summary>
+
+## W1-08B2 DeepTMHMM 评审复核
+
+[命令、参数与执行条件](REFERENCE_COMMANDS.md#w1-08b2-deeptmhmm-评审复核)。
+
+## B2 原包执行与复验
+
+[命令、参数与执行条件](REFERENCE_COMMANDS.md#b2-原包执行与复验)。
+
+## B1 → FreeSASA 消费者验证
+
+[命令、参数与执行条件](REFERENCE_COMMANDS.md#b1--freesasa-消费者验证)。
+
+## B1 输入事实工程补强
+
+[命令、参数与执行条件](REFERENCE_COMMANDS.md#b1-输入事实工程补强)。
+
+## W1-08B1 评审准备复核
+
+[命令、参数与执行条件](REFERENCE_COMMANDS.md#w1-08b1-评审准备复核)。
+
+## W1-07 契约设计检查
+
+[命令、参数与执行条件](REFERENCE_COMMANDS.md#w1-07-契约设计检查)。
+
+## 结构预测准备证据复核
+
+[命令、参数与执行条件](REFERENCE_COMMANDS.md#结构预测准备证据复核)。
+
+## R-58 与 FreeSASA 边界开发验证
+
+[命令、参数与执行条件](REFERENCE_COMMANDS.md#r-58-与-freesasa-边界开发验证)。
+
+## DeepTMHMM 学术包禁网证据复核
+
+[命令、参数与执行条件](REFERENCE_COMMANDS.md#deeptmhmm-学术包禁网证据复核)。
+
+## DeepTMHMM 离线准备与公开资料校验
+
+[命令、参数与执行条件](REFERENCE_COMMANDS.md#deeptmhmm-离线准备与公开资料校验)。
+
+## 真实工具公共接口与交接包
+
+[命令、参数与执行条件](REFERENCE_COMMANDS.md#真实工具公共接口与交接包)。
+
+## 本地结构解析与 R-58 映射
+
+[命令、参数与执行条件](REFERENCE_COMMANDS.md#本地结构解析与-r-58-映射)。
+
+## W1 环境与样本准备
+
+[命令、参数与执行条件](REFERENCE_COMMANDS.md#w1-环境与样本准备)。
+
+## FreeSASA 本地原始工具探测
+
+[命令、参数与执行条件](REFERENCE_COMMANDS.md#freesasa-本地原始工具探测)。
+
+## FreeSASA 独立数值参考
+
+[命令、参数与执行条件](REFERENCE_COMMANDS.md#freesasa-独立数值参考)。
+
+## W1-09A 本地通用运行层
+
+[命令、参数与执行条件](REFERENCE_COMMANDS.md#w1-09a-本地通用运行层)。
+
+## 本地 Dify Mock transport
+
+[命令、参数与执行条件](REFERENCE_COMMANDS.md#本地-dify-mock-transport)。
+
+## 会写入状态的验收操作
+
+[命令、参数与执行条件](REFERENCE_COMMANDS.md#会写入状态的验收操作)。
+
+## 开发与资料维护
+
+[命令、参数与执行条件](REFERENCE_COMMANDS.md#开发与资料维护)。
+
+
+</details>
+
+原始采集/seal/freeze 和 Dify 实例写入入口不作为默认检查。新实测用新批次；不覆盖冻结资产、旧输入输出或 manifest。
+模型输出、工程夹具、故障注入分别标识；密钥不进源码、日志、DSL 或文档。

@@ -1,0 +1,78 @@
+{
+  "boundary": "LOCAL_RESIDENT_EXECUTOR_ONLY_NOT_CONNECTED_TO_BUSINESS_RUNTIME",
+  "image": "sha256:bb6c6b5ce1add12dc9bda3538a218568a9e80c048c12525fc130eaa970dbb9e5",
+  "checks": [
+    {
+      "name": "linux",
+      "exit_code": 0,
+      "argv": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe",
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "--read-only",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--user",
+        "10001:10001",
+        "--pids-limit",
+        "128",
+        "--memory",
+        "2g",
+        "--tmpfs",
+        "/tmp:rw,noexec,nosuid,size=256m",
+        "--mount",
+        "type=bind,source=D:\\work\\\u86cb\u767d\u667a\u80fd\u4f53\\src,target=/code,readonly",
+        "--mount",
+        "type=bind,source=D:\\work\\\u86cb\u767d\u667a\u80fd\u4f53\\tests\\test_resident_process.py,target=/tests/test_resident_process.py,readonly",
+        "--mount",
+        "type=bind,source=D:\\work\\\u86cb\u767d\u667a\u80fd\u4f53\\.venv\\Lib\\site-packages,target=/testlibs,readonly",
+        "--env",
+        "PYTHONPATH=/code:/testlibs",
+        "--env",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "--workdir",
+        "/tmp",
+        "--entrypoint",
+        "python",
+        "sha256:bb6c6b5ce1add12dc9bda3538a218568a9e80c048c12525fc130eaa970dbb9e5",
+        "-B",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "-q",
+        "/tests/test_resident_process.py"
+      ]
+    },
+    {
+      "name": "windows",
+      "exit_code": 0,
+      "argv": [
+        "D:\\work\\\u86cb\u767d\u667a\u80fd\u4f53\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "-q",
+        "tests/test_resident_process.py"
+      ]
+    }
+  ],
+  "sources": {
+    "src/t01_phase1_real/resident_process.py": "8518c0b217826623f529d2685c0c5d3a6e2c0bea6211ea3ae44e5ff570ec0b55",
+    "src/t01_phase1_real/resident_worker.py": "75731cb354a729cba5a1730de07356b55918f1ce7069b97401a38086187e9497",
+    "src/t01_phase1_real/process_control/posix.py": "131edf4e80b315ef626c89c66897ab7ef646904999eeabcda979fac715a7eec4",
+    "tests/test_resident_process.py": "a72b664154c2c5e8b2383e679e47c45ea71726df60805bc2372ae025f86a1127"
+  }
+}

@@ -1,0 +1,16 @@
+{"artifacts":27,"case":"structure","error_code":null,"job_id":"t01p1r-job-b8abb1a706434c6899c681da63c14153","state":"succeeded"}
+Traceback (most recent call last):
+  File "/repo/scripts/run_resident_batch_probe.py", line 89, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/repo/scripts/run_resident_batch_probe.py", line 60, in main
+    j,v=finish('n10',rt.submit_sequence(encode(body),'resident-n10','t01.real.developability'))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/repo/src/t01_phase1_real/development/runtime.py", line 260, in submit_sequence
+    worker=spec(tool_id);worker.request(raw)
+                         ^^^^^^^^^^^^^^^^^^^
+  File "/repo/src/t01_phase1_real/development/developability/policy.py", line 74, in request
+    ensure(type(value['timeout_seconds']) is int and 1<=value['timeout_seconds']<=60,
+  File "/repo/src/t01_phase1_real/common.py", line 30, in ensure
+    raise RuntimeFault(code,message)
+t01_phase1_real.common.RuntimeFault: N10 deadline 1..60 seconds required

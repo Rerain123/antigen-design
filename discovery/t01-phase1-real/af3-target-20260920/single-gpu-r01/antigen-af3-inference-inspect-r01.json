@@ -1,0 +1,119 @@
+{
+  "job_status": {
+    "completionTime": "2026-09-20T07:32:23Z",
+    "conditions": [
+      {
+        "lastProbeTime": "2026-09-20T07:32:23Z",
+        "lastTransitionTime": "2026-09-20T07:32:23Z",
+        "message": "Reached expected number of succeeded pods",
+        "reason": "CompletionsReached",
+        "status": "True",
+        "type": "SuccessCriteriaMet"
+      },
+      {
+        "lastProbeTime": "2026-09-20T07:32:23Z",
+        "lastTransitionTime": "2026-09-20T07:32:23Z",
+        "message": "Reached expected number of succeeded pods",
+        "reason": "CompletionsReached",
+        "status": "True",
+        "type": "Complete"
+      }
+    ],
+    "ready": 0,
+    "startTime": "2026-09-20T07:32:14Z",
+    "succeeded": 1,
+    "terminating": 0,
+    "uncountedTerminatedPods": {}
+  },
+  "pods": [
+    {
+      "annotations": {},
+      "container_statuses": [
+        {
+          "allocatedResources": {
+            "cpu": "100m",
+            "ephemeral-storage": "128Mi",
+            "memory": "256Mi"
+          },
+          "containerID": "containerd://937eb6f66cf49f383c9ffbfc913f5a5af0204fb66410043c23ad29461aa669bb",
+          "image": "sha256:cc4e597bd95e3b78b33ee032da92e1abd51867de0b03dd88999da9b7bfb5e2d1",
+          "imageID": "harbor-core.base.svc.cluster.local/qcyz/antigen-af3@sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373",
+          "lastState": {},
+          "name": "inspect",
+          "ready": false,
+          "resources": {
+            "limits": {
+              "cpu": "1",
+              "ephemeral-storage": "1Gi",
+              "memory": "1Gi"
+            },
+            "requests": {
+              "cpu": "100m",
+              "ephemeral-storage": "128Mi",
+              "memory": "256Mi"
+            }
+          },
+          "restartCount": 0,
+          "started": false,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://937eb6f66cf49f383c9ffbfc913f5a5af0204fb66410043c23ad29461aa669bb",
+              "exitCode": 0,
+              "finishedAt": "2026-09-20T07:32:20Z",
+              "reason": "Completed",
+              "startedAt": "2026-09-20T07:32:20Z"
+            }
+          },
+          "user": {
+            "linux": {
+              "gid": 10001,
+              "supplementalGroups": [
+                10001
+              ],
+              "uid": 10001
+            }
+          },
+          "volumeMounts": [
+            {
+              "mountPath": "/inspect",
+              "name": "inspect",
+              "readOnly": true,
+              "recursiveReadOnly": "Disabled"
+            },
+            {
+              "mountPath": "/runtime",
+              "name": "runtime",
+              "readOnly": true,
+              "recursiveReadOnly": "Disabled"
+            },
+            {
+              "mountPath": "/tmp",
+              "name": "tmp"
+            }
+          ]
+        }
+      ],
+      "containers": [
+        {
+          "image": "harbor-core.base.svc.cluster.local/qcyz/antigen-af3@sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373",
+          "name": "inspect",
+          "resources": {
+            "limits": {
+              "cpu": "1",
+              "ephemeral-storage": "1Gi",
+              "memory": "1Gi"
+            },
+            "requests": {
+              "cpu": "100m",
+              "ephemeral-storage": "128Mi",
+              "memory": "256Mi"
+            }
+          }
+        }
+      ],
+      "name": "antigen-af3-inference-inspect-r01-rnfht",
+      "node": "k8s-a100-02",
+      "phase": "Succeeded"
+    }
+  ]
+}

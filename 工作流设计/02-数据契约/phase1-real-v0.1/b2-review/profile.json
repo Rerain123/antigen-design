@@ -1,0 +1,80 @@
+{
+  "profile_id": "t01.deeptmhmm.academic1.cpu.review.v0.1",
+  "version": "0.1.0",
+  "status": "DEVELOPMENT_CANDIDATE_REVIEW_ONLY",
+  "tool_name": "DeepTMHMM",
+  "tool_version": "1.0 - Academic Version",
+  "image_id": "sha256:7f85781fadf8c89ddbafced691d05006caf6881b06aa5b9bae4bd531393bcd72",
+  "archive_sha256": "0a7a6c5d009e928c2e09bd0f225ad290166c6e67ebff5fb59145639484fcbd82",
+  "model_assets_sha256": {
+    "deeptmhmm_cv_2.model": "efa4b50b5ca089ed27ea57116710138da4207728f2e3dca113e811013abc6c2e",
+    "esm_model_alphabet.pt": "8690264992d8f94df23594a210e96b7ed8aa6fda51de5b1791e28f98e5ff01f1",
+    "deeptmhmm_cv_0.model": "5efa57f9bca96742f6a29a4663bb3e2ba0d362e5eecafebfb8af1ab4efe48533",
+    "deeptmhmm_cv_4.model": "9114bced9cf5f51905e4ac7e04db922801d383db4fca75523f6e144694f11725",
+    "deeptmhmm_cv_1.model": "ab6c743cf8d969d40da058ddd6c909b721d23d34cc6776e3d46bce3e27711093",
+    "deeptmhmm_cv_3.model": "a2d011962f7efcb1e3bdba92eefdfc211e93bec9a62cb60bf0bd2cb732d1f58f",
+    "esm_model_state_dict.pt": "22ceed0957e7f46b6cd7ed0394294163702a23c13edf322129e7e445578da86a",
+    "esm_model_args.pt": "bbfcf5a164c54960ba12fdd537f5edbf5b02197c119a95575c3768540f1aa59b"
+  },
+  "runtime_packages": {
+    "torch": "1.5.0+cu92",
+    "fair-esm": "0.4.0",
+    "numpy": "1.23.4",
+    "biopython": "1.79",
+    "matplotlib": "3.5.2"
+  },
+  "parameters": {
+    "cli_scientific_options": "None exposed by this package; original defaults retained",
+    "chunk_size": 1,
+    "esm_repr_layers_argument": 33,
+    "selected_representation_key": 32,
+    "long_sequence_chunk_code": "utils.py start/end code retained; 1022 token chunk and 300 token overlap logic not exercised by >1022 input here",
+    "ensemble": "5 supplied CV models; maximum topology agreement, ties by highest CRF log likelihood",
+    "max_signal_length": 60,
+    "max_alpha_membrane_length": 30,
+    "max_beta_membrane_length": 15,
+    "thread_policy": "Original os.cpu_count()=32; torch intraop32 / interop34; container quota8 CPU, affinity0-7",
+    "device": "CPU, CUDA unavailable",
+    "seed": "No new random seed override; original eval/no_grad behavior retained"
+  },
+  "method_source": {
+    "path": "discovery/t01-phase1-real/w1/deeptmhmm-academic-20260905/method_summary.json",
+    "sha256": "71e2d510361f757ecca4b363312b9eabf18d5fe2a82fd55caf8837dc6ae6ddf4",
+    "size_bytes": 2932
+  },
+  "input_policy": {
+    "request_records": 1,
+    "request_normalization": "Caller supplies exact uppercase sequence without whitespace; checker never repairs it",
+    "candidate_alphabet": "ACDEFGHIKLMNPQRSTVWY",
+    "non_aa20": "Review required; the single X probe is not an approved alphabet",
+    "upstream_default_minimum_aa": 9,
+    "approved_minimum_aa": null,
+    "approved_maximum_aa": null,
+    "observed_aa20_lengths": [
+      50,
+      51,
+      96,
+      97,
+      173,
+      307,
+      375,
+      471,
+      991
+    ],
+    "observed_span_is_continuous_approval": false,
+    "largest_observed_aa": 991,
+    "long_sequence": "1022 is a token-slice constant in utils.py, not a verified amino-acid limit. Token count/termini and 1020/1021/1022/1023 aa cases need measurement.",
+    "safe_id": "t01seq_ + full normalized-sequence SHA-256; one record per isolated attempt; user ID remains metadata"
+  },
+  "runtime_policy": {
+    "device": "CPU",
+    "network": "none",
+    "cpus": 8,
+    "memory_gib": 10,
+    "timeout_seconds": 900,
+    "source": "Recorded development command only; target resource/performance acceptance pending",
+    "model_invocation_enabled": false
+  },
+  "scientific_signoff": null,
+  "production_enabled": false
+}

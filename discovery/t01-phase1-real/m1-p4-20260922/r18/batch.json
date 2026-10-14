@@ -1,0 +1,168 @@
+{
+  "idempotency_key": "m1-p4-20260922-r18",
+  "branch": "design",
+  "database_kind": "target-nr",
+  "input_mode": "provided",
+  "request": {
+    "protein_sequence": "MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG",
+    "user_sequence_id": "M1 P4 fresh service design",
+    "host_species": "Homo sapiens",
+    "expression_host": null,
+    "organism": null,
+    "structure": {
+      "structure_name": "1UBQ-m1-test.pdb",
+      "declared_format": "PDB",
+      "source_declaration": {
+        "kind": "experimental",
+        "note": "CONTROLLED_ENGINEERING_DERIVATIVE: 28 occupancies set to 1, synthetic quality metadata; coordinates unchanged; never scientific reference"
+      },
+      "selection": {
+        "model_index": 0,
+        "chain_selector": "AUTO"
+      },
+      "context_chain_ids": [
+        "A"
+      ],
+      "timeout_seconds": 60
+    },
+    "analysis": {
+      "topology": {
+        "timeout_seconds": 600
+      },
+      "blast": {
+        "database_id": "nr-20250624",
+        "database_manifest_sha256": "ea46b05b6465cd97557cf0e6304cc0e7766e53d4ece4209b55bf59d64d4841cd",
+        "thresholds": {
+          "identity_percent_min": 80,
+          "query_coverage_percent_min": 80
+        },
+        "timeout_seconds": 7200
+      },
+      "bepipred": {
+        "timeout_seconds": 900
+      },
+      "netmhc": {
+        "mhc_i_alleles": [
+          "HLA-A02:01"
+        ],
+        "mhc_ii_alleles": [
+          "HLA-DPA10202-DPB11901"
+        ],
+        "timeout_seconds": 600
+      },
+      "homology": null,
+      "domains": null,
+      "developability": {
+        "target_ph": null,
+        "target_ph_range": [
+          4.0,
+          8.0
+        ],
+        "dimension_weights": null,
+        "timeout_seconds": 60
+      }
+    },
+    "reuse_jobs": {},
+    "timeout_seconds": 28800,
+    "m1_test": {
+      "constraints": {
+        "purpose": "ENGINEERING_EXPLICIT_MASKS",
+        "source_id": "M1 P4 explicit engineering masks: fixed termini, restricted 2, open 3..75; unknown annotations preserved",
+        "fixed_positions": [
+          1,
+          76
+        ],
+        "restricted_positions": [
+          {
+            "position": 2,
+            "allowed_residues": "AQ"
+          }
+        ],
+        "open_positions": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75
+        ]
+      },
+      "n_designs": 24,
+      "sampling_temperature": 0.1,
+      "seed": 17,
+      "timeout_seconds": 300
+    }
+  },
+  "input_sha256": "180d1b9d08c3d32914cce3c28fd4085f6867d8228a7cc337ff7be7dc22dc62ea",
+  "sequence_sha256": "233b4b0b8c4616095bc3249f9375fc345d32af7deaef07117d0383c51d6f19aa",
+  "owner": "652efd7986d394f82538b5457e4547b4a84e7f229fb908af6b216a48adb0d201",
+  "upload_id": "t01p1r-upload-aed60ab24d1b44199f96fddde7721a4c",
+  "job_id": "t01p1r-job-d26152c264cd47cc97f5aa037fed97fb"
+}

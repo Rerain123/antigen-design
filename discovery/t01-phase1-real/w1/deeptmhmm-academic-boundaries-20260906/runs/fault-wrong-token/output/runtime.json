@@ -1,0 +1,44 @@
+{
+  "python": "3.8.20 (default, Sep 27 2024, 06:05:23) \n[GCC 12.2.0]",
+  "packages": {
+    "torch": "1.5.0+cu92",
+    "fair-esm": "0.4.0",
+    "numpy": "1.23.4",
+    "biopython": "1.79",
+    "matplotlib": "3.5.2"
+  },
+  "cuda_available": false,
+  "cpu_count": 32,
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "network_interfaces": [
+    [
+      1,
+      "lo"
+    ]
+  ],
+  "scientific_source_modified": false,
+  "observation": "sys.settrace on utils.generate_esm_embeddings only",
+  "entrypoint": [
+    "/app/predict.py",
+    "--fasta",
+    "/input.fasta",
+    "--output-dir",
+    "/out/result"
+  ],
+  "python_exit_code": 0,
+  "elapsed_seconds": 31.449803085000894,
+  "peak_rss_kib": 5302348,
+  "user_cpu_seconds": 8.585994,
+  "system_cpu_seconds": 15.472244,
+  "torch_intraop_threads": 32,
+  "torch_interop_threads": 34
+}

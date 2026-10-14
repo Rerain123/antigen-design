@@ -1,0 +1,115 @@
+{
+  "scope": "B1_FREESASA_CONSUMER_PREPARATION",
+  "binding": {
+    "b1_binding": {
+      "run_id": "t01p1r-run-b1-sasa-F-char-icode-collision-native",
+      "request_id": "b1-sasa-F-char-icode-collision-native",
+      "job_id": "t01p1r-job-b1-facts-161a0822f2d64594ad1928b63ab3da86",
+      "attempt_id": "t01p1r-attempt-b1-facts-161a0822f2d64594ad1928b63ab3da86",
+      "request_sha256": "fa7a2b366abd9b92f585fb78d20df08de7a0b36d834292a15f794e9f97e42599",
+      "sequence_sha256": "58bb119c35513a451d24dc20ef0e9031ec85b35bfc919d263e7e5d9868909cb5",
+      "structure_sha256": "bae7ff9ddccce79f05e6c070d6fa3a0295314cef41989b126b98b9a276bd4912"
+    },
+    "b1_result_sha256": "0d131372f34433ce42ca022972b69fdf1183a383bcf087db4cc61dc3f49e5ed5",
+    "b1_structure_artifact": {
+      "artifact_id": "t01p1r-artifact-b1-sasa-F-char-icode-collision-native",
+      "run_id": "t01p1r-run-b1-sasa-F-char-icode-collision-native",
+      "job_id": null,
+      "attempt_id": null,
+      "role": "input",
+      "media_type": "chemical/x-cif",
+      "sha256": "bae7ff9ddccce79f05e6c070d6fa3a0295314cef41989b126b98b9a276bd4912",
+      "size_bytes": 1140,
+      "evidence_kind": "ENGINEERING_FIXTURE"
+    },
+    "b1_fact_artifacts": {
+      "preflight": {
+        "artifact_id": "t01p1r-artifact-b1-preflight-161a0822f2d64594ad1928b63ab3da86",
+        "run_id": "t01p1r-run-b1-sasa-F-char-icode-collision-native",
+        "job_id": "t01p1r-job-b1-facts-161a0822f2d64594ad1928b63ab3da86",
+        "attempt_id": "t01p1r-attempt-b1-facts-161a0822f2d64594ad1928b63ab3da86",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "b64bcb0b5ad2f0329ce78d48cfee0b5d6254e6caa225b1450ebcc3eb86932873",
+        "size_bytes": 1745,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      },
+      "raw_metadata": {
+        "artifact_id": "t01p1r-artifact-b1-raw-metadata-161a0822f2d64594ad1928b63ab3da86",
+        "run_id": "t01p1r-run-b1-sasa-F-char-icode-collision-native",
+        "job_id": "t01p1r-job-b1-facts-161a0822f2d64594ad1928b63ab3da86",
+        "attempt_id": "t01p1r-attempt-b1-facts-161a0822f2d64594ad1928b63ab3da86",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "10ff00dfe8120cc8a848b048bb8ced1245387857eb8298d111d85a91f5647301",
+        "size_bytes": 1667,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      },
+      "raw_addresses": {
+        "artifact_id": "t01p1r-artifact-b1-raw-addresses-161a0822f2d64594ad1928b63ab3da86",
+        "run_id": "t01p1r-run-b1-sasa-F-char-icode-collision-native",
+        "job_id": "t01p1r-job-b1-facts-161a0822f2d64594ad1928b63ab3da86",
+        "attempt_id": "t01p1r-attempt-b1-facts-161a0822f2d64594ad1928b63ab3da86",
+        "role": "result",
+        "media_type": "application/json",
+        "sha256": "32f4715120f56a4fcc0638183bd5901d470682667762022bbbf666315b8154ad",
+        "size_bytes": 100210,
+        "evidence_kind": "ENGINEERING_FIXTURE"
+      }
+    },
+    "consumer_selection_sha256": "5d71d87695e9cd7a952677d7657013a0f9090d951f61eb3099d4df8ebd9fca90",
+    "profile_sha256": "e000193e2b92a860972b0b3d901b39d3ccb5afc9a203fb783de095ab7fa23c04"
+  },
+  "route": "native_atoms",
+  "status": "REJECTED_BEFORE_TOOL",
+  "error_code": "FREE_RESIDUE_TOKEN_COLLISION",
+  "error": "Distinct raw residue identities collapse to one FreeSASA token",
+  "error_details": {
+    "raw_row_index": 6,
+    "raw_residue_id": "raw-residue-2",
+    "raw_address": {
+      "auth_asym_id": [
+        "A",
+        null
+      ],
+      "auth_seq_id": [
+        "43",
+        null
+      ],
+      "pdbx_PDB_ins_code": [
+        "A",
+        null
+      ],
+      "label_asym_id": [
+        "LABEL_A",
+        null
+      ],
+      "label_seq_id": [
+        "2",
+        null
+      ],
+      "label_entity_id": [
+        "1",
+        null
+      ],
+      "label_comp_id": [
+        "ALA",
+        null
+      ],
+      "auth_comp_id": [
+        "ALA",
+        null
+      ],
+      "group_PDB": [
+        "ATOM",
+        null
+      ]
+    }
+  },
+  "preparation_sha256": null,
+  "scientific_approval": null,
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED",
+  "tool_invoked": false,
+  "calculation_started": false
+}

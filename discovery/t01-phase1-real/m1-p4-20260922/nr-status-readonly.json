@@ -1,0 +1,357 @@
+{
+  "antigen-nr-download-r01/job": {
+    "apiVersion": "batch/v1",
+    "kind": "Job",
+    "metadata": {
+      "annotations": {
+        "objectset.rio.cattle.io/applied": "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",
+        "objectset.rio.cattle.io/id": "2ff5ba7e-d5be-4ef4-9172-67962e08544c"
+      },
+      "creationTimestamp": "2026-09-22T11:42:22Z",
+      "generation": 1,
+      "labels": {
+        "objectset.rio.cattle.io/hash": "800280b6356673d31ba423913c032fd0eef5dff8"
+      },
+      "name": "antigen-nr-download-r01",
+      "namespace": "him-ws",
+      "resourceVersion": "49842127",
+      "uid": "3273e29a-fbb4-454f-bdb8-fe278adef461"
+    },
+    "spec": {
+      "activeDeadlineSeconds": 604800,
+      "backoffLimit": 2,
+      "completionMode": "NonIndexed",
+      "completions": 1,
+      "manualSelector": false,
+      "parallelism": 1,
+      "podReplacementPolicy": "TerminatingOrFailed",
+      "selector": {
+        "matchLabels": {
+          "batch.kubernetes.io/controller-uid": "3273e29a-fbb4-454f-bdb8-fe278adef461"
+        }
+      },
+      "suspend": false,
+      "template": {
+        "metadata": {
+          "labels": {
+            "batch.kubernetes.io/controller-uid": "3273e29a-fbb4-454f-bdb8-fe278adef461",
+            "batch.kubernetes.io/job-name": "antigen-nr-download-r01",
+            "controller-uid": "3273e29a-fbb4-454f-bdb8-fe278adef461",
+            "job-name": "antigen-nr-download-r01"
+          }
+        },
+        "spec": {
+          "automountServiceAccountToken": false,
+          "containers": [
+            {
+              "command": [
+                "python",
+                "-u",
+                "-B",
+                "-c",
+                "\"\"\"Stage the pinned nr mirror snapshot; no scientific query or service mutation.\"\"\"\nimport hashlib\nimport json\nimport os\nfrom pathlib import Path\nimport re\nimport shutil\nimport time\nfrom urllib.parse import urlsplit\nfrom urllib.request import Request, urlopen\n\nBASE = \"http://ncbichina.iict.ac.cn:8008/blastdb/20250624/2025-06-24-01-05-02/\"\nROOT = Path(\"/data/nr-20250624\")\nEXPECTED_BYTES = 613736552406\nCHUNK = 8 * 1024 * 1024\n\ndef small(name):\n    with urlopen(BASE + name, timeout=120) as response:\n        raw = response.read(1024 * 1024 + 1)\n    if len(raw) > 1024 * 1024:\n        raise RuntimeError(\"Metadata too large: \" + name)\n    return raw\n\ndef sha256(path):\n    h = hashlib.sha256()\n    with path.open(\"rb\") as stream:\n        for block in iter(lambda: stream.read(CHUNK), b\"\"):\n            h.update(block)\n    return h.hexdigest()\n\ndef atomic(path, raw):\n    tmp = path.with_name(path.name + \".tmp\")\n    tmp.write_bytes(raw)\n    tmp.replace(path)\n\ndef download(name, rawdir):\n    target = rawdir / name\n    part = rawdir / (name + \".part\")\n    for attempt in range(6):\n        try:\n            with urlopen(Request(BASE + name, method=\"HEAD\"), timeout=120) as response:\n                length = int(response.headers[\"Content-Length\"])\n                validator = response.headers.get(\"ETag\") or response.headers.get(\"Last-Modified\")\n            if length <= 0:\n                raise RuntimeError(\"Invalid source size: \" + name)\n            identity = json.dumps({\"url\": BASE + name, \"bytes\": length, \"validator\": validator}, sort_keys=True).encode()\n            identity_path = rawdir / (name + \".source.json\")\n            if identity_path.exists() and identity_path.read_bytes() != identity:\n                raise RuntimeError(\"Source identity changed; manual inspection required: \" + name)\n            if not identity_path.exists():\n                if target.exists() or part.exists():\n                    raise RuntimeError(\"Untracked existing file: \" + name)\n                atomic(identity_path, identity)\n            if target.exists():\n                if target.stat().st_size != length:\n                    raise RuntimeError(\"Completed file size mismatch: \" + name)\n                return {\"path\": name, \"bytes\": length, \"sha256\": sha256(target), \"source_validator\": validator}\n            offset = part.stat().st_size if part.exists() else 0\n            if offset > length:\n                raise RuntimeError(\"Partial file exceeds source size: \" + name)\n            if offset < length:\n                headers = {\"Accept-Encoding\": \"identity\"}\n                if offset:\n                    headers[\"Range\"] = \"bytes=\" + str(offset) + \"-\"\n                    if validator:\n                        headers[\"If-Range\"] = validator\n                with urlopen(Request(BASE + name, headers=headers), timeout=120) as response:\n                    if response.status == 206:\n                        cr = response.headers.get(\"Content-Range\", \"\")\n                        if cr != \"bytes \" + str(offset) + \"-\" + str(length - 1) + \"/\" + str(length):\n                            raise RuntimeError(\"Unexpected Content-Range: \" + cr)\n                        mode = \"ab\" if offset else \"wb\"\n                    elif response.status == 200:\n                        mode = \"wb\"\n                        if offset:\n                            print(\"RANGE_IGNORED restarting\", name, flush=True)\n                    else:\n                        raise RuntimeError(\"Unexpected HTTP status\")\n                    with part.open(mode) as stream:\n                        while True:\n                            block = response.read(CHUNK)\n                            if not block:\n                                break\n                            stream.write(block)\n                            if stream.tell() > length:\n                                raise RuntimeError(\"Response exceeds expected file size\")\n                if part.stat().st_size != length:\n                    raise RuntimeError(\"Incomplete transfer: \" + name)\n            part.replace(target)\n            return {\"path\": name, \"bytes\": length, \"sha256\": sha256(target), \"source_validator\": validator}\n        except Exception as exc:\n            print(\"RETRY\", name, attempt + 1, type(exc).__name__, str(exc), flush=True)\n            if attempt == 5:\n                raise\n            time.sleep(min(60, 2 ** (attempt + 1)))\n\ndef main():\n    import fcntl\n    ROOT.mkdir(parents=True, exist_ok=True)\n    with (ROOT / \"download.lock\").open(\"a\") as lock:\n        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)\n        run()\n\ndef run():\n    rawdir = ROOT / \"raw\"\n    rawdir.mkdir(exist_ok=True)\n    metadata_raw = small(\"nr-prot-metadata.json\")\n    meta = json.loads(metadata_raw)\n    expected = {\"dbname\": \"nr\", \"dbtype\": \"Protein\", \"number-of-volumes\": 123,\n                \"number-of-sequences\": 935749080, \"number-of-letters\": 354907547446,\n                \"last-updated\": \"2025-06-22T00:00:00\", \"bytes-total\": EXPECTED_BYTES}\n    for key, value in expected.items():\n        if meta.get(key) != value:\n            raise RuntimeError(\"Snapshot mismatch: \" + key)\n    names = []\n    for item in meta[\"files\"]:\n        name = urlsplit(item).path.rsplit(\"/\", 1)[-1]\n        if not re.fullmatch(r\"nr\\.(?:[0-9]{3}\\.)?[a-z]+\", name):\n            raise RuntimeError(\"Unexpected database filename: \" + name)\n        names.append(name)\n    if len(names) != 1113 or len(set(names)) != 1113:\n        raise RuntimeError(\"Unexpected file count\")\n    if set(n for n in names if n.endswith(\".psq\")) != {f\"nr.{i:03d}.psq\" for i in range(123)}:\n        raise RuntimeError(\"Missing sequence volume\")\n    # Some NCBI manifests omit the alias; always include it explicitly.\n    names = sorted(set(names) | {\"nr.pal\"})\n    pal = small(\"nr.pal\")\n    dbline = next(line for line in pal.decode().splitlines() if line.startswith(\"DBLIST \"))\n    if dbline.split()[1:] != [f\"nr.{i:03d}\" for i in range(123)]:\n        raise RuntimeError(\"Alias volume mismatch\")\n    metadata_path = ROOT / \"nr-prot-metadata.json\"\n    if metadata_path.exists() and metadata_path.read_bytes() != metadata_raw:\n        raise RuntimeError(\"Previously staged metadata differs\")\n    atomic(metadata_path, metadata_raw)\n    occupied = sum(p.stat().st_size for p in rawdir.iterdir() if p.is_file())\n    free = shutil.disk_usage(ROOT).free\n    required = max(0, EXPECTED_BYTES - occupied) + 50 * 1024 ** 3\n    print(\"PREFLIGHT\", json.dumps({\"free_bytes\": free, \"required_bytes\": required, \"files\": len(names)}), flush=True)\n    if free < required:\n        raise RuntimeError(\"Insufficient free space including 50 GiB reserve\")\n    records = []\n    for index, name in enumerate(names, 1):\n        print(\"DOWNLOADING\", index, \"/\", len(names), name, flush=True)\n        record = download(name, rawdir)\n        records.append(record)\n        print(\"VERIFIED_LOCAL\", name, record[\"bytes\"], record[\"sha256\"], flush=True)\n    if (rawdir / \"nr.pal\").read_bytes() != pal or small(\"nr-prot-metadata.json\") != metadata_raw or small(\"nr.pal\") != pal:\n        raise RuntimeError(\"Source metadata/alias changed during download\")\n    receipt = {\"source\": BASE, \"metadata\": expected, \"files\": records,\n               \"downloaded_bytes\": sum(r[\"bytes\"] for r in records),\n               \"integrity\": \"HTTP size checks and locally computed SHA-256; no upstream checksum comparison\",\n               \"status\": \"STAGED_NOT_N03_ACCEPTED\"}\n    atomic(ROOT / \"download-receipt.json\", (json.dumps(receipt, indent=2) + \"\\n\").encode())\n    atomic(ROOT / \"SHA256SUMS\", \"\".join(r[\"sha256\"] + \"  raw/\" + r[\"path\"] + \"\\n\" for r in records).encode())\n    print(\"DOWNLOAD_COMPLETE\", receipt[\"downloaded_bytes\"], \"STAGED_NOT_N03_ACCEPTED\", flush=True)\n\nif __name__ == \"__main__\":\n    main()\n"
+              ],
+              "image": "harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:fba5a32c0550e56a5310160e2fc49d647fcd27d76851073a2d82cc935fb4c2fc",
+              "imagePullPolicy": "IfNotPresent",
+              "name": "download",
+              "resources": {
+                "limits": {
+                  "cpu": "2",
+                  "memory": "512Mi"
+                },
+                "requests": {
+                  "cpu": "250m",
+                  "memory": "256Mi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "readOnlyRootFilesystem": true
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File",
+              "volumeMounts": [
+                {
+                  "mountPath": "/data",
+                  "name": "database"
+                }
+              ]
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "imagePullSecrets": [
+            {
+              "name": "harbor"
+            }
+          ],
+          "restartPolicy": "Never",
+          "schedulerName": "default-scheduler",
+          "securityContext": {
+            "fsGroup": 10001,
+            "fsGroupChangePolicy": "OnRootMismatch",
+            "runAsGroup": 10001,
+            "runAsNonRoot": true,
+            "runAsUser": 10001
+          },
+          "terminationGracePeriodSeconds": 30,
+          "volumes": [
+            {
+              "name": "database",
+              "persistentVolumeClaim": {
+                "claimName": "antigen-n03-nr"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "status": {
+      "active": 1,
+      "ready": 1,
+      "startTime": "2026-09-22T11:42:22Z",
+      "terminating": 0,
+      "uncountedTerminatedPods": {}
+    }
+  },
+  "antigen-nr-download-r01/pod": {
+    "apiVersion": "v1",
+    "items": [
+      {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+          "annotations": {
+            "cni.projectcalico.org/containerID": "c10ceec6579a9b69c6460f468c424cc308433c3511cbdf145804a0b42842d826",
+            "cni.projectcalico.org/podIP": "10.42.1.144/32",
+            "cni.projectcalico.org/podIPs": "10.42.1.144/32"
+          },
+          "creationTimestamp": "2026-09-22T11:42:22Z",
+          "finalizers": [
+            "batch.kubernetes.io/job-tracking"
+          ],
+          "generateName": "antigen-nr-download-r01-",
+          "generation": 1,
+          "labels": {
+            "batch.kubernetes.io/controller-uid": "3273e29a-fbb4-454f-bdb8-fe278adef461",
+            "batch.kubernetes.io/job-name": "antigen-nr-download-r01",
+            "controller-uid": "3273e29a-fbb4-454f-bdb8-fe278adef461",
+            "job-name": "antigen-nr-download-r01"
+          },
+          "name": "antigen-nr-download-r01-dgwts",
+          "namespace": "him-ws",
+          "ownerReferences": [
+            {
+              "apiVersion": "batch/v1",
+              "blockOwnerDeletion": true,
+              "controller": true,
+              "kind": "Job",
+              "name": "antigen-nr-download-r01",
+              "uid": "3273e29a-fbb4-454f-bdb8-fe278adef461"
+            }
+          ],
+          "resourceVersion": "49842124",
+          "uid": "8d3d4b60-31bf-4cff-9145-b33d57638cc3"
+        },
+        "spec": {
+          "automountServiceAccountToken": false,
+          "containers": [
+            {
+              "command": [
+                "python",
+                "-u",
+                "-B",
+                "-c",
+                "\"\"\"Stage the pinned nr mirror snapshot; no scientific query or service mutation.\"\"\"\nimport hashlib\nimport json\nimport os\nfrom pathlib import Path\nimport re\nimport shutil\nimport time\nfrom urllib.parse import urlsplit\nfrom urllib.request import Request, urlopen\n\nBASE = \"http://ncbichina.iict.ac.cn:8008/blastdb/20250624/2025-06-24-01-05-02/\"\nROOT = Path(\"/data/nr-20250624\")\nEXPECTED_BYTES = 613736552406\nCHUNK = 8 * 1024 * 1024\n\ndef small(name):\n    with urlopen(BASE + name, timeout=120) as response:\n        raw = response.read(1024 * 1024 + 1)\n    if len(raw) > 1024 * 1024:\n        raise RuntimeError(\"Metadata too large: \" + name)\n    return raw\n\ndef sha256(path):\n    h = hashlib.sha256()\n    with path.open(\"rb\") as stream:\n        for block in iter(lambda: stream.read(CHUNK), b\"\"):\n            h.update(block)\n    return h.hexdigest()\n\ndef atomic(path, raw):\n    tmp = path.with_name(path.name + \".tmp\")\n    tmp.write_bytes(raw)\n    tmp.replace(path)\n\ndef download(name, rawdir):\n    target = rawdir / name\n    part = rawdir / (name + \".part\")\n    for attempt in range(6):\n        try:\n            with urlopen(Request(BASE + name, method=\"HEAD\"), timeout=120) as response:\n                length = int(response.headers[\"Content-Length\"])\n                validator = response.headers.get(\"ETag\") or response.headers.get(\"Last-Modified\")\n            if length <= 0:\n                raise RuntimeError(\"Invalid source size: \" + name)\n            identity = json.dumps({\"url\": BASE + name, \"bytes\": length, \"validator\": validator}, sort_keys=True).encode()\n            identity_path = rawdir / (name + \".source.json\")\n            if identity_path.exists() and identity_path.read_bytes() != identity:\n                raise RuntimeError(\"Source identity changed; manual inspection required: \" + name)\n            if not identity_path.exists():\n                if target.exists() or part.exists():\n                    raise RuntimeError(\"Untracked existing file: \" + name)\n                atomic(identity_path, identity)\n            if target.exists():\n                if target.stat().st_size != length:\n                    raise RuntimeError(\"Completed file size mismatch: \" + name)\n                return {\"path\": name, \"bytes\": length, \"sha256\": sha256(target), \"source_validator\": validator}\n            offset = part.stat().st_size if part.exists() else 0\n            if offset > length:\n                raise RuntimeError(\"Partial file exceeds source size: \" + name)\n            if offset < length:\n                headers = {\"Accept-Encoding\": \"identity\"}\n                if offset:\n                    headers[\"Range\"] = \"bytes=\" + str(offset) + \"-\"\n                    if validator:\n                        headers[\"If-Range\"] = validator\n                with urlopen(Request(BASE + name, headers=headers), timeout=120) as response:\n                    if response.status == 206:\n                        cr = response.headers.get(\"Content-Range\", \"\")\n                        if cr != \"bytes \" + str(offset) + \"-\" + str(length - 1) + \"/\" + str(length):\n                            raise RuntimeError(\"Unexpected Content-Range: \" + cr)\n                        mode = \"ab\" if offset else \"wb\"\n                    elif response.status == 200:\n                        mode = \"wb\"\n                        if offset:\n                            print(\"RANGE_IGNORED restarting\", name, flush=True)\n                    else:\n                        raise RuntimeError(\"Unexpected HTTP status\")\n                    with part.open(mode) as stream:\n                        while True:\n                            block = response.read(CHUNK)\n                            if not block:\n                                break\n                            stream.write(block)\n                            if stream.tell() > length:\n                                raise RuntimeError(\"Response exceeds expected file size\")\n                if part.stat().st_size != length:\n                    raise RuntimeError(\"Incomplete transfer: \" + name)\n            part.replace(target)\n            return {\"path\": name, \"bytes\": length, \"sha256\": sha256(target), \"source_validator\": validator}\n        except Exception as exc:\n            print(\"RETRY\", name, attempt + 1, type(exc).__name__, str(exc), flush=True)\n            if attempt == 5:\n                raise\n            time.sleep(min(60, 2 ** (attempt + 1)))\n\ndef main():\n    import fcntl\n    ROOT.mkdir(parents=True, exist_ok=True)\n    with (ROOT / \"download.lock\").open(\"a\") as lock:\n        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)\n        run()\n\ndef run():\n    rawdir = ROOT / \"raw\"\n    rawdir.mkdir(exist_ok=True)\n    metadata_raw = small(\"nr-prot-metadata.json\")\n    meta = json.loads(metadata_raw)\n    expected = {\"dbname\": \"nr\", \"dbtype\": \"Protein\", \"number-of-volumes\": 123,\n                \"number-of-sequences\": 935749080, \"number-of-letters\": 354907547446,\n                \"last-updated\": \"2025-06-22T00:00:00\", \"bytes-total\": EXPECTED_BYTES}\n    for key, value in expected.items():\n        if meta.get(key) != value:\n            raise RuntimeError(\"Snapshot mismatch: \" + key)\n    names = []\n    for item in meta[\"files\"]:\n        name = urlsplit(item).path.rsplit(\"/\", 1)[-1]\n        if not re.fullmatch(r\"nr\\.(?:[0-9]{3}\\.)?[a-z]+\", name):\n            raise RuntimeError(\"Unexpected database filename: \" + name)\n        names.append(name)\n    if len(names) != 1113 or len(set(names)) != 1113:\n        raise RuntimeError(\"Unexpected file count\")\n    if set(n for n in names if n.endswith(\".psq\")) != {f\"nr.{i:03d}.psq\" for i in range(123)}:\n        raise RuntimeError(\"Missing sequence volume\")\n    # Some NCBI manifests omit the alias; always include it explicitly.\n    names = sorted(set(names) | {\"nr.pal\"})\n    pal = small(\"nr.pal\")\n    dbline = next(line for line in pal.decode().splitlines() if line.startswith(\"DBLIST \"))\n    if dbline.split()[1:] != [f\"nr.{i:03d}\" for i in range(123)]:\n        raise RuntimeError(\"Alias volume mismatch\")\n    metadata_path = ROOT / \"nr-prot-metadata.json\"\n    if metadata_path.exists() and metadata_path.read_bytes() != metadata_raw:\n        raise RuntimeError(\"Previously staged metadata differs\")\n    atomic(metadata_path, metadata_raw)\n    occupied = sum(p.stat().st_size for p in rawdir.iterdir() if p.is_file())\n    free = shutil.disk_usage(ROOT).free\n    required = max(0, EXPECTED_BYTES - occupied) + 50 * 1024 ** 3\n    print(\"PREFLIGHT\", json.dumps({\"free_bytes\": free, \"required_bytes\": required, \"files\": len(names)}), flush=True)\n    if free < required:\n        raise RuntimeError(\"Insufficient free space including 50 GiB reserve\")\n    records = []\n    for index, name in enumerate(names, 1):\n        print(\"DOWNLOADING\", index, \"/\", len(names), name, flush=True)\n        record = download(name, rawdir)\n        records.append(record)\n        print(\"VERIFIED_LOCAL\", name, record[\"bytes\"], record[\"sha256\"], flush=True)\n    if (rawdir / \"nr.pal\").read_bytes() != pal or small(\"nr-prot-metadata.json\") != metadata_raw or small(\"nr.pal\") != pal:\n        raise RuntimeError(\"Source metadata/alias changed during download\")\n    receipt = {\"source\": BASE, \"metadata\": expected, \"files\": records,\n               \"downloaded_bytes\": sum(r[\"bytes\"] for r in records),\n               \"integrity\": \"HTTP size checks and locally computed SHA-256; no upstream checksum comparison\",\n               \"status\": \"STAGED_NOT_N03_ACCEPTED\"}\n    atomic(ROOT / \"download-receipt.json\", (json.dumps(receipt, indent=2) + \"\\n\").encode())\n    atomic(ROOT / \"SHA256SUMS\", \"\".join(r[\"sha256\"] + \"  raw/\" + r[\"path\"] + \"\\n\" for r in records).encode())\n    print(\"DOWNLOAD_COMPLETE\", receipt[\"downloaded_bytes\"], \"STAGED_NOT_N03_ACCEPTED\", flush=True)\n\nif __name__ == \"__main__\":\n    main()\n"
+              ],
+              "image": "harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:fba5a32c0550e56a5310160e2fc49d647fcd27d76851073a2d82cc935fb4c2fc",
+              "imagePullPolicy": "IfNotPresent",
+              "name": "download",
+              "resources": {
+                "limits": {
+                  "cpu": "2",
+                  "memory": "512Mi"
+                },
+                "requests": {
+                  "cpu": "250m",
+                  "memory": "256Mi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "readOnlyRootFilesystem": true
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File",
+              "volumeMounts": [
+                {
+                  "mountPath": "/data",
+                  "name": "database"
+                }
+              ]
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "enableServiceLinks": true,
+          "imagePullSecrets": [
+            {
+              "name": "harbor"
+            }
+          ],
+          "nodeName": "k8s-a100-01",
+          "preemptionPolicy": "PreemptLowerPriority",
+          "priority": 0,
+          "restartPolicy": "Never",
+          "schedulerName": "default-scheduler",
+          "securityContext": {
+            "fsGroup": 10001,
+            "fsGroupChangePolicy": "OnRootMismatch",
+            "runAsGroup": 10001,
+            "runAsNonRoot": true,
+            "runAsUser": 10001
+          },
+          "serviceAccount": "default",
+          "serviceAccountName": "default",
+          "terminationGracePeriodSeconds": 30,
+          "tolerations": [
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/not-ready",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            },
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/unreachable",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ],
+          "volumes": [
+            {
+              "name": "database",
+              "persistentVolumeClaim": {
+                "claimName": "antigen-n03-nr"
+              }
+            }
+          ]
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-22T11:42:34Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodReadyToStartContainers"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-22T11:42:22Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-22T11:42:34Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-22T11:42:34Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "ContainersReady"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-22T11:42:22Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodScheduled"
+            }
+          ],
+          "containerStatuses": [
+            {
+              "allocatedResources": {
+                "cpu": "250m",
+                "memory": "256Mi"
+              },
+              "containerID": "containerd://366ff888253027008a7bc2eea1a56f86a83a4da2cb407df06a8fd9dbea6a8b0a",
+              "image": "sha256:b0662355d01b9bcca67e767b06e09d242aee6f8e281720c7fa10beaa781f191e",
+              "imageID": "harbor-core.base.svc.cluster.local/qcyz/antigen-design@sha256:fba5a32c0550e56a5310160e2fc49d647fcd27d76851073a2d82cc935fb4c2fc",
+              "lastState": {},
+              "name": "download",
+              "ready": true,
+              "resources": {
+                "limits": {
+                  "cpu": "2",
+                  "memory": "512Mi"
+                },
+                "requests": {
+                  "cpu": "250m",
+                  "memory": "256Mi"
+                }
+              },
+              "restartCount": 0,
+              "started": true,
+              "state": {
+                "running": {
+                  "startedAt": "2026-09-22T11:42:33Z"
+                }
+              },
+              "user": {
+                "linux": {
+                  "gid": 10001,
+                  "supplementalGroups": [
+                    10001
+                  ],
+                  "uid": 10001
+                }
+              },
+              "volumeMounts": [
+                {
+                  "mountPath": "/data",
+                  "name": "database"
+                }
+              ]
+            }
+          ],
+          "hostIP": "10.10.17.26",
+          "hostIPs": [
+            {
+              "ip": "10.10.17.26"
+            }
+          ],
+          "observedGeneration": 1,
+          "phase": "Running",
+          "podIP": "10.42.1.144",
+          "podIPs": [
+            {
+              "ip": "10.42.1.144"
+            }
+          ],
+          "qosClass": "Burstable",
+          "startTime": "2026-09-22T11:42:22Z"
+        }
+      }
+    ],
+    "kind": "List",
+    "metadata": {
+      "resourceVersion": ""
+    }
+  },
+  "antigen-nr-download-r01/logs": "VERIFIED_LOCAL nr.019.pog 2484952 bb1cfa06c2cf586a3706ca91f3cb6a2caa7955e4802c6caa0fbb430e9f767ba9\nDOWNLOADING 177 / 1113 nr.019.ppd\nVERIFIED_LOCAL nr.019.ppd 4969840 086eaff27cf9ac178decc4ff68267251907c69a184eca381a6e52a5f9796d6e1\nDOWNLOADING 178 / 1113 nr.019.ppi\nVERIFIED_LOCAL nr.019.ppi 19460 94fdd49caada61eba0d4ef9091b58113c96786008bf04618db2be5ababf046ef\nDOWNLOADING 179 / 1113 nr.019.psq\nVERIFIED_LOCAL nr.019.psq 236413676 55fe56ee78eb80aa0a8e4a9e515a9c53e5f37ad3168ff5c2c02c088f05c24767\nDOWNLOADING 180 / 1113 nr.019.pxm\nVERIFIED_LOCAL nr.019.pxm 77658 346436cbd92ffb8d0673cedcbca428f2121256d054f4593fc926818afe8e28c7\nDOWNLOADING 181 / 1113 nr.020.phd\nVERIFIED_LOCAL nr.020.phd 196370751 05cc05e06bee2d72c5eaf210071d6f456cdb8d6d2c66c61ae5627e99dd8e3d8a\nDOWNLOADING 182 / 1113 nr.020.phi\nVERIFIED_LOCAL nr.020.phi 4381732 66e52476329ed1a42273bbff2a2521c56a343525580742409bf7607b955a99a5\nDOWNLOADING 183 / 1113 nr.020.phr\n"
+}

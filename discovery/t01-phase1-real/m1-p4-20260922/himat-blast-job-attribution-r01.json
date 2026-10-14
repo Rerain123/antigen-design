@@ -1,0 +1,112 @@
+{
+  "jobs": [
+    {
+      "job_id": "t01p1r-job-120f08a88827456e83bfdf5e6ef19b92",
+      "run_id": "t01p1r-run-44199d1960334909b953022f05a43858",
+      "tool_id": "t01.real.local_workflow",
+      "state": "succeeded",
+      "started_at": "2026-09-24T05:17:41.378002Z",
+      "finished_at": "2026-09-24T06:07:04.823524Z",
+      "error_code": null,
+      "stop_confirmed": false
+    },
+    {
+      "job_id": "t01p1r-job-c7309e57a72f4642b7d1c805016ae9b7",
+      "run_id": "t01p1r-run-44199d1960334909b953022f05a43858",
+      "tool_id": "t01.real.blast",
+      "state": "failed",
+      "started_at": "2026-09-24T05:18:13.048177Z",
+      "finished_at": "2026-09-24T06:06:37.540397Z",
+      "error_code": "OUTPUT_INVALID",
+      "stop_confirmed": false
+    },
+    {
+      "job_id": "t01p1r-job-df485abbd2664ac68030f08bdaa0032a",
+      "run_id": "t01p1r-run-4e259fb0d013442e8dce1ae13ccf82fe",
+      "tool_id": "t01.real.local_workflow",
+      "state": "cancelled",
+      "started_at": "2026-09-24T07:59:20.761408Z",
+      "finished_at": "2026-09-24T09:27:33.021160Z",
+      "error_code": "CANCELLED",
+      "stop_confirmed": true
+    },
+    {
+      "job_id": "t01p1r-job-429765bbfc954bb2af8a11570a8d0cbc",
+      "run_id": "t01p1r-run-c7b69186b8b2458ab025fe1bf43084e1",
+      "tool_id": "t01.real.local_workflow",
+      "state": "cancelled",
+      "started_at": "2026-09-24T08:03:09.612639Z",
+      "finished_at": "2026-09-24T09:27:32.867891Z",
+      "error_code": "CANCELLED",
+      "stop_confirmed": true
+    },
+    {
+      "job_id": "t01p1r-job-ffb7755bea434349ad8e1f2cd58c9ad5",
+      "run_id": "t01p1r-run-4e259fb0d013442e8dce1ae13ccf82fe",
+      "tool_id": "t01.real.blast",
+      "state": "cancelled",
+      "started_at": "2026-09-24T08:04:06.122081Z",
+      "finished_at": "2026-09-24T09:27:32.398676Z",
+      "error_code": "CANCELLED",
+      "stop_confirmed": true
+    },
+    {
+      "job_id": "t01p1r-job-e15d89e91c3a4d3a8b4787f7b0d16daa",
+      "run_id": "t01p1r-run-c7b69186b8b2458ab025fe1bf43084e1",
+      "tool_id": "t01.real.blast",
+      "state": "cancelled",
+      "started_at": "2026-09-24T08:05:20.643566Z",
+      "finished_at": "2026-09-24T09:27:31.969527Z",
+      "error_code": "CANCELLED",
+      "stop_confirmed": true
+    }
+  ],
+  "blast_receipts": [
+    {
+      "execution_id": "7462aa5ef25f14f0b0318ad5517537ec",
+      "binding": {
+        "attempt_id": "t01p1r-attempt-4d5ac015132f405aa731d6d9cedb9c6a",
+        "execution_identity": "exec-t01p1r-attempt-e6855378c01f4c12ae27d93500dd3c2d",
+        "job_id": "t01p1r-job-e15d89e91c3a4d3a8b4787f7b0d16daa"
+      },
+      "state": "cancelled",
+      "stopped_confirmed": true,
+      "process_identity": null,
+      "exit_code": null
+    },
+    {
+      "execution_id": "779f9f6a51e17998f9242c69b73d0275",
+      "binding": {
+        "attempt_id": "t01p1r-attempt-77bbdaed8df145debb4bcc6aa40b55da",
+        "execution_identity": "exec-t01p1r-attempt-7abf07dd2b034632834b5f612dd991fd",
+        "job_id": "t01p1r-job-ffb7755bea434349ad8e1f2cd58c9ad5"
+      },
+      "state": "interrupted",
+      "stopped_confirmed": true,
+      "process_identity": {
+        "birth": "57917532",
+        "pid": 6,
+        "platform": "linux"
+      },
+      "exit_code": null
+    },
+    {
+      "execution_id": "3a1a88df0dabdd3ddc02f5fd6e18989a",
+      "binding": {
+        "attempt_id": "t01p1r-attempt-3b2b45e8370846ba9cb034bdff220983",
+        "execution_identity": "exec-t01p1r-attempt-32c29383a505441292699712640b898b",
+        "job_id": "t01p1r-job-c7309e57a72f4642b7d1c805016ae9b7"
+      },
+      "state": "succeeded",
+      "stopped_confirmed": true,
+      "process_identity": {
+        "birth": "56922192",
+        "pid": 7,
+        "platform": "linux"
+      },
+      "exit_code": 0
+    }
+  ],
+  "checked_at": "2026-09-24T09:32:46.736399+00:00",
+  "correction": "The prior CPU sampling in himat-second-blast-progress-r01.json observed execution 779f9f6a51e17998f9242c69b73d0275, belonging to parent df485abbd2664ac68030f08bdaa0032a, not parent 429765bbfc954bb2af8a11570a8d0cbc or 120f08a88827456e83bfdf5e6ef19b92. The 429765bb task was waiting for the single resident slot."
+}

@@ -1,0 +1,127 @@
+........................................................................ [ 13%]
+........................................................................ [ 26%]
+........................................................................ [ 40%]
+........................................................................ [ 53%]
+........................................................................ [ 67%]
+........................................................................ [ 80%]
+........................................................................ [ 94%]
+...........................FFF                                           [100%]
+================================== FAILURES ===================================
+__________ test_same_run_proteinmpnn_keeps_source_provenance_checks ___________
+
+tmp_path = WindowsPath('D:/work/antigen.design/.tmp/latency-final-affected/test_same_run_proteinmpnn_keep0')
+
+    def test_same_run_proteinmpnn_keeps_source_provenance_checks(tmp_path):
+        rt=Runtime(tmp_path)
+        target=rt.create_run('target-run')
+        foreign=rt.create_run('foreign-run')
+>       _, foreign_ref=structure_result(rt, foreign['run_id'], 'foreign-structure')
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_same_run_submission.py:83: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = <t01_phase1_real.development.runtime.Runtime object at 0x0000024498A0AE90>
+run_id = 't01p1r-run-69385b0ca86e4456b24046dfef02b93d'
+key = 'foreign-structure'
+
+    def structure_result(rt, run_id, key):
+        if os.name == 'nt':
+            # pytest's private temp-directory ACL uses OWNER RIGHTS. Docker Desktop
+            # writes as a different owner; grant only this fixture root to this user.
+            account = subprocess.check_output(['whoami'], text=True).strip()
+            subprocess.run(['icacls', str(rt.root), '/grant', account + ':(OI)(CI)F', '/T'],
+                check=True, capture_output=True)
+        fixture=next(row for row in cases() if row['name']=='normal-pdb')
+        job=rt.submit_structure_in_run(run_id, encode(fixture['request']), key, fixture['data'])
+        rt.dispatch(job['job_id'])
+        # Docker cold starts can exceed Runtime.wait's 15-second polling default.
+        # Keep the request's 60-second worker budget and wait through reconciliation.
+        final=rt.wait(job['job_id'], timeout=90)
+>       assert final['state']=='succeeded' and final['run_id']==run_id
+E       AssertionError: assert ('running' == 'succeeded'
+E         
+E         - succeeded
+E         + running)
+
+tests\test_same_run_submission.py:41: AssertionError
+___ test_same_run_proteinmpnn_still_rejects_corrupt_local_source[sequence] ____
+
+tmp_path = WindowsPath('D:/work/antigen.design/.tmp/latency-final-affected/test_same_run_proteinmpnn_stil0')
+damage = 'sequence'
+
+    @pytest.mark.parametrize('damage',['sequence','hash'])
+    def test_same_run_proteinmpnn_still_rejects_corrupt_local_source(tmp_path,damage):
+        rt=Runtime(tmp_path);run=rt.create_run('target')
+>       structure,ref=structure_result(rt,run['run_id'],'structure');body=n11_body(ref)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_same_run_submission.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = <t01_phase1_real.development.runtime.Runtime object at 0x00000244A27A6E90>
+run_id = 't01p1r-run-2b5b5293769f4626bc985073f6bf8210', key = 'structure'
+
+    def structure_result(rt, run_id, key):
+        if os.name == 'nt':
+            # pytest's private temp-directory ACL uses OWNER RIGHTS. Docker Desktop
+            # writes as a different owner; grant only this fixture root to this user.
+            account = subprocess.check_output(['whoami'], text=True).strip()
+            subprocess.run(['icacls', str(rt.root), '/grant', account + ':(OI)(CI)F', '/T'],
+                check=True, capture_output=True)
+        fixture=next(row for row in cases() if row['name']=='normal-pdb')
+        job=rt.submit_structure_in_run(run_id, encode(fixture['request']), key, fixture['data'])
+        rt.dispatch(job['job_id'])
+        # Docker cold starts can exceed Runtime.wait's 15-second polling default.
+        # Keep the request's 60-second worker budget and wait through reconciliation.
+        final=rt.wait(job['job_id'], timeout=90)
+>       assert final['state']=='succeeded' and final['run_id']==run_id
+E       AssertionError: assert ('running' == 'succeeded'
+E         
+E         - succeeded
+E         + running)
+
+tests\test_same_run_submission.py:41: AssertionError
+_____ test_same_run_proteinmpnn_still_rejects_corrupt_local_source[hash] ______
+
+tmp_path = WindowsPath('D:/work/antigen.design/.tmp/latency-final-affected/test_same_run_proteinmpnn_stil1')
+damage = 'hash'
+
+    @pytest.mark.parametrize('damage',['sequence','hash'])
+    def test_same_run_proteinmpnn_still_rejects_corrupt_local_source(tmp_path,damage):
+        rt=Runtime(tmp_path);run=rt.create_run('target')
+>       structure,ref=structure_result(rt,run['run_id'],'structure');body=n11_body(ref)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_same_run_submission.py:96: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = <t01_phase1_real.development.runtime.Runtime object at 0x000002449912A590>
+run_id = 't01p1r-run-f5c483c5571549fd81b593cbc5b9f947', key = 'structure'
+
+    def structure_result(rt, run_id, key):
+        if os.name == 'nt':
+            # pytest's private temp-directory ACL uses OWNER RIGHTS. Docker Desktop
+            # writes as a different owner; grant only this fixture root to this user.
+            account = subprocess.check_output(['whoami'], text=True).strip()
+            subprocess.run(['icacls', str(rt.root), '/grant', account + ':(OI)(CI)F', '/T'],
+                check=True, capture_output=True)
+        fixture=next(row for row in cases() if row['name']=='normal-pdb')
+        job=rt.submit_structure_in_run(run_id, encode(fixture['request']), key, fixture['data'])
+        rt.dispatch(job['job_id'])
+        # Docker cold starts can exceed Runtime.wait's 15-second polling default.
+        # Keep the request's 60-second worker budget and wait through reconciliation.
+        final=rt.wait(job['job_id'], timeout=90)
+>       assert final['state']=='succeeded' and final['run_id']==run_id
+E       AssertionError: assert ('running' == 'succeeded'
+E         
+E         - succeeded
+E         + running)
+
+tests\test_same_run_submission.py:41: AssertionError
+- generated xml file: D:\work\antigen.design\reports\controller-latency-20261010\final-affected.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_same_run_submission.py::test_same_run_proteinmpnn_keeps_source_provenance_checks
+FAILED tests/test_same_run_submission.py::test_same_run_proteinmpnn_still_rejects_corrupt_local_source[sequence]
+FAILED tests/test_same_run_submission.py::test_same_run_proteinmpnn_still_rejects_corrupt_local_source[hash]
+3 failed, 531 passed in 405.27s (0:06:45)

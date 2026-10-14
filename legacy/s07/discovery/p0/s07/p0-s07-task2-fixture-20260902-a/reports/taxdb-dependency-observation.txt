@@ -1,0 +1,8 @@
+Observation time: 2026-09-02 Asia/Shanghai
+Observation type: derived execution note; not raw stdout
+
+The first blastdbcheck invocation returned exit code 1 because the FASTA header
+contains taxonomy id 9606 and the checker could not find that taxid. The final
+invocation explicitly added the frozen NCBI taxdb directory to BLASTDB and ran
+blastdbcheck in full mode successfully. Production packaging therefore has to
+bind the protein database and its taxonomy database in the same release manifest.

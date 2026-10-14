@@ -1,0 +1,30 @@
+{
+  "evidence_state": "SEALED_ENGINEERING_EVIDENCE",
+  "scientific_gate": "CLOSED",
+  "release_commit": "69c80ff4f3594a0b97f65db0c36bf54cab059a3d",
+  "deployment_generation": 12,
+  "thermompnn": {
+    "job_id": "t01p1r-job-344d196cdd2345c585c28b1ce04a9bc0",
+    "gpu_name": "NVIDIA A100-SXM-64GB",
+    "native_prediction_count": 180,
+    "selected_prediction_count": 140,
+    "status": "predicted_unreviewed"
+  },
+  "n16_optimized": {
+    "job_id": "t01p1r-job-43efc7e63cbd40d2b45af119f5fe8151",
+    "protein": "ACDEFGHIKLMNPQRSTVWY",
+    "dna": "GCGTGCGATGAATTTGGCCATATTAAACTGATGAACCCGCAGCGCAGCACCGTGTGGTAT",
+    "length_nt": 60,
+    "gc_fraction": 0.5166666666666667,
+    "translation_matches": true,
+    "all_constraints_pass": true,
+    "status": "optimized_engineering"
+  },
+  "n16_fallback": {
+    "job_id": "t01p1r-job-afb0551984de426985b764b497e5278a",
+    "protein": "WWWWWW",
+    "returned_kind": "unoptimized_fallback",
+    "optimizer_failure_code": "NO_SOLUTION",
+    "status": "optimization_incomplete"
+  }
+}

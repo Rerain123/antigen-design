@@ -1,0 +1,159 @@
+........................................................................ [  2%]
+........................................................................ [  5%]
+........................................................................ [  8%]
+........................................................................ [ 11%]
+........................................................................ [ 13%]
+........................................................................ [ 16%]
+........................................................................ [ 19%]
+........................................................................ [ 22%]
+........................................................................ [ 25%]
+........................................................................ [ 27%]
+........................................................................ [ 30%]
+........................................................................ [ 33%]
+........................................................................ [ 36%]
+........................................................................ [ 39%]
+........................................................................ [ 41%]
+........................................................................ [ 44%]
+...........................................................F............ [ 47%]
+........................................................................ [ 50%]
+........................................................................ [ 53%]
+........................................................................ [ 55%]
+........................................................................ [ 58%]
+........................................................................ [ 61%]
+........................................................................ [ 64%]
+........................................................................ [ 67%]
+................................................ssss...........sssssssss [ 69%]
+s....................................................................... [ 72%]
+.........FFF............................................................ [ 75%]
+........................................................................ [ 78%]
+........................................................................ [ 81%]
+....................................................................s... [ 83%]
+........................................................................ [ 86%]
+........................................................................ [ 89%]
+........................................................................ [ 92%]
+........................................................................ [ 94%]
+........................................................................ [ 97%]
+.........................................................                [100%]
+================================== FAILURES ===================================
+_ test_internal_steps_are_18_business_nodes_and_reconciling_blast_is_visible __
+
+    def test_internal_steps_are_18_business_nodes_and_reconciling_blast_is_visible():
+        nodes = pending()
+        for name in ('prediction', 'structure', 'topology'):
+            nodes[name]['state'] = 'succeeded'
+        nodes['blast']['state'] = 'reconciling'
+        original = copy.deepcopy(nodes)
+        result = project(nodes)
+        assert nodes == original
+        assert result['total_nodes'] == 18 and result['completed_nodes'] == 2
+        assert result['current_nodes'] == ['N03']
+        assert result['node_counts']['succeeded'] == 2
+>       assert result['internal_step_counts']['total'] == 60  # Includes six conditional regeneration/scoring/audit steps.
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       assert 63 == 60
+
+tests\test_himat_progress.py:27: AssertionError
+__________ test_same_run_proteinmpnn_keeps_source_provenance_checks ___________
+
+tmp_path = WindowsPath('C:/Users/wing/AppData/Local/Temp/pytest-of-wing/pytest-2728/test_same_run_proteinmpnn_keep0')
+
+    def test_same_run_proteinmpnn_keeps_source_provenance_checks(tmp_path):
+        rt=Runtime(tmp_path)
+        target=rt.create_run('target-run')
+        foreign=rt.create_run('foreign-run')
+>       _, foreign_ref=structure_result(rt, foreign['run_id'], 'foreign-structure')
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_same_run_submission.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = <t01_phase1_real.development.runtime.Runtime object at 0x000002BD640CA7D0>
+run_id = 't01p1r-run-e04f7b2ff05141379850357e4376bb9c'
+key = 'foreign-structure'
+
+    def structure_result(rt, run_id, key):
+        fixture=next(row for row in cases() if row['name']=='normal-pdb')
+        job=rt.submit_structure_in_run(run_id, encode(fixture['request']), key, fixture['data'])
+        rt.dispatch(job['job_id'])
+        final=rt.wait(job['job_id'])
+>       assert final['state']=='succeeded' and final['run_id']==run_id
+E       AssertionError: assert ('failed' == 'succeeded'
+E         
+E         - succeeded
+E         + failed)
+
+tests\test_same_run_submission.py:31: AssertionError
+___ test_same_run_proteinmpnn_still_rejects_corrupt_local_source[sequence] ____
+
+tmp_path = WindowsPath('C:/Users/wing/AppData/Local/Temp/pytest-of-wing/pytest-2728/test_same_run_proteinmpnn_stil0')
+damage = 'sequence'
+
+    @pytest.mark.parametrize('damage',['sequence','hash'])
+    def test_same_run_proteinmpnn_still_rejects_corrupt_local_source(tmp_path,damage):
+        rt=Runtime(tmp_path);run=rt.create_run('target')
+>       structure,ref=structure_result(rt,run['run_id'],'structure');body=n11_body(ref)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_same_run_submission.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = <t01_phase1_real.development.runtime.Runtime object at 0x000002BD62E4F510>
+run_id = 't01p1r-run-6e5ae593bd6848caa2ff2cc09110fbe4', key = 'structure'
+
+    def structure_result(rt, run_id, key):
+        fixture=next(row for row in cases() if row['name']=='normal-pdb')
+        job=rt.submit_structure_in_run(run_id, encode(fixture['request']), key, fixture['data'])
+        rt.dispatch(job['job_id'])
+        final=rt.wait(job['job_id'])
+>       assert final['state']=='succeeded' and final['run_id']==run_id
+E       AssertionError: assert ('failed' == 'succeeded'
+E         
+E         - succeeded
+E         + failed)
+
+tests\test_same_run_submission.py:31: AssertionError
+_____ test_same_run_proteinmpnn_still_rejects_corrupt_local_source[hash] ______
+
+tmp_path = WindowsPath('C:/Users/wing/AppData/Local/Temp/pytest-of-wing/pytest-2728/test_same_run_proteinmpnn_stil1')
+damage = 'hash'
+
+    @pytest.mark.parametrize('damage',['sequence','hash'])
+    def test_same_run_proteinmpnn_still_rejects_corrupt_local_source(tmp_path,damage):
+        rt=Runtime(tmp_path);run=rt.create_run('target')
+>       structure,ref=structure_result(rt,run['run_id'],'structure');body=n11_body(ref)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_same_run_submission.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = <t01_phase1_real.development.runtime.Runtime object at 0x000002BD014F0450>
+run_id = 't01p1r-run-f71946d7b08441c0b97f6c357da49f45', key = 'structure'
+
+    def structure_result(rt, run_id, key):
+        fixture=next(row for row in cases() if row['name']=='normal-pdb')
+        job=rt.submit_structure_in_run(run_id, encode(fixture['request']), key, fixture['data'])
+        rt.dispatch(job['job_id'])
+        final=rt.wait(job['job_id'])
+>       assert final['state']=='succeeded' and final['run_id']==run_id
+E       AssertionError: assert ('failed' == 'succeeded'
+E         
+E         - succeeded
+E         + failed)
+
+tests\test_same_run_submission.py:31: AssertionError
+============================== warnings summary ===============================
+src\t01_phase1_real\development\netmhc\result.py:67
+  D:\work\antigen.design\src\t01_phase1_real\development\netmhc\result.py:67: DeprecationWarning: invalid escape sequence '\d'
+    ensure(all(re.fullmatch('-?\d+',v) for v in fields[4:9]),'OUTPUT_INVALID','Invalid MHC-I core offsets')
+
+src\t01_phase1_real\development\netmhc\result.py:82
+  D:\work\antigen.design\src\t01_phase1_real\development\netmhc\result.py:82: DeprecationWarning: invalid escape sequence '\d'
+    ensure(re.fullmatch('-?\d+',fields[3]) is not None and len(fields[4])==9
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: D:\work\antigen.design\reports\n12-validation-20260926\full.junit.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_himat_progress.py::test_internal_steps_are_18_business_nodes_and_reconciling_blast_is_visible
+FAILED tests/test_same_run_submission.py::test_same_run_proteinmpnn_keeps_source_provenance_checks
+FAILED tests/test_same_run_submission.py::test_same_run_proteinmpnn_still_rejects_corrupt_local_source[sequence]
+FAILED tests/test_same_run_submission.py::test_same_run_proteinmpnn_still_rejects_corrupt_local_source[hash]

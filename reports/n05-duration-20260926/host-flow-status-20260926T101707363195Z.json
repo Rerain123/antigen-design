@@ -1,0 +1,47 @@
+{
+  "job_id": "t01p1r-job-bb8f2270151e4d7dbb2ae371e511f10a",
+  "run_id": "t01p1r-run-d0741d93313d457f9ab131b25410372e",
+  "state": "running",
+  "error_code": null,
+  "nodes": {
+    "prediction": {
+      "node_id": "N01",
+      "job_id": "t01p1r-job-bb2b8c7984d3444d8e531f2b38631ee1",
+      "state": "reconciling",
+      "reason_code": null,
+      "detail": null
+    }
+  },
+  "pending_confirmation": null,
+  "facts": {},
+  "batch_progress": {},
+  "active_progress": {
+    "N01": {
+      "active_steps": [
+        {
+          "execution": {
+            "observation": "bound_worker_receipt; not a live CPU sample",
+            "phase": "executing",
+            "stopped_confirmed": false,
+            "worker_state": "running"
+          },
+          "state": "reconciling",
+          "step": "prediction"
+        }
+      ],
+      "completed": false,
+      "internal_steps": 2,
+      "state": "reconciling",
+      "step_states": {
+        "not_executed": 1,
+        "reconciling": 1
+      }
+    }
+  },
+  "card_type": null,
+  "card_summary": null,
+  "controlled_downloads": [],
+  "transport": "service loopback HiMat MCP and attachment routes; not browser UI",
+  "scientific_gate": "CLOSED",
+  "public_report_api_called": false
+}

@@ -1,0 +1,40 @@
+{
+  "record_type": "AUTHORITATIVE_IMPLEMENTATION_BASELINE_DECISION",
+  "decision_id": "T01-PHASE1-MOCK-20260904",
+  "decision_date": "2026-09-04",
+  "authority": "LATEST_EXPLICIT_USER_DECISION",
+  "decision": {
+    "current_phase1_topology": "STRICT_18_NODE_FLOWCHART",
+    "legacy_mock_role": "RETAIN_FOR_FUTURE_FULL_T01_DEVELOPMENT_REFERENCE",
+    "legacy_mock_must_not_drive": [
+      "current_phase1_scope",
+      "current_phase1_planning",
+      "current_phase1_task_numbering",
+      "current_phase1_acceptance",
+      "current_phase1_release"
+    ],
+    "required_current_asset": "NEW_PHASE1_MOCK_MATCHING_18_NODE_FLOWCHART",
+    "production_sequence": "FREEZE_NEW_PHASE1_MOCK_BEFORE_PHASE1_REAL_TOOL_IMPLEMENTATION"
+  },
+  "legacy_assets": {
+    "topology": "T01_Master_v10 plus P0-P7 workflows",
+    "status": "FROZEN_LEGACY_REFERENCE",
+    "existing_mock_tool_entries": 63,
+    "existing_regression_scenarios": 25,
+    "mutation_authorized": false
+  },
+  "current_phase1_mock": {
+    "status": "NOT_STARTED",
+    "business_node_identity": "N01-N18",
+    "must_include": [
+      "DESIGN_SUITABILITY_GATE",
+      "WT_DIRECT_HANDOFF_BRANCH",
+      "NODE12_CONTROLLED_RECALCULATION",
+      "NODE16_CONDITIONAL_EXECUTION",
+      "NODE16_NODE17_TO_NODE18_MERGE",
+      "NODE01_NO_EXTERNAL_DATABASE_QUERY"
+    ],
+    "scientific_compute": false,
+    "production_evidence": false
+  }
+}

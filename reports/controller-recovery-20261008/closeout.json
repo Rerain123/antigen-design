@@ -1,0 +1,150 @@
+{
+  "checked_at": "2026-10-08T09:46:15.517779+00:00",
+  "status": "DEPLOYED_AND_ORIGINAL_WORKFLOW_PROGRESS_VERIFIED",
+  "generation": 145,
+  "source_sha256": "7d82e120d9aea9ff14d34c39b8f2d34801f8a67da8e86cf01894fecb9441267c",
+  "files": 252,
+  "containers_verified": 10,
+  "root_cause_evidence": "diagnosis.json",
+  "expert_audit": "expert-audit.json",
+  "original_job_id": "t01p1r-job-a7c8933226744c669836b11858585246",
+  "original_run_id": "t01p1r-run-91c280daabf7481c8eb719660c70a4bd",
+  "current_workflow_complete": false,
+  "original_request_sha256": "f1f6677aeef0ca79b995b948f99bb4dbcf56a6297251385594475188a45473ae",
+  "independent_scientific_runs_started": 0,
+  "original_budget_and_deadline_preserved": true,
+  "upgrade_receipt": "upgrade-authorization.json",
+  "progress_evidence": "latest.json",
+  "collection_evidence": "mhc-collection-after.json",
+  "collection_lag_before_seconds": [
+    223.456173,
+    224.444437,
+    225.295751
+  ],
+  "collection_lag_after_seconds": [
+    0.587151,
+    0.554834,
+    0.608745,
+    0.353816
+  ],
+  "new_himat_interaction_policy": "PREAUTHORIZED_T4_CONTINUE_WITH_WARNING_V1",
+  "new_himat_submission_validation": "capture_only_no_new_run",
+  "legacy_confirmation_records_preserved": true,
+  "hard_gates_unchanged": true,
+  "scientific_release": false,
+  "expert_full_compliance": false,
+  "validation": {
+    "full_initial": {
+      "passed": 3086,
+      "skipped": 15,
+      "failed": 3,
+      "reason": "Docker engine unavailable"
+    },
+    "same_docker_test_module_recheck": {
+      "passed": 6,
+      "failed": 0
+    },
+    "combined_original_full_set": {
+      "passed": 3089,
+      "skipped": 15,
+      "single_run_all_green": false
+    },
+    "final_affected": {
+      "passed": 93,
+      "failed": 0
+    },
+    "frozen_assets": 457,
+    "documentation": "PASS_WITH_HISTORICAL_LINK_ISSUES",
+    "existing_historical_link_issues": 31
+  },
+  "post_recovery_mhc_state": "succeeded",
+  "post_recovery_mhc_batches_succeeded": 4,
+  "latest_workflow_state": "timed_out",
+  "controller_fault": null,
+  "pending_confirmation": null,
+  "downstream_progress_verified": true,
+  "latest_counts": [
+    {
+      "count": 19,
+      "state": "succeeded",
+      "tool": "t01.real.af3"
+    },
+    {
+      "count": 7,
+      "state": "succeeded",
+      "tool": "t01.real.bepipred"
+    },
+    {
+      "count": 1,
+      "state": "succeeded",
+      "tool": "t01.real.blast"
+    },
+    {
+      "count": 1,
+      "state": "succeeded",
+      "tool": "t01.real.deeptmhmm"
+    },
+    {
+      "count": 1,
+      "state": "succeeded",
+      "tool": "t01.real.design_audit"
+    },
+    {
+      "count": 19,
+      "state": "succeeded",
+      "tool": "t01.real.developability"
+    },
+    {
+      "count": 1,
+      "state": "succeeded",
+      "tool": "t01.real.domains"
+    },
+    {
+      "count": 6,
+      "state": "succeeded",
+      "tool": "t01.real.epitope_map"
+    },
+    {
+      "count": 1,
+      "state": "succeeded",
+      "tool": "t01.real.esm_if1"
+    },
+    {
+      "count": 19,
+      "state": "succeeded",
+      "tool": "t01.real.esmfold2"
+    },
+    {
+      "count": 1,
+      "state": "succeeded",
+      "tool": "t01.real.glycosylation"
+    },
+    {
+      "count": 19,
+      "state": "succeeded",
+      "tool": "t01.real.ingest_structure"
+    },
+    {
+      "count": 5,
+      "state": "succeeded",
+      "tool": "t01.real.netmhc"
+    },
+    {
+      "count": 1,
+      "state": "timed_out",
+      "tool": "t01.real.netmhc"
+    },
+    {
+      "count": 3,
+      "state": "succeeded",
+      "tool": "t01.real.proteinmpnn"
+    },
+    {
+      "count": 1,
+      "state": "succeeded",
+      "tool": "t01.real.wt_draft"
+    }
+  ],
+  "current_workflow_terminal": true,
+  "terminal_evidence": "terminal-status.json"
+}

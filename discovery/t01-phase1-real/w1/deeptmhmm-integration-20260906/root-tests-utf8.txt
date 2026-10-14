@@ -1,0 +1,43 @@
+........................................................................ [  7%]
+........................................................................ [ 15%]
+........................................................................ [ 23%]
+........................................................................ [ 31%]
+........................................................................ [ 39%]
+.....................F.................................................. [ 47%]
+........................................................................ [ 55%]
+........................................................................ [ 63%]
+..........................................s............................. [ 70%]
+........................................................................ [ 78%]
+........................................................................ [ 86%]
+........................................................................ [ 94%]
+.................................................                        [100%]
+================================== FAILURES ===================================
+___________________ test_sealed_boundary_execution_evidence ___________________
+
+    def test_sealed_boundary_execution_evidence():
+        if not (BATCH/'manifest.json').exists():
+            pytest.skip('Campaign has not yet been sealed')
+>       result=verify(BATCH)
+               ^^^^^^^^^^^^^
+
+tests\test_b2_boundaries.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\check_b2_boundaries.py:162: in verify
+    verify_files(ROOT,manifest['sources']); verify_files(ROOT,read(batch/'protected_before.json')['files'])
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+scripts\b2_boundary_evidence.py:62: in verify_files
+    require(p.is_file() and fingerprint(p, folder.resolve()) == entry, 'ARTIFACT_HASH_OR_PRESENCE_MISMATCH: '+name)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+value = False
+message = 'ARTIFACT_HASH_OR_PRESENCE_MISMATCH: scripts/check_docs.py'
+
+    def require(value, message):
+        if not value:
+>           raise ValueError(message)
+E           ValueError: ARTIFACT_HASH_OR_PRESENCE_MISMATCH: scripts/check_docs.py
+
+scripts\b2_boundary_evidence.py:18: ValueError
+=========================== short test summary info ===========================
+FAILED tests/test_b2_boundaries.py::test_sealed_boundary_execution_evidence
+1 failed, 911 passed, 1 skipped in 137.96s (0:02:17)

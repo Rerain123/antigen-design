@@ -1,0 +1,10 @@
+{
+  "name": "AntigenDesignT01",
+  "type": "streamableHttp",
+  "description": "抗原设计测试服。根据 9–999 aa 蛋白序列和宿主物种异步提交任务；用户另发消息时查询进度，终态返回受控报告卡片。科学资格保持 CLOSED，结果仅供内部工程验证。",
+  "baseUrl": "http://antigen-design.him-ws.svc.cluster.local/mcp",
+  "headers": {
+    "Content-Type": "application/json",
+    "X-T01-MCP-Authorization": "Bearer <HIMAT_MCP_TOKEN>"
+  }
+}

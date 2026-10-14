@@ -1,0 +1,312 @@
+{
+  "scope": "PUBLIC_SOURCE_FORMAT_AUDIT",
+  "model_execution": "NOT_RUN",
+  "production_status": "NOT_DEPLOYED",
+  "annotation": {
+    "record_count": 3576,
+    "residue_count": 1844027,
+    "label_histograms": [
+      {
+        "B": 11604,
+        "I": 1269655,
+        "M": 58206,
+        "O": 457255,
+        "P": 18782,
+        "S": 28525
+      }
+    ],
+    "non_aa20_records": [
+      "O83276",
+      "P14217",
+      "O83774",
+      "Q9VKA4"
+    ],
+    "lengths_and_six_label_domain": "PASS"
+  },
+  "crossval": {
+    "record_count": 3574,
+    "residue_count": 1843112,
+    "label_histograms": [
+      {
+        "B": 11513,
+        "I": 1269655,
+        "M": 58200,
+        "O": 457222,
+        "P": 18044,
+        "S": 28478
+      },
+      {
+        "B": 11346,
+        "I": 1275011,
+        "M": 54508,
+        "O": 453463,
+        "P": 20202,
+        "S": 28582
+      }
+    ],
+    "non_aa20_records": [
+      "O83276",
+      "O83774",
+      "Q9VKA4",
+      "P14217"
+    ],
+    "lengths_and_six_label_domain": "PASS"
+  },
+  "cross_source_comparison": {
+    "sequence_mismatch_ids": [],
+    "label_row_1_differs_from_3line_ids": [
+      "Q9V9Y4",
+      "P50572",
+      "Q08BA4"
+    ],
+    "label_row_2_equal_3line_count": 2788,
+    "missing_from_crossval_ids": [
+      "A1JUB7",
+      "P02930"
+    ],
+    "interpretation": "ROW_ROLES_NOT_INDEPENDENTLY_CONFIRMED; not a 1.0.57 execution or accuracy reference"
+  },
+  "official_inputs": [
+    {
+      "source": "DTU_OFFICIAL_EXAMPLE_NO_EXPECTED_LABELS",
+      "id": "GLR1_DROME",
+      "length": 991,
+      "sequence_sha256": "dcb96c5435a2f3ff7a8a34e8485b9fbbb98c8a90ab2db9d165b7c5e3b75aa2c0"
+    },
+    {
+      "source": "DTU_OFFICIAL_EXAMPLE_NO_EXPECTED_LABELS",
+      "id": "CLV3_ARATH",
+      "length": 96,
+      "sequence_sha256": "284b81a6aeb226b363b78f5834dea0f372fdcc543ff81c9c7b6454cebe8f15d6"
+    },
+    {
+      "source": "DTU_OFFICIAL_EXAMPLE_NO_EXPECTED_LABELS",
+      "id": "NAB2_SCHPO",
+      "length": 307,
+      "sequence_sha256": "f7ca7356abf382bdb2ed4bbb720c05a23601d30e599354a9afab07fac2829eb8"
+    },
+    {
+      "source": "DTU_OFFICIAL_EXAMPLE_NO_EXPECTED_LABELS",
+      "id": "Q9ALY0_KLEAE",
+      "length": 375,
+      "sequence_sha256": "d27be4543231d9a131ed095cee544e7e5b2e49bf538a89a087f6130f6a28c3e0"
+    }
+  ],
+  "selected_annotation_cases": [
+    {
+      "case": "inside",
+      "id": "Q8K459",
+      "source_line": 3256,
+      "evidence_kind": "PUBLISHED_ANNOTATION_NOT_LOCAL_PREDICTION",
+      "raw_block_sha256": "491a00b7644624436032e83a9fadeb4877ad5dd158df0926d043f934148ea3b9",
+      "inspection": {
+        "length": 51,
+        "counts": {
+          "I": 51
+        },
+        "segments": [
+          {
+            "raw_label": "I",
+            "start": 1,
+            "end": 51
+          }
+        ],
+        "tm_segment_count": 0,
+        "outside_length": 0,
+        "has_signal": false,
+        "outside_delivery_domain": false,
+        "raw_labels_sha256": "ef3d136bc91b3d2f2483f1f20855b30eb489e0cf653e809de011b806806b3821",
+        "input_outside_current_web_alphabet": []
+      }
+    },
+    {
+      "case": "signal",
+      "id": "P01499",
+      "source_line": 7411,
+      "evidence_kind": "PUBLISHED_ANNOTATION_NOT_LOCAL_PREDICTION",
+      "raw_block_sha256": "fc2ba659a4d702cad52e83dc8e9118c1d4be5670bef894c5d5cd37fcbfe5e50f",
+      "inspection": {
+        "length": 50,
+        "counts": {
+          "O": 23,
+          "S": 27
+        },
+        "segments": [
+          {
+            "raw_label": "S",
+            "start": 1,
+            "end": 27
+          },
+          {
+            "raw_label": "O",
+            "start": 28,
+            "end": 50
+          }
+        ],
+        "tm_segment_count": 0,
+        "outside_length": 23,
+        "has_signal": true,
+        "outside_delivery_domain": false,
+        "raw_labels_sha256": "313193834fa91123052143cfd7574cf5a2dcc4bdd9b8c90c7838d8c4ace829db",
+        "input_outside_current_web_alphabet": []
+      }
+    },
+    {
+      "case": "single_tm_large_outside",
+      "id": "P07471",
+      "source_line": 9796,
+      "evidence_kind": "PUBLISHED_ANNOTATION_NOT_LOCAL_PREDICTION",
+      "raw_block_sha256": "1de9aa4edaa770d3dbd95b26a28d29fb997da5637eef31918083bd7490a48faf",
+      "inspection": {
+        "length": 97,
+        "counts": {
+          "I": 15,
+          "M": 22,
+          "O": 60
+        },
+        "segments": [
+          {
+            "raw_label": "I",
+            "start": 1,
+            "end": 15
+          },
+          {
+            "raw_label": "M",
+            "start": 16,
+            "end": 37
+          },
+          {
+            "raw_label": "O",
+            "start": 38,
+            "end": 97
+          }
+        ],
+        "tm_segment_count": 1,
+        "outside_length": 60,
+        "has_signal": false,
+        "outside_delivery_domain": false,
+        "raw_labels_sha256": "1ef67df9ca361bbea1935132e871fde52f4ccf8ef76b9cf97e709896526ffb6a",
+        "input_outside_current_web_alphabet": []
+      }
+    },
+    {
+      "case": "beta_periplasm",
+      "id": "Q9HVD1",
+      "source_line": 166,
+      "evidence_kind": "PUBLISHED_ANNOTATION_NOT_LOCAL_PREDICTION",
+      "raw_block_sha256": "b0445a5d94e68cef6166b3521d32447e7a238ca2b0c9c7d65956c3ab6972b59a",
+      "inspection": {
+        "length": 173,
+        "counts": {
+          "B": 81,
+          "O": 27,
+          "P": 42,
+          "S": 23
+        },
+        "segments": [
+          {
+            "raw_label": "S",
+            "start": 1,
+            "end": 23
+          },
+          {
+            "raw_label": "P",
+            "start": 24,
+            "end": 25
+          },
+          {
+            "raw_label": "B",
+            "start": 26,
+            "end": 33
+          },
+          {
+            "raw_label": "O",
+            "start": 34,
+            "end": 37
+          },
+          {
+            "raw_label": "B",
+            "start": 38,
+            "end": 45
+          },
+          {
+            "raw_label": "P",
+            "start": 46,
+            "end": 64
+          },
+          {
+            "raw_label": "B",
+            "start": 65,
+            "end": 71
+          },
+          {
+            "raw_label": "O",
+            "start": 72,
+            "end": 80
+          },
+          {
+            "raw_label": "B",
+            "start": 81,
+            "end": 88
+          },
+          {
+            "raw_label": "P",
+            "start": 89,
+            "end": 101
+          },
+          {
+            "raw_label": "B",
+            "start": 102,
+            "end": 112
+          },
+          {
+            "raw_label": "O",
+            "start": 113,
+            "end": 122
+          },
+          {
+            "raw_label": "B",
+            "start": 123,
+            "end": 135
+          },
+          {
+            "raw_label": "P",
+            "start": 136,
+            "end": 141
+          },
+          {
+            "raw_label": "B",
+            "start": 142,
+            "end": 156
+          },
+          {
+            "raw_label": "O",
+            "start": 157,
+            "end": 160
+          },
+          {
+            "raw_label": "B",
+            "start": 161,
+            "end": 171
+          },
+          {
+            "raw_label": "P",
+            "start": 172,
+            "end": 173
+          }
+        ],
+        "tm_segment_count": 0,
+        "outside_length": 27,
+        "has_signal": true,
+        "outside_delivery_domain": true,
+        "raw_labels_sha256": "3156cd8ddfe08a26b9a872d635cc6f15fa970a45cd5bbd0dcee55f6144798b15",
+        "input_outside_current_web_alphabet": []
+      }
+    }
+  ],
+  "limitations": [
+    "Published data are not held-out acceptance data for a newly installed model.",
+    "X occurs in historical data; current official web alphabet lists AA20. Offline support is untested.",
+    "No local prediction, 1.0.57 region table, score CSV, default-parameter or resource validation."
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "status": "AUDIT_COMPLETE_WITH_GAPS",
+  "checked_at": "2026-10-09T02:23:21.992629+00:00",
+  "report": {
+    "path": "C:\\Users\\wing\\Desktop\\antigen-report.html",
+    "sha256": "1dafcc9656b240b9af0d9165a77d71ab60ac8de90f1e21bc7b40fdb834bd2456",
+    "size_bytes": 441860
+  },
+  "job": {
+    "job_id": "t01p1r-job-e5e7aa2fec7340e2bb646d21fd0a822f",
+    "run_id": "t01p1r-run-8253fb89ae8949b5b02aea0440a6eaf1",
+    "state": "succeeded",
+    "started_at": "2026-10-09T01:59:17.383627Z",
+    "finished_at": "2026-10-09T02:09:24.828402Z",
+    "error_code": null
+  },
+  "duration_seconds": 607.444775,
+  "expert_sources": {
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/AgentA_SOP_v10.5_20260902.md": "856019022796f13413208f844d53aa82f10278215676fcf5177daa98f645160c",
+    "工作流设计/01-业务依据/计算流程修订_20260929/Agent A 一期计算规则与流程修订方案_v2_20260929.md": "390fe850317c703cc078c394b7cd42b8f380d182873902546faf2e4cacb4291f",
+    "工作流设计/01-业务依据/抗原智能体_v10.5_修订版_20260902/一期裁剪算法图（一期 18 节点 + 落地优先级）.md": "ee4a3e5dfa85f9e19eda60edb46bfd6735a2233cbd4d94038d6100a7c66e3f87"
+  },
+  "findings": [
+    {
+      "id": "A01",
+      "classification": "SCIENTIFIC_RULE_BOUNDARY_UNRESOLVED",
+      "finding": "mature_chain 1-233 high被S27_VALIDATED_FUNCTIONAL消费为233位点FIXED，OPEN/RESTRICTED为0",
+      "impact": "生成及依赖候选的评估没有执行",
+      "authority": [
+        "SOP S-16 lines 559-571",
+        "SOP S-27 validated_functional line 1030",
+        "v2 sections 3,4,10.3"
+      ],
+      "conclusion": "S-16强调成熟链保留/S-45用途；S-27又把高置信域纳入HARD。没有原文豁免，不能直接解除全链固定，也不能认定整条蛋白科学上不可设计。"
+    },
+    {
+      "id": "A02",
+      "classification": "REQUIRED_CAPABILITY_INCOMPLETE",
+      "finding": "N05仅MHC-I四批执行，MHC-II未执行",
+      "reason": "NO_PACKAGE_SLA_II_WITH_VALIDATED_PERCENT_RANK",
+      "authority": [
+        "一期N05",
+        "SOP S-18"
+      ],
+      "conclusion": "用户临时猪面板允许本次诚实降级，不等于满足专家双通道完整要求；不得用异种面板冒充SLA-II。"
+    },
+    {
+      "id": "A03",
+      "classification": "REQUIRED_CAPABILITY_INCOMPLETE",
+      "finding": "BepiPred原始预测执行，但B-cell峰、B通道密度及综合热点未形成",
+      "reason": "OI_026_BCELL_PROJECT_SCORE_UNRESOLVED",
+      "authority": [
+        "SOP S-17,S-19",
+        "OI-026"
+      ],
+      "conclusion": "N06包装任务succeeded不表示热点计算完整；N07序列位点检测完成，遮蔽风险NOT_PERFORMED是上游依赖缺失。"
+    },
+    {
+      "id": "A04",
+      "classification": "REQUIRED_CAPABILITY_INCOMPLETE",
+      "finding": "CamSol溶解度未计算，N10总体分为null",
+      "reason": "OI_025_CAMSOL_PARAMETERS_INCOMPLETE",
+      "authority": [
+        "一期N10",
+        "SOP S-36,S-40"
+      ],
+      "conclusion": "不是HTML遗漏已有分数；ProtParam、AGGRESCAN3D、PROPKA有实际结果，但后两者资格未签收，不能以任务成功表述完整可开发性评估完成。"
+    },
+    {
+      "id": "A05",
+      "classification": "DEPENDENCY_GUARD",
+      "finding": "RSA原始值出域，标签暴露未知",
+      "reason": "OUTPUT_INVALID",
+      "authority": [
+        "SOP S-39",
+        "OI-027用户出域报错不截断决定"
+      ],
+      "conclusion": "FreeSASA实际执行；标签暴露不是漏调独立工具，属于不可用RSA依赖守卫。"
+    },
+    {
+      "id": "A06",
+      "classification": "EXPECTED_CONDITIONAL_SKIP",
+      "finding": "预采样/ProteinMPNN、ESM-IF1、候选结构、N13/L4、候选FoldX和候选排名没有执行",
+      "reason": "no_designable_positions",
+      "authority": [
+        "v2 sections 4,10.3,10.5,11.2"
+      ],
+      "conclusion": "当前权限下应停，不能为满足工具数量强制计算；§10.2/§10.5新增分支本次没有候选可验证，不能作为真实验收通过证据。"
+    },
+    {
+      "id": "A07",
+      "classification": "EXPECTED_CONDITIONAL_SKIP_WITH_UPSTREAM_BOUNDARY",
+      "finding": "N17 WT FoldX及ThermoMPNN未执行",
+      "reason": "NO_COVERED_EXPLICIT_OPEN_SCAN_POSITION",
+      "authority": [
+        "v2 section 11.5",
+        "SOP S-27/S-31 scan exclusions"
+      ],
+      "conclusion": "不是因候选为空直接取消；独立扫描范围排除FIXED/RESTRICTED后为空。仍受A01权限语义影响。"
+    },
+    {
+      "id": "A08",
+      "classification": "AUTHORIZED_SCOPE_OR_CONDITIONAL_SKIP",
+      "finding": "N08与N16未执行",
+      "reason": [
+        "DATABASE_NOT_PROVIDED",
+        "EXPRESSION_HOST_NOT_PROVIDED"
+      ],
+      "authority": [
+        "当前用户决定N08暂停",
+        "一期N16条件节点"
+      ],
+      "conclusion": "N08是用户暂缓范围；N16无表达宿主，不能用猪免疫宿主代替。DiscoTope、MD、SolubleMPNN等一期排除项不列为漏调。"
+    },
+    {
+      "id": "A09",
+      "classification": "REPORT_PRESENTATION_DEFECT",
+      "finding": "revision_design job_id=null、零生成模型调用，却显示已完成计算",
+      "code": [
+        "src/t01_phase1_real/service_api/user_report.py:77",
+        "src/t01_phase1_real/service_api/native_report.py:160"
+      ],
+      "conclusion": "流程控制成功与工具执行混用；应显示已完成门控/未执行设计（无可设计位点），并明确列出下游未执行项。"
+    },
+    {
+      "id": "A10",
+      "classification": "REPORT_SCOPE_AMBIGUITY",
+      "finding": "覆盖及预算analysis/structure任务数为0，未明确只统计候选修订阶段",
+      "code": [
+        "src/t01_phase1_real/service_api/native_report.py:167"
+      ],
+      "conclusion": "WT工具已执行；预算表必须标明候选阶段范围，避免被理解为全任务工具计数。"
+    },
+    {
+      "id": "A11",
+      "classification": "ADDITIONAL_EVIDENCE_GAPS",
+      "finding": "core_map为null；IEDB E4为unavailable；聚集簇及结构映射科学资格仍缺",
+      "conclusion": "缺失不能改判为确认不适用，已有原始值可以展示但不等于完整科学消费。"
+    }
+  ],
+  "backend_evidence": "backend-evidence.json",
+  "visible_report": "report-visible-text.txt",
+  "new_scientific_jobs": 0,
+  "online_changes": false,
+  "code_changes": false,
+  "documentation_check": {
+    "current_issues": [],
+    "historical_reference_count": 31
+  }
+}

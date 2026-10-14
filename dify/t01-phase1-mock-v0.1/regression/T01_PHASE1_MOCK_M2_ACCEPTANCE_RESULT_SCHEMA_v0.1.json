@@ -1,0 +1,256 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "T01_PHASE1_MOCK_M2_ACCEPTANCE_RESULT_SCHEMA_v0.1.json",
+  "title": "T-01 Phase 1 Mock M2 Acceptance Result v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "document_type",
+    "result_version",
+    "source_acceptance_catalog_version",
+    "source_fixture_manifest_version",
+    "source_scenario_catalog_version",
+    "source_sha256",
+    "stage",
+    "implementation_state",
+    "status",
+    "execution_environment",
+    "case_count",
+    "submission_count",
+    "unique_submission_request_id_count",
+    "request_variant_count",
+    "attempt_fixture_count",
+    "null_attempt_fixture_count",
+    "fixture_payload_file_count",
+    "node_terminal_directive_count",
+    "attempt_count",
+    "checkpoint_plan_count",
+    "checkpoint_count",
+    "tool_count",
+    "operator_count",
+    "global_assertion_count",
+    "focus_assertion_count",
+    "blocker_assertion_count",
+    "blocker_failure_count",
+    "coverage_gate_count",
+    "coverage_gate_failure_count",
+    "scientific_execution_count",
+    "network_request_count",
+    "legacy_implementation_reuse_count",
+    "dify_dsl_count",
+    "case_results",
+    "coverage_gates",
+    "global_assertions",
+    "focus_assertions"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "T01_PHASE1_MOCK_M2_ACCEPTANCE_RESULT_SCHEMA_v0.1.json"
+    },
+    "document_type": {
+      "const": "T01_PHASE1_MOCK_M2_ACCEPTANCE_RESULT"
+    },
+    "result_version": {
+      "const": "T01-PHASE1-MOCK-M2-ACCEPTANCE-RESULT-v0.1"
+    },
+    "source_acceptance_catalog_version": {
+      "const": "T01-PHASE1-MOCK-ACCEPTANCE-CATALOG-v0.1"
+    },
+    "source_fixture_manifest_version": {
+      "const": "T01-PHASE1-MOCK-FIXTURE-MANIFEST-v0.1"
+    },
+    "source_scenario_catalog_version": {
+      "const": "T01-PHASE1-MOCK-SCENARIO-CATALOG-v0.1"
+    },
+    "source_sha256": {
+      "type": "object",
+      "minProperties": 21,
+      "maxProperties": 21,
+      "propertyNames": {"type": "string", "minLength": 1},
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "stage": {"const": "M2_BACKEND"},
+    "implementation_state": {"const": "M2_BACKEND_EXECUTED"},
+    "status": {"enum": ["PASS", "FAIL"]},
+    "execution_environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "python_constraint",
+        "transport",
+        "network_mode",
+        "clock_driven_branching"
+      ],
+      "properties": {
+        "python_constraint": {"const": ">=3.11,<3.12"},
+        "transport": {"const": "IN_PROCESS_LOCAL"},
+        "network_mode": {"const": "OFFLINE"},
+        "clock_driven_branching": {"const": false}
+      }
+    },
+    "case_count": {"const": 21},
+    "submission_count": {"const": 23},
+    "unique_submission_request_id_count": {"const": 23},
+    "request_variant_count": {"const": 22},
+    "attempt_fixture_count": {"const": 326},
+    "null_attempt_fixture_count": {"const": 8},
+    "fixture_payload_file_count": {"const": 350},
+    "node_terminal_directive_count": {"const": 378},
+    "attempt_count": {"const": 334},
+    "checkpoint_plan_count": {"const": 4},
+    "checkpoint_count": {"const": 16},
+    "tool_count": {"const": 26},
+    "operator_count": {"const": 28},
+    "global_assertion_count": {"const": 9},
+    "focus_assertion_count": {"const": 44},
+    "blocker_assertion_count": {"const": 53},
+    "blocker_failure_count": {"type": "integer", "minimum": 0},
+    "coverage_gate_count": {"const": 10},
+    "coverage_gate_failure_count": {"type": "integer", "minimum": 0},
+    "scientific_execution_count": {"const": 0},
+    "network_request_count": {"const": 0},
+    "legacy_implementation_reuse_count": {"const": 0},
+    "dify_dsl_count": {"const": 0},
+    "case_results": {
+      "type": "array",
+      "minItems": 21,
+      "maxItems": 21,
+      "items": {"$ref": "#/$defs/case_result"}
+    },
+    "coverage_gates": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {"$ref": "#/$defs/coverage_gate"}
+    },
+    "global_assertions": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "items": {"$ref": "#/$defs/global_assertion"}
+    },
+    "focus_assertions": {
+      "type": "array",
+      "minItems": 44,
+      "maxItems": 44,
+      "items": {"$ref": "#/$defs/focus_assertion"}
+    }
+  },
+  "$defs": {
+    "status": {"enum": ["PASS", "FAIL"]},
+    "detail": {"type": ["string", "null"]},
+    "case_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ordinal",
+        "scenario_key",
+        "submission_count",
+        "submission_actions",
+        "checkpoint_count",
+        "final_run_id",
+        "recovery_of_run_id",
+        "run_status",
+        "result_kind",
+        "focus_assertion_count",
+        "status"
+      ],
+      "properties": {
+        "ordinal": {"type": "integer", "minimum": 1, "maximum": 21},
+        "scenario_key": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+        "submission_count": {"type": "integer", "minimum": 1, "maximum": 2},
+        "submission_actions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {"enum": ["CREATE_RUN", "RETURN_EXISTING_RUN", "REJECT_REQUEST"]}
+        },
+        "checkpoint_count": {"enum": [0, 4]},
+        "final_run_id": {
+          "type": "string",
+          "pattern": "^t01-phase1-mock-v01-run-[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "recovery_of_run_id": {
+          "oneOf": [
+            {"type": "null"},
+            {
+              "type": "string",
+              "pattern": "^t01-phase1-mock-v01-run-[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+            }
+          ]
+        },
+        "run_status": {"type": "string", "minLength": 1},
+        "result_kind": {"type": "string", "minLength": 1},
+        "focus_assertion_count": {"type": "integer", "minimum": 1},
+        "status": {"$ref": "#/$defs/status"}
+      }
+    },
+    "coverage_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gate_id",
+        "category",
+        "required_scenario_keys",
+        "minimum_case_count",
+        "executed_case_count",
+        "status",
+        "detail"
+      ],
+      "properties": {
+        "gate_id": {"type": "string", "pattern": "^t01_phase1_mock_v01[.]coverage[.]"},
+        "category": {"type": "string", "minLength": 1},
+        "required_scenario_keys": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"}
+        },
+        "minimum_case_count": {"type": "integer", "minimum": 1},
+        "executed_case_count": {"type": "integer", "minimum": 0},
+        "status": {"$ref": "#/$defs/status"},
+        "detail": {"$ref": "#/$defs/detail"}
+      }
+    },
+    "global_assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assertion_id", "operator", "severity", "status", "detail"],
+      "properties": {
+        "assertion_id": {"type": "string", "pattern": "^t01_phase1_mock_v01[.]acceptance[.]global[.]"},
+        "operator": {"type": "string", "minLength": 1},
+        "severity": {"const": "BLOCKER"},
+        "status": {"$ref": "#/$defs/status"},
+        "detail": {"$ref": "#/$defs/detail"}
+      }
+    },
+    "focus_assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assertion_id", "scenario_key", "operator", "severity", "status", "detail"],
+      "properties": {
+        "assertion_id": {"type": "string", "pattern": "^t01_phase1_mock_v01[.]acceptance[.]case[.]"},
+        "scenario_key": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+        "operator": {"type": "string", "minLength": 1},
+        "severity": {"const": "BLOCKER"},
+        "status": {"$ref": "#/$defs/status"},
+        "detail": {"$ref": "#/$defs/detail"}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "PASS"}}},
+      "then": {
+        "properties": {
+          "blocker_failure_count": {"const": 0},
+          "coverage_gate_failure_count": {"const": 0}
+        }
+      }
+    }
+  ]
+}

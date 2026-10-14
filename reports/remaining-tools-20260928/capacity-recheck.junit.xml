@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="10" time="6.937" timestamp="2026-09-28T09:12:49.476112+08:00" hostname="DESKTOP-8B96JVR"><testcase classname="tests.test_full_pool_requests" name="test_registered_full_pool_roundtrip_and_hash_run_guards" time="0.481" /><testcase classname="tests.test_full_pool_requests" name="test_bound_and_original_small_tool_limit" time="0.368" /><testcase classname="tests.test_full_pool_requests" name="test_full_pool_l4_diagnostics_do_not_choose_an_unapproved_top20" time="0.001" /><testcase classname="tests.test_full_pool_requests" name="test_64_long_candidates_keep_geometry_details_outside_summary" time="2.295" /><testcase classname="tests.test_same_run_submission" name="test_sequence_same_run_idempotency_and_conflict" time="0.118" /><testcase classname="tests.test_same_run_submission" name="test_same_run_submission_rejects_foreign_scope" time="0.057" /><testcase classname="tests.test_same_run_submission" name="test_structure_same_run_idempotency" time="0.138" /><testcase classname="tests.test_same_run_submission" name="test_same_run_proteinmpnn_keeps_source_provenance_checks" time="1.060"><failure message="AssertionError: assert ('failed' == 'succeeded'&#10;  &#10;  - succeeded&#10;  + failed)">tmp_path = WindowsPath('C:/Users/wing/AppData/Local/Temp/pytest-of-wing/pytest-2782/test_same_run_proteinmpnn_keep0')
+
+    def test_same_run_proteinmpnn_keeps_source_provenance_checks(tmp_path):
+        rt=Runtime(tmp_path)
+        target=rt.create_run('target-run')
+        foreign=rt.create_run('foreign-run')
+&gt;       _, foreign_ref=structure_result(rt, foreign['run_id'], 'foreign-structure')
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_same_run_submission.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = &lt;t01_phase1_real.development.runtime.Runtime object at 0x000002A1695D8710&gt;
+run_id = 't01p1r-run-836bb87c1f7d46288a5c4acd6c490f75'
+key = 'foreign-structure'
+
+    def structure_result(rt, run_id, key):
+        fixture=next(row for row in cases() if row['name']=='normal-pdb')
+        job=rt.submit_structure_in_run(run_id, encode(fixture['request']), key, fixture['data'])
+        rt.dispatch(job['job_id'])
+        final=rt.wait(job['job_id'])
+&gt;       assert final['state']=='succeeded' and final['run_id']==run_id
+E       AssertionError: assert ('failed' == 'succeeded'
+E         
+E         - succeeded
+E         + failed)
+
+tests\test_same_run_submission.py:31: AssertionError</failure></testcase><testcase classname="tests.test_same_run_submission" name="test_same_run_proteinmpnn_still_rejects_corrupt_local_source[sequence]" time="1.040"><failure message="AssertionError: assert ('failed' == 'succeeded'&#10;  &#10;  - succeeded&#10;  + failed)">tmp_path = WindowsPath('C:/Users/wing/AppData/Local/Temp/pytest-of-wing/pytest-2782/test_same_run_proteinmpnn_stil0')
+damage = 'sequence'
+
+    @pytest.mark.parametrize('damage',['sequence','hash'])
+    def test_same_run_proteinmpnn_still_rejects_corrupt_local_source(tmp_path,damage):
+        rt=Runtime(tmp_path);run=rt.create_run('target')
+&gt;       structure,ref=structure_result(rt,run['run_id'],'structure');body=n11_body(ref)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_same_run_submission.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = &lt;t01_phase1_real.development.runtime.Runtime object at 0x000002A16DAAABD0&gt;
+run_id = 't01p1r-run-60e3939bfd6d4fd490f3fbaa2af1ae98', key = 'structure'
+
+    def structure_result(rt, run_id, key):
+        fixture=next(row for row in cases() if row['name']=='normal-pdb')
+        job=rt.submit_structure_in_run(run_id, encode(fixture['request']), key, fixture['data'])
+        rt.dispatch(job['job_id'])
+        final=rt.wait(job['job_id'])
+&gt;       assert final['state']=='succeeded' and final['run_id']==run_id
+E       AssertionError: assert ('failed' == 'succeeded'
+E         
+E         - succeeded
+E         + failed)
+
+tests\test_same_run_submission.py:31: AssertionError</failure></testcase><testcase classname="tests.test_same_run_submission" name="test_same_run_proteinmpnn_still_rejects_corrupt_local_source[hash]" time="1.032"><failure message="AssertionError: assert ('failed' == 'succeeded'&#10;  &#10;  - succeeded&#10;  + failed)">tmp_path = WindowsPath('C:/Users/wing/AppData/Local/Temp/pytest-of-wing/pytest-2782/test_same_run_proteinmpnn_stil1')
+damage = 'hash'
+
+    @pytest.mark.parametrize('damage',['sequence','hash'])
+    def test_same_run_proteinmpnn_still_rejects_corrupt_local_source(tmp_path,damage):
+        rt=Runtime(tmp_path);run=rt.create_run('target')
+&gt;       structure,ref=structure_result(rt,run['run_id'],'structure');body=n11_body(ref)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_same_run_submission.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = &lt;t01_phase1_real.development.runtime.Runtime object at 0x000002A16DA64610&gt;
+run_id = 't01p1r-run-e042b25a5a8e460495f7f2970a9e17da', key = 'structure'
+
+    def structure_result(rt, run_id, key):
+        fixture=next(row for row in cases() if row['name']=='normal-pdb')
+        job=rt.submit_structure_in_run(run_id, encode(fixture['request']), key, fixture['data'])
+        rt.dispatch(job['job_id'])
+        final=rt.wait(job['job_id'])
+&gt;       assert final['state']=='succeeded' and final['run_id']==run_id
+E       AssertionError: assert ('failed' == 'succeeded'
+E         
+E         - succeeded
+E         + failed)
+
+tests\test_same_run_submission.py:31: AssertionError</failure></testcase></testsuite></testsuites>

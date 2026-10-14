@@ -1,0 +1,128 @@
+{
+  "sources": {
+    "structure": {
+      "tag": "t01-freesasa-g0:2.2.1-20260905",
+      "image_id": "sha256:bb6c6b5ce1add12dc9bda3538a218568a9e80c048c12525fc130eaa970dbb9e5"
+    },
+    "deeptmhmm": {
+      "tag": "t01-deeptmhmm-academic:1.0-cpu-20260905",
+      "image_id": "sha256:7f85781fadf8c89ddbafced691d05006caf6881b06aa5b9bae4bd531393bcd72"
+    },
+    "bepipred": {
+      "tag": "t01-bepipred-development:3.0-bp3-0.0.12.7-20260906",
+      "image_id": "sha256:e1aff495e254ca4da513286f4ada0e1e0a071a2ffd9e0bc8ae3d2e6c91384149"
+    },
+    "netmhc": {
+      "tag": "t01-netmhc-academic:4.2e-4.3k-20260907",
+      "image_id": "sha256:c0a7239d4005484c1248b78de91bf7a76acffe0ed41f52614a54b6c20b3cf094"
+    },
+    "blast": {
+      "tag": "ncbi/blast:2.17.0",
+      "image_id": "sha256:81f118d2e4f7e11494d27fdbb99c9430423105afff50c4ae158db41d58a3fc57"
+    },
+    "homology": {
+      "tag": "t01-homology-development:20260907",
+      "image_id": "sha256:3679b2d22c59629380e47db3af59c7b4c3741e6330ab6962aa51ce526c67d32d"
+    },
+    "foldx": {
+      "tag": "t01-foldx-development:5-academic-20260909-r02",
+      "image_id": "sha256:66539e081922ce4c4fb504c9906feb64044ce668033e63fdc9299d020af8c851"
+    },
+    "aggrescan3d": {
+      "tag": "lcbio/a3d_server:latest",
+      "image_id": "sha256:c9e5a38b7d7f22c0b76678c5135ec4bf1af47cf77e8c9547a3bb4b9f7f2e938b"
+    },
+    "proteinmpnn": {
+      "tag": "t01-proteinmpnn-development:8907e667-cu128-20260908",
+      "image_id": "sha256:5b6baa8ebc5660bd3de9cf8b6d1694c7de35fadd23fea6cd7a8352a536e3f3af"
+    },
+    "esm-if1": {
+      "tag": "t01-esm-if1-development:2b369911-cu128-20260908",
+      "image_id": "sha256:926d4619df9759cd2417dcc9056b7bd648dca1d2adf15631aaad2e84a88d39cc"
+    },
+    "thermompnn": {
+      "tag": "t01-thermompnn-development:2b04fd37-cu128-20260908",
+      "image_id": "sha256:3cbd3c12b792a8b344347e6e9171d03deb7c5a115a6c4b8af27b84847dfdd847"
+    },
+    "supervisor": {
+      "tag": "python:3.11-slim-bookworm",
+      "image_id": "sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84"
+    }
+  },
+  "built": {
+    "structure": {
+      "tag": "antigen-design-resident-structure:assembly-r01",
+      "image_id": "sha256:a9834c433f8f209991f30acfe5a0cc488a2e07ff9272e4a941a682de6f06bca1",
+      "tools": [
+        "structure"
+      ],
+      "export_manifest_digest": "sha256:aa6608b1788c98eec7cf92d0ee814807bdfc3d7d4174251a51ddd53f5056a69c"
+    },
+    "deeptmhmm": {
+      "tag": "antigen-design-resident-deeptmhmm:assembly-r01",
+      "image_id": "sha256:38cd5a38197772ae4862b6b5ee8c359e91f8e7a1fea32c2bb423eb981b29bebc",
+      "tools": [
+        "deeptmhmm"
+      ],
+      "export_manifest_digest": "sha256:5bc791d67ce74c98e659934dd6319c13f92f5168dcd23d02c34a73a393dd6dcd"
+    },
+    "bepipred": {
+      "tag": "antigen-design-resident-bepipred:assembly-r01",
+      "image_id": "sha256:dcf576aeb1c225b66d3afacebfe5fa3f2956667f04710f0918b415c942408955",
+      "tools": [
+        "bepipred"
+      ],
+      "export_manifest_digest": "sha256:fc0567390c0d11af7cf49c0e28591d0ea192462699a8597f552c51aaacdcdf69"
+    },
+    "netmhc": {
+      "tag": "antigen-design-resident-netmhc:assembly-r01",
+      "image_id": "sha256:e0498cf476e34d7a27784bbe4d27955a78a3f9c197b4dfb69ae6be2349ab7ea8",
+      "tools": [
+        "netmhc"
+      ],
+      "export_manifest_digest": "sha256:0d925beb62397d8caa8eb474d2c83cd8bb883a45278db1f6c18c6ebe95fc9ee9"
+    },
+    "blast": {
+      "tag": "antigen-design-resident-blast:assembly-r01",
+      "image_id": "sha256:611a0d674c5f6cbfbfbe1d0e82a565d5048186798f1477f3ee49d197e324ee2b",
+      "tools": [
+        "blast"
+      ],
+      "export_manifest_digest": "sha256:b59d9e03cd2c25c7fcf5a5c6a788f0b0412e3d12371f005f9b2691fd5a8e5e21"
+    },
+    "homology": {
+      "tag": "antigen-design-resident-homology:assembly-r01",
+      "image_id": "sha256:26be6ce642f147d44eeb44b0ea006d6a3ac96112ad98cac8a131cf643a89fbda",
+      "tools": [
+        "homology"
+      ],
+      "export_manifest_digest": "sha256:b9dcc225845b75253bd48bf7041b0128229dc6addba2f954a7485aac0f5ee10a"
+    },
+    "foldx": {
+      "tag": "antigen-design-resident-foldx:assembly-r01",
+      "image_id": "sha256:822e7b7d53012bdc043cf641b2e6a1b06e32e3e16fc2292e5e03e80201d11118",
+      "tools": [
+        "foldx"
+      ],
+      "export_manifest_digest": "sha256:bb4d9b2fde5500540d203bc07121c3b8dc0d140a401b74b085dc5b7891322e4e"
+    },
+    "aggrescan3d": {
+      "tag": "antigen-design-resident-aggrescan3d:assembly-r01",
+      "image_id": "sha256:f26cbbb92285810434b0bf7c7c5e43c3e0d7c1bc8d5f2f50fb4e3e41902c499d",
+      "tools": [
+        "aggrescan3d"
+      ],
+      "export_manifest_digest": "sha256:9a40cdf8c737273a6918e2affa6e08560a99f7fd16422087ebd84687d45ceeee"
+    },
+    "gpu": {
+      "tag": "antigen-design-resident-gpu:assembly-r01",
+      "image_id": "sha256:3bad61dbfd42b36c130ac43913a1cad1ad23f58ebe833a7db914ac799ae65d16",
+      "tools": [
+        "proteinmpnn",
+        "esm-if1",
+        "thermompnn"
+      ],
+      "export_manifest_digest": "sha256:1785dbf63bbdbb1512b6695ec3da01448d2c618b8b0c5bed293bdecd6baa9626"
+    }
+  }
+}

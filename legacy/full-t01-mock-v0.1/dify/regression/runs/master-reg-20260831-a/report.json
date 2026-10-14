@@ -1,0 +1,288 @@
+{
+  "schema_version": "0.1.0",
+  "workflow_name": "T01_Master_v10",
+  "campaign": "master-reg-20260831-a",
+  "generated_at": "2026-09-01T00:31:38.204360+00:00",
+  "summary": {
+    "total": 25,
+    "passed": 25,
+    "failed": 0
+  },
+  "cases": [
+    {
+      "index": 1,
+      "run_id": "master-reg-20260831-a-01",
+      "scenario_id": "MOCK-HAPPY-PATH",
+      "expected_behavior": "P0-P7完整路径，BEST候选交接。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 9,
+      "trace_node_count": 114,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 2,
+      "run_id": "master-reg-20260831-a-02",
+      "scenario_id": "MOCK-SHORT-MHC-HALT",
+      "expected_behavior": "长度守卫以结构化FAILED/HALT终止，不进入P0。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 1,
+      "trace_node_count": 8,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 3,
+      "run_id": "master-reg-20260831-a-03",
+      "scenario_id": "MOCK-SHORT-WARNING",
+      "expected_behavior": "长度守卫WARNING后继续完整路径。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 9,
+      "trace_node_count": 114,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 4,
+      "run_id": "master-reg-20260831-a-04",
+      "scenario_id": "MOCK-CONTEXT-HIGH",
+      "expected_behavior": "注入上下文，P2仅补跑S-16，随后从step15进入设计。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 6,
+      "trace_node_count": 66,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 5,
+      "run_id": "master-reg-20260831-a-05",
+      "scenario_id": "MOCK-CONTEXT-NONHIGH",
+      "expected_behavior": "注入上下文，P2补跑S-16并经P3重算结构依赖维度。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 7,
+      "trace_node_count": 82,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 6,
+      "run_id": "master-reg-20260831-a-06",
+      "scenario_id": "MOCK-NO-STRUCTURE",
+      "expected_behavior": "P0从S-07进入S-08预测分支。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 9,
+      "trace_node_count": 115,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 7,
+      "run_id": "master-reg-20260831-a-07",
+      "scenario_id": "MOCK-LOW-STRUCTURE",
+      "expected_behavior": "S-11跳过，R-57跳过设计，以WT_DESIGN_SKIPPED交接。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 6,
+      "trace_node_count": 76,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 8,
+      "run_id": "master-reg-20260831-a-08",
+      "scenario_id": "MOCK-BACTERIA",
+      "expected_behavior": "P0执行S-06并解析细菌定位flag。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 9,
+      "trace_node_count": 115,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 9,
+      "run_id": "master-reg-20260831-a-09",
+      "scenario_id": "MOCK-MEMBRANE-SKIP",
+      "expected_behavior": "R-57跳过设计，以WT_DESIGN_SKIPPED交接。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 6,
+      "trace_node_count": 77,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 10,
+      "run_id": "master-reg-20260831-a-10",
+      "scenario_id": "MOCK-MEMBRANE-CONFIRMED",
+      "expected_behavior": "明确确认后继续设计，最终BEST交接。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 9,
+      "trace_node_count": 114,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 11,
+      "run_id": "master-reg-20260831-a-11",
+      "scenario_id": "MOCK-POOR-RESCUE-SUCCESS",
+      "expected_behavior": "分支4筛选成功，执行S-08/S-11/S-09后继续。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 9,
+      "trace_node_count": 120,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 12,
+      "run_id": "master-reg-20260831-a-12",
+      "scenario_id": "MOCK-POOR-RESCUE-FAIL",
+      "expected_behavior": "分支4筛选失败，不执行补救结构链，但继续到EBB。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 9,
+      "trace_node_count": 117,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 13,
+      "run_id": "master-reg-20260831-a-13",
+      "scenario_id": "MOCK-DESIGN-RETRY-48",
+      "expected_behavior": "P4重试一次，在48设计轮通过。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 9,
+      "trace_node_count": 118,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 14,
+      "run_id": "master-reg-20260831-a-14",
+      "scenario_id": "MOCK-DESIGN-RETRY-64",
+      "expected_behavior": "P4重试两次，在64设计轮通过。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 9,
+      "trace_node_count": 122,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 15,
+      "run_id": "master-reg-20260831-a-15",
+      "scenario_id": "MOCK-DESIGN-ALL-REJECTED",
+      "expected_behavior": "32/48/64三轮全淘汰，跳过P5/P6，以WT_FAILURE_REPORT交接。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 7,
+      "trace_node_count": 100,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 16,
+      "run_id": "master-reg-20260831-a-16",
+      "scenario_id": "MOCK-EPITOPE-STRUCTURAL-FAIL",
+      "expected_behavior": "P5标记epitope_violation硬排除。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 9,
+      "trace_node_count": 114,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 17,
+      "run_id": "master-reg-20260831-a-17",
+      "scenario_id": "MOCK-EPITOPE-PREDICTION-FAIL",
+      "expected_behavior": "P5标记soft_penalty降权。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 9,
+      "trace_node_count": 114,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 18,
+      "run_id": "master-reg-20260831-a-18",
+      "scenario_id": "MOCK-VARIANT-SAFETY-FAIL",
+      "expected_behavior": "P5标记safety_excluded硬排除。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 9,
+      "trace_node_count": 114,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 19,
+      "run_id": "master-reg-20260831-a-19",
+      "scenario_id": "MOCK-19B-SKIPPED",
+      "expected_behavior": "P5跳过变体FoldX，执行无ddG降级排序链。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 9,
+      "trace_node_count": 113,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 20,
+      "run_id": "master-reg-20260831-a-20",
+      "scenario_id": "MOCK-SC10-WARNING",
+      "expected_behavior": "排序返回DEGRADED并标记SC10规则待确认。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 9,
+      "trace_node_count": 114,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 21,
+      "run_id": "master-reg-20260831-a-21",
+      "scenario_id": "MOCK-MD-RUN",
+      "expected_behavior": "P6对top3执行S-32。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 9,
+      "trace_node_count": 115,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 22,
+      "run_id": "master-reg-20260831-a-22",
+      "scenario_id": "MOCK-MD-SKIP",
+      "expected_behavior": "P6跳过S-32，直接进入阶段7。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 9,
+      "trace_node_count": 114,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 23,
+      "run_id": "master-reg-20260831-a-23",
+      "scenario_id": "MOCK-TOOL-TIMEOUT",
+      "expected_behavior": "P0结构化返回TIMEOUT并在Master终态汇合，不继续P1。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 2,
+      "trace_node_count": 19,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 24,
+      "run_id": "master-reg-20260831-a-24",
+      "scenario_id": "MOCK-OUTPUT-MISSING",
+      "expected_behavior": "P0结构化返回OUTPUT_MISSING，不能视为计算成功。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 2,
+      "trace_node_count": 19,
+      "verdict": "PASS",
+      "issues": []
+    },
+    {
+      "index": 25,
+      "run_id": "master-reg-20260831-a-25",
+      "scenario_id": "MOCK-OUTPUT-INVALID",
+      "expected_behavior": "P0结构化返回OUTPUT_INVALID并停止后续阶段。",
+      "actual_workflow_status": "succeeded",
+      "trace_workflow_count": 2,
+      "trace_node_count": 19,
+      "verdict": "PASS",
+      "issues": []
+    }
+  ]
+}

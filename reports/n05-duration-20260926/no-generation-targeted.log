@@ -1,0 +1,38 @@
+F....................................................................... [ 66%]
+.....................................                                    [100%]
+================================== FAILURES ===================================
+____________ test_completed_all_fixed_result_records_no_generation ____________
+
+tmp_path = WindowsPath('C:/Users/wing/AppData/Local/Temp/pytest-of-wing/pytest-2721/test_completed_all_fixed_resul0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000219C626D850>
+
+    def test_completed_all_fixed_result_records_no_generation(tmp_path,monkeypatch):
+        rt=Runtime(tmp_path);parent=rt.submit_workflow(encode(body()),'all-fixed')
+        monkeypatch.setattr(rt,'result',lambda _:dict(generation=dict(
+            status='not_generated_no_designable_positions',records=[],reason_code='NO_DESIGNABLE_POSITIONS')))
+>       service._record(rt,parent['job_id'],'design',dict(state='succeeded',job_id='n11',reason_code=None))
+
+tests\test_no_generation_workflow.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+rt = <t01_phase1_real.development.runtime.Runtime object at 0x00000219C469B990>
+jid = 't01p1r-job-e7c205e61a4442fbb108c39e58f30585', name = 'design'
+row = {'detail': '全部位点固定；原生候选生成未执行，候选数为 0', 'generated_count': 0, 'generation_status': 'not_generated_no_designable_positions', 'job_id': 'n11', ...}
+
+    def _record(rt, jid, name, row):
+        if name in ('design','retry1_design','retry2_design') and row.get('state')=='succeeded' and row.get('job_id'):
+            generation=rt.result(row['job_id'])['generation']
+            row=dict(row,generation_status=generation['status'],generated_count=len(generation['records']))
+            if generation['status']=='not_generated_no_designable_positions':
+                row.update(reason_code='NO_DESIGNABLE_POSITIONS',detail='全部位点固定；原生候选生成未执行，候选数为 0')
+        with rt._tx() as db:
+            j=rt._job(db,jid);ex=rt._execution(db,jid)
+            if j['state'] in TERMINAL:return
+>           ex['nodes'][name]=dict(row,node_id=policy.NODES[name],recorded_at=now())
+            ^^^^^^^^^^^
+E           KeyError: 'nodes'
+
+src\t01_phase1_real\development\workflow\service.py:283: KeyError
+- generated xml file: D:\work\antigen.design\reports\n05-duration-20260926\no-generation-targeted.junit.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_no_generation_workflow.py::test_completed_all_fixed_result_records_no_generation

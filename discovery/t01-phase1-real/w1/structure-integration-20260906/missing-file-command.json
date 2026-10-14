@@ -1,0 +1,23 @@
+{
+  "argv": [
+    ".venv/Scripts/python.exe",
+    "-X",
+    "utf8",
+    "scripts/t01_runtime.py",
+    "--root",
+    "D:\\work\\蛋白智能体\\var\\t01-phase1-real\\structure-demo",
+    "structure",
+    "--structure-file",
+    "discovery\\t01-phase1-real\\w1\\structure-integration-20260906\\INTENTIONALLY_MISSING_STRUCTURE.pdb",
+    "--input",
+    "discovery\\t01-phase1-real\\w1\\structure-integration-20260906\\acceptance-r02\\inputs\\normal-cif.json",
+    "--key",
+    "missing-file",
+    "--run",
+    "--wait",
+    "120"
+  ],
+  "exit_code": 20,
+  "stdout": "{\"contract_version\":\"0.1.0\",\"error\":{\"code\":\"ASSET_MISSING\",\"job_id\":null,\"message\":\"Cannot read immutable file snapshot\"}}\r\n",
+  "stderr": ""
+}

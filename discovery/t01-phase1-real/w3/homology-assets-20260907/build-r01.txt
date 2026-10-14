@@ -1,0 +1,142 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 314B done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/ncbi/blast:2.17.0
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/python:3.11-slim-bookworm
+#3 DONE 0.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.1s
+
+#5 [blast 1/1] FROM docker.io/ncbi/blast:2.17.0@sha256:81f118d2e4f7e11494d27fdbb99c9430423105afff50c4ae158db41d58a3fc57
+#5 resolve docker.io/ncbi/blast:2.17.0@sha256:81f118d2e4f7e11494d27fdbb99c9430423105afff50c4ae158db41d58a3fc57 0.0s done
+#5 DONE 0.1s
+
+#6 [stage-1 1/3] FROM docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84
+#6 resolve docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84
+#6 resolve docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84 0.1s done
+#6 CACHED
+
+#5 [blast 1/1] FROM docker.io/ncbi/blast:2.17.0@sha256:81f118d2e4f7e11494d27fdbb99c9430423105afff50c4ae158db41d58a3fc57
+#5 DONE 1.1s
+
+#7 [stage-1 2/3] RUN apt-get update && apt-get install -y --no-install-recommends mmseqs2=14-7e284+ds-1+b2 mafft=7.505-1 && rm -rf /var/lib/apt/lists/*
+#7 1.022 Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+#7 1.188 Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+#7 1.374 Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [34.8 kB]
+#7 2.100 Get:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8790 kB]
+#7 2.657 Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [6924 B]
+#7 2.912 Get:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [337 kB]
+#7 3.057 Fetched 9375 kB in 3s (3669 kB/s)
+#7 3.057 Reading package lists...
+#7 3.347 Reading package lists...
+#7 3.589 Building dependency tree...
+#7 3.648 Reading state information...
+#7 3.709 The following additional packages will be installed:
+#7 3.709   libatomic1 libgdbm-compat4 libgomp1 libgzstream0 libperl5.36 perl
+#7 3.709   perl-modules-5.36
+#7 3.710 Suggested packages:
+#7 3.710   sensible-utils perl-doc libterm-readline-gnu-perl
+#7 3.710   | libterm-readline-perl-perl make libtap-harness-archive-perl
+#7 3.710 Recommended packages:
+#7 3.710   blast2 libwww-perl lynx ruby
+#7 3.745 The following NEW packages will be installed:
+#7 3.745   libatomic1 libgdbm-compat4 libgomp1 libgzstream0 libperl5.36 mafft mmseqs2
+#7 3.745   perl perl-modules-5.36
+#7 4.205 0 upgraded, 9 newly installed, 0 to remove and 1 not upgraded.
+#7 4.205 Need to get 32.3 MB of archives.
+#7 4.205 After this operation, 131 MB of additional disk space will be used.
+#7 4.205 Get:1 http://deb.debian.org/debian bookworm/main amd64 perl-modules-5.36 all 5.36.0-7+deb12u3 [2815 kB]
+#7 4.429 Get:2 http://deb.debian.org/debian bookworm/main amd64 libgdbm-compat4 amd64 1.23-3 [48.2 kB]
+#7 4.947 Get:3 http://deb.debian.org/debian bookworm/main amd64 libperl5.36 amd64 5.36.0-7+deb12u3 [4196 kB]
+#7 5.344 Get:4 http://deb.debian.org/debian bookworm/main amd64 perl amd64 5.36.0-7+deb12u3 [239 kB]
+#7 5.481 Get:5 http://deb.debian.org/debian bookworm/main amd64 libatomic1 amd64 12.2.0-14+deb12u1 [9376 B]
+#7 5.702 Get:6 http://deb.debian.org/debian bookworm/main amd64 libgomp1 amd64 12.2.0-14+deb12u1 [116 kB]
+#7 5.871 Get:7 http://deb.debian.org/debian bookworm/main amd64 libgzstream0 amd64 1.5+git20171107.9a20658-1+b2 [7264 B]
+#7 6.178 Get:8 http://deb.debian.org/debian bookworm/main amd64 mafft amd64 7.505-1 [1078 kB]
+#7 8.002 Get:9 http://deb.debian.org/debian bookworm/main amd64 mmseqs2 amd64 14-7e284+ds-1+b2 [23.7 MB]
+#7 9.185 debconf: delaying package configuration, since apt-utils is not installed
+#7 9.226 Fetched 32.3 MB in 5s (6098 kB/s)
+#7 9.256 Selecting previously unselected package perl-modules-5.36.
+#7 9.256 (Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 6703 files and directories currently installed.)
+#7 9.288 Preparing to unpack .../0-perl-modules-5.36_5.36.0-7+deb12u3_all.deb ...
+#7 9.298 Unpacking perl-modules-5.36 (5.36.0-7+deb12u3) ...
+#7 9.730 Selecting previously unselected package libgdbm-compat4:amd64.
+#7 9.731 Preparing to unpack .../1-libgdbm-compat4_1.23-3_amd64.deb ...
+#7 9.756 Unpacking libgdbm-compat4:amd64 (1.23-3) ...
+#7 9.841 Selecting previously unselected package libperl5.36:amd64.
+#7 9.842 Preparing to unpack .../2-libperl5.36_5.36.0-7+deb12u3_amd64.deb ...
+#7 9.853 Unpacking libperl5.36:amd64 (5.36.0-7+deb12u3) ...
+#7 10.20 Selecting previously unselected package perl.
+#7 10.20 Preparing to unpack .../3-perl_5.36.0-7+deb12u3_amd64.deb ...
+#7 10.22 Unpacking perl (5.36.0-7+deb12u3) ...
+#7 10.32 Selecting previously unselected package libatomic1:amd64.
+#7 10.32 Preparing to unpack .../4-libatomic1_12.2.0-14+deb12u1_amd64.deb ...
+#7 10.33 Unpacking libatomic1:amd64 (12.2.0-14+deb12u1) ...
+#7 10.42 Selecting previously unselected package libgomp1:amd64.
+#7 10.42 Preparing to unpack .../5-libgomp1_12.2.0-14+deb12u1_amd64.deb ...
+#7 10.43 Unpacking libgomp1:amd64 (12.2.0-14+deb12u1) ...
+#7 10.51 Selecting previously unselected package libgzstream0:amd64.
+#7 10.51 Preparing to unpack .../6-libgzstream0_1.5+git20171107.9a20658-1+b2_amd64.deb ...
+#7 10.52 Unpacking libgzstream0:amd64 (1.5+git20171107.9a20658-1+b2) ...
+#7 10.58 Selecting previously unselected package mafft.
+#7 10.58 Preparing to unpack .../7-mafft_7.505-1_amd64.deb ...
+#7 10.59 Unpacking mafft (7.505-1) ...
+#7 10.73 Selecting previously unselected package mmseqs2.
+#7 10.73 Preparing to unpack .../8-mmseqs2_14-7e284+ds-1+b2_amd64.deb ...
+#7 10.74 Unpacking mmseqs2 (14-7e284+ds-1+b2) ...
+#7 11.33 Setting up libgomp1:amd64 (12.2.0-14+deb12u1) ...
+#7 11.36 Setting up perl-modules-5.36 (5.36.0-7+deb12u3) ...
+#7 11.39 Setting up libatomic1:amd64 (12.2.0-14+deb12u1) ...
+#7 11.43 Setting up libgdbm-compat4:amd64 (1.23-3) ...
+#7 11.46 Setting up libgzstream0:amd64 (1.5+git20171107.9a20658-1+b2) ...
+#7 11.49 Setting up mmseqs2 (14-7e284+ds-1+b2) ...
+#7 11.52 Setting up libperl5.36:amd64 (5.36.0-7+deb12u3) ...
+#7 11.55 Setting up perl (5.36.0-7+deb12u3) ...
+#7 11.61 Setting up mafft (7.505-1) ...
+#7 11.64 Processing triggers for libc-bin (2.36-9+deb12u14) ...
+#7 DONE 11.9s
+
+#8 [stage-1 3/3] COPY --from=blast /blast/bin/ /opt/blast/bin/
+#8 DONE 0.1s
+
+#9 exporting to image
+#9 exporting layers
+#9 exporting layers 4.7s done
+#9 exporting manifest sha256:191fcffcf992703e9ad5f1c2bb56f22e193f4372a3b600dd524c456a1537b8ac 0.0s done
+#9 exporting config sha256:49ea8cbee8f0020e72041e07d6382eede10a801cca59562c58b0b24e4eba6c66 0.0s done
+#9 exporting attestation manifest sha256:a78755fbd4be79a104aa72588f7f61a556b40ce4207dd9a96f1c5639f6d1a529
+#9 exporting attestation manifest sha256:a78755fbd4be79a104aa72588f7f61a556b40ce4207dd9a96f1c5639f6d1a529 0.1s done
+#9 exporting manifest list sha256:441c7e1962e13628d1b59d5de866b520577e59d2f5b1e5218e17bc11243490a9 0.0s done
+#9 naming to docker.io/library/t01-homology-development:20260907
+#9 naming to docker.io/library/t01-homology-development:20260907 done
+#9 unpacking to docker.io/library/t01-homology-development:20260907
+#9 unpacking to docker.io/library/t01-homology-development:20260907 1.2s done
+#9 DONE 6.2s

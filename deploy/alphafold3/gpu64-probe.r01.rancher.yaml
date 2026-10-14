@@ -1,0 +1,122 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: antigen-af3-gpu64-probe-r01
+  namespace: him-ws
+immutable: true
+data:
+  probe.py: "import json, subprocess\nfrom pathlib import Path\nrows = [r.split(',')\
+    \ for r in subprocess.check_output(['nvidia-smi', '--query-gpu=name,uuid,memory.total',\
+    \ '--format=csv,noheader,nounits'], text=True).strip().splitlines()]\nif len(rows)\
+    \ != 1 or rows[0][0].strip() != 'NVIDIA A100-SXM-64GB':\n    raise RuntimeError('Expected\
+    \ exactly one approved A100-SXM-64GB: ' + repr(rows))\nname, uuid, memory = [v.strip()\
+    \ for v in rows[0]]\nif float(memory) < 60000:\n    raise RuntimeError('64GB device\
+    \ has insufficient visible memory: ' + memory)\nprint('AF3_GPU64_IDENTITY', json.dumps({'name':\
+    \ name, 'uuid': uuid, 'memory_MiB': float(memory)}), flush=True)\nimport jax\n\
+    import jax.numpy as jnp\ndevices = jax.devices()\nif len(devices) != 1 or devices[0].platform\
+    \ != 'gpu':\n    raise RuntimeError('Expected exactly one JAX GPU: ' + repr(devices))\n\
+    x = jnp.ones((128,128), dtype=jnp.float32)\ny = (x @ x).block_until_ready()\n\
+    if not bool(jnp.all(y == 128)):\n    raise RuntimeError('JAX compute check failed')\n\
+    receipt = {'status': 'AF3_GPU64_JAX_VERIFIED_NOT_INFERRED', 'name': name, 'uuid':\
+    \ uuid, 'memory_MiB': float(memory), 'jax': jax.__version__, 'scientific_gate':\
+    \ 'CLOSED', 'usable_for_pipeline': False}\nout = Path('/runtime/gpu64-probe-r01')\n\
+    out.mkdir(exist_ok=False)\n(out/'receipt.json').write_text(json.dumps(receipt,\
+    \ indent=2))\nhelp_result = subprocess.run(['/alphafold3_venv/bin/python', '/app/alphafold/run_alphafold.py',\
+    \ '--helpfull'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)\n\
+    (out/'entrypoint-help.txt').write_text(help_result.stdout)\nfor line in help_result.stdout.splitlines():\n\
+    \    if any(word in line for word in ('num_diffusion_samples', 'flash_attention',\
+    \ 'gpu_device', 'buckets')):\n        print(line, flush=True)\nprint('AF3_GPU64_JAX_VERIFIED',\
+    \ json.dumps(receipt), flush=True)\n"
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: antigen-af3-gpu64-probe-r01
+  namespace: him-ws
+spec:
+  podSelector:
+    matchLabels:
+      app: antigen-af3-gpu64-probe-r01
+  policyTypes:
+  - Ingress
+  - Egress
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: antigen-af3-gpu64-probe-r01
+  namespace: him-ws
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 900
+  template:
+    metadata:
+      labels:
+        app: antigen-af3-gpu64-probe-r01
+      annotations:
+        nvidia.com/use-gputype: A100-SXM-64GB
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      imagePullSecrets:
+      - name: harbor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+      - name: probe
+        image: harbor-core.base.svc.cluster.local/qcyz/antigen-af3@sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373
+        imagePullPolicy: IfNotPresent
+        command:
+        - /alphafold3_venv/bin/python
+        - -u
+        - -B
+        - /runner/probe.py
+        env:
+        - name: JAX_PLATFORMS
+          value: cuda
+        - name: XLA_PYTHON_CLIENT_PREALLOCATE
+          value: 'false'
+        - name: HOME
+          value: /tmp
+        resources:
+          requests:
+            cpu: '1'
+            memory: 4Gi
+          limits:
+            cpu: '4'
+            memory: 16Gi
+            nvidia.com/gpu: 1
+            nvidia.com/gpumem-percentage: 100
+            nvidia.com/gpucores: 100
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          seccompProfile:
+            type: RuntimeDefault
+          capabilities:
+            drop:
+            - ALL
+        volumeMounts:
+        - name: runner
+          mountPath: /runner
+          readOnly: true
+        - name: runtime
+          mountPath: /runtime
+        - name: tmp
+          mountPath: /tmp
+      volumes:
+      - name: runner
+        configMap:
+          name: antigen-af3-gpu64-probe-r01
+      - name: runtime
+        persistentVolumeClaim:
+          claimName: antigen-af3-runtime
+      - name: tmp
+        emptyDir:
+          sizeLimit: 4Gi
+      runtimeClassName: nvidia
+      schedulerName: hami-scheduler

@@ -1,0 +1,1115 @@
+{
+  "deployment": {
+    "saved": true,
+    "name": "antigen-design",
+    "generation": 152
+  },
+  "worker-config": {
+    "saved": true,
+    "name": "antigen-unified-gpu-config-r11",
+    "generation": null
+  },
+  "pvcs": [
+    {
+      "name": "agentd-jobs",
+      "modes": [
+        "ReadWriteOnce"
+      ],
+      "class": "ceph-rbd",
+      "phase": "Bound"
+    },
+    {
+      "name": "antigen-af3-build-cache-r06",
+      "modes": [
+        "ReadWriteOnce"
+      ],
+      "class": "ceph-rbd",
+      "phase": "Bound"
+    },
+    {
+      "name": "antigen-af3-databases",
+      "modes": [
+        "ReadWriteOnce"
+      ],
+      "class": "ceph-rbd",
+      "phase": "Bound"
+    },
+    {
+      "name": "antigen-af3-models",
+      "modes": [
+        "ReadWriteOnce"
+      ],
+      "class": "ceph-rbd",
+      "phase": "Bound"
+    },
+    {
+      "name": "antigen-af3-runtime",
+      "modes": [
+        "ReadWriteOnce"
+      ],
+      "class": "ceph-rbd",
+      "phase": "Bound"
+    },
+    {
+      "name": "antigen-design-assets",
+      "modes": [
+        "ReadWriteOnce"
+      ],
+      "class": "ceph-rbd",
+      "phase": "Bound"
+    },
+    {
+      "name": "antigen-design-runtime",
+      "modes": [
+        "ReadWriteOnce"
+      ],
+      "class": "ceph-rbd",
+      "phase": "Bound"
+    },
+    {
+      "name": "antigen-esmfold2-models",
+      "modes": [
+        "ReadWriteOnce"
+      ],
+      "class": "ceph-rbd",
+      "phase": "Bound"
+    },
+    {
+      "name": "antigen-esmfold2-runtime",
+      "modes": [
+        "ReadWriteOnce"
+      ],
+      "class": "ceph-rbd",
+      "phase": "Bound"
+    },
+    {
+      "name": "antigen-n03-nr",
+      "modes": [
+        "ReadWriteOnce"
+      ],
+      "class": "ceph-rbd-retain",
+      "phase": "Bound"
+    },
+    {
+      "name": "antigen-unified-gpu-build-cache-r01",
+      "modes": [
+        "ReadWriteOnce"
+      ],
+      "class": "ceph-rbd",
+      "phase": "Bound"
+    },
+    {
+      "name": "oligosmith-blast-nt",
+      "modes": [
+        "ReadWriteOnce"
+      ],
+      "class": "ceph-rbd-retain",
+      "phase": "Bound"
+    },
+    {
+      "name": "oligosmith-jobs",
+      "modes": [
+        "ReadWriteOnce"
+      ],
+      "class": "ceph-rbd",
+      "phase": "Bound"
+    },
+    {
+      "name": "storage-ws-qdrant-ws-0",
+      "modes": [
+        "ReadWriteOnce"
+      ],
+      "class": "ceph-rbd-retain",
+      "phase": "Bound"
+    },
+    {
+      "name": "vol-himat-ws",
+      "modes": [
+        "ReadWriteOnce"
+      ],
+      "class": "cephfs-retain",
+      "phase": "Bound"
+    },
+    {
+      "name": "vol-redis-ws",
+      "modes": [
+        "ReadWriteOnce"
+      ],
+      "class": "ceph-rbd",
+      "phase": "Bound"
+    },
+    {
+      "name": "vol-sandbox-ws",
+      "modes": [
+        "ReadWriteOnce"
+      ],
+      "class": "ceph-rbd",
+      "phase": "Bound"
+    }
+  ],
+  "services": [
+    {
+      "name": "admin",
+      "selector": {
+        "workload.user.cattle.io/workloadselector": "apps.deployment-him-ws-admin"
+      }
+    },
+    {
+      "name": "antigen-design",
+      "selector": {
+        "app.kubernetes.io/component": "control-plane",
+        "app.kubernetes.io/name": "antigen-design"
+      }
+    },
+    {
+      "name": "api",
+      "selector": {
+        "workload.user.cattle.io/workloadselector": "apps.deployment-him-ws-api"
+      }
+    },
+    {
+      "name": "knowledge",
+      "selector": {
+        "workload.user.cattle.io/workloadselector": "apps.deployment-him-ws-knowledge"
+      }
+    },
+    {
+      "name": "oligosmith",
+      "selector": {
+        "app.kubernetes.io/name": "oligosmith"
+      }
+    },
+    {
+      "name": "qdrant-headless",
+      "selector": {
+        "app": "qdrant"
+      }
+    },
+    {
+      "name": "qdrant-ws",
+      "selector": {
+        "workload.user.cattle.io/workloadselector": "apps.statefulset-him-ws-qdrant-ws"
+      }
+    },
+    {
+      "name": "redis",
+      "selector": {
+        "workload.user.cattle.io/workloadselector": "apps.deployment-him-ws-redis"
+      }
+    },
+    {
+      "name": "sandbox",
+      "selector": {
+        "workload.user.cattle.io/workloadselector": "apps.deployment-him-ws-sandbox"
+      }
+    },
+    {
+      "name": "sandbox-dep",
+      "selector": {
+        "workload.user.cattle.io/workloadselector": "apps.deployment-him-ws-sandbox-dep"
+      }
+    }
+  ],
+  "policies": [
+    {
+      "name": "antigen-af3-assets-inspect-r01",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-assets-inspect-r01"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-assets-inspect-r02",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-assets-inspect-r02"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-data-search-inspect-r01",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-data-search-inspect-r01"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-data-search-r01",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-data-search-r01"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-databases-extract-r01",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-databases-extract-r01"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-databases-extract-r02",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-databases-extract-r02"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-databases-extract-r03",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-databases-extract-r03"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-environment-build-r01",
+      "spec": {
+        "egress": [
+          {
+            "ports": [
+              {
+                "port": 53,
+                "protocol": "UDP"
+              },
+              {
+                "port": 53,
+                "protocol": "TCP"
+              }
+            ]
+          },
+          {
+            "ports": [
+              {
+                "port": 80,
+                "protocol": "TCP"
+              },
+              {
+                "port": 443,
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ],
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-environment-build-r01"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-environment-build-r02",
+      "spec": {
+        "egress": [
+          {
+            "ports": [
+              {
+                "port": 53,
+                "protocol": "UDP"
+              },
+              {
+                "port": 53,
+                "protocol": "TCP"
+              }
+            ]
+          },
+          {
+            "ports": [
+              {
+                "port": 80,
+                "protocol": "TCP"
+              },
+              {
+                "port": 443,
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ],
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-environment-build-r02"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-environment-build-r03",
+      "spec": {
+        "egress": [
+          {
+            "ports": [
+              {
+                "port": 53,
+                "protocol": "UDP"
+              },
+              {
+                "port": 53,
+                "protocol": "TCP"
+              }
+            ]
+          },
+          {
+            "ports": [
+              {
+                "port": 80,
+                "protocol": "TCP"
+              },
+              {
+                "port": 443,
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ],
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-environment-build-r03"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-environment-build-r04",
+      "spec": {
+        "egress": [
+          {
+            "ports": [
+              {
+                "port": 53,
+                "protocol": "UDP"
+              },
+              {
+                "port": 53,
+                "protocol": "TCP"
+              }
+            ]
+          },
+          {
+            "ports": [
+              {
+                "port": 80,
+                "protocol": "TCP"
+              },
+              {
+                "port": 443,
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ],
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-environment-build-r04"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-environment-build-r05",
+      "spec": {
+        "egress": [
+          {
+            "ports": [
+              {
+                "port": 53,
+                "protocol": "UDP"
+              },
+              {
+                "port": 53,
+                "protocol": "TCP"
+              }
+            ]
+          },
+          {
+            "ports": [
+              {
+                "port": 80,
+                "protocol": "TCP"
+              },
+              {
+                "port": 443,
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ],
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-environment-build-r05"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-environment-build-r06",
+      "spec": {
+        "egress": [
+          {
+            "ports": [
+              {
+                "port": 53,
+                "protocol": "UDP"
+              },
+              {
+                "port": 53,
+                "protocol": "TCP"
+              }
+            ]
+          },
+          {
+            "ports": [
+              {
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ],
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-environment-build-r06"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-environment-inspect-r01",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-environment-inspect-r01"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-environment-inspect-r02",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-environment-inspect-r02"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-environment-inspect-r03",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-environment-inspect-r03"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-extraction-inspect-r01",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-extraction-inspect-r01"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-gpu64-probe-r01",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-gpu64-probe-r01"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-inference-inspect-r01",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-inference-inspect-r01"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-inference-r01",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-inference-r01"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-output-inventory-r01",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-output-inventory-r01"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-registry-network-probe-r01",
+      "spec": {
+        "egress": [
+          {
+            "ports": [
+              {
+                "port": 53,
+                "protocol": "UDP"
+              },
+              {
+                "port": 53,
+                "protocol": "TCP"
+              }
+            ]
+          },
+          {
+            "ports": [
+              {
+                "port": 80,
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ],
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-registry-network-probe-r01"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-registry-network-probe-r02",
+      "spec": {
+        "egress": [
+          {
+            "ports": [
+              {
+                "port": 53,
+                "protocol": "UDP"
+              },
+              {
+                "port": 53,
+                "protocol": "TCP"
+              }
+            ]
+          },
+          {
+            "ports": [
+              {
+                "port": 80,
+                "protocol": "TCP"
+              },
+              {
+                "port": 443,
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ],
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-registry-network-probe-r02"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-af3-weights-decompress-r01",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-af3-weights-decompress-r01"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-esmfold2-capacity393-r01-no-egress",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-esmfold2-capacity393-r01"
+          }
+        },
+        "policyTypes": [
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-esmfold2-validation-no-egress",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-esmfold2-validation"
+          }
+        },
+        "policyTypes": [
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-unified-gpu-build-r01",
+      "spec": {
+        "egress": [
+          {
+            "ports": [
+              {
+                "port": 53,
+                "protocol": "UDP"
+              },
+              {
+                "port": 53,
+                "protocol": "TCP"
+              }
+            ]
+          },
+          {
+            "ports": [
+              {
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ],
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-unified-gpu-build-r01"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-unified-gpu-build-r02",
+      "spec": {
+        "egress": [
+          {
+            "ports": [
+              {
+                "port": 53,
+                "protocol": "UDP"
+              },
+              {
+                "port": 53,
+                "protocol": "TCP"
+              }
+            ]
+          },
+          {
+            "ports": [
+              {
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ],
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-unified-gpu-build-r02"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-unified-gpu-build-r03",
+      "spec": {
+        "egress": [
+          {
+            "ports": [
+              {
+                "port": 53,
+                "protocol": "UDP"
+              },
+              {
+                "port": 53,
+                "protocol": "TCP"
+              }
+            ]
+          },
+          {
+            "ports": [
+              {
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ],
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-unified-gpu-build-r03"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-unified-gpu-build-r04",
+      "spec": {
+        "egress": [
+          {
+            "ports": [
+              {
+                "port": 53,
+                "protocol": "UDP"
+              },
+              {
+                "port": 53,
+                "protocol": "TCP"
+              }
+            ]
+          },
+          {
+            "ports": [
+              {
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ],
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-unified-gpu-build-r04"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-unified-gpu-inspect-r01",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-unified-gpu-inspect-r01"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-unified-gpu-inspect-r02",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-unified-gpu-inspect-r02"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-unified-gpu-inspect-r03",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-unified-gpu-inspect-r03"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-unified-gpu-inspect-r04",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-unified-gpu-inspect-r04"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-unified-gpu-inspect-r05",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-unified-gpu-inspect-r05"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "name": "antigen-unified-gpu-inspect-r06",
+      "spec": {
+        "podSelector": {
+          "matchLabels": {
+            "app": "antigen-unified-gpu-inspect-r06"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    }
+  ],
+  "pods": [
+    {
+      "name": "antigen-design-5c7d8949cf-vdv8v",
+      "phase": "Running",
+      "node": "k8s-a100-01",
+      "containers": [
+        {
+          "name": "service",
+          "ready": true,
+          "restarts": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-10T02:05:21Z"
+            }
+          }
+        },
+        {
+          "name": "worker-aggrescan3d",
+          "ready": true,
+          "restarts": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-10T02:07:37Z"
+            }
+          }
+        },
+        {
+          "name": "worker-bepipred",
+          "ready": true,
+          "restarts": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-10T02:06:13Z"
+            }
+          }
+        },
+        {
+          "name": "worker-blast",
+          "ready": true,
+          "restarts": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-10T02:06:51Z"
+            }
+          }
+        },
+        {
+          "name": "worker-deeptmhmm",
+          "ready": true,
+          "restarts": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-10T02:05:53Z"
+            }
+          }
+        },
+        {
+          "name": "worker-foldx",
+          "ready": true,
+          "restarts": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-10T02:06:57Z"
+            }
+          }
+        },
+        {
+          "name": "worker-homology",
+          "ready": true,
+          "restarts": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-10T02:06:55Z"
+            }
+          }
+        },
+        {
+          "name": "worker-netmhc",
+          "ready": true,
+          "restarts": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-10T02:06:24Z"
+            }
+          }
+        },
+        {
+          "name": "worker-structure",
+          "ready": true,
+          "restarts": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-10-10T02:05:28Z"
+            }
+          }
+        },
+        {
+          "name": "worker-unified-gpu",
+          "ready": false,
+          "restarts": 4,
+          "state": {
+            "terminated": {
+              "containerID": "containerd://a61e13207322af4bc4fda6f9c7e5649c1dafa16d9e458cdfebc78743c8a73355",
+              "exitCode": 1,
+              "finishedAt": "2026-10-10T02:17:31Z",
+              "reason": "Error",
+              "startedAt": "2026-10-10T02:17:31Z"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "can_create_roles": "no",
+  "can_create_rolebindings": "no"
+}

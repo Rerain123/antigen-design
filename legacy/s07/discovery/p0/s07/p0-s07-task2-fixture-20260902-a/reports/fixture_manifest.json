@@ -1,0 +1,340 @@
+{
+  "schema_version": "s07-task2-fixture.v0.1",
+  "campaign_id": "p0-s07-task2-fixture-20260902-a",
+  "created_at": "2026-09-02T12:08:23.401032+00:00",
+  "status": "PASS_FIXTURE_ONLY",
+  "purpose": "Verify offline sequence-to-UniProt-accession-to-AlphaFold-DB artifact relationships with one isolated public record.",
+  "boundaries": {
+    "sequence_count": 1,
+    "production_coverage": false,
+    "scientific_acceptance": "NOT_RUN",
+    "production_deployment_status": "NOT_DEPLOYED",
+    "mmseqs2_validation": "NOT_RUN",
+    "pdb_release_validation": "NOT_RUN",
+    "blast_parameters_are_production_rules": false
+  },
+  "toolchain": {
+    "ncbi_blast_release": "2.17.0+",
+    "blast_db_format": 5,
+    "blastp_version_file": {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/reports/blastp.version.txt",
+      "size_bytes": 69,
+      "sha256": "57c5c4a16edc47ae2a4c00b8a6b0c2006e2d50f55ebe36c54c5a9693390eca36"
+    },
+    "makeblastdb_version_file": {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/reports/makeblastdb.version.txt",
+      "size_bytes": 74,
+      "sha256": "9125647420feb96824f60acbcaf02a33993891222fc0807e792b02e4f42da51e"
+    },
+    "taxonomy_database": {
+      "release_snapshot": "2026-08-31",
+      "source_archive": {
+        "path": "var/discovery-data/ncbi-taxdb-20260831/taxdb.tar.gz",
+        "size_bytes": 64988443,
+        "sha256": "1ec18441f502859e073ed955c42c7cc5a56ebda67be035fda9a467c5d0d58eb4"
+      },
+      "runtime_files": [
+        "var/discovery-data/wwpdb-20260822/blastdb/taxdb.btd",
+        "var/discovery-data/wwpdb-20260822/blastdb/taxdb.bti"
+      ],
+      "requirement_observed": "BLASTDB must expose taxdb for full metadata integrity checking when FASTA records carry taxonomy ids."
+    },
+    "windows_path_adapter": {
+      "method": "temporary subst P: mapping",
+      "reason": "Windows BLAST LMDB path handling in the non-ASCII workspace path",
+      "production_linux_requirement": false
+    }
+  },
+  "input": {
+    "fasta": {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/inputs/uniprot/O15116.fasta",
+      "size_bytes": 241,
+      "sha256": "878637930baf89eb3716a0085d9b4b8a84b0705ee50a865fab6cd9133bb9e8e8"
+    },
+    "original_fasta": {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/sample-selection/P0-DISC-004/uniprot-O15116/O15116.fasta",
+      "size_bytes": 241,
+      "sha256": "878637930baf89eb3716a0085d9b4b8a84b0705ee50a865fab6cd9133bb9e8e8"
+    },
+    "source_url": "https://rest.uniprot.org/uniprotkb/O15116.fasta",
+    "uniprot_accession": "O15116",
+    "sequence_length": 133,
+    "sequence_sha256": "6e5a64a8db281d81dec0785dd0e179ea549855e6f10dbdb924db26eba47f4a51"
+  },
+  "database": {
+    "profile": "uniprot-swissprot-single-record-fixture",
+    "title": "UniProt Swiss-Prot fixture O15116",
+    "sequence_count": 1,
+    "residue_count": 133,
+    "prefix": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture",
+    "files": [
+      {
+        "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.pdb",
+        "size_bytes": 500000,
+        "sha256": "026d53054c207ead8358a03dd64882ff6a7ad931c8d65627efe9615bcd908900"
+      },
+      {
+        "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.phr",
+        "size_bytes": 161,
+        "sha256": "b66e71ae49f066d53bdbd9203d478be1667504cf777c368418371a6eae8f470a"
+      },
+      {
+        "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.pin",
+        "size_bytes": 140,
+        "sha256": "f742c5074b9083145bb6e7781b5ecc8b5c2bf5be24924ce141c783a3bae6036b"
+      },
+      {
+        "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.pjs",
+        "size_bytes": 668,
+        "sha256": "273af775c5398286472ca129c1876d0080c3ea2c44f9e18fc1078bbba2071485"
+      },
+      {
+        "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.pog",
+        "size_bytes": 36,
+        "sha256": "b31ad5df85471fcfc39c04f43c7ff3cf90f86afe7e9d1b6e554cf442ce107cc4"
+      },
+      {
+        "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.pos",
+        "size_bytes": 23,
+        "sha256": "d5af169a04c6fcbbb5a1419dcecef87046b07dcd16e774a058c708e9758037bc"
+      },
+      {
+        "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.pot",
+        "size_bytes": 20,
+        "sha256": "e2099cbf3445ac30a98dcc86f0b899eac91fd0a23cf2825f48bd01daadee347a"
+      },
+      {
+        "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.psq",
+        "size_bytes": 135,
+        "sha256": "8f01ca7904c0224c6c28e43bdd28b30982bdabf7ff8d94bb2f1365a8d05c52d5"
+      },
+      {
+        "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.ptf",
+        "size_bytes": 500000,
+        "sha256": "811fcc1c59308d9bfc396b93a0d861101454290622bd4ce6f8abc450cf05593f"
+      },
+      {
+        "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.pto",
+        "size_bytes": 8,
+        "sha256": "7c9fa136d4413fa6173637e883b6998d32e1d675f88cddff9dcbcf331820f4b8"
+      }
+    ],
+    "integrity_log": {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/reports/blastdbcheck.log",
+      "size_bytes": 336,
+      "sha256": "9e05b25aa3b456e79e4ce6f051b43bc098fb429ff0370cc90468ef21ccfbfb10"
+    },
+    "info_log": {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/reports/blastdbcmd-info.log",
+      "size_bytes": 281,
+      "sha256": "a378352866efccf5e505b2f961d067fcd736ab030c9bc543f85e3f93114ed189"
+    }
+  },
+  "execution_parameters": {
+    "makeblastdb": [
+      "-dbtype",
+      "prot",
+      "-parse_seqids"
+    ],
+    "blastdbcheck": [
+      "-dbtype",
+      "prot",
+      "-full"
+    ],
+    "blastp": [
+      "-evalue",
+      "10",
+      "-seg",
+      "no",
+      "-max_target_seqs",
+      "10"
+    ],
+    "blastp_parameter_status": "ENGINEERING_CONNECTIVITY_ONLY",
+    "blastp_output_fields": [
+      "qseqid",
+      "sseqid",
+      "pident",
+      "length",
+      "mismatch",
+      "gapopen",
+      "qstart",
+      "qend",
+      "sstart",
+      "send",
+      "evalue",
+      "bitscore",
+      "qcovs"
+    ]
+  },
+  "observed_result": {
+    "blast": {
+      "qseqid": "sp|O15116|LSM1_HUMAN",
+      "sseqid": "sp|O15116|LSM1_HUMAN",
+      "pident_pct": 100.0,
+      "alignment_length": 133,
+      "mismatch_count": 0,
+      "gap_open_count": 0,
+      "query_start": 1,
+      "query_end": 133,
+      "subject_start": 1,
+      "subject_end": 133,
+      "evalue": 1.64e-98,
+      "bitscore": 265.0,
+      "query_coverage_pct": 100.0
+    },
+    "retrieved_fasta": {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/results/blastdbcmd_O15116.fasta",
+      "size_bytes": 229,
+      "sha256": "2ffa2d67374fd169f16ed41c0d0de0a51568e204cba44ca065ce32306fc7490b"
+    },
+    "sequence_relationship": "INPUT_EQUALS_BLAST_DB_RECORD_EQUALS_AFDB_METADATA_SEQUENCE"
+  },
+  "alphafold_db_reference": {
+    "model_entity_id": "AF-O15116-F1",
+    "model_version": 6,
+    "model_created_date": "2025-08-01T00:00:00Z",
+    "uniprot_reviewed": true,
+    "global_metric_value_observed": 89.69,
+    "metadata": {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/afdb/P0-DISC-004/prediction-O15116-attempt-02/response.json",
+      "size_bytes": 1990,
+      "sha256": "4106b00fa105ad20d8e4532c4f79c892837fed09fd30e6f3eda9b75279940341"
+    },
+    "model_cif": {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/afdb/P0-DISC-004/model-cif-v6/AF-O15116-F1-model_v6.cif",
+      "size_bytes": 135937,
+      "sha256": "d37972527c798e13e39fb8202e33d9c5cb816ac211c57591218e753a357d80e1"
+    },
+    "confidence_json": {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/afdb/P0-DISC-004/confidence-v6/AF-O15116-F1-confidence_v6.json",
+      "size_bytes": 1797,
+      "sha256": "66b9f09f6ea60f48dd841a8c8f0c9a09f6bdf12e75c8cb69990d90a7bc636def"
+    },
+    "pae_json": {
+      "path": "discovery/p0/s07/p0-s07-discovery-20260901-a/evidence/afdb/P0-DISC-004/pae-v6/AF-O15116-F1-predicted_aligned_error_v6.json",
+      "size_bytes": 39746,
+      "sha256": "8826b30d2fa5f9a4adf6ab2bd3b7b993ada14c2d517fdcbc1422e4a52d0bc684"
+    },
+    "quality_thresholds_applied": false
+  },
+  "checks": {
+    "input_matches_original_uniprot_fasta": true,
+    "blastdbcmd_sequence_matches_input": true,
+    "afdb_metadata_sequence_matches_input": true,
+    "uniprot_accession_matches": true,
+    "afdb_model_id_matches": true,
+    "afdb_model_version_matches": true,
+    "blast_exact_alignment_observed": true,
+    "blastdbcheck_full_passed": true,
+    "afdb_model_file_present": true,
+    "afdb_confidence_file_present": true,
+    "afdb_pae_file_present": true
+  },
+  "overall_validation": "PASS",
+  "artifact_inventory": [
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.pdb",
+      "size_bytes": 500000,
+      "sha256": "026d53054c207ead8358a03dd64882ff6a7ad931c8d65627efe9615bcd908900"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.phr",
+      "size_bytes": 161,
+      "sha256": "b66e71ae49f066d53bdbd9203d478be1667504cf777c368418371a6eae8f470a"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.pin",
+      "size_bytes": 140,
+      "sha256": "f742c5074b9083145bb6e7781b5ecc8b5c2bf5be24924ce141c783a3bae6036b"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.pjs",
+      "size_bytes": 668,
+      "sha256": "273af775c5398286472ca129c1876d0080c3ea2c44f9e18fc1078bbba2071485"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.pog",
+      "size_bytes": 36,
+      "sha256": "b31ad5df85471fcfc39c04f43c7ff3cf90f86afe7e9d1b6e554cf442ce107cc4"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.pos",
+      "size_bytes": 23,
+      "sha256": "d5af169a04c6fcbbb5a1419dcecef87046b07dcd16e774a058c708e9758037bc"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.pot",
+      "size_bytes": 20,
+      "sha256": "e2099cbf3445ac30a98dcc86f0b899eac91fd0a23cf2825f48bd01daadee347a"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.psq",
+      "size_bytes": 135,
+      "sha256": "8f01ca7904c0224c6c28e43bdd28b30982bdabf7ff8d94bb2f1365a8d05c52d5"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.ptf",
+      "size_bytes": 500000,
+      "sha256": "811fcc1c59308d9bfc396b93a0d861101454290622bd4ce6f8abc450cf05593f"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/database/uniprot_sprot_fixture/uniprot_sprot_fixture.pto",
+      "size_bytes": 8,
+      "sha256": "7c9fa136d4413fa6173637e883b6998d32e1d675f88cddff9dcbcf331820f4b8"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/inputs/uniprot/O15116.fasta",
+      "size_bytes": 241,
+      "sha256": "878637930baf89eb3716a0085d9b4b8a84b0705ee50a865fab6cd9133bb9e8e8"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/README.md",
+      "size_bytes": 2100,
+      "sha256": "97af051af8e295956d1b5ea2dc5a4ba8fee01b3463e1acee4a7b508a6cf92ad4"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/reports/blastdbcheck.log",
+      "size_bytes": 336,
+      "sha256": "9e05b25aa3b456e79e4ce6f051b43bc098fb429ff0370cc90468ef21ccfbfb10"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/reports/blastdbcmd-info.log",
+      "size_bytes": 281,
+      "sha256": "a378352866efccf5e505b2f961d067fcd736ab030c9bc543f85e3f93114ed189"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/reports/blastp.version.txt",
+      "size_bytes": 69,
+      "sha256": "57c5c4a16edc47ae2a4c00b8a6b0c2006e2d50f55ebe36c54c5a9693390eca36"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/reports/makeblastdb.log",
+      "size_bytes": 374,
+      "sha256": "4854300ad72181dfef3f739fdabae3e07ab1354d7f7e7dc3eeb96be47f3a8326"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/reports/makeblastdb.version.txt",
+      "size_bytes": 74,
+      "sha256": "9125647420feb96824f60acbcaf02a33993891222fc0807e792b02e4f42da51e"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/reports/taxdb-dependency-observation.txt",
+      "size_bytes": 499,
+      "sha256": "3f6382913387310f47a50df90e67863c4a140187ff05446fac561ae9c8b9384b"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/results/blastdbcmd_O15116.fasta",
+      "size_bytes": 229,
+      "sha256": "2ffa2d67374fd169f16ed41c0d0de0a51568e204cba44ca065ce32306fc7490b"
+    },
+    {
+      "path": "discovery/p0/s07/p0-s07-task2-fixture-20260902-a/results/blastp.tsv",
+      "size_bytes": 88,
+      "sha256": "1a6de6798e7a5d9c59a550b36756b582c990be4bc8665eafd3315e8ba7117673"
+    }
+  ],
+  "remaining_scope_decisions": [
+    "Production UniProt search coverage: Swiss-Prot only, Swiss-Prot plus selected proteomes, or broader UniProtKB.",
+    "How to select among multiple BLAST accessions and what to do when an accession has no model in the installed AlphaFold DB profile."
+  ]
+}

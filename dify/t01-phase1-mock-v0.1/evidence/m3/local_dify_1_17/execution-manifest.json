@@ -1,0 +1,80 @@
+{
+  "document_type": "T01_PHASE1_MOCK_M3_EXECUTION_MANIFEST",
+  "manifest_version": "T01-PHASE1-MOCK-M3-EXECUTION-MANIFEST-v0.1",
+  "binding_profile": "local_dify_1_17",
+  "main": {
+    "runtime_root": "var/t01-phase1-mock-v0.1/m3-execution/main-20260904-04/runtime",
+    "captures": {
+      "submissions_path": "var/t01-phase1-mock-v0.1/m3-execution/main-20260904-04/submissions.effective.capture.json",
+      "finalizations_path": "var/t01-phase1-mock-v0.1/m3-execution/main-20260904-04/finalizations.capture.json",
+      "driver_path": "var/t01-phase1-mock-v0.1/m3-execution/main-20260904-04/lifecycle.capture.json"
+    }
+  },
+  "debug": {
+    "runtime_root": "var/t01-phase1-mock-v0.1/m3-execution/debug-20260904-01/runtime",
+    "captures": {
+      "submissions_path": "var/t01-phase1-mock-v0.1/m3-execution/debug-20260904-01/submissions.effective.capture.json",
+      "finalizations_path": "var/t01-phase1-mock-v0.1/m3-execution/debug-20260904-01/finalizations.capture.json",
+      "driver_path": "var/t01-phase1-mock-v0.1/m3-execution/debug-20260904-01/lifecycle.capture.json"
+    }
+  },
+  "workflow_facts": {
+    "registered_workflow_ids": [
+      "t01_phase1_mock_v01.workflow.main",
+      "t01_phase1_mock_v01.workflow.debug"
+    ],
+    "provider_id": "t01-phase1-mock-mcp-v01",
+    "tool_ids": [
+      "t01_phase1_mock_v01.tool.run.initialize",
+      "t01_phase1_mock_v01.tool.node.n01",
+      "t01_phase1_mock_v01.tool.node.n02",
+      "t01_phase1_mock_v01.tool.node.n03",
+      "t01_phase1_mock_v01.tool.node.n04",
+      "t01_phase1_mock_v01.tool.node.n05",
+      "t01_phase1_mock_v01.tool.node.n06",
+      "t01_phase1_mock_v01.tool.node.n07",
+      "t01_phase1_mock_v01.tool.node.n08",
+      "t01_phase1_mock_v01.tool.node.n09",
+      "t01_phase1_mock_v01.tool.node.n10",
+      "t01_phase1_mock_v01.tool.node.n11",
+      "t01_phase1_mock_v01.tool.node.n12",
+      "t01_phase1_mock_v01.tool.node.n13",
+      "t01_phase1_mock_v01.tool.node.n14",
+      "t01_phase1_mock_v01.tool.node.n15",
+      "t01_phase1_mock_v01.tool.node.n16",
+      "t01_phase1_mock_v01.tool.node.n17",
+      "t01_phase1_mock_v01.tool.node.n18",
+      "t01_phase1_mock_v01.tool.control.design_suitability",
+      "t01_phase1_mock_v01.tool.control.n12_validation",
+      "t01_phase1_mock_v01.tool.control.n15_delivery_recommendation",
+      "t01_phase1_mock_v01.tool.control.n16_applicability",
+      "t01_phase1_mock_v01.tool.control.n17_applicability",
+      "t01_phase1_mock_v01.tool.control.n18_entry",
+      "t01_phase1_mock_v01.tool.run.finalize"
+    ]
+  },
+  "instance_mappings": {
+    "provider": {
+      "stable_provider_id": "t01-phase1-mock-mcp-v01",
+      "instance_record_id": "94a0a63c-d085-4684-a481-956f01ba41bf"
+    },
+    "workflows": [
+      {
+        "stable_workflow_id": "t01_phase1_mock_v01.workflow.main",
+        "app_id": "a5fa1d0e-45a9-469e-aef9-4c55639f9eba",
+        "draft_workflow_id": "181b59ac-a9f6-427a-a261-8a690c9c6409"
+      },
+      {
+        "stable_workflow_id": "t01_phase1_mock_v01.workflow.debug",
+        "app_id": "52dd71b0-9b76-4c85-b50c-e5aead4b293b",
+        "draft_workflow_id": "63b89ec7-51f0-4472-a1b4-045efaddb5c3"
+      }
+    ]
+  },
+  "scope_guards": {
+    "himat_backend_accessed": false,
+    "scientific_compute": false,
+    "scientific_network_calls": 0,
+    "legacy_implementation_reuse": false
+  }
+}
