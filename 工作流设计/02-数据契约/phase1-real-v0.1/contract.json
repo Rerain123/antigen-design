@@ -1,0 +1,171 @@
+{
+  "contract_version": "0.1.0",
+  "scope": "W1_ENGINEERING_DESIGN",
+  "names": {
+    "python_root": "t01_phase1_real",
+    "provider": "t01-phase1-real-mcp-v01",
+    "workflow": "t01_phase1_real_v01.workflow.w1_debug",
+    "generator": "src/t01_phase1_real/dify/generator.py",
+    "storage_layout": "runs/{run_id}/jobs/{job_id}/attempts/{attempt_id}/",
+    "generated_root": "dify/t01-phase1-real-v0.1",
+    "evidence_root": "discovery/t01-phase1-real",
+    "id_prefixes": {
+      "run": "t01p1r-run-",
+      "job": "t01p1r-job-",
+      "attempt": "t01p1r-attempt-",
+      "artifact": "t01p1r-artifact-"
+    }
+  },
+  "module_reviews": {
+    "A": "W1-08A engineering only",
+    "B": "W1-08B per tool applicable G0/G1",
+    "C": "W1-08C per engine applicable G0/G1",
+    "whole_wave": "All applicable A/B/C and D01-D08 before integrated W1 acceptance and release"
+  },
+  "tools": [
+    {
+      "tool_id": "t01.real.engineering_probe",
+      "module": "A",
+      "node_id": null,
+      "required_review": "NONE_ENGINEERING_ONLY",
+      "production_enabled": false
+    },
+    {
+      "tool_id": "t01.real.ingest_structure",
+      "module": "B1",
+      "node_id": "N01",
+      "required_review": "W1-08B.ingest",
+      "production_enabled": false
+    },
+    {
+      "tool_id": "t01.real.map_structure",
+      "module": "B1",
+      "node_id": "N01",
+      "required_review": "W1-08B.mapping",
+      "production_enabled": false
+    },
+    {
+      "tool_id": "t01.real.deeptmhmm",
+      "module": "B2",
+      "node_id": "N02",
+      "required_review": "W1-08B.deeptmhmm",
+      "production_enabled": false
+    },
+    {
+      "tool_id": "t01.real.assess_structure_quality",
+      "module": "B3",
+      "node_id": "N01",
+      "required_review": "W1-08B.s09",
+      "production_enabled": false
+    },
+    {
+      "tool_id": "t01.real.freesasa",
+      "module": "B4",
+      "node_id": "N02",
+      "required_review": "W1-08B.freesasa",
+      "production_enabled": false
+    },
+    {
+      "tool_id": "t01.real.af3",
+      "module": "C",
+      "node_id": "N01",
+      "required_review": "W1-08C.af3",
+      "production_enabled": false
+    },
+    {
+      "tool_id": "t01.real.esmfold2",
+      "module": "C",
+      "node_id": "N01",
+      "required_review": "W1-08C.esmfold2",
+      "production_enabled": false
+    }
+  ],
+  "operations": {
+    "create_run": "Atomically allocate server run_id in authenticated scope with idempotent response",
+    "submit": "Atomically admit immutable request, idempotency row, job and event",
+    "get": "Read committed snapshot by job_id in authenticated scope",
+    "cancel": "Persist stop intent; final state only after no-start or actual stop confirmation",
+    "retry": "Explicit only, new idempotency key/job/attempt, same immutable request/profile, parent link"
+  },
+  "transitions": {
+    "queued": [
+      "running",
+      "cancelled",
+      "failed"
+    ],
+    "running": [
+      "succeeded",
+      "failed",
+      "stop_requested",
+      "reconciling"
+    ],
+    "stop_requested": [
+      "cancelled",
+      "timed_out",
+      "reconciling"
+    ],
+    "reconciling": [
+      "running",
+      "stop_requested",
+      "succeeded",
+      "failed",
+      "cancelled",
+      "timed_out"
+    ],
+    "succeeded": [],
+    "failed": [],
+    "cancelled": [],
+    "timed_out": []
+  },
+  "terminal_states": [
+    "succeeded",
+    "failed",
+    "cancelled",
+    "timed_out"
+  ],
+  "retryable_states": [
+    "failed",
+    "cancelled",
+    "timed_out"
+  ],
+  "idempotency": {
+    "key_fields": [
+      "authenticated_scope",
+      "operation",
+      "idempotency_key"
+    ],
+    "fingerprint": "SHA256 of exact UTF-8 submission body bytes; no JSON reserialization",
+    "same_key_same_body": "RETURN_EXISTING_JOB",
+    "same_key_changed_body": "IDEMPOTENCY_CONFLICT",
+    "retention": "Keep index for run lifetime; no time-based reuse in MVP"
+  },
+  "errors": [
+    "INVALID_REQUEST",
+    "UNSUPPORTED_VERSION",
+    "UNKNOWN_TOOL",
+    "PROFILE_NOT_APPROVED",
+    "FORBIDDEN",
+    "JOB_NOT_FOUND",
+    "IDEMPOTENCY_CONFLICT",
+    "INVALID_STATE",
+    "STALE_REVISION",
+    "STALE_LEASE",
+    "ASSET_MISSING",
+    "HASH_MISMATCH",
+    "TOOL_FAILED",
+    "OUTPUT_INVALID",
+    "INTERRUPTED",
+    "TIMEOUT",
+    "CANCELLED"
+  ],
+  "admission": {
+    "engineering_probe_modes": [
+      "engineering_example"
+    ],
+    "scientific_modes_require_server_side_module_review": true,
+    "pipeline_requires_approved_tool_rule_environment_and_input_support": true,
+    "reject_client_commands_paths_images_and_urls": true
+  },
+  "implementation_status": "NOT_IMPLEMENTED",
+  "production_status": "NOT_DEPLOYED"
+}

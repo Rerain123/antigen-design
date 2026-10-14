@@ -1,0 +1,470 @@
+{
+  "type": "object",
+  "properties": {
+    "mapping_version": {
+      "const": "0.1.0"
+    },
+    "artifact_type": {
+      "const": "t01.real.structure_mapping"
+    },
+    "evidence_kind": {
+      "enum": [
+        "synthetic_fixture",
+        "local_input"
+      ]
+    },
+    "mapping_status": {
+      "enum": [
+        "unverified",
+        "unreliable",
+        "verified"
+      ]
+    },
+    "review_required": {
+      "type": "boolean"
+    },
+    "usable_for_pipeline": {
+      "type": "boolean"
+    },
+    "sequence": {
+      "type": "string",
+      "pattern": "^[A-Z]+$"
+    },
+    "sequence_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "structure_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "format": {
+      "enum": [
+        "pdb",
+        "mmcif"
+      ]
+    },
+    "model_index": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "model_serial": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "ingestion_chain_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "target_chain_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "fixed_chain_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "selection": {
+      "type": "object",
+      "properties": {
+        "requested_model_index": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "requested_chain_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "requested_model_index",
+        "requested_chain_id"
+      ],
+      "additionalProperties": false
+    },
+    "method": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "enum": ["exact_ordered_subsequence", "entity_label_or_exact_subsequence"]
+        },
+        "version": {
+          "const": "0.1.0"
+        },
+        "acceptance_threshold": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "acceptance_threshold"
+      ],
+      "additionalProperties": false
+    },
+    "parser": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "const": "Biopython"
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "strict": {
+          "const": true
+        },
+        "chain_namespace": {
+          "enum": [
+            "auth_asym_id",
+            "pdb_chain_id"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "strict",
+        "chain_namespace"
+      ],
+      "additionalProperties": false
+    },
+    "producer_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "chain_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "chain_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "observed_sequence": {
+            "type": "string",
+            "minLength": 1
+          },
+          "match_status": {
+            "enum": [
+              "exact",
+              "partial_unique",
+              "ambiguous",
+              "no_match",
+              "unsupported"
+            ]
+          },
+          "positions": {
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "chain_id",
+          "observed_sequence",
+          "match_status",
+          "positions"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sequence_position": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sequence_residue": {
+            "type": "string",
+            "pattern": "^[A-Z]$"
+          },
+          "structure_residue": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "chain_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "res_seq": {
+                    "type": "integer"
+                  },
+                  "insertion_code": {
+                    "type": "string",
+                    "maxLength": 1
+                  },
+                  "hetero_flag": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "residue_name": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "chain_id",
+                  "res_seq",
+                  "insertion_code",
+                  "hetero_flag",
+                  "residue_name"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "enum": [
+              "mapped",
+              "missing_structure_residue",
+              "unresolved_mapping"
+            ]
+          }
+        },
+        "required": [
+          "sequence_position",
+          "sequence_residue",
+          "structure_residue",
+          "reason"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "review": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "reviewer": {
+              "type": "string",
+              "minLength": 1
+            },
+            "reviewed_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "decision_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "scope": {
+              "const": "R58_MAPPING_ONLY"
+            }
+          },
+          "required": [
+            "reviewer",
+            "reviewed_at",
+            "decision_ref",
+            "scope"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "mapping_version",
+    "artifact_type",
+    "evidence_kind",
+    "mapping_status",
+    "review_required",
+    "usable_for_pipeline",
+    "sequence",
+    "sequence_sha256",
+    "structure_sha256",
+    "format",
+    "model_index",
+    "model_serial",
+    "ingestion_chain_id",
+    "target_chain_id",
+    "fixed_chain_ids",
+    "selection",
+    "method",
+    "parser",
+    "producer_version",
+    "chain_candidates",
+    "entries",
+    "issues",
+    "review"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:t01:real:structure-mapping:0.1.0",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "mapping_status": {
+            "enum": [
+              "unverified",
+              "unreliable"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "review_required": {
+            "const": true
+          },
+          "usable_for_pipeline": {
+            "const": false
+          },
+          "review": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mapping_status": {
+            "const": "verified"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "review": {
+            "type": "object"
+          },
+          "review_required": {
+            "const": false
+          },
+          "evidence_kind": {
+            "const": "local_input"
+          },
+          "target_chain_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "model_index": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "evidence_kind": {
+            "const": "synthetic_fixture"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "usable_for_pipeline": {
+            "const": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mapping_status": {
+            "const": "unreliable"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "target_chain_id": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ]
+}

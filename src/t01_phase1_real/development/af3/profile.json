@@ -1,0 +1,44 @@
+{
+  "id": "af3-v3.0.2-resident-r01",
+  "engine": "alphafold3",
+  "version": "3.0.2",
+  "commit": "f6a5aecf6eea2b5de4f846df86921630c5036b0b",
+  "source_image_id": "sha256:35db7c1feb3368a7c72b0d1f60b295ed1473b562b61526db265fc0c446fd4373",
+  "model": {
+    "path": "/af3-weights/alphafold3-official-r01/af3.bin",
+    "sha256": "df8bbf2621f17dd3ee21c2a921e84a50bc2b80cdc0c7971cb915c2826fee1f9b"
+  },
+  "database": {
+    "root": "/af3-databases/alphafold3-v3.0/unpacked-r03",
+    "receipt": "/af3-databases/alphafold3-v3.0/extraction-receipt.json",
+    "file_count": 195867,
+    "total_bytes": 672435030513,
+    "required_paths": [
+      "pdb_seqres_2022_09_28.fasta",
+      "rfam_14_9_clust_seq_id_90_cov_80_rep_seq.fasta",
+      "rnacentral_active_seq_id_90_cov_80_linclust.fasta",
+      "bfd-first_non_consensus_sequences.fasta",
+      "nt_rna_2023_02_23_clust_seq_id_90_cov_80_rep_seq.fasta",
+      "uniref90_2022_05.fa",
+      "uniprot_all_2021_04.fa",
+      "mgy_clusters_2022_05.fa",
+      "mmcif_files"
+    ]
+  },
+  "inference": {
+    "num_diffusion_samples": 5,
+    "max_template_date": "2021-09-30",
+    "jackhmmer_n_cpu": 8,
+    "nhmmer_n_cpu": 8,
+    "selection_primary": "highest_ptm_single_chain",
+    "tie_break": "lowest_seed_then_sample_index_reproducibility_only"
+  },
+  "device": {
+    "name": "NVIDIA A100-SXM-64GB",
+    "uuid": "GPU-f098e2d4-4cf3-a2c2-3503-6cca5bedde31",
+    "memory_mib": 65536
+  },
+  "scientific_gate": "CLOSED",
+  "usable_for_pipeline": false,
+  "production_status": "NOT_DEPLOYED"
+}

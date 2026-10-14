@@ -1,0 +1,14 @@
+[project]
+name = "t01-phase1"
+version = "0.0.0"
+description = "Current Phase 1 control project for the T-01 18-node delivery"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+  "jsonschema>=4.23,<5",
+  "PyYAML>=6.0,<7",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"
